@@ -21,7 +21,25 @@ nav:
 
 theme:
   name: material
-  features:  
+  features:
+    # 给每个 Tab 添加一个 index.md，且在点击 Tab 时打开
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages-with-section-index-pages
+    - navigation.indexes  
+    # 返回顶部的按钮，在上滑时出现
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#back-to-top-button
+    - navigation.top  
+    # 搜索输入一些字母时推荐补全整个单词
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-suggestions
+    - search.suggest
+    # 搜索的关键词文章加入高亮
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-highlighting
+    - search.highlight
+    # 可以通过按钮复制代码
+    # https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#code-copy-button
+    - content.code.copy
+    # [点击按钮跳转至 GitHub 修改 Markdown 源文件]
+    # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+    - content.action.edit
     - navigation.footer # 页脚可以包含指向当前页面的上一页和下一页的链接
     - navigation.tabs  # 设置导航
     - navigation.tabs.sticky # 粘性导航
@@ -48,9 +66,7 @@ repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，�
 repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 copyright: dearRongerr | 24.11.14
 
-# [点击按钮跳转至 GitHub 修改 Markdown 源文件]
-# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
-edit_uri: edit/main/docs/
+
 
 markdown_extensions:
   - pymdownx.caret
