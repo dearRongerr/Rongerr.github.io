@@ -32,4 +32,5 @@ Commands:
 
 [官方文档：mkdocs配置 ](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
-[mkdocs入门教程](【Python版宝藏级静态站点生成器Material for MkDocs-哔哩哔哩】 https://b23.tv/jQs24a5)
+[mkdocs入门教程]( https://b23.tv/jQs24a5)
+

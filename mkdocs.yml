@@ -48,6 +48,10 @@ repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，�
 repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 copyright: dearRongerr | 24.11.14
 
+# [点击按钮跳转至 GitHub 修改 Markdown 源文件]
+# https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+edit_uri: edit/main/docs/
+
 markdown_extensions:
   - pymdownx.caret
   - pymdownx.mark
