@@ -1,17 +1,7 @@
 # About me
 
-the site created in 2024.11.14
+教育经历：
 
-## Commands
+- 本科：华北理工大学 智能科学与技术
+- 研究生：兰州大学 应用统计
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
-
-## Project layout
-
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
