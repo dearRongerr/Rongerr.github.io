@@ -1,6 +1,6 @@
-# 溶err
+# About me
 
-2024年11月14日 born
+the site created in 2024.11.14
 
 ## Commands
 
