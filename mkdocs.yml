@@ -14,7 +14,7 @@ nav:
   - 便签:
     - 备忘录: 便签/sticks.md
     - TODO: 便签/TODO.md
-    - DONE: 便签/QA.md
+    - DONE: 便签/DONE.md
     - mkdocs学习: 便签/mkdocs_learn.md
   - Leecode:
     - 力扣: Leecode/力扣.md
@@ -74,6 +74,31 @@ copyright: dearRongerr | 24.11.14 | 个人观点，仅供参考 | 所有笔记�
 
 
 markdown_extensions:
+  - abbr
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  # - pymdownx.emoji:
+  #     emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  #     emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
   - pymdownx.caret
   - pymdownx.mark
   - pymdownx.tilde
@@ -137,4 +162,12 @@ plugins:
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   - git-revision-date-localized:
       enable_creation_date: true
-      type: date
+      type: timeago #时间类型
+      custom_format: "%d. %B %Y"  # 时间格式
+      fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
+      enable_creation_date: true #是否启用创建时间
+      locale: zh #首选语言
+      exclude:  #排除的页面
+          - index.md
+      enabled: true #是否启用
+      strict: true      

@@ -76,3 +76,70 @@ Commands:
 
 ![image-20241115101535524](mkdocs_learn/image-20241115101535524.png)
 
+
+## 写作
+
+更多写作
+
+```
+!!! note
+    This is a note.
+```
+
+```
+!!! tip
+    This is a tip.
+```
+
+```
+!!! warning
+    This is a warning.
+```
+
+```
+!!! danger
+    This is a danger.
+```
+
+```
+!!! success
+    This is a success.
+```
+
+```
+!!! info
+    This is a info.
+```
+
+```
+!!! quote
+    This is a quote.
+```
+
+```
+??? question "What is the meaning of life, the universe, and everything?"
+```
+
+!!! note
+    This is a note.
+
+!!! tip
+    This is a tip.
+
+!!! warning
+    This is a warning.
+
+!!! danger
+    This is a danger.
+
+!!! success
+    This is a success.
+
+!!! info
+    This is a info.
+
+!!! quote
+    This is a quote.
+
+??? question "What is the meaning of life, the universe, and everything?"
+
