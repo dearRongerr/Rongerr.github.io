@@ -33,6 +33,30 @@ nav:
     - learning/index.md
     - learning/vit.md
     - learning/swintransformer.md      
+  - 文献:
+    - 人群计数: literature/CrowdCounting/1.md
+    - 目标计数:
+        - literature/ObejectCounting/index.md
+        - literature/ObejectCounting/rank1 CountGD.md
+        - literature/ObejectCounting/rank2 GeCo.md
+        - literature/ObejectCounting/rank3 DAVE.md
+        - literature/ObejectCounting/rank4 CACViT.md
+        - literature/ObejectCounting/rank5 SSD.md
+        - literature/ObejectCounting/rank6 LOCA.md
+        - literature/ObejectCounting/rank7 SemAug_CountTR.md
+        - literature/ObejectCounting/rank8 CounTR.md
+        - literature/ObejectCounting/rank9 SemAug_SAFECount.md
+        - literature/ObejectCounting/rank10 SPDCN.md
+        - literature/ObejectCounting/rank11 GCA_SUN.md
+        - literature/ObejectCounting/rank12 SAFECount.md
+        - literature/ObejectCounting/rank13 BMNet.md
+        - literature/ObejectCounting/rank14 LaoNet.md
+        - literature/ObejectCounting/rank15 CounTX.md
+        - literature/ObejectCounting/rank16 Counting_DETR.md
+        - literature/ObejectCounting/rank17 RCC.md
+        - literature/ObejectCounting/rank18 Omnicount.md
+        - literature/ObejectCounting/rank19 FamNet.md
+    - 复现论文: literature/Reproduction     
 
 theme:
   name: material
