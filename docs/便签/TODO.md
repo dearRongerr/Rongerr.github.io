@@ -1,16 +1,14 @@
 ## 折腾
 
-- ~~mkdocs  主题~~
-> mkdocs_learn
+- 晚上同步线上
+- 时间戳显示有点问题
+- 版本修改
 
-- 图床 & typora& vscode&github
-- 本地文件和在线文件的存储问题，上传上去的本地怎么管理，又不能完全在线
-- 所有文档 没有一个时间记录、没有时间戳确实别扭了点
-- ~~没有一级标题了~~
-
-> 一级标题被吞了，只能从二级标题开始显示：
+> [官方链接](https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/)
 >
-> ![image-20241114200933877](TODO/1.png)
+> [版本控制示例](https://mkdocs-material.github.io/example-versioning/latest/)
+>
+> [版本控制源码](https://github.com/mkdocs-material/example-versioning)
 
 ## 八股
 

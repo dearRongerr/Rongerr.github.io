@@ -1,4 +1,4 @@
-![image-20241114141124100](mkdocs首页/image-20241114141124100.png)
+![image-20241115100605111](mkdocs_learn/image-20241115100605111-1636372-1636377.png)
 
 主题配置：[**Material for MkDocs**](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
@@ -33,4 +33,46 @@ Commands:
 [官方文档：mkdocs配置 ](https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/)
 
 [mkdocs入门教程]( https://b23.tv/jQs24a5)
+
+## 文件组织形式
+
+```bash
+(base) ... docs % tree
+.
+├── Error  # 文件夹
+│   └── 报错.md   # markdown文件
+├── Leecode
+│   └── 力扣.md
+├── home
+│   ├── page-1.md
+│   └── page-2.md
+├── index.md
+├── mkdocs
+│   ├── css
+│   │   ├── no-footer.css
+│   │   └── unordered-list-symbols.css
+│   └── javascripts
+│       └── katex.js
+└── 便签  # 文件夹
+  ├── TODO  # 图床
+  │   ├── 1.png
+  │   └── image-20241115095446260.png
+  ├── TODO.md #markdown文件
+  ├── mkdocs_learn
+  │   └── image-20241115100605111-1636372-1636377.png
+  ├── mkdocs_learn.md
+  └── 备忘.md
+
+10 directories, 14 files
+```
+
+前段与后端的对应
+
+![image-20241115101310759](mkdocs_learn/image-20241115101310759.png)
+
+## 添加页面创建时间、最后一次修改时间
+
+[官方文档链接](https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions)
+
+![image-20241115101535524](mkdocs_learn/image-20241115101535524.png)
 

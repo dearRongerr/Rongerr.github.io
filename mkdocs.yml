@@ -1,7 +1,8 @@
 site_name: My Docs
 site_name: 溶err
 site_url: https://mydomain.org/mysite
-
+# edit_uri: edit/main/docs/
+edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
 nav:
 # 为了将页面链接到某个部分，
 # 请在相应的文件夹中创建一个名为 index.md 的新文档，
@@ -11,9 +12,10 @@ nav:
     - Page 1: home/page-1.md
     - Page 2: home/page-2.md
   - 便签:
-    - 备忘录: 便签/备忘.md
+    - 备忘录: 便签/sticks.md
     - TODO: 便签/TODO.md
-    - mkdocs_learn: 便签/mkdocs_learn.md
+    - DONE: 便签/QA.md
+    - mkdocs学习: 便签/mkdocs_learn.md
   - Leecode:
     - 力扣: Leecode/力扣.md
   - Error:
@@ -22,6 +24,7 @@ nav:
 theme:
   name: material
   features:
+    - toc.follow
     # 给每个 Tab 添加一个 index.md，且在点击 Tab 时打开
     # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages-with-section-index-pages
     - navigation.indexes  
@@ -62,9 +65,11 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
-repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，跟theme是同一个级别
-repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
-copyright: dearRongerr | 24.11.14
+# repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，跟theme是同一个级别
+repo_url: https://github.com/dearRongerr
+# repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
+repo_name: dearRongerr's github
+copyright: dearRongerr | 24.11.14 | 个人观点，仅供参考 | 所有笔记仅做备忘
 
 
 
@@ -126,3 +131,13 @@ extra_css:
 
 extra:
   generator: false
+  version:
+    provider: mike
+
+plugins:
+  # 显示创建日期、修改日期
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: date
+      enable_creation_date: true
