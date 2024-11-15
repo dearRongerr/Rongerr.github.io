@@ -1,7 +1,7 @@
 ## 折腾
 
 - 晚上同步线上
-- 时间戳显示有点问题
+- 时间戳显示有问题,github actions error
 - ~~版本修改~~
 
 > [官方链接](https://squidfunk.github.io/mkdocs-material/setup/setting-up-versioning/)
