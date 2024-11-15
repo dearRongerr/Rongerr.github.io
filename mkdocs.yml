@@ -8,18 +8,15 @@ nav:
 # 请在相应的文件夹中创建一个名为 index.md 的新文档，
 # 并将其添加到导航部分的开头
 
-  - home:
-    - Page 1: home/page-1.md
-    - Page 2: home/page-2.md
   - 便签:
-    - 备忘录: 便签/sticks.md
-    - TODO: 便签/TODO.md
-    - DONE: 便签/DONE.md
-    - mkdocs学习: 便签/mkdocs_learn.md
-  - Leecode:
-    - 力扣: Leecode/力扣.md
-  - Error:
-    - github : Error/github.md    
+    - 备忘录: sticks/sticks.md
+    - TODO: sticks/TODO.md
+    - DONE: sticks/DONE.md
+    - mkdocs学习: sticks/mkdocs_learn.md
+  - 八股文:
+    - 力扣: bagu/Leecode.md
+  - 捉个虫:
+    - github : error/github.md    
 
 theme:
   name: material
@@ -120,7 +117,7 @@ markdown_extensions:
   # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
   - pymdownx.highlight:
       # 显示行号
-      linenums: true
+      # linenums: true
       # # 显示编程语言名称
       # auto_title: true
       # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#+pymdownx.highlight.line_spans
