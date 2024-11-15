@@ -131,8 +131,6 @@ extra_css:
 
 extra:
   generator: false
-  version:
-    provider: mike
 
 plugins:
   # 显示创建日期、修改日期
@@ -141,3 +139,4 @@ plugins:
       enable_creation_date: true
       type: date
       enable_creation_date: true
+      fallback_to_build_date: true
