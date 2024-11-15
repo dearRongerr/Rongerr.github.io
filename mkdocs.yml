@@ -13,7 +13,7 @@ nav:
     - TODO: sticks/TODO.md
     - DONE: sticks/DONE.md
     - mkdocs学习: sticks/mkdocs_learn.md
-  - 八股文:
+  - 应付面试:
     - bagu/index.md
     - 力扣: 
       - bagu/leetcode/index.md
@@ -82,7 +82,7 @@ theme:
 repo_url: https://github.com/dearRongerr
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 repo_name: dearRongerr's github
-copyright: dearRongerr | 24.11.14 | 个人观点，不做参考 | 所有笔记仅做备忘
+copyright: dearRongerr | 24.11.14 | 个人观点，不做参考 | 24.11.15 小红书上被人喷我太菜了，笑），我也想技术优秀，谢谢
 
 
 
@@ -133,7 +133,7 @@ markdown_extensions:
   # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
   - pymdownx.highlight:
       # 显示行号
-      # linenums: true
+      linenums: true
       # # 显示编程语言名称
       # auto_title: true
       # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#+pymdownx.highlight.line_spans
