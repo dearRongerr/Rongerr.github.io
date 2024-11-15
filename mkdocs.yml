@@ -19,7 +19,7 @@ nav:
   - Leecode:
     - 力扣: Leecode/力扣.md
   - Error:
-    - 报错 : Error/报错.md    
+    - github : Error/github.md    
 
 theme:
   name: material
