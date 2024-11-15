@@ -28,7 +28,7 @@ nav:
     - 机器学习: 
       - bagu/machinelearning/kmeans.md
   - 捉个虫:
-    - error/github.md      
+    - Error/github.md      
   - 笔记:
     - learning/index.md
     - learning/vit.md
