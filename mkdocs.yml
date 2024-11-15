@@ -14,9 +14,25 @@ nav:
     - DONE: sticks/DONE.md
     - mkdocs学习: sticks/mkdocs_learn.md
   - 八股文:
-    - 力扣: bagu/Leecode.md
+    - bagu/index.md
+    - 力扣: 
+      - bagu/leetcode/index.md
+      - bagu/leetcode/1.md
+      - bagu/leetcode/2.md
+    - 深度学习: 
+      - bagu/deeplearning/index.md
+      - bagu/deeplearning/pytorch_shape_function.md
+      - 关于Transformer:
+        - 位置编码: bagu/deeplearning/former/pe.md
+        - bagu/deeplearning/former/transformer.md
+    - 机器学习: 
+      - bagu/machinelearning/kmeans.md
   - 捉个虫:
-    - github : error/github.md    
+    - error/github.md      
+  - 笔记:
+    - learning/index.md
+    - learning/vit.md
+    - learning/swintransformer.md      
 
 theme:
   name: material
@@ -66,7 +82,7 @@ theme:
 repo_url: https://github.com/dearRongerr
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 repo_name: dearRongerr's github
-copyright: dearRongerr | 24.11.14 | 个人观点，仅供参考 | 所有笔记仅做备忘
+copyright: dearRongerr | 24.11.14 | 个人观点，不做参考 | 所有笔记仅做备忘
 
 
 

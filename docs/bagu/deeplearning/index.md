@@ -1,0 +1,2 @@
+- [ ] Batchnorm & layernorm
+- [ ] 
