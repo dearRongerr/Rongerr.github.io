@@ -197,8 +197,6 @@ extra_css:
   # 无序列表符号自定义
   - mkdocs/css/unordered-list-symbols.css
   # 标题自动编号
-  
-
 extra:
   generator: false
 
