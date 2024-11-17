@@ -58,7 +58,8 @@ nav:
         - literature/ObejectCounting/rank17 RCC.md
         - literature/ObejectCounting/rank18 Omnicount.md
         - literature/ObejectCounting/rank19 FamNet.md
-    - 复现论文: literature/Reproduction
+    - 复现论文: 
+      - literature/Reproduction/index.md
   - 杂:
     - logs/index.md     
     - logs/diary.md      
