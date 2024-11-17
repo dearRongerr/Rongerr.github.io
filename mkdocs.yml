@@ -56,7 +56,10 @@ nav:
         - literature/ObejectCounting/rank17 RCC.md
         - literature/ObejectCounting/rank18 Omnicount.md
         - literature/ObejectCounting/rank19 FamNet.md
-    - 复现论文: literature/Reproduction     
+    - 复现论文: literature/Reproduction
+  - 杂:
+    - logs/index.md     
+    - logs/diary.md      
 
 theme:
   name: material
@@ -106,7 +109,7 @@ theme:
 repo_url: https://github.com/dearRongerr
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 repo_name: dearRongerr's github
-copyright: dearRongerr | 24.11.14 | 个人观点，不做参考 | 24.11.15 小红书上被人喷我太菜了，笑），我也想技术优秀，谢谢
+copyright: dearRongerr | 24.11.14 | 个人观点，不做参考
 
 
 
@@ -201,10 +204,10 @@ plugins:
       enable_creation_date: true
       type: timeago #时间类型
       custom_format: "%d. %B %Y"  # 时间格式
-      fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
-      enable_creation_date: true #是否启用创建时间
+      # fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
+      # enable_creation_date: true #是否启用创建时间
       locale: zh #首选语言
-      exclude:  #排除的页面
-          - index.md
-      enabled: true #是否启用
-      strict: true      
+      # exclude:  #排除的页面
+      #     - index.md
+      # enabled: true #是否启用
+      # strict: true      
