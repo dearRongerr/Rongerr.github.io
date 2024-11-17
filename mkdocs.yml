@@ -23,8 +23,10 @@ nav:
       - bagu/deeplearning/index.md
       - bagu/deeplearning/pytorch_shape_function.md
       - 关于Transformer:
-        - 位置编码: bagu/deeplearning/former/pe.md
+        - bagu/deeplearning/former/pe.md
         - bagu/deeplearning/former/transformer.md
+        - bagu/deeplearning/former/multihead.md
+        - bagu/deeplearning/former/selfattention.md
     - 机器学习: 
       - bagu/machinelearning/kmeans.md
   - 捉个虫:
@@ -193,6 +195,8 @@ extra_css:
   - mkdocs/css/no-footer.css
   # 无序列表符号自定义
   - mkdocs/css/unordered-list-symbols.css
+  # 标题自动编号
+  - mkdocs/css/base.user.css
 
 extra:
   generator: false
