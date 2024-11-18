@@ -202,16 +202,16 @@ extra:
   generator: false
 
 plugins:
+  - search
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   - git-revision-date-localized:
       enable_creation_date: true
       type: date #时间类型
       custom_format: "%d. %B %Y"  # 时间格式
-      # fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
-      # enable_creation_date: true #是否启用创建时间
+      fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
       locale: zh #首选语言
       # exclude:  #排除的页面
       #     - index.md
-      # enabled: true #是否启用
+      enabled: true #是否启用
       # strict: true      
