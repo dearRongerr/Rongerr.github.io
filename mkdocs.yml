@@ -86,7 +86,7 @@ theme:
     - content.code.copy
     # [点击按钮跳转至 GitHub 修改 Markdown 源文件]
     # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
-    - content.action.edit
+    # - content.action.edit # 不要，改了会有不同步的问题
     - navigation.footer # 页脚可以包含指向当前页面的上一页和下一页的链接
     - navigation.tabs  # 设置导航
     - navigation.tabs.sticky # 粘性导航
@@ -207,7 +207,8 @@ plugins:
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   - git-revision-date-localized:
       enable_creation_date: true
-      type: date #时间类型
+      type: timeago #时间类型
+      # type: date #日期类型
       custom_format: "%d. %B %Y"  # 时间格式
       fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
       locale: zh #首选语言

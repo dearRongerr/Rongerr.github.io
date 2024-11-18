@@ -32,6 +32,9 @@ typora 可以自动创建图床文件夹
 
 - [x] 英文文本 两端对齐(以后再说吧，人家都没弄，我也不折腾了)
 - [x]  这个[主题](https://wcowin.work/)超好看，有空折腾一下
+- [x]  git push origin main每次push就会把所有文件的时间全部更改了
+
+> 改对了！重新把整个 [工作流文件](https://wcowin.work/Mkdocs-Wcowin/blog/websitebeauty/time/)复制了别人的一份。
 
 
 
