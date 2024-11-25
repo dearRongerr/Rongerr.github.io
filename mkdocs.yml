@@ -16,26 +16,33 @@ nav:
     - sticks/markdwon_learn.md
   - 应付面试:
     - bagu/index.md
-    - 力扣: 
-      - bagu/leetcode/index.md
-      - bagu/leetcode/1.md
-      - bagu/leetcode/2.md
+    - 刷题:
+      - bagu/questions/index.md
+      - 力扣:
+        - bagu/questions/leetcode/index.md
+        - bagu/questions/leetcode/1.md
+        - bagu/questions/leetcode/2.md
     - 深度学习: 
       - bagu/deeplearning/index.md
-      - bagu/deeplearning/pytorch_shape_function.md
       - 关于Transformer:
-        - bagu/deeplearning/former/pe.md
         - bagu/deeplearning/former/transformer.md
-        - bagu/deeplearning/former/multihead.md
-        - bagu/deeplearning/former/selfattention.md
+        - bagu/deeplearning/former/1.md
+        - bagu/deeplearning/former/2.md      
+      - bagu/deeplearning/pytorch_shape_function.md
+      - bagu/deeplearning/1.md
     - 机器学习: 
       - bagu/machinelearning/kmeans.md
+      - bagu/machinelearning/2.md
   - 捉个虫:
     - Error/github.md      
   - 笔记:
     - learning/index.md
+    - learning/2.md
+    - learning/1.md
     - learning/vit.md
-    - learning/swintransformer.md      
+    - learning/swintransformer.md
+    - learning/pe.md
+    - learning/convs.md    
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:

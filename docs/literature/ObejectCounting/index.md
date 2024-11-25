@@ -3,6 +3,10 @@
 
 - [ ] 整理读过的文献
 
+- [ ] [DINO 检测&计数](https://yinguobing.com/separable-convolution/#fn2)
+
+  ![image-20241125200546706](images/image-20241125200546706.png)
+
 ----
 
 ## 互联网资源

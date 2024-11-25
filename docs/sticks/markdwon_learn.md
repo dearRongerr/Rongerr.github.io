@@ -14,3 +14,22 @@
 <span id = "jump">跳转到的位置</span>
 ```
 
+## 箭头上写字
+
+```markdown
+X \stackrel{F}{\rightarrow} Y
+```
+
+
+
+## 箭头上架字符
+
+```markdown
+$\vec{a}$  向量
+$\overline{a}$ 平均值
+$\widehat{a}$ (线性回归，直线方程) 尖
+$\widetilde{a}$ 
+$\dot{a}$   一阶导数
+$\ddot{a}$  二阶导数
+```
+
