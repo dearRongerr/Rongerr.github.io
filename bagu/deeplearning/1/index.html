@@ -8,28 +8,28 @@
       
       
       
-        <link rel="canonical" href="https://mydomain.org/mysite/bagu/deeplearning/former/multihead/">
+        <link rel="canonical" href="https://mydomain.org/mysite/bagu/deeplearning/1/">
       
       
-        <link rel="prev" href="../transformer/">
+        <link rel="prev" href="../pytorch_shape_function/">
       
       
-        <link rel="next" href="../selfattention/">
+        <link rel="next" href="../../machinelearning/kmeans/">
       
       
-      <link rel="icon" href="../../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
     
     
       
-        <title>手撕多头自注意力机制 - 溶err</title>
+        <title>5种归一化方法 - 溶err</title>
       
     
     
-      <link rel="stylesheet" href="../../../../assets/stylesheets/main.0253249f.min.css">
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6f8fc17f.min.css">
       
         
-        <link rel="stylesheet" href="../../../../assets/stylesheets/palette.06af60db.min.css">
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
       
       
 
@@ -48,15 +48,15 @@
       
     
     
-      <link rel="stylesheet" href="../../../../css/timeago.css">
+      <link rel="stylesheet" href="../../../css/timeago.css">
     
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
-      <link rel="stylesheet" href="../../../../mkdocs/css/no-footer.css">
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
     
-      <link rel="stylesheet" href="../../../../mkdocs/css/unordered-list-symbols.css">
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
     
-    <script>__md_scope=new URL("../../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
 
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#_1" class="md-skip">
+        <a href="#5" class="md-skip">
           Skip to content
         </a>
       
@@ -98,7 +98,7 @@
 
 <header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
-    <a href="../../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+    <a href="../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              手撕多头自注意力机制
+              5种归一化方法
             
           </span>
         </div>
@@ -200,7 +200,7 @@
         <a href="https://github.com/dearRongerr" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     dearRongerr's github
@@ -223,7 +223,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../sticks/sticks/" class="md-tabs__link">
+        <a href="../../../sticks/sticks/" class="md-tabs__link">
           
   
     
@@ -245,7 +245,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../../../" class="md-tabs__link">
+        <a href="../../" class="md-tabs__link">
           
   
     
@@ -265,7 +265,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../Error/github/" class="md-tabs__link">
+        <a href="../../../Error/github/" class="md-tabs__link">
           
   
     
@@ -285,7 +285,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../learning/" class="md-tabs__link">
+        <a href="../../../learning/" class="md-tabs__link">
           
   
     
@@ -305,7 +305,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../literature/CrowdCounting/1/" class="md-tabs__link">
+        <a href="../../../literature/CrowdCounting/1/" class="md-tabs__link">
           
   
     
@@ -325,7 +325,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../../logs/" class="md-tabs__link">
+        <a href="../../../logs/" class="md-tabs__link">
           
   
     
@@ -366,7 +366,7 @@
 
 <nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
-    <a href="../../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+    <a href="../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
       
   
   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
@@ -379,7 +379,7 @@
       <a href="https://github.com/dearRongerr" title="Go to repository" class="md-source" data-md-component="source">
   <div class="md-source__icon md-icon">
     
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.6.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 6.7.1 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M439.55 236.05 244 40.45a28.87 28.87 0 0 0-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 0 1-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 0 0 0 40.81l195.61 195.6a28.86 28.86 0 0 0 40.8 0l194.69-194.69a28.86 28.86 0 0 0 0-40.81"/></svg>
   </div>
   <div class="md-source__repository">
     dearRongerr's github
@@ -450,7 +450,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sticks/sticks/" class="md-nav__link">
+      <a href="../../../sticks/sticks/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -471,7 +471,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sticks/TODO/" class="md-nav__link">
+      <a href="../../../sticks/TODO/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -492,7 +492,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sticks/DONE/" class="md-nav__link">
+      <a href="../../../sticks/DONE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -513,7 +513,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sticks/mkdocs_learn/" class="md-nav__link">
+      <a href="../../../sticks/mkdocs_learn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -534,7 +534,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../sticks/markdwon_learn/" class="md-nav__link">
+      <a href="../../../sticks/markdwon_learn/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -596,7 +596,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../" class="md-nav__link ">
+            <a href="../../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -637,8 +637,6 @@
       
         
       
-        
-      
     
     
       
@@ -661,11 +659,11 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../leetcode/" class="md-nav__link ">
+            <a href="../../questions/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
-    力扣
+    刷题
   </span>
   
 
@@ -681,6 +679,68 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
+            刷题
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../questions/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_2">
+            <span class="md-nav__icon md-icon"></span>
             力扣
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
@@ -694,11 +754,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../leetcode/1/" class="md-nav__link">
+      <a href="../../questions/leetcode/1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    1
+    1 两数之和
   </span>
   
 
@@ -715,15 +775,23 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../leetcode/2/" class="md-nav__link">
+      <a href="../../questions/leetcode/2/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    2
+    2 两数相加
   </span>
   
 
       </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
     </li>
   
 
@@ -756,6 +824,8 @@
       
         
       
+        
+      
     
     
       
@@ -776,7 +846,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../" class="md-nav__link ">
+            <a href="../" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -808,33 +878,8 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../../pytorch_shape_function/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    pytorch的维度变换公式
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
     
     
-      
-        
       
         
       
@@ -850,14 +895,16 @@
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
-        
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_3_3" checked>
         
           
-          <label class="md-nav__link" for="__nav_2_3_3" id="__nav_2_3_3_label" tabindex="0">
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3_2" id="__nav_2_3_2_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -868,8 +915,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_3_label" aria-expanded="true">
-          <label class="md-nav__title" for="__nav_2_3_3">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3_2">
             <span class="md-nav__icon md-icon"></span>
             关于Transformer
           </label>
@@ -882,11 +929,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../pe/" class="md-nav__link">
+      <a href="../former/transformer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    位置编码
+    手撕Transformer代码
   </span>
   
 
@@ -903,11 +950,61 @@
   
   
     <li class="md-nav__item">
-      <a href="../transformer/" class="md-nav__link">
+      <a href="../former/1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Transformer
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../former/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换公式
   </span>
   
 
@@ -937,11 +1034,19 @@
         
   
   <span class="md-ellipsis">
-    手撕多头自注意力机制
+    5种归一化方法
   </span>
   
 
       </a>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
       
     </li>
   
@@ -954,45 +1059,10 @@
   
   
   
-    <li class="md-nav__item">
-      <a href="../selfattention/" class="md-nav__link">
+    
+    
+      
         
-  
-  <span class="md-ellipsis">
-    手撕自注意机制
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-          </ul>
-        </nav>
-      
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    
-    
       
         
       
@@ -1041,11 +1111,32 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../machinelearning/kmeans/" class="md-nav__link">
+      <a href="../../machinelearning/kmeans/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
   </span>
   
 
@@ -1123,7 +1214,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../Error/github/" class="md-nav__link">
+      <a href="../../../Error/github/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1161,6 +1252,14 @@
       
         
       
+        
+      
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1180,7 +1279,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../learning/" class="md-nav__link ">
+            <a href="../../../learning/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1213,7 +1312,49 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../learning/vit/" class="md-nav__link">
+      <a href="../../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/vit/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1234,11 +1375,53 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../learning/swintransformer/" class="md-nav__link">
+      <a href="../../../learning/swintransformer/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
     SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种卷积
   </span>
   
 
@@ -1312,7 +1495,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/CrowdCounting/1/" class="md-nav__link">
+      <a href="../../../literature/CrowdCounting/1/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1396,7 +1579,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../literature/ObejectCounting/" class="md-nav__link ">
+            <a href="../../../literature/ObejectCounting/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1429,7 +1612,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1450,7 +1633,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1471,7 +1654,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1492,7 +1675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1513,7 +1696,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1534,7 +1717,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1555,7 +1738,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1576,7 +1759,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1597,7 +1780,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1618,7 +1801,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1639,7 +1822,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1660,7 +1843,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1681,7 +1864,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1702,7 +1885,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1723,7 +1906,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1744,7 +1927,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1765,7 +1948,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1786,7 +1969,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1807,7 +1990,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+      <a href="../../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1861,7 +2044,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../literature/Reproduction/" class="md-nav__link ">
+            <a href="../../../literature/Reproduction/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1931,7 +2114,7 @@
           
           
           <div class="md-nav__link md-nav__container">
-            <a href="../../../../logs/" class="md-nav__link ">
+            <a href="../../../logs/" class="md-nav__link ">
               
   
   <span class="md-ellipsis">
@@ -1964,7 +2147,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../../logs/diary/" class="md-nav__link">
+      <a href="../../../logs/diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2021,133 +2204,7 @@
   
 
 
-<h1 id="_1">手撕多头自注意力机制<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="kn">import</span> <span class="nn">torch</span>
-</span><span id="__span-0-2"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
-</span><span id="__span-0-3"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
-</span><span id="__span-0-4"><span class="kn">import</span> <span class="nn">math</span>
-</span><span id="__span-0-5">
-</span><span id="__span-0-6"><span class="k">class</span> <span class="nc">MultiHeadAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-</span><span id="__span-0-7">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">model_dim</span><span class="p">,</span><span class="n">num_heads</span><span class="p">,</span><span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">):</span>
-</span><span id="__span-0-8">        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-</span><span id="__span-0-9">        <span class="bp">self</span><span class="o">.</span><span class="n">model_dim</span> <span class="o">=</span> <span class="n">model_dim</span>
-</span><span id="__span-0-10">        <span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span> <span class="o">=</span> <span class="n">num_heads</span>
-</span><span id="__span-0-11">        <span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span> <span class="o">=</span> <span class="n">model_dim</span> <span class="o">//</span> <span class="n">num_heads</span>
-</span><span id="__span-0-12">
-</span><span id="__span-0-13">        <span class="bp">self</span><span class="o">.</span><span class="n">q_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-14">        <span class="bp">self</span><span class="o">.</span><span class="n">k_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-15">        <span class="bp">self</span><span class="o">.</span><span class="n">v_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-16">
-</span><span id="__span-0-17">        <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="n">dropout</span><span class="p">)</span>
-</span><span id="__span-0-18">
-</span><span id="__span-0-19">        <span class="bp">self</span><span class="o">.</span><span class="n">o_proj</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">model_dim</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-20">
-</span><span id="__span-0-21">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">q</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">,</span><span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-</span><span id="__span-0-22">
-</span><span id="__span-0-23">        <span class="n">batch_size</span><span class="p">,</span><span class="n">sequence_length</span><span class="p">,</span><span class="n">model_dim</span> <span class="o">=</span> <span class="n">q</span><span class="o">.</span><span class="n">shape</span>
-</span><span id="__span-0-24">
-</span><span id="__span-0-25">        <span class="n">q</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">q_proj</span><span class="p">(</span><span class="n">q</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">sequence_length</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-0-26">        <span class="n">k</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">k_proj</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">sequence_length</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-0-27">        <span class="n">v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">v_proj</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">sequence_length</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">num_heads</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-0-28">
-</span><span id="__span-0-29">        <span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">q</span><span class="p">,</span><span class="n">k</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">//</span><span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">head_dim</span><span class="p">)</span>
-</span><span id="__span-0-30">
-</span><span id="__span-0-31">        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-</span><span id="__span-0-32">            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span><span class="o">==</span><span class="mi">0</span><span class="p">,</span><span class="o">-</span><span class="mf">1e09</span><span class="p">)</span>
-</span><span id="__span-0-33">
-</span><span id="__span-0-34">        <span class="n">prob</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-</span><span id="__span-0-35">
-</span><span id="__span-0-36">        <span class="n">prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">prob</span><span class="p">)</span>
-</span><span id="__span-0-37">
-</span><span id="__span-0-38">        <span class="n">attn_weights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">matmul</span><span class="p">(</span><span class="n">prob</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">sequence_length</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-39">
-</span><span id="__span-0-40">        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">o_proj</span><span class="p">(</span><span class="n">attn_weights</span><span class="p">)</span>
-</span><span id="__span-0-41">        <span class="k">return</span> <span class="n">output</span>
-</span><span id="__span-0-42">
-</span><span id="__span-0-43"><span class="n">model_dim</span> <span class="o">=</span> <span class="mi">512</span> 
-</span><span id="__span-0-44"><span class="n">num_heads</span> <span class="o">=</span> <span class="mi">8</span>
-</span><span id="__span-0-45"><span class="n">mha</span> <span class="o">=</span> <span class="n">MultiHeadAttention</span><span class="p">(</span><span class="n">model_dim</span><span class="o">=</span><span class="n">model_dim</span><span class="p">,</span> <span class="n">num_heads</span><span class="o">=</span><span class="n">num_heads</span><span class="p">,</span> <span class="n">dropout</span><span class="o">=</span><span class="mf">0.1</span><span class="p">)</span>
-</span><span id="__span-0-46"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">10</span>
-</span><span id="__span-0-47"><span class="n">sequence_length</span> <span class="o">=</span> <span class="mi">60</span>
-</span><span id="__span-0-48"><span class="n">q</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-49"><span class="n">k</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-50"><span class="n">v</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">sequence_length</span><span class="p">,</span> <span class="n">model_dim</span><span class="p">)</span>
-</span><span id="__span-0-51">
-</span><span id="__span-0-52"><span class="n">mask</span> <span class="o">=</span> <span class="kc">None</span>
-</span><span id="__span-0-53"><span class="n">output</span> <span class="o">=</span> <span class="n">mha</span><span class="p">(</span><span class="n">q</span><span class="p">,</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">mask</span><span class="p">)</span>
-</span><span id="__span-0-54"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>  <span class="c1"># 输出的形状应该是(batch_size, sequence_length, model_dim)</span>
-</span></code></pre></div></td></tr></table></div>
-<p>note：</p>
-<ul>
-<li>
-<p>假设输入数据q, k, v的形状是(batch_size, sequence_length, model_dim)</p>
-</li>
-<li>
-<p>例如，一个批次大小为10，序列长度为60，模型维度为512的输入 </p>
-</li>
-<li>
-<p>这是因为注意力机制的目的是为序列中的每个元素生成一个新的表示，
-  而不是生成一个序列长度为 sequence_length 的序列。</p>
-</li>
-</ul>
-<p>​   注意力机制为序列中的每个元素生成一个新的表示，这个表示综合了序列中所有元素的信息，</p>
-<p>​   但输出的形状仍然是 (batch_size, sequence_length, model_dim)，</p>
-<p>​   而不是 (batch_size, sequence_length, sequence_length)。</p>
-<p>​   这是因为输出的每个元素是序列中对应位置的元素在所有头中的加权表示，
-​   而不是序列中每个元素对其他元素的注意力权重矩阵。</p>
+<h1 id="5">5种归一化方法<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 
 
 
@@ -2170,7 +2227,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-17T12:45:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
   </span>
 
     
@@ -2180,7 +2237,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-17T12:45:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-17</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
   </span>
 
     
@@ -2215,7 +2272,7 @@
       <nav class="md-footer__inner md-grid" aria-label="Footer" >
         
           
-          <a href="../transformer/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Transformer">
+          <a href="../pytorch_shape_function/" class="md-footer__link md-footer__link--prev" aria-label="Previous: pytorch的维度变换公式">
             <div class="md-footer__button md-icon">
               
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
@@ -2225,20 +2282,20 @@
                 Previous
               </span>
               <div class="md-ellipsis">
-                Transformer
+                pytorch的维度变换公式
               </div>
             </div>
           </a>
         
         
           
-          <a href="../selfattention/" class="md-footer__link md-footer__link--next" aria-label="Next: 手撕自注意机制">
+          <a href="../../machinelearning/kmeans/" class="md-footer__link md-footer__link--next" aria-label="Next: 手撕kmeans">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                手撕自注意机制
+                手撕kmeans
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -2271,16 +2328,16 @@
     </div>
     
     
-    <script id="__config" type="application/json">{"base": "../../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
       
-        <script src="../../../../js/timeago.min.js"></script>
+        <script src="../../../js/timeago.min.js"></script>
       
-        <script src="../../../../js/timeago_mkdocs_material.js"></script>
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
       
-        <script src="../../../../mkdocs/javascripts/katex.js"></script>
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       

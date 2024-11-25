@@ -17,11 +17,19 @@
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/bagu/deeplearning/1/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/pytorch_shape_function/</loc>
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/bagu/deeplearning/former/multihead/</loc>
+         <loc>https://mydomain.org/mysite/bagu/deeplearning/former/1/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/bagu/deeplearning/former/2/</loc>
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
@@ -29,23 +37,11 @@
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/bagu/deeplearning/former/selfattention/</loc>
-         <lastmod>2024-11-25</lastmod>
-    </url>
-    <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/former/transformer/</loc>
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/bagu/leetcode/</loc>
-         <lastmod>2024-11-25</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/bagu/leetcode/1/</loc>
-         <lastmod>2024-11-25</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/bagu/leetcode/2/</loc>
+         <loc>https://mydomain.org/mysite/bagu/machinelearning/2/</loc>
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
@@ -53,7 +49,39 @@
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/bagu/questions/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/bagu/questions/leetcode/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/bagu/questions/leetcode/1/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/bagu/questions/leetcode/2/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/learning/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/learning/1/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/learning/2/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/learning/convs/</loc>
+         <lastmod>2024-11-25</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/learning/pe/</loc>
          <lastmod>2024-11-25</lastmod>
     </url>
     <url>
