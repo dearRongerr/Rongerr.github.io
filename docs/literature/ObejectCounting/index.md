@@ -52,6 +52,8 @@ SemAug-SAFECount：26 Oct 2023 · [Perla Doubinsky](https://paperswithcode.com/a
 
 ![image-20241118150042042](images/image-20241118150042042.png)
 
+22 Jan 2022 · [Zhiyuan You](https://paperswithcode.com/author/zhiyuan-you), [Kai Yang](https://paperswithcode.com/author/kai-yang), [Wenhan Luo](https://paperswithcode.com/author/wenhan-luo), [Xin Lu](https://paperswithcode.com/author/xin-lu), [Lei Cui](https://paperswithcode.com/author/lei-cui), [Xinyi Le](https://paperswithcode.com/author/xinyi-le) （Tsinghua、SHJT）
+
 ## 1
 
 - multi-scale feature fusion module
