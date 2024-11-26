@@ -42,7 +42,8 @@ nav:
     - learning/vit.md
     - learning/swintransformer.md
     - learning/pe.md
-    - learning/convs.md    
+    - learning/convs.md
+    - learning/3.md    
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
@@ -68,6 +69,15 @@ nav:
         - literature/ObejectCounting/rank19 FamNet.md
     - 复现论文: 
       - literature/Reproduction/index.md
+    - 目标检测:
+      - literature/ObjectDetection/2.md
+      - literature/ObjectDetection/index.md
+      - literature/ObjectDetection/1.md
+      - literature/ObjectDetection/3.md
+      
+    - 多模态:
+      - literature/MultiModal/index.md
+      - literature/MultiModal/1.md
   - 杂:
     - logs/index.md     
     - logs/diary.md      

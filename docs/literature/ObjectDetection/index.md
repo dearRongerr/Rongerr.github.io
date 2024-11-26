@@ -1,0 +1,4 @@
+- [ ] [DINO 论文简介](https://www.bilibili.com/video/BV1p24y1t7tF/?spm_id_from=333.337.search-card.all.click&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
+- [ ] [Transformer DINO和Grounding DINO讲解](https://www.bilibili.com/video/BV1kY8zeUEAX/?spm_id_from=333.337.search-card.all.click&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
+- [ ] IDEA研究院CVR发布DINO-X目标检测视觉大模型：带来全场景感知的新高度
+- [ ] 目标检测：从R-CNN、YOLO到DETR、DINO
