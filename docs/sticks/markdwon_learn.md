@@ -33,3 +33,47 @@ $\dot{a}$   一阶导数
 $\ddot{a}$  二阶导数
 ```
 
+## markdown多行大括号
+
+### 居中对齐的大括号
+
+$$
+f(i)=
+\left\{\begin{matrix}
+1,i\in Q \\
+-1,i\notin Q
+\end{matrix}\right.
+$$
+
+```markdown
+$$
+f(i)=
+\left\{\begin{matrix}
+1,i\in Q \\
+-1,i\notin Q
+\end{matrix}\right.
+$$
+
+```
+
+### 标准大括号
+
+左对齐的大括号
+
+```markdown
+$$
+\begin{cases}
+x+y=5 \\
+2x+3y=12
+\end{cases}
+$$
+
+```
+
+$$
+\begin{cases}
+x+y=5 \\
+2x+3y=12
+\end{cases}
+$$
+

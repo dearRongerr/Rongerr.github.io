@@ -36,5 +36,6 @@ typora 可以自动创建图床文件夹
 
 > 改对了！重新把整个 [工作流文件](https://wcowin.work/Mkdocs-Wcowin/blog/websitebeauty/time/)复制了别人的一份。
 
+- [x] 文件结构变了，记得修改yml的路径
 
 

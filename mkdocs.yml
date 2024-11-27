@@ -9,12 +9,13 @@ nav:
 # 并将其添加到导航部分的开头
 
   - 便签:
+    - sticks/index.md
     - 备忘录: sticks/sticks.md
     - TODO: sticks/TODO.md
     - DONE: sticks/DONE.md
     - mkdocs学习: sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
-  - 应付面试:
+  - 面试:
     - bagu/index.md
     - 刷题:
       - bagu/questions/index.md
@@ -27,7 +28,7 @@ nav:
       - 关于Transformer:
         - bagu/deeplearning/former/transformer.md
         - bagu/deeplearning/former/1.md
-        - bagu/deeplearning/former/2.md      
+        - bagu/deeplearning/former/2.md 
       - bagu/deeplearning/pytorch_shape_function.md
       - bagu/deeplearning/1.md
     - 机器学习: 
