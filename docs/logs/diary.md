@@ -14,9 +14,12 @@
 
 ----
 
-2024年12月2日 来了 晴天
+**2024年12月2日 来了 晴天**
 
 - [x] 查：[归一化](https://dearrongerr.github.io/Rongerr.github.io/learning/1/)
-- [x] 改：归一化
+- [x] 改：归一化、文献阅读 COUNTGD、COUNTR
 - [x] 增：GAN
 
+**2024年12月3日 星期二 来了 晴天**
+
+- [x] 改：GAN
