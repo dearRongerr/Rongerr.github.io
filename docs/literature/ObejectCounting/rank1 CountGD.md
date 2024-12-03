@@ -242,3 +242,164 @@ Like these methods, COUNTGD enables us to specify the object to count with visua
 > 基于检测的方法、完成计数任务，其实现在用基于检测的算法来进行计数任务是比较少的
 >
 
+## 3 Counting with Visual Exemplars & Text
+
+Here, we describe COUNTGD, a single-stage model for open-world object counting that accepts either visual exemplars or text or both together as prompts to specify the object to count.
+
+- a single-stage model
+- 接收的输入：visual exemplars or text or both together
+
+### 3.1 Overview
+
+**符号说明**
+
+![image-20241202130512978](images/image-20241202130512978.png)
+
+接收指定物体的信号：
+
+- 视觉信号：$B=\{b_1,......,b_N\}$
+- 文本信号：$t$
+- both：$\{B,t\}$
+
+查询图片：$X\in \mathbb{R}^{H×W×3}$
+
+$\hat{y}=f(X,B,t)$
+
+计数模型记为：f，输出计数数量 $\hat{y}$
+
+![image-20241202130924273](images/image-20241202130924273.png)
+
+![image-20241202130934175](images/image-20241202130934175.png)
+
+图2：模型结构图 
+
+GD 指的是  GroundingDINO的首字母缩写
+
+COUNTGD：是基于GroundingDINO的
+
+GroundingDINO：基于真实世界的开放词表建立的目标检测器
+
+与GroundingDINO不同的是：
+
+- GroundingDINO只接收文本指定查询对象、COUNTGD也可以接受视觉信号
+
+首先 介绍COUNTGD，然后介绍COUNTGD与GroundingDINO的关系，特别是GroundingDINO哪里是被冻结的，哪里是被训练的，以及哪里是被添加到GroundingDINO的
+
+![image-20241202131412078](images/image-20241202131412078.png)
+
+组件说明：
+
+- 推理阶段：At inference the object to be counted can be specified by visual exemplars or text prompts or both.指定计数物体的方法
+- 输入图像的处理：$f_{\theta_{SwinT}}$ 提取不同尺度的信息
+- $RoIAlign$获得 visual exemplar token
+- text token的获得：$f_{\theta_{TT}}$
+- 特征增强模块 $f_{\phi}$ ：自注意力模块提取 视觉信号和文本信号，交叉注意力模块融合视觉信号和文本信号，产生特征 $z_{v,t}$ 、图像特征 $z_I$
+- 产生跨模态特征： 余弦相似度最高的 $k$ 个图像特征 $z_I$ 和 视觉信号和文本信号的 融合特征 $z_{v,t}$ 传入 跨模态解码器 $f_{\psi}$
+- 计算 跨模态解码器 $ f_{\psi}$ 的输出 和 $z_{v,t}$  得到 $\hat{Y}$
+- 最终的检测输出： $z_{v,t} ＞ \sigma$ 获得最大相似度的输出
+- 整个的模型框架 都是在 GroundingDINO 框架的基础上上改进的，另外添加的部分 用蓝色表示
+
+![image-20241202140330295](images/image-20241202140330295.png)
+
+![image-20241202140354610](images/image-20241202140354610.png)
+
+图3：视觉特征提取模块
+
+（a）对于输入图像，标准的SwinTransformer模型提取视觉特征的 多空间特征
+
+（b）对于有样例框的输入特征图，将多个视觉特征样例框上采样到输入图像的大小，拼接这些特征图，通过1×1卷积，投影到256个通道；最后应用 带有边界框坐标的  RoIAlign 获得 样例框的视觉特征
+
+### 3.2 COUNTGD Architecture Components
+
+![image-20241202141042720](images/image-20241202141042720.png)
+
+图像编码器 $f_{\theta_{SwinT}}$
+
+- 处理两个输入信号：输入图像 $X$ 和 视觉样例框 $B$
+- 使用的SwinTransformer的版本 Swin-B
+- （输入图像X的建模）如图3(a) 所示，对于输入图像 $X$ 提取3个不同空间尺度的 特征
+  > - 三不同大小的统建特征图 通过1×1的卷积核 投影到256维，产生图像token
+  > - 不同尺度的图像块对应长度为256的特征向量，作为特征增强模块 $f_{\phi}$的输入
+- （样例框 B的建模）如图3(b)，对于视觉样例框 B，复用 输入图像 $X$ 的 空间特征图 $f_{\theta_{SwinT}}(X)$
+- 使用 ROI pooling（对齐的感兴趣区域池化?），与视觉示例B指定的像素坐标
+- 产生的视觉特征 和 图像和文本token 一样的大小：256维度
+
+![image-20241202143028422](images/image-20241202143028422.png)
+
+![image-20241202143038205](images/image-20241202143038205.png)
+
+文本编码器
+
+- 对于文本编码器 $f_{\theta_{TT}}$，使用基于bert的文本Transformer
+
+- 预训练的数据集：检测和短语定位数据，有图像编码器 $f_{\theta_{SwinT}}$
+
+- 文本编码器将输入对象描述 $t$ 投影到最多256个 token
+
+- 编码后的文本 特征向量是256维的（256个token）
+
+- 图像编码器 $f_{{\theta}_{SwinT}}$ 从输入图像中 提取 $n$ 个 图像块 特征
+
+  > - 当有 $p$ 个 视觉示例 可用时，视觉编码器产生 p 个视觉示例特征
+  > - 当bert分词器在文本t中有q个token，文本编码器产生q 个标记
+
+- 最后，获得 特征增强模块的 输入 $f_{\phi}$ 有 ① n个图像token   ②p个视觉样例框token   ③q个文本token
+
+  使用注意力模块融合这三个源的信息
+
+!!!note
+	文本特征：
+  	clip   bert
+
+
+
+![image-20241202145211442](images/image-20241202145211442.png)
+
+特征增强模块 $f_{\phi}$
+
+- 由6个块组成
+- 自注意力机制 融合 视觉样例框特征和 文本token
+- 交叉注意力模块 融合 合并后的特征和 图像块标记
+- 每个模块包括 视觉示例 和 文本标记 连接后的自注意力、图像块 标记之间的可变形自注意力，以及融合后的 视觉示例和文本标记 与图像块标记之间 的图像到文本的交叉注意力 和 文本到图像的交叉注意力
+- 这些模块使得COUNTGD能够学习将输入图像、视觉示例和文本查询的信息综合起来
+- 特征增强模块 $f_{\phi}$ 输出两组特征，分别表示为  $z_{v,t}$  和 $z_I$
+
+![image-20241202150056053](images/image-20241202150056053.png)
+
+- 融合图像块token、文本token、样例框token
+
+![image-20241202152304324](images/image-20241202152304324.png)
+
+语言和视觉样例框引导的查询选择
+
+- k个图像块 token $z_I$ 和文本 标记 $z_{v,t}$ 具有最高的相似度，这个操作表示 $Select(z_I,z_Iz_v^T,k)$ 
+- 其中 $z_Iz_{v,t}^T \in \mathbb{R}^{n ×(p+q)}$  表示 n个图像块 token 和 p+q个视觉样例框和文本 token
+- 正如 GroundingDINO，k设置为900
+- 具有更高相似度的900个图像token作为跨模态查询 输入到 跨模态解码器 $f_{\phi}$
+
+![image-20241202153403349](images/image-20241202153403349.png)
+
+跨模态解码器 $f_{\psi}$
+
+- 跨模态解码器 $f_{\psi}$ 使用自注意力增强跨模态查询
+- 图像交叉注意力将图像块特征 $z_I$ 融合到 跨模态查询中
+- 使用交叉注意力将视觉示例和文本特征 $z_{v,t}$ 融合到跨模态查询中
+- 跨模态解码器由6个这样的自注意力和交叉注意力模块组成
+- 跨模态查询与融合后的视觉示例和文本标记 $z_{v,t}$ 进行点积，并通过逐元素的Sigmoid函数处理，以获得最终的置信度分数，如下所示：
+
+![image-20241202154115498](images/image-20241202154115498.png)
+
+- $z_{v,t}$是融合的视觉示例和文本特征
+- $z_I$ 是查询（即检测到的对象的最大数量）
+-  $\hat{Y}$ 最终相似度分数
+- 分数根据置信度阈值 $\sigma$ 进行阈值处理，并在推理时 用于估计最终的对象计数 $\hat{y}$
+
+![image-20241202161257806](images/image-20241202161257806.png)
+
+设计选择与GroundingDINO的关系
+
+我们选择GroundingDINO[30]而不是其他视觉语言模型（VLMs），是因为其在视觉定位数据上的预训练，使其与其他VLMs（如CLIP[17]）相比具有更细粒度的特征。
+
+为了扩展GroundingDINO以接受视觉示例，我们将其视为文本标记。因为视觉示例和文本都指定了对象，我们认为视觉示例可以被GroundingDINO像文本标记一样对待，并将其整合到训练和推理过程中。在将视觉示例视为短语中的附加文本标记时，我们在对应于视觉示例的短语和视觉示例之间添加自注意力，而不是将它们分开。这使得COUNTGD能够学习融合视觉示例和文本标记，以形成对要计数对象的更具信息性的规范。同样，GroundingDINO的特征增强器和跨模态解码器中图像和文本特征之间的交叉注意力在COUNTGD中变为图像与融合后的视觉示例和文本特征之间的交叉注意力。在GroundingDINO中的语言引导查询选择在COUNTGD中变为语言和视觉示例引导的查询选择。通过这种方式，COUNTGD自然地扩展了GroundingDINO，使其能够输入文本和视觉示例来描述对象。
+
+在GroundingDINO中，图像编码器 $f_{\theta_{\text{SwinT}}}$ 与文本编码器 $f_{\theta_{\text{TT}}}$ 一起在丰富的检测和短语定位数据上进行了预训练，为其提供了丰富的区域和文本感知特征。由于我们希望建立在这个预训练的联合视觉-语言嵌入之上，我们保持图像编码器  $f_{\theta_{\text{SwinT}}}$ 和文本编码器 $f_{\theta_{\text{TT}}}$ 不变。

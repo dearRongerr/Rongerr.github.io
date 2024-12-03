@@ -44,7 +44,10 @@ nav:
     - learning/swintransformer.md
     - learning/pe.md
     - learning/convs.md
-    - learning/3.md    
+    - learning/3.md
+    - learning/4_GAN.md
+    - learning/5_Bert.md
+    - learning/6_Diffusion.md    
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
