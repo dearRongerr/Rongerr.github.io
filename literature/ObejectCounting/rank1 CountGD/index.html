@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.46">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
     
     
       
@@ -1254,6 +1254,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -1437,6 +1443,69 @@
   
   <span class="md-ellipsis">
     李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5 Bert
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    6 Diffusion
   </span>
   
 
@@ -1764,6 +1833,39 @@
   <a href="#relation-of-counting-to-other-areas" class="md-nav__link">
     <span class="md-ellipsis">
       Relation of Counting to other areas. 与其它领域工作的关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-counting-with-visual-exemplars-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Counting with Visual Exemplars &amp; Text
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Counting with Visual Exemplars & Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-countgd-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 COUNTGD Architecture Components
     </span>
   </a>
   
@@ -2678,6 +2780,39 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#3-counting-with-visual-exemplars-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Counting with Visual Exemplars &amp; Text
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Counting with Visual Exemplars & Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-countgd-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 COUNTGD Architecture Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -2868,6 +3003,148 @@ COUNTGD 就是基于检测的计数</p>
 <p>基于检测的方法、完成计数任务，其实现在用基于检测的算法来进行计数任务是比较少的
 </p>
 </blockquote>
+<h2 id="3-counting-with-visual-exemplars-text">3 Counting with Visual Exemplars &amp; Text<a class="headerlink" href="#3-counting-with-visual-exemplars-text" title="Permanent link">&para;</a></h2>
+<p>Here, we describe COUNTGD, a single-stage model for open-world object counting that accepts either visual exemplars or text or both together as prompts to specify the object to count.</p>
+<ul>
+<li>a single-stage model</li>
+<li>接收的输入：visual exemplars or text or both together</li>
+</ul>
+<h3 id="31-overview">3.1 Overview<a class="headerlink" href="#31-overview" title="Permanent link">&para;</a></h3>
+<p><strong>符号说明</strong></p>
+<p><img alt="image-20241202130512978" src="../images/image-20241202130512978.png" /></p>
+<p>接收指定物体的信号：</p>
+<ul>
+<li>视觉信号：<span class="arithmatex">\(B=\{b_1,......,b_N\}\)</span></li>
+<li>文本信号：<span class="arithmatex">\(t\)</span></li>
+<li>both：<span class="arithmatex">\(\{B,t\}\)</span></li>
+</ul>
+<p>查询图片：<span class="arithmatex">\(X\in \mathbb{R}^{H×W×3}\)</span></p>
+<p><span class="arithmatex">\(\hat{y}=f(X,B,t)\)</span></p>
+<p>计数模型记为：f，输出计数数量 <span class="arithmatex">\(\hat{y}\)</span></p>
+<p><img alt="image-20241202130924273" src="../images/image-20241202130924273.png" /></p>
+<p><img alt="image-20241202130934175" src="../images/image-20241202130934175.png" /></p>
+<p>图2：模型结构图 </p>
+<p>GD 指的是  GroundingDINO的首字母缩写</p>
+<p>COUNTGD：是基于GroundingDINO的</p>
+<p>GroundingDINO：基于真实世界的开放词表建立的目标检测器</p>
+<p>与GroundingDINO不同的是：</p>
+<ul>
+<li>GroundingDINO只接收文本指定查询对象、COUNTGD也可以接受视觉信号</li>
+</ul>
+<p>首先 介绍COUNTGD，然后介绍COUNTGD与GroundingDINO的关系，特别是GroundingDINO哪里是被冻结的，哪里是被训练的，以及哪里是被添加到GroundingDINO的</p>
+<p><img alt="image-20241202131412078" src="../images/image-20241202131412078.png" /></p>
+<p>组件说明：</p>
+<ul>
+<li>推理阶段：At inference the object to be counted can be specified by visual exemplars or text prompts or both.指定计数物体的方法</li>
+<li>输入图像的处理：<span class="arithmatex">\(f_{\theta_{SwinT}}\)</span> 提取不同尺度的信息</li>
+<li><span class="arithmatex">\(RoIAlign\)</span>获得 visual exemplar token</li>
+<li>text token的获得：<span class="arithmatex">\(f_{\theta_{TT}}\)</span></li>
+<li>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span> ：自注意力模块提取 视觉信号和文本信号，交叉注意力模块融合视觉信号和文本信号，产生特征 <span class="arithmatex">\(z_{v,t}\)</span> 、图像特征 <span class="arithmatex">\(z_I\)</span></li>
+<li>产生跨模态特征： 余弦相似度最高的 <span class="arithmatex">\(k\)</span> 个图像特征 <span class="arithmatex">\(z_I\)</span> 和 视觉信号和文本信号的 融合特征 <span class="arithmatex">\(z_{v,t}\)</span> 传入 跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span></li>
+<li>计算 跨模态解码器 $ f_{\psi}$ 的输出 和 <span class="arithmatex">\(z_{v,t}\)</span>  得到 <span class="arithmatex">\(\hat{Y}\)</span></li>
+<li>最终的检测输出： <span class="arithmatex">\(z_{v,t} ＞ \sigma\)</span> 获得最大相似度的输出</li>
+<li>整个的模型框架 都是在 GroundingDINO 框架的基础上上改进的，另外添加的部分 用蓝色表示</li>
+</ul>
+<p><img alt="image-20241202140330295" src="../images/image-20241202140330295.png" /></p>
+<p><img alt="image-20241202140354610" src="../images/image-20241202140354610.png" /></p>
+<p>图3：视觉特征提取模块</p>
+<p>（a）对于输入图像，标准的SwinTransformer模型提取视觉特征的 多空间特征</p>
+<p>（b）对于有样例框的输入特征图，将多个视觉特征样例框上采样到输入图像的大小，拼接这些特征图，通过1×1卷积，投影到256个通道；最后应用 带有边界框坐标的  RoIAlign 获得 样例框的视觉特征</p>
+<h3 id="32-countgd-architecture-components">3.2 COUNTGD Architecture Components<a class="headerlink" href="#32-countgd-architecture-components" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20241202141042720" src="../images/image-20241202141042720.png" /></p>
+<p>图像编码器 <span class="arithmatex">\(f_{\theta_{SwinT}}\)</span></p>
+<ul>
+<li>处理两个输入信号：输入图像 <span class="arithmatex">\(X\)</span> 和 视觉样例框 <span class="arithmatex">\(B\)</span></li>
+<li>使用的SwinTransformer的版本 Swin-B</li>
+<li>（输入图像X的建模）如图3(a) 所示，对于输入图像 <span class="arithmatex">\(X\)</span> 提取3个不同空间尺度的 特征<blockquote>
+<ul>
+<li>三不同大小的统建特征图 通过1×1的卷积核 投影到256维，产生图像token</li>
+<li>不同尺度的图像块对应长度为256的特征向量，作为特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span>的输入</li>
+</ul>
+</blockquote>
+</li>
+<li>（样例框 B的建模）如图3(b)，对于视觉样例框 B，复用 输入图像 <span class="arithmatex">\(X\)</span> 的 空间特征图 <span class="arithmatex">\(f_{\theta_{SwinT}}(X)\)</span></li>
+<li>使用 ROI pooling（对齐的感兴趣区域池化?），与视觉示例B指定的像素坐标</li>
+<li>产生的视觉特征 和 图像和文本token 一样的大小：256维度</li>
+</ul>
+<p><img alt="image-20241202143028422" src="../images/image-20241202143028422.png" /></p>
+<p><img alt="image-20241202143038205" src="../images/image-20241202143038205.png" /></p>
+<p>文本编码器</p>
+<ul>
+<li>
+<p>对于文本编码器 <span class="arithmatex">\(f_{\theta_{TT}}\)</span>，使用基于bert的文本Transformer</p>
+</li>
+<li>
+<p>预训练的数据集：检测和短语定位数据，有图像编码器 <span class="arithmatex">\(f_{\theta_{SwinT}}\)</span></p>
+</li>
+<li>
+<p>文本编码器将输入对象描述 <span class="arithmatex">\(t\)</span> 投影到最多256个 token</p>
+</li>
+<li>
+<p>编码后的文本 特征向量是256维的（256个token）</p>
+</li>
+<li>
+<p>图像编码器 <span class="arithmatex">\(f_{{\theta}_{SwinT}}\)</span> 从输入图像中 提取 <span class="arithmatex">\(n\)</span> 个 图像块 特征</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>当有 <span class="arithmatex">\(p\)</span> 个 视觉示例 可用时，视觉编码器产生 p 个视觉示例特征</li>
+<li>当bert分词器在文本t中有q个token，文本编码器产生q 个标记</li>
+</ul>
+</blockquote>
+<ul>
+<li>最后，获得 特征增强模块的 输入 <span class="arithmatex">\(f_{\phi}\)</span> 有 ① n个图像token   ②p个视觉样例框token   ③q个文本token</li>
+</ul>
+<p>使用注意力模块融合这三个源的信息</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>文本特征：
+clip   bert</p>
+</div>
+<p><img alt="image-20241202145211442" src="../images/image-20241202145211442.png" /></p>
+<p>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span></p>
+<ul>
+<li>由6个块组成</li>
+<li>自注意力机制 融合 视觉样例框特征和 文本token</li>
+<li>交叉注意力模块 融合 合并后的特征和 图像块标记</li>
+<li>每个模块包括 视觉示例 和 文本标记 连接后的自注意力、图像块 标记之间的可变形自注意力，以及融合后的 视觉示例和文本标记 与图像块标记之间 的图像到文本的交叉注意力 和 文本到图像的交叉注意力</li>
+<li>这些模块使得COUNTGD能够学习将输入图像、视觉示例和文本查询的信息综合起来</li>
+<li>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span> 输出两组特征，分别表示为  <span class="arithmatex">\(z_{v,t}\)</span>  和 <span class="arithmatex">\(z_I\)</span></li>
+</ul>
+<p><img alt="image-20241202150056053" src="../images/image-20241202150056053.png" /></p>
+<ul>
+<li>融合图像块token、文本token、样例框token</li>
+</ul>
+<p><img alt="image-20241202152304324" src="../images/image-20241202152304324.png" /></p>
+<p>语言和视觉样例框引导的查询选择</p>
+<ul>
+<li>k个图像块 token <span class="arithmatex">\(z_I\)</span> 和文本 标记 <span class="arithmatex">\(z_{v,t}\)</span> 具有最高的相似度，这个操作表示 <span class="arithmatex">\(Select(z_I,z_Iz_v^T,k)\)</span> </li>
+<li>其中 <span class="arithmatex">\(z_Iz_{v,t}^T \in \mathbb{R}^{n ×(p+q)}\)</span>  表示 n个图像块 token 和 p+q个视觉样例框和文本 token</li>
+<li>正如 GroundingDINO，k设置为900</li>
+<li>具有更高相似度的900个图像token作为跨模态查询 输入到 跨模态解码器 <span class="arithmatex">\(f_{\phi}\)</span></li>
+</ul>
+<p><img alt="image-20241202153403349" src="../images/image-20241202153403349.png" /></p>
+<p>跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span></p>
+<ul>
+<li>跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span> 使用自注意力增强跨模态查询</li>
+<li>图像交叉注意力将图像块特征 <span class="arithmatex">\(z_I\)</span> 融合到 跨模态查询中</li>
+<li>使用交叉注意力将视觉示例和文本特征 <span class="arithmatex">\(z_{v,t}\)</span> 融合到跨模态查询中</li>
+<li>跨模态解码器由6个这样的自注意力和交叉注意力模块组成</li>
+<li>跨模态查询与融合后的视觉示例和文本标记 <span class="arithmatex">\(z_{v,t}\)</span> 进行点积，并通过逐元素的Sigmoid函数处理，以获得最终的置信度分数，如下所示：</li>
+</ul>
+<p><img alt="image-20241202154115498" src="../images/image-20241202154115498.png" /></p>
+<ul>
+<li><span class="arithmatex">\(z_{v,t}\)</span>是融合的视觉示例和文本特征</li>
+<li><span class="arithmatex">\(z_I\)</span> 是查询（即检测到的对象的最大数量）</li>
+<li><span class="arithmatex">\(\hat{Y}\)</span> 最终相似度分数</li>
+<li>分数根据置信度阈值 <span class="arithmatex">\(\sigma\)</span> 进行阈值处理，并在推理时 用于估计最终的对象计数 <span class="arithmatex">\(\hat{y}\)</span></li>
+</ul>
+<p><img alt="image-20241202161257806" src="../images/image-20241202161257806.png" /></p>
+<p>设计选择与GroundingDINO的关系</p>
+<p>我们选择GroundingDINO[30]而不是其他视觉语言模型（VLMs），是因为其在视觉定位数据上的预训练，使其与其他VLMs（如CLIP[17]）相比具有更细粒度的特征。</p>
+<p>为了扩展GroundingDINO以接受视觉示例，我们将其视为文本标记。因为视觉示例和文本都指定了对象，我们认为视觉示例可以被GroundingDINO像文本标记一样对待，并将其整合到训练和推理过程中。在将视觉示例视为短语中的附加文本标记时，我们在对应于视觉示例的短语和视觉示例之间添加自注意力，而不是将它们分开。这使得COUNTGD能够学习融合视觉示例和文本标记，以形成对要计数对象的更具信息性的规范。同样，GroundingDINO的特征增强器和跨模态解码器中图像和文本特征之间的交叉注意力在COUNTGD中变为图像与融合后的视觉示例和文本特征之间的交叉注意力。在GroundingDINO中的语言引导查询选择在COUNTGD中变为语言和视觉示例引导的查询选择。通过这种方式，COUNTGD自然地扩展了GroundingDINO，使其能够输入文本和视觉示例来描述对象。</p>
+<p>在GroundingDINO中，图像编码器 <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 与文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 一起在丰富的检测和短语定位数据上进行了预训练，为其提供了丰富的区域和文本感知特征。由于我们希望建立在这个预训练的联合视觉-语言嵌入之上，我们保持图像编码器  <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 和文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 不变。</p>
 
 
 
@@ -2890,7 +3167,7 @@ COUNTGD 就是基于检测的计数</p>
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T14:40:03+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-03T01:54:57+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-03</span>
   </span>
 
     
