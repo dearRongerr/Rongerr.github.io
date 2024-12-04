@@ -1030,7 +1030,7 @@
         
   
   <span class="md-ellipsis">
-    5种归一化方法
+    visionTransformer代码
   </span>
   
 
@@ -1262,6 +1262,8 @@
       
         
       
+        
+      
     
     
       
@@ -1361,7 +1363,7 @@
         
   
   <span class="md-ellipsis">
-    ViT 学习笔记
+    vision Transformer的原理与难点源码实现
   </span>
   
 
@@ -1572,7 +1574,7 @@
         
   
   <span class="md-ellipsis">
-    5 Bert
+    BERT从零详细解读
   </span>
   
 
@@ -1594,6 +1596,27 @@
   
   <span class="md-ellipsis">
     6 Diffusion
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多模态模型 Clip
   </span>
   
 
@@ -2551,7 +2574,7 @@
         
   
   <span class="md-ellipsis">
-    乐观 &amp; 坚强
+    Diary
   </span>
   
 
@@ -2658,6 +2681,12 @@
 
 
 <h1 id="gan">GAN<a class="headerlink" href="#gan" title="Permanent link">&para;</a></h1>
+<p><strong>About GAN</strong></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> cycleGAN </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> starGAN </li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> C-RNN-GAN</li>
+</ul>
 <p><a href="https://www.bilibili.com/video/BV1VT4y1e796?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">视频链接</a></p>
 <p><img alt="image-20241202215829776" src="../images/image-20241202215829776.png" /></p>
 <p>文生图模型</p>
@@ -2850,8 +2879,297 @@
 <p><img alt="image-20241203155206981" src="../images/image-20241203155206981.png" /></p>
 <h2 id="_2">代码实现<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>全部代码：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">  1</span>
+<span class="normal">  2</span>
+<span class="normal">  3</span>
+<span class="normal">  4</span>
+<span class="normal">  5</span>
+<span class="normal">  6</span>
+<span class="normal">  7</span>
+<span class="normal">  8</span>
+<span class="normal">  9</span>
+<span class="normal"> 10</span>
+<span class="normal"> 11</span>
+<span class="normal"> 12</span>
+<span class="normal"> 13</span>
+<span class="normal"> 14</span>
+<span class="normal"> 15</span>
+<span class="normal"> 16</span>
+<span class="normal"> 17</span>
+<span class="normal"> 18</span>
+<span class="normal"> 19</span>
+<span class="normal"> 20</span>
+<span class="normal"> 21</span>
+<span class="normal"> 22</span>
+<span class="normal"> 23</span>
+<span class="normal"> 24</span>
+<span class="normal"> 25</span>
+<span class="normal"> 26</span>
+<span class="normal"> 27</span>
+<span class="normal"> 28</span>
+<span class="normal"> 29</span>
+<span class="normal"> 30</span>
+<span class="normal"> 31</span>
+<span class="normal"> 32</span>
+<span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="sd">&quot;&quot;&quot; 基于MNIST 实现对抗生成网络 (GAN) &quot;&quot;&quot;</span>
+</span><span id="__span-0-2">
+</span><span id="__span-0-3"><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-0-4"><span class="kn">import</span> <span class="nn">torchvision</span>
+</span><span id="__span-0-5"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-0-6"><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-0-7">
+</span><span id="__span-0-8"><span class="n">image_size</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">]</span>
+</span><span id="__span-0-9"><span class="n">latent_dim</span> <span class="o">=</span> <span class="mi">96</span>
+</span><span id="__span-0-10"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">64</span>
+</span><span id="__span-0-11"><span class="n">use_gpu</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span>
+</span><span id="__span-0-12">
+</span><span id="__span-0-13"><span class="k">class</span> <span class="nc">Generator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-0-14">
+</span><span id="__span-0-15">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-16">        <span class="nb">super</span><span class="p">(</span><span class="n">Generator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-0-17">
+</span><span id="__span-0-18">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-0-19">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+</span><span id="__span-0-20">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">128</span><span class="p">),</span>
+</span><span id="__span-0-21">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-22">
+</span><span id="__span-0-23">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-0-24">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-0-25">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-26">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">512</span><span class="p">),</span>
+</span><span id="__span-0-27">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">512</span><span class="p">),</span>
+</span><span id="__span-0-28">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-29">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">1024</span><span class="p">),</span>
+</span><span id="__span-0-30">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">1024</span><span class="p">),</span>
+</span><span id="__span-0-31">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-32">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">1024</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">image_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">)),</span>
+</span><span id="__span-0-33">            <span class="c1">#  nn.Tanh(),</span>
+</span><span id="__span-0-34">            <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">(),</span>
+</span><span id="__span-0-35">        <span class="p">)</span>
+</span><span id="__span-0-36">
+</span><span id="__span-0-37">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+</span><span id="__span-0-38">        <span class="c1"># shape of z: [batchsize, latent_dim]</span>
+</span><span id="__span-0-39">
+</span><span id="__span-0-40">        <span class="n">output</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span><span id="__span-0-41">        <span class="n">image</span> <span class="o">=</span> <span class="n">output</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">z</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">*</span><span class="n">image_size</span><span class="p">)</span>
+</span><span id="__span-0-42">
+</span><span id="__span-0-43">        <span class="k">return</span> <span class="n">image</span>
+</span><span id="__span-0-44">
+</span><span id="__span-0-45">
+</span><span id="__span-0-46"><span class="k">class</span> <span class="nc">Discriminator</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</span><span id="__span-0-47">
+</span><span id="__span-0-48">    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+</span><span id="__span-0-49">        <span class="nb">super</span><span class="p">(</span><span class="n">Discriminator</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+</span><span id="__span-0-50">
+</span><span id="__span-0-51">        <span class="bp">self</span><span class="o">.</span><span class="n">model</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+</span><span id="__span-0-52">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">prod</span><span class="p">(</span><span class="n">image_size</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int32</span><span class="p">),</span> <span class="mi">512</span><span class="p">),</span>
+</span><span id="__span-0-53">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-54">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">256</span><span class="p">),</span>
+</span><span id="__span-0-55">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-56">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">256</span><span class="p">,</span> <span class="mi">128</span><span class="p">),</span>
+</span><span id="__span-0-57">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-58">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">128</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+</span><span id="__span-0-59">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-60">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
+</span><span id="__span-0-61">            <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">GELU</span><span class="p">(),</span>
+</span><span id="__span-0-62">            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+</span><span id="__span-0-63">            <span class="n">nn</span><span class="o">.</span><span class="n">Sigmoid</span><span class="p">(),</span>
+</span><span id="__span-0-64">        <span class="p">)</span>
+</span><span id="__span-0-65">
+</span><span id="__span-0-66">    <span class="k">def</span> <span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">image</span><span class="p">):</span>
+</span><span id="__span-0-67">        <span class="c1"># shape of image: [batchsize, 1, 28, 28]</span>
+</span><span id="__span-0-68">
+</span><span id="__span-0-69">        <span class="n">prob</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">model</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">image</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-70">
+</span><span id="__span-0-71">        <span class="k">return</span> <span class="n">prob</span>
+</span><span id="__span-0-72">
+</span><span id="__span-0-73"><span class="c1"># Training</span>
+</span><span id="__span-0-74"><span class="n">dataset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">&quot;mnist_data&quot;</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-0-75">                                     <span class="n">transform</span><span class="o">=</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+</span><span id="__span-0-76">                                         <span class="p">[</span>
+</span><span id="__span-0-77">                                             <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">28</span><span class="p">),</span>
+</span><span id="__span-0-78">                                             <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+</span><span id="__span-0-79">                                             <span class="c1">#  torchvision.transforms.Normalize([0.5], [0.5]),</span>
+</span><span id="__span-0-80">                                         <span class="p">]</span>
+</span><span id="__span-0-81">                                                                             <span class="p">)</span>
+</span><span id="__span-0-82">                                     <span class="p">)</span>
+</span><span id="__span-0-83"><span class="n">dataloader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">drop_last</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-84">
+</span><span id="__span-0-85"><span class="n">generator</span> <span class="o">=</span> <span class="n">Generator</span><span class="p">()</span>
+</span><span id="__span-0-86"><span class="n">discriminator</span> <span class="o">=</span> <span class="n">Discriminator</span><span class="p">()</span>
+</span><span id="__span-0-87">
+</span><span id="__span-0-88">
+</span><span id="__span-0-89"><span class="n">g_optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">generator</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0003</span><span class="p">,</span> <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+</span><span id="__span-0-90"><span class="n">d_optimizer</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">optim</span><span class="o">.</span><span class="n">Adam</span><span class="p">(</span><span class="n">discriminator</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.0003</span><span class="p">,</span> <span class="n">betas</span><span class="o">=</span><span class="p">(</span><span class="mf">0.4</span><span class="p">,</span> <span class="mf">0.8</span><span class="p">),</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">0.0001</span><span class="p">)</span>
+</span><span id="__span-0-91">
+</span><span id="__span-0-92"><span class="n">loss_fn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BCELoss</span><span class="p">()</span>
+</span><span id="__span-0-93"><span class="n">labels_one</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-94"><span class="n">labels_zero</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-95">
+</span><span id="__span-0-96"><span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+</span><span id="__span-0-97">    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;use gpu for training&quot;</span><span class="p">)</span>
+</span><span id="__span-0-98">    <span class="n">generator</span> <span class="o">=</span> <span class="n">generator</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-0-99">    <span class="n">discriminator</span> <span class="o">=</span> <span class="n">discriminator</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-0-100">    <span class="n">loss_fn</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="o">.</span><span class="n">cuda</span><span class="p">()</span>
+</span><span id="__span-0-101">    <span class="n">labels_one</span> <span class="o">=</span> <span class="n">labels_one</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+</span><span id="__span-0-102">    <span class="n">labels_zero</span> <span class="o">=</span> <span class="n">labels_zero</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+</span><span id="__span-0-103">
+</span><span id="__span-0-104"><span class="n">num_epoch</span> <span class="o">=</span> <span class="mi">200</span>
+</span><span id="__span-0-105"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epoch</span><span class="p">):</span>
+</span><span id="__span-0-106">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">mini_batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+</span><span id="__span-0-107">        <span class="n">gt_images</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">mini_batch</span>
+</span><span id="__span-0-108">
+</span><span id="__span-0-109">
+</span><span id="__span-0-110">        <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">)</span>
+</span><span id="__span-0-111">
+</span><span id="__span-0-112">        <span class="k">if</span> <span class="n">use_gpu</span><span class="p">:</span>
+</span><span id="__span-0-113">            <span class="n">gt_images</span> <span class="o">=</span> <span class="n">gt_images</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+</span><span id="__span-0-114">            <span class="n">z</span> <span class="o">=</span> <span class="n">z</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="s2">&quot;cuda&quot;</span><span class="p">)</span>
+</span><span id="__span-0-115">
+</span><span id="__span-0-116">        <span class="n">pred_images</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span><span id="__span-0-117">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-0-118">
+</span><span id="__span-0-119">        <span class="n">recons_loss</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">pred_images</span><span class="o">-</span><span class="n">gt_images</span><span class="p">)</span><span class="o">.</span><span class="n">mean</span><span class="p">()</span>
+</span><span id="__span-0-120">
+</span><span id="__span-0-121">        <span class="n">g_loss</span> <span class="o">=</span> <span class="n">recons_loss</span><span class="o">*</span><span class="mf">0.05</span> <span class="o">+</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">),</span> <span class="n">labels_one</span><span class="p">)</span>
+</span><span id="__span-0-122">
+</span><span id="__span-0-123">        <span class="n">g_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-0-124">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span><span id="__span-0-125">
+</span><span id="__span-0-126">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-0-127">
+</span><span id="__span-0-128">        <span class="n">real_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span> <span class="n">labels_one</span><span class="p">)</span>
+</span><span id="__span-0-129">        <span class="n">fake_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="o">.</span><span class="n">detach</span><span class="p">()),</span> <span class="n">labels_zero</span><span class="p">)</span>
+</span><span id="__span-0-130">        <span class="n">d_loss</span> <span class="o">=</span> <span class="p">(</span><span class="n">real_loss</span> <span class="o">+</span> <span class="n">fake_loss</span><span class="p">)</span>
+</span><span id="__span-0-131">
+</span><span id="__span-0-132">        <span class="c1"># 观察real_loss与fake_loss，同时下降同时达到最小值，并且差不多大，说明D已经稳定了</span>
+</span><span id="__span-0-133">
+</span><span id="__span-0-134">        <span class="n">d_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-0-135">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span><span id="__span-0-136">
+</span><span id="__span-0-137">        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">50</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-138">            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;step:</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span><span class="o">*</span><span class="n">epoch</span><span class="o">+</span><span class="n">i</span><span class="si">}</span><span class="s2">, recons_loss:</span><span class="si">{</span><span class="n">recons_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, g_loss:</span><span class="si">{</span><span class="n">g_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, d_loss:</span><span class="si">{</span><span class="n">d_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, real_loss:</span><span class="si">{</span><span class="n">real_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, fake_loss:</span><span class="si">{</span><span class="n">fake_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-0-139">
+</span><span id="__span-0-140">        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">400</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-0-141">            <span class="n">image</span> <span class="o">=</span> <span class="n">pred_images</span><span class="p">[:</span><span class="mi">16</span><span class="p">]</span><span class="o">.</span><span class="n">data</span>
+</span><span id="__span-0-142">            <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">save_image</span><span class="p">(</span><span class="n">image</span><span class="p">,</span> <span class="sa">f</span><span class="s2">&quot;image_</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span><span class="o">*</span><span class="n">epoch</span><span class="o">+</span><span class="n">i</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">,</span> <span class="n">nrow</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 </span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>上面的代码可以直接运行  <span class="arithmatex">\(\uparrow\)</span></p>
+<p>下面是讲解，有些许出入，但整体思想是一致的 <span class="arithmatex">\(\downarrow\)</span></p>
+</blockquote>
+<p>查看输出结果，可以看到生成的图片逐渐清晰：</p>
+<p><img alt="image-20241204105638185" src="../images/image-20241204105638185.png" /></p>
+<hr />
 <p>首先代码的大框架，首先生成生成器的类，然后生成判别器的类，然后进行训练：</p>
 <div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
 <span class="normal"> 2</span>
@@ -3370,6 +3688,208 @@
 </span><span id="__span-31-4">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
 </span></code></pre></div></td></tr></table></div>
 <p>但是 target还没有定义，写成1还是 写成0？目标是对生成器进行优化，所以希望 判别器把 生成器生成的图片 优化成真实图片，所以写成预测为1，即定义target = 1，形状就是 batch_size×1</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1">        <span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是对生成器的优化</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-33-2">
+</span><span id="__span-33-3">        <span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-33-4">
+</span><span id="__span-33-5">        <span class="n">g_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">),</span><span class="n">target</span><span class="p">)</span>
+</span><span id="__span-33-6">        <span class="n">g_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-33-7">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来，判别器的优化</p>
+<ul>
+<li>判别器一开始也需要置零操作</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><span class="n">d_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>判别器的目标函数有两个：</li>
+</ul>
+<p><img alt="image-20241204093213044" src="../images/image-20241204093213044.png" /></p>
+<p>第一项是需要把真实的目标图片送入进去</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><span class="n">target</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>        
+</span><span id="__span-35-2"><span class="n">d_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span><span class="n">target</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>优化第一项的目标是判别器能够把真实图片预测正确，标签是target=1</p>
+<p>以上写好了第一项，第二项把 pred_images送入进去，不过要把target的torch.ones改成torch.zeros，因为第二项的优化目标是 判别器把预测照片分类成0：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><span class="n">d_loss</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span> 
+</span><span id="__span-36-2">        <span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="o">.</span><span class="n">detach</span><span class="p">()),</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这里有需要注意的点，在更新判别器的时候，不要更新生成器的参数，所以用 detach把参数隔离出来，从计算图中分离出来，而不需要计算梯度，由于是两个loss</p>
+<p>接下来同样进行 backward和step</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><span class="n">d_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-37-2"><span class="n">d_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是g和d的优化</p>
+<p>考虑保存中间结果，比如 每次处理完1000张照片（一共6w张照片），保存照片的结果</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">1000</span> <span class="o">==</span><span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-38-2">    <span class="k">pass</span>
+</span></code></pre></div></td></tr></table></div>
+<p>官方api ：torchvision 保存照片</p>
+<p><img alt="image-20241204102316722" src="../images/image-20241204102316722.png" /></p>
+<p>save_image函数：</p>
+<p><img alt="image-20241204102349658" src="../images/image-20241204102349658.png" /></p>
+<p>接收参数：</p>
+<ul>
+<li>tensor：接受一个tensor，tensor就是我们保留的照片，如果给定minibatchbatch的话，也是可以的，会用网格状保存</li>
+<li>fp：文件名称</li>
+<li>format：确定文件的后缀</li>
+</ul>
+<p>接下来调用这个函数，保存照片</p>
+<p>第一个参数：传入pred_images，是4维的、minibatch的格式</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-39-2">     <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">save_image</span><span class="p">(</span><span class="n">pred_images</span><span class="p">,)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第二个参数：文件名称</p>
+<p>文件名称需要遍历命名每个单独的pred_image，采用<code>enumerate</code>遍历，遍历得到的第一个参数是index，第二个参数是照片</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1">        <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-40-2">            <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pred_images</span><span class="p">):</span>
+</span><span id="__span-40-3">                <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">save_image</span><span class="p">(</span><span class="n">pred_images</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;image_</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>补充之前的 transform还需要一个 normalize参数</p>
+<p><img alt="image-20241204103223803" src="../images/image-20241204103223803.png" /></p>
+<p><img alt="image-20241204103325782" src="../images/image-20241204103325782.png" /></p>
+<p>是因为在识别时，需要计算均值和方差</p>
+<p>这里有一个trick，计算是0.3，0.3，但实际使用时用的是0.5，0.5，而且在实际的实验中，确实是0.5的实验效果更好</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><span class="n">dataset</span> <span class="o">=</span> <span class="n">torchvision</span><span class="o">.</span><span class="n">datasets</span><span class="o">.</span><span class="n">MNIST</span><span class="p">(</span><span class="s2">&quot;minist_data&quot;</span><span class="p">,</span>
+</span><span id="__span-41-2">                                     <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-41-3">                                     <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-41-4">                                     <span class="n">transform</span><span class="o">=</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Compose</span><span class="p">(</span>
+</span><span id="__span-41-5">                                         <span class="p">[</span><span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Resize</span><span class="p">(</span><span class="mi">28</span><span class="p">),</span>
+</span><span id="__span-41-6">                                         <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">(),</span>
+</span><span id="__span-41-7">                                         <span class="n">torchvision</span><span class="o">.</span><span class="n">transforms</span><span class="o">.</span><span class="n">Normalize</span><span class="p">(</span><span class="n">mean</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">],</span><span class="n">std</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">])]</span>
+</span><span id="__span-41-8">
+</span><span id="__span-41-9">                                     <span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上实现了GAN的整体框架</p>
+<ol>
+<li>先写一个生成器</li>
+<li>然后写判别器</li>
+<li>构建数据</li>
+<li>实例化两个optimizer，分别是生成器的优化器，然后是判别器的优化器</li>
+<li>loss function</li>
+<li>训练过程中 ，先训练生成器或者先训练判别器都是可以的</li>
+<li>需要注意的是，不论是生成器还是判别器优化器，都需要指定好参数</li>
+</ol>
+<p><img alt="image-20241204125340364" src="../images/image-20241204125340364.png" /></p>
+<p>生成器优化器只优化生成器的参数、判别器优化器只优化判别器的参数</p>
+<hr />
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epoch</span><span class="p">):</span>
+</span><span id="__span-42-2">    <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">mini_batch</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">dataloader</span><span class="p">):</span>
+</span><span id="__span-42-3">        <span class="n">gt_images</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">mini_batch</span>
+</span><span id="__span-42-4">        <span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">latent_dim</span><span class="p">)</span>
+</span><span id="__span-42-5">
+</span><span id="__span-42-6">        <span class="n">pred_images</span> <span class="o">=</span> <span class="n">generator</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
+</span><span id="__span-42-7">
+</span><span id="__span-42-8">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-42-9">
+</span><span id="__span-42-10">        <span class="n">g_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-42-11">        <span class="n">g_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-42-12">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span><span id="__span-42-13">
+</span><span id="__span-42-14">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-42-15">        <span class="n">d_loss</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-42-16">        <span class="n">d_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-42-17">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span><span id="__span-42-18">
+</span><span id="__span-42-19">        <span class="k">if</span> <span class="n">i</span><span class="o">%</span><span class="mi">1000</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-42-20">            <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">image</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">pred_images</span><span class="p">):</span>
+</span><span id="__span-42-21">                <span class="n">torchvision</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">save_image</span><span class="p">(</span><span class="n">pred_images</span><span class="p">,</span><span class="sa">f</span><span class="s2">&quot;image_</span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>代码对应算法流程：</p>
+<p><img alt="image-20241204125846429" src="../images/image-20241204125846429.png" /></p>
+<p>首先生成器接收高斯随机噪声作为输入</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><span class="n">z</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">latent_dim</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>生成器接收预测的照片作为优化</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-44-2">
+</span><span id="__span-44-3">        <span class="n">g_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-44-4">        <span class="n">g_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-44-5">        <span class="n">g_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<p>优化的目的是使得生成的照片接近真实照片，也就是判别器的输出 <code>discriminator(pred_images)</code> 接近真实标签1    <code>torch.ones(batch_size,1)</code></p>
+<p>判别器的优化包括两部分，将真实图像判别为1，将生成图像判别为0，两个损失相加，保证损失的平衡，所以*0.5</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+</span><span id="__span-45-2">        <span class="n">d_loss</span> <span class="o">=</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="o">+</span> <span class="mf">0.5</span><span class="o">*</span><span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">)</span><span class="o">.</span><span class="n">detach</span><span class="p">(),</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-45-3">        <span class="n">d_loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+</span><span id="__span-45-4">        <span class="n">d_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以将这个损失拆开：<code>real_loss</code> 表示真实照片的损失；<code>fake_loss</code> 表示生成图像的损失；接着 <span class="arithmatex">\(0.5倍的\mathrm{real\_loss}\)</span> + <span class="arithmatex">\(0.5倍的 \mathrm{fake\_loss}\)</span> 得到最终的loss</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1">        <span class="n">real_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">gt_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-46-2">        <span class="n">fake_loss</span> <span class="o">=</span> <span class="n">loss_fn</span><span class="p">(</span><span class="n">discriminator</span><span class="p">(</span><span class="n">pred_images</span><span class="p">),</span><span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-46-3">        <span class="n">d_loss</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">real_loss</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">fake_loss</span> 
+</span><span id="__span-46-4">        <span class="c1"># 观察 real_loss 与 fake_loss，同时下降同时达到最小值，并且值差不多大，说明D已经稳定了   </span>
+</span></code></pre></div></td></tr></table></div>
+<p>拆开写的目的是通过观察损失 判别 判别器的训练是否趋于稳定，标准是 观察real_loss 和 fake_loss，同时下降达到最小值，并且值差不多大，说明 D 已经稳定了</p>
+<hr />
+<p>后面<a href="https://www.bilibili.com/video/BV1VT4y1e796?spm_id_from=333.788.player.switch&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">代码</a>的优化：</p>
+<p>（1）引入batchnorm可以提高收敛速度，具体做法是在生成器的Linear层后面添加BatchNorm1d，最后一层除外，判别器不要加 </p>
+<p>（2）直接预测【0,1】之间的像素值即可，不做归一化的transform；或者也可以放大，预测【-1,1】之间，用mean=0.5 std=0.5进行归一化transform都可以 </p>
+<p>（3）将激活函数ReLU换成GELU效果更好 </p>
+<p>（4）real_loss基于真实图片，fake_loss基于生成图片，real_loss = loss_fn(discriminator(gt_images), torch.ones(batch_size, 1))，fake_loss = loss_fn(discriminator(pred_images.detach()), torch.zeros(batch_size, 1)) </p>
+<p>（5）适当引入重构loss，计算像素值的L1误差 </p>
+<p>（6）建议引入loss打印语句，如：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1">  <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;step:</span><span class="si">{</span><span class="nb">len</span><span class="p">(</span><span class="n">dataloader</span><span class="p">)</span><span class="o">*</span><span class="n">epoch</span><span class="o">+</span><span class="n">i</span><span class="si">}</span><span class="s2">, g_loss:</span><span class="si">{</span><span class="n">g_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, d_loss:</span><span class="si">{</span><span class="n">d_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, real_loss:</span><span class="si">{</span><span class="n">real_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">, fake_loss:</span><span class="si">{</span><span class="n">fake_loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span> 
+</span></code></pre></div></td></tr></table></div>
+<p>（7）判别器模型容量不宜过大 </p>
+<p>（8）save_image中的normalize设置成True，目的是将像素值min-max自动归一到【0,1】范围内，如果已经预测了【0,1】之间，则可以不用设置True </p>
+<p>（9）判别器的学习率不能太小 </p>
+<p>（10）Adam的一阶平滑系数和二阶平滑系数 betas 适当调小一点，可以帮助学习，设置一定比例的weight decay</p>
 
 
 
@@ -3392,7 +3912,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-03T15:02:37+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-04T14:16:24+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-04</span>
   </span>
 
     
@@ -3454,13 +3974,13 @@
         
         
           
-          <a href="../5_Bert/" class="md-footer__link md-footer__link--next" aria-label="Next: 5 Bert">
+          <a href="../5_Bert/" class="md-footer__link md-footer__link--next" aria-label="Next: BERT从零详细解读">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                5 Bert
+                BERT从零详细解读
               </div>
             </div>
             <div class="md-footer__button md-icon">
