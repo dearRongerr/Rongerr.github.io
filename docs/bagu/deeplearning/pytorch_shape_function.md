@@ -10,3 +10,15 @@
 9. `torch.cat(tensors, dim)`：沿指定维度 `dim` 连接多个张量。
 10. `torch.stack(tensors, dim)`：沿新的维度 `dim` 堆叠多个张量，与 `cat` 不同的是，`stack` 会增加一个新的维度。
 11. `torch.reapeat`
+
+12. `torch.tile`
+
+```python
+positon_embedding = torch.tile(positon_embedding_table[:seq_len],[token_embedding.shape[0],1,1])
+# positon_embedding_table[:seq_len] = positon_embedding_table[:5] 取前5个8维
+# [:5] 表示 对 第一维 索引
+# positon_embedding_table[:seq_len] = 5,8
+# [token_embedding.shape[0],1,1] = [1,1,1]
+# positon_embedding = 1,5,8
+```
+

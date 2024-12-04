@@ -1,5 +1,11 @@
 # GAN
 
+**About GAN**
+
+- [ ] cycleGAN 
+- [ ] starGAN 
+- [ ] C-RNN-GAN
+
 [视频链接](https://www.bilibili.com/video/BV1VT4y1e796?spm_id_from=333.788.videopod.sections&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
 
 ![image-20241202215829776](images/image-20241202215829776.png)
@@ -344,8 +350,159 @@ JSD(P||Q)=$二分之一的分布M和分布P的KL散度+$$二分之一的分布M�
 全部代码：
 
 ```python
+""" 基于MNIST 实现对抗生成网络 (GAN) """
 
+import torch
+import torchvision
+import torch.nn as nn
+import numpy as np
+
+image_size = [1, 28, 28]
+latent_dim = 96
+batch_size = 64
+use_gpu = torch.cuda.is_available()
+
+class Generator(nn.Module):
+
+    def __init__(self):
+        super(Generator, self).__init__()
+
+        self.model = nn.Sequential(
+            nn.Linear(latent_dim, 128),
+            torch.nn.BatchNorm1d(128),
+            torch.nn.GELU(),
+
+            nn.Linear(128, 256),
+            torch.nn.BatchNorm1d(256),
+            torch.nn.GELU(),
+            nn.Linear(256, 512),
+            torch.nn.BatchNorm1d(512),
+            torch.nn.GELU(),
+            nn.Linear(512, 1024),
+            torch.nn.BatchNorm1d(1024),
+            torch.nn.GELU(),
+            nn.Linear(1024, np.prod(image_size, dtype=np.int32)),
+            #  nn.Tanh(),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, z):
+        # shape of z: [batchsize, latent_dim]
+
+        output = self.model(z)
+        image = output.reshape(z.shape[0], *image_size)
+
+        return image
+
+
+class Discriminator(nn.Module):
+
+    def __init__(self):
+        super(Discriminator, self).__init__()
+
+        self.model = nn.Sequential(
+            nn.Linear(np.prod(image_size, dtype=np.int32), 512),
+            torch.nn.GELU(),
+            nn.Linear(512, 256),
+            torch.nn.GELU(),
+            nn.Linear(256, 128),
+            torch.nn.GELU(),
+            nn.Linear(128, 64),
+            torch.nn.GELU(),
+            nn.Linear(64, 32),
+            torch.nn.GELU(),
+            nn.Linear(32, 1),
+            nn.Sigmoid(),
+        )
+
+    def forward(self, image):
+        # shape of image: [batchsize, 1, 28, 28]
+
+        prob = self.model(image.reshape(image.shape[0], -1))
+
+        return prob
+
+# Training
+dataset = torchvision.datasets.MNIST("mnist_data", train=True, download=True,
+                                     transform=torchvision.transforms.Compose(
+                                         [
+                                             torchvision.transforms.Resize(28),
+                                             torchvision.transforms.ToTensor(),
+                                             #  torchvision.transforms.Normalize([0.5], [0.5]),
+                                         ]
+                                                                             )
+                                     )
+dataloader = torch.utils.data.DataLoader(dataset, batch_size=batch_size, shuffle=True, drop_last=True)
+
+generator = Generator()
+discriminator = Discriminator()
+
+
+g_optimizer = torch.optim.Adam(generator.parameters(), lr=0.0003, betas=(0.4, 0.8), weight_decay=0.0001)
+d_optimizer = torch.optim.Adam(discriminator.parameters(), lr=0.0003, betas=(0.4, 0.8), weight_decay=0.0001)
+
+loss_fn = nn.BCELoss()
+labels_one = torch.ones(batch_size, 1)
+labels_zero = torch.zeros(batch_size, 1)
+
+if use_gpu:
+    print("use gpu for training")
+    generator = generator.cuda()
+    discriminator = discriminator.cuda()
+    loss_fn = loss_fn.cuda()
+    labels_one = labels_one.to("cuda")
+    labels_zero = labels_zero.to("cuda")
+
+num_epoch = 200
+for epoch in range(num_epoch):
+    for i, mini_batch in enumerate(dataloader):
+        gt_images, _ = mini_batch
+
+
+        z = torch.randn(batch_size, latent_dim)
+
+        if use_gpu:
+            gt_images = gt_images.to("cuda")
+            z = z.to("cuda")
+
+        pred_images = generator(z)
+        g_optimizer.zero_grad()
+
+        recons_loss = torch.abs(pred_images-gt_images).mean()
+
+        g_loss = recons_loss*0.05 + loss_fn(discriminator(pred_images), labels_one)
+
+        g_loss.backward()
+        g_optimizer.step()
+
+        d_optimizer.zero_grad()
+
+        real_loss = loss_fn(discriminator(gt_images), labels_one)
+        fake_loss = loss_fn(discriminator(pred_images.detach()), labels_zero)
+        d_loss = (real_loss + fake_loss)
+
+        # 观察real_loss与fake_loss，同时下降同时达到最小值，并且差不多大，说明D已经稳定了
+
+        d_loss.backward()
+        d_optimizer.step()
+
+        if i % 50 == 0:
+            print(f"step:{len(dataloader)*epoch+i}, recons_loss:{recons_loss.item()}, g_loss:{g_loss.item()}, d_loss:{d_loss.item()}, real_loss:{real_loss.item()}, fake_loss:{fake_loss.item()}")
+
+        if i % 400 == 0:
+            image = pred_images[:16].data
+            torchvision.utils.save_image(image, f"image_{len(dataloader)*epoch+i}.png", nrow=4)
 ```
+
+> 上面的代码可以直接运行  $\uparrow$
+>
+> 下面是讲解，有些许出入，但整体思想是一致的 $\downarrow$
+
+查看输出结果，可以看到生成的图片逐渐清晰：
+
+![image-20241204105638185](images/image-20241204105638185.png)
+
+-----
 
 首先代码的大框架，首先生成生成器的类，然后生成判别器的类，然后进行训练：
 
@@ -855,3 +1012,234 @@ g_loss = loss_fn( discriminator(pred_images) , target )
 ```
 
 但是 target还没有定义，写成1还是 写成0？目标是对生成器进行优化，所以希望 判别器把 生成器生成的图片 优化成真实图片，所以写成预测为1，即定义target = 1，形状就是 batch_size×1
+
+```python
+		target = torch.ones(batch_size,1)
+```
+
+以上是对生成器的优化
+
+```python
+        g_optimizer.zero_grad()
+
+        target = torch.ones(batch_size,1)
+
+        g_loss = loss_fn(discriminator(pred_images),target)
+        g_loss.backward()
+        g_optimizer.step()
+```
+
+接下来，判别器的优化
+
+- 判别器一开始也需要置零操作
+
+```python
+d_optimizer.zero_grad()
+```
+
+- 判别器的目标函数有两个：
+
+![image-20241204093213044](images/image-20241204093213044.png)
+
+第一项是需要把真实的目标图片送入进去
+
+```python
+target = torch.ones(batch_size,1)        
+d_loss = loss_fn(discriminator(gt_images),target)
+```
+
+优化第一项的目标是判别器能够把真实图片预测正确，标签是target=1
+
+以上写好了第一项，第二项把 pred_images送入进去，不过要把target的torch.ones改成torch.zeros，因为第二项的优化目标是 判别器把预测照片分类成0：
+
+```python
+d_loss = 0.5*loss_fn(discriminator(gt_images),torch.ones(batch_size,1)) 
+		+ 0.5*loss_fn(discriminator(pred_images.detach()),torch.zeros(batch_size,1))
+```
+
+这里有需要注意的点，在更新判别器的时候，不要更新生成器的参数，所以用 detach把参数隔离出来，从计算图中分离出来，而不需要计算梯度，由于是两个loss
+
+接下来同样进行 backward和step
+
+```python
+d_loss.backward()
+d_optimizer.step()
+```
+
+以上是g和d的优化
+
+考虑保存中间结果，比如 每次处理完1000张照片（一共6w张照片），保存照片的结果
+
+```python
+if i%1000 ==0:
+    pass
+```
+
+官方api ：torchvision 保存照片
+
+![image-20241204102316722](images/image-20241204102316722.png)
+
+save_image函数：
+
+![image-20241204102349658](images/image-20241204102349658.png)
+
+接收参数：
+
+- tensor：接受一个tensor，tensor就是我们保留的照片，如果给定minibatchbatch的话，也是可以的，会用网格状保存
+- fp：文件名称
+- format：确定文件的后缀
+
+接下来调用这个函数，保存照片
+
+第一个参数：传入pred_images，是4维的、minibatch的格式
+
+```python
+if i%1000 == 0:
+     torchvision.utils.save_image(pred_images,)
+```
+
+第二个参数：文件名称
+
+文件名称需要遍历命名每个单独的pred_image，采用`enumerate`遍历，遍历得到的第一个参数是index，第二个参数是照片
+
+```python
+        if i%1000 == 0:
+            for index,image in enumerate(pred_images):
+                torchvision.utils.save_image(pred_images,f"image_{index}.png")
+```
+
+补充之前的 transform还需要一个 normalize参数
+
+![image-20241204103223803](images/image-20241204103223803.png)
+
+
+
+![image-20241204103325782](images/image-20241204103325782.png)
+
+
+
+是因为在识别时，需要计算均值和方差
+
+这里有一个trick，计算是0.3，0.3，但实际使用时用的是0.5，0.5，而且在实际的实验中，确实是0.5的实验效果更好
+
+```python
+dataset = torchvision.datasets.MNIST("minist_data",
+                                     train=True,
+                                     download=True,
+                                     transform=torchvision.transforms.Compose(
+                                         [torchvision.transforms.Resize(28),
+                                         torchvision.transforms.ToTensor(),
+                                         torchvision.transforms.Normalize(mean=[0.5],std=[0.5])]
+                                         
+                                     ))
+```
+
+以上实现了GAN的整体框架
+
+1. 先写一个生成器
+2. 然后写判别器
+3. 构建数据
+4. 实例化两个optimizer，分别是生成器的优化器，然后是判别器的优化器
+5. loss function
+6. 训练过程中 ，先训练生成器或者先训练判别器都是可以的
+7. 需要注意的是，不论是生成器还是判别器优化器，都需要指定好参数
+
+![image-20241204125340364](images/image-20241204125340364.png)
+
+生成器优化器只优化生成器的参数、判别器优化器只优化判别器的参数
+
+----
+
+```python
+for epoch in range(num_epoch):
+    for i,mini_batch in enumerate(dataloader):
+        gt_images,_ = mini_batch
+        z = torch.randn(batch_size,latent_dim)
+        
+        pred_images = generator(z)
+
+        g_optimizer.zero_grad()
+        
+        g_loss = loss_fn(discriminator(pred_images),torch.ones(batch_size,1))
+        g_loss.backward()
+        g_optimizer.step()
+
+        d_optimizer.zero_grad()
+        d_loss = 0.5*loss_fn(discriminator(gt_images),torch.ones(batch_size,1))+ 0.5*loss_fn(discriminator(pred_images).detach(),torch.zeros(batch_size,1))
+        d_loss.backward()
+        d_optimizer.step()
+
+        if i%1000 == 0:
+            for index,image in enumerate(pred_images):
+                torchvision.utils.save_image(pred_images,f"image_{index}.png")
+```
+
+代码对应算法流程：
+
+![image-20241204125846429](images/image-20241204125846429.png)
+
+首先生成器接收高斯随机噪声作为输入
+
+```python
+z = torch.randn(batch_size,latent_dim)
+```
+
+生成器接收预测的照片作为优化
+
+```python
+        g_optimizer.zero_grad()
+        
+        g_loss = loss_fn(discriminator(pred_images),torch.ones(batch_size,1))
+        g_loss.backward()
+        g_optimizer.step()
+```
+
+优化的目的是使得生成的照片接近真实照片，也就是判别器的输出 `discriminator(pred_images)` 接近真实标签1    `torch.ones(batch_size,1)`
+
+判别器的优化包括两部分，将真实图像判别为1，将生成图像判别为0，两个损失相加，保证损失的平衡，所以*0.5
+
+```python
+        d_optimizer.zero_grad()
+        d_loss = 0.5*loss_fn(discriminator(gt_images),torch.ones(batch_size,1))+ 0.5*loss_fn(discriminator(pred_images).detach(),torch.zeros(batch_size,1))
+        d_loss.backward()
+        d_optimizer.step()
+```
+
+可以将这个损失拆开：`real_loss` 表示真实照片的损失；`fake_loss` 表示生成图像的损失；接着 $0.5倍的\mathrm{real\_loss}$ + $0.5倍的 \mathrm{fake\_loss}$ 得到最终的loss
+
+```python
+        real_loss = loss_fn(discriminator(gt_images),torch.ones(batch_size,1))
+        fake_loss = loss_fn(discriminator(pred_images),torch.zeros(batch_size,1))
+        d_loss = 0.5 * real_loss + 0.5 * fake_loss 
+        # 观察 real_loss 与 fake_loss，同时下降同时达到最小值，并且值差不多大，说明D已经稳定了   
+```
+
+拆开写的目的是通过观察损失 判别 判别器的训练是否趋于稳定，标准是 观察real_loss 和 fake_loss，同时下降达到最小值，并且值差不多大，说明 D 已经稳定了
+
+----
+
+后面[代码](https://www.bilibili.com/video/BV1VT4y1e796?spm_id_from=333.788.player.switch&vd_source=ddd7d236ab3e9b123c4086c415f4939e)的优化：
+
+（1）引入batchnorm可以提高收敛速度，具体做法是在生成器的Linear层后面添加BatchNorm1d，最后一层除外，判别器不要加 
+
+（2）直接预测【0,1】之间的像素值即可，不做归一化的transform；或者也可以放大，预测【-1,1】之间，用mean=0.5 std=0.5进行归一化transform都可以 
+
+（3）将激活函数ReLU换成GELU效果更好 
+
+（4）real_loss基于真实图片，fake_loss基于生成图片，real_loss = loss_fn(discriminator(gt_images), torch.ones(batch_size, 1))，fake_loss = loss_fn(discriminator(pred_images.detach()), torch.zeros(batch_size, 1)) 
+
+（5）适当引入重构loss，计算像素值的L1误差 
+
+（6）建议引入loss打印语句，如：
+
+```python
+  print(f"step:{len(dataloader)*epoch+i}, g_loss:{g_loss.item()}, d_loss:{d_loss.item()}, real_loss:{real_loss.item()}, fake_loss:{fake_loss.item()}") 
+```
+
+（7）判别器模型容量不宜过大 
+
+（8）save_image中的normalize设置成True，目的是将像素值min-max自动归一到【0,1】范围内，如果已经预测了【0,1】之间，则可以不用设置True 
+
+（9）判别器的学习率不能太小 
+
+（10）Adam的一阶平滑系数和二阶平滑系数 betas 适当调小一点，可以帮助学习，设置一定比例的weight decay

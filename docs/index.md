@@ -1,15 +1,37 @@
-2024年12月2日
+1. [git & 终端](https://dearrongerr.github.io/Rongerr.github.io/sticks/sticks/)
+2. [TODO](https://dearrongerr.github.io/Rongerr.github.io/sticks/TODO/)
+3. [mkdocs](https://dearrongerr.github.io/Rongerr.github.io/sticks/mkdocs_learn/)
+4. [markdown](https://dearrongerr.github.io/Rongerr.github.io/sticks/markdwon_learn/)
+5. [leetcode：两数之和](https://dearrongerr.github.io/Rongerr.github.io/bagu/questions/leetcode/1/)
+6. [leetcode：两数相加](https://dearrongerr.github.io/Rongerr.github.io/bagu/questions/leetcode/2/)
+7. [手撕Transformer代码](https://dearrongerr.github.io/Rongerr.github.io/bagu/deeplearning/former/transformer/)
+8. [pytorch的维度变换函数](https://dearrongerr.github.io/Rongerr.github.io/bagu/deeplearning/pytorch_shape_function/)
+9. [手撕代码 5种归一化方法](https://dearrongerr.github.io/Rongerr.github.io/bagu/deeplearning/1/)
+10. [手撕代码 kmeans](https://dearrongerr.github.io/Rongerr.github.io/bagu/machinelearning/kmeans/)
+11. [手撕代码 反向传播](https://dearrongerr.github.io/Rongerr.github.io/bagu/machinelearning/2/)
+12. [图解LayerNorm & BatchNorm](https://dearrongerr.github.io/Rongerr.github.io/learning/2/)
+13. [5种归一化方法](https://dearrongerr.github.io/Rongerr.github.io/learning/1/)
+14. [ViT 学习笔记](https://dearrongerr.github.io/Rongerr.github.io/learning/vit/)
+15. [SwinTransformer 学习笔记](https://dearrongerr.github.io/Rongerr.github.io/learning/swintransformer/)
+16. [4种位置编码](https://dearrongerr.github.io/Rongerr.github.io/learning/pe/)
+17. [4种卷积](https://dearrongerr.github.io/Rongerr.github.io/learning/convs/)
+18. [李沐目标检测部分](https://dearrongerr.github.io/Rongerr.github.io/learning/3/)
+19. [GAN](https://dearrongerr.github.io/Rongerr.github.io/learning/4_GAN/)
+20. [Bert](https://dearrongerr.github.io/Rongerr.github.io/learning/5_Bert/)
+21. [Diffusion](https://dearrongerr.github.io/Rongerr.github.io/learning/6_Diffusion/)
 
-12月，出师不利
+文献阅读：
 
-- [ ] 论文阅读
-- [ ] 上午学知识
-- [ ] 下午学论文
-- [ ] 晚上随心所欲
-- [ ] 🥟
-- [ ] 扩散
-- [ ] clip
-- [ ] former variants
+1. [CountGD: Multi-Modal Open-World Counting](https://dearrongerr.github.io/Rongerr.github.io/literature/ObejectCounting/rank1%20CountGD/)
+2. [A Novel Unified Architecture for Low-Shot Counting by Detection and Segmentation](https://dearrongerr.github.io/Rongerr.github.io/literature/ObejectCounting/rank2%20GeCo/)
+3. [DAVE – A Detect-and-Verify Paradigm for Low-Shot Counting](https://dearrongerr.github.io/Rongerr.github.io/literature/ObejectCounting/rank3%20DAVE/)
+4. 
 
 
 
+b站大学
+
+- [数学家是我理想](https://space.bilibili.com/181990557)
+- [**王木头学科学**](https://space.bilibili.com/504715181?spm_id_from=333.337.0.0)
+
+- 
