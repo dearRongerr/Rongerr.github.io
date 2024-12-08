@@ -33,4 +33,8 @@
 - [x] 
 
 - [x] 增：vision transformer代码（DONE）
-- [ ] 增：clip
+- [x] 增：clip
+
+2024年12月5日 星期四 晴天 来了
+
+- [ ] 

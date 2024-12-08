@@ -38,6 +38,8 @@
 
 - [ ] 沿着Transformer的工作
 
+- [ ] WeightNorm
+
 
 ----
 
