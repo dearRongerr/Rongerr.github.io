@@ -49,7 +49,8 @@ nav:
     - learning/5_Bert.md
     - learning/6_Diffusion.md
     - learning/7_Clip.md
-    - learning/8_WeightNorm.md     
+    - learning/8_WeightNorm.md
+    - learning/9_cGAN.md     
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:

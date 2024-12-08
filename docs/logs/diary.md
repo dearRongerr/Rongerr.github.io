@@ -30,11 +30,14 @@
 - [x] 改：GAN（DONE）
 - [x] 改：ViT（DONE）
 - [x] 增：Bert
-- [x] 
-
 - [x] 增：vision transformer代码（DONE）
 - [x] 增：clip
 
-2024年12月5日 星期四 晴天 来了
+**2024年12月5日 星期四 晴天 来了**
 
-- [ ] 
+- [x] 改：WeightNorm
+
+**2024年12月8日 星期日 阴天 来了**
+
+- [x] 改：WeightNorm
+- [x] 增：GAN的变体：最小二乘GAN

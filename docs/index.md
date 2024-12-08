@@ -19,6 +19,7 @@
 19. [GAN](https://dearrongerr.github.io/Rongerr.github.io/learning/4_GAN/)
 20. [Bert](https://dearrongerr.github.io/Rongerr.github.io/learning/5_Bert/)
 21. [Diffusion](https://dearrongerr.github.io/Rongerr.github.io/learning/6_Diffusion/)
+22. [WeightNorm的pytorch实现](https://dearrongerr.github.io/Rongerr.github.io/learning/8_WeightNorm/)
 
 文献阅读：
 
