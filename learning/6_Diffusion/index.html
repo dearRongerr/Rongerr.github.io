@@ -22,7 +22,7 @@
     
     
       
-        <title>6 Diffusion - 溶err</title>
+        <title>Probabilistic Diffusion Model - 溶err</title>
       
     
     
@@ -81,6 +81,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#probabilistic-diffusion-model" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -113,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              6 Diffusion
+              Probabilistic Diffusion Model
             
           </span>
         </div>
@@ -1263,6 +1268,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1511,16 +1520,141 @@
       <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
       
       
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Probabilistic Diffusion Model
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    6 Diffusion
+    Probabilistic Diffusion Model
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 汇总生成模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 前置数学知识
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 前置数学知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、条件概率公式与高斯分布的KL散度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vaevae" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、VAE与多层VAE回顾
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、VAE与多层VAE回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 单层VAE&amp;置信下界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 多层VAE及置信下界
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、Diffusion图示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、扩散过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、逆扩散过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1581,6 +1715,48 @@
   
   <span class="md-ellipsis">
     GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
   </span>
   
 
@@ -2538,7 +2714,7 @@
         
   
   <span class="md-ellipsis">
-    Diary
+    乐观 &amp; 坚强
   </span>
   
 
@@ -2572,6 +2748,109 @@
   
   
   
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 汇总生成模型
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 前置数学知识
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 前置数学知识">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#kl" class="md-nav__link">
+    <span class="md-ellipsis">
+      一、条件概率公式与高斯分布的KL散度
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vaevae" class="md-nav__link">
+    <span class="md-ellipsis">
+      二、VAE与多层VAE回顾
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="二、VAE与多层VAE回顾">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 单层VAE&amp;置信下界
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-vae" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 多层VAE及置信下界
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#diffusion" class="md-nav__link">
+    <span class="md-ellipsis">
+      三、Diffusion图示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      四、扩散过程
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      五、逆扩散过程
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
   
 </nav>
                   </div>
@@ -2589,9 +2868,293 @@
   
 
 
-  <h1>6 Diffusion</h1>
-
-
+<h1 id="probabilistic-diffusion-model">Probabilistic Diffusion Model<a class="headerlink" href="#probabilistic-diffusion-model" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.bilibili.com/video/BV1b541197HX?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">Probabilistic Diffusion Model概率扩散模型理论与完整PyTorch代码详细解读</a></p>
+<p>参考文献：</p>
+<p>（1）2015年 ： 基于非平衡热力学进行深度无监督学习</p>
+<p>深度无监督学习就是生成照片</p>
+<p><img alt="image-20241209163422417" src="../images/image-20241209163422417.png" /></p>
+<p>（2）2020年：去噪概率模型</p>
+<p><img alt="image-20241209163515382" src="../images/image-20241209163515382.png" /></p>
+<ul>
+<li>扩散模型开始流行实行2020年的这篇论文，2021年、2022年开始有大量论文出现</li>
+<li>
+<p>目前：DDPM 2020年这篇论文的引用量已经220万，2015年论文的引用量也有200多万</p>
+</li>
+<li>
+<p>扩散模型是一种生成式模型：GAN的任务、VAE的任务、FLOW的任务都可以用Diffusion Model</p>
+</li>
+</ul>
+<h2 id="1">1 汇总生成模型<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
+<p>（1）第一类生成模型：Seq2Seq模型，自回归的解码模型</p>
+<p>（2）第二类生成模型：基于GAN的模型，没有显式的对目标分布进行建模，只是将生成的数据放到下游的判别器中，以对抗的方式使得生成器达到理想的目标分布</p>
+<p>（3）第三类生成模型：<a href="https://www.bilibili.com/video/BV1dS4y1c7xB?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">FLOW模型</a>：FLOW模型的数学原理比较严谨，是一个完全可逆的过程，为了让FLOW模型变得可解，需要设计一些巧妙结构，使得对数似然完全可解，也是因为设计的巧妙的结构，限制了FLOW的性能</p>
+<p>（4）第四类生成模型：VAE</p>
+<p>（5）第五类生成模型：Diffusion：其中VAE和Diffusion模型其实有点像</p>
+<p><img alt="image-20241209164339902" src="../images/image-20241209164339902.png" /></p>
+<h2 id="2">2 前置数学知识<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241209164357441" src="../images/image-20241209164357441.png" /></p>
+<h3 id="kl"><strong>一、条件概率公式与高斯分布的KL散度</strong><a class="headerlink" href="#kl" title="Permanent link">&para;</a></h3>
+<p><u>1、条件概率的一般公式</u></p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> （1）P(A,B,C)=P(A)P(B|A)P(C|A,B)</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> （2）P(B,C|A) = P(B|A)P(C|A,B)</p>
+</li>
+</ul>
+<p><u>2、基于马尔科夫假设的条件概率</u></p>
+<blockquote>
+<p>什么叫 马尔科夫假设？</p>
+<p>当前时刻的输出 只与 上一时刻有关，跟过去以及更远的无关</p>
+</blockquote>
+<p>如我们现在有马尔科夫链：A→B→C，则上面的（1）、（2）可以进行简化：</p>
+<p>P(A,B,C)可以写成：P(A,B)P(C|A,B) 继续写成：P(A)P(B|A)P(C|A,B)</p>
+<p>因为 A是B的上一时刻，所以保留 P(B|A)</p>
+<p>因为A距离C比较远，不再是C的上一时刻，所以 P(C|A,B)写成P(C|B)</p>
+<p>所以在满足马尔科夫假设的情况下，条件概率写成：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> （3）P(A,B,C)=P(A)P(B|A)P(C|B)</li>
+</ul>
+<p>同理简化P(B,C|A)，得到：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> （4）P(B,C|A) = P(B|A)P(C|B)</li>
+</ul>
+<p><u>3、两个高斯分布的KL散度公式</u> </p>
+<blockquote>
+<p>明白VAE的话，KL散度公式会很清楚</p>
+<p><img alt="image-20241209170156895" src="../images/image-20241209170156895.png" /></p>
+<p>对于两个单一变量的高斯分布p和q来说，均值是 <span class="arithmatex">\(\mu_1\)</span> 和 <span class="arithmatex">\(\mu_2\)</span> ，方差是 <span class="arithmatex">\(\sigma_1^2\)</span>、<span class="arithmatex">\(\sigma_2^2\)</span></p>
+<p>则它们的KL散度公式：</p>
+<p><span class="arithmatex">\(KL(p,q)=log\frac{\sigma_2}{\sigma_1} + \frac{\sigma^2+(\mu_1-\mu_2)^2}{2\sigma^2_2}-\frac{1}{2}\)</span></p>
+</blockquote>
+<p><u>4、参数重整化的技巧</u></p>
+<blockquote>
+<p>什么是参数重整化？</p>
+<p>假设希望从 均值为 <span class="arithmatex">\(\mu\)</span>、方差为 <span class="arithmatex">\(\sigma^2\)</span> 的高斯分布 <span class="arithmatex">\(N(\mu,\sigma^2)\)</span> 中采样，如果直接采样的话，会造成什么问题呢？</p>
+<p>如果 <span class="arithmatex">\(\mu\)</span> 和  <span class="arithmatex">\(\sigma\)</span> 是通过神经网络预测出来的话，直接去采样<span class="arithmatex">\(N(\mu,\sigma)\)</span>，就会导致与 <span class="arithmatex">\(\mu\)</span> 和<span class="arithmatex">\(\sigma\)</span> 参数断开了，梯度无法传回去了，因为采样的过程是不可导的；所以为了让采样出来的样本跟 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\sigma\)</span> 之间，仍然可以梯度可传播的，仍然是可导的，我们就可以把这个采样过程 等价于 首先从 <span class="arithmatex">\(N(0,1)\)</span> 的标准分布中，采样出 z，把 z 当成是一个常数，再把z乘以原来分布的 <span class="arithmatex">\(\sigma\)</span> 和 <span class="arithmatex">\(\mu\)</span> ，保证了梯度可以回传</p>
+<p>这样做的好处是，这样的采样过程转移到了 z上，   <strong>z可以看做是 网络的输入</strong>    ，或者当成一个常数，采样值 <span class="arithmatex">\(y=\sigma z+\mu\)</span>，<span class="arithmatex">\(y\)</span>与 <span class="arithmatex">\(\sigma\)</span> 和 <span class="arithmatex">\(y\)</span>与 <span class="arithmatex">\(\mu\)</span> 之间是完全可导的</p>
+<p>如果不这样做的话，<span class="arithmatex">\(y\)</span>对<span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(y\)</span>对 <span class="arithmatex">\(\sigma\)</span> 的导数是算不出来的</p>
+<p>以上称为参数重整化</p>
+</blockquote>
+<p><img alt="image-20241209171733653" src="../images/image-20241209171733653.png" /></p>
+<blockquote>
+<p>目的就是希望 采样出来的值，跟 <span class="arithmatex">\(\mu\)</span> 和 <span class="arithmatex">\(\sigma\)</span> 之间 梯度是可导的</p>
+<p>这就是参数重整化的技巧，这个技巧在VAE和Diffusion中大量使用</p>
+<p>以上是回顾，接下来讲解什么是VAE以及多层VAE</p>
+</blockquote>
+<h3 id="vaevae">二、<strong>VAE与多层VAE回顾</strong><a class="headerlink" href="#vaevae" title="Permanent link">&para;</a></h3>
+<h4 id="1-vae">1 单层VAE&amp;置信下界<a class="headerlink" href="#1-vae" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20241209172015324" src="../images/image-20241209172015324.png" /></p>
+<p><img alt="image-20241209191731225" src="../images/image-20241209191731225.png" /></p>
+<p>VAE的原理：</p>
+<blockquote>
+<p>首先单层VAE</p>
+<p>VAE认为x由某一个隐变量z生成</p>
+</blockquote>
+<p><img alt="image-20241209172130825" src="../images/image-20241209172130825.png" /></p>
+<p>隐变量z如何得到呢？</p>
+<blockquote>
+<p>在训练的时候，通过<span class="arithmatex">\(q_{\phi}(z|x)\)</span> 从x中生成z，在推理的时候，从z预测x</p>
+</blockquote>
+<p>以上就是单层VAE</p>
+<p>公式：</p>
+<p><img alt="image-20241209172503788" src="../images/image-20241209172503788.png" /></p>
+<p>用公式 概括目标数据分布：</p>
+<p>（1）p(x)可以写成联合概率分布，对z这个变量进行积分，得到边缘分布：</p>
+<p><span class="arithmatex">\(p(x) = \int_zp_{\theta}(x|z)p(z)\)</span></p>
+<p>写成一个 <span class="arithmatex">\(条件概率\)</span> 和 <span class="arithmatex">\(p(z)\)</span> 相乘的形式</p>
+<p>（2）对（1）乘以后验概率分布的形式，后验是希望从x去预测z这个隐变量，上下分别乘以 $q_{\phi} $  z  given  x 就是<span class="arithmatex">\(q_{\phi}(z|x)\)</span> ：</p>
+<p><span class="arithmatex">\(p(x)= \int q_{\phi}(z|x) \frac{p_{\theta}(x|z)p(z)}{q_{\phi}(z|x)}\)</span></p>
+<p>这个式子相当于  <span class="arithmatex">\(\frac{p_{\theta}(x|z)p(z)}{q_{\phi}(z|x)}\)</span>  在 <span class="arithmatex">\(q_{\phi}\)</span> 分布下的期望</p>
+<p>（3）对（2）左右两边同时取<span class="arithmatex">\(log\)</span>，得到<span class="arithmatex">\(logp(x)\)</span></p>
+<p>右边写成期望的形式：</p>
+<p><span class="arithmatex">\(logp(x)\)</span>  就是一个对数似然</p>
+<p><span class="arithmatex">\(logp(x) = log \mathbb{E}_{z \sim q_{\phi}(z|x)}[\frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span></p>
+<p>（4）根据詹森不等式，log移到期望里面，得到：</p>
+<p><span class="arithmatex">\(logp(x)  \ge  \mathbb{E}_{z \sim q_{\phi}(z|x)}[log \frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span> </p>
+<p>经过以上的推导，得到目标数据分布的下界，训练网络的目的是最大化 <span class="arithmatex">\(logp(x)\)</span>，最大化对数似然，最大化 <span class="arithmatex">\(logp(x)\)</span> 不好求，就可以 最大化  <span class="arithmatex">\(\mathbb{E}_{z \sim q_{\phi}(z|x)}[log \frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span> </p>
+<p>因为    <span class="arithmatex">\(logp(x)  \ge  \mathbb{E}_{z \sim q_{\phi}(z|x)}[log \frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span>    这个不等式永远成立</p>
+<p><u>接下来，思考，怎么最大化 <span class="arithmatex">\(\mathbb{E}_{z \sim q_{\phi}(z|x)}[log \frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span></u> ？</p>
+<p>看成两部分</p>
+<p>第一部分：<span class="arithmatex">\(log p_{\theta}(x|z)\)</span></p>
+<p>看成是预测网络，基于预测出来的隐变量z预测x，这一部分好求，与目标数据的分布作差即可</p>
+<p>第二部分：<span class="arithmatex">\(log\frac{p(z)}{q_{\phi}(z|x)}\)</span></p>
+<p>这部分分子、分母求倒数，变成<span class="arithmatex">\(-log\frac{q_{\phi}(z|x)}{p(z)}\)</span></p>
+<p>又 因为在 <span class="arithmatex">\(q_{\phi}\)</span> 分布下的期望 <span class="arithmatex">\(\mathbb{E}_{z \sim q_{\phi}(z|x)}\)</span> ，所以这个式子变成 <span class="arithmatex">\(q_{\phi}\)</span> 与 <span class="arithmatex">\(p_z\)</span> 之间的KL散度</p>
+<p>于是下界变成：</p>
+<p><span class="arithmatex">\(\mathbb{E}_{z \sim q_{\phi}(z|x)}[log \frac{p_{\theta}(x|z)p(z)}{q_{\phi(z|x)}}]\)</span></p>
+<p><span class="arithmatex">\(= log p_{\theta}(x|z) - KL散度(q_{\phi} 与 p)\)</span></p>
+<p><span class="arithmatex">\(p\)</span> 一般情况下可以假设服从高斯分布</p>
+<p>因此，<span class="arithmatex">\(q_{\phi}\)</span>  可以预测高斯分布</p>
+<p>由于两个高斯分布之间的KL散度是可解的，所以整个VAE的目标函数，也是可以写出来的，以上是单层VAE的原理</p>
+<p><u>接下来，多层VAE</u></p>
+<h4 id="2-vae">2 多层VAE及置信下界<a class="headerlink" href="#2-vae" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20241209191650202" src="../images/image-20241209191650202.png" /></p>
+<p><img alt="image-20241209193158047" src="../images/image-20241209193158047.png" /></p>
+<p>多层VAE</p>
+<p>假设这里的x 不是由一个隐变量 生成的，而是由 2个生成</p>
+<p><img alt="image-20241209192140434" src="../images/image-20241209192140434.png" /></p>
+<p>一开始的隐变量称为 <span class="arithmatex">\(z_2\)</span> ，通过 <span class="arithmatex">\(z_2\)</span> 生成 <span class="arithmatex">\(z_1\)</span>，再通过 <span class="arithmatex">\(z_1\)</span>  生成 <span class="arithmatex">\(x\)</span></p>
+<p>这样的生成过程叫做多层VAE</p>
+<p>(1)此时的目标分布 <span class="arithmatex">\(p(x)\)</span> ，可以写成一个联合概率分布，然后把 <span class="arithmatex">\(z_1\)</span> 、<span class="arithmatex">\(z_2\)</span>  积掉，得到 <span class="arithmatex">\(p(x)\)</span>：</p>
+<p><span class="arithmatex">\(p(x) = \int_{z_1}\int_{z_2}p_{\theta}(x,z_1,z_2)dz_1dz_2\)</span></p>
+<p>(2)分子分母 同时乘以 后验分布：</p>
+<p><span class="arithmatex">\(p(x) = \int_{z_1}\int_{z_2}q_{\phi}(z_1,z_2|x)\frac{p_{\theta}(x,z_1,z_2)}{q_{\phi}(z_1,z_2|x)}dz_1dz_2\)</span></p>
+<p>(3)继续将(2)写成期望的形式：<span class="arithmatex">\(p(x) = \mathbb{E}_{z_1,z_2\sim q_{\phi}(z_1,z_2|x)}[\frac{p_{\theta}(x,z_1,z_2)}{q_{\phi}(z_1,z_2|x)}]\)</span></p>
+<p>(4) 同样对(3)两边取一个对数，利用詹森不等式，得到<span class="arithmatex">\(log(p(x))\)</span> 的下界：</p>
+<p><img alt="image-20241209193325161" src="../images/image-20241209193325161.png" /></p>
+<p>(5)对(4)，借助之前说过的公式，在马尔科夫假设的条件下，可以写成：</p>
+<p><img alt="image-20241209193425812" src="../images/image-20241209193425812.png" /></p>
+<p>(6)将(5)代入(4)，得到</p>
+<p><img alt="image-20241209193608157" src="../images/image-20241209193608157.png" /></p>
+<p>以上是多层VAE的目标函数</p>
+<p><img alt="image-20241209193644377" src="../images/image-20241209193644377.png" /></p>
+<p>训练的时候，有两次 首先从 <span class="arithmatex">\(x\)</span>中推理出<span class="arithmatex">\(z\)</span>，然后从<span class="arithmatex">\(z\)</span>中，推理出<span class="arithmatex">\(x\)</span></p>
+<p>这个过程跟Diffusion很像</p>
+<h3 id="diffusion">三、Diffusion图示<a class="headerlink" href="#diffusion" title="Permanent link">&para;</a></h3>
+<p>（1）</p>
+<p><img alt="image-20241209194919761" src="../images/image-20241209194919761.png" /></p>
+<p>（2）讲解了Diffusion是怎么一回事</p>
+<p><img alt="image-20241209194516467" src="../images/image-20241209194516467.png" /></p>
+<p>Diffusion从目标分布 <span class="arithmatex">\(x_0\)</span> 中加噪，去生成，得到最终的一个分布 <span class="arithmatex">\(x_T\)</span> ，用的时候从最终分布 <span class="arithmatex">\(x_T\)</span> ，逐步逐步的得到目标分布  <span class="arithmatex">\(x_0\)</span></p>
+<p>所以Diffusion的目标函数跟多层VAE的目标函数是很像的</p>
+<p>思考，多层VAE &amp; Diffusion之间有什么关联？</p>
+<p>Diffusion分为两个过程</p>
+<p>符号说明：目标分布（记为 <span class="arithmatex">\(x_0\)</span>），噪声分布 <span class="arithmatex">\(x_T\)</span></p>
+<p>第一个过程：扩散过程</p>
+<p><img alt="image-20241209195411760" src="../images/image-20241209195411760.png" /></p>
+<ul>
+<li>从 <span class="arithmatex">\(x_0\)</span>  到 <span class="arithmatex">\(x_T\)</span> 熵增过程，从有序到无序</li>
+<li>想象 把一个水滴 倒入到 一个池塘或者河流之中，慢慢的扩散，最后没有了原来的分布</li>
+<li>扩散过程 就是原始的过程中 不断的加噪，直到最后变成了 各项独立的高斯分布</li>
+</ul>
+<p>生成的时候，是希望从一个噪声分布中，逐步预测出目标分布，这个过程叫做 逆扩散过程</p>
+<p>第二个过程：逆扩散过程</p>
+<p><img alt="image-20241209195447563" src="../images/image-20241209195447563.png" /></p>
+<p>逆扩散过程，就是基于一个噪声，能够把目标分布推导出来，从目标分布中，采样新的样本，生成新的图像</p>
+<p>DIffusion要做的就是，有一堆目标分布（比如有一堆这个人的照片），我们希望能够把逆扩散过程，也就是从<span class="arithmatex">\(x_T\)</span> 到 <span class="arithmatex">\(x_0\)</span> 的原理搞出来，或者说公式预测出来，然后随机的生成噪声分布，从而能够预测出新的这个人的照片，以上就是Diffusion Model做的事情</p>
+<p>补充两个条件概率分布：</p>
+<p><img alt="image-20241209200020933" src="../images/image-20241209200020933.png" /></p>
+<ul>
+<li><span class="arithmatex">\(p_{\theta}(x_{t-1}|x_t)\)</span> ： 表示逆扩散过程中的条件概率分布</li>
+<li><span class="arithmatex">\(q(x_t|x_{t-1})\)</span> ：表示扩散过程中的条件概率分布</li>
+</ul>
+<p>而我们在进行推理的时候，只用到逆扩散过程</p>
+<p>接下来用图表示这个过程：</p>
+<p>（3）</p>
+<p><img alt="image-20241209195901363" src="../images/image-20241209195901363.png" /></p>
+<p>t=0时，就是标准的目标分布，就是规则的图形，接着我们逐步的加噪，加到一半的时候，发现图形变得很模糊，加到最终的时候，分布已经完全失去了原貌，基本已经变成了各项独立的高斯分布：</p>
+<p><img alt="image-20241209200300606" src="../images/image-20241209200300606.png" /></p>
+<p>逆扩散的过程也是同样，一开始的时候，生成一堆高斯分布的噪声，然后基于模型不断的迭代，迭代到t=0的时候，也就是 T时刻的迭代，生成新的样本，新的样本的分布跟原来数据是一样的，从同一个分布中，采样出来的新的样本，以上是逆扩散过程：</p>
+<p><img alt="image-20241209200526332" src="../images/image-20241209200526332.png" /></p>
+<p>扩散过程和逆扩散过程的差称为漂移量：</p>
+<p><img alt="image-20241209200710938" src="../images/image-20241209200710938.png" /></p>
+<p>以上是扩散模型的大致过程</p>
+<p>以上是图示，下面是正式的推导过程</p>
+<h3 id="_1">四、扩散过程<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20241209205931877" src="../images/image-20241209205931877.png" /></p>
+<p><img alt="image-20241209212634997" src="../images/image-20241209212634997.png" /></p>
+<p><img alt="image-20241209220557142" src="../images/image-20241209220557142.png" /></p>
+<p>首先明白，扩散过程分为两个过程：</p>
+<p>(1)正向的扩散过程，从 <span class="arithmatex">\(x_0\)</span> 到 <span class="arithmatex">\(x_T\)</span></p>
+<p>(2)反向的逆扩散过程，从 <span class="arithmatex">\(x_T\)</span> 到 <span class="arithmatex">\(x_0\)</span>（也可以叫重建过程） 从噪声中 重建目标分布</p>
+<p><img alt="image-20241209210640165" src="../images/image-20241209210640165.png" /></p>
+<p>1、首先看扩散过程：给定初始数据分布，通俗一点就是训练集服从分布 <span class="arithmatex">\(x_0 \sim q(x)\)</span>，接着不断的向分布中添加噪声，这里的均值和标准差都是不含参数的，再次强调，扩散过程的正向过程是不含参数的，就是往 <span class="arithmatex">\(x_0\)</span> 中 添加高斯噪声的时候，每一步的均值的方差都是确定的，就比如学习率，虽然每一步都在变化，但是是确定的，而不是网络预测的，并且这个过程也是马尔科夫链的过程，即当前时刻只与上一时刻相关，与过去更远的时刻无关，这就是第一点，不断的往原始分布中，去添加高斯噪声，但这个添加不是简单的加法，而是仿射变换的过程，等下会基于参数重整化生成每一时刻新的数据分布</p>
+<p><img alt="image-20241209210659469" src="../images/image-20241209210659469.png" /></p>
+<p>2、第二点，随着 t的不断增大，我们最终的数据分布会变成 各项独立的高斯分布，为什么会这样？下面开始推导：</p>
+<p>在扩散模型中，有定义 <span class="arithmatex">\(q(x_t|x_{t-1})\)</span>：从 <span class="arithmatex">\(x_0\)</span> 去预测 <span class="arithmatex">\(x_1\)</span> ，或者说 <span class="arithmatex">\(x_1\)</span> 预测 <span class="arithmatex">\(x_2\)</span> 的话，是一个条件概率分布，并且这个条件概率分布是一个高斯分布，这个高斯分布的均值是 <span class="arithmatex">\(\sqrt{1-\beta_t}x_{t-1}\)</span>，方差是 <span class="arithmatex">\(\beta_tI\)</span> ，也就是说 每次加噪的高斯分布，只由当前时刻的 <span class="arithmatex">\(x\)</span> 和一个确定值 <span class="arithmatex">\(\beta_t\)</span> 有关，是完全不含可训练参数的，以上就是扩散过程，是不含参的，也就是说 按照公式：</p>
+<p><img alt="image-20241209211211884" src="../images/image-20241209211211884.png" /></p>
+<p>迭代的话，可以计算 t=任意时刻的，<span class="arithmatex">\(x_t\)</span> 的分布，然后就可以采样出值</p>
+<p>还有一个迭代式，给定 <span class="arithmatex">\(x_0\)</span> 求出 <span class="arithmatex">\(x_{1:T}\)</span> 的联合分布，就是多个条件概率相乘的结果，是一个 马尔科夫过程，以上是一个联合分布</p>
+<p>问题：怎么算出 <span class="arithmatex">\(x_t\)</span> 呢？</p>
+<p>答：用之前参数重整化的技巧，因为<span class="arithmatex">\(x_t\)</span>服从的分布有：<span class="arithmatex">\(x_t|x_{t-1} \sim \mathcal{N}(\sqrt{1-\beta_t}x_{t-1},\beta_tI)\)</span>，可以从一个正态分布中 生成一个 z，然后把 z乘以 根号下 <span class="arithmatex">\(\beta_t\)</span>，再加上 <span class="arithmatex">\(\sqrt{1-\beta_t}x_{t-1}\)</span>：</p>
+<p><span class="arithmatex">\(\sigma z + \mu = \sqrt{\beta_t}z+\sqrt{1-\beta_t}x_{t-1}\)</span>，</p>
+<p>这就是 <span class="arithmatex">\(x_t\)</span> 的一个采样值，经过不断的迭代，得到 <span class="arithmatex">\(x_{t+1}\)</span> 的采样值，最终得到 <span class="arithmatex">\(x_T\)</span> 的采样值</p>
+<p>问题：大T是怎样确定的，以及 <span class="arithmatex">\(\beta_t\)</span> 怎么设置？</p>
+<p>答： <span class="arithmatex">\(\beta_t\)</span> 在原论文中是 出于 <span class="arithmatex">\(0\sim 1\)</span>之间的小数，并且随着时间的推移，<span class="arithmatex">\(\beta_t\)</span> 是越来越大的</p>
+<p>也就是 <span class="arithmatex">\(\beta_1 &lt; \beta_2&lt;...&lt;\beta_T\)</span>   把  <span class="arithmatex">\(\beta_t\)</span> 设置成就像学习率一样设置成不断变化的，不过学习率是不断降低的，这里的 <span class="arithmatex">\(\beta_t\)</span> 是在不断变大的</p>
+<p>以上通过迭代的方法计算 <span class="arithmatex">\(x_t\)</span> 的采样值</p>
+<p><u>接下来 说明 当 <span class="arithmatex">\(T=什么\)</span> 的时候，<span class="arithmatex">\(x_T\)</span> 接近于一个各项独立的高斯分布</u></p>
+<p><img alt="image-20241209212542259" src="../images/image-20241209212542259.png" /></p>
+<p>任意时刻的 <span class="arithmatex">\(q(x_t)\)</span> ，可以不用 完全一样的 基于上面的公式，每一步的采样迭代出来：</p>
+<p><img alt="image-20241209212747941" src="../images/image-20241209212747941.png" /></p>
+<p>而是可以完全的基于 <span class="arithmatex">\(x_0\)</span>  和 <span class="arithmatex">\(\beta_t\)</span> 计算出来，也就是给出 <span class="arithmatex">\(x_0\)</span> 初始的数据分布和 <span class="arithmatex">\(\beta_t\)</span> 一个变换值，就可以算出任意时刻的 <span class="arithmatex">\(q(x_t)\)</span> ，就不用一步步迭代了</p>
+<p>具体的计算步骤：</p>
+<p><img alt="image-20241209212624869" src="../images/image-20241209212624869.png" /></p>
+<p>（1） <span class="arithmatex">\(x_t = \sqrt{\alpha_t}x_{t-1}+\sqrt{1-\alpha_t}z_{t-1}\)</span></p>
+<p>首先，<span class="arithmatex">\(x_t\)</span>  用参数重整化的技巧 写成 <span class="arithmatex">\(\sqrt{\alpha_t}x_{t-1}+标准差\)</span></p>
+<blockquote>
+<p><span class="arithmatex">\(\sigma z + \mu = \sqrt{\beta_t}z+\sqrt{1-\beta_t}x_{t-1}\)</span>
+</p>
+</blockquote>
+<p>这里的 <span class="arithmatex">\(\alpha_t = 1-\beta_t\)</span></p>
+<p>可以看到原文都写了</p>
+<p>也就是 <span class="arithmatex">\(x_t = \sqrt{\alpha_t}x_{t-1}+\sqrt{1-\alpha_t}z_{t-1}\)</span></p>
+<p><code>均值 + 标准差 × 随机生成的正态分布的量</code></p>
+<p>以上就是 参数重整化技巧</p>
+<p><span class="arithmatex">\(z_t\)</span> 是从 <span class="arithmatex">\(N(0,1)\)</span> 中采样出来的 随机值</p>
+<p>（2）</p>
+<p><img alt="image-20241209215222182" src="../images/image-20241209215222182.png" /></p>
+<p><span class="arithmatex">\(x_t = \sqrt{\alpha_t}x_{t-1}+\sqrt{1-\alpha_t}z_{t-1}\)</span></p>
+<p>$=\sqrt{\alpha_t}(\sqrt{\alpha_{t-1}}x_{t-2}+\sqrt{1-\alpha_{t-1}}z_{t-2})+\sqrt{1-\alpha_t}z_{t-1} $</p>
+<p>$=\sqrt{\alpha_t\alpha_{t-1}}x_{t-2}+\sqrt{\alpha_t}\sqrt{1-\alpha_{t-1}}z_{t-2}+\sqrt{1-\alpha_t}z_{t-1} $</p>
+<blockquote>
+<p><span class="arithmatex">\(\sqrt{\alpha_t}\sqrt{1-\alpha_{t-1}}z_{t-2}+\sqrt{1-\alpha_t}z_{t-1}\)</span></p>
+<p>可以参数重整化为 只包含一个 随机变量z的形式，理由：</p>
+<p><img alt="image-20241209214455996" src="../images/image-20241209214455996.png" /></p>
+<p>若给出 <span class="arithmatex">\(X \sim N(\mu_1,\sigma_1)\)</span>    <span class="arithmatex">\(Y\sim N(\mu_2,\sigma_2)\)</span></p>
+<p>则 <span class="arithmatex">\(aX+bY \sim N(a\mu_1+b\mu_2,a^2\sigma_1^2+b^2\sigma_2^2)\)</span></p>
+<p>所以 </p>
+<p><span class="arithmatex">\(\sqrt{\alpha_t}\sqrt{1-\alpha_{t-1}}z_{t-2}+\sqrt{1-\alpha_t}z_{t-1} \sim N(0,\alpha_t-\alpha_t\alpha_{t-1}+1-\alpha_t)=N(0,1-\alpha_{t-1}\alpha_t)\)</span></p>
+<p>（<span class="arithmatex">\(z_{t-1}、z_{t-2} \sim N(0,1)\)</span>）</p>
+<p>所以 </p>
+<p><span class="arithmatex">\(\sqrt{\alpha_t}\sqrt{1-\alpha_{t-1}}z_{t-2}+\sqrt{1-\alpha_t}z_{t-1}\)</span> 可以重整化为 <span class="arithmatex">\(\sqrt{1-\alpha_t\alpha_{t-1}}\bar z_{t-2}\)</span></p>
+</blockquote>
+<p>以上推出  第二步</p>
+<p>（3）</p>
+<p>一次类推，得到</p>
+<p><img alt="image-20241209220254836" src="../images/image-20241209220254836.png" /></p>
+<ul>
+<li>z仍然是 N(0,1) 中采样出来的</li>
+<li><span class="arithmatex">\(x_t = \sqrt{\bar{\alpha_t}}x_0 + \sqrt{1-\bar\alpha_t}z\)</span></li>
+<li><span class="arithmatex">\(\bar \alpha_t\)</span> 表示连乘</li>
+<li><span class="arithmatex">\(\bar{z_{t-2}}\)</span> 表示 融合两个高斯分布</li>
+</ul>
+<p><img alt="image-20241209220623803" src="../images/image-20241209220623803.png" /></p>
+<p>（4）</p>
+<p><img alt="image-20241209221112822" src="../images/image-20241209221112822.png" /></p>
+<p>由公式可知，当给定 <span class="arithmatex">\(x_0\)</span> 的时候，<span class="arithmatex">\(q(x_t|x_0)\)</span> 的分布其实就是 以 <span class="arithmatex">\(\sqrt {\bar\alpha_t} x_0\)</span> 为均值，以 <span class="arithmatex">\(\sqrt{1-\bar \alpha_t }\)</span>为方差的高斯分布，这也就是说 在给定 <span class="arithmatex">\(x_0\)</span> 和 <span class="arithmatex">\(\beta_t\)</span> 的条件下，可以求出 <span class="arithmatex">\(q(x_t|x_0)\)</span></p>
+<p>（前面我们假设了 <span class="arithmatex">\(\alpha_t = 1-\beta_t\)</span>，所以 <span class="arithmatex">\(\beta_t\)</span> 已经 就相当于 <span class="arithmatex">\(\alpha_t\)</span>已知，自然的 <span class="arithmatex">\(\bar \alpha_t\)</span> 已知）</p>
+<p><span class="arithmatex">\(q(x_t|x_0)=\mathcal{N}(x_t;\sqrt{\bar \alpha_t}x_0,(1-\bar \alpha_t)I)\)</span></p>
+<p>也就是 可以以  <span class="arithmatex">\(\mathcal{N}(x_t;\sqrt{\bar \alpha_t}x_0,(1-\bar \alpha_t)I)\)</span> 这个高斯分布进行采样，而不需要逐步迭代</p>
+<p>✅</p>
+<p><img alt="image-20241209221447227" src="../images/image-20241209221447227.png" /></p>
+<p>✅</p>
+<p><img alt="image-20241209221506241" src="../images/image-20241209221506241.png" /></p>
+<p>两种 采样方法</p>
+<p>以上就可以确定，T，也就是当加多少步噪声的时候，我们的 <span class="arithmatex">\(q(x_t|x_0)\)</span> 真的变成一个各项 同性 的 高斯分布了（等价于 各项独立），因为 <span class="arithmatex">\(\alpha_t\)</span> 是已知的，是我们自己设置的 类似 学习率的常数，因此就能算出来 当 <span class="arithmatex">\(t=多少\)</span>的时候， <span class="arithmatex">\(\sqrt{\bar \alpha_t}\)</span> 接近于0，<span class="arithmatex">\((1-\bar \alpha_t)\)</span> 接近于1，此时 <span class="arithmatex">\(q(x_t|x_0)\)</span> 就接近于 标准正态分布。以上说明了如何确定 t在什么时候，能够使得 <span class="arithmatex">\(q(x_t|x_0)\)</span> 接近于 <span class="arithmatex">\(N(0,1)\)</span></p>
+<p><u><strong>小小的总结一下：</strong></u></p>
+<p>(1) 扩散过程是一个完全不含参的扩散过程</p>
+<p>(2) 迭代次数 以及 <span class="arithmatex">\(q(x_t)\)</span> 的计算</p>
+<p>只要给定初始分布，任意时刻的 <span class="arithmatex">\(q(x_t)\)</span> 都可以把采样值 算出来</p>
+<p>其中 计算 q(x_t) 不一定是 通过迭代：</p>
+<p><img alt="image-20241209222523577" src="../images/image-20241209222523577.png" /></p>
+<p>也可以通过直接的计算出来：</p>
+<p><img alt="image-20241209222540596" src="../images/image-20241209222540596.png" /></p>
+<p>这个式子使用的时候需要 预先的知道 <span class="arithmatex">\(\alpha_t\)</span> 也就是 <span class="arithmatex">\(\beta_t\)</span></p>
+<p>(3)与VAE的区别：</p>
+<p>第一点：</p>
+<p>VAE从x到z，首先 不是一个 无参数的 过程，而是 通过 后验网络 预测出来的，其次 VAE的z并不是完全的跟x无关，Diffusion 经过扩散以后的 <span class="arithmatex">\(x_t\)</span> 是一个基本各项独立的 高斯分布，基本与 原始的 <span class="arithmatex">\(x_0\)</span> 无关了</p>
+<p><img alt="image-20241209223025241" src="../images/image-20241209223025241.png" /></p>
+<p>第二点：</p>
+<p><span class="arithmatex">\(VAE\)</span>中，<span class="arithmatex">\(x\)</span>跟<span class="arithmatex">\(z\)</span>的维度不一定是一样的，但是在扩散模型中，从 <span class="arithmatex">\(x_0\)</span> 到 <span class="arithmatex">\(x_1\)</span> 到....到 <span class="arithmatex">\(x_t\)</span> 维度始终是一样的，也就是最后的 <span class="arithmatex">\(x_T\)</span> 的维度 和 <span class="arithmatex">\(x_0\)</span> 的维度是一样的，是没有变化的</p>
+<p>(4)</p>
+<p><span class="arithmatex">\(\beta_t\)</span> 怎么样设置？</p>
+<p><img alt="image-20241209223332080" src="../images/image-20241209223332080.png" /></p>
+<p>原文；当分布越来越接近噪声的时候</p>
+<h3 id="_2">五、逆扩散过程<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 
 
 
@@ -2614,7 +3177,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-03T01:54:57+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-03</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-09T14:34:27+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-09</span>
   </span>
 
     
@@ -2699,7 +3262,7 @@
       <div class="md-copyright">
   
     <div class="md-copyright__highlight">
-      dearRongerr | 24.11.14 | 个人观点，不做参考
+      dearRongerr | 24.11.14
     </div>
   
   
