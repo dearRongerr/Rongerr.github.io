@@ -20,6 +20,8 @@
 20. [Bert](https://dearrongerr.github.io/Rongerr.github.io/learning/5_Bert/)
 21. [Diffusion](https://dearrongerr.github.io/Rongerr.github.io/learning/6_Diffusion/)
 22. [WeightNorm的pytorch实现](https://dearrongerr.github.io/Rongerr.github.io/learning/8_WeightNorm/)
+23. [cGAN&LSGAN](https://dearrongerr.github.io/Rongerr.github.io/learning/9_cGAN/)
+24. 
 
 文献阅读：
 
@@ -30,9 +32,10 @@
 
 
 
-b站大学
+🔗
 
 - [数学家是我理想](https://space.bilibili.com/181990557)
-- [**王木头学科学**](https://space.bilibili.com/504715181?spm_id_from=333.337.0.0)
+- [王木头学科学](https://space.bilibili.com/504715181?spm_id_from=333.337.0.0)
+- [wmathor](https://wmathor.com/index.php/category/Deep-Learning/)
+- [Just for Life](https://muyuuuu.github.io)
 
-- 

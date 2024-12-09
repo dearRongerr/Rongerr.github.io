@@ -20,7 +20,7 @@
 
 - [x] GAN
 
-- [ ] GAN 变体
+- [x] GAN 变体
 
 - [x] Bert
 
@@ -38,7 +38,11 @@
 
 - [ ] 沿着Transformer的工作
 
-- [ ] WeightNorm
+- [x] WeightNorm
+
+- [ ] ResNet实战项目
+
+- [ ] 跟着复现项目，做一个实际应用
 
 
 ----

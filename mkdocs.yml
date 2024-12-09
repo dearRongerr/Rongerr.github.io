@@ -50,7 +50,9 @@ nav:
     - learning/6_Diffusion.md
     - learning/7_Clip.md
     - learning/8_WeightNorm.md
-    - learning/9_cGAN.md     
+    - learning/9_cGAN.md 
+    - learning/10_ResNet.md
+    - learning/11_excelcsvtensor.md        
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
@@ -137,7 +139,7 @@ theme:
 repo_url: https://github.com/dearRongerr
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 repo_name: dearRongerr's github
-copyright: dearRongerr | 24.11.14 | 个人观点，不做参考
+copyright: dearRongerr | 24.11.14 
 
 
 
