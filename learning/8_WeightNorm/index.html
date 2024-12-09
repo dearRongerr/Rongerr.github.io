@@ -14,15 +14,15 @@
         <link rel="prev" href="../7_Clip/">
       
       
-        <link rel="next" href="../../literature/CrowdCounting/1/">
+        <link rel="next" href="../9_cGAN/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.47">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
     
     
       
-        <title>快速复现PyTorch的Weight Normalization - 溶err</title>
+        <title>WeightNorm - 溶err</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#pytorchweight-normalization" class="md-skip">
+        <a href="#weightnorm" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              快速复现PyTorch的Weight Normalization
+              WeightNorm
             
           </span>
         </div>
@@ -1266,6 +1266,8 @@
       
         
       
+        
+      
     
     
       
@@ -1563,7 +1565,7 @@
           
   
   <span class="md-ellipsis">
-    快速复现PyTorch的Weight Normalization
+    WeightNorm
   </span>
   
 
@@ -1574,7 +1576,7 @@
         
   
   <span class="md-ellipsis">
-    快速复现PyTorch的Weight Normalization
+    WeightNorm
   </span>
   
 
@@ -1665,6 +1667,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 linear层演示代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-conv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 conv层的代码
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1674,6 +1694,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2740,6 +2781,24 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#24-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 linear层演示代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-conv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 conv层的代码
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2763,7 +2822,8 @@
   
 
 
-<h1 id="pytorchweight-normalization"><a href="https://www.bilibili.com/video/BV1NZ4y117VT?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">快速复现PyTorch的Weight Normalization</a><a class="headerlink" href="#pytorchweight-normalization" title="Permanent link">&para;</a></h1>
+<h1 id="weightnorm">WeightNorm<a class="headerlink" href="#weightnorm" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.bilibili.com/video/BV1NZ4y117VT?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">快速复现PyTorch的Weight Normalization</a></p>
 <h2 id="1-api">1 官方api解读<a class="headerlink" href="#1-api" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20241205083326241" src="../images/image-20241205083326241.png" /></p>
 <p>权重归一化的api</p>
@@ -3104,6 +3164,749 @@
 <span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
 </span><span id="__span-8-2"><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
 </span></code></pre></div></td></tr></table></div>
+<p>下面将方向与幅度相乘：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-9-2"><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-9-3">
+</span><span id="__span-9-4"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-9-5"><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-9-6">
+</span><span id="__span-9-7"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-9-8"><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-9-9">
+</span><span id="__span-9-10"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-9-11"><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">weight_direction * weight_magnitude:
+</span><span id="__span-10-2">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-10-3">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-10-4">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-10-5">        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;MulBackward0&gt;)
+</span><span id="__span-10-6">inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-10-7">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-8">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-10-9">linear(inputx):
+</span><span id="__span-10-10">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-11">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-10-12">wn_linear(inputx):
+</span><span id="__span-10-13">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-14">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<p>（1）方向与幅度相乘，得到：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-11-2"><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"># weight_direction * weight_magnitude:
+</span><span id="__span-12-2"># tensor([[ 0.4900, -0.5379,  0.5541],
+</span><span id="__span-12-3">#         [-0.5104,  0.3061,  0.4884],
+</span><span id="__span-12-4">#         [-0.0247, -0.0822,  0.2893],
+</span><span id="__span-12-5">#         [-0.1487, -0.4578, -0.4388]], grad_fn=&lt;MulBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<p>观察，linear.weight的结果和 方向与幅度相乘 得到的乘积  结果相同</p>
+<p>可以把 lienar.weight 的结果 分解为 幅度和方向的乘积</p>
+<p>（2）把inputx分别放入linear层和weight_linear层、inputx与weight_direction 方向和幅度 weight_magnitude做矩阵乘法：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-13-2"><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-13-3"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-13-4"><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-13-5"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-13-6"><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>打印结果：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-14-2">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-3">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-14-4">linear(inputx):
+</span><span id="__span-14-5">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-6">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-14-7">wn_linear(inputx):
+</span><span id="__span-14-8">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-9">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<p>发现 三个结果都是一样的</p>
+<ul>
+<li>wn_linear 这个新生成的层并不会改变模块的输出值，之前linear的输出是什么，加了WeightNorm输出依旧不变</li>
+<li>区别：（1）原始linear层的参数只有weight（2）weightNorm之后的层有g和v</li>
+</ul>
+<p><strong>查看wn_lienar的参数</strong></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-15-2"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-15-3">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">weight_g Parameter containing:
+</span><span id="__span-16-2">tensor([[0.1483],
+</span><span id="__span-16-3">        [0.7043],
+</span><span id="__span-16-4">        [0.1192],
+</span><span id="__span-16-5">        [0.1339]], requires_grad=True)
+</span><span id="__span-16-6">weight_v Parameter containing:
+</span><span id="__span-16-7">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-16-8">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-16-9">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-16-10">        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span></code></pre></div></td></tr></table></div>
+<p>解释输出结果：</p>
+<p>wn_linear只有两个输出结果：</p>
+<ul>
+<li>weight g：linear权重的幅度</li>
+<li>weight v：weight的方向归一化</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-17-2"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-17-3">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-17-4">
+</span><span id="__span-17-5"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lienar.weight&quot;</span><span class="p">)</span>
+</span><span id="__span-17-6"><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1">paramter of wn_linear:
+</span><span id="__span-18-2">weight_g Parameter containing:
+</span><span id="__span-18-3">tensor([[0.1483],
+</span><span id="__span-18-4">        [0.7043],
+</span><span id="__span-18-5">        [0.1192],
+</span><span id="__span-18-6">        [0.1339]], requires_grad=True)
+</span><span id="__span-18-7">weight_v Parameter containing:
+</span><span id="__span-18-8">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-18-9">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-18-10">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-18-11">        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span><span id="__span-18-12">lienar.weight
+</span><span id="__span-18-13">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-18-14">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-18-15">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-18-16">        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<p>值得注意的是：</p>
+<p>weight_v 和 lienar.weight的结果是相等的，其实weight_v 就是linear.weight但是公式中 对 weight_v进行了归一化 并乘以 幅度，所以 linear.weight可以拆成幅度向量和方向向量，如果不对weight_v 进行变换，那等式两边就不会相等的</p>
+<div class="arithmatex">\[ w = g \frac{v}{||v||}\]</div>
+<p>v就是w，对v做变换，使得等式两边相等</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-19-2"><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_g</span><span class="o">*</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">)</span><span class="o">/</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1">construct weight of linear:
+</span><span id="__span-20-2">tensor([[ 0.0999, -0.0231,  0.0066],
+</span><span id="__span-20-3">        [ 1.9504, -0.1039, -3.3245],
+</span><span id="__span-20-4">        [-0.0279, -0.0190,  0.0211],
+</span><span id="__span-20-5">        [ 0.1008,  0.0072, -0.0711]], grad_fn=&lt;DivBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<p>这个结果和 weight_v 以及linear.weight的结果都是相等的</p>
+<h3 id="24-linear">2.4 linear层演示代码<a class="headerlink" href="#24-linear" title="Permanent link">&para;</a></h3>
+<p>所有linear层的代码：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-21-2"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-21-3">
+</span><span id="__span-21-4"><span class="c1"># 关于权重归一化的再次说明</span>
+</span><span id="__span-21-5"><span class="c1"># WeightNorm W = Magnitude * UnitDirection = Magnitude * (W/Norm(W))</span>
+</span><span id="__span-21-6">
+</span><span id="__span-21-7"><span class="c1"># step1:define constant</span>
+</span><span id="__span-21-8"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-21-9"><span class="n">feat_dim</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-21-10"><span class="n">hid_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-21-11"><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">)</span>
+</span><span id="__span-21-12">
+</span><span id="__span-21-13"><span class="c1"># x：2×3 3映射到4维 w^T 4×3 w 3×4 torch中存的就是 4×3的 直接进行 w（4 3）变成 2×4</span>
+</span><span id="__span-21-14"><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-21-15"><span class="n">wn_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">linear</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><span class="c1"># step2:Linear Layer:calculate g and v</span>
+</span><span id="__span-22-2"><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-22-3"><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span><span id="__span-22-4"><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span><span class="p">)</span>
+</span><span id="__span-22-5"><span class="c1"># print(&quot;inputx:&quot;,inputx.shape) # inputx: torch.Size([2, 3])</span>
+</span><span id="__span-22-6"><span class="c1"># print(&quot;linear.weight:&quot;,linear.weight.shape) # linear.weight: torch.Size([4, 3])</span>
+</span><span id="__span-22-7"><span class="c1"># print(&quot;linear(inputx)&quot;,linear(inputx).shape)  # linear(inputx) torch.Size([2, 4])</span>
+</span><span id="__span-22-8">
+</span><span id="__span-22-9"><span class="c1"># print(&quot;weight_magnitude:&quot;,weight_magnitude.shape)  # torch.Size([4, 1])</span>
+</span><span id="__span-22-10"><span class="c1"># print(&quot;weight_direction:&quot;,weight_direction.shape)  # weight_direction: torch.Size([4, 3])</span>
+</span><span id="__span-22-11"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+唯一有的一个问题：magnitude of weight_direction结果不是1</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1">tensor([[ 0.1347, -0.1476,  0.0071],
+</span><span id="__span-23-2">        [ 0.5651, -0.1429, -0.7742],
+</span><span id="__span-23-3">        [-0.1938, -0.6252,  0.1177],
+</span><span id="__span-23-4">        [ 0.8338,  0.2848, -0.4729]], grad_fn=&lt;DivBackward0&gt;)
+</span><span id="__span-23-5">magnitude of weight_direction: tensor([0.0400, 0.9392, 0.4423, 1.0000], grad_fn=&lt;SumBackward1&gt;)
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-24-2"><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-24-3">
+</span><span id="__span-24-4"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-24-5"><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-24-6">
+</span><span id="__span-24-7"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-24-8"><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-24-9">
+</span><span id="__span-24-10"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-24-11"><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1">weight_direction * weight_magnitude:
+</span><span id="__span-25-2">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-25-3">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-25-4">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-25-5">        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;MulBackward0&gt;)
+</span><span id="__span-25-6">inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-25-7">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-8">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-25-9">linear(inputx):
+</span><span id="__span-25-10">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-11">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-25-12">wn_linear(inputx):
+</span><span id="__span-25-13">tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-14">        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-26-2"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-26-3">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-26-4">
+</span><span id="__span-26-5"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lienar.weight&quot;</span><span class="p">)</span>
+</span><span id="__span-26-6"><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1">paramter of wn_linear:
+</span><span id="__span-27-2">weight_g Parameter containing:
+</span><span id="__span-27-3">tensor([[0.1483],
+</span><span id="__span-27-4">        [0.7043],
+</span><span id="__span-27-5">        [0.1192],
+</span><span id="__span-27-6">        [0.1339]], requires_grad=True)
+</span><span id="__span-27-7">weight_v Parameter containing:
+</span><span id="__span-27-8">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-27-9">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-27-10">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-27-11">        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span><span id="__span-27-12">lienar.weight
+</span><span id="__span-27-13">tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-27-14">        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-27-15">        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-27-16">        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-28-2"><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_g</span><span class="o">*</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">)</span><span class="o">/</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]))</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><span class="n">construct</span> <span class="n">weight</span> <span class="n">of</span> <span class="n">linear</span><span class="p">:</span>
+</span><span id="__span-29-2"><span class="n">tensor</span><span class="p">([[</span> <span class="mf">0.0999</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0231</span><span class="p">,</span>  <span class="mf">0.0066</span><span class="p">],</span>
+</span><span id="__span-29-3">        <span class="p">[</span> <span class="mf">1.9504</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1039</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.3245</span><span class="p">],</span>
+</span><span id="__span-29-4">        <span class="p">[</span><span class="o">-</span><span class="mf">0.0279</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0190</span><span class="p">,</span>  <span class="mf">0.0211</span><span class="p">],</span>
+</span><span id="__span-29-5">        <span class="p">[</span> <span class="mf">0.1008</span><span class="p">,</span>  <span class="mf">0.0072</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0711</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">DivBackward0</span><span class="o">&gt;</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<h3 id="25-conv">2.5 conv层的代码<a class="headerlink" href="#25-conv" title="Permanent link">&para;</a></h3>
+<p>(全部代码)</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1">conv1d = nn.Conv1d(feat_dim,hid_dim,kernel_size=1,bias=False) # input:[B,C,T],weight:[oc,ic,1]
+</span><span id="__span-30-2">wn_conv1d = torch.nn.utils.weight_norm(conv1d)
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><span class="n">covn1d_weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-31-2">                                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+</span><span id="__span-31-3">                                            <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+</span><span id="__span-31-4">                                        <span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-31-5">
+</span><span id="__span-31-6"><span class="n">covn1d_weight_direction</span> <span class="o">=</span> <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">covn1d_weight_magnitude</span>
+</span><span id="__span-31-7">
+</span><span id="__span-31-8"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-31-9"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-31-10">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1">parameters of wn_conv1d:
+</span><span id="__span-32-2">weight_g Parameter containing:
+</span><span id="__span-32-3">tensor([[[0.4729]],
+</span><span id="__span-32-4">
+</span><span id="__span-32-5">        [[0.7834]],
+</span><span id="__span-32-6">
+</span><span id="__span-32-7">        [[0.5456]],
+</span><span id="__span-32-8">
+</span><span id="__span-32-9">        [[0.5718]]], requires_grad=True) torch.Size([4, 1, 1])
+</span><span id="__span-32-10">weight_v Parameter containing:
+</span><span id="__span-32-11">tensor([[[ 0.0987],
+</span><span id="__span-32-12">         [-0.1757],
+</span><span id="__span-32-13">         [ 0.4279]],
+</span><span id="__span-32-14">
+</span><span id="__span-32-15">        [[ 0.4962],
+</span><span id="__span-32-16">         [-0.4026],
+</span><span id="__span-32-17">         [ 0.4533]],
+</span><span id="__span-32-18">
+</span><span id="__span-32-19">        [[ 0.4717],
+</span><span id="__span-32-20">         [-0.1782],
+</span><span id="__span-32-21">         [-0.2082]],
+</span><span id="__span-32-22">
+</span><span id="__span-32-23">
+</span><span id="__span-32-24">        [[-0.5708],
+</span><span id="__span-32-25">         [ 0.0271],
+</span><span id="__span-32-26">         [-0.0208]]], requires_grad=True) torch.Size([4, 3, 1])         
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-33-2"><span class="nb">print</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_g</span> <span class="o">*</span> <span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+</span><span id="__span-33-3">    <span class="p">[</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-33-4">     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-33-5">                            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1">construct weight of conv1d:
+</span><span id="__span-34-2">tensor([[[ 0.0987],
+</span><span id="__span-34-3">         [-0.1757],
+</span><span id="__span-34-4">         [ 0.4279]],
+</span><span id="__span-34-5">
+</span><span id="__span-34-6">        [[ 0.4962],
+</span><span id="__span-34-7">         [-0.4026],
+</span><span id="__span-34-8">         [ 0.4533]],
+</span><span id="__span-34-9">
+</span><span id="__span-34-10">        [[ 0.4717],
+</span><span id="__span-34-11">         [-0.1782],
+</span><span id="__span-34-12">         [-0.2082]],
+</span><span id="__span-34-13">
+</span><span id="__span-34-14">        [[-0.5708],
+</span><span id="__span-34-15">         [ 0.0271],
+</span><span id="__span-34-16">         [-0.0208]]], grad_fn=&lt;MulBackward0&gt;)
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conv1d.weight:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-2"><span class="nb">print</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-35-3">
+</span><span id="__span-35-4"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-5"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-35-6">
+</span><span id="__span-35-7"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-8"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1">conv1d.weight:
+</span><span id="__span-36-2">tensor([[[ 0.0987],
+</span><span id="__span-36-3">         [-0.1757],
+</span><span id="__span-36-4">         [ 0.4279]],
+</span><span id="__span-36-5">
+</span><span id="__span-36-6">        [[ 0.4962],
+</span><span id="__span-36-7">         [-0.4026],
+</span><span id="__span-36-8">         [ 0.4533]],
+</span><span id="__span-36-9">
+</span><span id="__span-36-10">        [[ 0.4717],
+</span><span id="__span-36-11">         [-0.1782],
+</span><span id="__span-36-12">         [-0.2082]],
+</span><span id="__span-36-13">
+</span><span id="__span-36-14">        [[-0.5708],
+</span><span id="__span-36-15">         [ 0.0271],
+</span><span id="__span-36-16">         [-0.0208]]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span><span id="__span-36-17">covn1d_weight_magnitude:
+</span><span id="__span-36-18">tensor([[[0.4729],
+</span><span id="__span-36-19">         [0.4729],
+</span><span id="__span-36-20">         [0.4729]],
+</span><span id="__span-36-21">
+</span><span id="__span-36-22">        [[0.7834],
+</span><span id="__span-36-23">         [0.7834],
+</span><span id="__span-36-24">         [0.7834]],
+</span><span id="__span-36-25">
+</span><span id="__span-36-26">        [[0.5456],
+</span><span id="__span-36-27">         [0.5456],
+</span><span id="__span-36-28">         [0.5456]],
+</span><span id="__span-36-29">        [[0.5718],
+</span><span id="__span-36-30">         [0.5718],
+</span><span id="__span-36-31">         [0.5718]]])
+</span><span id="__span-36-32">covn1d_weight_direction:
+</span><span id="__span-36-33">tensor([[[ 0.2086],
+</span><span id="__span-36-34">         [-0.3715],
+</span><span id="__span-36-35">         [ 0.9047]],
+</span><span id="__span-36-36">
+</span><span id="__span-36-37">        [[ 0.6334],
+</span><span id="__span-36-38">         [-0.5139],
+</span><span id="__span-36-39">         [ 0.5785]],
+</span><span id="__span-36-40">
+</span><span id="__span-36-41">        [[ 0.8647],
+</span><span id="__span-36-42">         [-0.3267],
+</span><span id="__span-36-43">         [-0.3816]],
+</span><span id="__span-36-44">
+</span><span id="__span-36-45">        [[-0.9982],
+</span><span id="__span-36-46">         [ 0.0475],
+</span><span id="__span-36-47">         [-0.0364]]], grad_fn=&lt;DivBackward0&gt;)         
+</span></code></pre></div></td></tr></table></div>
+<p>解读：</p>
+<p>（1）实例化一个 1×1 的卷积层</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><span class="n">conv1d</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-37-2"><span class="c1"># input:[B,C,T],weight:[oc,ic,1]</span>
+</span><span id="__span-37-3"><span class="n">wn_conv1d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">conv1d</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>1×1 的卷积层 类似 MLP</li>
+<li>输入通道数 设置为 feat_dim，输出通道数是  hid_dim，kernel_size设为1，不要bias</li>
+<li>1×1的卷积层，输入的数据格式：batchsize × channel×length</li>
+<li>权重的维度是 output channel×input channel ×kernel size，这里kernel size=1</li>
+<li>把一维卷积 conv1d 作为 module，送入到weight Norm函数中，得到WeightNorm包裹后的convolution：wn_conv1d（即加了权重归一化的模块）</li>
+</ul>
+<p>（2）计算 covn1d_weight_magnitude</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><span class="n">covn1d_weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-38-2">                                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+</span><span id="__span-38-3">                                            <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+</span><span id="__span-38-4">                                        <span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-38-5">
+</span><span id="__span-38-6"><span class="n">covn1d_weight_direction</span> <span class="o">=</span> <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">covn1d_weight_magnitude</span>
+</span><span id="__span-38-7">
+</span><span id="__span-38-8"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-38-9"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-38-10">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>conv1d.weight拿出卷积层的权重，计算权重矩阵的幅度，权重是一个三维矩阵，格式是weight:[oc,ic,1]，对每一行计算模，每一行是一个二阶张量，每一个二阶张量 跟 input 进行乘法操作，所以我们对每一行 计算范数，然后拼起来，然后进行扩维，得到幅度 covn1d_weight_magnitude</li>
+<li>单位向量 同样是 weight 除以 幅度，得到单位向量，也就是方向向量</li>
+</ul>
+<p>（3）打印幅度、单位向量、原来的权重，以及wn_conv1d中的两个参数：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-2"><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-39-3">    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-39-4">
+</span><span id="__span-39-5">
+</span><span id="__span-39-6"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-7"><span class="nb">print</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_g</span> <span class="o">*</span> <span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+</span><span id="__span-39-8">    <span class="p">[</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-39-9">     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-39-10">                            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-39-11">
+</span><span id="__span-39-12"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conv1d.weight:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-13"><span class="nb">print</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-39-14">
+</span><span id="__span-39-15"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-16"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-39-17">
+</span><span id="__span-39-18"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-19"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>① wn_conv1d中的两个参数：有weight_g  和 weight_v</p>
+<p>weight_g  卷积的权重的幅度</p>
+<p>weight_v  就是卷积的权重</p>
+<p>区分：</p>
+<p>weight_v 就是权重</p>
+<p>除以v的范数 才是方向</p>
+<p>除以v的范数 再乘以 幅度 还是权重 还是 weight_v</p>
+<p>② </p>
+<p>把 幅度 与单位向量 相乘</p>
+<p>幅度：wn_conv1d.weight_g</p>
+<p>单位向量：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1">wn_conv1d.weight_v / torch.tensor(
+</span><span id="__span-40-2">    [wn_conv1d.weight_v[i,:,:].norm() 
+</span><span id="__span-40-3">     for i in torch.arange(wn_conv1d.weight_v.shape[0])],
+</span><span id="__span-40-4">                            dtype=torch.float32)
+</span></code></pre></div></td></tr></table></div>
+<p>本质是 weight向量 除以 weight 向量的模，得到单位方向向量，或者叫 单位长度的方向向量</p>
+<p>幅度 × 单位长度的方向向量 得到  <code>construct weight of conv1d</code></p>
+<p>值得注意的是：<code>construct weight of conv1d</code> 与 <code>weight_v</code> 与 <code>conv1d.weight</code> 是一样的，就是卷积的权重</p>
+<p>③ 对比  <code>weight_v</code>     <code>construct weight of conv1d</code>     <code>conv1d.weight</code>  都是一样的</p>
+<p>在一维卷积中 也是一样的，加了权重归一化，就是把幅度与 权重的单位长度的方向向量 解耦开来，打印权重的幅度 和 权重的单位长度的方向向量</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-41-2"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-41-3">
+</span><span id="__span-41-4"><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-41-5"><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上的WeightNorm的原理，最重要的就是 公式：</p>
+<p><img alt="image-20241208195121293" src="../images/image-20241208195121293.png" /></p>
+<p>（1）如果不加 WeightNorm，只需要优化一个参数，加了WeightNorm之后，需要优化两个参数，把loss同时对g求梯度，对v求一个梯度</p>
+<p>（2）并且WeightNorm并没有带来额外的参数，并没有带来实质意义上的额外参数，对比BatchNorm会需要计算额外的统计量，而WeightNorm并没有增加额外的参数</p>
+<p>（3）经过以上的实验，可以看到做了WeightNorm之后，输出值是没有变化的，比如：</p>
+<p><img alt="image-20241208195346405" src="../images/image-20241208195346405.png" /></p>
+<p>展示了三种计算，</p>
+<p>① inputx跟方向向量相乘</p>
+<p>②inputx放入linear层</p>
+<p>③inputx放入WeightNorm linear层</p>
+<p>输出值都是一样的，权重归一化不会改变模块的输出值，只是改变了参数内部的乘法操作的模式，相当于矩阵分解的过程</p>
+<p>所以权重归一化 也可以 理解为权重分解</p>
+<p>把权重的幅度 跟 单位长度的 方向向量 解耦开来，在pytorch中通过torch.nn.utils.weight_norm的函数，把一个module包裹起来，返回一个新的module，新的module参数是两个，一个是weight_g 一个是 weight_v</p>
+<p>weight_g 是原来权重的幅度，weight_v 就是原来的权重</p>
+<p>问题：为什么要除以 v的模？</p>
+<p>答：因为除以 v的模，得到单位长度的方向向量，再跟幅度相乘，得到原来的权重，如果不除以模的话，所有两边是不会相等的</p>
+<p><img alt="image-20241208195843990" src="../images/image-20241208195843990.png" /></p>
 
 
 
@@ -3126,7 +3929,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-08T08:39:36+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-08</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-08T14:35:21+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-08</span>
   </span>
 
     
@@ -3188,13 +3991,13 @@
         
         
           
-          <a href="../../literature/CrowdCounting/1/" class="md-footer__link md-footer__link--next" aria-label="Next: 人群计数">
+          <a href="../9_cGAN/" class="md-footer__link md-footer__link--next" aria-label="Next: GAN 变体">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                人群计数
+                GAN 变体
               </div>
             </div>
             <div class="md-footer__button md-icon">
