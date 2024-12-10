@@ -301,7 +301,11 @@ $\mathbb{E}_{\boldsymbol{x}\sim p_\mathrm{data}}\left[\log\frac{p_\mathrm{data}(
 
 分布P和分布Q的KL散度公式 就是 $log(\frac{P(x)}{Q(x)})$ 关于P(x) 的期望
 
-= $KL(p_{data}(x) || \frac{p_{data}(x)+p_g(x)}{2})$ +  $KL(p_{g}(x) || \frac{p_{data}(x)+p_g(x)}{2})$
+
+
+$= KL(p_{data}(x) || \frac{p_{data}(x)+p_g(x)}{2}) +  KL(p_{g}(x) || \frac{p_{data}(x)+p_g(x)}{2})$
+
+
 
 关于公式（5）的得到，是为了C(G)，我们最开始$-(-log4)，$为了保证公式总体不变，所以最后在 $+(-log4)$ ：
 

@@ -766,7 +766,9 @@ $= \int_x(\frac{ap_g(x)+bp_{data}(x)}{p_{data}(x)+p_g(x)}-c)^2 p_d(x)dx+\int_x(\
 
 $= \int_x(\frac{ap_g(x)+bp_{data}(x)}{p_{data}(x)+p_g(x)}-c\frac{p_g(x)+p_{data}(x)}{p_{data}(x)+p_g(x)})^2 p_d(x)+(\frac{ap_g(x)+bp_{data}(x)}{p_{data}(x)+p_g(x)}-c\frac{p_g(x)+p_{data}(x)}{p_{data}(x)+p_g(x)})^2p_g(x)dx$
 
-$ = \int_x p_d (\frac{(a-c)p_g+(b-c)p_d}{p_{d}+p_g})^2+p_g(\frac{(a-c)p_g+(b-c)p_d}{p_d+p_g})^2dx$
+
+
+$= \int_x p_d (\frac{(a-c)p_g+(b-c)p_d}{p_{d}+p_g})^2+p_g(\frac{(a-c)p_g+(b-c)p_d}{p_d+p_g})^2dx$
 
 平方项 相等，合并 ，同时和分母消去一个 $(p_d + p_g)$
 

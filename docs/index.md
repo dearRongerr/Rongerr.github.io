@@ -21,7 +21,7 @@
 21. [Diffusion](https://dearrongerr.github.io/Rongerr.github.io/learning/6_Diffusion/)
 22. [WeightNorm的pytorch实现](https://dearrongerr.github.io/Rongerr.github.io/learning/8_WeightNorm/)
 23. [cGAN&LSGAN](https://dearrongerr.github.io/Rongerr.github.io/learning/9_cGAN/)
-24. 
+24. 信息量 | 熵 | 信息熵 | KL散度 | 交叉熵损失函数
 
 文献阅读：
 

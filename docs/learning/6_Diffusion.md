@@ -1,6 +1,14 @@
-# Probabilistic Diffusion Model
+# DDPM
+
+Probabilistic Diffusion Model
+
+[What are Diffusion Models?](https://lilianweng.github.io/posts/2021-07-11-diffusion-models/#forward-diffusion-process)
 
 [Probabilistic Diffusion Model概率扩散模型理论与完整PyTorch代码详细解读](https://www.bilibili.com/video/BV1b541197HX?spm_id_from=333.788.videopod.sections&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
+
+[怎么理解今年 CV 比较火的扩散模型（DDPM）？](https://www.zhihu.com/question/545764550/answer/2670611518)
+
+[Diffusion Model学习笔记(1)——DDPM](https://zhuanlan.zhihu.com/p/601641045)
 
 参考文献：
 
@@ -468,7 +476,7 @@ $q(x_t|x_0)=\mathcal{N}(x_t;\sqrt{\bar \alpha_t}x_0,(1-\bar \alpha_t)I)$
 
 只要给定初始分布，任意时刻的 $q(x_t)$ 都可以把采样值 算出来
 
-其中 计算 q(x_t) 不一定是 通过迭代：
+其中 计算 $q(x_t)$ 不一定是 通过迭代：
 
 ![image-20241209222523577](images/image-20241209222523577.png)
 
@@ -478,11 +486,11 @@ $q(x_t|x_0)=\mathcal{N}(x_t;\sqrt{\bar \alpha_t}x_0,(1-\bar \alpha_t)I)$
 
 这个式子使用的时候需要 预先的知道 $\alpha_t$ 也就是 $\beta_t$
 
-(3)与VAE的区别：
+<u>(3)与VAE的区别：</u>
 
 第一点：
 
-VAE从x到z，首先 不是一个 无参数的 过程，而是 通过 后验网络 预测出来的，其次 VAE的z并不是完全的跟x无关，Diffusion 经过扩散以后的 $x_t$ 是一个基本各项独立的 高斯分布，基本与 原始的 $x_0$ 无关了
+VAE从$x$到$z$，首先 不是一个 无参数的 过程，而是 通过 后验网络 预测出来的，其次 VAE的$z$并不是完全的跟$x$无关，Diffusion 经过扩散以后的 $x_t$ 是一个基本各项独立的 高斯分布，基本与 原始的 $x_0$ 无关了
 
 ![image-20241209223025241](images/image-20241209223025241.png)
 
@@ -496,9 +504,329 @@ $\beta_t$ 怎么样设置？
 
 ![image-20241209223332080](images/image-20241209223332080.png)
 
-原文；当分布越来越接近噪声的时候
+原文；当分布越来越接近噪声的时候，可以让 $\beta_t$ 更大一点，就是一开始的时候，不要加的太大，一开始的时候  $\beta_t$ 加的的小一点（$\beta_t$ 是控制什么的？），到后面可以越来越大
 
+反过来，从 $x_T$ 生成 $x_0$ ，在一开始的阶段变化并不明显，始终是混乱的一团，但是在最后几步的时候，变化特别明显，最后几步可以很快的显示原始数据分布
 
+接下来，逆过程，也叫 逆扩散过程 或者 重建过程：reverse process
 
 ### 五、逆扩散过程
 
+![image-20241210100352268](images/image-20241210100352268.png)
+
+- 扩散过程是对原始数据一步步加噪，使其彻底变成一个高斯分布
+- 逆扩散过程：从高斯分布中，恢复原始数据（这也是 DIffusion model的目的：给我们一堆训练集，希望模型能够从噪声预测出训练集的分布，进而生成新的样本）
+- 在 加噪的过程中， $\beta_t$ 是比较小的，始终是 0\~1 之间 很小的数，每次加的高斯噪声很小，既然每次加的高斯噪声很小，可以有理由假设 逆过程（从  $x_T$ 逐步恢复 $x_0$ 的过程 ），也可以假设是一个高斯分布，即 $p_{\theta}(x_{t-1}|x_t)$ 也是服从高斯分布
+- 但是，我们无法直接拟合  $p_{\theta}(x_{t-1}|x_t)$ 这个高斯分布，如果我们要逐步拟合 $p_{\theta}(x_{t-1}|x_t)$ ，首先需要生成一堆 $x_t$ ，然后逐步做 GMM 的拟合，拟合出 $x_{t-1}$ 之后，还要拟合 $x_{t-2}$ 等等，需要遍历整个数据集 比较麻烦，现在需要构建一个网络，来进行这个估计
+- 强调：逆扩散过程仍然是一个马尔科夫链过程：
+
+> ![image-20241210101301770](images/image-20241210101301770.png)
+>
+> 现假设 有网络$\theta$，可以构建出条件概率 $p_{\theta}(x_{t-1}|x_t)$ ，假设该条件概率均值为 $\mu_{\theta}$  这个均值与 $x_t$  和 $t$ 有关的，也就是这个网络，以 $x_t$ 和 $t$ 作为输入，这个条件概率的方差 也是含参的 $\sum_{\theta}$ ，也是由 $x_t$ 和 $t$ 共同作为输入的，同样也可以把整个联合概率分布 写成 $p(x_T)$ × 一连串的 条件概率相乘
+
+- 以上是 逆扩散过程，就是从 $x_T$ 逐渐恢复 $x_0$
+- 那 $\mu_{\theta}$和 $\sum_{\theta}$ 应该恢复成多少呢？（后面会讨论）
+
+### 六、扩散中的后验条件概率
+
+该部分教案：
+
+![image-20241210101948287](images/image-20241210101948287.png)
+
+![image-20241210124239106](images/image-20241210124239106.png)
+
+
+
+该部分讲解：
+
+这是一个新性质，扩散过程中可以写出后验扩散条件概率
+
+q 是扩散过程中的条件概率分布
+
+如果要写 $q(x_{t-1}|x_t,x_0)$ 的话，这个式子可以用一个公式进行表达
+
+这个就是扩散过程中后验的条件概率：也就是给定 $x_0$ 和 $x_t$，我们就可以计算出 $x_{t-1}$
+
+![image-20241210102402613](images/image-20241210102402613.png)
+
+强调：这里是需要给定 $x_0$  的，而不能在给定 $x_{t}$ 就能计算出 $x_{t-1}$ 如果这样的话，也就不需要这个扩散网络了，所以一定是后验的，给定 $x_0$  的情况下，可以算出 $x_{t-1}$  的，给定 $x_t$  和 $x_0$  的情况下，计算出 $x_{t-1}$  的，具体地计算方法就是基于 条件概率 $q$ ，公式：$q(x_{t-1}|x_t,x_0)$
+
+![image-20241210102827097](images/image-20241210102827097.png)
+
+现在假设在 $x_t$    $x_0$ 给定的条件下， $x_{t-1}$ 服从 高斯分布，均值为 $\tilde{\mu}$  ，方差为 $\tilde{\beta_t}$
+
+基于贝叶斯公式：
+
+![image-20241210112032252](images/image-20241210112032252.png)
+
+ **（1）推导第一个等号**
+
+$q(x_{t-1}|x_t,x_0) = q(x_t|x_{t-1,x_0})\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}$
+
+①
+
+$=\frac{q(x_{t-1},x_t|x_0)}{q(x_t|x_0)}$
+
+$=\frac{q(x_{t-1}|x_0)q(x_t|x_{t-1},x_0)}{q(x_t|x_0)}$
+
+②
+
+$=\frac{q(x_{t-1},x_t,x_0)}{q(x_t,x_0)}$
+
+$=\frac{q(x_0)q(x_{t-1}|x_0)q(x_t|x_{t-1},x_0)}{q(x_t,x_0)}$
+
+$=\frac{q(x_{t-1}|x_0)q(x_t|x_{t-1},x_0)}{\frac{q(x_t,x_0)}{q(x_0)}}$
+
+$=\frac{q(x_{t-1}|x_0)q(x_t|x_{t-1},x_0)}{q(x_t|x_0)}$
+
+证毕
+
+**（2）推导第一个正比于**
+
+$q(x_t|x_{t-1},x_0)$  由马尔科夫假设，$x_t$  与 $x_0$  无关
+
+∴  $q(x_t|x_{t-1},x_0) = q(x_t|x_{t-1})$
+
+由：
+
+![image-20241210113504684](images/image-20241210113504684.png)
+
+所以：$q(x_t|x_{t-1}) = \mathcal{N}(x_t;\sqrt{1-\beta_t}x_{t-1},\beta_tI)$  均值= $\sqrt{1-\beta_t}x_{t-1}$  
+
+$方差 = \beta_tI$
+
+记 $1-\beta_t=\alpha_t$
+
+则
+
+$q(x_t|x_{t-1})\propto \exp(-\frac{(x_t-\sqrt{\alpha_t}x_{t-1})^2}{2\beta_t})$ 
+
+
+
+证毕
+
+**（3）推导第二个正比于号**
+
+由：
+
+![image-20241210114928959](images/image-20241210114928959.png)
+
+所以 $\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}$
+
+$q(x_{t-1}|x_0) \sim \mathcal{N}(x_{t-1};\sqrt{\bar{\alpha}_{t-1}}x_0,(1-\bar{\alpha}_{t-1})I)$
+
+$q(x_{t}|x_0) \sim \mathcal{N}(x_{t};\sqrt{\bar{\alpha}_{t}}x_0,(1-\bar{\alpha_{t}})I)$
+
+所以：
+
+$\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)} \propto \exp(-\frac{1}{2}(\frac{(x_{t-1}-\sqrt{\bar{\alpha}_{t-1}}x_0)^2}{1-\bar{\alpha}_{t-1}}-\frac{(x_t-\sqrt{\bar{\alpha}_{t}}x_0)^2}{1-\bar{\alpha_{t}}}))$
+
+**（4）合并正比号**
+
+$q(x_t|x_{t-1})\propto \exp(-\frac{(x_t-\sqrt{\alpha_t}x_{t-1})^2}{2\beta_t})$
+
+$\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)} \propto \exp(-\frac{1}{2}(\frac{(x_{t-1}-\sqrt{\bar{\alpha}_{t-1}}x_0)^2}{1-\bar{\alpha}_{t-1}}-\frac{(x_t-\sqrt{\bar{\alpha}_{t}}x_0)^2}{1-\bar{\alpha_{t}}}))$
+
+$q(x_{t-1}|x_t,x_0) = \frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}$
+
+$\propto \exp(-\frac{1}{2}(\frac{(x_t-\sqrt{\alpha_t}x_{t-1})^2}{\beta_t}+\frac{(x_{t-1}-\sqrt{\bar{\alpha}_{t-1}}x_0)^2}{1-\bar{\alpha}_{t-1}}-\frac{(x_t-\sqrt{\bar{\alpha}_{t}}x_0)^2}{1-\bar{\alpha_{t}}}))$
+
+(忽略系数、只保留指数部分)
+
+化简，以 $x_{t-1}$  为基准进行合并，只摘出 $x_{t-1}^2$  和 $x_{t-1}$ ，其余的 $x_t$  和 $x_0$ 全部归到 $C(x_t,x_0)$ ：
+
+![image-20241210123153187](images/image-20241210123153187.png)
+
+最后完成全部的推导  
+
+解释 $C(x_t,x_0)$ ：
+
+![image-20241210123334165](images/image-20241210123334165.png)
+
+**（5）根据高斯分布的标准形式，得到均值和方差：**
+
+![image-20241210123511221](images/image-20241210123511221.png)
+
+![image-20241210123624413](images/image-20241210123624413.png)
+
+由 $ax^2+bx=a(x+\frac{b}{2a})^2+C$
+
+可以知道 $均值 = -\frac{b}{2a}$
+
+$方差 = \frac{1}{a}$
+
+所以
+
+![image-20241210124007219](images/image-20241210124007219.png)
+
+均值 $\tilde{\mu}$  和 方差  $\tilde\beta_t$    可求
+
+> 经过以上步骤，完成全部这一部分的推导：
+>
+> ![image-20241210124411363](images/image-20241210124411363.png)
+
+接下来，继续：
+
+![image-20241210124547503](images/image-20241210124547503.png)
+
+（1）由参数重整化：
+
+![image-20241210124512358](images/image-20241210124512358.png)
+
+移项 可导 $x_0$ 和 $x_t$
+
+$x_0 = \frac{1}{\sqrt{\bar{\alpha}_t}}(x_t-\sqrt{1-\bar{\alpha}_t} z_t)$
+
+(2)
+
+  ![image-20241210131447777](images/image-20241210131447777.png)
+
+最开始的均值表达式：
+
+![image-20241210131634826](images/image-20241210131634826.png)
+
+把 $x_0$ 代入
+
+最终得到 $\tilde{\mu}_t = \frac{1}{\alpha_t}(x_t-\frac{\beta_t}{\sqrt{1-\bar{\alpha}_t}}z_t)$
+
+只与 $x_t$ 和 $z_t$ 有关，$z_t$ 表示  $t$时刻 从 正态分布中 的采样值
+
+（3）
+
+经过以上，写出了扩散过程中，后验的条件概率分布的均值和方差都写出来了
+
+方差：
+
+![image-20241210132034302](images/image-20241210132034302.png)
+
+只与 $\alpha$  和 $\beta$ 有关
+
+均值：
+
+![image-20241210132115950](images/image-20241210132115950.png)
+
+与 $x_t$  和 $z_t$  有关
+
+第七部分 ，推导扩散模型，目标数据的似然函数，推导出似然函数，就可以优化网络
+
+### 七、对数似然下界推导
+
+内容：
+
+![image-20241210132408439](images/image-20241210132408439.png)
+
+![image-20241210223815434](images/image-20241210223815434.png)
+
+![image-20241210223843730](images/image-20241210223843730.png)
+
+![image-20241210223949188](images/image-20241210223949188.png)
+
+![image-20241210224032697](images/image-20241210224032697.png)
+
+讲解：
+
+（1）
+
+![image-20241210135216302](images/image-20241210135216302.png)
+
+$-logp_{\theta}(x_0) \leq  -logp_{\theta}(x_0) + KL散度$
+
+$KL散度 \geq 0$
+
+所以有 
+
+![image-20241210135345822](images/image-20241210135345822.png)
+
+$-logp_{\theta}(x_0) + DL_{KL}$ 是它 $-logp_{\theta}(x_0)$ 的上界
+
+所以 优化 $-logp_{\theta}(x_0) + DL_{KL}$  相当于 优化 $-logp_{\theta}(x_0)$ 
+
+也就是  $-logp_{\theta}(x_0) + DL_{KL}$ 达到最小，就是 $-logp_{\theta}(x_0)$  达到最小
+
+称为 负对数似然 $-logp_{\theta}(x_0)$
+
+> 先验知识：
+>
+> **KL散度公式：**
+>
+> 
+>
+>    $D(p||q) = H(p,q)-H(p) = \sum p_i\log\frac{1}{q_i}-p_i\log\frac{1}{p_i}=\sum p_i\log\frac{p_i}{q_i} = \mathbb{E}_{x \sim p}(log\frac{p}{q})$
+>
+> 
+>
+> ![image-20241210181914091](images/image-20241210181914091.png)
+>
+
+继续推公式：
+
+![image-20241210182152015](images/image-20241210182152015.png)
+
+第（1）个 小于等于号：
+
+K1：为 一个 负的 对数似然 凑项
+
+K2：KL散度 大于等于 0 恒成立
+
+第（2）个等于号：
+
+K1：
+
+$KL散度= D(p||q) = H(p,q)-H(p) = \sum p_i\log\frac{1}{q_i}-p_i\log\frac{1}{p_i}=\sum p_i\log\frac{p_i}{q_i} = \mathbb{E}_{x \sim p}(log\frac{p}{q})$
+
+K2：
+
+$-logp_{\theta}(x_0) \leq -logp_{\theta}(x_0) + D_{KL}(q(x_{1:T}|x_0)||p_{\theta}(x_{1:T}|x_0))$
+
+（1）拆出KL散度：$D_{KL}(q(x_{1:T}|x_0)||p_{\theta}(x_{1:T}|x_0))$
+
+$= \mathbb{E}_{x_{1:T} \sim q(x_{1:T}|x_0)}[\log \frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{1:T}|x_0)}]$
+
+（2）
+
+拆出条件概率：$p_{\theta}(x_{1:T}|x_0)$
+
+$=\frac{p_{\theta}(x_{0:T})}{p_{\theta}(x_0)}$
+
+![image-20241210183258369](images/image-20241210183258369.png)
+
+第二个 等于号也 证明出来了
+
+![image-20241210183403829](images/image-20241210183403829.png)
+
+- 后面的等于号 就比较好说了，顺着写
+- 关于 第（3）个等于号，有一个细节，因为 $\mathbb{E}_q logp_{\theta}(x_0)$ 中 $p_{\theta}(x_0)$ 与 $q$ 无关，所以可以直接拿出来，并且与前面 消项
+
+![image-20241210221231970](images/image-20241210221231970.png)
+
+继续看
+
+在 推导出 
+
+$-logp_{\theta}(x_0) \leq \mathbb{E}_{{x_{1:T} \sim q(x_{1:T}|x_0)}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$
+
+以后，左右两边 对于$q(x)$ 求期望时，从 $x_0$ 开始：
+
+换句话说：对$q(x_0)$ 求期望
+
+ $-logp_{\theta}(x_0) \leq \mathbb{E}_{{x_{1:T} \sim q(x_{1:T}|x_0)}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$ $\iff$ $-logp_{\theta}(x_0) \leq \mathbb{E}_{ q(x_{1:T})}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$
+
+(在于 下标的变化)
+
+∴ $-\mathbb{E}_{q(x_0)}logp_{\theta}(x_0) \leq \mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$
+
+反过来 就是 讲义上写的了
+
+$\mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]  \geq -\mathbb{E}_{q(x_0)}logp_{\theta}(x_0)$
+
+![image-20241210224228826](images/image-20241210224228826.png)
+
+
+
+### 八、DIffusion Probabilistic Model 算法代码
+
+扩散与逆扩散过程伪代码
+
+![image-20241210224349168](images/image-20241210224349168.png)
+
+pytorch实现无监督图像生成

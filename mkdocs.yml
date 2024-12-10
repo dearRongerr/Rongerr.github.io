@@ -52,7 +52,8 @@ nav:
     - learning/8_WeightNorm.md
     - learning/9_cGAN.md 
     - learning/10_ResNet.md
-    - learning/11_excelcsvtensor.md        
+    - learning/11_excelcsvtensor.md 
+    - learning/12_KLdivergence.md       
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:

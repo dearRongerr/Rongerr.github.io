@@ -68,3 +68,11 @@
 - [x] 增：pytorch读取csv、excel文件转换成tensor
 - [x] 增：ResNet项目实战
 - [x] 改：Diffusion models
+
+8h59min
+
+2024年12月10日 星期二 下雪 来了
+
+- [x] 查：GAN变体
+- [x] 改：DDPM
+- [x] 增：KL散度（DONE）
