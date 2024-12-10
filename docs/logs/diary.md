@@ -76,3 +76,6 @@
 - [x] 查：GAN变体
 - [x] 改：DDPM
 - [x] 增：KL散度（DONE）
+
+6h44min
+
