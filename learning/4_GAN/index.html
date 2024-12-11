@@ -1272,6 +1272,8 @@
       
         
       
+        
+      
     
     
       
@@ -1603,7 +1605,7 @@
         
   
   <span class="md-ellipsis">
-    Probabilistic Diffusion Model
+    DDPM
   </span>
   
 
@@ -1709,6 +1711,27 @@
   
   <span class="md-ellipsis">
     基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
   </span>
   
 
@@ -2944,7 +2967,7 @@
 <p>借助 KL散度 公式：</p>
 <p><img alt="image-20241203145854841" src="../images/image-20241203145854841.png" /></p>
 <p>分布P和分布Q的KL散度公式 就是 <span class="arithmatex">\(log(\frac{P(x)}{Q(x)})\)</span> 关于P(x) 的期望</p>
-<p>= <span class="arithmatex">\(KL(p_{data}(x) || \frac{p_{data}(x)+p_g(x)}{2})\)</span> +  <span class="arithmatex">\(KL(p_{g}(x) || \frac{p_{data}(x)+p_g(x)}{2})\)</span></p>
+<p><span class="arithmatex">\(= KL(p_{data}(x) || \frac{p_{data}(x)+p_g(x)}{2}) +  KL(p_{g}(x) || \frac{p_{data}(x)+p_g(x)}{2})\)</span></p>
 <p>关于公式（5）的得到，是为了C(G)，我们最开始<span class="arithmatex">\(-(-log4)，\)</span>为了保证公式总体不变，所以最后在 <span class="arithmatex">\(+(-log4)\)</span> ：</p>
 <p>得到完整的  公式(5)</p>
 <p><img alt="image-20241203150038155" src="../images/image-20241203150038155.png" /></p>
@@ -4004,7 +4027,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-04T14:16:24+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-10T14:56:23+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-10</span>
   </span>
 
     
