@@ -2,6 +2,8 @@ site_name: My Docs
 site_name: 溶err
 site_url: https://mydomain.org/mysite
 # edit_uri: edit/main/docs/
+# - 建站：241114 
+
 edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
 nav:
 # 为了将页面链接到某个部分，

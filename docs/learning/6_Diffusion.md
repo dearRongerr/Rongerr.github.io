@@ -29,6 +29,8 @@ Probabilistic Diffusion Model
 
 ## 	1 汇总生成模型
 
+![image-20241211093654835](images/image-20241211093654835.png)
+
 （1）第一类生成模型：Seq2Seq模型，自回归的解码模型
 
 （2）第二类生成模型：基于GAN的模型，没有显式的对目标分布进行建模，只是将生成的数据放到下游的判别器中，以对抗的方式使得生成器达到理想的目标分布
@@ -74,6 +76,8 @@ P(A,B,C)可以写成：P(A,B)P(C|A,B) 继续写成：P(A)P(B|A)P(C|A,B)
 同理简化P(B,C|A)，得到：
 
 - [x] （4）P(B,C|A) = P(B|A)P(C|B)
+
+
 
 <u>3、两个高斯分布的KL散度公式</u> 
 
@@ -819,7 +823,30 @@ $-logp_{\theta}(x_0) \leq \mathbb{E}_{{x_{1:T} \sim q(x_{1:T}|x_0)}}[log\frac{q(
 
 $\mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]  \geq -\mathbb{E}_{q(x_0)}logp_{\theta}(x_0)$
 
+注意到   $-\mathbb{E}_{q(x_0)}logp_{\theta}(x_0)$  这个东西是交叉熵
+
+所以现在我们最小化  交叉熵 $-\mathbb{E}_{q(x_0)}logp_{\theta}(x_0)$ 就是最小化 交叉熵的上界：$\mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$ 
+
+总之：$\mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$  这个式子 就是Loss的上界，最小化了这个上界，就是最小化了Loss，接下来进一步化简上界：$\mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$
+
+上界记为 VLB（why？）
+
+
+
 ![image-20241210224228826](images/image-20241210224228826.png)
+
+首先：
+
+$L_{VLB} = \mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]$
+
+接着，把分子分母写成很多条件概率相乘的形式
+
+$=\mathbb{E}\frac{\prod q}{\prod p}$
+
+首先，看分子，分子是
+
+
+
 
 
 
