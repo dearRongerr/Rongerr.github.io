@@ -14,11 +14,11 @@
         <link rel="prev" href="../5_Bert/">
       
       
-        <link rel="next" href="../7_Clip/">
+        <link rel="next" href="../6_Diffusion1/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.48">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.49">
     
     
       
@@ -412,6 +412,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -468,7 +474,7 @@
         
   
   <span class="md-ellipsis">
-    备忘录
+    Sticks
   </span>
   
 
@@ -531,7 +537,7 @@
         
   
   <span class="md-ellipsis">
-    mkdocs学习
+    MkDocs
   </span>
   
 
@@ -552,7 +558,70 @@
         
   
   <span class="md-ellipsis">
-    markdown sticks
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
   </span>
   
 
@@ -1164,6 +1233,8 @@
       
         
       
+        
+      
     
     
       
@@ -1220,6 +1291,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1240,6 +1332,8 @@
       
         
           
+        
+      
         
       
         
@@ -1685,6 +1779,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Diffusion理论公式
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -2953,10 +3068,58 @@
 <p><a href="https://zhuanlan.zhihu.com/p/601641045">Diffusion Model学习笔记(1)——DDPM</a></p>
 <p>参考文献：</p>
 <p>（1）2015年 ： 基于非平衡热力学进行深度无监督学习</p>
+<div class="language-latex highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">@inproceedings<span class="nb">{</span>10.5555/3045118.3045358,
+</span><span id="__span-0-2">author = <span class="nb">{</span>Sohl-Dickstein, Jascha and Weiss, Eric A. and Maheswaranathan, Niru and Ganguli, Surya<span class="nb">}</span>,
+</span><span id="__span-0-3">title = <span class="nb">{</span>Deep unsupervised learning using nonequilibrium thermodynamics<span class="nb">}</span>,
+</span><span id="__span-0-4">year = <span class="nb">{</span>2015<span class="nb">}</span>,
+</span><span id="__span-0-5">publisher = <span class="nb">{</span>JMLR.org<span class="nb">}</span>,
+</span><span id="__span-0-6">booktitle = <span class="nb">{</span>Proceedings of the 32nd International Conference on International Conference on Machine Learning - Volume 37<span class="nb">}</span>,
+</span><span id="__span-0-7">pages = <span class="nb">{</span>2256–2265<span class="nb">}</span>,
+</span><span id="__span-0-8">numpages = <span class="nb">{</span>10<span class="nb">}</span>,
+</span><span id="__span-0-9">location = <span class="nb">{</span>Lille, France<span class="nb">}</span>,
+</span><span id="__span-0-10">series = <span class="nb">{</span>ICML&#39;15<span class="nb">}</span>
+</span><span id="__span-0-11"><span class="nb">}</span>
+</span></code></pre></div></td></tr></table></div>
 <p>深度无监督学习就是生成照片</p>
 <p><img alt="image-20241209163422417" src="../images/image-20241209163422417.png" /></p>
 <p>（2）2020年：去噪概率模型</p>
 <p><img alt="image-20241209163515382" src="../images/image-20241209163515382.png" /></p>
+<div class="language-latex highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">@inproceedings<span class="nb">{</span>10.5555/3495724.3496298,
+</span><span id="__span-1-2">author = <span class="nb">{</span>Ho, Jonathan and Jain, Ajay and Abbeel, Pieter<span class="nb">}</span>,
+</span><span id="__span-1-3">title = <span class="nb">{</span>Denoising diffusion probabilistic models<span class="nb">}</span>,
+</span><span id="__span-1-4">year = <span class="nb">{</span>2020<span class="nb">}</span>,
+</span><span id="__span-1-5">isbn = <span class="nb">{</span>9781713829546<span class="nb">}</span>,
+</span><span id="__span-1-6">publisher = <span class="nb">{</span>Curran Associates Inc.<span class="nb">}</span>,
+</span><span id="__span-1-7">address = <span class="nb">{</span>Red Hook, NY, USA<span class="nb">}</span>,
+</span><span id="__span-1-8">booktitle = <span class="nb">{</span>Proceedings of the 34th International Conference on Neural Information Processing Systems<span class="nb">}</span>,
+</span><span id="__span-1-9">articleno = <span class="nb">{</span>574<span class="nb">}</span>,
+</span><span id="__span-1-10">numpages = <span class="nb">{</span>12<span class="nb">}</span>,
+</span><span id="__span-1-11">location = <span class="nb">{</span>Vancouver, BC, Canada<span class="nb">}</span>,
+</span><span id="__span-1-12">series = <span class="nb">{</span>NIPS &#39;20<span class="nb">}</span>
+</span><span id="__span-1-13"><span class="nb">}</span>
+</span></code></pre></div></td></tr></table></div>
 <ul>
 <li>扩散模型开始流行实行2020年的这篇论文，2021年、2022年开始有大量论文出现</li>
 <li>
@@ -3440,7 +3603,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-11T14:29:49+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-11</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-19T10:20:13+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-19</span>
   </span>
 
     
@@ -3502,13 +3665,13 @@
         
         
           
-          <a href="../7_Clip/" class="md-footer__link md-footer__link--next" aria-label="Next: 多模态模型 Clip">
+          <a href="../6_Diffusion1/" class="md-footer__link md-footer__link--next" aria-label="Next: Diffusion理论公式">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                多模态模型 Clip
+                Diffusion理论公式
               </div>
             </div>
             <div class="md-footer__button md-icon">
@@ -3544,7 +3707,7 @@
     <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.indexes", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.footer", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
     
     
-      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      <script src="../../assets/javascripts/bundle.88dd0f4e.min.js"></script>
       
         <script src="../../js/timeago.min.js"></script>
       
