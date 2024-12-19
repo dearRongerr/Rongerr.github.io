@@ -1,62 +1,20 @@
-# Temp
+# Sticks
 
-## git命令
+## **论文常见格式修改建议**
 
-新建仓库：
+- [x] 参考文献的引用格式：
 
-```python
-echo "# Rongerr.github.io" >> README.md
-git init
-git add README.md
-git commit -m "first commit"
-git branch -M main
-git remote add origin https://github.com/dearRongerr/Rongerr.github.io.git
-git push -u origin main
-```
+作者名，文章名，期刊名，发表年份，卷号（期号），起止页码. Wu, C.L.; Chau, K.W.; Li, Y.S. Methods to improve neural network performance in daily flows prediction. J. Hydrol. 2009, 372, 80–93. 
 
-向已有仓库推送
+如果是书，要写成：作者名，书名，出版社的名称，出版年份。  例如：Vapnik, V. Statistical Learning Theory; Wiley: New York, NY, USA, 1998.
 
-```python
-git remote add origin https://github.com/dearRongerr/Rongerr.github.io.git
-git branch -M main
-git push -u origin main
-```
+- [x] 文献综述部分：
 
-## mkdocs命令
+另外，文献综述部分，引用的时候把作者等后面的人去掉
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs -h` - Print help message and exit.
 
-**Project layout**
 
-​    mkdocs.yml    # The configuration file.
-​    docs/
-​        index.md  # The documentation homepage.
-​        ...       # Other markdown pages, images and other files.
 
-## 终端命令
-
--  `cd ..`  返回上级文件
-- `ls`  显示当前目录文件
-- `ls -a` 显示当前目录的所有文件，包括隐藏文件
-
-**macOS 终端命令**
-
-- 显示文件树
-
-  - 打开mac终端
-
-    - 输入 brew install tree
-
-    - 使用：
-
-      `tree` 显示文件树
-
-      `tree -a` 显示所有文件树，包含隐藏文件
-
-- vim？
 
 
 

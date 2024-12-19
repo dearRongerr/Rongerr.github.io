@@ -18,7 +18,8 @@ nav:
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
     - sticks/latex.md
-    - sticks/GitHub.md 
+    - sticks/GitHub.md
+    - sticks/MacOS.md 
   - 面试:
     - bagu/index.md
     - 刷题:
@@ -53,6 +54,7 @@ nav:
     - learning/4_GAN.md
     - learning/5_Bert.md
     - learning/6_Diffusion.md
+    - learning/6_Diffusion1.md
     - learning/7_Clip.md
     - learning/8_WeightNorm.md
     - learning/9_cGAN.md 
