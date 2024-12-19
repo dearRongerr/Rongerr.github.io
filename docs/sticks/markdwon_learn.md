@@ -1,4 +1,4 @@
-# markdown sticks
+# markdown
 
 ## 锚点设置
 
@@ -130,3 +130,31 @@ $\partial$
 ```
 
 $\partial$
+
+
+
+```
+\mathbf{I}
+```
+
+$\mathbf{I}$ 加粗黑体表示向量
+
+```
+$\pi$
+```
+
+$\pi$
+
+```
+$\prod$
+$\cdot$
+$\times$
+```
+
+$\prod$
+
+$\cdot$
+
+$\times$
+
+- 

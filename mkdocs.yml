@@ -12,11 +12,13 @@ nav:
 
   - 便签:
     - sticks/index.md
-    - 备忘录: sticks/sticks.md
+    - sticks/sticks.md
     - TODO: sticks/TODO.md
     - DONE: sticks/DONE.md
-    - mkdocs学习: sticks/mkdocs_learn.md
+    - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
+    - sticks/latex.md
+    - sticks/GitHub.md 
   - 面试:
     - bagu/index.md
     - 刷题:
@@ -37,7 +39,8 @@ nav:
       - bagu/machinelearning/kmeans.md
       - bagu/machinelearning/2.md
   - 捉个虫:
-    - Error/github.md      
+    - Error/github.md
+    - Error/latex.md      
   - 笔记:
     - learning/index.md
     - learning/2.md

@@ -14,6 +14,20 @@ Probabilistic Diffusion Model
 
 （1）2015年 ： 基于非平衡热力学进行深度无监督学习
 
+```latex
+@inproceedings{10.5555/3045118.3045358,
+author = {Sohl-Dickstein, Jascha and Weiss, Eric A. and Maheswaranathan, Niru and Ganguli, Surya},
+title = {Deep unsupervised learning using nonequilibrium thermodynamics},
+year = {2015},
+publisher = {JMLR.org},
+booktitle = {Proceedings of the 32nd International Conference on International Conference on Machine Learning - Volume 37},
+pages = {2256–2265},
+numpages = {10},
+location = {Lille, France},
+series = {ICML'15}
+}
+```
+
 深度无监督学习就是生成照片
 
 ![image-20241209163422417](images/image-20241209163422417.png)
@@ -21,6 +35,24 @@ Probabilistic Diffusion Model
 （2）2020年：去噪概率模型
 
 ![image-20241209163515382](images/image-20241209163515382.png)
+
+```latex
+@inproceedings{10.5555/3495724.3496298,
+author = {Ho, Jonathan and Jain, Ajay and Abbeel, Pieter},
+title = {Denoising diffusion probabilistic models},
+year = {2020},
+isbn = {9781713829546},
+publisher = {Curran Associates Inc.},
+address = {Red Hook, NY, USA},
+booktitle = {Proceedings of the 34th International Conference on Neural Information Processing Systems},
+articleno = {574},
+numpages = {12},
+location = {Vancouver, BC, Canada},
+series = {NIPS '20}
+}
+```
+
+
 
 - 扩散模型开始流行实行2020年的这篇论文，2021年、2022年开始有大量论文出现
 - 目前：DDPM 2020年这篇论文的引用量已经220万，2015年论文的引用量也有200多万
