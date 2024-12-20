@@ -717,6 +717,8 @@
       
         
       
+        
+      
     
     
       
@@ -740,7 +742,7 @@
               
   
   <span class="md-ellipsis">
-    刷题
+    题目
   </span>
   
 
@@ -756,10 +758,31 @@
         <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_2_2">
             <span class="md-nav__icon md-icon"></span>
-            刷题
+            题目
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
             
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
               
             
               
@@ -793,7 +816,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_2" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2_3" >
         
           
           
@@ -809,14 +832,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2_2_2" id="__nav_2_2_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2_2_3" id="__nav_2_2_3_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_2_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_2_2">
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_2_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2_3">
             <span class="md-nav__icon md-icon"></span>
             力扣
           </label>
@@ -1078,7 +1101,7 @@
         
   
   <span class="md-ellipsis">
-    pytorch的维度变换公式
+    pytorch的维度变换函数
   </span>
   
 
@@ -1332,6 +1355,8 @@
       
         
           
+        
+      
         
       
         
@@ -1795,7 +1820,7 @@
         
   
   <span class="md-ellipsis">
-    Diffusion理论公式
+    VDM
   </span>
   
 
@@ -1922,6 +1947,27 @@
   
   <span class="md-ellipsis">
     KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
   </span>
   
 
@@ -3203,6 +3249,8 @@
 <blockquote>
 <p>在训练的时候，通过<span class="arithmatex">\(q_{\phi}(z|x)\)</span> 从x中生成z，在推理的时候，从z预测x</p>
 </blockquote>
+<p><strong>补充：从 z 到 x 是生成过程，网络训练好了以后只需要生成就行，而不需要从 x 到 z 的编码过程了</strong></p>
+<p>等价于  <strong>训练时训练两个网络，推理时只用到 z 到 x 的网络</strong></p>
 <p>以上就是单层VAE</p>
 <p>公式：</p>
 <p><img alt="image-20241209172503788" src="../images/image-20241209172503788.png" /></p>
@@ -3275,7 +3323,7 @@
 <li>想象 把一个水滴 倒入到 一个池塘或者河流之中，慢慢的扩散，最后没有了原来的分布</li>
 <li>扩散过程 就是原始的过程中 不断的加噪，直到最后变成了 各项独立的高斯分布</li>
 </ul>
-<p>生成的时候，是希望从一个噪声分布中，逐步预测出目标分布，这个过程叫做 逆扩散过程</p>
+<p>生成的时候，是希望从一个噪声分布中，逐步预测出目标分布，这个过程叫做 逆扩散过程 reverse </p>
 <p>第二个过程：逆扩散过程</p>
 <p><img alt="image-20241209195447563" src="../images/image-20241209195447563.png" /></p>
 <p>逆扩散过程，就是基于一个噪声，能够把目标分布推导出来，从目标分布中，采样新的样本，生成新的图像</p>
@@ -3576,7 +3624,30 @@
 <p><span class="arithmatex">\(L_{VLB} = \mathbb{E}_{{q(x_{0:T})}}[log\frac{q(x_{1:T}|x_0)}{p_{\theta}(x_{0:T})}]\)</span></p>
 <p>接着，把分子分母写成很多条件概率相乘的形式</p>
 <p><span class="arithmatex">\(=\mathbb{E}\frac{\prod q}{\prod p}\)</span></p>
-<p>首先，看分子，分子是</p>
+<p>接下来，这一大串：</p>
+<p><img alt="image-20241220221512039" src="../images/image-20241220221512039.png" /></p>
+<p><u>这里的推导强调一下：</u> </p>
+<p>（1）</p>
+<p>仔细看一下，变与不变 <span class="arithmatex">\(p_{\theta}(x_{t-1}|x_t)\)</span> 是没有变得，只是 <span class="arithmatex">\(q(x_t|x_{t-1})\)</span> 变了，接着再用贝叶斯公式化简即可</p>
+<p><img alt="image-20241220221434184" src="../images/image-20241220221434184.png" /></p>
+<p><span class="arithmatex">\(q(x_t|x_{t-1})\)</span></p>
+<p>= <span class="arithmatex">\(\frac{q(x_{t-1}|x_{t})q(x_t)}{q(x_{t-1})}\)</span></p>
+<p>(马尔科夫性质，所以可以加条件 <span class="arithmatex">\(x_0\)</span>)= <span class="arithmatex">\(\frac{q(x_{t-1}|x_{t},x_0)q(x_t,x_0)}{q(x_{t-1},x_0)}\)</span></p>
+<p>（2）</p>
+<p><img alt="image-20241220222212849" src="../images/image-20241220222212849.png" /></p>
+<p><img alt="image-20241220222153612" src="../images/image-20241220222153612.png" /></p>
+<p>（3）</p>
+<p><img alt="image-20241220222420182" src="../images/image-20241220222420182.png" /></p>
+<p>（4）</p>
+<p>以下两张图片，表示一个意思。</p>
+<p>① 上面的图：有点小问题</p>
+<p>改成：<span class="arithmatex">\(=D_{KL}(q(x_T|x_0)||p_{\theta}(x_T)) + \sum_{t=2}^T D_{KL}(q(x_{t-1}|x_t,x_0)||p_{\theta}(x_{t-1}|x_t))-\mathbb{E}_q \log p_{\theta}(x_0|x_1)\)</span></p>
+<p>这样，上图和下图是一样的</p>
+<p>② 需要注意的是，</p>
+<p>KL 散度公式</p>
+<p><img alt="image-20241220222556939" src="../images/image-20241220222556939.png" /></p>
+<p>中间还有删掉无关变量的步骤：</p>
+<p><img alt="image-20241220222703262" src="../images/image-20241220222703262.png" /></p>
 <h3 id="diffusion-probabilistic-model">八、DIffusion Probabilistic Model 算法代码<a class="headerlink" href="#diffusion-probabilistic-model" title="Permanent link">&para;</a></h3>
 <p>扩散与逆扩散过程伪代码</p>
 <p><img alt="image-20241210224349168" src="../images/image-20241210224349168.png" /></p>
@@ -3603,7 +3674,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-19T10:20:13+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-19</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-20T14:49:27+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-20</span>
   </span>
 
     
@@ -3665,13 +3736,13 @@
         
         
           
-          <a href="../6_Diffusion1/" class="md-footer__link md-footer__link--next" aria-label="Next: Diffusion理论公式">
+          <a href="../6_Diffusion1/" class="md-footer__link md-footer__link--next" aria-label="Next: VDM">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                Diffusion理论公式
+                VDM
               </div>
             </div>
             <div class="md-footer__button md-icon">
