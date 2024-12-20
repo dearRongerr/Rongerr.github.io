@@ -1,4 +1,7 @@
-# pytorch的维度变换公式
+# pytorch的维度变换函数
+
+## [维度转换函数](https://mp.weixin.qq.com/s/x5EsNBlIyAvcXMfJ6Km2ZQ)
+
 1. `torch.unsqueeze(input, dim)`：在指定维度 `dim` 上增加一个新的维度。如果 `dim` 已经存在，则在其前面添加新的维度。
 2. `torch.squeeze(input, dim=None)`：移除所有长度为1的维度。如果指定了 `dim`，则只移除该维度。
 3. `torch.flatten(input, start_dim=0, end_dim=-1)`：将输入张量从 `start_dim` 到 `end_dim` 的所有维度展平。
@@ -21,4 +24,10 @@ positon_embedding = torch.tile(positon_embedding_table[:seq_len],[token_embeddin
 # [token_embedding.shape[0],1,1] = [1,1,1]
 # positon_embedding = 1,5,8
 ```
+
+## [理解张量](https://mp.weixin.qq.com/s/qB0yJKJTtpcv70MN4OMttQ)
+
+假如你有一个篮子，里面装满了各种颜色的小球。每个小球代表一个数字。现在，如果我们想把这些小球按照一定的顺序排列，比如一行或者一列，这就是一个一维数组。如果你把几行这样的小球排列起来，就形成了一个二维数组，就像一个表格一样。如果你再把这些表格堆叠起来，就形成了一个三维数组。在PyTorch中，张量就是一种用来表示这些不同维度数组的数据结构。
+
+![image-20241219223351821](images/image-20241219223351821.png)
 

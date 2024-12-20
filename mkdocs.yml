@@ -22,8 +22,9 @@ nav:
     - sticks/MacOS.md 
   - 面试:
     - bagu/index.md
-    - 刷题:
+    - 题目:
       - bagu/questions/index.md
+      - bagu/questions/1_questions.md
       - 力扣:
         - bagu/questions/leetcode/index.md
         - bagu/questions/leetcode/1.md
@@ -60,7 +61,8 @@ nav:
     - learning/9_cGAN.md 
     - learning/10_ResNet.md
     - learning/11_excelcsvtensor.md 
-    - learning/12_KLdivergence.md       
+    - learning/12_KLdivergence.md
+    - learning/13_RNN.md       
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
