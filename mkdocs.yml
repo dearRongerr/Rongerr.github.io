@@ -45,6 +45,11 @@ nav:
     - Error/latex.md      
   - 笔记:
     - learning/index.md
+    - 小讲堂:
+      - learning/LittleLesson/index.md
+      - learning/LittleLesson/3_ViT.md
+      - learning/LittleLesson/1_clip.md
+      - learning/LittleLesson/2_MOCO.md
     - learning/2.md
     - learning/1.md
     - learning/vit.md
@@ -62,7 +67,13 @@ nav:
     - learning/10_ResNet.md
     - learning/11_excelcsvtensor.md 
     - learning/12_KLdivergence.md
-    - learning/13_RNN.md       
+    - learning/13_RNN.md
+    - learning/14_LSTM.md
+    - learning/15_ContrastiveLearning.md
+    - learning/16_YOLO.md
+    - learning/17_DETR.md
+    - learning/18_DINO.md
+    - learning/19_GPT.md      
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
