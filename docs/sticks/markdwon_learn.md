@@ -20,7 +20,7 @@
 X \stackrel{F}{\rightarrow} Y
 ```
 
-
+$X \stackrel{F}{\rightarrow} Y$
 
 ## 箭头上架字符
 
@@ -32,6 +32,13 @@ $\widetilde{a}$
 $\dot{a}$   一阶导数
 $\ddot{a}$  二阶导数
 ```
+
+$\vec{a}$  向量
+$\overline{a}$ 平均值
+$\widehat{a}$ (线性回归，直线方程) 尖
+$\widetilde{a}$ 
+$\dot{a}$   一阶导数
+$\ddot{a}$  二阶导数
 
 ## markdown多行大括号
 
@@ -149,6 +156,8 @@ $\pi$
 $\prod$
 $\cdot$
 $\times$
+$\circ$
+$\odot$
 ```
 
 $\prod$
@@ -158,3 +167,7 @@ $\cdot$
 $\times$
 
 - 
+
+$\circ$
+
+$\odot$

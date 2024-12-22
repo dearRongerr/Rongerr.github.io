@@ -73,7 +73,9 @@ nav:
     - learning/16_YOLO.md
     - learning/17_DETR.md
     - learning/18_DINO.md
-    - learning/19_GPT.md      
+    - learning/19_GPT.md  
+    - learning/20_distill.md
+    - learning/21_FastRCNN.md    
   - 文献:
     - 人群计数: literature/CrowdCounting/1.md
     - 目标计数:
