@@ -1407,6 +1407,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1689,6 +1693,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      对比学习
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLIP 模型的优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1709,7 +1749,7 @@
         
   
   <span class="md-ellipsis">
-    2 MOCO
+    MOCO
   </span>
   
 
@@ -2222,6 +2262,48 @@
   
   <span class="md-ellipsis">
     GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
   </span>
   
 
@@ -3318,6 +3400,42 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      实验效果
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      对比学习
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#clip_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLIP 模型的优点
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      应用
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3481,7 +3599,45 @@
 <p><img alt="image-20241221224106744" src="../images/image-20241221224106744.png" /></p>
 <p><strong>为什么要把类别名嵌入到句子中再做文本 编码呢？</strong></p>
 <p>论文的作者也做了实验，和直接用类别名做编码向量相比，把类别名嵌入到一个类似于"这是什么什么什么的照片"这样的简单句子中，在 ImageNet 上的精度可以提升 1.3%</p>
-<p>如果是针对特定的数据集比如对于宠物分类的数据集，可以在编码时在句子中明确的说明"这是一个什么什么什么宠物的照片"，把"宠物"这个信息</p>
+<p>如果是针对特定的数据集比如对于宠物分类的数据集，可以在编码时在句子中明确的说明"这是一个什么什么宠物的照片"，把"宠物"这个信息编码到文本向量中，可以进一步提升 clip 模型的精度</p>
+<p>另外作者还提到一种提升精度的办法，就是做 Prompt ensembling，它的做法是生成多个 Prompt 的模版，把一个类别分别嵌入到多个模版，最后用多个模版生成的类别的文本向量分别和图片向量计算相似度，将多个向量相似度的值进行平均作为最终该图片和类别的相似度</p>
+<p>右图表明，通过 Prompt engineering 和 ensembling 之后模型精度可以提升 5 个点</p>
+<h2 id="_10"><a href="https://www.bilibili.com/video/BV1pYmDYgEDW?spm_id_from=333.788.player.switch&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">实验效果</a><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241222194808961" src="../images/image-20241222194808961.png" /></p>
+<p><strong>第 1 个图</strong></p>
+<p>CLIP在自己4 亿个图文对上训练后，不在其他数据集上做任何训练，直接进行 zero-shot 的预测</p>
+<p>ResNet50 是在 ImageNet 上进行预训练，在这些数据集上冻结模型参数，只训练一个分类头的结果，这明显对 ResNet50 更占优势，因为可以在这些数据上进行微调</p>
+<p>而 CLIP 是完全不训练，只是通过 Prompt 来提示类别进行分类，结果在大部分数据集上还是 CLIP 领先</p>
+<p><strong>第 2 张图</strong></p>
+<p>zero-shot CLIP 领先，作者就想如果给 CLIP 中的图片 Encoder 也加上分类头，做 few shot 的微调会发生什么？</p>
+<p>实验发现不论是在每个类别给 1 个例子、2 个例子、还是给 16个例子都是 CLIP 领先，特别需要注意的是，只用 CLIP 里图片 Encoder+分类头 在每个类别 只给 4 个样本进行微调的效果，还是不如直接用 Prompt zero shot 的 CLIP 效果好</p>
+<p>zero shot 和 few shot 都是 CLIP 领先</p>
+<p><strong><u>第 3 张图</u></strong> </p>
+<p>作者思考如果用下游所有的数据来微调分类头，结果发现还是 CLIP 领先</p>
+<p><img alt="image-20241222194922751" src="../images/image-20241222194922751.png" /></p>
+<p>在 ImageNet 上训练的 ResNet101 对 ImageNet 里"香蕉"识别的准确率 和 zero-shot 的 CLIP 是一样的，都是 76.2%</p>
+<p>但是如果换了其他数据集，比如卡通的、素描的数据集等在 ImageNet 上训练的 ResNet 性能马上下降，而 zero-shot CLIP 识别准确率比较稳健，展示了强大的泛化性能</p>
+<p>因为 CLIP 通过文本理解了什么是香蕉，CLIP 从文本里学到了香蕉的形状、大小、颜色、结构等细节信息，而不是只找到了 1 个捷径</p>
+<h2 id="_11">对比学习<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241222200833979" src="../images/image-20241222200833979.png" /></p>
+<p>对比学习是一种无监督学习，不需要定义具体地类别，只需要给出哪些样本是相同的，哪些是不同的</p>
+<p>比如 CLIP 中定义只有对应的图文对是相同的，不对应的图文对是不同的，对比学习通过定义代理任务来学习样本的特征表示，学到的特征让相同的样本特征尽可能的相似，不同的样本特征差距尽可能的大，最终得到的模型就是一个特征编码器</p>
+<p>对比学习一般采用 InfoNCE 作为损失函数</p>
+<h2 id="clip_1">CLIP 模型的优点<a class="headerlink" href="#clip_1" title="Permanent link">&para;</a></h2>
+<p><strong>CLIP 模型的好处有哪些？</strong></p>
+<p><img alt="image-20241222201401160" src="../images/image-20241222201401160.png" /></p>
+<p>第一，利用了丰富的语义来作为监督信号，让模型可以学习图片中很多细节语义特征，做到真正的理解图片，能更好的泛化</p>
+<p>第二，是多模态的模型，连通了图片和文本，可以通过文本来查询图片</p>
+<p>第三，摆脱了图片分类必须是固定的类别，创新的提出了利用 Prompt 来分类的方法，做到可以对任意类别进行分类</p>
+<p>之前将 CLIP 的图片分类是先生成不同类别的文本向量，然后来了图片通过图片向量查找最相似的文本类别向量</p>
+<h2 id="_12">应用<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241222201839882" src="../images/image-20241222201839882.png" /></p>
+<p>以上是 CLIP 的一个例子</p>
+<p>同样是用 CLIP，可以先把视频中所有的关键帧图片生成图片向量，然后输入一个句子，生成句子向量，查找相似度最高的图片，比如</p>
+<p>（1）查找文本为"穿着蓝色上衣骑自行车的人"，可以检索到右图显示的监督画面</p>
+<p>（2）查找文本为"一个印有 JCN 的卡车"，可以检索到左上图</p>
+<p>（3）查找文本为"一个白色的宝马车"，可以检索到左下图。</p>
+<p>CLIP彻底打通了文本和图片，可以通过图片查找文本，也可以通过文本查找图片，之前虽然也研究者做过类似的工作，但是不论数据集、模型结构等，都不如 CLIP</p>
 
 
 
@@ -3504,7 +3660,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-22T15:17:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-22</span>
   </span>
 
     
@@ -3566,13 +3722,13 @@
         
         
           
-          <a href="../2_MOCO/" class="md-footer__link md-footer__link--next" aria-label="Next: 2 MOCO">
+          <a href="../2_MOCO/" class="md-footer__link md-footer__link--next" aria-label="Next: MOCO">
             <div class="md-footer__title">
               <span class="md-footer__direction">
                 Next
               </span>
               <div class="md-ellipsis">
-                2 MOCO
+                MOCO
               </div>
             </div>
             <div class="md-footer__button md-icon">

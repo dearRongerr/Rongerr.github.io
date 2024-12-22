@@ -1407,6 +1407,10 @@
       
         
       
+        
+      
+        
+      
     
     
       
@@ -1573,7 +1577,7 @@
         
   
   <span class="md-ellipsis">
-    2 MOCO
+    MOCO
   </span>
   
 
@@ -2022,11 +2026,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recall" class="md-nav__link">
+  <a href="#rnncell" class="md-nav__link">
     <span class="md-ellipsis">
-      Recall
+      RNNCELL
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 官方 api
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LSTM 官方 api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      &amp; RNN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 图示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 有哪些门？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      api 对应到图、数学公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchnnlstm" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.nn.LSTM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -2135,6 +2199,48 @@
   
   <span class="md-ellipsis">
     GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
   </span>
   
 
@@ -3136,11 +3242,71 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#recall" class="md-nav__link">
+  <a href="#rnncell" class="md-nav__link">
     <span class="md-ellipsis">
-      Recall
+      RNNCELL
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 官方 api
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LSTM 官方 api">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      &amp; RNN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 图示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstm_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 有哪些门？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      api 对应到图、数学公式
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchnnlstm" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.nn.LSTM
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -3163,13 +3329,264 @@
 
 
 <h1 id="lstm">LSTM<a class="headerlink" href="#lstm" title="Permanent link">&para;</a></h1>
-<h2 id="recall">Recall<a class="headerlink" href="#recall" title="Permanent link">&para;</a></h2>
+<h2 id="rnncell">RNNCELL<a class="headerlink" href="#rnncell" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20241221142624552" src="../images/image-20241221142624552.png" /></p>
 <p>RNNCELL，可以理解为 单步 的迭代</p>
-<p>因为所有的循环神经网络 都是有很多步 去迭代，最终把每一步的状态 取出来 作为 输出</p>
+<p>因为所有的循环神经网络 都是有很多步去迭代，最终把每一步的状态 取出来作为输出</p>
 <p>这里的RNNCELL，也就是说 多个，每个时刻的计算 就是一个RNNCELL，然后把 多个RNNCELL 连起来 ，其实就构成了 一个RNN，所以 无论是RNN也好，还是 GRU也好，还是 LSTM也好，它们 都有各自的CELL，然后每个CELL，其实就是一个 单步的运算，可以理解为 单个时刻的运算，下面 有一个例子</p>
 <p><img alt="image-20241221142949694" src="../images/image-20241221142949694.png" /></p>
-<p>可以看到，首先 实例化了 一个 RNNCELL；这个RNNCELL的 input size和hidden size分别为10和20；然后 我们 定义一个 input 的训练特征，batch size是3，然后 时间长度是6，然后特征维度是10，并且定义了 一个 初始的 hidden state[hx],然后就可以用RNNCELL，来去做每一次迭代，所以我们 看到 这里有一个 for循环，然后 每一步 会调用 这个RNNCELL的 实例化的操作，算出每一时刻的隐含状态 hx=rnn(input[i],hx)  这儿应该是 <span class="arithmatex">\(h_x\)</span></p>
+<p>代码解释：</p>
+<ul>
+<li>首先实例化 RNNCELL</li>
+<li>RNNCELL的 <code>input size</code>和<code>hidden size</code>分别为10和20</li>
+<li>定义 <code>input</code> 的训练特征，<code>batch size</code>是3，然后 <code>时间长度</code>是6，然后<code>特征维度</code>是10</li>
+<li>定义初始的 <code>hidden state</code>[<code>hx</code>]</li>
+<li>用RNNCELL做每一次迭代</li>
+</ul>
+<p>所以定义一个 for循环，然后 每一步调用RNNCELL实例化的操作，算出每一时刻的隐含状态 <code>hx=rnn(input[i],hx)</code>  ，定义 <span class="arithmatex">\(h_x\)</span>接收输出结果</p>
+<ul>
+<li>RNNCELL 就是 单步 的计算，包括 GRUCELL 和LSTMCELL，都是单步的</li>
+<li>RNN 就是把多个RNNCELL 连起来 ，所以是多步的</li>
+</ul>
+<h2 id="lstm-api">LSTM 官方 api<a class="headerlink" href="#lstm-api" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241222103420706" src="../images/image-20241222103420706.png" /></p>
+<p>LSTM 原理可见<a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">博客</a>：</p>
+<p><img alt="image-20241222103508512" src="../images/image-20241222103508512.png" /></p>
+<h3 id="rnn">&amp; RNN<a class="headerlink" href="#rnn" title="Permanent link">&para;</a></h3>
+<ul>
+<li>LSTM比RNN多了几个门</li>
+<li>RNN比较简单 ： 输入 + 隐含状态，只有这两个状态</li>
+</ul>
+<p><img alt="image-20241222103833628" src="../images/image-20241222103833628.png" /></p>
+<p>在LSTM中，多了一些门：</p>
+<p>（1）输入门</p>
+<p>（2）输出门</p>
+<p>（3）遗忘门</p>
+<p>（4）记忆单元</p>
+<h3 id="lstm_1">LSTM 图示<a class="headerlink" href="#lstm_1" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20241222103929879" src="../images/image-20241222103929879.png" /></p>
+<p>图片理解：</p>
+<p>最上面的横线，长得像传送带的东西，是一个细胞单元，或者说细胞状态</p>
+<p>整个LSTM就是靠这个细胞状态，来不断的 更新 历史信息的</p>
+<h3 id="lstm_2">LSTM 有哪些门？<a class="headerlink" href="#lstm_2" title="Permanent link">&para;</a></h3>
+<p>对照官方 api：</p>
+<p><img alt="image-20241222104047966" src="../images/image-20241222104047966.png" /></p>
+<ol>
+<li><code>i</code>就是 输入门</li>
+<li><code>f</code>就是遗忘门</li>
+<li><code>g</code>就是细胞</li>
+<li><code>o</code>就是输出门</li>
+<li><code>c</code>成为<code>cell</code>，叫细胞单元，或者叫 细胞状态</li>
+<li><code>h</code>就是<code>LSTM</code>的隐含状态，或者说 输出。因为模型最终输出的是 <span class="arithmatex">\(h_t\)</span></li>
+</ol>
+<h3 id="api"><code>api</code> 对应到图、数学公式<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>图示：</p>
+<p><img alt="image-20241222104333555" src="../images/image-20241222104333555.png" /></p>
+<p>图示 &amp; 符号：</p>
+<p><img alt="image-20241222110332335" src="../images/image-20241222110332335.png" /></p>
+<p>（1）遗忘门：<span class="arithmatex">\(f_t \odot c_{t-1}\)</span> </p>
+<p><img alt="image-20241222110553728" src="../images/image-20241222110553728.png" /></p>
+<p><code>step1：</code>遗忘门的输出(得到经过遗忘门的筛选信息 ) <span class="arithmatex">\(f_t\)</span> </p>
+<p><strong>遗忘门的输出 <span class="arithmatex">\(f_t\)</span> 怎么计算的？</strong></p>
+<blockquote>
+<p><span class="arithmatex">\(x_t\)</span> 跟历史的输出进行交互，然后经过 <span class="arithmatex">\(\sigma\)</span>线性函数，得到 <span class="arithmatex">\(f_t\)</span></p>
+</blockquote>
+<p><code>step2：</code>遗忘门的输出跟上一时刻的  <span class="arithmatex">\(c_{t-1}\)</span> 相乘，对应的数学公式：</p>
+<div class="arithmatex">\[f_t \odot c_{t-1}\]</div>
+<p>（2）输入门 <span class="arithmatex">\(i_t\)</span> 、细胞 <span class="arithmatex">\(g_t\)</span></p>
+<p><img alt="image-20241222105344599" src="../images/image-20241222105344599.png" /></p>
+<p>如图框：</p>
+<ol>
+<li>同样 <span class="arithmatex">\(x_t\)</span>跟过往的 <span class="arithmatex">\(x_{t-1}\)</span>进行交互，然后经过一个 <span class="arithmatex">\(\sigma\)</span>函数，得到输入门 <span class="arithmatex">\(i_t\)</span></li>
+<li>然后 <span class="arithmatex">\(x_t\)</span> 跟上一时刻的 <span class="arithmatex">\(x_{t-1}\)</span>，经过  <span class="arithmatex">\(\tanh\)</span>激活函数 ，得到的是 <span class="arithmatex">\(g_t\)</span>，称作细胞</li>
+<li><span class="arithmatex">\(g_t\)</span> 跟输入门相乘，相当于对当前的输入信息进行筛选</li>
+</ol>
+<p>公式：</p>
+<div class="arithmatex">\[g_t \odot i_t\]</div>
+<p>（3）最新细胞状态的 <span class="arithmatex">\(c_t\)</span> </p>
+<p>① 把信息<span class="arithmatex">\(g_t \odot i_t\)</span>加到目前最新的 <span class="arithmatex">\(c_t\)</span> 上</p>
+<p>② 最新的 <span class="arithmatex">\(c_t\)</span>是上一时刻 <span class="arithmatex">\(c_t\)</span>乘遗忘门<span class="arithmatex">\(f_t\)</span>，得到新的 <span class="arithmatex">\(c_t\)</span></p>
+<p>也就是说该丢掉的信息丢掉了再加上输入门 ，更新细胞状态，这个过程对应的公式表示：</p>
+<div class="arithmatex">\[c_t = f_t \odot c_{t-1} + i_t \odot g_t\]</div>
+<p>（4）输出门 <span class="arithmatex">\(\ o_t\)</span></p>
+<p><img alt="image-20241222114310668" src="../images/image-20241222114310668.png" /></p>
+<p>最后一根线叫做 输出门</p>
+<p>同样是 <span class="arithmatex">\(x_t\)</span>跟<span class="arithmatex">\(h_{t-1}\)</span>，进行交互，经过sigmoid函数，得到<span class="arithmatex">\(o_t\)</span>，就是输出门，最终的输出 ： <span class="arithmatex">\(o_t × \tanh (c_t)\)</span>，数学公式表达：</p>
+<div class="arithmatex">\[h_t = o_t \odot \tanh(c_t)\]</div>
+<p><img alt="image-20241222114824264" src="../images/image-20241222114824264.png" /></p>
+<p><span class="arithmatex">\(h_t\)</span> 跟每一时刻的输入进行交互的，也就是线性组合</p>
+<p><span class="arithmatex">\(c_t\)</span>不断对 历史信息进行一个 更新</p>
+<p>通过遗忘门、输入门，不断对 <span class="arithmatex">\(c_t\)</span>进行一个 更新</p>
+<p>以上是LSTM的公式 和 结构，再来看一遍数学公式：</p>
+<div class="arithmatex">\[i_t = \sigma(W_{ii}x_t+b_{ii}+W_{hi}h_{t-1}+b_{hi})\]</div>
+<div class="arithmatex">\[f_t = \sigma(W_{if}x_t + b_{if}+W_{hf}h_{t-1}+b_{hf})\]</div>
+<div class="arithmatex">\[g_t = \tanh(W_{ig}x_t + b_{ig}+W_{hg}h_{t-1}+b_{hg})\]</div>
+<div class="arithmatex">\[o_t = \sigma(W_{io}x_t+b_{io}+W_{ho}h_{t-1}+b_{ho})\]</div>
+<div class="arithmatex">\[c_t = f_t \odot c_{t-1}+i_t \odot g_t\]</div>
+<div class="arithmatex">\[h_t = o_t \odot \tanh(c_t)\]</div>
+<p>补充：</p>
+<p>（1）但从公式来说，<span class="arithmatex">\(i、f、g、o\)</span> 需要的就是 <span class="arithmatex">\(x_t\)</span> 和 <span class="arithmatex">\(h_{t-1}\)</span>当前时刻的输入和历史信息</p>
+<p>（2）对比 RNN 的公式：</p>
+<div class="arithmatex">\[h_t = \tanh(x_tW_{ih}^T+b_{ih}+h_{t-1}W_{hh}^T+b_{hh})\]</div>
+<p><img alt="image-20241222115833715" src="../images/image-20241222115833715.png" /></p>
+<p>单从公式来说，RNN 历史信息的保存仅通过 当前时刻的输入 <span class="arithmatex">\(x_t\)</span> 和 上一时刻的历史信息 <span class="arithmatex">\(h_{t-1}\)</span></p>
+<p>（3）再放一遍公式，体会：</p>
+<p><img alt="image-20241222120129870" src="../images/image-20241222120129870.png" /></p>
+<p>（4）LSTM 多了一个细胞状态，问题：为什么 LSTM 要设置细胞状态，为什么要这么设计公式更新细胞状态和隐藏状态？</p>
+<p>（5）查阅资料</p>
+<p><a href="https://blog.csdn.net/qq_29053993/article/details/90547382">ref</a>：LSTM</p>
+<blockquote>
+<p>0、核心是 细胞门（对比 RNN 这个是比较好理解的。可是为什么要有细胞门呢？）</p>
+<p><img alt="image-20241222120741375" src="../images/image-20241222120741375.png" /></p>
+<p>1、忘记一些信息</p>
+<p>遗忘门的作用是 <strong>决定丢弃什么信息</strong></p>
+<p><img alt="image-20241222120554133" src="../images/image-20241222120554133.png" /></p>
+<p>2、新东西加入 细胞状态</p>
+<p>输入门 &amp; 不知道怎么称呼合适的东西（学名：<span class="arithmatex">\(\tilde{C}_t\)</span>）</p>
+<p><img alt="image-20241222120915557" src="../images/image-20241222120915557.png" /></p>
+<p><span class="arithmatex">\(\sigma\)</span> 函数 和 <span class="arithmatex">\(\tanh\)</span> 函数有什么区别？为什么 <span class="arithmatex">\(\sigma\)</span>函数就起了那样的作用，<span class="arithmatex">\(\tanh\)</span>函数又起了这样的作用？</p>
+<p>3、</p>
+<p><img alt="image-20241222122153770" src="../images/image-20241222122153770.png" /></p>
+</blockquote>
+<p>（6）RNN、LSTM、GRU通用网络框架</p>
+<p><img alt="image-20241222122542650" src="../images/image-20241222122542650.png" /></p>
+<p>（7）RNN &amp; LSTM 的应用例子（帮助理解）：</p>
+<p>RNN 就足够：</p>
+<p><img alt="image-20241222122611855" src="../images/image-20241222122611855.png" /></p>
+<p>LSTM 才可以（间隔太大）：</p>
+<p><img alt="image-20241222122629295" src="../images/image-20241222122629295.png" /></p>
+<p>（9）<a href="https://www.jianshu.com/p/4b4701beba92">LSTM 的理解</a>：</p>
+<p>输入：<span class="arithmatex">\(x_t\)</span> 、<span class="arithmatex">\(h_{t-1}\)</span>、<span class="arithmatex">\(c_{t-1}\)</span></p>
+<p>中间：<span class="arithmatex">\(i、f、g、o\)</span></p>
+<p>输出：<span class="arithmatex">\(c_t\)</span>、<span class="arithmatex">\(h_t\)</span></p>
+<p><strong>一、忘记门</strong> <span class="arithmatex">\(f\)</span></p>
+<ul>
+<li>要丢弃什么信息</li>
+</ul>
+<p>LSTM的第一步是决定我们要从细胞状态中丢弃什么信息。</p>
+<p><u>怎么实现的？</u></p>
+<p>该决定由被称为"忘记门"的<span class="arithmatex">\(\ Sigmoid\)</span>层实现</p>
+<p><u>具体怎么实现？</u> </p>
+<p>查看<code>ht-1(前一个输出)</code>和<code>xt(当前输入)</code>，并为单元格状态<code>Ct-1(上一个状态)</code>中的每个数字输出<code>0</code>和<code>1</code>之间的数字。</p>
+<p><u>为什么用 sigmoid 函数，输出代表什么意思？</u></p>
+<p><code>1</code>代表完全保留，而<code>0</code>代表彻底删除，所以用 <code>sigmoid 函数</code></p>
+<p><u>图示</u></p>
+<p><img alt="image-20241222123222077" src="../images/image-20241222123222077.png" /></p>
+<p>二、<span class="arithmatex">\(i_t\)</span>、<span class="arithmatex">\(g_t\)</span></p>
+<ul>
+<li>要保留什么信息？</li>
+</ul>
+<p>就是决定我们要在细胞状态中存储什么信息</p>
+<p>这部分分为两步：</p>
+<p>1、首先，称为"输入门层"的Sigmoid层决定了将更新哪些值</p>
+<p>2、接下来一个tanh层创建候选向量Ct，该向量将会被加到细胞的状态中</p>
+<p>在下一步中，我们将结合这两个向量来创建更新值。</p>
+<p><img alt="image-20241222124500600" src="../images/image-20241222124500600.png" /></p>
+<p>图示：</p>
+<p><img alt="image-20241222124625253" src="../images/image-20241222124625253.png" /></p>
+<p>这里的 <span class="arithmatex">\(\tilde{C}_t\)</span> 和 <span class="arithmatex">\(g_t\)</span>  是一个东西，学名：候选向量</p>
+<p>问题：<span class="arithmatex">\(\tanh\)</span> 输出的含义是什么？</p>
+<p>类似 sigmoid 的输出 <code>0 表示遗忘，1 表示记住</code></p>
+<p>三、更新细胞状态得到 <span class="arithmatex">\(c_t\)</span></p>
+<p>更新上一个状态值<span class="arithmatex">\(C_{t−1}\)</span>了，将其更新为<span class="arithmatex">\(C_t\)</span></p>
+<p>将上一个状态值乘以<span class="arithmatex">\(f_t\)</span>，以此表达期待忘记的部分 $ \iff f_t \odot c_{t-1}$</p>
+<p>之后将得到的值加上 <span class="arithmatex">\(i_t∗\tilde{C}_t\)</span>  <span class="arithmatex">\(\iff + i_t \odot \tilde{C}_t\)</span></p>
+<p>这个得到的是新的候选值 <span class="arithmatex">\(C_t\)</span>， 按照我们决定更新每个状态值的多少来衡量，最终的公式：</p>
+<div class="arithmatex">\[c_t = f_t \odot c_{t-1} + i_t \odot g_t \]</div>
+<p>以上得到了 第一个 输出 <span class="arithmatex">\(c_t\)</span>，现在开始第二个输出 <span class="arithmatex">\(h_t\)</span></p>
+<p>四、输出什么</p>
+<p>最后需要决定要输出什么</p>
+<p>此输出将基于细胞状态，但 是一个过滤版本。  <span class="arithmatex">\(tanh(C_t)\)</span></p>
+<ul>
+<li>首先，经过一个sigmoid层，决定了要输出的细胞状态的哪些部分  <span class="arithmatex">\(o_t = \sigma(f(h_{t-1},x_t))\)</span></li>
+<li>然后，将单元格状态通过tanh（将值规范化到-1和1之间），并将其乘以Sigmoid门的输出   <span class="arithmatex">\(h_t = o_t \odot \tanh(c_t)\)</span></li>
+</ul>
+<p>至此就输出了决定的那些部分</p>
+<p><img alt="image-20241222133636506" src="../images/image-20241222133636506.png" /></p>
+<p>把公式精简一下：</p>
+<p><img alt="image-20241222133918408" src="../images/image-20241222133918408.png" /></p>
+<p>输入：<span class="arithmatex">\(x_t\)</span>、<span class="arithmatex">\(h_{t-1}\)</span></p>
+<p>操作：(这里的符号是参照官网 api 的)</p>
+<p><span class="arithmatex">\(f_t = \sigma(f(x_t,h_{t-1})) \iff \sigma(W_f[x_t,h_{t-1}]+b_f)\)</span></p>
+<p><span class="arithmatex">\(i_t = \sigma(f(x_t,h_{t-1})) \iff \sigma(W_i[x_t,h_{t-1}]+b_i)\)</span></p>
+<p><span class="arithmatex">\(g_t = \sigma(f(x_t,h_{t-1})) \iff \sigma(W_g[x_t,h_{t-1}]+b_g)\)</span></p>
+<p><span class="arithmatex">\(o_t = \sigma(f(x_t,h_{t-1})) \iff \sigma(W_o[x_t,h_{t-1}]+b_o)\)</span></p>
+<p><span class="arithmatex">\(f\)</span> 代表仿射变换 <span class="arithmatex">\(Wx+b\)</span></p>
+<p>输出：<span class="arithmatex">\(c_t、h_t\)</span>（这个图示，画得太细，反而晕乎）</p>
+<p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
+<p>理解：</p>
+<p>1、<span class="arithmatex">\(f_t\)</span> 指示 要忘记的历史信息（白话：<span class="arithmatex">\(更新历史信息\)</span>，该记住的记住，该忘记的忘记，忘记多少也表达了记住多少，需要看参照）</p>
+<p>2、<span class="arithmatex">\(i_t\)</span> 保留多少输入信息，为输入信息加权；</p>
+<p><span class="arithmatex">\(g_t\)</span> 表示输入信息，最后得到的是要记住多少输入信息</p>
+<p>3、最后同时存到 <span class="arithmatex">\(c_t\)</span> 中</p>
+<p><span class="arithmatex">\(h_t = \tanh({c_t}) \odot o_t\)</span></p>
+<p>理解：</p>
+<p>最后，需要决定输出什么</p>
+<p>输出基于细胞状态，是过滤版本</p>
+<p>step1：首先，通过sigmoid层，决定要输出的细胞状态的哪些部分</p>
+<p>step2：然后，将单元格状态通过tanh（将值规范化到-1和1之间）</p>
+<p>step3：并将其乘以Sigmoid门的输出，至此输出决定的那些部分</p>
+<p>以上是关于 LSTM 内部的计算理解</p>
+<h3 id="torchnnlstm">torch.nn.LSTM<a class="headerlink" href="#torchnnlstm" title="Permanent link">&para;</a></h3>
+<p>与 RNN 对比：</p>
+<blockquote>
+<p>在参数相同的条件下，LSTM的序列建模能力是强于RNN的，所以比较大的序列建模任务都是用 LSTM做</p>
+</blockquote>
+<p>pytorch 的官方 api：<code>torch.nn.LSTM</code></p>
+<p><img alt="image-20241222180446830" src="../images/image-20241222180446830.png" /></p>
+<ul>
+<li>这是一个class，是一个类</li>
+<li>要用的话</li>
+</ul>
+<p>（1）首先进行实例化，得到一个算子</p>
+<p>（2）喂入输入序列，输入序列经过LSTM网络，得到的 每个输入状态的输出，最后将得到状态的输出： <span class="arithmatex">\(h_t\)</span></p>
+<p>（3）每一时刻的 <span class="arithmatex">\(h_t\)</span> 组合起来的输出序列</p>
+<p><strong><u>明确 LSTM 的公式：</u></strong></p>
+<p>首先，<code>LSTM核心：细胞状态</code></p>
+<p>一共涉及的东西：<span class="arithmatex">\(f、i、g、o、h、c\)</span></p>
+<p>输入：<span class="arithmatex">\(x_t、h_{t-1}\)</span></p>
+<p>公式：</p>
+<p><img alt="image-20241222181758637" src="../images/image-20241222181758637.png" /></p>
+<p><span class="arithmatex">\(f_t=\sigma(w_f[x_t,h_{t-1}]+b_f)\)</span> </p>
+<p><span class="arithmatex">\(i_t = \sigma(w_i[x_t,h_{t-1}]+b_i)\)</span></p>
+<p><span class="arithmatex">\(g_t = \tanh(w_g[x_t,h_{t-1}]+b_g)\)</span></p>
+<p>$o_t = \sigma(w_o[x_t,h_{t-1}]+b_o) $</p>
+<p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
+<p><span class="arithmatex">\(h_t = o_t \odot \tanh(c_t)\)</span></p>
+<p>四个门，分别是<span class="arithmatex">\(i、f、g、o\)</span></p>
+<p>这里有四个门：</p>
+<p>（1）其中有三个门非线性激活函数都是 <code>sigmoid</code></p>
+<p>（2）<span class="arithmatex">\(g_t\)</span>的激活函数是 tanh函数</p>
+<p><u>其实这四个门的运算有很大的相似性</u></p>
+<blockquote>
+<p>有 四个 <span class="arithmatex">\(W\)</span></p>
+<p>并且四个<span class="arithmatex">\(W\)</span>都是跟<span class="arithmatex">\(x_t\)</span>进行一个矩阵相乘</p>
+<p>同样的 <span class="arithmatex">\(W_{hi} 、W_{hf}\)</span>右边的四个<span class="arithmatex">\(W\)</span>，也是跟 <span class="arithmatex">\(h_{t-1}\)</span>，进行矩阵相乘</p>
+<p>所以虽然看上去有4个<span class="arithmatex">\(W_i\)</span>，但是可以把 这个 四个 <span class="arithmatex">\(W_i\)</span>叠起来</p>
+<p>比方说 每个<span class="arithmatex">\(W_i\)</span>是<span class="arithmatex">\(2\)</span>行，那么<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(W_i\)</span>，就可以 叠成<span class="arithmatex">\(8\)</span>行</p>
+</blockquote>
+<p><img alt="image-20241222182249464" src="../images/image-20241222182249464.png" /></p>
+<p>然后再跟 <span class="arithmatex">\(x_t\)</span> 进行一个相乘，就是把 这个 <span class="arithmatex">\(四个 W乘以x\)</span></p>
+<p><span class="arithmatex">\(W×x\)</span> 组合起来，一起算</p>
+<p>同样这里的<span class="arithmatex">\(W乘以h(W×h)\)</span>也是一样的</p>
+<p>由于都是 乘以 同一个<span class="arithmatex">\(h\)</span></p>
+<p>同样把 四个 <span class="arithmatex">\(W\)</span>堆叠起来，<span class="arithmatex">\(stack\)</span>堆叠来，算完了 再<span class="arithmatex">\(split\)</span></p>
+<p><img alt="image-20241222182908199" src="../images/image-20241222182908199.png" /></p>
+<p>如图，还有<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(b_i\)</span>和<span class="arithmatex">\(b_h\)</span>，输入 <span class="arithmatex">\(linear\)</span>的偏置 和上一时刻 隐含状态线性层的偏置</p>
+<p>同样这里 <span class="arithmatex">\(4\)</span>个偏置，<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(b_i\)</span> 就是直接加，不需要联合算</p>
+<p>同样这里的<span class="arithmatex">\(b_h\)</span>，也是<span class="arithmatex">\(4\)</span>个偏置</p>
+<p>维度都是跟<span class="arithmatex">\(i_t、 f_t\)</span> 维度是一样的，得到的 <span class="arithmatex">\(i、f、g、o\)</span>以后，就可以算出当前时刻细胞的状态 <span class="arithmatex">\(c_t\)</span></p>
+<p><img alt="image-20241222183148665" src="../images/image-20241222183148665.png" /></p>
+<p>About <span class="arithmatex">\(c_t\)</span> ：</p>
+<p>（1）<span class="arithmatex">\(c_t= f_t×c_{t-1}\)</span>，中间的乘是逐元素的乘，不是矩阵乘法</p>
+<p>（2）默认<span class="arithmatex">\(f_t\)</span>跟<span class="arithmatex">\(c_{t-1}\)</span>维度是一样的，同一位置上的元素两两相乘</p>
+<p>（3）同样 <span class="arithmatex">\(i_t\)</span>和<span class="arithmatex">\(g_t\)</span>也是一样，同一位置的两两元素 相乘</p>
+<p>（4）乘完以后元素再加起来，得到<span class="arithmatex">\(c_t\)</span></p>
+<p><span class="arithmatex">\(c_t\)</span> 是当前时刻的细胞状态，就是上面的黑线，这黑线是 LSTM 的创新</p>
+<details class="question">
+<summary>（作者咋想的，要加条黑线，还有这些门的设计，why？）</summary>
+</details>
+<p><img alt="image-20241222183514356" src="../images/image-20241222183514356.png" /></p>
 
 
 
@@ -3192,7 +3609,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-22T15:17:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-22</span>
   </span>
 
     
