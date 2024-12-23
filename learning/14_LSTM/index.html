@@ -2094,6 +2094,75 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lstmlstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM和LSTMP的原理与源码实现
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 LSTM 实现
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 全部代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTMP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LSTMP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-lstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方 api实现 LSTMP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstmp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 LSTMP 代码实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstmp_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTMP的全部代码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3310,6 +3379,75 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#lstmlstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM和LSTMP的原理与源码实现
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 LSTM 实现
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstm_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTM 全部代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#lstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTMP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LSTMP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api-lstmp" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方 api实现 LSTMP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstmp_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      自定义 LSTMP 代码实现
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lstmp_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      LSTMP的全部代码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3587,6 +3725,1351 @@
 <summary>（作者咋想的，要加条黑线，还有这些门的设计，why？）</summary>
 </details>
 <p><img alt="image-20241222183514356" src="../images/image-20241222183514356.png" /></p>
+<p>整个LSTM就是靠黑线，来不断对历史信息 进行筛选和更新，得到<span class="arithmatex">\(c_t\)</span>以后，最终 得到 <span class="arithmatex">\(h_t\)</span></p>
+<p>$c_t=f_t \odot c_{t-1} + i_t \odot g_t $</p>
+<p><span class="arithmatex">\(h_t = o_t \odot \tanh{c_t}\)</span></p>
+<blockquote>
+<p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
+<p><span class="arithmatex">\(= \sigma{(W_f{[x_t,h_{t-1}]}+b_f)} \odot c_{t-1} + \sigma(W_i[x_t,h_{t-1}]+b_i) \odot \tanh(W_g[x_t,h_{t-1}]+b_g)\)</span></p>
+<p><span class="arithmatex">\(h_t = o_t \odot \tanh{c_t}\)</span></p>
+<p><span class="arithmatex">\(h_t = \sigma (W_o[x_t,h_{t-1}]+b_o) \odot \tanh{c_t}\)</span></p>
+<p><strong>对比RNN 的公式：</strong></p>
+<p><span class="arithmatex">\(h_t = \tanh(W_h[x_t,h_{t-1}]+b_h)\)</span></p>
+<p><span class="arithmatex">\(=\tanh(x_tW_{ih}^T+b_{ih}+h_{t-1}W_{hh}^T+b_{hh})\)</span></p>
+</blockquote>
+<p><span class="arithmatex">\(c_t\)</span> 也是为了最终 <span class="arithmatex">\(h_t\)</span> 的输出</p>
+<p>整个LSTM的输出就是 <span class="arithmatex">\(h_t\)</span></p>
+<p>ht：由<span class="arithmatex">\(输出门×细胞状态 (经过 激活函数 \tanh函数)\)</span>，所得到的值，就是<span class="arithmatex">\(h_t\)</span>，<span class="arithmatex">\(h_t\)</span>就是LSTM的输出</p>
+<p><strong><u>初始状态</u></strong></p>
+<p><strong>（1）LSTM中的初始状态有 2 个</strong></p>
+<p>RNN有初始状态，同样在LSTM网络中，也有初始状态，但是LSTM 中的初始状态，有两个。</p>
+<p><u><strong>（2）需要提供什么初始状态？</strong></u> </p>
+<blockquote>
+<p>从公式里找初始状态，哪些符号以 <span class="arithmatex">\(t-1\)</span>为下标的，只要以<span class="arithmatex">\(t-1\)</span>为下标的就是说需要提供初始状态，也就是说需要提供这些量的初始值</p>
+<p>从<span class="arithmatex">\(t\)</span>从<span class="arithmatex">\(1\)</span>开始，带<span class="arithmatex">\(t-1\)</span>下标的，需要提供<span class="arithmatex">\(t_0\)</span>，所以一定有初始状态</p>
+<p>从公式来看 一共有两个带 <span class="arithmatex">\(t-1\)</span> 下标的</p>
+</blockquote>
+<p><span class="arithmatex">\(f_t,i_t,o_t = \sigma(W[x_t,h_{t-1}]+b)\)</span></p>
+<p><span class="arithmatex">\(g_t = \tanh(W[x_t,h_{t-1}]+b)\)</span></p>
+<p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
+<p><span class="arithmatex">\(h_t = o_t \odot \tanh{c_t}\)</span></p>
+<blockquote>
+<p>分别是<span class="arithmatex">\(h_{t-1}\)</span>，<span class="arithmatex">\(c_{t-1}\)</span></p>
+<p>也就是说 在<span class="arithmatex">\(t=1\)</span>时刻的时候，需要提供<span class="arithmatex">\(h_0\)</span>、<span class="arithmatex">\(c_0\)</span>，来算出<span class="arithmatex">\(t=1\)</span>时刻的<span class="arithmatex">\(h_1\)</span>和<span class="arithmatex">\(c_1\)</span></p>
+<p>LSTM网络，相比于简单的RNN网络，初始状态就多了 <span class="arithmatex">\(c_0\)</span></p>
+</blockquote>
+<p><strong><u>ReCall RNN</u></strong></p>
+<p><img alt="image-20241223123235044" src="../images/image-20241223123235044.png" /></p>
+<p><u>(1) RNN的公式更简单，<span class="arithmatex">\(h_t\)</span>是<span class="arithmatex">\(x_t\)</span>跟<span class="arithmatex">\(h_{t-1}\)</span>的线性组合</u></p>
+<p><span class="arithmatex">\(h_t = \tanh{(W_h[x_t,h_{t-1}]+b_h)}\)</span></p>
+<p><u>(2)RNN需要的初始状态只有 <span class="arithmatex">\(h_0\)</span></u> </p>
+<blockquote>
+<p>从RNN的公式中可以看出来，只有一个符号，就是<span class="arithmatex">\(h\)</span>下标是<span class="arithmatex">\(t-1\)</span>，也就是说 去算RNN的网络的时候，需要提供 <span class="arithmatex">\(h_0\)</span>作为初始状态，因为如果要算<span class="arithmatex">\(h_1\)</span>的话，我们必须要有<span class="arithmatex">\(h_0\)</span>，所以必须要提供<span class="arithmatex">\(h_0\)</span>，当然框架已经默认提供了<span class="arithmatex">\(h_0\)</span>等于一个全0的向量</p>
+</blockquote>
+<p><strong><u>VS LSTM</u></strong></p>
+<p><img alt="image-20241223123917725" src="../images/image-20241223123917725.png" /></p>
+<p><span class="arithmatex">\(i_t,f_t,o_t = \sigma(W[x_t,h_{t-1}]+b)\)</span></p>
+<p><span class="arithmatex">\(g_t = \tanh(W[x_t,h_{t-1}]+b)\)</span></p>
+<p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
+<p><span class="arithmatex">\(h_t = o_t \odot \tanh{c_t}\)</span></p>
+<ul>
+<li>在LSTM中，根据公式可以看到必须要提供<span class="arithmatex">\(h_0\)</span>和<span class="arithmatex">\(c_0\)</span></li>
+<li>LSTM相比于RNN又多了一个初始状态，不仅有<span class="arithmatex">\(h_0\)</span>，还有<span class="arithmatex">\(c_0\)</span></li>
+<li>在框架中，同样提供了 默认的值：全0</li>
+</ul>
+<blockquote>
+<p><strong><u>补充：</u></strong></p>
+<p>我们也可以不用全<span class="arithmatex">\(0\)</span> 的默认值，也可以用其他的值，自己构造<span class="arithmatex">\(h_0\)</span>和<span class="arithmatex">\(c_0\)</span></p>
+<p>此时，<span class="arithmatex">\(h_0\)</span>和<span class="arithmatex">\(c_0\)</span>，可能是从某一个输入映射来的，这种初始化方法也叫<code>Meta learning</code>，即我们的初始值 都是靠学来的</p>
+<p>可以让初始状态，不是完全随机的，可以设置为与输入有关，或者跟 condition有关
+</p>
+</blockquote>
+<p><strong>LSTM 初始化需要的参数</strong></p>
+<p><img alt="image-20241223124902475" src="../images/image-20241223124902475.png" /></p>
+<p>需要实例化LSTM的参数：</p>
+<ul>
+<li><code>input_size</code>：输入序列特征的大小</li>
+<li><code>hidden_size</code> ：  ① LSTM网络 <span class="arithmatex">\(h\)</span>的大小 ② <code>hidden_size</code> 也是<span class="arithmatex">\(c\)</span>的大小</li>
+<li><code>num_layers</code> ：层数，构建多层的LSTM，多层堆叠起来，前一层的输出<span class="arithmatex">\(h_t\)</span>，是作为下一层LSTM的输入<span class="arithmatex">\(x_t\)</span></li>
+<li><code>bias</code>：决定了<span class="arithmatex">\(b_i\)</span>和<span class="arithmatex">\(b_h\)</span>是否可以丢弃</li>
+<li><code>batch_first</code>：① 在pytorch中，默认的是<code>batch</code>是放在中间一维的  ② 可以把<code>batch_firs</code>t设置成<code>true</code>，此时 <code>batch</code> 就在 第一维</li>
+<li><code>dropout</code> 以及 双向  <code>bidirectional</code> </li>
+</ul>
+<p>① 如果要构建双向的话，有<code>forward layer</code>和<code>backward layer</code></p>
+<p>② 最后的状态是由<code>forward layer</code>和<code>backward layer</code>拼接起来的状态</p>
+<ul>
+<li><code>proj_size</code>  ：最后一个参数，这个参数相当于LSTM网络的变体：LSTMP</li>
+</ul>
+<h2 id="lstmlstmp">LSTM和LSTMP的原理与源码实现<a class="headerlink" href="#lstmlstmp" title="Permanent link">&para;</a></h2>
+<p><strong><u>LSTM &amp; LSTMP</u></strong></p>
+<p>作用：为了减小LSTM的参数和计算量</p>
+<blockquote>
+<p>因为LSTM的计算量是比较大的，LSTMP通过对<span class="arithmatex">\(h_t\)</span>进行压缩，<span class="arithmatex">\(h_t\)</span>的维度会变小，整个网络的参数量和运算量 都会变小，有论文表明通过对 <span class="arithmatex">\(h_t\)</span> 进行压缩，性能损失不是很大，所以在具体地实验中，可以尝试LSTMP</p>
+</blockquote>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 实例化 LSTM 需要传入的参数 <span class="arithmatex">\(\uparrow\)</span></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> LSTM input parameters <span class="arithmatex">\(\downarrow\)</span></li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> LSTM output <span class="arithmatex">\(\downarrow\)</span> </li>
+</ul>
+<p><strong><u>LSTM input parameters</u></strong> </p>
+<p><img alt="image-20241223131724301" src="../images/image-20241223131724301.png" /></p>
+<p>1️⃣ <code>input</code></p>
+<p>格式：如果是 batch first=true的话： <code>batch size×sequence length×input size</code>。</p>
+<p>2️⃣ <code>(h_0，c_0)</code></p>
+<p>格式：元组</p>
+<p>为什么是元组的形式？</p>
+<blockquote>
+<p>为了跟RNN的api保持一致</p>
+<p>RNN的api输入就是两个量，LSTM是RNN一个特殊的变体，所以虽然有两个初始状态，用两个更合乎常理，但还是用元组的形式组合起来</p>
+<p>两个初始状态分别是 <code>h_0</code>和<code>c_0</code></p>
+<p>就是所有带 t-1 下标的，这些符号都需要提供一个初始值</p>
+</blockquote>
+<p><strong><u>LSTM output</u></strong></p>
+<p><img alt="image-20241223135213262" src="../images/image-20241223135213262.png" /></p>
+<p>虽然是输出 <code>c_n</code>，但是 <code>h_n = o_n × tanh(c_n)</code>，<code>h_n</code> 与 <code>c_n</code> 是由 <code>c_n</code> 计算来的，即使说 <code>c_n</code> 是中间结果也可以，但 <code>c_n</code> 是 LSTM 的核心</p>
+<p><code>Outputs：output,(h_n,c_n)</code></p>
+<ul>
+<li>
+<p><code>output</code>：整个模型序列的输出，<code>shape= batch size×sequence length×hidden size</code>，output 反应整个序列的状态输出；</p>
+</li>
+<li>
+<p><code>(h_n,c_n)</code> ：元组形式，<code>h_n</code>和<code>c_n</code>，表示最后一个时刻的<code>隐含状态</code>和<code>细胞状态</code></p>
+</li>
+</ul>
+<p>思考：<code>output,(h_n,c_n)</code>有什么作用？</p>
+<blockquote>
+<p>1️⃣ <code>output</code></p>
+<p><code>output</code>是一个<code>many to many</code>的建模</p>
+<p>输入是一个序列，输出也是一个序列，保留序列中的每个元素，比方说，对一个文本的多音字进行预测，或者说词性进行预测，都是 <code>many to many</code>的任务，需要每一时刻的输出</p>
+<p>2️⃣ <code>h_n</code></p>
+<p><code>h_n</code>是一个<code>many to one</code>的任务</p>
+<p>比方说输入一段话到LSTM网络中，最终只取最后一个时刻的状态，并且希望最后一个时刻的状态，就能去表征整句话的特征，然后再对最后一个状态进行分类，或者进行 <code>sequence embedding</code>，这个是 <code>many to one</code>的任务，就可以用到<code>h_n</code></p>
+</blockquote>
+<p>以上：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 实例化 LSTM 需要的传入参数</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LSTM 算子的 input parameters</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> LSTM 的 outputs</li>
+</ul>
+<p><strong><u>RECall BiRNN</u></strong> </p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="c1"># step3 手写一个 bidirectional_rnn_forward函数，实现双向RNN的计算原理</span>
+</span><span id="__span-0-2"><span class="k">def</span> <span class="nf">bidirectional_rnn_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-0-3">                              <span class="n">weight_ih</span><span class="p">,</span>
+</span><span id="__span-0-4">                              <span class="n">weight_hh</span><span class="p">,</span>
+</span><span id="__span-0-5">                              <span class="n">bias_ih</span><span class="p">,</span>
+</span><span id="__span-0-6">                              <span class="n">bias_hh</span><span class="p">,</span>
+</span><span id="__span-0-7">                              <span class="n">h_prev</span><span class="p">,</span>
+</span><span id="__span-0-8">                              <span class="n">weight_ih_reverse</span><span class="p">,</span>
+</span><span id="__span-0-9">                              <span class="n">weight_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-0-10">                              <span class="n">bias_ih_reverse</span><span class="p">,</span>
+</span><span id="__span-0-11">                              <span class="n">bias_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-0-12">                              <span class="n">h_prev_reverse</span><span class="p">):</span>
+</span><span id="__span-0-13">    <span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">input_size</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span>
+</span><span id="__span-0-14">    <span class="n">h_dim</span> <span class="o">=</span> <span class="n">weight_ih</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-0-15">    <span class="n">h_out</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">h_dim</span><span class="o">*</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 初始化一个输出（状态）矩阵，注意双向是两倍的特征大小</span>
+</span><span id="__span-0-16">
+</span><span id="__span-0-17">    <span class="n">forward_output</span> <span class="o">=</span> <span class="n">rnn_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-0-18">                                 <span class="n">weight_ih</span><span class="p">,</span>
+</span><span id="__span-0-19">                                 <span class="n">weight_hh</span><span class="p">,</span>
+</span><span id="__span-0-20">                                 <span class="n">bias_ih</span><span class="p">,</span>
+</span><span id="__span-0-21">                                 <span class="n">bias_hh</span><span class="p">,</span>
+</span><span id="__span-0-22">                                 <span class="n">h_prev</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># forward layer</span>
+</span><span id="__span-0-23">    <span class="n">backward_output</span> <span class="o">=</span> <span class="n">rnn_forward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="nb">input</span><span class="p">,[</span><span class="mi">1</span><span class="p">]),</span>
+</span><span id="__span-0-24">                                  <span class="n">weight_ih_reverse</span><span class="p">,</span>
+</span><span id="__span-0-25">                                  <span class="n">weight_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-0-26">                                  <span class="n">bias_ih_reverse</span><span class="p">,</span> <span class="n">bias_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-0-27">                                  <span class="n">h_prev_reverse</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># backward layer</span>
+</span><span id="__span-0-28">
+</span><span id="__span-0-29">    <span class="c1"># 将input按照时间的顺序翻转</span>
+</span><span id="__span-0-30">    <span class="n">h_out</span><span class="p">[:,:,:</span><span class="n">h_dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">forward_output</span>
+</span><span id="__span-0-31">    <span class="n">h_out</span><span class="p">[:,:,</span><span class="n">h_dim</span><span class="p">:]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">backward_output</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span> <span class="c1">#需要再翻转一下 才能和forward output拼接</span>
+</span><span id="__span-0-32">
+</span><span id="__span-0-33">
+</span><span id="__span-0-34">    <span class="n">h_n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">h_dim</span><span class="p">)</span>  <span class="c1"># 要最后的状态连接</span>
+</span><span id="__span-0-35">
+</span><span id="__span-0-36">    <span class="n">h_n</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">forward_output</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+</span><span id="__span-0-37">    <span class="n">h_n</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">backward_output</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+</span><span id="__span-0-38">
+</span><span id="__span-0-39">    <span class="n">h_n</span> <span class="o">=</span> <span class="n">h_n</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-40">
+</span><span id="__span-0-41">    <span class="k">return</span> <span class="n">h_out</span><span class="p">,</span><span class="n">h_n</span>
+</span><span id="__span-0-42">    <span class="c1"># return h_out,h_out[:,-1,:].reshape((bs,2,h_dim)).transpose(0,1)</span>
+</span><span id="__span-0-43">
+</span><span id="__span-0-44"><span class="c1"># 验证一下 bidirectional_rnn_forward的正确性</span>
+</span><span id="__span-0-45"><span class="n">bi_rnn</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">RNN</span><span class="p">(</span><span class="n">input_size</span><span class="p">,</span>
+</span><span id="__span-0-46">                <span class="n">hidden_size</span><span class="p">,</span>
+</span><span id="__span-0-47">                <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+</span><span id="__span-0-48">                <span class="n">bidirectional</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-0-49"><span class="n">h_prev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="mi">2</span><span class="p">,</span><span class="n">bs</span><span class="p">,</span><span class="n">hidden_size</span><span class="p">))</span>
+</span><span id="__span-0-50"><span class="n">bi_rnn_output</span><span class="p">,</span><span class="n">bi_state_finall</span> <span class="o">=</span> <span class="n">bi_rnn</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">h_prev</span><span class="p">)</span>
+</span><span id="__span-0-51">
+</span><span id="__span-0-52"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">bi_rnn</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-0-53">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>有<code>forward layer</code>还有<code>backward layer</code></li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">    <span class="n">forward_output</span> <span class="o">=</span> <span class="n">rnn_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-1-2">                                 <span class="n">weight_ih</span><span class="p">,</span>
+</span><span id="__span-1-3">                                 <span class="n">weight_hh</span><span class="p">,</span>
+</span><span id="__span-1-4">                                 <span class="n">bias_ih</span><span class="p">,</span>
+</span><span id="__span-1-5">                                 <span class="n">bias_hh</span><span class="p">,</span>
+</span><span id="__span-1-6">                                 <span class="n">h_prev</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># forward layer</span>
+</span><span id="__span-1-7">    <span class="n">backward_output</span> <span class="o">=</span> <span class="n">rnn_forward</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="nb">input</span><span class="p">,[</span><span class="mi">1</span><span class="p">]),</span>
+</span><span id="__span-1-8">                                  <span class="n">weight_ih_reverse</span><span class="p">,</span>
+</span><span id="__span-1-9">                                  <span class="n">weight_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-1-10">                                  <span class="n">bias_ih_reverse</span><span class="p">,</span> <span class="n">bias_hh_reverse</span><span class="p">,</span>
+</span><span id="__span-1-11">                                  <span class="n">h_prev_reverse</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span> <span class="c1"># backward layer</span>
+</span></code></pre></div></td></tr></table></div>
+<p>主要看<code>backward layer</code></p>
+<p>首先对输入进行一个翻转 <code>torch.flip(input,[1])</code> ，按照时间维度进行翻转，同样喂入到RNN forward函数中，有各种翻转</p>
+<p>再把<code>forward output</code>和<code>backward output</code>拼起来，在特征维度上拼起来 就构成了 <code>h_out</code>，也就是双向RNN网络</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">    <span class="c1"># 将input按照时间的顺序翻转</span>
+</span><span id="__span-2-2">    <span class="n">h_out</span><span class="p">[:,:,:</span><span class="n">h_dim</span><span class="p">]</span> <span class="o">=</span> <span class="n">forward_output</span>
+</span><span id="__span-2-3">    <span class="n">h_out</span><span class="p">[:,:,</span><span class="n">h_dim</span><span class="p">:]</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">flip</span><span class="p">(</span><span class="n">backward_output</span><span class="p">,[</span><span class="mi">1</span><span class="p">])</span>
+</span><span id="__span-2-4">    <span class="c1">#需要再翻转一下 才能和forward output拼接</span>
+</span><span id="__span-2-5">
+</span><span id="__span-2-6">    <span class="n">h_n</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="n">h_dim</span><span class="p">)</span>  <span class="c1"># 要最后的状态连接</span>
+</span><span id="__span-2-7">    <span class="n">h_n</span><span class="p">[:,</span><span class="mi">0</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">forward_output</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+</span><span id="__span-2-8">    <span class="n">h_n</span><span class="p">[:,</span><span class="mi">1</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">backward_output</span><span class="p">[:,</span><span class="o">-</span><span class="mi">1</span><span class="p">,:]</span>
+</span><span id="__span-2-9">    <span class="n">h_n</span> <span class="o">=</span> <span class="n">h_n</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-2-10">    <span class="k">return</span> <span class="n">h_out</span><span class="p">,</span><span class="n">h_n</span>
+</span></code></pre></div></td></tr></table></div>
+<p>双向GRU和 双向 LSTM 原理也是一样的</p>
+<p><strong>实现 LSTM</strong></p>
+<p>调用官方 api</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><span class="c1"># 实现LSTM和LSTMP的源码</span>
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20241223141412807" src="../images/image-20241223141412807.png" /></p>
+<p><strong>第 1 步：定义常量</strong> </p>
+<ul>
+<li>batch size</li>
+<li>时间：T</li>
+<li>输入特征大小：i_size</li>
+<li>h_size：hidden size网络细胞状态的大小</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><span class="c1"># 定义常量</span>
+</span><span id="__span-4-2"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</span></code></pre></div></td></tr></table></div>
+<p><code>projection size</code> 也就是投影的大小（暂跳）</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1"><span class="c1"># proj_size</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 2 步：构建输入 input</strong></p>
+<p>喂入到LSTM网络的特征序列</p>
+<p>用正态分布初始化 torch.randn 输入</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">)</span> <span class="c1">#输入序列</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 3 步：初始化初始状态：<code>c_0、h_0</code></strong></p>
+<p>除了输入序列，还需要初始化两个初始状态，分别是<code>c_0</code>和<code>h_0</code></p>
+<p><strong>c_0</strong></p>
+<p>假设只考虑一层，<code>c_0</code>的初始状态就是 <code>batch size×hidden size</code></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">c0 = torch.randn(bs,h_size)
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>因为<code>c</code>本身就是一个向量，向量长度就是 <code>hidden_size</code></p>
+<p>考虑到 <code>batch</code>维度，所以写成 <code>batch size×hidden size</code></p>
+<p>以上，初始化 <code>c_0</code> 
+</p>
+</blockquote>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span> <span class="c1"># 初始值 不需要参与训练</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>h_0</strong></p>
+<p><code>c_0</code> 不需要训练，<code>h_0</code>也是一样的，就是提供了<code>h</code>的初始值</p>
+<p>写 <code>batch_size ×hidden_size</code></p>
+<p>先写 <code>hidden_size</code>，暂时不考虑考虑<code>projection size</code></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">h0 = torch.randn(bs,h_size)
+</span></code></pre></div></td></tr></table></div>
+<p>以上，定义好了三个基本的量：输入 <code>input</code> 和初始值<code>(c_0,h_0)</code></p>
+<p><img alt="image-20241223143614510" src="../images/image-20241223143614510.png" /></p>
+<p><strong>第 4 步：调用官方LSTM API，实例化</strong></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><span class="c1"># 调用官方LSTM API</span>
+</span></code></pre></div></td></tr></table></div>
+<p>官方api就是<code>nn.LSTM</code></p>
+<p><div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1"><span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">()</span>
+</span></code></pre></div></td></tr></table></div>
+实例化需要传入的参数
+<img alt="image-20241223143805568" src="../images/image-20241223143805568.png" /></p>
+<p>传入的参数顺序分别是 input size、hidden size、batch first</p>
+<p>projection size暂时不用</p>
+<ul>
+<li><code>input_size</code> 就是 <code>i_size</code></li>
+<li><code>hidden_size</code>就是<code>h_size</code></li>
+<li><code>batch_first</code>设置成 <code>true</code></li>
+</ul>
+<p>以上实例化了简单的LSTM layer，定义：<code>lstm_layer</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span><span class="p">,</span><span class="n">batch_size</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 5 步：<code>LSTM</code> 算子 <code>input parameters</code></strong></p>
+<p>在定义好LSTM layer以后，把<code>输入</code>和<code>初始状态</code>分别传入到LSTM layer中</p>
+<p><strong>具体怎么传入参数?</strong></p>
+<p>去看api</p>
+<p><img alt="image-20241223144423828" src="../images/image-20241223144423828.png" /></p>
+<p>从<code>api</code>可以看到，<code>inputs</code>是 <code>input</code>和<code>一个元组</code></p>
+<p>在元组中，需要传入<code>h0</code>和<code>c0</code></p>
+<p>所以代码写<code>input</code>，然后再写<code>一个元组</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1"><span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,())</span>
+</span></code></pre></div></td></tr></table></div>
+<p>元组分别传入 <code>h0</code> 和<code>c0</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1"><span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>那维度是多少呢？官方文档：</p>
+<p><img alt="image-20241223144701143" src="../images/image-20241223144701143.png" /></p>
+<p><code>h0</code>的维度是<code>D*num_layers×N×H_out</code></p>
+<p><code>c0</code>也是一样的，首先初始化 <code>N×H_out</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-15-2">                                        <span class="p">(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>演示的是单向的LSTM网络，是一层的，所以前面的数字在初始化时省掉了</p>
+<p>现在先扩一下，扩成 三维</p>
+<p>对<code>h0</code>调用<code>unsqueeze</code>函数，在第0维扩一维</p>
+<p><code>c0</code>也同样扩维，变成三维张量，第0维是1</p>
+<p>以上是单层单向LSTM 算子，可以得到输出</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1"><span class="c1"># 定义常量</span>
+</span><span id="__span-16-2"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</span><span id="__span-16-3"><span class="c1"># proj_size</span>
+</span><span id="__span-16-4"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">)</span> <span class="c1"># 输入序列</span>
+</span><span id="__span-16-5"><span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>  <span class="c1"># 初始值不需要训练</span>
+</span><span id="__span-16-6"><span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>
+</span><span id="__span-16-7"><span class="c1"># 调用官方LSTM API</span>
+</span><span id="__span-16-8"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span><span class="p">,</span><span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-16-9"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-16-10">                                <span class="p">(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-16-11">
+</span><span id="__span-16-12"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">lstm_layer</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-16-13">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 6 步：输出 <code>Outputs:output,(h_n,c_n)</code></strong></p>
+<p><img alt="image-20241223150732582" src="../images/image-20241223150732582.png" /></p>
+<p>这里写输出：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1"><span class="c1"># 调用官方LSTM api</span>
+</span><span id="__span-17-2"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span>
+</span><span id="__span-17-3">                     <span class="n">h_size</span><span class="p">,</span>
+</span><span id="__span-17-4">                     <span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-17-5"><span class="n">output</span><span class="p">,(</span><span class="n">hn</span><span class="p">,</span><span class="n">cn</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-17-6">                            <span class="p">(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上调用好了api，接下来打印output</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>改名字，定义<code>h_finall</code>和<code>c_finall</code>，表示最后一个时刻的隐含状态和细胞状态</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-19-2">                                        <span class="p">(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 7 步：打印LSTM 模型参数</strong></p>
+<p>官方 api 实现 LSTM，可以调用 LSTM layer 的 <code>named_parameter</code> 函数，打印权重和名字，查看 LSTM 模型参数</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-20-2">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20241223151244370" src="../images/image-20241223151244370.png" /></p>
+<p>可以看到LSTM的参数名以及具体的张量：</p>
+<ul>
+<li><code>weight_ih_l0</code> 对应公式里的 <span class="arithmatex">\(W_{ii}\)</span> <span class="arithmatex">\(W_{if}\)</span>  <span class="arithmatex">\(W_{ig}\)</span> <span class="arithmatex">\(W_{io}\)</span>  四个 <span class="arithmatex">\(W_i\)</span>放到了一个 <code>weight_ih</code>里面</li>
+<li><code>weight_hh_l0</code> 这个参数是公式的 四个 <span class="arithmatex">\(W_{hi}\)</span>  <span class="arithmatex">\(W_{hf}\)</span> <span class="arithmatex">\(W_{hg}\)</span> <span class="arithmatex">\(W_{ho}\)</span> <span class="arithmatex">\(W_h\)</span>拼起来的</li>
+<li><code>bias_ih_l0</code> </li>
+<li><code>bias_hh_l0</code></li>
+</ul>
+<p>最后两个偏置项，同样是拼起来的，这样直接看张量不清晰，接下来看shape</p>
+<p><img alt="image-20241223155922046" src="../images/image-20241223155922046.png" /></p>
+<p><img alt="image-20241223155937493" src="../images/image-20241223155937493.png" /></p>
+<p>可以看到这个<code>LSTM layer</code>中一共有4个参数；</p>
+<p><font color="0000FF">第一个参数 </font> 是 <code>weight_ih_l0</code> ： 20×4</p>
+<p><strong>为什么是 20×4呢？</strong> </p>
+<blockquote>
+<ul>
+<li><code>20</code>是<code>hidden_size</code>，就是<code>5</code>这个维度，然后把<code>4</code>个<code>W</code>拼起来</li>
+</ul>
+<p>本来每一个是<code>5</code>行，现在拼成了<code>20</code>行，<code>20</code>就是<code>5×4</code></p>
+<ul>
+<li><code>4</code>是 <code>input_size</code>，因为这个<code>w_ih</code>是跟 <code>input</code> 相乘的，是对<code>input</code>进行线性变换的参数</li>
+</ul>
+</blockquote>
+<p><img alt="image-20241223160404063" src="../images/image-20241223160404063.png" /></p>
+<p>解释这里的权重：</p>
+<p><span class="arithmatex">\(T=3，input\_size = 4，hidden\_size = 5\)</span></p>
+<p><span class="arithmatex">\(4(4×1) \stackrel{5×4}{\rightarrow} 5(5×1)\)</span></p>
+<p><span class="arithmatex">\(∴ weight\_ih = 5 × 4 堆叠 4 个 → 20×4\)</span></p>
+<p><font color="0000FF">第二个参数 </font>  <code>weight_hh_l0</code> 参数是 <code>20×5</code>的</p>
+<blockquote>
+<ul>
+<li><code>20</code> 是 <code>4×5</code> 来的</li>
+<li><code>5</code> 是<code>weight_hh</code>是跟<code>上一时刻的隐含状态</code>进行线性变换的，维度是<code>5</code>  </li>
+<li><span class="arithmatex">\(∴ 1 个 weight\_hh shape = 5 × 5\)</span></li>
+</ul>
+<blockquote>
+<p>隐藏层是<code>linear</code>层：<code>y=wx+b</code></p>
+<p><code>w</code>的维度就是<code>hidden size×input size</code></p>
+<p>这里的<code>hidden_size</code>就是5，<code>input_size</code>是4</p>
+</blockquote>
+</blockquote>
+<p><font color="0000FF">第三个、第四个参数：</font>两个<code>bias</code></p>
+<blockquote>
+<p><code>bias_ih</code>和<code>bias_hh</code> 都是<code>20</code>，<code>20</code>是 <code>4×5</code>来的，就是有<code>4</code>个<code>bias</code>（<code>4</code>个<code>bi</code>和<code>4</code>个<code>bh</code>），把这四个拼起来，每一个长度都是20的</p>
+</blockquote>
+<p>以上是LSTM不带projection的实现</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1"><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-21-2"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-21-3"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span><span id="__span-21-4">
+</span><span id="__span-21-5"><span class="c1"># 定义常量</span>
+</span><span id="__span-21-6"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</span><span id="__span-21-7"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">)</span> <span class="c1"># 输入序列</span>
+</span><span id="__span-21-8"><span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>  <span class="c1"># 初始值不需要训练</span>
+</span><span id="__span-21-9"><span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>
+</span><span id="__span-21-10">
+</span><span id="__span-21-11"><span class="c1"># 调用官方LSTM API</span>
+</span><span id="__span-21-12"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span><span class="p">,</span><span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-21-13"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-21-14">
+</span><span id="__span-21-15"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">lstm_layer</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-21-16">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>OUT：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1"><span class="n">weight_ih_l0</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
+</span><span id="__span-22-2"><span class="n">weight_hh_l0</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">20</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+</span><span id="__span-22-3"><span class="n">bias_ih_l0</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">20</span><span class="p">])</span>
+</span><span id="__span-22-4"><span class="n">bias_hh_l0</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">20</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>可以根据这些参数，来自己写一个LSTM模型</p>
+<h2 id="lstm_3">自定义 LSTM 实现<a class="headerlink" href="#lstm_3" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1"><span class="c1"># 自己写一个LSTM模型</span>
+</span></code></pre></div></td></tr></table></div>
+<p>根据<code>上面的参数、h0、c0、input</code>，可以自己写一个LSTM</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1"><span class="k">def</span> <span class="nf">lstm_forward</span><span class="p">():</span>
+</span><span id="__span-24-2">    <span class="k">pass</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong><u>第 1 步：函数签名</u></strong> </p>
+<p><strong>首先思考这个 LSTM 模型，需要哪些输入呢？</strong></p>
+<p>第一个：需要传入的 <code>input</code></p>
+<p>第二个： 元组形式的 <code>initial states</code></p>
+<p>第三个： 权重和偏置，包括<code>W_ih、W_hh、b_ih、b_hh</code></p>
+<p>以上是<code>LSTM forward</code>的签名</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1"><span class="k">def</span> <span class="nf">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-25-2">                 <span class="n">initial_states</span><span class="p">,</span>
+</span><span id="__span-25-3">                 <span class="n">w_ih</span><span class="p">,</span>
+</span><span id="__span-25-4">                 <span class="n">w_hh</span><span class="p">,</span>
+</span><span id="__span-25-5">                 <span class="n">b_ih</span><span class="p">,</span>
+</span><span id="__span-25-6">                 <span class="n">b_hh</span><span class="p">):</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果带 projection的话，后面还需要再加参数</p>
+<p><strong>第 2 步：拆解<code>initial states</code>： <code>h0</code>和<code>c0</code></strong></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1"><span class="n">h0</span><span class="p">,</span><span class="n">c0</span> <span class="o">=</span> <span class="n">initial_states</span>  <span class="c1"># 初始状态</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 3 步：拆解  <code>input.shape</code></strong></p>
+<p>通过<code>input shape</code>得到<code>batch size、时间T，input size</code></p>
+<p>得到<code>时间T</code>，进行<code>for循环</code>，不断的迭代，不断的运算</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是<code>input_size</code> </p>
+<p>还有<code>h_size</code></p>
+<p><strong><code>h_size</code>怎么得到呢？</strong></p>
+<blockquote>
+<p><code>h_size</code>根据 <code>W</code> 的维度 来确定</p>
+<p>比如<code>weight_ih</code>，除以<code>4</code>就好了，因为是<code>4</code>个 <code>W</code> 拼起来的</p>
+</blockquote>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1"><span class="n">h_size</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">//</span><span class="mi">4</span>
+</span></code></pre></div></td></tr></table></div>
+<p>第<code>0</code>维除以<code>4</code>，就是每一维的<code>hidden_size</code></p>
+<p><strong>第 4 步：for 循环初始化</strong></p>
+<p>把<code>h0</code>和<code>c0</code>换名字：<code>prev_h</code> 和 <code>prev_c</code></p>
+<p>因为会在 <code>for</code>循环中，不断的更新 <code>prev_h</code>和<code>prev_c</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><span class="n">prev_h</span> <span class="o">=</span> <span class="n">h0</span>
+</span><span id="__span-29-2"><span class="n">prev_c</span> <span class="o">=</span> <span class="n">c0</span>
+</span></code></pre></div></td></tr></table></div>
+<p>把每一时刻的<code>h</code>和<code>c</code>当做下一时刻的 <code>prev_h</code>和<code>prev_c</code></p>
+<p><strong>第 5 步：output size</strong></p>
+<p>另外还有一个 <code>size</code> 叫做 <code>output size</code>，也就是 <code>输出的状态大小</code> 就是 <code>hidden size</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1"><span class="n">output_size</span> <span class="o">=</span> <span class="n">h_size</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是初始化output</p>
+<p>在写神经网络或者循环神经网络：</p>
+<p>（1）首先初始化矩阵；</p>
+<p>（2）然后对矩阵进行填充，<code>矩阵的大小</code>跟<code>输入特征大小</code>是一样的</p>
+<p>输入序列大小：<code>bs×T×input_size</code></p>
+<ul>
+<li><code>batch size</code>和 <code>T</code> 维度是不变</li>
+<li>然后特征维度 <code>input size</code> 改成 <code>output size</code> </li>
+</ul>
+<p>以上完成 <code>output</code> 的初始化</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">output_size</span><span class="p">)</span> <span class="c1"># 输出序列</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>第 6 步：for 循环</strong></p>
+<p>完成初始化以后，接下来对时间进行遍历</p>
+<p>LSTM就是<code>每一时刻</code>都在对<code>上一时刻</code>的<span class="arithmatex">\(c\)</span>和 <span class="arithmatex">\(h\)</span>进行更新，<code>for循环</code>实现这个过程，对每一时刻进行运算，循环的步数就是大<code>T</code>步</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1"><span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+</span></code></pre></div></td></tr></table></div>
+<p>在每一个循环的开始：</p>
+<ul>
+<li>需要拿到当前这一时刻的<span class="arithmatex">\(x\)</span>，可以通过<span class="arithmatex">\(input\)</span>拿</li>
+</ul>
+<blockquote>
+<p>因为<span class="arithmatex">\(input\)</span>这个维度就是 <code>batch size×T×input size</code>，当前时刻的输入拿到 <code>t</code> 这一维度就好，就是当前时刻的输入向量</p>
+</blockquote>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1"><span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>  <span class="c1"># 当前时刻的输入向量</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来，根据公式进行计算：</p>
+<p><img alt="image-20241223173629201" src="../images/image-20241223173629201.png" /></p>
+<p><span class="arithmatex">\(weight_{ih} = [w_{ii},w_{if},w_{ig},w_{io}]'\)</span></p>
+<ul>
+<li><span class="arithmatex">\(\mathrm{w_{ii}}\)</span> ： 5 × 4 </li>
+<li><span class="arithmatex">\(\mathrm{weight_{ih}}\)</span> ：20×4</li>
+</ul>
+<p><strong><u>公式的代码实现逻辑：</u></strong></p>
+<ul>
+<li>首先计算 <span class="arithmatex">\(W × x\)</span>，再计算 <span class="arithmatex">\(W × h\)</span></li>
+</ul>
+<p>先把 <code>大的一块</code> 算出来</p>
+<blockquote>
+<p>拼起来的<code>W</code>分别与<code>x</code>和<code>h</code>进行一个相乘，考虑到 <code>batch</code>，需要运用的带batch的矩阵相乘；</p>
+</blockquote>
+<ul>
+<li>明确 <code>W_ih</code>和<code>W_hh</code>的维度是什么：</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1"><span class="n">w_ih</span> <span class="c1">#  </span>
+</span><span id="__span-34-2"><span class="n">w_hh</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p><code>w ih</code> 是 <strong><code>4倍的hidden size</code>× <code>input size</code></strong></p>
+</li>
+<li>
+<p><code>w hh</code> 是 <strong><code>4倍的hidden size× hidden size</code></strong></p>
+</li>
+</ul>
+<p>以上 是两个权重的维度</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1"><span class="n">w_ih</span>  <span class="c1"># [4*h_size,i_size]</span>
+</span><span id="__span-35-2"><span class="n">w_hh</span>  <span class="c1"># [4*h_size,h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>计算 <span class="arithmatex">\(w_{ih} \cdot x\)</span></li>
+</ul>
+<p><strong>思考：</strong>  <span class="arithmatex">\(x\)</span>的维度是多少呢？ <code>batch size×input size</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>  <span class="c1"># 当前时刻的输入向量，[bs,i_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>分析：</p>
+<p>🐾 <span class="arithmatex">\(x\)</span> 是<code>带 batch</code>的，但是<span class="arithmatex">\(w\)</span>是<code>不带batch</code>的</p>
+<p>🐾  所以首先要对 <code>w</code> 扩维度，把 <code>batch</code> 维度扩出来，<code>batch</code>维放在开始，所以扩 0维</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><span class="n">w_ih</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># [4*h_size,i_size]</span>
+</span><span id="__span-37-2"><span class="n">w_hh</span>  <span class="c1"># [4*h_size,h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>需要<code>batch size(bs)</code>个，所以用<code>.tile函数</code>对第<code>0</code>维复制<code>bs倍</code>，后面两个维度<code>不变</code>，把这个变量叫做 <code>batch_w_ih</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1"><span class="n">batch_w_ih</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size,i_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上实现了权重的扩维，变成了 三维</p>
+<p>同样<code>w hh</code>也是 一样的，先扩一个 <code>batch维度</code>，然后<code>tile复制</code>一下，定义为<code>batch_w_hh</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1"><span class="n">batch_w_hh</span> <span class="o">=</span> <span class="n">w_hh</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>维度变成了 <span class="arithmatex">\(\mathrm{bs × 4倍的hidden\_size × hidden\_size}\)</span></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><span class="n">batch_w_ih</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size,i_size]</span>
+</span><span id="__span-40-2"><span class="n">batch_w_hh</span> <span class="o">=</span> <span class="n">w_hh</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size,h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上对权重进行 扩维，扩维以后：</p>
+<ul>
+<li>当前的 <code>batch_w_ih形状</code>是 <span class="arithmatex">\(\mathrm{bs × 4倍的hidden\ size×input\ size}\)</span></li>
+<li>当前的 <code>输入向量 x</code> 的形状是 ： <span class="arithmatex">\(\mathrm{batch\  size×input\ size}\)</span></li>
+</ul>
+<p>让这两个矩阵进行 <code>bmm</code> 的相乘，也就是<code>batch matrix multiplication</code></p>
+<ul>
+<li>那就要保持 <code>batch</code> 这个维度是相同的</li>
+<li>后面的两个维度 要满足 矩阵乘法的基本规则：<code>第一个矩阵的列数 ＝ 第二个矩阵的 行数</code></li>
+</ul>
+<p>所以要对 <code>x</code>  进行扩维，同样对<code>x</code>的 <code>第三维</code> 增加一个维度</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1"><span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>计算 <code>w_times_x</code>：调用一下 <code>torch.bmm函数</code>：</p>
+<ul>
+<li>首先传入 <code>batch w ih</code></li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1"><span class="n">w_times_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_ih</span><span class="p">,)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>然后传入 <code>x</code>，并对 <code>x</code>进行扩维</li>
+</ul>
+<blockquote>
+<p>在<code>-1维</code> 扩一维 ，变成 <span class="arithmatex">\(\mathrm{batch\ size × input\ size ×1}\)</span></p>
+</blockquote>
+<ul>
+<li>得到乘法的结果 <code>w_times_x</code> ： </li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><span class="n">w_times_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_ih</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1"># [bs,4*h_size,1]</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong>相乘 以后的维度是多少呢？</strong> </p>
+<ul>
+<li>相乘以后的维度： <span class="arithmatex">\(\mathrm{batch\ size× 4倍的hidden\ size × 1}\)</span></li>
+<li>最后的<code>1</code>维度 不要，把 <code>1</code> 这个维度去掉：</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1"><span class="n">w_times_x</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上 把 <code>1</code> 这个维度去掉了，形状是 <code>batch size × 4倍的hidden size</code></p>
+<p>以上是 <code>w times x</code> 的计算过程</p>
+<p><img alt="image-20241223180800659" src="../images/image-20241223180800659.png" /></p>
+<p>实现完 <code>w_times_x</code>，具体来说就是 <span class="arithmatex">\(W_{ii}x_t\)</span> 、 <span class="arithmatex">\(W_{if}x_t\)</span> 、 <span class="arithmatex">\(W_{ig}x_t\)</span> 、 <span class="arithmatex">\(W_{io}x_t\)</span></p>
+<p>还有 <code>w_times_h</code>，就是LSTM网络中后四项</p>
+<p><img alt="image-20241223181032820" src="../images/image-20241223181032820.png" /></p>
+<p>实现思路是一样的，复制下来改成</p>
+<ul>
+<li>
+<p><code>w_hh</code></p>
+</li>
+<li>
+<p><code>prev_h</code></p>
+</li>
+<li>
+<p>因为是跟 <code>h_{t-1}</code> 进行 线性组合，所以也要写成  <code>h_prev</code></p>
+</li>
+<li>同样也要把 <code>维度</code> 变成 <code>二维</code>的</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1"><span class="n">w_times_h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hh</span><span class="p">,</span><span class="n">h_prev</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  
+</span><span id="__span-45-2"><span class="c1"># [bs,4*h_size,1]</span>
+</span><span id="__span-45-3"><span class="n">w_times_h</span> <span class="o">=</span> <span class="n">w_times_h</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上算出 <code>w_times_h</code></p>
+<p>最后把名称改成 <code>h_prev</code>更好，因为是跟上一时刻的 <code>hidden state</code> 进行线性组合</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1"><span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hh</span><span class="p">,</span><span class="n">h_prev</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  
+</span><span id="__span-46-2"><span class="c1"># [bs,4*h_size,1]</span>
+</span><span id="__span-46-3"><span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">w_times_h</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># [bs,4*h_size]</span>
+</span></code></pre></div></td></tr></table></div>
+<p><strong><u>接下来，分别算出 输入门、遗忘门、cell和输出门</u></strong></p>
+<p>也就是 <code>i、f、g、o</code></p>
+<p><img alt="image-20241223181513560" src="../images/image-20241223181513560.png" /></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1"># 分别计算输入门(i)、遗忘门(f)、cell门(g)、输出门(o)
+</span></code></pre></div></td></tr></table></div>
+<p><u>首先计算<span class="arithmatex">\(i_t\)</span>，根据公式：</u></p>
+<p><span class="arithmatex">\(i_t = \sigma(W_{ii}x_t + b_{ii} + W_{hi}h_{t-1}+b_{ii})\)</span></p>
+<p><code>i_t</code> 是  <span class="arithmatex">\(Wx\)</span>的第一部分结果+<span class="arithmatex">\(b\)</span>+<span class="arithmatex">\(Wh\)</span>的第一部分结果+<span class="arithmatex">\(b\)</span></p>
+<p>（1）首先 <code>w_times_x</code>的第一部分结果取出来</p>
+<p>（2） <code>w_times_x</code>的结果是 <code>batch size ×4倍的hidden size</code></p>
+<ul>
+<li><code>batch size</code>这一维度全部拿出来</li>
+<li><code>hidden size</code>这一维 只拿第一部分的 <code>hidden size</code></li>
+</ul>
+<p><code>w_times_x</code> 是一个大的拼起来的结果，目前只需要取前 <span class="arithmatex">\(\frac{1}{4}\)</span>：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><span class="n">i_t</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span></code></pre></div></td></tr></table></div>
+<p>后面 <code>w_times_h_prev</code>也是取前 <span class="arithmatex">\(\frac{1}{4}\)</span> ：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1"><span class="n">i_t</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span></code></pre></div></td></tr></table></div>
+<p>还有两个偏置<span class="arithmatex">\(b_{ih}\)</span>和<span class="arithmatex">\(b_{hh}\)</span>也是一样的，只取 前  <span class="arithmatex">\(\frac{1}{4}\)</span> ：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1"><span class="n">i_t</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>最后还有非线性激活函数  <span class="arithmatex">\(\sigma\)</span>，在前面加上 <code>torch.sigmoid</code></p>
+<p><img alt="image-20241223193918820" src="../images/image-20241223193918820.png" /></p>
+<p>以上是 <span class="arithmatex">\(i_t\)</span></p>
+<p>输入门的计算= <code>w乘以x的前四分之一部分</code>， <code>w乘以h prev也是前四分之一部分</code>，然后<code>两个bias</code>加起来，经过一个 <code>非线性激活函数 sigmoid</code> 就得到 输入门</p>
+<p><img alt="image-20241223194131625" src="../images/image-20241223194131625.png" /></p>
+<p><u>接下来 遗忘门</u> </p>
+<p>遗忘门也是类似的，同样也是 sigmoid，直接复制</p>
+<p>但是遗忘门不是前四分之一</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1"><span class="n">i_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-51-2">
+</span><span id="__span-51-3"><span class="n">i_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>而是<code>前四分之一</code> 到<code>二分之一</code>的部分：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1"><span class="n">w_times_x</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>即，</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-53-1"><span class="n">f_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p><code>hidden  size</code> 到 <code>2倍的hidden size</code></p>
+<p>以上是遗忘门</p>
+<p><img alt="image-20241223194432988" src="../images/image-20241223194432988.png" /></p>
+<p><u>接下来，细胞门 $g_t $：</u> </p>
+<p>细胞门<span class="arithmatex">\(g_t\)</span>也是类似的，只不过当前 <code>sigmoid</code> 替换成了<code>tanh函数</code></p>
+<p><img alt="image-20241223194644285" src="../images/image-20241223194644285.png" /></p>
+<p>所以继续复制下来 ，再改，就可以计算出细胞状态 <span class="arithmatex">\(g_t\)</span> ：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-54-1"><span class="n">g_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<p>gt是<code>二倍的hidden size</code> 到 <code>三倍的 hidden size</code>这个区间</p>
+<p>同样后面的偏置也是一样的</p>
+<p>换一个区间，然后 非线性激活函数改成 <code>tanh函数</code></p>
+<p><u>最后是<span class="arithmatex">\(o_t\)</span>， 输出门：</u></p>
+<ul>
+<li>
+<p><code>tanh函数</code> 换成 <code>sigmoid函数</code></p>
+</li>
+<li>
+<p>最后区间是最后的四分之一，可以写成 <code>3倍的hidden size</code>到<code>4倍的hidden size</code></p>
+</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-55-1"><span class="n">o_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>或者直接 <code>w_times_x[:,3*h_size:]</code>  ：<code>3</code>倍的 <code>hidden size</code>，<code>4</code>可以省略</li>
+</ul>
+<p>以上是所有的 <code>i、f、g、o</code></p>
+<p><img alt="image-20241223195148713" src="../images/image-20241223195148713.png" /></p>
+<p><img alt="image-20241223195205750" src="../images/image-20241223195205750.png" /></p>
+<p>写完了 <span class="arithmatex">\(i、f、g、o\)</span>，接下来写细胞状态 <span class="arithmatex">\(c_t、 h_t\)</span></p>
+<p><span class="arithmatex">\(c_t\)</span>怎么写呢？</p>
+<blockquote>
+<p><span class="arithmatex">\(c_t\)</span> 直接是元素相乘，实现的时候不用 <span class="arithmatex">\(c_t\)</span>，用<span class="arithmatex">\(\mathrm{prev_c}\)</span></p>
+<p>因为现在用 <code>for循环</code>迭代</p>
+<p>要保证下一时刻<span class="arithmatex">\(\mathrm{prev_c}\)</span>的量是存在的，用<span class="arithmatex">\(\mathrm{prev_c}\)</span>表示<span class="arithmatex">\(c_t\)</span></p>
+<p>那<span class="arithmatex">\(prev_c\)</span>= <span class="arithmatex">\(f_t× c_{t-1}加上 i_t×g_t \iff f_t×prev_ c + i_t× g_t\)</span></p>
+<p>以上是对 <span class="arithmatex">\(prev_c\)</span> 的更新</p>
+</blockquote>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-56-1"><span class="n">prev_c</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">*</span> <span class="n">prev_c</span> <span class="o">+</span> <span class="n">i_t</span> <span class="o">*</span> <span class="n">g_t</span>
+</span></code></pre></div></td></tr></table></div>
+<p>有了 <code>prev_c</code>以后就能计算 <code>prev_h</code></p>
+<p><img alt="image-20241223200900790" src="../images/image-20241223200900790.png" /></p>
+<ul>
+<li>
+<p><span class="arithmatex">\(prev_h\)</span> 就是当前时刻 LSTM的输出 </p>
+</li>
+<li>
+<p>按照公式 就是 <span class="arithmatex">\(输出门 × tanh 细胞状态\)</span></p>
+</li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-57-1"><span class="n">prev_h</span> <span class="o">=</span> <span class="n">o_t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">prev_c</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是对 <span class="arithmatex">\(c\)</span>和 <span class="arithmatex">\(h\)</span> 的更新</p>
+<p>有了 <span class="arithmatex">\(h\)</span>以后，就可以对<code>输出矩阵</code>也更新一下，把每一时刻的隐藏层状态存储，存到 <code>output 矩阵</code>中：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-58-1"><span class="n">output</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">prev_h</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上是所有自定义 LSTM 函数的实现</p>
+<p>现在返回：</p>
+<ul>
+<li>第一个返回值是 输出序列</li>
+<li>第二个返回值是两个状态 构成的元组，这两个状态分别是 <code>最后一个时刻的输出</code> 和  <code>最后一个时刻的细胞状态</code></li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-59-1"><span class="k">return</span> <span class="n">output</span><span class="p">,(</span><span class="n">prev_h</span><span class="p">,</span><span class="n">prev_c</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20241223201325328" src="../images/image-20241223201325328.png" /></p>
+<p>以上是不带 projection的自定义LSTM</p>
+<p>接下来测试</p>
+<p>测试就是把 <code>LSTM layer</code>的<code>4</code>个参数取出来，然后喂入到自定义 LSTM函数中，然后对比结果</p>
+<p>（1）实例化LSTM 算子，传入<code>input parameters</code></p>
+<p>首先把函数签名复制下来：</p>
+<p><img alt="image-20241223201444538" src="../images/image-20241223201444538.png" /></p>
+<ul>
+<li><code>input</code>还是<code>input</code></li>
+<li><code>initial state</code>就是<code>h0</code>和<code>c0</code>，就是之前初始化的<code>h0</code>和<code>c0</code></li>
+</ul>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-60-1"><span class="n">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">),</span><span class="n">w_ih</span><span class="p">,</span><span class="n">w_hh</span><span class="p">,</span><span class="n">b_ih</span><span class="p">,</span><span class="n">b_hh</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>w_ih</code>就用之前pytorch中实例化的<code>lstm layer</code>的参数拿出来</li>
+</ul>
+<p><img alt="image-20241223201802045" src="../images/image-20241223201802045.png" /></p>
+<p>就是<code>lstm_layer.参数</code></p>
+<p><img alt="image-20241223201834394" src="../images/image-20241223201834394.png" /></p>
+<p>即，</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-61-1">lstm_forward(input,(h0,c0),lstm_layer.weight_ih_l0,w_hh,b_ih,b_hh)
+</span></code></pre></div></td></tr></table></div>
+<p><code>w_hh</code>也是一样的，后面还有两个偏置，最后实例化的自定义 LSTM 函数：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-62-1"><span class="n">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-62-2">             <span class="p">(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">),</span>
+</span><span id="__span-62-3">             <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="p">,</span>
+</span><span id="__span-62-4">             <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="p">,</span>
+</span><span id="__span-62-5">             <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="p">,</span>
+</span><span id="__span-62-6">             <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>实例化好自定义 LSTM 算子以后，定义变量接收输出</p>
+<p>复制前面的变量名，加后缀 custom</p>
+<p><img alt="image-20241223202302089" src="../images/image-20241223202302089.png" /></p>
+<p>加后缀 custom，表示自定义的LSTM</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-63-1"><span class="n">output_custom</span><span class="p">,(</span><span class="n">h_finall_custom</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_forward</span><span class="p">(</span>
+</span><span id="__span-63-2">    <span class="nb">input</span><span class="p">,</span>
+</span><span id="__span-63-3">    <span class="p">(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">),</span>      
+</span><span id="__span-63-4">    <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="p">,</span>
+</span><span id="__span-63-5">    <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="p">,</span>
+</span><span id="__span-63-6">    <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="p">,</span>
+</span><span id="__span-63-7">    <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>接下来对比前面的 <code>output</code> 和自定义实现的 <code>output_custom</code>，查看是不是一致用<code>torch.allclose()</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-64-1"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">output_custom</span><span class="p">))</span>
+</span><span id="__span-64-2"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">h_finall_custom</span><span class="p">))</span>
+</span><span id="__span-64-3"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">c_finall</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>输出三个True</p>
+<h2 id="lstm_4">LSTM 全部代码<a class="headerlink" href="#lstm_4" title="Permanent link">&para;</a></h2>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-65-1"><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-65-2"><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-65-3"><span class="kn">import</span> <span class="nn">torch.nn.functional</span> <span class="k">as</span> <span class="nn">F</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-66-1"><span class="c1"># 定义常量</span>
+</span><span id="__span-66-2"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</span><span id="__span-66-3"><span class="c1"># proj_size</span>
+</span><span id="__span-66-4"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">)</span> <span class="c1"># 输入序列</span>
+</span><span id="__span-66-5"><span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>  <span class="c1"># 初始值不需要训练</span>
+</span><span id="__span-66-6"><span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-67-1"><span class="c1"># 调用官方LSTM API</span>
+</span><span id="__span-67-2"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span><span class="p">,</span><span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-67-3"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-67-4">
+</span><span id="__span-67-5"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">lstm_layer</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-67-6">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<p>OUT：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-68-1">weight_ih_l0 torch.Size([20, 4])
+</span><span id="__span-68-2">weight_hh_l0 torch.Size([20, 5])
+</span><span id="__span-68-3">bias_ih_l0 torch.Size([20])
+</span><span id="__span-68-4">bias_hh_l0 torch.Size([20])
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-69-1"><span class="c1"># 自己写一个LSTM</span>
+</span><span id="__span-69-2"><span class="k">def</span> <span class="nf">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">initial_states</span><span class="p">,</span><span class="n">w_ih</span><span class="p">,</span><span class="n">w_hh</span><span class="p">,</span><span class="n">b_ih</span><span class="p">,</span><span class="n">b_hh</span><span class="p">):</span>
+</span><span id="__span-69-3">    <span class="c1"># 以上写好了 函数签名</span>
+</span><span id="__span-69-4">    <span class="n">h0</span><span class="p">,</span><span class="n">c0</span> <span class="o">=</span> <span class="n">initial_states</span> <span class="c1">#初始状态</span>
+</span><span id="__span-69-5">    <span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span>
+</span><span id="__span-69-6">    <span class="n">h_size</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span>
+</span><span id="__span-69-7">
+</span><span id="__span-69-8">    <span class="n">prev_h</span> <span class="o">=</span> <span class="n">h0</span>
+</span><span id="__span-69-9">    <span class="n">prev_c</span> <span class="o">=</span> <span class="n">c0</span>
+</span><span id="__span-69-10">    <span class="n">batch_w_ih</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-69-11">    <span class="n">batch_w_hh</span> <span class="o">=</span> <span class="n">w_hh</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-69-12">
+</span><span id="__span-69-13">    <span class="n">output_size</span> <span class="o">=</span> <span class="n">h_size</span>
+</span><span id="__span-69-14">    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">output_size</span><span class="p">)</span> <span class="c1"># 输出序列</span>
+</span><span id="__span-69-15">
+</span><span id="__span-69-16">    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+</span><span id="__span-69-17">        <span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>  <span class="c1"># 当前时刻的输入向量，[bs,i_size]</span>
+</span><span id="__span-69-18">
+</span><span id="__span-69-19">        <span class="n">w_times_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_ih</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#[bs,4*h_size,1]</span>
+</span><span id="__span-69-20">        <span class="n">w_times_x</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [bs,4*h_size]</span>
+</span><span id="__span-69-21">
+</span><span id="__span-69-22">        <span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hh</span><span class="p">,</span><span class="n">prev_h</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#[bs,4*h_size,1]</span>
+</span><span id="__span-69-23">        <span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">w_times_h_prev</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [bs,4*h_size]</span>
+</span><span id="__span-69-24">
+</span><span id="__span-69-25">        <span class="c1"># 分别计算 输入门(i)，遗忘门(f)，cell门(g)，输出门(o)</span>
+</span><span id="__span-69-26">        <span class="n">i_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-69-27">        <span class="n">f_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-69-28">                            <span class="n">b_ih</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-69-29">        <span class="n">g_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-69-30">                            <span class="n">b_ih</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-69-31">        <span class="n">o_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-69-32">                            <span class="n">b_ih</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-69-33">
+</span><span id="__span-69-34">
+</span><span id="__span-69-35">        <span class="n">prev_c</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">*</span> <span class="n">prev_c</span> <span class="o">+</span> <span class="n">i_t</span> <span class="o">*</span> <span class="n">g_t</span>
+</span><span id="__span-69-36">        <span class="n">prev_h</span> <span class="o">=</span> <span class="n">o_t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">prev_c</span><span class="p">)</span>
+</span><span id="__span-69-37">
+</span><span id="__span-69-38">        <span class="n">output</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">prev_h</span>
+</span><span id="__span-69-39">
+</span><span id="__span-69-40">    <span class="k">return</span> <span class="n">output</span><span class="p">,(</span><span class="n">prev_h</span><span class="p">,</span><span class="n">prev_c</span><span class="p">)</span>
+</span><span id="__span-69-41">
+</span><span id="__span-69-42"><span class="n">output_custom</span><span class="p">,(</span><span class="n">h_finall_custom</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">),</span><span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="p">,</span>
+</span><span id="__span-69-43">                                                               <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="p">,</span>
+</span><span id="__span-69-44">                                                               <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="p">,</span><span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-70-1"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">output_custom</span><span class="p">))</span>
+</span><span id="__span-70-2"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">h_finall_custom</span><span class="p">))</span>
+</span><span id="__span-70-3"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">c_finall</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>OUT：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-71-1">True
+</span><span id="__span-71-2">True
+</span><span id="__span-71-3">True
+</span></code></pre></div></td></tr></table></div>
+<h2 id="lstmp">LSTMP<a class="headerlink" href="#lstmp" title="Permanent link">&para;</a></h2>
+<p>要解决的问题：</p>
+<ul>
+<li>什么是 <code>projection</code>呢</li>
+<li>如果要写 <code>projection</code>，需要怎么改造？</li>
+</ul>
+<h3 id="api-lstmp">官方 api实现 LSTMP<a class="headerlink" href="#api-lstmp" title="Permanent link">&para;</a></h3>
+<p>注意看参数变化</p>
+<p>调用官方 api 需要加一个量 <code>proj_size</code></p>
+<p><code>proj size</code> 等于多少呢？</p>
+<p><img alt="image-20241223203456104" src="../images/image-20241223203456104.png" /></p>
+<p>一般 <code>projection size</code>比<code>hidden size</code>小</p>
+<p>即要对<code>hidden state</code>进行压缩， 压缩肯定是要往小的维度压缩</p>
+<p>如果<code>hidden size</code>等于<code>5</code>的话，那<code>projection size</code>就设置成<code>3</code>，比<code>hidden size</code>小一点就好，以上实现了 <code>projection layer</code></p>
+<p><img alt="image-20241223203946682" src="../images/image-20241223203946682.png" /></p>
+<p>现在再来看 <code>lstm layer</code>的参数输出</p>
+<p>传入<code>proj size</code>以后，还要改变<code>h0</code></p>
+<blockquote>
+<p>因为如果<code>LSTM</code>带了<code>projection</code>的话</p>
+<p>则<code>h</code>实际上是要压缩的，维度不再是<code>h_size</code>；而是<code>projection_size</code>，所以 <code>h_0</code>也要改一下  </p>
+</blockquote>
+<p><code>projection</code>的作用实际上就是对 <code>h0</code>进行一个压缩，接下来查看模型参数：</p>
+<p><img alt="image-20241223204214687" src="../images/image-20241223204214687.png" /></p>
+<p>相比于<code>lstm</code>，<code>lstmp</code>多了一个结果：<code>weight_hr_l0</code> ， 这个参数就是对 <code>hidden state</code> 进行压缩</p>
+<p><code>hidden state</code>的大小实际变成了<code>3</code>，不再是<code>5</code></p>
+<p>接下来，打印<code>output.shape</code>和<code>h_finall.shape</code>、<code>c_finall.shape</code></p>
+<p><img alt="image-20241223211851063" src="../images/image-20241223211851063.png" /></p>
+<p>可以看到<code>lstmp</code>的<code>output shape</code>是<code>2×2×3</code>的，不是 <code>2×3×5</code> ，因为对输出进行了压缩</p>
+<p><code>h_finall</code>和<code>c_finall</code>分别是 <code>1×2×3</code> 和 <code>1×2×5</code>的</p>
+<p>可以看到 <code>h_finall</code>的大小也变成了<code>3</code>，但是<code>c</code>的大小仍然是<code>5</code></p>
+<blockquote>
+<p>理由：只对输出进行了压缩，不会对细胞状态进行压缩</p>
+</blockquote>
+<p>以上是projection的原理，</p>
+<h3 id="lstmp_1">自定义 LSTMP 代码实现<a class="headerlink" href="#lstmp_1" title="Permanent link">&para;</a></h3>
+<p>接下来修改自定义函数：</p>
+<p>多了一个<code>projection</code>参数，所以签名中加入<code>w_hr</code> 并且设置默认为<code>None</code></p>
+<p><img alt="image-20241223212238200" src="../images/image-20241223212238200.png" /></p>
+<ul>
+<li>如果是<code>None</code>的话，就是一个普通的<code>lstm</code></li>
+<li>如果不是<code>None</code> 就是带有<code>projection</code>的</li>
+</ul>
+<p>新加入参数以后，后续需要做哪些修改呢？</p>
+<p>首先对<code>output size</code>做一个判断，如果有<code>projection size</code>，<code>output size</code> 就不是 <code>h size</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-72-1"><span class="k">if</span> <span class="n">w_hr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span></code></pre></div></td></tr></table></div>
+<p>要判断，首先需要找到<code>projection size</code>，简写为<code>p_size</code>：</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-73-1"><span class="n">p_size</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">w_hr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span></code></pre></div></td></tr></table></div>
+<p>它是<code>w_hr</code>的第<code>0</code>维</p>
+<p><img alt="image-20241223212615227" src="../images/image-20241223212615227.png" /></p>
+<p>红框就是<code>projection size</code>，然后 <code>output size</code>等于 <code>p_size</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-74-1"><span class="n">output_size</span> <span class="o">=</span> <span class="n">p_size</span>
+</span></code></pre></div></td></tr></table></div>
+<p>如果 <code>else</code>的话，<code>output size</code>就等于 <code>h size</code></p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-75-1"><span class="k">else</span><span class="p">:</span>
+</span><span id="__span-75-2">    <span class="n">output_size</span> <span class="o">=</span> <span class="n">h_size</span>
+</span></code></pre></div></td></tr></table></div>
+<p>全部的代码：</p>
+<p><img alt="image-20241223213045775" src="../images/image-20241223213045775.png" /></p>
+<p>以上是引入<code>projection</code>以后做的改变</p>
+<p>另外 <code>w_hr</code>，同样要引入<code>batch</code>的维度 </p>
+<p><img alt="image-20241223213136060" src="../images/image-20241223213136060.png" /></p>
+<p>同样引入<code>batch</code>的维度，但是这时候，形状就是 <code>bs×p_size ×h_size</code></p>
+<p><img alt="image-20241223213221322" src="../images/image-20241223213221322.png" /></p>
+<p>这是对<code>output size</code>做的变更</p>
+<blockquote>
+<p>因为引入了<code>projection</code>，所以<code>output</code>大小是变小了</p>
+</blockquote>
+<p>那么接下来要变更哪里呢？</p>
+<ul>
+<li>现在引入了<code>projection</code>之后，这里的<code>hidden_size</code>是变小的，已经变成了 <code>projection_size</code></li>
+<li>也就是说 <code>w_times_h_prev</code>大小仍然是：<code>bs×4倍的hidden size</code></li>
+</ul>
+<p><u>但它是怎么得到呢？</u></p>
+<ul>
+<li>它是 <span class="arithmatex">\(batch\_w\_hh\)</span> (<code>bs×4倍的hidden size再乘以p size</code>)，再跟 <span class="arithmatex">\(prev\_h\)</span> <code>(p_size</code>)进行相乘，然后<code>p_size</code>这个维度就消掉了</li>
+<li>最终，得到 <span class="arithmatex">\(\mathrm{batch\_size × 4*hidden\_size}\)</span> </li>
+</ul>
+<p><img alt="image-20241223213609048" src="../images/image-20241223213609048.png" /></p>
+<ul>
+<li><code>batch_w_hh.shape = torch.Size([2, 20, 3])</code></li>
+<li><code>prev_h.shape = torch.Size([2, 3])</code></li>
+<li>
+<p><code>w_times_h_prev.shape = torch.Size([2, 20, 1])</code> </p>
+</li>
+<li>
+<p><code>h_size = 5</code></p>
+</li>
+<li><code>bs = 2</code></li>
+<li><code>proj_size = 3</code></li>
+</ul>
+<p>如果引入了 <code>projection</code>，需要在得到的<code>prev_h</code>这里，进行压缩</p>
+<p><img alt="image-20241223214445361" src="../images/image-20241223214445361.png" /></p>
+<p>现在 <code>prev_h</code>这里，大小是 <code>bs×h_size</code></p>
+<p>但输出的<code>h</code> 要是 <code>p_size</code>的，所以 要进行一个压缩</p>
+<p><img alt="image-20241223215157085" src="../images/image-20241223215157085.png" /></p>
+<p>同样，如果 <code>w_hr</code>不是<code>None</code>的话，就要做<code>projection</code>，要对 <code>prev_h</code>进行一个压缩</p>
+<p>压缩原理仍然是用，矩阵相乘的算法</p>
+<p>用压缩矩阵 <code>w_hr</code>跟<code>prev_h</code>相乘，需要对 <code>prev_h</code>进行扩一维，最后一个维度扩一维</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-76-1"><span class="k">if</span> <span class="n">w_hr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span><span class="c1"># 做projection</span>
+</span><span id="__span-76-2">    <span class="n">prev_h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hr</span><span class="p">,</span><span class="n">prev_h</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<p>这样 <code>prev_h</code>的维度就变成了 <code>bs×p_size×1</code></p>
+<p>把这个<code>1</code>，最后再去掉</p>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-77-1"><span class="k">if</span> <span class="n">w_hr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span><span class="c1"># 做projection</span>
+</span><span id="__span-77-2">    <span class="n">prev_h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hr</span><span class="p">,</span><span class="n">prev_h</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> 
+</span><span id="__span-77-3">    <span class="c1"># [bs,p_size,1]</span>
+</span><span id="__span-77-4">    <span class="n">prev_h</span> <span class="o">=</span> <span class="n">prev_h</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bs× p_size</span>
+</span></code></pre></div></td></tr></table></div>
+<p>以上实现了<code>projection</code></p>
+<p><code>lstm projection</code>的原理，会对输出状态进行一个压缩，然后整个 <code>output</code>的维度就变小了，另外引入<code>projection</code>，整个计算量都是变小的</p>
+<p><img alt="image-20241223215756507" src="../images/image-20241223215756507.png" /></p>
+<ul>
+<li>batch_w_hh：<code>batch size× 4倍的hidden size× hidden size</code></li>
+</ul>
+<p>→ 变成了 <code>4倍的hidden_size × p_size</code></p>
+<ul>
+<li>
+<p>所以它的参数数目是降低的，运算量是降低的</p>
+</li>
+<li>
+<p>另外  <code>prev_c</code>的维度是<code>没有变</code>得，仍然是 <code>hidden_size</code></p>
+</li>
+<li>
+<p>但是<code>prev_h</code>的维度是<code>降低</code>的</p>
+</li>
+</ul>
+<p>以上在自定义的 <code>lstm forward</code> 引入了 <code>projection</code></p>
+<p>接下来继续测试，并且把 <code>weight_hr_l0</code>传入进来，得到<code>带有projection的自定义函数</code></p>
+<p>接下来进行测试，查看结果是否一致。</p>
+<p><code>lstmp</code> 简单来说：</p>
+<blockquote>
+<ul>
+<li>对输出的状态，也就是<code>prev_h</code>进行压缩，使得整个LSTM网络，运算量和参数量都有减小</li>
+<li>主要是<code>w_hh</code> 权重的维度是有降低的，运算量也是减少的</li>
+</ul>
+</blockquote>
+<h3 id="lstmp_2">LSTMP的全部代码<a class="headerlink" href="#lstmp_2" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-78-1"><span class="c1"># 定义常量</span>
+</span><span id="__span-78-2"><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span>
+</span><span id="__span-78-3"><span class="n">proj_size</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-78-4"><span class="nb">input</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span><span class="p">)</span> <span class="c1"># 输入序列</span>
+</span><span id="__span-78-5"><span class="n">c0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">h_size</span><span class="p">)</span>  <span class="c1"># 初始值不需要训练</span>
+</span><span id="__span-78-6"><span class="n">h0</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">proj_size</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-79-1"><span class="c1"># 调用官方LSTM API</span>
+</span><span id="__span-79-2"><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span><span class="n">h_size</span><span class="p">,</span><span class="n">batch_first</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">proj_size</span> <span class="o">=</span> <span class="n">proj_size</span><span class="p">)</span>
+</span><span id="__span-79-3"><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span><span class="n">c0</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)))</span>
+</span><span id="__span-79-4">
+</span><span id="__span-79-5"><span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">h_finall</span><span class="o">.</span><span class="n">shape</span><span class="p">,</span><span class="n">c_finall</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-79-6">
+</span><span id="__span-79-7"><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">lstm_layer</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-79-8">    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-80-1">torch.Size([2, 3, 3]) torch.Size([1, 2, 3]) torch.Size([1, 2, 5])
+</span><span id="__span-80-2">weight_ih_l0 torch.Size([20, 4])
+</span><span id="__span-80-3">weight_hh_l0 torch.Size([20, 3])
+</span><span id="__span-80-4">bias_ih_l0 torch.Size([20])
+</span><span id="__span-80-5">bias_hh_l0 torch.Size([20])
+</span><span id="__span-80-6">weight_hr_l0 torch.Size([3, 5])
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-81-1"><span class="c1"># 自己写一个LSTM</span>
+</span><span id="__span-81-2"><span class="k">def</span> <span class="nf">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span><span class="n">initial_states</span><span class="p">,</span><span class="n">w_ih</span><span class="p">,</span><span class="n">w_hh</span><span class="p">,</span><span class="n">b_ih</span><span class="p">,</span><span class="n">b_hh</span><span class="p">,</span><span class="n">w_hr</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-81-3">    <span class="c1"># 以上写好了 函数签名</span>
+</span><span id="__span-81-4">    <span class="n">h0</span><span class="p">,</span><span class="n">c0</span> <span class="o">=</span> <span class="n">initial_states</span> <span class="c1">#初始状态</span>
+</span><span id="__span-81-5">    <span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">i_size</span> <span class="o">=</span> <span class="nb">input</span><span class="o">.</span><span class="n">shape</span>
+</span><span id="__span-81-6">    <span class="n">h_size</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">//</span> <span class="mi">4</span>
+</span><span id="__span-81-7">
+</span><span id="__span-81-8">    <span class="n">prev_h</span> <span class="o">=</span> <span class="n">h0</span>
+</span><span id="__span-81-9">    <span class="n">prev_c</span> <span class="o">=</span> <span class="n">c0</span>
+</span><span id="__span-81-10">    <span class="n">batch_w_ih</span> <span class="o">=</span> <span class="n">w_ih</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-81-11">    <span class="n">batch_w_hh</span> <span class="o">=</span> <span class="n">w_hh</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-81-12">
+</span><span id="__span-81-13">    <span class="k">if</span> <span class="n">w_hr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+</span><span id="__span-81-14">        <span class="n">p_size</span> <span class="o">=</span> <span class="n">w_hr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-81-15">        <span class="n">output_size</span> <span class="o">=</span> <span class="n">p_size</span>
+</span><span id="__span-81-16">        <span class="n">batch_w_hr</span> <span class="o">=</span> <span class="n">w_hr</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [bs,p_size,h_size]</span>
+</span><span id="__span-81-17">    <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-81-18">        <span class="n">output_size</span> <span class="o">=</span> <span class="n">h_size</span>
+</span><span id="__span-81-19">
+</span><span id="__span-81-20">    <span class="n">output</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">bs</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">output_size</span><span class="p">)</span> <span class="c1"># 输出序列</span>
+</span><span id="__span-81-21">
+</span><span id="__span-81-22">    <span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+</span><span id="__span-81-23">        <span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>  <span class="c1"># 当前时刻的输入向量，[bs,i_size]</span>
+</span><span id="__span-81-24">
+</span><span id="__span-81-25">        <span class="n">w_times_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_ih</span><span class="p">,</span><span class="n">x</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#[bs,4*h_size,1]</span>
+</span><span id="__span-81-26">        <span class="n">w_times_x</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [bs,4*h_size]</span>
+</span><span id="__span-81-27">
+</span><span id="__span-81-28">        <span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hh</span><span class="p">,</span><span class="n">prev_h</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span>  <span class="c1">#[bs,4*h_size,1]</span>
+</span><span id="__span-81-29">        <span class="n">w_times_h_prev</span> <span class="o">=</span> <span class="n">w_times_h_prev</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># [bs,4*h_size]</span>
+</span><span id="__span-81-30">
+</span><span id="__span-81-31">        <span class="c1"># 分别计算 输入门(i)，遗忘门(f)，cell门(g)，输出门(o)</span>
+</span><span id="__span-81-32">        <span class="n">i_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-81-33">        <span class="n">f_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-81-34">                            <span class="n">b_ih</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="n">h_size</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-81-35">        <span class="n">g_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-81-36">                            <span class="n">b_ih</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-81-37">        <span class="n">o_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">sigmoid</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span> <span class="o">+</span> <span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span>
+</span><span id="__span-81-38">                            <span class="n">b_ih</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
+</span><span id="__span-81-39">
+</span><span id="__span-81-40">
+</span><span id="__span-81-41">        <span class="n">prev_c</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">*</span> <span class="n">prev_c</span> <span class="o">+</span> <span class="n">i_t</span> <span class="o">*</span> <span class="n">g_t</span>
+</span><span id="__span-81-42">        <span class="n">prev_h</span> <span class="o">=</span> <span class="n">o_t</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">prev_c</span><span class="p">)</span>
+</span><span id="__span-81-43">
+</span><span id="__span-81-44">        <span class="k">if</span> <span class="n">w_hr</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span> <span class="c1"># 做projection</span>
+</span><span id="__span-81-45">            <span class="n">prev_h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">batch_w_hr</span><span class="p">,</span><span class="n">prev_h</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">))</span> <span class="c1"># [bs,p_size,1]</span>
+</span><span id="__span-81-46">            <span class="n">prev_h</span> <span class="o">=</span> <span class="n">prev_h</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># bs× p_size</span>
+</span><span id="__span-81-47">
+</span><span id="__span-81-48">
+</span><span id="__span-81-49">        <span class="n">output</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">prev_h</span>
+</span><span id="__span-81-50">
+</span><span id="__span-81-51">    <span class="k">return</span> <span class="n">output</span><span class="p">,(</span><span class="n">prev_h</span><span class="p">,</span><span class="n">prev_c</span><span class="p">)</span>
+</span><span id="__span-81-52">
+</span><span id="__span-81-53"><span class="n">output_custom</span><span class="p">,(</span><span class="n">h_finall_custom</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_forward</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">),</span><span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_ih_l0</span><span class="p">,</span>
+</span><span id="__span-81-54">                                                               <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_hh_l0</span><span class="p">,</span>
+</span><span id="__span-81-55">                                                               <span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_ih_l0</span><span class="p">,</span><span class="n">lstm_layer</span><span class="o">.</span><span class="n">bias_hh_l0</span><span class="p">,</span>
+</span><span id="__span-81-56">                                                               <span class="n">lstm_layer</span><span class="o">.</span><span class="n">weight_hr_l0</span><span class="p">)</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-82-1"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">output</span><span class="p">,</span><span class="n">output_custom</span><span class="p">))</span>
+</span><span id="__span-82-2"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">h_finall_custom</span><span class="p">))</span>
+</span><span id="__span-82-3"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">c_finall</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">))</span>
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-83-1">True
+</span><span id="__span-83-2">True
+</span><span id="__span-83-3">True
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -3609,7 +5092,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-22T15:17:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-23T14:47:04+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-23</span>
   </span>
 
     
