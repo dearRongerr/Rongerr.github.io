@@ -152,3 +152,39 @@
 **2025 年 1 月 21 日 星期二 22:16**
 
 此时此刻我终于是回到了家，若是掐指一算，也是过去一个月了。
+
+**2025 年 2 月 20 日 星期四 21.00**
+
+今天心情不错，我这个电脑的快捷键设计的太舒服了
+
+option+1 typora
+
+option2 edge 浏览器
+
+option3 vscode
+
+option5 网易云
+
+option7 safari
+
+command7 google
+
+option9 wps
+
+^1 桌面
+
+桌面 1 ssh vscode
+
+桌面 2 vscode 代码学习
+
+option `截图，optionT 贴图
+
+...很顺滑
+
+今天在跑代码
+
+![image-20250220211529296](images/image-20250220211529296.png)
+
+option0 设置
+
+command0 访达

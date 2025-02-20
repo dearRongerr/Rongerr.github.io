@@ -20,7 +20,8 @@ nav:
     - sticks/latex.md
     - sticks/GitHub.md
     - sticks/MacOS.md
-    - sticks/linux.md 
+    - sticks/linux.md
+    - sticks/1.md  
   - 面试:
     - bagu/index.md
     - 题目:
@@ -100,13 +101,18 @@ nav:
         - literature/ObejectCounting/rank17 RCC.md
         - literature/ObejectCounting/rank18 Omnicount.md
         - literature/ObejectCounting/rank19 FamNet.md
-    - 复现论文: 
+    - 复现&代码: 
       - literature/Reproduction/index.md
+      - literature/Reproduction/DAVE.md
+      - literature/Reproduction/1.md
+      - literature/Reproduction/2.md
+      - literature/Reproduction/3.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md
       - literature/ObjectDetection/1.md
       - literature/ObjectDetection/3.md
+      - literature/ObjectDetection/4.md
       
     - 多模态:
       - literature/MultiModal/index.md

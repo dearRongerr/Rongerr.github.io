@@ -14,7 +14,7 @@ arxiv日期：2024年9月27日
 
 与分割有什么关系？
 
-## Abstract
+# Abstract
 
 Low-shot object counters estimate the number of objects in an image using few or no annotated exemplars. **问题定义**
 
@@ -263,4 +263,261 @@ DAVE和PSECO 多阶段、比不过现在最好的，现在最好的是 基于密
 	
 	第三段：通用目标计数：基于检测计数方法发展，可解释性比较好，计数不只是为了计数，也要有目标的特定信息：Location&size
 
-241117
+
+
+# 摘要：
+
+Objects are localized by matching them to prototypes, which are constructed by unsupervised image-wide object appearance aggregation. 
+
+Due to potentially diverse object appearances, the existing approaches often lead to overgeneralization and false positive detections. 
+
+Furthermore, the best-performing methods train object localization by a surrogate loss, that predicts a unit Gaussian at each object center. 
+
+This loss is sensitive to annotation error, hyperparameters and does not directly optimize the detection task, leading to suboptimal counts. 
+
+**We introduce GeCo**, a novel low-shot counter that achieves accurate object detection, segmentation, and count estimation in a unified architecture. 
+
+GeCo robustly generalizes the prototypes across objects appearances through a novel dense object query formulation.
+
+ In addition, a novel counting loss is proposed, that directly optimizes the detection task and avoids the issues of the standard surrogate loss.
+
+**bg：**
+
+- 目标外观多样化导致现有方法存在过度泛化和误检问题。
+- 代理损失函数对标注误差和超参数敏感，且未直接优化检测任务。
+
+**GeCo 的解决方案**：
+
+- 通过**密集目标查询**机制，实现目标外观的鲁棒泛化。
+- 提出**计数损失函数**，直接优化检测任务，提升计数精度。
+
+**GeCo 的优势**：
+
+- 在统一架构中实现目标检测、分割和计数。
+- 解决了现有方法的局限性，显著提升了性能。
+
+![image-20250214135157814](images/image-20250214135157814.png)
+
+Figure 1: DAVE [20] predicts object centers (red dots) biased towards blob-like structures, leading to incorrect partial detections of ants (bottom left), while GeCo(ours) addresses this with the new loss (top left). CDETR [19] fails in densely populated regions (bottom right), while GeCo addresses this with the new dense query formulation by prototype generalization (top right). Exploiting the SAM backbone, GeCo delivers segmentations as well. Exemplars are denoted in blue.（蓝色框是正确的标注框）
+
+解释：
+
+**DAVE 的局限性：**
+
+- 目标中心预测偏向斑点状结构，导致对复杂目标（如蚂蚁）的部分检测错误。
+- DAVE 方法在目标中心预测时存在偏差，倾向于将目标中心预测为斑点状结构，导致对蚂蚁等目标的部分检测错误。GeCo 通过引入新的损失函数，有效解决了这一问题。
+
+**CDETR 的局限性**：
+
+- 在目标密集区域表现不佳，难以处理高密度目标。
+- CDETR 在处理目标密集区域时表现较差，而 GeCo 通过引入密集查询机制和原型泛化，显著提升了在密集区域中的检测性能。
+
+**GeCo 的改进**：
+
+- 通过新的损失函数解决了目标中心预测偏差问题。
+- 通过密集查询公式和原型泛化提升了在密集区域中的检测性能。
+- 基于 SAM 骨干网络，实现了目标检测、计数和分割的统一。
+
+❤核心：损失函数 和 密集场景的计数误差
+
+3 Single-stage low-shot object counting by detection and segmentation
+
+**本文的创新：**
+
+3.1 DQE
+
+3.2 DQD
+
+3.3 Detections extraction and refinement
+
+3.4  A novel loss for dense detection training
+
+> 其实我会奇怪，消融实验的部分和提出的东西没有十分对应
+>
+> ![image-20250215143334808](images/image-20250215143334808.png)
+
+好好读读方法
+
+![image-20250214140339158](images/image-20250214140339158.png)
+
+基于框的计数方法
+
+```python
+outputs, ref_points, centerness, outputs_coord = model(img, bboxes)
+
+def forward(self, x, bboxes):
+    x.shape torch.Size([1, 3, 1024, 1024])
+    bboxes.shape torch.Size([1, 3, 4])
+```
+
+![image-20250214141319816](images/image-20250214141319816.png)
+
+```python
+src, src_hq = self.backbone(x) # SAM backbone
+```
+
+![image-20250214141817731](images/image-20250214141817731.png)
+
+？
+
+![image-20250214142307889](images/image-20250214142307889.png)
+
+根据后面的代码，用的 src，所以
+
+![image-20250214142426190](images/image-20250214142426190.png)
+
+$H_0=1024$
+
+![image-20250214142534634](images/image-20250214142534634.png)
+
+$h=64，r=16，d=256$
+
+![image-20250214143106225](images/image-20250214143106225.png)
+
+![image-20250214143742583](images/image-20250214143742583.png)
+
+继续往下读：
+
+![image-20250214143942675](images/image-20250214143942675.png)
+
+0-shot 情况下，原型 p 的提取
+
+![image-20250214144207197](images/image-20250214144207197.png)
+
+原型 p 提取完以后，要进行后续的处理：
+
+**原型生成**
+
+- 原型p来源于few-shot（小样本）或zero-shot（零样本）学习设置，通过迁移学习实现在全图范围内的泛化应用。
+
+**密集查询编码器（DQE）**
+
+- 基于泛化的原型，DQE模块负责构建密集的物体检测查询向量，为后续检测提供空间密集的特征表示。
+
+**密集查询解码器（DQD）**
+
+- DQD模块将DQE生成的查询向量解码为初步的密集物体检测结果，实现从特征空间到检测框的映射。
+
+**后处理优化**
+
+- 通过非极大值抑制等后处理算法，对DQD输出的密集检测结果进行筛选和精修，最终输出高质量的检测框。
+
+该框架通过编码-解码架构实现了从原型泛化到密集检测的端到端处理，结合后处理步骤保证了检测精度与效率的平衡
+
+![image-20250214144656108](images/image-20250214144656108.png)
+
+![image-20250214144825908](images/image-20250214144825908.png)
+
+这一部分对应源码的
+
+![image-20250214145330169](images/image-20250214145330169.png)
+
+理由：
+
+![image-20250214145426852](images/image-20250214145426852.png)
+
+会有点奇怪，$P_i = CA(P_{i-1},p,p)$ 对应源码的什么部分，没找到交叉注意力模块。
+
+![image-20250214155611211](images/image-20250214155611211.png)
+
+找到了 3.1 公式 1
+
+![image-20250214161304064](images/image-20250214161304064.png)
+
+3.1 公式 2
+
+![image-20250214165121054](images/image-20250214165121054.png)
+
+$f^I = src$
+
+开始 3.2
+
+![image-20250214171846350](images/image-20250214171846350.png)
+
+在第$3.1$节中，密集查询$Q$通过密集对象查询解码器（$DQD$）被解码为对象检测结果。
+
+需要注意的是，$SAM$主干网络对图像的空间降采样可能导致多个小对象被编码到$Q$中的同一个查询中。
+
+为了解决这个问题，首先将对象查询在空间上解包为高分辨率的密集对象查询，即$Q^{HR} ∈ R^{H×W×d}$，其中$H = H0/2=1024/2=512，W = W0/2$，$d=256$是特征通道数。
+
+解包过程包括三个卷积上采样阶段，每个阶段由一个$3×3$卷积、一个$Leaky ReLU$和一个$2×双线性上采样$组成。
+
+![image-20250214172823485](images/image-20250214172823485.png)
+
+为了便于小对象的解包，第二阶段后的特征会与$SAM-HQ$特征$f^{HQ}$拼接后输入到最终阶段。
+
+![image-20250214172934015](images/image-20250214172934015.png)
+
+最后，通过一个简单的变换计算对象得分$y^o ∈ \mathbb{R}^{H×W×1}$，即$y^o = \mathrm{LRelu(W_O · Q^{HR})}$，其中$\mathrm{W_O}$是学习到的投影矩阵，$\mathrm{LReLU(·)}$是$\mathrm{Leaky ReLU}$。每个查询还通过一个三层$MLP$解码为对象姿态，即$y^{BB} = \sigma(MLP(QHR))$，其中$σ(·)$是sigmoid函数，$y^{BB} ∈ R^{H×W×4}$是$tlrb$格式[26]的边界框参数。
+
+-  $tlrb$格式 什么格式？
+- DQD 不是一个函数
+
+- 找到分别对应源码的哪里
+
+- DQD将密集查询Q解码为对象检测结果，并详细介绍了如何通过空间解包和特征增强来解决小对象编码问题，最终计算出对象得分和边界框参数
+
+![image-20250214194153073](images/image-20250214194153073.png)
+
+![image-20250214195516129](images/image-20250214195516129.png)
+
+==说明 tlrb 格式==
+
+bounding box（边界框）通常用于标注图像中的目标物体。常见的边界框格式有多种，包括 `xyxy`、`xywh` 和 `tlrb` 等。
+
+`tlrb` 格式表示的是边界框的四个边的相对位置，具体如下：
+
+- `t` (top): 边界框的上边缘相对于图像顶部的距离。
+- `l` (left): 边界框的左边缘相对于图像左侧的距离。
+- `r` (right): 边界框的右边缘相对于图像左侧的距离。
+- `b` (bottom): 边界框的下边缘相对于图像顶部的距离。
+
+在代码中，`outputs_coord` 是一个形状为 `(bs, w, h, 4)` 的张量，其中 `bs` 是批次大小，`w` 和 `h` 是特征图的宽度和高度，`4` 表示 `tlrb` 格式的四个边界参数。
+
+以下是代码中相关部分的解释：
+
+```python
+outputs_coord = self.bbox_embed(adapted_f).sigmoid().view(bs, w, h, 4).permute(0, 3, 1, 2)
+```
+
+- `self.bbox_embed(adapted_f)`: 使用一个多层感知机（MLP）对 `adapted_f` 进行处理，得到边界框的四个边界参数。
+- `.sigmoid()`: 使用 sigmoid 函数将输出限制在 `[0, 1]` 范围内。
+- `.view(bs, w, h, 4)`: 将输出重新调整形状为 `(bs, w, h, 4)`。
+- `.permute(0, 3, 1, 2)`: 调整维度顺序，使其变为 `(bs, 4, w, h)`。
+
+这样，`outputs_coord` 就包含了每个像素点的边界框参数，格式为 `tlrb`。
+
+## 3.2节 第 2 段，最后一句
+
+![image-20250214202048286](images/image-20250214202048286.png)
+
+## 3.3 节
+
+![image-20250214202744098](images/image-20250214202744098.png)
+
+最终的检测结果是从 $y^O$ 和 $y^{BB}$ 中提取的，具体步骤如下：
+
+1. 在阈值化的 $y^O$ 上，使用 $3×3$ 的非极大值抑制（NMS）算法，从 $y^{BB}$ 中读取局部最大值处的边界框参数。
+2. 将这些边界框作为提示，输入到 $SAM$ 解码器 [12] 中，利用已经计算好的主干特征 $f^I$ 对其进行细化。
+3. 通过最小-最大操作将边界框适配到掩码上，并最终应用 $IoU = 0.5$ 的非极大值抑制，以去除重复的检测结果。
+4. 这个过程最终输出预测的边界框 $B^P$ 及其对应的掩码 $M^P$。
+
+**读什么？**
+
+- 读论文与代码的对应
+- 读代码的输入、处理、输出
+
+3.4 A novel loss for dense detection training
+
+![image-20250216104632477](images/image-20250216104632477.png)
+
+GeCotraining需要对密集目标性得分yO和边界框参数yBB进行监督。理想情况下，网络应该学会预测那些可以被非极大值抑制（NMS）可靠检测到的目标上的点，同时这些点也可以可靠地预测出边界框参数。因此，我们提出了一种新的密集目标检测损失函数，旨在追求这一特性。
+
+![image-20250216105206082](images/image-20250216105206082.png)
+
+![image-20250216105222627](images/image-20250216105222627.png)
+
+
+
+
+

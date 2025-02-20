@@ -1,4 +1,4 @@
-# 4种卷积
+# 卷积
 
 
 
@@ -8,6 +8,11 @@
 - [x] 膨胀卷积、空洞卷积卷积
 - [ ] 可变形卷积
 - [ ] 大核卷积
+- [x] 1D 卷积
+
+
+
+
 
 ![image-20241125105147313](images/image-20241125105147313.png)
 
@@ -1009,3 +1014,125 @@ flag = torch.allclose(pytorch_conv2d_api_output,mm_conv2d_finall_output)
 print(flag)
 ```
 
+## 7 1D 卷积
+
+![image-20250216193620221](images/image-20250216193620221.png)
+
+![image-20250216193732681](images/image-20250216193732681.png)
+
+## 	8 深度可分离卷积
+
+2025.2.20
+
+深度可分离卷积（Depthwise Separable Convolution）是一种高效的卷积操作，它将标准卷积分解为两个更简单的操作：深度卷积（Depthwise Convolution）和逐点卷积（Pointwise Convolution）。
+
+**深度可分离卷积的定义**
+
+**深度卷积（Depthwise Convolution）**：
+
+- 对每个输入通道分别进行卷积操作，而不是对所有通道进行卷积。
+- 这意味着每个卷积核只作用于一个输入通道，输出的通道数与输入的通道数相同。
+
+**逐点卷积（Pointwise Convolution）**：
+
+- 使用 `1x1` 卷积核对深度卷积的输出进行卷积操作。
+- 逐点卷积用于将不同通道的信息进行线性组合，从而生成新的输出通道。
+
+```python
+import torch
+import torch.nn as nn
+
+class DepthwiseSeparableConv(nn.Module):
+    def __init__(self, in_channels, out_channels, kernel_size=3, stride=1, padding=1):
+        super(DepthwiseSeparableConv, self).__init__()
+        # 深度卷积
+        self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=kernel_size, 
+                                   stride=stride, padding=padding, groups=in_channels)
+        # 逐点卷积
+        self.pointwise = nn.Conv2d(in_channels, out_channels, kernel_size=1)
+
+    def forward(self, x):
+        x = self.depthwise(x)
+        x = self.pointwise(x)
+        return x
+
+# 示例输入
+x = torch.randn(1, 64, 32, 32)  # (batch_size, in_channels, height, width)
+
+# 实例化深度可分离卷积
+model = DepthwiseSeparableConv(in_channels=64, out_channels=128)
+
+# 前向传播
+output = model(x)
+print(output.shape)  # 输出形状应为 (1, 128, 32, 32)
+```
+
+深度卷积：
+
+```python
+self.depthwise = nn.Conv2d(in_channels, in_channels, kernel_size=kernel_size, 
+                           stride=stride, padding=padding, groups=in_channels)
+```
+
+- groups=in_channels表示每个输入通道都有一个独立的卷积核。
+- 这一步的输出通道数与输入通道数相同。
+
+**逐点卷积：**
+
+```python
+self.pointwise = nn.Conv2d(in_channels, out_channels, kernel_size=1)
+```
+
+使用 `1x1` 卷积核将深度卷积的输出通道数转换为所需的输出通道数。
+
+前向传播：
+
+```python
+def forward(self, x):
+    x = self.depthwise(x)
+    x = self.pointwise(x)
+    return x
+```
+
+先进行深度卷积，再进行逐点卷积。
+
+深度可分离卷积广泛应用于轻量级神经网络架构中，如 MobileNet 和 Xception，用于减少计算量和参数量，同时保持较好的性能。
+
+![image-20250220192443698](images/image-20250220192443698.png)
+
+## 	卷积过后输出特征图的大小
+
+分组其实不影响输出特征图的大小，会影响卷积核的通道数，也不影响卷积核的个数，会影响卷积的参数量，因为通道变少了
+
+正常卷积：
+
+$output_h = \frac{h-k+2p+s}{s}$
+
+
+
+```python
+import torch
+import torch.nn as nn
+
+# 定义分组卷积
+conv = nn.Conv2d(64, 64, kernel_size=5, stride=2, padding=5//2, groups=64, bias=False)
+
+# 示例输入
+x = torch.randn(1, 64, 7, 7)
+
+# 前向传播
+output = conv(x)
+
+# 打印输出特征图的大小
+print(output.shape)  # 输出形状应为 (1, 64, 4, 4)
+```
+
+$output_h = \frac{input_h-k+s+2p}{s} =\frac{7-5+2+2*p}{2}=\frac{7-5+2+2*2}{2}=4$ 
+
+这里需要注意的是 $ p = 5//2 = 2$
+
+所以当 $stride = 1$ 时，$padding = kernel\_size //2$ 时，是不变卷积（输入特征图尺寸 和 输出特征图尺寸相同）
+
+分组只是卷积核的参数变少了。
+
+- [ ] 膨胀卷积与输出特征图的尺寸？
