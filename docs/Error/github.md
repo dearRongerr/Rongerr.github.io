@@ -30,5 +30,12 @@ git push -u origin main
 
 网络问题，关代理
 
+## 安装 github 上的库
+
+setup.py
+
+![image-20250221132357664](images/image-20250221132357664.png)
 
 
+
+不小心误点远程仓库：`rm -rf .git`  删除.git文件

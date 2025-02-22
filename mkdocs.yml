@@ -10,33 +10,29 @@ nav:
 # 请在相应的文件夹中创建一个名为 index.md 的新文档，
 # 并将其添加到导航部分的开头
 
-  - 便签:
-    - sticks/index.md
-    - sticks/sticks.md
-    - TODO: sticks/TODO.md
-    - DONE: sticks/DONE.md
+  - 便签:   
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
     - sticks/latex.md
     - sticks/GitHub.md
     - sticks/MacOS.md
     - sticks/linux.md
-    - sticks/1.md  
+    - sticks/1.md
+    - sticks/2.md  
+    - sticks/3.md 
+    - sticks/4.md
   - 面试:
-    - bagu/index.md
     - 题目:
-      - bagu/questions/index.md
       - bagu/questions/1_questions.md
-      - 力扣:
-        - bagu/questions/leetcode/index.md
-        - bagu/questions/leetcode/1.md
-        - bagu/questions/leetcode/2.md
+    - 力扣:
+      - bagu/leetcode/index.md
+      - bagu/leetcode/1.md
+      - bagu/leetcode/2.md
     - 深度学习: 
       - bagu/deeplearning/index.md
-      - 关于Transformer:
-        - bagu/deeplearning/former/transformer.md
-        - bagu/deeplearning/former/1.md
-        - bagu/deeplearning/former/2.md 
+      - bagu/deeplearning/transformer.md
+      - bagu/deeplearning/former1.md
+      - bagu/deeplearning/former2.md 
       - bagu/deeplearning/pytorch_shape_function.md
       - bagu/deeplearning/1.md
     - 机器学习: 
@@ -44,14 +40,13 @@ nav:
       - bagu/machinelearning/2.md
   - 捉个虫:
     - Error/github.md
-    - Error/latex.md      
+    - Error/latex.md 
+    - Error/python.md 
+    - Error/error2.md      
   - 笔记:
-    - learning/index.md
-    - 小讲堂:
-      - learning/LittleLesson/index.md
-      - learning/LittleLesson/3_ViT.md
-      - learning/LittleLesson/1_clip.md
-      - learning/LittleLesson/2_MOCO.md
+    - learning/3_ViT.md
+    - learning/1_clip.md
+    - learning/2_MOCO.md
     - learning/2.md
     - learning/1.md
     - learning/vit.md
@@ -103,10 +98,11 @@ nav:
         - literature/ObejectCounting/rank19 FamNet.md
     - 复现&代码: 
       - literature/Reproduction/index.md
-      - literature/Reproduction/DAVE.md
+      - literature/Reproduction/DAVE.md     
       - literature/Reproduction/1.md
       - literature/Reproduction/2.md
       - literature/Reproduction/3.md
+      - literature/Reproduction/4.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md
@@ -127,7 +123,7 @@ theme:
     - toc.follow
     # 给每个 Tab 添加一个 index.md，且在点击 Tab 时打开
     # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages-with-section-index-pages
-    - navigation.indexes  
+    # - navigation.indexes  
     # 返回顶部的按钮，在上滑时出现
     # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#back-to-top-button
     - navigation.top  
@@ -143,7 +139,7 @@ theme:
     # [点击按钮跳转至 GitHub 修改 Markdown 源文件]
     # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
     # - content.action.edit # 不要，改了会有不同步的问题
-    - navigation.footer # 页脚可以包含指向当前页面的上一页和下一页的链接
+    # - navigation.footer # 页脚可以包含指向当前页面的上一页和下一页的链接
     - navigation.tabs  # 设置导航
     - navigation.tabs.sticky # 粘性导航
     - navigation.sections # 不知道是啥 加上试一下  
@@ -166,10 +162,10 @@ theme:
         icon: material/brightness-4
         name: Switch to light mode
 # repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，跟theme是同一个级别
-repo_url: https://github.com/dearRongerr
+# repo_url: https://github.com/dearRongerr
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
-repo_name: dearRongerr's github
-copyright: dearRongerr | 24.11.14 
+# repo_name: dearRongerr's github
+# copyright: dearRongerr | 24.11.14 
 
 
 
