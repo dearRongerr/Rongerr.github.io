@@ -1136,3 +1136,19 @@ $output_h = \frac{input_h-k+s+2p}{s} =\frac{7-5+2+2*p}{2}=\frac{7-5+2+2*2}{2}=4$
 分组只是卷积核的参数变少了。
 
 - [ ] 膨胀卷积与输出特征图的尺寸？
+
+---
+
+$$ \text{Output Size} = \left\lfloor \frac{\text{Input Size} + 2 \times \text{Padding} - \text{Kernel Size}}{\text{Stride}} \right\rfloor + 1 $$
+
+对于输入特征图尺寸为 80x80，卷积核大小为 3x3，步幅为 2，填充为 1 的情况
+
+$$ \text{Output Size} = \left\lfloor \frac{80 + 2 \times 1 - 3}{2} \right\rfloor + 1 $$
+
+- 计算括号内的值:  $80 + 2 \times 1 - 3 = 80 + 2 - 3 = 79$ 
+- 除以步幅: $\frac{79}{2}$ = 39.5 
+- 取整:  $\left\lfloor 39.5 \right\rfloor = 39$ 
+- 加 1:  $39 + 1 = 40$ 
+
+因此，输出特征图的尺寸为 $40×40$
+
