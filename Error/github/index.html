@@ -1317,9 +1317,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      线上和本地不同步问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#couldnt-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Couldn't connect to server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#github_1" class="md-nav__link">
     <span class="md-ellipsis">
       安装 github 上的库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      不小心误点连接远程仓库
     </span>
   </a>
   
@@ -1385,7 +1412,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../error2/" class="md-nav__link">
+      <a href="../macos/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -2857,7 +2884,7 @@
         
   
   <span class="md-ellipsis">
-    通道注意力及其变体
+    一些模块
     
   </span>
   
@@ -3320,9 +3347,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      线上和本地不同步问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#couldnt-connect-to-server" class="md-nav__link">
+    <span class="md-ellipsis">
+      Couldn't connect to server
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#github_1" class="md-nav__link">
     <span class="md-ellipsis">
       安装 github 上的库
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      不小心误点连接远程仓库
     </span>
   </a>
   
@@ -3348,10 +3402,10 @@
 
 
 <h1 id="github">github<a class="headerlink" href="#github" title="Permanent link">&para;</a></h1>
+<h2 id="_1">线上和本地不同步问题<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Git: fatal: unable to access 'https://github.com/dearRongerr/Rongerr.github.io.git/': Failure when receiving data from the peer</p>
 </blockquote>
-<p>线上和本地不同步问题</p>
 <p>先将远程分支的更改合并到本地分支，然后再推送。请按照以下步骤操作：</p>
 <ul>
 <li>拉取远程分支的更改并合并到本地分支：</li>
@@ -3368,14 +3422,36 @@
 </ul>
 <div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
 </span></code></pre></div></td></tr></table></div>
+<h2 id="couldnt-connect-to-server">Couldn't connect to server<a class="headerlink" href="#couldnt-connect-to-server" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Git: fatal: unable to access 'https://github.com/dearRongerr/Rongerr.github.io.git/': Failed to connect to github.com port 443 after 75002 ms: Couldn't connect to server</p>
 </blockquote>
-<p>网络问题，关代理</p>
+<ul>
+<li>网络问题，关代理，如果还不能解决：</li>
+<li>（第一种情况）使用 vpn，网页可以打开github，这种情况说明命令行在拉取、推送代码时没有使用 vpn 打开代理，解决方法：</li>
+</ul>
+<p>配置 socks5 代理、配置http代理</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-2">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-3">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-4">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>（第二种情况）如果未使用 vpn，此时解决方法，取消代理，终端输入：</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>http.proxy
+</span><span id="__span-4-2">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>https.proxy
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="c48810ebd48dced797261d9276177705" src="../images/c48810ebd48dced797261d9276177705.jpg" /></p>
 <h2 id="github_1">安装 github 上的库<a class="headerlink" href="#github_1" title="Permanent link">&para;</a></h2>
 <p>setup.py</p>
 <p><img alt="image-20250221132357664" src="../images/image-20250221132357664.png" /></p>
-<p>不小心误点远程仓库：<code>rm -rf .git</code>  删除.git文件</p>
+<h2 id="_2">不小心误点连接远程仓库<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>终端：<code>rm -rf .git</code>  删除.git文件</p>
 
 
 
@@ -3398,7 +3474,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-22T14:04:48+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-24T02:39:20+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-24</span>
   </span>
 
     
