@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://mydomain.org/mysite/sticks/2/">
+        <link rel="canonical" href="https://mydomain.org/mysite/sticks/docker/">
       
       
         <link rel="prev" href="../1/">
@@ -612,6 +612,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -622,6 +634,136 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用容器跑代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地拉取镜像上传服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 配置加速阿里云镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      dockerfile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统学习docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统学习docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -1236,6 +1378,8 @@
       
         
       
+        
+      
     
     
       
@@ -1350,6 +1494,28 @@
   
   <span class="md-ellipsis">
     macOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
     
   </span>
   
@@ -3273,6 +3439,125 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用容器跑代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地拉取镜像上传服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 配置加速阿里云镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      dockerfile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统学习docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统学习docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3291,8 +3576,426 @@
 
 
 <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
-<p><img alt="image-20250221141051912" src="../images/image-20250221141051912.png" /></p>
-<p>https://www.zhihu.com/question/486938264/answer/2665791940</p>
+<p>占位：<a href="https://hub.docker.com/_/python">docker hub</a></p>
+<p><img alt="image-20250221141051912" src="../images/image-20250221141051912.png" /> </p>
+<p><a href="https://blog.csdn.net/A24kk42__/article/details/131970979">小白入门：如何在docker中运行python程序</a></p>
+<p><a href="https://www.zhihu.com/question/486938264/answer/2665791940">如何通过 Docker 部署深度学习项目环境？</a></p>
+<h2 id="_1">使用容器跑代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>1️⃣ 创建一个本地Ubuntu系统和docker容器共享的文件夹</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">sudo<span class="w"> </span>mkdir<span class="w"> </span>/loacal_data
+</span></code></pre></div></td></tr></table></div>
+<p>2️⃣ 将代码文件复制到Ubuntu系统的<code>/loacal_data</code>目录下，这样该目录就和容器内部的<code>/container_data</code>目录连通了</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/local_data:/container_data<span class="w"> </span>-itd<span class="w"> </span>image_name:v1<span class="w"> </span>bash
+</span></code></pre></div></td></tr></table></div>
+<p>3️⃣ 查看此时正在运行的容器</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>
+</span></code></pre></div></td></tr></table></div>
+<p>该容器就是我们刚刚所创建的用于本地测试代码的容器</p>
+<p>4️⃣ 用<code>docker attach</code>进入容器</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">sudo<span class="w"> </span>docker<span class="w"> </span>attach<span class="w"> </span>500ad76de1cf
+</span></code></pre></div></td></tr></table></div>
+<p>5️⃣ 之后的步骤就是与在本地系统命令行的操作一样，进入代码的文件夹，用<code>python</code>命令执行代码</p>
+<h2 id="_2">本地拉取镜像上传服务器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a href="https://blog.csdn.net/weixin_43474841/article/details/144285723">步骤</a></p>
+<p>🟢 第一步：拉取远程镜像，<a href="https://hub.docker.com/r/pytorch/pytorch/tags">docker pull</a></p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">docker<span class="w"> </span>pull<span class="w"> </span>pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20250225201500742" src="../images/image-20250225201500742.png" />  </p>
+<p><img alt="image-20250225221519423" src="../images/image-20250225221519423.png" /></p>
+<p>🟢 第二步，标记镜像，为 pull 下来的镜像，打标签，推送到==服务器上的名称:版本号==</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">docker<span class="w"> </span>tag<span class="w"> </span>8d8f916f1de0<span class="w"> </span>geco_image:v1
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20250225221931500" src="../images/image-20250225221931500.png" /></p>
+<p>🟢 第三步：将本地的 docker 镜像保存为 tar 文件，就用刚刚 tag 的别名:标签，这样到服务商就是对应的名称和标签</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>镜像tar文件名称.tar<span class="w"> </span>geco_image:v1
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20250225223126609" src="../images/image-20250225223126609.png" /></p>
+<p>🟢 第四步：传输镜像，将保存的tar文件传输到远程服务上，FileZilla 即可</p>
+<p><img alt="image-20250225223611110" src="../images/image-20250225223611110.png" /></p>
+<p>🟢 第五步：在远程服务上加载镜像</p>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div></td></tr></table></div>
+<p><img alt="image-20250225202105226" src="../images/image-20250225202105226.png" /></p>
+<ul>
+<li>在服务器端启动 docker</li>
+</ul>
+<p><code>docker run -it #####image_id#####</code></p>
+<p><img alt="image-20250225203349984" src="../images/image-20250225203349984.png" /></p>
+<h2 id="docker_1">docker 配置加速<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像</a>源<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250225201005904" src="../images/image-20250225201005904.png" /></p>
+<p><img alt="image-20250225201030052" src="../images/image-20250225201030052.png" /></p>
+<p><img alt="image-20250225200841314" src="../images/image-20250225200841314.png" /></p>
+<h2 id="_3">一些命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>docker images</p>
+</li>
+<li>
+<p>查看已经有的 docker</p>
+</li>
+<li>
+<p>docker pull  ###</p>
+</li>
+<li>
+<p>docker pull asappinc/python-38-cuda118</p>
+</li>
+<li>
+<p>拉取远程 docker</p>
+</li>
+<li>
+<p>删除本地拉取过来的 docker：</p>
+</li>
+<li>
+<p>docker 安装成功没   docker help</p>
+</li>
+</ul>
+<h3 id="docker-tag">docker tag<a class="headerlink" href="#docker-tag" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">docker<span class="w"> </span>tag<span class="w"> </span>SOURCE<span class="o">[</span>本地<span class="o">]</span>_IMAGE<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>TARGET_IMAGE<span class="o">[</span>服务器<span class="o">][</span>:TAG<span class="o">]</span>
+</span></code></pre></div></td></tr></table></div>
+<blockquote>
+<p>tag的作用：</p>
+<ul>
+<li><code>SOURCE_IMAGE[:TAG]</code>：源镜像的名称和可选的标签。如果未指定标签，默认为 <code>latest</code>。</li>
+<li><code>TARGET_IMAGE[:TAG]</code>：目标镜像的名称和可选的标签。</li>
+<li>假设你有一个名为 <code>my-image</code> 的镜像，并且你想为它创建一个新的标签 <code>v1.0</code>，可以使用以下命令：<code>docker tag my-image my-image:v1.0</code></li>
+<li>这将为 <code>my-image</code> 镜像创建一个新的标签 <code>v1.0</code>。你可以使用 <code>docker images</code> 命令查看镜像和标签：<code>docker images</code></li>
+<li>输出示例：</li>
+</ul>
+<p>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+my-image            latest              d1e3f1e4f1e4        2 days ago          500MB
+my-image            v1.0                d1e3f1e4f1e4        2 days ago          500MB</p>
+<ul>
+<li>值得注意的是：</li>
+</ul>
+<p>两个镜像的 ID 一样是因为它们实际上是同一个镜像，只是被打上了不同的标签。这意味着你可以通过任意一个标签来引用这个镜像，并且删除其中一个标签不会影响镜像的实际数据。</p>
+<p>当你删除一个镜像标签时，实际上只是删除了这个标签，而镜像本身仍然存在，直到所有引用它的标签都被删除。</p>
+</blockquote>
+<h3 id="docker-load">docker load<a class="headerlink" href="#docker-load" title="Permanent link">&para;</a></h3>
+<p><code>docker load -i 镜像tar文件名称.tar</code> </p>
+<ul>
+<li>
+<p>加载完成后，使用 <code>docker images</code> 即可查看 加载到的镜像</p>
+</li>
+<li>
+<p>该命令用于从一个 tar 文件中加载 Docker 镜像：</p>
+</li>
+</ul>
+<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li><code>docker load</code>：这是 Docker 的一个命令，用于从一个 tar 文件中加载镜像。</li>
+<li><code>-i</code>：这是 <code>--input</code> 的缩写，指定输入文件。</li>
+<li><code>镜像tar文件名称.tar</code>：这是包含 Docker 镜像的 tar 文件的名称。</li>
+</ul>
+<p><img alt="image-20250225224035189" src="../images/image-20250225224035189.png" /></p>
+<h2 id="dockerfile">dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250224224441779" src="../images/image-20250224224441779.png" /></p>
+<p>查看官方源，以<a href="https://hub.docker.com/_/python">python</a>为例</p>
+<p><img alt="image-20250224224521579" src="../images/image-20250224224521579.png" /></p>
+<h2 id="docker_2">系统学习docker<a class="headerlink" href="#docker_2" title="Permanent link">&para;</a></h2>
+<h3 id="docker_3">安装docker<a class="headerlink" href="#docker_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>docker的安装命令：参照<a href="https://www.docker.com/">docker官网访问docker.com</a></li>
+<li><a href="https://docs.docker.com/engine/install/centos/">点击：开发者--&gt;文档--&gt;manuals手册(包含how to install、如何安装)--&gt;docker引擎 docker engine --&gt;  install安装--&gt;选择我们系统的版本（如 CentOS）--&gt; 参照步骤， 直接复制命令</a></li>
+<li>第一步，移除系统里边的旧版本</li>
+</ul>
+<p><img alt="image-20250225134400943" src="../images/image-20250225134400943.png" /></p>
+<p><img alt="image-20250225134508044" src="../images/image-20250225134508044.png" /></p>
+<ul>
+<li>第二步：配置docker的下载源</li>
+</ul>
+<p>安装 yum-utils 工具类，用这个工具类配置docker的下载地址源
+因为这里的docker下载地址是连接docker官网的，下载起来比较慢</p>
+<p><img alt="image-20250225134911413" src="../images/image-20250225134911413.png" /></p>
+<p>参照如下：</p>
+<p><img alt="image-20250225134831604" src="../images/image-20250225134831604.png" /></p>
+<p>把docker的下载源配置成阿里云的地址</p>
+<ul>
+<li>第三步，安装docker引擎：</li>
+</ul>
+<p><img alt="image-20250225135147161" src="../images/image-20250225135147161.png" /></p>
+<p>包含</p>
+<p>（1）docker-ce：docker引擎</p>
+<p>（2）docker-ce-cli：docker引擎的命令行程序，命令行可以给docker的demon后台进程去发送命令</p>
+<p>（3）container.io：docker的运行时容器环境</p>
+<p>（4）以及docker用来构建镜像的插件工具</p>
+<p>（5）还有docker compose：做批量</p>
+<p><img alt="image-20250225140906758" src="../images/image-20250225140906758.png" /></p>
+<p>输入Y确认下载安装</p>
+<ul>
+<li>第四步：启动docker</li>
+</ul>
+<p><img alt="image-20250225141102192" src="../images/image-20250225141102192.png" /></p>
+<p>输入system control start docker
+sudo 表示 使用超级管理员权限，使用的是root的话，可以直接粘贴命令回车，完成 docker启动</p>
+<p><img alt="image-20250225141211110" src="../images/image-20250225141211110.png" /></p>
+<p>运行docker命令，<code>docker ps</code>，查看正在运行中的应用</p>
+<p>注意：这个命令启动docker只是当前启动，如果关机，下次还得用这个命令启动docker， 所以额外加一个叫system control enable docker</p>
+<p><img alt="image-20250225141444395" src="../images/image-20250225141444395.png" /></p>
+<p>让docker开机也启动，至此docker安装完成</p>
+<p><mark>补充配置：</mark> </p>
+<p><img alt="image-20250225141925977" src="../images/image-20250225141925977.png" /></p>
+<p>docker已经启动安装完成以后，可以配置docker的加速</p>
+<p>因为docker去下载镜像， 默认从docker hub官网下载，而连接国外比较慢，所以一般配置国内镜像源地址</p>
+<p>命令行示例如下：</p>
+<p><img alt="image-20250225142141205" src="../images/image-20250225142141205.png" /></p>
+<p>配置好加速源地址以后，重启docker的后台进程以及重启docker</p>
+<p>注意这里的配置原理，是docker后台进程的配置文件，在etc/docker/demon.json中，给这个json中配置了一个选项：registry - mirrors指向国内镜像源，相当于修改了docker的配置文件</p>
+<p>全部配置成功以后再次验证，如果docker ps 等 docker 命令可以运行证明没有问题</p>
+<h3 id="docker_4">docker 命令<a class="headerlink" href="#docker_4" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20250225142643751" src="../images/image-20250225142643751.png" /></p>
+<p><mark>问题描述：</mark> </p>
+<p><img alt="image-20250225142736105" src="../images/image-20250225142736105.png" /></p>
+<p>用docker启动一个nginx应用，并且将nginx的默认首页改成自己的页面，这样别人来访问这个nginx，就能看到你自己的页面，并且将改好的应用发布出去，发布到应用市场，让所有人都能从市场里边下载这个应用，直接运行</p>
+<p><mark>步骤如下：</mark></p>
+<p><img alt="image-20250225142944621" src="../images/image-20250225142944621.png" /></p>
+<ul>
+<li>第一步去应用市场下载NGINX软件镜像</li>
+<li>然后docker使用这个镜像启动一个应用容器</li>
+<li>接下来修改容器里的默认页面，把它改成自己的页面</li>
+<li>最后把修改的整个软件，保存一个新的镜像，把这个镜像发布到应用市场里边，让别人可以下载</li>
+</ul>
+<p>第一步，下载镜像：</p>
+<p><img alt="image-20250225143244238" src="../images/image-20250225143244238.png" /></p>
+<p>跟镜像相关的命令
+- 检索，使用docker search先找一下有没有这个镜像
+- 再利用docker pull把这个镜像下载过来
+- 使用docker images，查看已经下载来的所有镜像列表
+- 使用docker rmi，remove image的缩写，删除某一个镜像</p>
+<p>🟢 先来用docker search来搜一下有没有nginx镜像</p>
+<p><img alt="image-20250225143534847" src="../images/image-20250225143534847.png" /></p>
+<ul>
+<li>打印一个列表</li>
+<li>name：镜像的名字</li>
+<li>description：对这个镜像的描述</li>
+<li>stars：这个镜像有多少的star</li>
+<li>official：这个镜像是不是官方发布的镜像，如果OK代表这是官方镜像，否则就是第三方制作的镜像</li>
+</ul>
+<p><img alt="image-20250225143744177" src="../images/image-20250225143744177.png" /></p>
+<ul>
+<li>
+<p>显示 有一个NGINX，直接进行下载 </p>
+</li>
+<li>
+<p>使用docker pull命令直接写镜像名回车，镜像进入下载流程，下载完成以后，使用docker images检查一下</p>
+</li>
+</ul>
+<p><img alt="image-20250225143922325" src="../images/image-20250225143922325.png" /></p>
+<ul>
+<li>显示 系统里现在有一个镜像</li>
+<li>打印的列表：</li>
+</ul>
+<p>1️⃣ repository：代表镜像的名字</p>
+<p>2️⃣ TAG 是镜像的标签，一般代表镜像的版本，latest代表最新版本</p>
+<p>3️⃣ image id代表镜像的唯一id</p>
+<p>4️⃣ created ：镜像是多少天前创建出来的</p>
+<p>5️⃣ size： 镜像的大小</p>
+<p>📢 这里演示下载的镜像NGINX，是最新版的， 那如果要下载指定版本的呢？</p>
+<ul>
+<li>
+<p>镜像的完整名，其实是镜像名冒号加标签</p>
+</li>
+<li>
+<p>所以docker pull 下载nginx，其实等于docker put nginx加上它的标签，也就是版本latest，下载最新版本</p>
+</li>
+<li>
+<p>如果要下载指定版本，那此时就不推荐docker search搜索镜像，而是去<a href="https://hub.docker.com/explore">docker hub网站</a>自己来搜索镜像，在这个网站里有完整的版本列表，看上哪个去下载哪个</p>
+</li>
+</ul>
+<p><img alt="image-20250225145149411" src="../images/image-20250225145149411.png" /></p>
+<p>搜索想要的镜像，输入NGINX回车，有NGINX镜像
+注意加了这两个标志的都是官方镜像</p>
+<p><img alt="image-20250225145506282" src="../images/image-20250225145506282.png" /></p>
+<p>点进来，每一个镜像都有说明，包括这个镜像如何启动，也提供了docker run命令</p>
+<p><img alt="image-20250225145609207" src="../images/image-20250225145609207.png" /></p>
+<p><img alt="image-20250225145624912" src="../images/image-20250225145624912.png" /></p>
+<p>参考每一个镜像的说明，如果想要下载其他版本的nginx，点击 TAGS 里</p>
+<p><img alt="image-20250225145813958" src="../images/image-20250225145813958.png" /></p>
+<ul>
+<li>每一个tag都是一种版本，比如1.26</li>
+</ul>
+<p><img alt="image-20250225145919696" src="../images/image-20250225145919696.png" /></p>
+<p>下载它，直接复制命令到我们的命令行，重新下载docker pull，冒号指定了镜像版本</p>
+<p><img alt="image-20250225150207687" src="../images/image-20250225150207687.png" /></p>
+<p>下载完以后，使用<code>docker images</code>，完整写法是image ls，列出所有的镜像列表</p>
+<p><img alt="image-20250225152414867" src="../images/image-20250225152414867.png" /></p>
+<p>看到有nginx1.26.0镜像 ，还有nginx lastest 镜像
+🟢 如果想要删除某一个镜像，可以使用docker rmi，就是remove image，写镜像的名加上完整标签</p>
+<p><img alt="image-20250225152705012" src="../images/image-20250225152705012.png" /></p>
+<ul>
+<li>
+<p>比如要删latest，就写latest <code>docker rmi nginx：latest</code></p>
+</li>
+<li>
+<p>或者，每一个镜像有它的唯一id也可以用它的唯一id ，来进行删除</p>
+</li>
+<li>镜像就被删除了</li>
+<li>再来检查docker images，列表里边只有NGINX1.2.6.0</li>
+</ul>
+<p><img alt="image-20250225152926024" src="../images/image-20250225152926024.png" /></p>
+<h3 id="_4">启动容器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20250225152950832" src="../images/image-20250225152950832.png" /></p>
+<p>第一步，下载nginx镜像
+第二步，启动容器，每一个容器都代表一个运行中的应用</p>
+<p>🟢 跟容器相关的命令  </p>
+<ul>
+<li>
+<p>运行使用docker run  </p>
+</li>
+<li>
+<p>查看正在运行的容器 docker ps  </p>
+</li>
+<li>
+<p>停止stop   </p>
+</li>
+<li>
+<p>启动start  </p>
+</li>
+<li>
+<p>重启restart  </p>
+</li>
+<li>
+<p>查看容器的状态，比如CPU内存占用，使用docker states  </p>
+</li>
+<li>
+<p>查看容器的日志，也就是应用运行过程中产生的日志，使用docker logs  </p>
+</li>
+<li>
+<p>进入容器内部进行修改，使用docker exec  </p>
+</li>
+<li>
+<p>删除一个容器，使用docker rm  </p>
+</li>
+</ul>
+<p>📢 其中docker run和docker exec 这两个命令，比较复杂  </p>
+<p><mark>首先第一个docker run</mark></p>
+<p>当已经有了一个nginx镜像以后，想要启动这个应用</p>
+<p>第一步是docker run，启动一个应用</p>
+<p><img alt="image-20250225153515100" src="../images/image-20250225153515100.png" /></p>
+<ul>
+<li>docker run --help 查看这个命令怎么用</li>
+</ul>
+<p><img alt="image-20250225153806270" src="../images/image-20250225153806270.png" /></p>
+<p>用法usage是docker run <code>options</code>，options就是参数项</p>
+<p>启动一个容器能加的参数项：</p>
+<p><img alt="image-20250225153924326" src="../images/image-20250225153924326.png" /></p>
+<ul>
+<li>
+<p>image代表镜像</p>
+</li>
+<li>
+<p>中括号代表 可选参数</p>
+</li>
+<li>后边[command] [ARG...] 翻译过来是 ：<mark>命令和参数</mark>。表示如果启动这个镜像，要使用什么样的启动命令，可以自己定义，但一般镜像后边的命令和参数，不用写，因为每一个镜像有它自己的启动命令和参数，这是镜像里边默认带好的，除非我们要改变镜像的默认启动行为，否则都不用管</li>
+<li>使用就是：</li>
+</ul>
+<p>1️⃣ 直接使用docker run加上 镜像名，就可以用这个镜像启动一个应用</p>
+<p>2️⃣ 如果要加入一些参数设置，那就给run和image中间加上参数设置项</p>
+<p>现在直接使用<code>docker run nginx</code></p>
+<p>但如果不写镜像的版本号，就会使用最新镜像，如果第一次启动没有这个镜像，会自动下载，启动阻塞了控制台，此时不可以退出控制台，一停，应用跟着也就停了</p>
+<p>复制一个视图，在这个会话中用第二个命令：docker ps，可以查看运行中的应用</p>
+<p><img alt="image-20250225155319072" src="../images/image-20250225155319072.png" /></p>
+<p>看到有一个nginx在运行</p>
+<p>完整打印参数解释：</p>
+<ul>
+<li>container id 代表正在运行的应用的唯一id</li>
+<li>image 使用哪个镜像运行的，没带tag标签，说明是使用最新镜像</li>
+<li>command 代表这个容器自己的启动命令，不用管</li>
+<li>create代表 是多长时间之前启动的</li>
+<li>status 启动状态，up 代表上线成功了</li>
+<li>
+<p>ports 代表这个应用占用的端口是 80 端口</p>
+</li>
+<li>
+<p>names代表应用容器的名字，会给一个随机名字</p>
+</li>
+</ul>
+<p>▶️ 此时把这个应用控制台 CTRL C 中断掉，会发现这个应用停了</p>
+<ul>
+<li>再使用docker ps 来检查，就没有运行中的这个应用了</li>
+</ul>
+<p><img alt="image-20250225155545302" src="../images/image-20250225155545302.png" /></p>
+<p>注意docker ps  查看所有运行中的容器</p>
+<ul>
+<li>停了的，可以使用<code>docker ps -a</code> 就可以查看所有的容器，包括停止了的</li>
+</ul>
+<p><img alt="image-20250225160047398" src="../images/image-20250225160047398.png" /></p>
+<p>可以看到这个容器之前是运行的，现在<code>status</code>状态是<code>exist</code>已经退出了</p>
+<p>▶️ 退出的容器如果再想启动怎么做呢？</p>
+<ul>
+<li>
+<p>使用 docker start，相当于把这个容器重新启动</p>
+</li>
+<li>
+<p>docker start 写容器的名字、容器的id、id也可以只写三位，能跟其他人区分就行</p>
+</li>
+</ul>
+<p><img alt="image-20250225160217916" src="../images/image-20250225160217916.png" /></p>
+<p>以上，代表把它启动起来了</p>
+<p>docker ps 查看，这个应用<code>up</code>，表示启动起来了</p>
+<p>▶️ 启动的应用如果想停掉，可以使用docker stop命令，把这个应用停掉，可以使用它的应用名</p>
+<p><img alt="image-20250225160755915" src="../images/image-20250225160755915.png" /></p>
+<p>docker ps查看运行中的应用就没有了</p>
+<p>想要看到它就ps -a</p>
+<p><img alt="image-20250225160935176" src="../images/image-20250225160935176.png" /></p>
+<p>看到七秒前退出</p>
+<p>▶️ docker restart</p>
+<p>无论这个容器是运行中还是停止了，使用restart重启一下</p>
+<p><img alt="image-20250225161040369" src="../images/image-20250225161040369.png" /></p>
+<p>docker ps ，看一下，又重新up上线了</p>
+<p>▶️ docker states</p>
+<p>查看这个应用CPU内存等占用情况</p>
+<p><img alt="image-20250225161208395" src="../images/image-20250225161208395.png" /></p>
+<p>打印592容器，CPU内存包括网络IO整个情况，而且是每秒变化的，这一块没有变化的原因是因为这个容器现在没有处理任何请求，所以整个资源的占用没有变化</p>
+<p>▶️ <code>docker logs 592</code></p>
+<p><img alt="image-20250225161428210" src="../images/image-20250225161428210.png" /></p>
+<p>容器在运行过程中会产生大量日志，有时要用日志排错等</p>
+<p>就可以使用docker logs查看容器日志</p>
+<p>除
+06:13 我还是输入592回车
+06:16 但注意你想要删除一个容器
+06:19 你必须把它先stop停了才能删除
+06:22 但人家说你也可以使用false remove强制删除
+06:26 强制删除的写法就是RM杠F回车
+06:31 这样运行中的容器也能删除
+06:33 我们再来确认运行中的没有
+06:36 包括docker PS杠A
+06:38 所有无论是运行中的还是不运行的
+06:41 都没有在这一块呢
+06:43 我们给大家大概演示了这一堆的命令
+06:46 后来的ESEC我们后来说
+06:48 但是呢还有一个问题
+06:49 docker run我们之前写的特别简单
+06:53 如果直接这么写
+06:54 我们说这个是控制台阻死行为
+06:57 你把CTRLC停了
+06:59 它就完全停了
+07:00 你还得重新自己start启动
+07:03 我们希望整个应用能后台启动
+07:06 直接在后台提供服务
+07:08 怎么做呢
+07:09 包括我们现在启动的这个应用
+07:12 我就算启动了docker PS
+07:14 我来重新给它start
+07:16 是这个8B7
+07:18 注意应用一旦一重启以后还不是重启
+07:22 就是用这个镜像
+07:23 如果你重新启动一个容器以后
+07:25 你的容器id肯定会发生变化
+07:28 那我先把这个8B7再启动起来
+07:31 但是大家要注意的一点是
+07:33 虽然我这个容器占用的是八零端口
+07:36 此时你想要通过浏览器去来访问我们这个NG4
+07:41 你是访问不到的
+07:42 给大家看一下
+07:43 我直接把我的这个服务器的IP地址拿过来
+07:48 我去来访问他的八零端口
+07:50 回车这块是不能访问的
+07:54 那怎么把它做成能访问的
+07:57 以及让他在后台默默启动等等
+08:00 这一系列设置下
+08:01 我们下一节课就来仔细来说这个docker round
+08:04 使用办法</p>
 
 
 
@@ -3315,7 +4018,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-22T14:04:48+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-26</span>
   </span>
 
     
@@ -3325,7 +4028,7 @@
     <span class="md-icon" title="Created">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-22T14:04:48+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-22</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-26</span>
   </span>
 
     
