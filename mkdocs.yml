@@ -18,7 +18,7 @@ nav:
     - sticks/MacOS.md
     - sticks/linux.md
     - sticks/1.md
-    - sticks/2.md  
+    - sticks/docker.md  
     - sticks/3.md 
     - sticks/4.md
   - 面试:
@@ -42,7 +42,8 @@ nav:
     - Error/github.md
     - Error/latex.md 
     - Error/python.md 
-    - Error/macos.md      
+    - Error/macos.md
+    - Error/docker.md      
   - 笔记:
     - learning/3_ViT.md
     - learning/1_clip.md
