@@ -3325,15 +3325,16 @@
 </ul>
 <p><img alt="image-20250224225255261" src="../images/image-20250224225255261.png" /></p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 问题描述</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 问题描述</li>
 </ul>
 <p>说实话，我真的炸裂，现在是想要一个 docker 能够跑通自己的程序，为了增加可移植性，想创建一个 docker 的镜像，本来想着直接拉取一个基础的镜像，然后更改，比如 <a href="https://www.zhihu.com/question/486938264/answer/2665791940">这个链接</a> ，结果呢，服务器代理出问题，拉取不下来；</p>
 <p>那就想着本地拉取然后上传服务器，拉取是可以的，但是镜像是镜像，容器是容器，拉取下来的容器需要实例化为镜像，也是需要 run 一个，结果本地没有 cuda，报错 宿主机硬件不够的意思，不行；</p>
 <p>实在不行，就<a href="https://blog.csdn.net/A24kk42__/article/details/131970979">自己写 dockerfile</a> 把，卡到了构建镜像 docker build 一步，又双叒报错了，仔细看都是服务器代理的问题。</p>
 <p>该怎么办，心烦意乱，还是问问同学，怎么回事。问了</p>
-<p>（1）本地网络有代理，不代表服务器也有带俩</p>
+<p>（1）本地网络有代理，不代表服务器也有代理</p>
 <p>（2）本地下载下来，去上传到本地，那就不下有 cuda 的</p>
-<p>心态，每个人都会遇到问题，没有人都在解决问题</p>
+<p>心态，每个人都会遇到问题，每个人都在解决问题</p>
+<p>已解决。</p>
 
 
 
@@ -3356,7 +3357,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-27T09:00:07+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-27</span>
   </span>
 
     

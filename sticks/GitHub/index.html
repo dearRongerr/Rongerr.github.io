@@ -3915,7 +3915,7 @@
 <p><img alt="image-20250226161905578" src="../images/image-20250226161905578.png" /></p>
 <p><img alt="image-20250226163724377" src="../images/image-20250226163724377.png" /></p>
 <p>（3）<code>git remote -v</code> 查看当前仓库所对应的远程仓库的别名和地址</p>
-<p><img alt="image-20250226162410281" src="../images/image-20250226162410281.png" /></p>
+<p><img alt="image-20250226162410281" src="../images/image-20250226162410281.png" /> </p>
 <p>显示为 （远程仓库的别名）origin 和地址</p>
 <p><img alt="image-20250226163747747" src="../images/image-20250226163747747.png" /></p>
 <p>（4） 第二行，<code>git branch -M main</code>  指定==（本地）<mark>分支的名称为 main，这里默认的</mark>（本地分支）==名称就是 main，因此可以省略执行这行命令 </p>
@@ -3932,6 +3932,29 @@
 <p><img alt="image-20250226163815256" src="../images/image-20250226163815256.png" /></p>
 <p><img alt="image-20250226163826635" src="../images/image-20250226163826635.png" /></p>
 <h2 id="_7">拉取远程仓库的修改合并到本地仓库<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p>（1）远程仓库修改，添加 readme 文件--&gt;点击add a readme--&gt;编辑内容--&gt;点击提交按钮--&gt;刷新页面--&gt;看到文件添加到远程仓库里面了</p>
+<p><img alt="image-20250226165343401" src="../images/image-20250226165343401.png" /></p>
+<p><img alt="image-20250226165412579" src="../images/image-20250226165412579.png" /></p>
+<p><img alt="image-20250226165529154" src="../images/image-20250226165529154.png" /></p>
+<p><img alt="image-20250226170544280" src="../images/image-20250226170544280.png" /></p>
+<p>（2）问题描述：</p>
+<blockquote>
+<p>远程仓库有了一个新的文件，但是本地还没有这个文件</p>
+</blockquote>
+<p>使用 pull 拉取远程仓库中修改的内容</p>
+<p><img alt="image-20250226165717392" src="../images/image-20250226165717392.png" /></p>
+<p>命令解释：远程仓库（origin）的 main 分支，拉取到本地。</p>
+<p>🟢 省略远程仓库名和分支名，直接使用 <code>git pull</code> 命令，那么将默认拉取仓库别名为 <code>origin</code>的 <code>main</code> 分支，作用就是将远程仓库的指定分支拉取到本地再进行合并；ls 参看本地仓库文件，readme 文件拉取过来了。</p>
+<p><img alt="image-20250226170318782" src="../images/image-20250226170318782.png" /></p>
+<p><img alt="image-20250226171136699" src="../images/image-20250226171136699.png" /></p>
+<p><img alt="image-20250226171148131" src="../images/image-20250226171148131.png" /></p>
+<p>暂存区的文件： <code>git ls-files</code></p>
+<p><img alt="image-20250226171214112" src="../images/image-20250226171214112.png" /></p>
+<p>git pull，ls查看文件列表</p>
+<p><img alt="image-20250226171255693" src="../images/image-20250226171255693.png" /></p>
+<p>readme 拉取下来。</p>
+<p>2025 年 2 月 26 日，<a href="https://www.bilibili.com/video/BV1HM411377j?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e&amp;p=16">告一段落，感谢</a>。分支没学。用到了再说。</p>
+<p>summary：本地仓库和远程仓库、连接</p>
 
 
 
@@ -3954,7 +3977,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-27T09:00:07+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-27</span>
   </span>
 
     
