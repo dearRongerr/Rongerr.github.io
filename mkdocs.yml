@@ -17,10 +17,10 @@ nav:
     - sticks/GitHub.md
     - sticks/MacOS.md
     - sticks/linux.md
-    - sticks/1.md
+    - sticks/screen.md
     - sticks/docker.md  
-    - sticks/3.md 
-    - sticks/4.md
+    - sticks/writting.md
+    - sticks/3.md
   - 面试:
     - 题目:
       - bagu/questions/1_questions.md
