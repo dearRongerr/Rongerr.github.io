@@ -2,382 +2,386 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     <url>
          <loc>https://mydomain.org/mysite/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/Error/docker/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/Error/github/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/Error/latex/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/Error/macos/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/Error/python/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/former1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/former2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/pytorch_shape_function/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/transformer/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/leetcode/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/leetcode/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/leetcode/2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/machinelearning/2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/machinelearning/kmeans/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/bagu/questions/1_questions/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/10_ResNet/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/11_excelcsvtensor/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/12_KLdivergence/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/13_RNN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/14_LSTM/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/15_ContrastiveLearning/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/16_YOLO/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/17_DETR/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/18_DINO/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/19_GPT/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/1_clip/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/20_distill/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/21_FastRCNN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/2_MOCO/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/3/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/3_ViT/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/4_GAN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/5_Bert/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/6_Diffusion/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/6_Diffusion1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/7_Clip/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/8_WeightNorm/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/9_cGAN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/convs/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/pe/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/swintransformer/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/vit/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/CrowdCounting/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/MultiModal/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/MultiModal/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank1%20CountGD/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank10%20SPDCN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank11%20GCA_SUN/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank12%20SAFECount/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank13%20BMNet/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank14%20LaoNet/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank15%20CounTX/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank16%20Counting_DETR/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank17%20RCC/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank18%20Omnicount/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank19%20FamNet/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank2%20GeCo/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank3%20DAVE/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank4%20CACViT/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank5%20SSD/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank6%20LOCA/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank7%20SemAug_CountTR/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank8%20CounTR/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObejectCounting/rank9%20SemAug_SAFECount/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObjectDetection/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObjectDetection/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObjectDetection/2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObjectDetection/3/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/ObjectDetection/4/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/2/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/3/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/4/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/literature/Reproduction/DAVE/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/logs/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/logs/diary/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/sticks/1/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <loc>https://mydomain.org/mysite/sticks/1_github_v1/</loc>
+         <lastmod>2025-02-28</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/sticks/2_python/</loc>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/3/</loc>
-         <lastmod>2025-02-27</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/sticks/4/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/GitHub/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/MacOS/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/docker/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/latex/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/linux/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/markdwon_learn/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
          <loc>https://mydomain.org/mysite/sticks/mkdocs_learn/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <lastmod>2025-02-28</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/sticks/sticks/</loc>
-         <lastmod>2025-02-27</lastmod>
+         <loc>https://mydomain.org/mysite/sticks/screen/</loc>
+         <lastmod>2025-02-28</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/sticks/writting/</loc>
+         <lastmod>2025-02-28</lastmod>
     </url>
 </urlset>
