@@ -9,19 +9,20 @@ nav:
 # 为了将页面链接到某个部分，
 # 请在相应的文件夹中创建一个名为 index.md 的新文档，
 # 并将其添加到导航部分的开头
-
   - 便签:   
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
     - sticks/latex.md
     - sticks/GitHub.md
     - sticks/MacOS.md
+    - sticks/shell.md
     - sticks/linux.md
     - sticks/screen.md
     - sticks/docker.md  
     - sticks/writting.md
-    - sticks/3.md
     - sticks/1_github_v1.md
+    - sticks/2_python.md
+    - sticks/3_vscode.md
   - 面试:
     - 题目:
       - bagu/questions/1_questions.md
@@ -76,7 +77,14 @@ nav:
     - learning/20_distill.md
     - learning/21_FastRCNN.md    
   - 文献:
-    - 人群计数: literature/CrowdCounting/1.md
+    - literature/index.md
+    - 时间序列预测: 
+      - literature/TSP/index.md
+      - literature/TSP/0_note.md
+      - literature/TSP/1_SegRNN.md  
+      - literature/TSP/2_DLinear.md
+      - literature/TSP/3_TimesNet.md
+      - literature/TSP/4_Informer.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
