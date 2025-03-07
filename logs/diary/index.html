@@ -2998,6 +2998,8 @@
       
         
       
+        
+      
     
     
       
@@ -3144,6 +3146,28 @@
   
   <span class="md-ellipsis">
     预训练权重
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
     
   </span>
   
@@ -3564,6 +3588,253 @@
 
 
 <h1 id="_1">乐观 &amp; 坚强<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<p>2025 年 3 月 7 日</p>
+<p>更新：</p>
+<p>刚刚又因为断网，导致错误了。就是说还是正常的吧断开连接和退出吧，已经吃过两次亏了，也许是因为这次把重定向删除了，所以没有报进程的错误，只是报了端口被监听的错误</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">| tee
+</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">&gt;
+</span></code></pre></div></td></tr></table></div>
+<hr />
+<p>留存正确的 shell 调用 python 脚本：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">model_name=SegRNN
+</span><span id="__span-2-2">
+</span><span id="__span-2-3">root_path_name=./dataset/
+</span><span id="__span-2-4">data_path_name=national_illness.csv
+</span><span id="__span-2-5">model_id_name=illness
+</span><span id="__span-2-6">data_name=custom
+</span><span id="__span-2-7">
+</span><span id="__span-2-8">
+</span><span id="__span-2-9">seq_len=60
+</span><span id="__span-2-10">for pred_len in 24 36 48 60
+</span><span id="__span-2-11">do
+</span><span id="__span-2-12">    python -m debugpy --listen 5998 --wait-for-client run_longExp.py \
+</span><span id="__span-2-13">      --is_training 1 \
+</span><span id="__span-2-14">      --root_path $root_path_name \
+</span><span id="__span-2-15">      --data_path $data_path_name \
+</span><span id="__span-2-16">      --model_id $model_id_name&#39;_&#39;$seq_len&#39;_&#39;$pred_len \
+</span><span id="__span-2-17">      --model $model_name \
+</span><span id="__span-2-18">      --data $data_name \
+</span><span id="__span-2-19">      --features M \
+</span><span id="__span-2-20">      --seq_len $seq_len \
+</span><span id="__span-2-21">      --pred_len $pred_len \
+</span><span id="__span-2-22">      --seg_len 12 \
+</span><span id="__span-2-23">      --enc_in 7 \
+</span><span id="__span-2-24">      --d_model 512 \
+</span><span id="__span-2-25">      --dropout 0 \
+</span><span id="__span-2-26">      --train_epochs 30 \
+</span><span id="__span-2-27">      --patience 10 \
+</span><span id="__span-2-28">      --rnn_type gru \
+</span><span id="__span-2-29">      --dec_way pmf \
+</span><span id="__span-2-30">      --channel_id 1 \
+</span><span id="__span-2-31">      --revin 1 \
+</span><span id="__span-2-32">      --itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name&#39;_&#39;$model_id_name&#39;_&#39;$seq_len&#39;_&#39;$pred_len.log
+</span><span id="__span-2-33">done
+</span></code></pre></div></td></tr></table></div>
+<p>以及 launch.json的配置：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span>
+<span class="normal">34</span>
+<span class="normal">35</span>
+<span class="normal">36</span>
+<span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">{
+</span><span id="__span-3-2">    // 使用 IntelliSense 了解相关属性。 
+</span><span id="__span-3-3">    // 悬停以查看现有属性的描述。
+</span><span id="__span-3-4">    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+</span><span id="__span-3-5">    &quot;version&quot;: &quot;0.2.0&quot;,
+</span><span id="__span-3-6">    &quot;configurations&quot;: [
+</span><span id="__span-3-7">        {
+</span><span id="__span-3-8">            &quot;name&quot;: &quot;[这里更换为任意名称]&quot;,
+</span><span id="__span-3-9">            &quot;type&quot;: &quot;python&quot;,
+</span><span id="__span-3-10">            &quot;request&quot;: &quot;attach&quot;,
+</span><span id="__span-3-11">            &quot;connect&quot;: {
+</span><span id="__span-3-12">                &quot;host&quot;: &quot;localhost&quot;,
+</span><span id="__span-3-13">                &quot;port&quot;: 5998
+</span><span id="__span-3-14">            }
+</span><span id="__span-3-15">        },
+</span><span id="__span-3-16">        {
+</span><span id="__span-3-17">            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-3-18">            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-3-19">            &quot;name&quot;: &quot;Bash-Debug (type in script name)&quot;,
+</span><span id="__span-3-20">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-3-21">            &quot;program&quot;: &quot;${command:AskForScriptName}&quot;,
+</span><span id="__span-3-22">            &quot;args&quot;: []
+</span><span id="__span-3-23">        },
+</span><span id="__span-3-24">        {
+</span><span id="__span-3-25">            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-3-26">            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-3-27">            &quot;name&quot;: &quot;Bash-Debug (select script from list of sh files)&quot;,
+</span><span id="__span-3-28">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-3-29">            &quot;program&quot;: &quot;${command:SelectScriptName}&quot;,
+</span><span id="__span-3-30">            &quot;args&quot;: []
+</span><span id="__span-3-31">        },
+</span><span id="__span-3-32">        {
+</span><span id="__span-3-33">            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-3-34">            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-3-35">            &quot;name&quot;: &quot;Bash-Debug (hardcoded script name)&quot;,
+</span><span id="__span-3-36">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-3-37">            &quot;program&quot;: &quot;${workspaceFolder}/path/to/script.sh&quot;,
+</span><span id="__span-3-38">            &quot;args&quot;: []
+</span><span id="__span-3-39">        },
+</span><span id="__span-3-40">        {
+</span><span id="__span-3-41">            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-3-42">            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-3-43">            &quot;name&quot;: &quot;Bash-Debug (simplest configuration)&quot;,
+</span><span id="__span-3-44">            &quot;program&quot;: &quot;${file}&quot;
+</span><span id="__span-3-45">        }
+</span><span id="__span-3-46">    ]
+</span><span id="__span-3-47">}
+</span></code></pre></div></td></tr></table></div>
+<p>以及最后别忘了正常打断点</p>
+<hr />
+<p>2025 年 3 月 6 日</p>
+<p>人麻了，谢谢，调代码都懂得一张图：程序能跑就别动，可惜我打了那么多超级用心的记录点，不说了，重新调代码了。算了，也有收获的</p>
+<p>看明白的地方都变成记录点，有收获的</p>
+<p>感谢自己是个老冗余的人了，全部复制保存了一份，还有救。今天学习参数 <code>--wait-for-client</code> 和 <code>--itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log</code></p>
+<p><code>| tee</code>参数</p>
+<p>崩溃的时候，只恨自己没搞个版本库回退状态了。算了，不会，再说。</p>
+<p>应该是中断再加上重定向的问题。</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span>
+<span class="normal">33</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">model_name=SegRNN
+</span><span id="__span-4-2">
+</span><span id="__span-4-3">root_path_name=./dataset/
+</span><span id="__span-4-4">data_path_name=national_illness.csv
+</span><span id="__span-4-5">model_id_name=illness
+</span><span id="__span-4-6">data_name=custom
+</span><span id="__span-4-7">
+</span><span id="__span-4-8">
+</span><span id="__span-4-9">seq_len=60
+</span><span id="__span-4-10">for pred_len in 24 36 48 60
+</span><span id="__span-4-11">do
+</span><span id="__span-4-12">    python -m debugpy --listen 5998 --wait-for-client run_longExp.py \
+</span><span id="__span-4-13">      --is_training 1 \
+</span><span id="__span-4-14">      --root_path $root_path_name \
+</span><span id="__span-4-15">      --data_path $data_path_name \
+</span><span id="__span-4-16">      --model_id $model_id_name&#39;_&#39;$seq_len&#39;_&#39;$pred_len \
+</span><span id="__span-4-17">      --model $model_name \
+</span><span id="__span-4-18">      --data $data_name \
+</span><span id="__span-4-19">      --features M \
+</span><span id="__span-4-20">      --seq_len $seq_len \
+</span><span id="__span-4-21">      --pred_len $pred_len \
+</span><span id="__span-4-22">      --seg_len 12 \
+</span><span id="__span-4-23">      --enc_in 7 \
+</span><span id="__span-4-24">      --d_model 512 \
+</span><span id="__span-4-25">      --dropout 0 \
+</span><span id="__span-4-26">      --train_epochs 30 \
+</span><span id="__span-4-27">      --patience 10 \
+</span><span id="__span-4-28">      --rnn_type gru \
+</span><span id="__span-4-29">      --dec_way pmf \
+</span><span id="__span-4-30">      --channel_id 1 \
+</span><span id="__span-4-31">      --revin 1 \
+</span><span id="__span-4-32">      --itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name&#39;_&#39;$model_id_name&#39;_&#39;$seq_len&#39;_&#39;$pred_len.log
+</span><span id="__span-4-33">done
+</span></code></pre></div></td></tr></table></div>
+<p>2025年 3 月 5 日</p>
+<p>大概就是存一些活着的痕迹；我能每天说 100 句丧气话，然后第二天依旧活力满满。因为是自己的选择，为自己的选择绝对的负责。做不下去换就是了。Okay，Done。</p>
 <hr />
 <p>2025 年 3 月 1 日</p>
 <p>3 月，加油加油</p>
@@ -3761,7 +4032,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月4日 13:01:00"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月4日 13:01:00">2025-03-04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月7日 09:06:36"><span class="timeago" datetime="2025-03-07T09:06:36+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月7日 09:06:36">2025-03-07</span>
   </span>
 
     
