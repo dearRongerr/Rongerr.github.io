@@ -113,6 +113,7 @@ nav:
       - literature/Reproduction/2.md
       - literature/Reproduction/3.md
       - literature/Reproduction/4.md
+      - literature/Reproduction/5_SegRNN.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md

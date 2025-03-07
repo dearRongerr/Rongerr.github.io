@@ -1,6 +1,172 @@
 # 乐观 & 坚强
 
+2025 年 3 月 7 日
 
+更新：
+
+刚刚又因为断网，导致错误了。就是说还是正常的吧断开连接和退出吧，已经吃过两次亏了，也许是因为这次把重定向删除了，所以没有报进程的错误，只是报了端口被监听的错误
+
+```
+| tee
+```
+
+
+
+```
+>
+```
+
+
+
+---
+
+留存正确的 shell 调用 python 脚本：
+
+```
+model_name=SegRNN
+
+root_path_name=./dataset/
+data_path_name=national_illness.csv
+model_id_name=illness
+data_name=custom
+
+
+seq_len=60
+for pred_len in 24 36 48 60
+do
+    python -m debugpy --listen 5998 --wait-for-client run_longExp.py \
+      --is_training 1 \
+      --root_path $root_path_name \
+      --data_path $data_path_name \
+      --model_id $model_id_name'_'$seq_len'_'$pred_len \
+      --model $model_name \
+      --data $data_name \
+      --features M \
+      --seq_len $seq_len \
+      --pred_len $pred_len \
+      --seg_len 12 \
+      --enc_in 7 \
+      --d_model 512 \
+      --dropout 0 \
+      --train_epochs 30 \
+      --patience 10 \
+      --rnn_type gru \
+      --dec_way pmf \
+      --channel_id 1 \
+      --revin 1 \
+      --itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+done
+```
+
+以及 launch.json的配置：
+
+```
+{
+    // 使用 IntelliSense 了解相关属性。 
+    // 悬停以查看现有属性的描述。
+    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "[这里更换为任意名称]",
+            "type": "python",
+            "request": "attach",
+            "connect": {
+                "host": "localhost",
+                "port": 5998
+            }
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (type in script name)",
+            "cwd": "${workspaceFolder}",
+            "program": "${command:AskForScriptName}",
+            "args": []
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (select script from list of sh files)",
+            "cwd": "${workspaceFolder}",
+            "program": "${command:SelectScriptName}",
+            "args": []
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (hardcoded script name)",
+            "cwd": "${workspaceFolder}",
+            "program": "${workspaceFolder}/path/to/script.sh",
+            "args": []
+        },
+        {
+            "type": "bashdb",
+            "request": "launch",
+            "name": "Bash-Debug (simplest configuration)",
+            "program": "${file}"
+        }
+    ]
+}
+```
+
+以及最后别忘了正常打断点
+
+---
+
+2025 年 3 月 6 日
+
+人麻了，谢谢，调代码都懂得一张图：程序能跑就别动，可惜我打了那么多超级用心的记录点，不说了，重新调代码了。算了，也有收获的
+
+看明白的地方都变成记录点，有收获的
+
+感谢自己是个老冗余的人了，全部复制保存了一份，还有救。今天学习参数 `--wait-for-client` 和 `--itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log`
+
+ `| tee`参数
+
+崩溃的时候，只恨自己没搞个版本库回退状态了。算了，不会，再说。
+
+应该是中断再加上重定向的问题。
+
+```
+model_name=SegRNN
+
+root_path_name=./dataset/
+data_path_name=national_illness.csv
+model_id_name=illness
+data_name=custom
+
+
+seq_len=60
+for pred_len in 24 36 48 60
+do
+    python -m debugpy --listen 5998 --wait-for-client run_longExp.py \
+      --is_training 1 \
+      --root_path $root_path_name \
+      --data_path $data_path_name \
+      --model_id $model_id_name'_'$seq_len'_'$pred_len \
+      --model $model_name \
+      --data $data_name \
+      --features M \
+      --seq_len $seq_len \
+      --pred_len $pred_len \
+      --seg_len 12 \
+      --enc_in 7 \
+      --d_model 512 \
+      --dropout 0 \
+      --train_epochs 30 \
+      --patience 10 \
+      --rnn_type gru \
+      --dec_way pmf \
+      --channel_id 1 \
+      --revin 1 \
+      --itr 1 --batch_size 16 --learning_rate 0.001 | tee logs/LongForecasting/$model_name'_'$model_id_name'_'$seq_len'_'$pred_len.log
+done
+```
+
+2025年 3 月 5 日
+
+大概就是存一些活着的痕迹；我能每天说 100 句丧气话，然后第二天依旧活力满满。因为是自己的选择，为自己的选择绝对的负责。做不下去换就是了。Okay，Done。
 
 ----
 
