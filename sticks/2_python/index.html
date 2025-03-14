@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -706,6 +706,18 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    python
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -716,6 +728,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      魔法方法和受保护的方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="魔法方法和受保护的方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      魔法方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      受保护的方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3572,6 +3636,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      魔法方法和受保护的方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="魔法方法和受保护的方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      魔法方法
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      受保护的方法
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -3590,6 +3695,141 @@
 
 
 <h1 id="python">python<a class="headerlink" href="#python" title="Permanent link">&para;</a></h1>
+<h2 id="_1">魔法方法和受保护的方法<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<h3 id="_2">魔法方法<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>在 Python 中，双下划线方法（也称为魔法方法或特殊方法）和单下划线方法有不同的用途和含义。以下是对这些方法的详细解释：</p>
+<p>双下划线方法（魔法方法）
+双下划线方法（以双下划线开头和结尾）是 Python 中的特殊方法，通常用于实现对象的特殊行为。这些方法由 Python 解释器自动调用，通常不需要显式调用。常见的魔法方法包括：</p>
+<p>常见的魔法方法</p>
+<ul>
+<li><code>__init__(self, ...)</code>：构造方法，在创建对象时调用，用于初始化对象的属性。</li>
+<li><code>__del__(self)</code>：析构方法，在对象被删除时调用，用于清理资源。</li>
+<li><code>__str__(self)</code>：在使用 print() 或 str() 函数时调用，返回对象的字符串表示。</li>
+<li><code>__repr__(self)</code>：在使用 repr() 函数或在交互式解释器中查看对象时调用，返回对象的正式字符串表示。</li>
+<li><code>__len__(self)</code>：在使用 len() 函数时调用，返回对象的长度。</li>
+<li><code>__getitem__(self, key)</code>：在使用索引访问对象时调用，例如 obj[key]。</li>
+<li><code>__setitem__(self, key, value)</code>：在使用索引设置对象的值时调用，例如 obj[key] = value。</li>
+<li><code>__delitem__(self, key)</code>：在使用索引删除对象的值时调用，例如 del obj[key]。</li>
+<li><code>__iter__(self)</code>：在使用 iter() 函数或 for 循环遍历对象时调用，返回一个迭代器。</li>
+<li><code>__next__(self)</code>：在使用 next() 函数获取迭代器的下一个值时调用。</li>
+<li><code>__call__(self, ...)</code>：在将对象作为函数调用时调用，例如 obj()。</li>
+<li><code>__enter__(self)</code> 和 <code>__exit__(self, exc_type, exc_value, traceback)</code>：在使用 with 语句时调用，用于实现上下文管理。</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span>
+<span class="normal">31</span>
+<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">class MyClass:
+</span><span id="__span-0-2">    def __init__(self, value):
+</span><span id="__span-0-3">        self.value = value
+</span><span id="__span-0-4">
+</span><span id="__span-0-5">    def __str__(self):
+</span><span id="__span-0-6">        return f&quot;MyClass with value: {self.value}&quot;
+</span><span id="__span-0-7">
+</span><span id="__span-0-8">    def __len__(self):
+</span><span id="__span-0-9">        return len(self.value)
+</span><span id="__span-0-10">
+</span><span id="__span-0-11">    def __getitem__(self, index):
+</span><span id="__span-0-12">        return self.value[index]
+</span><span id="__span-0-13">
+</span><span id="__span-0-14">    def __setitem__(self, index, value):
+</span><span id="__span-0-15">        self.value[index] = value
+</span><span id="__span-0-16">
+</span><span id="__span-0-17">    def __delitem__(self, index):
+</span><span id="__span-0-18">        del self.value[index]
+</span><span id="__span-0-19">
+</span><span id="__span-0-20">    def __call__(self, *args, **kwargs):
+</span><span id="__span-0-21">        print(&quot;Called with arguments:&quot;, args, kwargs)
+</span><span id="__span-0-22">
+</span><span id="__span-0-23"># 使用示例
+</span><span id="__span-0-24">obj = MyClass([1, 2, 3])
+</span><span id="__span-0-25">print(obj)  # 输出: MyClass with value: [1, 2, 3]
+</span><span id="__span-0-26">print(len(obj))  # 输出: 3
+</span><span id="__span-0-27">print(obj[1])  # 输出: 2
+</span><span id="__span-0-28">obj[1] = 42
+</span><span id="__span-0-29">print(obj[1])  # 输出: 42
+</span><span id="__span-0-30">del obj[1]
+</span><span id="__span-0-31">print(obj.value)  # 输出: [1, 3]
+</span><span id="__span-0-32">obj(10, 20, key=&quot;value&quot;)  # 输出: Called with arguments: (10, 20) {&#39;key&#39;: &#39;value&#39;}
+</span></code></pre></div></td></tr></table></div>
+<p>getitem 使用索引访问；</p>
+<p>call 当成函数访问。</p>
+<h3 id="_3">受保护的方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>单下划线方法和变量（以单下划线开头）通常用于表示类的内部实现细节或受保护的成员。<mark>虽然 Python 没有真正的访问控制机制（如 private 和 protected），但使用单下划线是一种约定，表示这些成员不应在类外部直接访问。</mark></p>
+<p><strong>是一种约定</strong> </p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">class MyClass:
+</span><span id="__span-1-2">    def __init__(self, value):
+</span><span id="__span-1-3">        self._value = value  # 受保护的成员
+</span><span id="__span-1-4">
+</span><span id="__span-1-5">    def _internal_method(self):
+</span><span id="__span-1-6">        print(&quot;This is an internal method&quot;)
+</span><span id="__span-1-7">
+</span><span id="__span-1-8">    def public_method(self):
+</span><span id="__span-1-9">        self._internal_method()
+</span><span id="__span-1-10">        print(&quot;This is a public method&quot;)
+</span><span id="__span-1-11">
+</span><span id="__span-1-12"># 使用示例
+</span><span id="__span-1-13">obj = MyClass(42)
+</span><span id="__span-1-14">obj.public_method()
+</span><span id="__span-1-15"># 输出:
+</span><span id="__span-1-16"># This is an internal method
+</span><span id="__span-1-17"># This is a public method
+</span><span id="__span-1-18">
+</span><span id="__span-1-19"># 虽然可以访问，但不推荐
+</span><span id="__span-1-20">print(obj._value)  # 输出: 42
+</span><span id="__span-1-21">obj._internal_method()  # 输出: This is an internal method
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>双下划线方法（魔法方法）：用于实现对象的特殊行为，由 Python 解释器自动调用。</li>
+<li>单下划线方法和变量：表示类的内部实现细节或受保护的成员，约定不应在类外部直接访问。</li>
+</ul>
 
 
 
@@ -3612,7 +3852,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月4日 13:01:00"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月4日 13:01:00">2025-03-04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月14日 10:19:26"><span class="timeago" datetime="2025-03-14T10:19:26+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月14日 10:19:26">2025-03-14</span>
   </span>
 
     

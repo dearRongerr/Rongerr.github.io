@@ -18,7 +18,7 @@
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.7">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.8">
     
     
       
@@ -788,6 +788,15 @@
   <a href="#_1" class="md-nav__link">
     <span class="md-ellipsis">
       调试不显示张量形状问题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#debug-add-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug: Add Configuration
     </span>
   </a>
   
@@ -3663,6 +3672,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#debug-add-configuration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Debug: Add Configuration
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4047,6 +4065,121 @@
 </span><span id="__span-8-88">if __name__ == &quot;__main__&quot;:
 </span><span id="__span-8-89">    main()
 </span></code></pre></div></td></tr></table></div>
+<h2 id="debug-add-configuration">Debug: Add Configuration<a class="headerlink" href="#debug-add-configuration" title="Permanent link">&para;</a></h2>
+<p>launch.json 配置</p>
+<blockquote>
+<p>在VSCode按<code>Command+Shift+P</code>, 输入<code>Debug: Add Configuration</code> 新建一个launch.json（或者直接打开launch.json)编辑以下内容并保存</p>
+</blockquote>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 想解决的问题，还是 vscode 调试带参数的 python 文件。</li>
+</ul>
+<p>另外一种方法，你把自己的 shell 脚本给 gpt，让它给你写一个 配置，然后加到<code>launch.json</code>中就行了 （有点内个虽然，算了，能干活就行）：</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span>
+<span class="normal">21</span>
+<span class="normal">22</span>
+<span class="normal">23</span>
+<span class="normal">24</span>
+<span class="normal">25</span>
+<span class="normal">26</span>
+<span class="normal">27</span>
+<span class="normal">28</span>
+<span class="normal">29</span>
+<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">       {
+</span><span id="__span-9-2">            &quot;name&quot;: &quot;Python: run_longExp.py&quot;,
+</span><span id="__span-9-3">            &quot;type&quot;: &quot;python&quot;,
+</span><span id="__span-9-4">            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-9-5">            &quot;program&quot;: &quot;${workspaceFolder}/run_longExp.py&quot;,
+</span><span id="__span-9-6">            &quot;args&quot;: [
+</span><span id="__span-9-7">                &quot;--model_id&quot;, &quot;illness_60_24&quot;,
+</span><span id="__span-9-8">                &quot;--is_training&quot;, &quot;1&quot; 
+</span><span id="__span-9-9">                &quot;--model&quot;, &quot;SegRNN&quot;, 
+</span><span id="__span-9-10">                &quot;--data&quot;, &quot;custom&quot;,
+</span><span id="__span-9-11">                &quot;--root_path&quot;, &quot;./dataset/&quot;,
+</span><span id="__span-9-12">                &quot;--data_path&quot;, &quot;national_illness.csv&quot;,
+</span><span id="__span-9-13">                &quot;--features&quot;, &quot;M&quot;,
+</span><span id="__span-9-14">                &quot;--seq_len&quot;, &quot;60&quot;,
+</span><span id="__span-9-15">                &quot;--pred_len&quot;, &quot;24&quot;,
+</span><span id="__span-9-16">                &quot;--d_model&quot;, &quot;512&quot;,
+</span><span id="__span-9-17">                &quot;--dropout&quot;, &quot;0.0&quot;,
+</span><span id="__span-9-18">                &quot;--rnn_type&quot;, &quot;gru&quot;,
+</span><span id="__span-9-19">                &quot;--dec_way&quot;, &quot;pmf&quot;,
+</span><span id="__span-9-20">                &quot;--seg_len&quot;, &quot;12&quot;,
+</span><span id="__span-9-21">                &quot;--loss&quot;, &quot;mae&quot;,
+</span><span id="__span-9-22">                &quot;--des&quot;, &quot;test&quot;,
+</span><span id="__span-9-23">                &quot;--itr&quot;, &quot;1&quot;,
+</span><span id="__span-9-24">                &quot;--train_epochs&quot;, &quot;2&quot;,
+</span><span id="__span-9-25">                &quot;--num_workers&quot;, &quot;0&quot;
+</span><span id="__span-9-26">            ],
+</span><span id="__span-9-27">            &quot;console&quot;: &quot;integratedTerminal&quot;,
+</span><span id="__span-9-28">            &quot;justMyCode&quot;: true,
+</span><span id="__span-9-29">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;
+</span><span id="__span-9-30">        },
+</span></code></pre></div></td></tr></table></div>
+<p>关于这个有几点想说的：</p>
+<ul>
+<li>使用启动模式而不是附加模式</li>
+<li>这种调试叫做 以启动模式 调试，而不是附加模式调试，区别在 <code>"request": "launch"</code>，<code>"request": "launch"</code> </li>
+</ul>
+<p>这种的好处：</p>
+<p>最简单的调试方法是使用"启动"模式，按照以下步骤：</p>
+<ol>
+<li>使用方案一中的配置替换或添加到<code>launch.json</code>文件中</li>
+<li>在VS Code左侧的<code>"运行和调试"</code>面板中==选择==刚刚创建的<code>"Python: run_longExp.py"</code>配置</li>
+<li>设置断点并点击绿色的运行按钮开始调试</li>
+</ol>
+<p>🟢 不需要手动启动调试服务器</p>
+<ul>
+<li>一些参数解释：</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">{
+</span><span id="__span-10-2">    &quot;name&quot;: &quot;Python: run_longExp.py&quot;,  // 调试配置的名称，会显示在VSCode调试下拉菜单中
+</span><span id="__span-10-3">    &quot;type&quot;: &quot;python&quot;,                  // 指定调试器类型为Python
+</span><span id="__span-10-4">    &quot;request&quot;: &quot;launch&quot;,               // 使用&quot;启动&quot;模式而非&quot;附加&quot;模式
+</span><span id="__span-10-5">    &quot;program&quot;: &quot;${workspaceFolder}/run_longExp.py&quot;, // 要运行的Python脚本路径
+</span><span id="__span-10-6">    &quot;args&quot;: [                          // 传递给脚本的命令行参数
+</span><span id="__span-10-7">        &quot;--model_id&quot;, &quot;illness_60_24&quot;, // 模型ID参数
+</span><span id="__span-10-8">        &quot;--is_training&quot;, &quot;1&quot;           // 训练模式标志
+</span><span id="__span-10-9">        &quot;--model&quot;, &quot;SegRNN&quot;,           // 使用的模型
+</span><span id="__span-10-10">        // ...更多参数
+</span><span id="__span-10-11">    ],
+</span><span id="__span-10-12">    &quot;console&quot;: &quot;integratedTerminal&quot;,   // 使用VSCode内置终端显示输出
+</span><span id="__span-10-13">    &quot;justMyCode&quot;: true,                // 只调试您的代码，跳过库代码
+</span><span id="__span-10-14">    &quot;cwd&quot;: &quot;${workspaceFolder}&quot;        // 设置工作目录为项目根目录
+</span><span id="__span-10-15">}
+</span></code></pre></div></td></tr></table></div>
 
 
 
@@ -4069,7 +4202,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月4日 13:01:00"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月4日 13:01:00">2025-03-04</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月14日 10:19:26"><span class="timeago" datetime="2025-03-14T10:19:26+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月14日 10:19:26">2025-03-14</span>
   </span>
 
     
