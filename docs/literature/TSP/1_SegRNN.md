@@ -1,5 +1,13 @@
 # SegRNN
 
+[https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for](https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for)
+
+[https://github.com/lss-1138/SegRNN?tab=readme-ov-file](https://github.com/lss-1138/SegRNN?tab=readme-ov-file)
+
+[Time Series Forecasting on Weather (192) #rank1](https://paperswithcode.com/sota/time-series-forecasting-on-weather-192)
+
+![image-20250314175844670](images/image-20250314175844670.png)
+
 SegRNN: Segment Recurrent Neural Network for Long-Term Time Series Forecasting
 
 ![image-20250302142419601](images/image-20250302142419601.png)

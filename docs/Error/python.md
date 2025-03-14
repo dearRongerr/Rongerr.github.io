@@ -1,5 +1,11 @@
 # python
 
+## Address already in use
+
+问题：RuntimeError: Can't listen for client connections: [Errno 98] Address already in use
+
+这边建议您还是正常的断开连接、退出调试，别意外中断。
+
 ## cuda 与 pytorch 版本不兼容
 
 ```python

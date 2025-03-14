@@ -266,3 +266,83 @@ if __name__ == "__main__":
 
 ```
 
+
+
+## Debug: Add Configuration
+
+launch.json 配置
+
+> 在VSCode按`Command+Shift+P`, 输入`Debug: Add Configuration` 新建一个launch.json（或者直接打开launch.json)编辑以下内容并保存
+
+- [x] 想解决的问题，还是 vscode 调试带参数的 python 文件。
+
+另外一种方法，你把自己的 shell 脚本给 gpt，让它给你写一个 配置，然后加到`launch.json`中就行了 （有点内个虽然，算了，能干活就行）：
+
+```
+       {
+            "name": "Python: run_longExp.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/run_longExp.py",
+            "args": [
+                "--model_id", "illness_60_24",
+                "--is_training", "1" 
+                "--model", "SegRNN", 
+                "--data", "custom",
+                "--root_path", "./dataset/",
+                "--data_path", "national_illness.csv",
+                "--features", "M",
+                "--seq_len", "60",
+                "--pred_len", "24",
+                "--d_model", "512",
+                "--dropout", "0.0",
+                "--rnn_type", "gru",
+                "--dec_way", "pmf",
+                "--seg_len", "12",
+                "--loss", "mae",
+                "--des", "test",
+                "--itr", "1",
+                "--train_epochs", "2",
+                "--num_workers", "0"
+            ],
+            "console": "integratedTerminal",
+            "justMyCode": true,
+            "cwd": "${workspaceFolder}"
+        },
+```
+
+ 关于这个有几点想说的：
+
+- 使用启动模式而不是附加模式
+- 这种调试叫做 以启动模式 调试，而不是附加模式调试，区别在 `"request": "launch"`，`"request": "launch"` 
+
+这种的好处：
+
+最简单的调试方法是使用"启动"模式，按照以下步骤：
+
+1. 使用方案一中的配置替换或添加到`launch.json`文件中
+2. 在VS Code左侧的`"运行和调试"`面板中==选择==刚刚创建的`"Python: run_longExp.py"`配置
+3. 设置断点并点击绿色的运行按钮开始调试
+
+🟢 不需要手动启动调试服务器
+
+- 一些参数解释：
+
+```
+{
+    "name": "Python: run_longExp.py",  // 调试配置的名称，会显示在VSCode调试下拉菜单中
+    "type": "python",                  // 指定调试器类型为Python
+    "request": "launch",               // 使用"启动"模式而非"附加"模式
+    "program": "${workspaceFolder}/run_longExp.py", // 要运行的Python脚本路径
+    "args": [                          // 传递给脚本的命令行参数
+        "--model_id", "illness_60_24", // 模型ID参数
+        "--is_training", "1"           // 训练模式标志
+        "--model", "SegRNN",           // 使用的模型
+        // ...更多参数
+    ],
+    "console": "integratedTerminal",   // 使用VSCode内置终端显示输出
+    "justMyCode": true,                // 只调试您的代码，跳过库代码
+    "cwd": "${workspaceFolder}"        // 设置工作目录为项目根目录
+}
+```
+
