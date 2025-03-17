@@ -1,0 +1,5010 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/literature/Reproduction/5_SegRNN_v2/">
+      
+      
+        <link rel="prev" href="../5_SegRNN_v1/">
+      
+      
+        <link rel="next" href="../6_AutoFormer/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>复现 SegRNN_v2 - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#segrnn_v2" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              复现 SegRNN_v2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DLinear
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    TimesNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021|Informer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021|Autoformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_4" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exp-exp_main" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exp = Exp_Main
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segrnn-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      SegRNN init
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SegRNN init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revin" class="md-nav__link">
+    <span class="md-ellipsis">
+      RevIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exptrainsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      exp.train(setting)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self_get_data-data_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      self._get_data → data_provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset_Custom
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset_Custom">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self__read_data__" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.__read_data__()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="self.__read_data__()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selfscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.scaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      列重排
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      划分数据集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#border1sborder2s" class="md-nav__link">
+    <span class="md-ellipsis">
+      border1s&amp;border2s
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#border1border2" class="md-nav__link">
+    <span class="md-ellipsis">
+      border1&amp;border2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selffeatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selfscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#df_stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      df_stamp
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="df_stamp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_features" class="md-nav__link">
+    <span class="md-ellipsis">
+      time_features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="time_features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_features_from_frequency_str" class="md-nav__link">
+    <span class="md-ellipsis">
+      time_features_from_frequency_str
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time_feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 time_feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data_stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 data_stamp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 data_provider函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="返回 data_provider函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#len" class="md-nav__link">
+    <span class="md-ellipsis">
+      调用 len
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调用 len">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）第一步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）第二步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）第三步
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#len_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      继续 len
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      时间序列样本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时间序列样本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      滑动窗口与样本堆叠
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#exp-exp_main" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exp = Exp_Main
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#segrnn-init" class="md-nav__link">
+    <span class="md-ellipsis">
+      SegRNN init
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SegRNN init">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#revin" class="md-nav__link">
+    <span class="md-ellipsis">
+      RevIN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#exptrainsetting" class="md-nav__link">
+    <span class="md-ellipsis">
+      exp.train(setting)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#self_get_data-data_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      self._get_data → data_provider
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dataset_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dataset_Custom
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dataset_Custom">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#self__read_data__" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.__read_data__()
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="self.__read_data__()">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#selfscaler" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.scaler
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      列重排
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      划分数据集
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#border1sborder2s" class="md-nav__link">
+    <span class="md-ellipsis">
+      border1s&amp;border2s
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#border1border2" class="md-nav__link">
+    <span class="md-ellipsis">
+      border1&amp;border2
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selffeatures" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#selfscale" class="md-nav__link">
+    <span class="md-ellipsis">
+      self.scale
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#df_stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      df_stamp
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="df_stamp">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_features" class="md-nav__link">
+    <span class="md-ellipsis">
+      time_features
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="time_features">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#time_features_from_frequency_str" class="md-nav__link">
+    <span class="md-ellipsis">
+      time_features_from_frequency_str
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#time_feature" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 time_feature
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data_stamp" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 data_stamp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#data_provider" class="md-nav__link">
+    <span class="md-ellipsis">
+      返回 data_provider函数
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="返回 data_provider函数">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#len" class="md-nav__link">
+    <span class="md-ellipsis">
+      调用 len
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="调用 len">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）第一步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）第二步
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    <span class="md-ellipsis">
+      （3）第三步
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#len_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      继续 len
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      时间序列样本
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="时间序列样本">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      滑动窗口与样本堆叠
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="segrnn_v2">复现 SegRNN_v2<a class="headerlink" href="#segrnn_v2" title="Permanent link">&para;</a></h1>
+<p>这里主要再次理清了 时间序列数据集的加载过程。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 时间序列任务的定义</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 时间序列样本的加载</li>
+</ul>
+<h2 id="exp-exp_main"><code>Exp = Exp_Main</code><a class="headerlink" href="#exp-exp_main" title="Permanent link">&para;</a></h2>
+<ul>
+<li>在上节课的讲解中，已经讲的部分有如何调试使用 shell 脚本调用的 python 文件，介绍了两种方法，总之都是修改 launch.json文件。</li>
+<li>然后介绍了类的重命名 <code>Exp = Exp_Main</code> 、从这个类  <code>exp = Exp(args)</code>  的初始化，所涉到的东西有，类的继承 <code>class Exp_Main(Exp_Basic)</code>、子类重写父类的方法 <code>self.model = self._build_model().to(self.device)</code>  ，如果 子类重写那么优先调用子类重写的方法</li>
+</ul>
+<h2 id="segrnn-init">SegRNN init<a class="headerlink" href="#segrnn-init" title="Permanent link">&para;</a></h2>
+<ul>
+<li>接着介绍了，字典定义的通过字符串实例化类 <code>'SegRNN': SegRNN</code> ，调用<code>.Model()</code>类的 init 方法 <code>model = model_dict[self.args.model].Model(self.args).float()</code></li>
+<li>init中主要实现的是 SegRNN 的初始化，</li>
+</ul>
+<h3 id="revin">RevIN<a class="headerlink" href="#revin" title="Permanent link">&para;</a></h3>
+<p>这里想着重说明的是  可逆实例标准化</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">self.revinLayer = RevIN(self.enc_in, affine=False, subtract_last=False)
+</span></code></pre></div></td></tr></table></div>
+<p>在时间序列中，会涉及到两种归一化，一种是全局归一化，一种是实例归一化。</p>
+<p>其实归一化的说法也不是十分准确，因为这里的归一化都是  减 <span class="arithmatex">\(\mu\)</span> 除以 标准差 <span class="arithmatex">\(\sigma\)</span> ，Norm 更准确的理解理解是 标准化。不过影响不大。</p>
+<ul>
+<li>其中全局标准化主要的作用是 <mark>消除量纲的影响</mark>，可以理解为不划分 batch 的标准化</li>
+<li>可逆实例标准化就是对训练样本内的特征进行实例标准化，目的是为了==消除分布偏移==，用一个例子来解释，就是：</li>
+</ul>
+<p><img alt="image-20250314153025741" src="../images/image-20250314153025741.png" /></p>
+<p>好处是：<mark>消除绝对水平和尺度的影响</mark>，让模型专注于学习序列的==相对变化模式==</p>
+<ul>
+<li>对于两次标准化更直观的例子：</li>
+</ul>
+<p><img alt="image-20250314153230628" src="../images/image-20250314153230628.png" /></p>
+<p><img alt="image-20250314153240519" src="../images/image-20250314153240519.png" /></p>
+<p><img alt="image-20250314153326574" src="../images/image-20250314153326574.png" /></p>
+<ul>
+<li>
+<p>同时顺着 实例标准化给大家补充了批标准化、层标准化、分组标准化，从分组标准化又拓展到了分组卷积，从分组卷积又扩展了卷积的几种方式，膨胀卷积、分组卷积、转置卷积、深度可分离卷积、逐点卷积等，然后回到我们自己的项目</p>
+</li>
+<li>
+<p>将 SegRNN 初始化好的模型，传给 model，并在调试控制台打印了 model</p>
+</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">(valueEmbedding): Sequential(
+</span><span id="__span-1-2">    (0): Linear(in_features=12, out_features=512, bias=True)
+</span><span id="__span-1-3">    (1): ReLU()
+</span><span id="__span-1-4">  )
+</span><span id="__span-1-5">  (rnn): GRU(512, 512, batch_first=True)
+</span><span id="__span-1-6">  (predict): Sequential(
+</span><span id="__span-1-7">    (0): Dropout(p=0.0, inplace=False)
+</span><span id="__span-1-8">    (1): Linear(in_features=512, out_features=12, bias=True)
+</span><span id="__span-1-9">  )
+</span><span id="__span-1-10">  (revinLayer): RevIN()
+</span><span id="__span-1-11">)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>可以看到 SegRNN 的主要构成包括一个 值嵌入层、RNN 层，预测层和 可逆实例标准化层。在 forward 中，数据会通过这些层进行数据流动</li>
+</ul>
+<h2 id="exptrainsetting"><code>exp.train(setting)</code><a class="headerlink" href="#exptrainsetting" title="Permanent link">&para;</a></h2>
+<ul>
+<li>接下来进行，模型的训练 <code>exp.train(setting)</code> ，调用类的 <code>.train</code>方法，首先加载训练集、验证集、测试集，数据集加载的方式是一样的</li>
+</ul>
+<h2 id="self_get_data-data_provider"><code>self._get_data → data_provider</code><a class="headerlink" href="#self_get_data-data_provider" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>以训练集为例 <code>train_data, train_loader = self._get_data(flag='train')</code>，首先调用内部方法 <code>self._getdata</code>，<mark>步进</mark>， <code>data_set, data_loader = data_provider(self.args, flag)</code>，接着调用<code>data_provider</code> 方法，这个方法是在 py文件的开头进行导入的 <code>from data_provider.data_factory import data_provider</code>，方法的位置在 <code>data_provider</code> 文件夹下，<code>data_factory.py</code>文件中，定义的 <code>data_provider</code> 函数。</p>
+</li>
+<li>
+<p>继续 <mark>步进</mark>， 通过 <code>args.data</code> 索引 数据字典，得到重命名以后的类，这里传入的 <code>args.data = custom</code> ，在数据字典中 索引到类是 <code>Dataset_Custom</code>，这里想说明的一点是，在这个项目中重写了 pytorch 官方 dataset 类的 init 方法、len 方法、getitem 方法，使得这个数据集的加载更适合处理 时间序列任务。</p>
+</li>
+<li>接下来是 <code>timeenc = 0 if args.embed != 'timeF' else 1</code>  时间戳的建模方法。后面会有具体的时间戳数据建模过程。这里的 <code>timeenc=1</code></li>
+<li>
+<p>接着根据传入的 flag 设置一些加载数据集相关的参数，包括 <code>shuffle_flag = True</code> 是否随机选取样本、最后一组样本如果没有构成一个完成的 batch 时候是否舍弃 <code>drop_last = True</code>、 <code>batch_size = args.batch_size</code> 一个 batch的大小、以及 时间戳数据记录频率 <code>freq = args.freq</code></p>
+</li>
+<li>
+<p>看到下面的源代码，这一部分 <mark>步进</mark></p>
+</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">    data_set = Data(
+</span><span id="__span-2-2">        root_path=args.root_path,
+</span><span id="__span-2-3">        data_path=args.data_path,
+</span><span id="__span-2-4">        flag=flag,
+</span><span id="__span-2-5">        size=[args.seq_len, args.label_len, args.pred_len],
+</span><span id="__span-2-6">        features=args.features,
+</span><span id="__span-2-7">        target=args.target,
+</span><span id="__span-2-8">        timeenc=timeenc,
+</span><span id="__span-2-9">        freq=freq
+</span><span id="__span-2-10">    )
+</span></code></pre></div></td></tr></table></div>
+<h2 id="dataset_custom"><code>Dataset_Custom</code><a class="headerlink" href="#dataset_custom" title="Permanent link">&para;</a></h2>
+<ul>
+<li>进入 <code>Dataset_Custom</code> 中的 init 方法，加载数据，首先又是一些参数初始化</li>
+</ul>
+<p><img alt="image-20250315111753108" src="../images/image-20250315111753108.png" /></p>
+<ul>
+<li>在这个调试的项目中，回溯窗口是 60，预测窗口是 24，也就是使用未来 60 个时间步的8 个特征，预测未来 24 个时间步的疾病感染人数。</li>
+<li>关于这里的 8 个特征，想说明的是（其实是 1+7 个特征，时间戳特征单独处理，7 个特征的处理就是两个标准化，一种是全局标准化一种是实例标准化）</li>
+<li>在进行一些参数初始化以后，调用 魔方方法<code>self.__read_data__()</code>读取数据。</li>
+</ul>
+<h3 id="self__read_data__"><code>self.__read_data__()</code><a class="headerlink" href="#self__read_data__" title="Permanent link">&para;</a></h3>
+<h4 id="selfscaler"><code>self.scaler</code><a class="headerlink" href="#selfscaler" title="Permanent link">&para;</a></h4>
+<ul>
+<li>首先是一个全局标准化器 <code>self.scaler = StandardScaler()</code></li>
+<li>接着根据上面初始化的文件路径，读数据</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">       df_raw = pd.read_csv(os.path.join(self.root_path,
+</span><span id="__span-3-2">                                          self.data_path))
+</span></code></pre></div></td></tr></table></div>
+<h4 id="_1">列重排<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h4>
+<ul>
+<li>然后进行列重排，变成标准的 第0 列是 日期，中间是特征，最后一列是 目标列</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">        cols = list(df_raw.columns)
+</span><span id="__span-4-2">        cols.remove(self.target)
+</span><span id="__span-4-3">        cols.remove(&#39;date&#39;)
+</span><span id="__span-4-4">        df_raw = df_raw[[&#39;date&#39;] + cols + [self.target]]
+</span></code></pre></div></td></tr></table></div>
+<h4 id="_2">划分数据集<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ul>
+<li>接下来按照 721 的比例划分数据集，涉及到取整操作，以及为了防止丢失时间步，验证集的 10% 是用的减法。具体的数值，整个数据集是 966 个数据点，8 个特征，也就是 966×8，按照 721 划分，得到，训练集时间步：676；验证集时间步：97；测试集时间步：193 </li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">        num_train = int(len(df_raw) * 0.7)
+</span><span id="__span-5-2">        num_test = int(len(df_raw) * 0.2)
+</span><span id="__span-5-3">        num_vali = len(df_raw) - num_train - num_test
+</span></code></pre></div></td></tr></table></div>
+<h4 id="border1sborder2s"><code>border1s&amp;border2s</code><a class="headerlink" href="#border1sborder2s" title="Permanent link">&para;</a></h4>
+<ul>
+<li>接下来</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">        border1s = [0, num_train - self.seq_len, len(df_raw) - num_test - self.seq_len]
+</span><span id="__span-6-2">        border2s = [num_train, num_train + num_vali, len(df_raw)]
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>border1s 和 border2s 分别定义了测试集、验证集、训练集的左右边界。</li>
+<li>原文的时间步划分，应该是 数据行0-676是训练集，676 到 676+97=773 是验证集，966-193=773 ，也就是索引 773-966是测试集，用图来表示，就是这样的：  </li>
+</ul>
+<p><img alt="image-20250314092914764" src="../images/image-20250314092914764.png" /> </p>
+<ul>
+<li>
+<p>但实际上看，左右边界的定义，左边界都减去了一个 回溯窗口长度，也就是 <code>self.seq_len = 60</code> </p>
+</li>
+<li>
+<p><mark>也就是</mark> </p>
+</li>
+</ul>
+<p>用图来表示就是：</p>
+<p><img alt="image-20250314093340428" src="../images/image-20250314093340428.png" /></p>
+<p>（1）训练集时间步是前0-676 个时间点</p>
+<p>（2）验证集是 616 到 773 个时间点</p>
+<p>（3）测试集是713 到 966 个时间步</p>
+<ul>
+<li><mark>为什么是这样的呢？</mark></li>
+</ul>
+<p>这样做的意义是，为了保证每个样本都有 60 个时间步的输入序列和 24 个时间步的预测目标，具体来说，对于验证集的第一个时间步，如果让它构成一个完成的样本，就需要向前回退 60 个时间步，同样对于测试集的第一个时间步来说，让它构成一个样本，也需要回退 60 个时间步。</p>
+<ul>
+<li><mark>也就是说，实际上，</mark> </li>
+</ul>
+<p>（1）训练集时间步有 <span class="arithmatex">\(676\)</span> 个</p>
+<p>（2）验证集时间步有 $773-616=157 $个，或者就是 <span class="arithmatex">\(97+60=157\)</span> 个时间步；</p>
+<p>（3）测试集 有 <span class="arithmatex">\(253\)</span> 个时间步，就是 <code>len(df_raw)</code> - <code>len(df_raw) - num_test - self.seq_len</code>。<span class="arithmatex">\(193+60=253\)</span> </p>
+<p>以上，解释好实际用的左右边界以后，</p>
+<p>接下来继续看源代码</p>
+<h4 id="border1border2">border1&amp;border2<a class="headerlink" href="#border1border2" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">       border1 = border1s[self.set_type]
+</span><span id="__span-7-2">       border2 = border2s[self.set_type]
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>这个 border1和border2就是保存单个数据集的左右边界，比如现在我们传进来的 <code>flag=train</code></li>
+<li>根据前面初始化阶段定义的 数据集类型映射字典  <code>type_map = {'train': 0, 'val': 1, 'test': 2}</code> 然后用字符串 <code>flag=train</code>索引到 <code>self.set_type = type_map[flag]=0</code></li>
+</ul>
+<h4 id="selffeatures">self.features<a class="headerlink" href="#selffeatures" title="Permanent link">&para;</a></h4>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">        if self.features == &#39;M&#39; or self.features == &#39;MS&#39;:
+</span><span id="__span-8-2">            cols_data = df_raw.columns[1:]
+</span><span id="__span-8-3">            df_data = df_raw[cols_data]
+</span><span id="__span-8-4">        elif self.features == &#39;S&#39;:
+</span><span id="__span-8-5">            df_data = df_raw[[self.target]]
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>继续看源代码，到 self.feature的部分</p>
+</li>
+<li>
+<p>这里是说 时间序列的3 种任务，多变量预测多变量，多变量预测单变量，单变量预测单变量</p>
+</li>
+<li>
+<p>具体来说，这里想额外说明的一点是，时间序列预测，我们日期特征的提取是通过 偏移来处理的，这个我们后面会说，对应到代码中可以看到 在使用多变量的时候，都是不拿第 0 列特征的，因为日期我们等会处理。</p>
+</li>
+</ul>
+<blockquote>
+<ol>
+<li><strong><code>M</code> (多变量/Multiple variables)</strong>：</li>
+<li>当 self.features == 'M' 时，代码选择除第一列（通常是日期列）外的所有列作为特征</li>
+<li>cols_data = df_raw.columns[1:]获取除第一列外的所有列名</li>
+<li>df_data = df_raw[cols_data] 选择这些列作为模型输入数据</li>
+<li><strong><code>MS</code> (多变量到单变量预测/Multiple to Single)</strong>：</li>
+<li>与 <code>M</code> 模式相同的数据选择方式</li>
+<li>使用所有特征列作为输入，但主要目的是预测目标变量</li>
+<li><strong><code>S</code> (单变量/Single variable)</strong>：</li>
+<li>当 self.features == 'S' 时，只选择目标列作为特征</li>
+<li>df_data = df_raw[[self.target]]仅选择由 self.target指定的列</li>
+</ol>
+</blockquote>
+<ul>
+<li>举个实际的例子，来说明这三种预测：</li>
+</ul>
+<blockquote>
+<p>假设我们有一个电力消耗数据集，包含如下列：</p>
+<p>[date,HUFL, HULL, MUFL, MULL, LUFL, LULL, OT]</p>
+<p>date 表示时间戳 放到第一列，目标列OT 放到最后一列，这是我们列重排的结果</p>
+<p>如果我们设置：</p>
+<ol>
+<li><strong>self.features = 'M'</strong>：</li>
+<li>所有列（除了 date都会被选中：<code>OT, HUFL, HULL, MUFL, MULL, LUFL, LULL</code></li>
+<li>模型将使用所有这些特征进行训练和预测</li>
+<li><strong><code>self.features = 'MS'</code></strong>：</li>
+<li>同样选择所有列（除了 <code>date</code>）：<code>OT, HUFL, HULL, MUFL, MULL, LUFL, LULL</code></li>
+<li>通常用于利用多个特征来预测目标变量</li>
+<li><strong><code>self.features = 'S'</code> 且 <code>self.target = 'OT'</code></strong>：</li>
+<li>只选择 <code>OT</code> 列</li>
+<li>模型将只使用油温历史数据来预测未来油温值，不考虑其他变量</li>
+</ol>
+</blockquote>
+<h4 id="selfscale">self.scale<a class="headerlink" href="#selfscale" title="Permanent link">&para;</a></h4>
+<ul>
+<li>接下来看到源代码的全局标准化部分：</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">        if self.scale:
+</span><span id="__span-9-2">            train_data = df_data[border1s[0]:border2s[0]]
+</span><span id="__span-9-3">            self.scaler.fit(train_data.values)
+</span><span id="__span-9-4">            # print(self.scaler.mean_)
+</span><span id="__span-9-5">            # exit()
+</span><span id="__span-9-6">            data = self.scaler.transform(df_data.values)
+</span><span id="__span-9-7">        else:
+</span><span id="__span-9-8">            data = df_data.values
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>还记得我们刚开始定义的 <code>self.scaler = StandardScaler()</code> 全局数据标准化器嘛</p>
+</li>
+<li>
+<p>现在开始拟合，注意这里拟合的时候，只用的是训练数据进行拟合，因为在真实情况中 验证集和测试集是观测不到的，所以这里的执行逻辑就是，先拿出 训练集数据，然后用训练集数据拟合 标准化器，然后用拟合好的标准化器来标准化全局数据。</p>
+</li>
+</ul>
+<h4 id="df_stamp">df_stamp<a class="headerlink" href="#df_stamp" title="Permanent link">&para;</a></h4>
+<ul>
+<li>接下来是时间戳特征的处理：</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">        df_stamp = df_raw[[&#39;date&#39;]][border1:border2]
+</span><span id="__span-10-2">        df_stamp[&#39;date&#39;] = pd.to_datetime(df_stamp.date)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>看到 <code>df_stamp = df_raw[['date']][border1:border2]</code>  终于用到了我们的 border1，border2，就是处理我们现在想处理的数据集了，首先将我们先处理的 数据集时间戳拿出来，传给 <code>df_stamp</code> </li>
+<li><code>df_stamp['date'] = pd.to_datetime(df_stamp.date)</code> 调用 pandas 将日期数据转换成标准的时间日期数据</li>
+<li>在执行完这一句后，看到调试窗口，<mark>鼠标悬停</mark>，查看 时间戳数据框数据 <code>df_stamp</code></li>
+</ul>
+<p><img alt="image-20250315141853608" src="../images/image-20250315141853608.png" /></p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span>
+<span class="normal">9</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">if self.timeenc == 0:
+</span><span id="__span-11-2">            df_stamp[&#39;month&#39;] = df_stamp.date.apply(lambda row: row.month, 1)
+</span><span id="__span-11-3">            df_stamp[&#39;day&#39;] = df_stamp.date.apply(lambda row: row.day, 1)
+</span><span id="__span-11-4">            df_stamp[&#39;weekday&#39;] = df_stamp.date.apply(lambda row: row.weekday(), 1)
+</span><span id="__span-11-5">            df_stamp[&#39;hour&#39;] = df_stamp.date.apply(lambda row: row.hour, 1)
+</span><span id="__span-11-6">            data_stamp = df_stamp.drop([&#39;date&#39;], 1).values
+</span><span id="__span-11-7">        elif self.timeenc == 1:
+</span><span id="__span-11-8">            data_stamp = time_features(pd.to_datetime(df_stamp[&#39;date&#39;].values), freq=self.freq)
+</span><span id="__span-11-9">            data_stamp = data_stamp.transpose(1, 0)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>时间戳特征的建模，我们这里 <code>self.timeenc = 1</code>，所以执行 <code>elif</code></li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">data_stamp = time_features(pd.to_datetime(df_stamp[&#39;date&#39;].values), freq=self.freq)
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>这里的时间戳特征建模 又调用了 自定义的函数  <code>time_features</code>，</li>
+<li>需要的参数有 时间戳数据框 ，也就是 <code>pd.to_datetime(df_stamp['date'].values)</code>，</li>
+<li>还有 时间戳数据记录周期 <code>freq=self.freq</code>，时间戳数据框是我们上面拿到的，</li>
+<li>这里的 时间戳数据记录频率 <code>freq=self.freq="H"</code> ，传进来的参数是 "H"，但其实对于这个疾病数据集来说，时间戳周期是 周，有点小问题，但影响不大。</li>
+</ul>
+<h5 id="time_features">time_features<a class="headerlink" href="#time_features" title="Permanent link">&para;</a></h5>
+<p>接下来，我们 <mark>步进</mark> ，看这个时间戳数据是怎么建模的。</p>
+<p><img alt="image-20250307233527623" src="../images/image-20250307233527623.png" /></p>
+<ul>
+<li>看到又是一个调用，继续==步进==，而且是==同文件的 调用==。</li>
+</ul>
+<h6 id="time_features_from_frequency_str"><code>time_features_from_frequency_str</code><a class="headerlink" href="#time_features_from_frequency_str" title="Permanent link">&para;</a></h6>
+<ul>
+<li><mark>步进</mark> 到 <code>time_features_from_frequency_str</code> 函数内部，首先有一个 特征偏移字典</li>
+</ul>
+<p><img alt="image-20250313204621624" src="../images/image-20250313204621624.png" /></p>
+<ul>
+<li>来到下面这行：</li>
+</ul>
+<p><img alt="image-20250313204841059" src="../images/image-20250313204841059.png" /></p>
+<ul>
+<li>根据给定的时间频率字符串选择合适的时间特征</li>
+<li>我们先看一下调试窗口这里，<code>&lt;built-in function to_offset&gt;</code> 表示的是指向 Pandas 库中 to_offset函数的引用。（也就是 内置函数）</li>
+</ul>
+<p><img alt="image-20250307234111281" src="../images/image-20250307234111281.png" /></p>
+<ul>
+<li><code>to_offset</code> 是 Pandas 中的函数，用于将频率字符串（如 'H'、'D'、'W' 等）转换为对应的偏移对象</li>
+<li>比如我们这里，'H' 转换为  Hour  偏移对象，</li>
+</ul>
+<p><img alt="image-20250313205246648" src="../images/image-20250313205246648.png" /></p>
+<ul>
+<li>这段 for 循环的作用就是根据 输入的 <code>freq_str</code>  也就是频率字符串，去<code>偏移特征字典</code>中 索引到特征类列表，最终返回类的实例</li>
+<li>**具体来说，**就是首先 <code>offset = to_offset(freq_str)</code>   根据传入的 <code>'H'</code> 字符串得到 <code>&lt;Hour&gt;</code> 对象 </li>
+<li>然后遍历遍历字典的 键 和 值，如果 offset 也就是我们得到的 <code>&lt;Hour&gt;</code> 对象是遍历得到的 <code>offset_type</code>，也就是 字典的键，的实例，那么对应的字典的 值 ，<code>feature_classes</code> 就通过一个列表推导式，对得到的类会加一个括号 <code>cls()</code> ,表示返回类的实例。</li>
+<li>**再仔细重复一遍，**就是 <code>to_offset('H')</code>返回的是一个 <code>&lt;Hour&gt;</code>对象</li>
+<li>for循环遍历字典时，会发现这个对象是 <code>offsets.Hour</code> 的实例</li>
+<li>从字典中查找对应 <code>offsets.Hour</code>的特征类列表：<code>[HourOfDay, DayOfWeek, DayOfMonth, DayOfYear]</code> </li>
+<li>返回这些类的实例列表：<code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code></li>
+</ul>
+<h5 id="time_feature">返回 time_feature<a class="headerlink" href="#time_feature" title="Permanent link">&para;</a></h5>
+<p>接下来，继续看  <code>np.vstack</code>  这一行，</p>
+<p><img alt="image-20250313210814703" src="../images/image-20250313210814703.png" /></p>
+<ul>
+<li>
+<p>首先，<code>time_features_from_frequency_str(freq)</code> 返回的是 <code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code></p>
+</li>
+<li>
+<p>然后，根据得到的  <code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code> 对传入的 <code>dates</code> 进行处理</p>
+</li>
+<li>首先我们传入的 dates，是标准的日期，pandas 会自动解析出 年、月、日、小时，因为全是 0 点，所以省略了。</li>
+</ul>
+<p><img alt="image-20250313211350878" src="../images/image-20250313211350878.png" /></p>
+<ul>
+<li>具体来说的处理是：</li>
+</ul>
+<p><img alt="image-20250313211456998" src="../images/image-20250313211456998.png" /></p>
+<ul>
+<li>点击步进 ，可以看到 <code>index.day</code>，自动摘出所有的日期，这里的的处理是 -1 /30 是为了归一化，因为我们的日期记号为 1 号到 31 号，对日期减1，变成 0~30，÷30，变成 0~1，－0.5 表示 中心化，最终的数据范围是 <code>-0.5~0.5</code></li>
+</ul>
+<p><img alt="image-20250313211631503" src="../images/image-20250313211631503.png" /></p>
+<ul>
+<li>HourOfDay()：表示 一天中的第几个小时</li>
+<li>DayOfWeek()：表示一周中的星期几</li>
+<li>DayOfMonth()：表示一个月中的第几天</li>
+<li>DayOfYear()：表示一年中的第几天</li>
+</ul>
+<p>处理逻辑都是差不多的，都中心化为 <code>-0.5~0.5</code></p>
+<p>返回的形状是 <code>[特征数, 日期数]</code> 也就是 <code>4 × 676</code></p>
+<h4 id="data_stamp">返回  <code>data_stamp</code><a class="headerlink" href="#data_stamp" title="Permanent link">&para;</a></h4>
+<p>这里 np.vstack 堆叠的是 列表，所以是 4 行 676 列，对应的后面是，有一个  transpose 操作，<code>data_stamp = data_stamp.transpose(1, 0)</code> ，变成 <code>676 ×4</code> 的格式</p>
+<ul>
+<li>最终得到的数据和形状：</li>
+</ul>
+<p><img alt="image-20250313213938346" src="../images/image-20250313213938346.png" /></p>
+<h3 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>经过以上这一大串，终于完成了 <code>自定义Dataset类</code>的初始化 <code>Dataset_Custom(Dataset)</code>，具体来说就是调用了 <code>init</code> 方法，同时 <code>init</code> 方法中，又调用了 <code>read_data方法</code></li>
+</ul>
+<h2 id="data_provider">返回 data_provider函数<a class="headerlink" href="#data_provider" title="Permanent link">&para;</a></h2>
+<ul>
+<li>接下来回到这里：</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">print(flag, len(data_set))
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>打印训练数据集样本数。点击步进，调用重写的 len 函数</li>
+</ul>
+<h3 id="len">调用 len<a class="headerlink" href="#len" title="Permanent link">&para;</a></h3>
+<ul>
+<li>前面我们关于这个时间步的变化有</li>
+</ul>
+<h4 id="1">（1）第一步<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<p>721 划分数据集，得到这张图：</p>
+<p><img alt="image-20250314092914764" src="../images/image-20250314092914764.png" /></p>
+<p><strong>也就是说理论上，训练集时间步：676；验证集时间步：97；测试集时间步：193</strong></p>
+<h4 id="2">（2）第二步<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
+<p>为了保证验证集第一个时间步和测试集的第一个时间步可以构成一个样本，回溯了 60 个时间步，得到：</p>
+<p><img alt="image-20250314093340428" src="../images/image-20250314093340428.png" /></p>
+<p><strong>但实际上使用的训练集时间步有 676 个；验证集时间步157 个；测试集时间步有 253 个</strong> </p>
+<h4 id="3">（3）第三步<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
+<p>接下来是就是这么些个时间步能构成多少个样本？</p>
+<ul>
+<li>一个完整的样本，应该是包含 60 个历史输入序列和紧随其后的 24 个预测时间步，这样封装成一个完整的样本，并且样本的开始索引是随机的，保证模型训练不会依赖时间步开始的顺序。</li>
+</ul>
+<h3 id="len_1">继续 len<a class="headerlink" href="#len_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>看到源码，样本的计算：</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">   def __len__(self):
+</span><span id="__span-14-2">        return len(self.data_x) - self.seq_len - self.pred_len + 1
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>首先  这个 <code>self.data_x</code> 是怎么来的：  <code>self.data_x = data[border1:border2]</code>，通过 border1 和 border2 索引来的</li>
+<li>具体来说，对于训练集的 676 个时间步，验证集 157 个时间步，测试集 253 个时间步，也就是分别对应着 训练集、验证集、测试集的 <code>len(self.data_x)</code> </li>
+<li>所以，len(训练集)、len(验证集)、len(测试集) 的也就是==样本数== 分别是 <code>676-60-24+1=593 、157-60-24+1=74、253-60-24+1=170</code> 个样本。</li>
+</ul>
+<p><img alt="image-20250314101525779" src="../images/image-20250314101525779.png" /></p>
+<p>执行完以后，终端输出训练集样本数：</p>
+<p><img alt="image-20250315144946836" src="../images/image-20250315144946836.png" /></p>
+<p><strong>我记得我最开始看这个的时候，我会有一个疑问就是索引会不会超出范围？</strong>  所以这里想着重说一下这个问题</p>
+<blockquote>
+<p>其实是不会的。</p>
+<p>首先训练集时间步索引是 0~676，验证集时间步索引 616~773，测试集时间步索引 713~966</p>
+<p>对于训练集来说，最小的 index=0，对应的可以拿到一个样本 <code>0~60,61~84</code> 封装成一个完整的样本；那最大索引是多少呢？那就只能从 索引 676 开始，预留出 60+24 个时间步，也就是 676-60-24=592 索引，所以其实训练集有效索引范围是 0~592，也就是 593 个样本。那从 0~592 个有效索引值 中随机选取 样本的 index 是一定不会超出范围的；验证集测试集是一样的道理。</p>
+<p>而且，之前 我们把验证集时间步、测试集时间步向多回溯了 60 个输入序列，这样就保证了，原始的验证集开始的第一个时间步也能用于预测，而不会损失任何一个时间步的信息。就是保证了每个时间步都有可能作为输入序列，也有可能作为预测序列。</p>
+</blockquote>
+<ul>
+<li>接下来进入 dataloader 的，也就是数据集的封装（上图有显示代码）</li>
+<li>这里的 <code>Dataloader</code> 用的是 <code>pytorch</code> 自带的<code>Dataloader</code> 类。</li>
+<li>我们知道 实例化的类加==中括号[索引 index]== 会自动调用 <code>getitem</code> 方法，就是类似这样：<code>obj = MyClass([1, 2, 3])，print(obj[1])</code>  ，其中 <code>MyClass([1, 2, 3])</code> 会自动调用 <code>init</code> 方法，而 实例化的类  <code>obj[1]</code> 就会调用 <code>getitem</code> 方法。</li>
+<li>这里想说明的是，Dataloader 也会自动调用 Dataset 的 getitem 方法，那调用  getitem 方法就得有索引，<mark>索引怎么来的？</mark> 是通过 <code>shuffle</code> 生成的，如果 shuffle=True，就会自动生成 batchsize 个随机索引，并将这些索引 传递给 getitem，然后得到随机样本，封装成 dataloader，随机索引的范围是通过 Dataset 类的 len 方法限制的。如果 shuffle=false 的话，就按顺序选batchsize 个样本。</li>
+<li>接下来，我们仔细看这个  <code>__getitem__</code> 方法，只需要一个参数 index 即可。</li>
+</ul>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1">    def __getitem__(self, index):
+</span><span id="__span-15-2">        s_begin = index
+</span><span id="__span-15-3">        s_end = s_begin + self.seq_len
+</span><span id="__span-15-4">        r_begin = s_end - self.label_len
+</span><span id="__span-15-5">        r_end = r_begin + self.label_len + self.pred_len
+</span><span id="__span-15-6">
+</span><span id="__span-15-7">        seq_x = self.data_x[s_begin:s_end]
+</span><span id="__span-15-8">        seq_y = self.data_y[r_begin:r_end]
+</span><span id="__span-15-9">        seq_x_mark = self.data_stamp[s_begin:s_end]
+</span><span id="__span-15-10">        seq_y_mark = self.data_stamp[r_begin:r_end]
+</span><span id="__span-15-11">
+</span><span id="__span-15-12">        return seq_x, seq_y, seq_x_mark, seq_y_mark
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>现在我们就假设随机抽取训练集的样本</li>
+<li>训练集的样本数是 593 个</li>
+<li>dataloader 在生成随机索引时会限制在 len(dataset)中，我们设置的 batchsize 为 16，假设生成的 16 个随机索引分别是  [0,23, 105, 67, 198, 54,..., 593]（总计16个索引），这里有两个边界值，也就是能够选取的最小的时间步索引是 0 ，最大的时间步索引是 593</li>
+<li>如果 shuffle=False 的话，就是按顺序取前 16 个索引也就是 0~15。</li>
+<li>得到每个索引，根据每个索引得到样本，向后的 60 个时间步作为输入序列，因为 label_sequence=0，所以紧接着的 24 个时间步是预测序列</li>
+<li>假设我们生成的随机索引为： 23，也就是 <code>index=23</code> 就会调用 <code>dataset</code> 的 <code>getitem</code> 方法。</li>
+</ul>
+<p><img alt="image-20250314105323187" src="../images/image-20250314105323187.png" /></p>
+<ul>
+<li><code>s_begin</code> 输入序列起始点；<code>s_end</code> 输入序列结束点；<code>r_begin</code>标签序列起点；<code>r_end</code> 标签+预测序列终点；</li>
+</ul>
+<p>（1）输入序列起点 <code>=index</code></p>
+<p>（2）输入序列终点 <code>=index+seq_len</code></p>
+<p>（3）预测序列起点 <code>=index+seq_len-label_len</code></p>
+<p>（4）预测序列终点 <code>=index+seq_len+pred_len</code>  这里省略了 <code>-label_len+label_len</code></p>
+<p>然后，</p>
+<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">        seq_x = self.data_x[s_begin:s_end]
+</span><span id="__span-16-2">        seq_y = self.data_y[r_begin:r_end]
+</span><span id="__span-16-3">        seq_x_mark = self.data_stamp[s_begin:s_end]
+</span><span id="__span-16-4">        seq_y_mark = self.data_stamp[r_begin:r_end]
+</span><span id="__span-16-5">
+</span><span id="__span-16-6">        return seq_x, seq_y, seq_x_mark, seq_y_mark
+</span></code></pre></div></td></tr></table></div>
+<ul>
+<li>
+<p>根据输入序列索引和预测序列索引，来得到 输入特征序列和预测特征序列、输入时间戳特征序列和预测时间戳特征序列</p>
+</li>
+<li>
+<p>疾病数据集：966×8（7 个特征+1 个时间戳，所以一共 8 列）</p>
+</li>
+<li>
+<p>对于单个样本的 <code>seq_x = self.seq_len × 7，seq_y = (label_len + pred_len) × 7</code>，<code>seq_x_mark = self.seq_len × 4 , seq_y_mark = self.seq_len × 4</code></p>
+</li>
+<li>
+<p>dataloader 封装了 <code>batchsize</code> 个 <code>seq_x, seq_y, seq_x_mark, seq_y_mark</code></p>
+</li>
+</ul>
+<p><img alt="image-20250314144441399" src="../images/image-20250314144441399.png" /></p>
+<p>当我们执行完了以上源码以后，从哪儿来的，回哪里去</p>
+<ul>
+<li>首先 <code>data_provider</code>返回的<code>return data_set, data_loader</code></li>
+<li><code>_get_data</code>调用的 <code>data_provider</code> ，所以 <code>data_provider</code>返回的结果 返回给 <code>def _get_data(self, flag)</code> 的 <code>return data_set, data_loader</code></li>
+<li>最终返回给 <code>train_data, train_loader = self._get_data(flag='train')</code></li>
+</ul>
+<p>后面验证集和测试集的加载同理。后面比较重要的就是 SegRNN 的 forward 调用，也就是论文的核心思想。</p>
+<h2 id="_4">时间序列样本<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>以上是代码层面的理解，接下来想说明的就是时间序列数据的封装方式。对于不同的任务，数据的组织形式是不一样的，所以这次直接的理解时间序列样本的构成。</p>
+</blockquote>
+<p>对于一张二维数表，时间序列都是二维数表，行是每个时间点，列是每个时间点采集的数据，比如疾病感染人数，记录的 2002 年 1 月开始，到 2020 年 1 月结束，每周一采集数据，除了记录疾病感染人数，还可以记录一些与感染疾病人数的相关的比如当地天气什么的；</p>
+<p>具体来说就是：</p>
+<p><img alt="image-20250307202937957" src="../images/image-20250307202937957.png" /> </p>
+<p>Y 目标列，时间序列数据与其他图像或者 NLP 任务不同的是，特征，在未来时间点，我们是不知道所有的特征的，完全都是未知的。</p>
+<p>时间序列样本的构造：用于训练的时间步，记作 <code>sequence_length</code>，用于预测的时间步 <code>pred_length</code>，还有一个比较特殊的概念 <code>label_length</code> ，表示用于训练的时间步有多少用于指导预测，用一张图表示：</p>
+<p><img alt="image-20250307203200171" src="../images/image-20250307203200171.png" /></p>
+<p>有几个 batch 我们就移动几个小时，构造几个 batch。</p>
+<p><img alt="image-20250307210941318" src="../images/image-20250307210941318.png" /></p>
+<p>当然了，这里也有一个遗留问题，就是这样构造 batch的话，不就是按照特征的顺序喂给模型了吗，模型不就会依赖这个顺序了嘛，而一般我们在构建 Dataloader 的时候，会设置一个参数 <code>shuffle=True</code> ，也就是 会随机选取 batch 个索引 index，从这个索引开始选择 sequence length 个时间步以及后面的 predict length 进行封装，封装成一个样本。</p>
+<p>966×8（1+7）的时间序列数据集，1 表示时间戳特征，7 表示记录的特征。</p>
+<p>在这个项目的 illness 数据集中，有 966 个时间点，每个时间点记录了 7 个特征，batch size=16，sequence length=60，feature=7，更具体来说时间序列的数据封装就是：</p>
+<blockquote>
+<p>16 个独立的样本，每个样本有 60 个连续的时间步及对应的标签值，每个时间步有 7 个特征</p>
+<p>所以就是因为样本是随机从训练集中采的，所以就假设随机采index的是 7、38、0、129等等等，一共 16 个（这就是 batchsize，表示一个 batch中容纳的样本数）</p>
+<p>每个样本中连续的 60 个时间步，这个就很好理解了：</p>
+<p>(0)随机生成第 1 个 index=7，得到样本：从第 7 个时间开始.....跟着 60 个，后面紧跟着要预测的 24 个时间步，dataloader 读数据时都封装好了，会对应上的</p>
+<p>(1)随机生成第 2个 index=38，得到样本：从第  38 个时间开始.....</p>
+<p>(2)随机生成第 3个 index=0：从第 0个时间开始</p>
+<p>......</p>
+<p>(15)随机生成第 16个 index=129：从第 129 个时间开始</p>
+</blockquote>
+<h3 id="_5">滑动窗口与样本堆叠<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>时间序列数据的滑动窗口是在 <code>__getitem__</code> 方法中通过索引切片实现的：</p>
+<ul>
+<li>
+<p>窗口起点：每个索引 index 代表一个滑动窗口的起始位置 </p>
+</li>
+<li>
+<p>窗口划分：</p>
+</li>
+<li>输入窗口：<code>[index:index+seq_len]</code> (60个时间步)</li>
+<li>预测窗口：<code>[index+seq_len-label_len:index+pred_len]</code> (24（<code>label_len+pred_len</code>）个时间步)</li>
+<li>样本重叠：<ul>
+<li>由于索引在<code>0到(len(data_x)-seq_len-pred_len)</code>之间，相邻索引的窗口会有大量重叠</li>
+<li>例如，索引0和索引1的输入窗口共享59个时间步</li>
+</ul>
+</li>
+</ul>
+<p>用图来理解就是这样的</p>
+<p><img alt="image-20250314150125444" src="../images/image-20250314150125444.png" /></p>
+<p>总结：DataLoader 通过调用 Dataset 的 <code>__getitem__</code> 方法获取单个样本，然后将它们堆叠成批次。样本的实际结构和滑动窗口逻辑由 Dataset 实现，DataLoader 只负责组装和批处理</p>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月17日 12:13:52"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月17日 12:13:52">2025-03-17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月17日 12:13:52"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月17日 12:13:52">2025-03-17</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>
