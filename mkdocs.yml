@@ -85,6 +85,7 @@ nav:
       - literature/TSP/2_DLinear.md
       - literature/TSP/3_TimesNet.md
       - literature/TSP/4_Informer.md
+      - literature/TSP/5_Autoformer.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
@@ -113,7 +114,10 @@ nav:
       - literature/Reproduction/2.md
       - literature/Reproduction/3.md
       - literature/Reproduction/4.md
-      - literature/Reproduction/5_SegRNN.md
+      - literature/Reproduction/5_SegRNN_index.md
+      - literature/Reproduction/5_SegRNN_v1.md
+      - literature/Reproduction/5_SegRNN_v2.md
+      - literature/Reproduction/6_AutoFormer.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md

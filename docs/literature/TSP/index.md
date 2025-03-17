@@ -4,3 +4,6 @@
 
 [Time Series Forecasting ](https://paperswithcode.com/task/time-series-forecasting)
 
+- 特征之间的相关性
+- 注意力计算的复杂度有点高
+- 注意力机制

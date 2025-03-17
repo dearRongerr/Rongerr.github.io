@@ -1,4 +1,6 @@
-# Informer
+# 2021|Informer
+
+![image-20250317120535689](images/image-20250317120535689.png)
 
 参看：[滑动窗口机制概述](https://blog.csdn.net/m0_53881899/article/details/136281557)
 
@@ -250,3 +252,17 @@ Batch_size:32
 
 ![image-20250305134714859](images/image-20250305134714859.png)
 
+## 实验部分
+
+[时序预测论文精读：长序列预测模型informer上](https://www.bilibili.com/video/BV127CYYQELB?spm_id_from=333.788.videopod.sections&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
+
+本文所用数据集：ETT h1，ETT h2，ETT m1、weather
+
+实验部分：
+
+- 单变量 长序列时间序列预测
+- 多变量 ~ （q 的稀疏性假设在很多数据集上成立）
+
+[https://arxiv.org/pdf/2012.07436](https://arxiv.org/pdf/2012.07436)
+
+![image-20250317121532608](images/image-20250317121532608.png)

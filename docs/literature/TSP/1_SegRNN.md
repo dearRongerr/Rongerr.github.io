@@ -42,7 +42,7 @@ However, extending the forecast horizon poses significant challenges:
 
 图 1，指出问题：
 
-![image-20250302145725283](images/image-20250302145725283.png)
+![image-20250302145725283](images/image-20250302145725283.png) 
 
 - 较长的回溯窗口
 - 预测范围越长，精度越差、花费时间越多
