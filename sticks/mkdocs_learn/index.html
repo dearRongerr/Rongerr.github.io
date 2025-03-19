@@ -46,14 +46,6 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -280,7 +272,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -540,6 +532,15 @@
   <a href="#_4" class="md-nav__link">
     <span class="md-ellipsis">
       一些修改
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      嵌入 pdf 文档并显示
     </span>
   </a>
   
@@ -1604,6 +1605,8 @@
       
         
       
+        
+      
     
     
       
@@ -1639,6 +1642,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2458,7 +2483,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2480,7 +2505,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2502,7 +2527,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2524,7 +2549,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2546,7 +2571,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -3793,6 +3818,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#pdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      嵌入 pdf 文档并显示
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3816,103 +3850,59 @@
 <p><img alt="image-20241115100605111" src="image-20241115100605111-1636372-1636377.png" /></p>
 <p>主题配置：<a href="https://squidfunk.github.io/mkdocs-material/getting-started/"><strong>Material for MkDocs</strong></a></p>
 <p>本地调试：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">(base) .. mkdocs-site % mkdocs -h
-</span><span id="__span-0-2">Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
-</span><span id="__span-0-3">
-</span><span id="__span-0-4">  MkDocs - Project documentation with Markdown.
-</span><span id="__span-0-5">
-</span><span id="__span-0-6">Options:
-</span><span id="__span-0-7">  -V, --version         Show the version and exit.
-</span><span id="__span-0-8">  -q, --quiet           Silence warnings
-</span><span id="__span-0-9">  -v, --verbose         Enable verbose output
-</span><span id="__span-0-10">  --color / --no-color  Force enable or disable color and wrapping for the output. Default is auto-
-</span><span id="__span-0-11">                        detect.
-</span><span id="__span-0-12">  -h, --help            Show this message and exit.
-</span><span id="__span-0-13">
-</span><span id="__span-0-14">Commands:
-</span><span id="__span-0-15">  build      Build the MkDocs documentation.
-</span><span id="__span-0-16">  get-deps   Show required PyPI packages inferred from plugins in mkdocs.yml.
-</span><span id="__span-0-17">  gh-deploy  Deploy your documentation to GitHub Pages.
-</span><span id="__span-0-18">  new        Create a new MkDocs project.
-</span><span id="__span-0-19">  serve      Run the builtin development server.
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>(base) .. mkdocs-site % mkdocs -h
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>Usage: mkdocs [OPTIONS] COMMAND [ARGS]...
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  MkDocs - Project documentation with Markdown.
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>Options:
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>  -V, --version         Show the version and exit.
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>  -q, --quiet           Silence warnings
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>  -v, --verbose         Enable verbose output
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>  --color / --no-color  Force enable or disable color and wrapping for the output. Default is auto-
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>                        detect.
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>  -h, --help            Show this message and exit.
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>Commands:
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>  build      Build the MkDocs documentation.
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>  get-deps   Show required PyPI packages inferred from plugins in mkdocs.yml.
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>  gh-deploy  Deploy your documentation to GitHub Pages.
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>  new        Create a new MkDocs project.
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>  serve      Run the builtin development server.
+</span></code></pre></div>
 <p><a href="https://github.com/Yang-Xijie/yang-xijie.github.io">参考模版源码</a></p>
 <p><a href="https://yang-xijie.github.io/">参考模版展示</a></p>
 <p><a href="https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/">官方文档：mkdocs配置 </a></p>
 <p><a href="https://b23.tv/jQs24a5">mkdocs入门教程</a></p>
 <h2 id="_1">文件组织形式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>...<span class="w"> </span>docs<span class="w"> </span>%<span class="w"> </span>tree
-</span><span id="__span-1-2">.
-</span><span id="__span-1-3">├──<span class="w"> </span>Error<span class="w">  </span><span class="c1"># 文件夹</span>
-</span><span id="__span-1-4">│<span class="w">   </span>└──<span class="w"> </span>报错.md<span class="w">   </span><span class="c1"># markdown文件</span>
-</span><span id="__span-1-5">├──<span class="w"> </span>Leecode
-</span><span id="__span-1-6">│<span class="w">   </span>└──<span class="w"> </span>力扣.md
-</span><span id="__span-1-7">├──<span class="w"> </span>home
-</span><span id="__span-1-8">│<span class="w">   </span>├──<span class="w"> </span>page-1.md
-</span><span id="__span-1-9">│<span class="w">   </span>└──<span class="w"> </span>page-2.md
-</span><span id="__span-1-10">├──<span class="w"> </span>index.md
-</span><span id="__span-1-11">├──<span class="w"> </span>mkdocs
-</span><span id="__span-1-12">│<span class="w">   </span>├──<span class="w"> </span>css
-</span><span id="__span-1-13">│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>no-footer.css
-</span><span id="__span-1-14">│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>unordered-list-symbols.css
-</span><span id="__span-1-15">│<span class="w">   </span>└──<span class="w"> </span>javascripts
-</span><span id="__span-1-16">│<span class="w">       </span>└──<span class="w"> </span>katex.js
-</span><span id="__span-1-17">└──<span class="w"> </span>便签<span class="w">  </span><span class="c1"># 文件夹</span>
-</span><span id="__span-1-18"><span class="w">  </span>├──<span class="w"> </span>TODO<span class="w">  </span><span class="c1"># 图床</span>
-</span><span id="__span-1-19"><span class="w">  </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">1</span>.png
-</span><span id="__span-1-20"><span class="w">  </span>│<span class="w">   </span>└──<span class="w"> </span>image-20241115095446260.png
-</span><span id="__span-1-21"><span class="w">  </span>├──<span class="w"> </span>TODO.md<span class="w"> </span><span class="c1">#markdown文件</span>
-</span><span id="__span-1-22"><span class="w">  </span>├──<span class="w"> </span>mkdocs_learn
-</span><span id="__span-1-23"><span class="w">  </span>│<span class="w">   </span>└──<span class="w"> </span>image-20241115100605111-1636372-1636377.png
-</span><span id="__span-1-24"><span class="w">  </span>├──<span class="w"> </span>mkdocs_learn.md
-</span><span id="__span-1-25"><span class="w">  </span>└──<span class="w"> </span>备忘.md
-</span><span id="__span-1-26">
-</span><span id="__span-1-27"><span class="m">10</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">14</span><span class="w"> </span>files
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>...<span class="w"> </span>docs<span class="w"> </span>%<span class="w"> </span>tree
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>.
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>├──<span class="w"> </span>Error<span class="w">  </span><span class="c1"># 文件夹</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>│<span class="w">   </span>└──<span class="w"> </span>报错.md<span class="w">   </span><span class="c1"># markdown文件</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>├──<span class="w"> </span>Leecode
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>│<span class="w">   </span>└──<span class="w"> </span>力扣.md
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>├──<span class="w"> </span>home
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>│<span class="w">   </span>├──<span class="w"> </span>page-1.md
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>│<span class="w">   </span>└──<span class="w"> </span>page-2.md
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>├──<span class="w"> </span>index.md
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>├──<span class="w"> </span>mkdocs
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>│<span class="w">   </span>├──<span class="w"> </span>css
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>│<span class="w">   </span>│<span class="w">   </span>├──<span class="w"> </span>no-footer.css
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>│<span class="w">   </span>│<span class="w">   </span>└──<span class="w"> </span>unordered-list-symbols.css
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a>│<span class="w">   </span>└──<span class="w"> </span>javascripts
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a>│<span class="w">       </span>└──<span class="w"> </span>katex.js
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>└──<span class="w"> </span>便签<span class="w">  </span><span class="c1"># 文件夹</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a><span class="w">  </span>├──<span class="w"> </span>TODO<span class="w">  </span><span class="c1"># 图床</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="w">  </span>│<span class="w">   </span>├──<span class="w"> </span><span class="m">1</span>.png
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="w">  </span>│<span class="w">   </span>└──<span class="w"> </span>image-20241115095446260.png
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="w">  </span>├──<span class="w"> </span>TODO.md<span class="w"> </span><span class="c1">#markdown文件</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="w">  </span>├──<span class="w"> </span>mkdocs_learn
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="w">  </span>│<span class="w">   </span>└──<span class="w"> </span>image-20241115100605111-1636372-1636377.png
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="w">  </span>├──<span class="w"> </span>mkdocs_learn.md
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="w">  </span>└──<span class="w"> </span>备忘.md
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a><span class="m">10</span><span class="w"> </span>directories,<span class="w"> </span><span class="m">14</span><span class="w"> </span>files
+</span></code></pre></div>
 <p>前段与后端的对应</p>
 <p><img alt="image-20241115101310759" src="image-20241115101310759.png" /></p>
 <h2 id="_2">添加页面创建时间、最后一次修改时间<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -3920,36 +3910,29 @@
 <p><img alt="image-20241115101535524" src="image-20241115101535524.png" /></p>
 <h2 id="_3">写作<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>更多写作</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">!!! note
-</span><span id="__span-2-2">    This is a note.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">!!! tip
-</span><span id="__span-3-2">    This is a tip.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">!!! warning
-</span><span id="__span-4-2">    This is a warning.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">!!! danger
-</span><span id="__span-5-2">    This is a danger.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">!!! success
-</span><span id="__span-6-2">    This is a success.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">!!! info
-</span><span id="__span-7-2">    This is a info.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">!!! quote
-</span><span id="__span-8-2">    This is a quote.
-</span></code></pre></div></td></tr></table></div>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">??? question &quot;What is the meaning of life, the universe, and everything?&quot;
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>!!! note
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    This is a note.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>!!! tip
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    This is a tip.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>!!! warning
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    This is a warning.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>!!! danger
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    This is a danger.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>!!! success
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    This is a success.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>!!! info
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>    This is a info.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>!!! quote
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>    This is a quote.
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>??? question &quot;What is the meaning of life, the universe, and everything?&quot;
+</span></code></pre></div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This is a note.</p>
@@ -3989,14 +3972,11 @@
 <li><code>mkdocs -h</code> - Print help message and exit.</li>
 </ul>
 <p><strong>Project layout</strong></p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>mkdocs.yml    # The configuration file.
+<div class="language-text highlight"><pre><span></span><code>mkdocs.yml    # The configuration file.
 docs/
     index.md  # The documentation homepage.
     ...       # Other markdown pages, images and other files.
-</code></pre></div></td></tr></table></div>
+</code></pre></div>
 <h2 id="_4">一些修改<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <ul>
 <li>本地文件和在线文件的存储问题，上传上去的本地怎么管理，又不能完全在线</li>
@@ -4032,6 +4012,27 @@ docs/
 <ul>
 <li>文件结构变了，记得修改yml的路径</li>
 </ul>
+<h2 id="pdf">嵌入 pdf 文档并显示<a class="headerlink" href="#pdf" title="Permanent link">&para;</a></h2>
+<p><a href="https://cloud.tencent.com/developer/ask/sof/107585802">如何在github页面上mkdocs生成的网站中嵌入本地pdf文件？</a></p>
+<p><img alt="image-20250319100640822" src="../images/image-20250319100640822.png" /></p>
+<p><strong>（1）修改配置文件：</strong> </p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="nt">markdown_extensions</span><span class="p">:</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">pymdownx.pathconverter</span><span class="p">:</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="w">      </span><span class="nt">base_path</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;docs/pdf_files&#39;</span><span class="w"> </span><span class="c1"># 设置基础路径为你的 PDF 文件所在目录</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="w">      </span><span class="nt">absolute</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"> </span><span class="c1"># 将路径不转换为绝对路径</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="w">      </span><span class="nt">tags</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;a</span><span class="nv"> </span><span class="s">script</span><span class="nv"> </span><span class="s">img</span><span class="nv"> </span><span class="s">link</span><span class="nv"> </span><span class="s">object</span><span class="nv"> </span><span class="s">embed&#39;</span><span class="w"> </span><span class="c1"># 需要转换路径的 HTML 标签</span>
+</span></code></pre></div>
+<p>（2）<strong>新建 markdown 文件</strong>，嵌入 pdf 链接即可，注意路径的配置，嵌入链接的方法和嵌入外链的逻辑是一样的，只是这里设置的本地的（指的是 现在 工作的路径）相对路径</p>
+<div class="language-markdown highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="gh"># 📒</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>这里都是一些之前的笔记，陆陆续续的搬到这里。
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="gu">## 膨胀卷积</span>
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>[<span class="nt">点击这里查看 PDF 文件</span>](<span class="na">../pdf_files/1_dilatedConv.pdf</span>)
+</span></code></pre></div>
+<blockquote>
+<p>我最开始的报错是，路径错了；还有 <code>absolute: false</code> 这里设置成 false</p>
+</blockquote>
 
 
 
@@ -4039,38 +4040,6 @@ docs/
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年2月22日 14:04:48"><span class="timeago" datetime="2025-02-22T14:04:48+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年2月22日 14:04:48">2025-02-22</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024年11月14日 12:14:44"><span class="timeago" datetime="2024-11-14T12:14:44+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024年11月14日 12:14:44">2024-11-14</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -4099,6 +4068,11 @@ docs/
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -4115,14 +4089,6 @@ docs/
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

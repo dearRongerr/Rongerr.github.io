@@ -48,14 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -282,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1606,6 +1598,8 @@
       
         
       
+        
+      
     
     
       
@@ -1641,6 +1635,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2460,7 +2476,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2482,7 +2498,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2504,7 +2520,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2526,7 +2542,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2548,7 +2564,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -3823,18 +3839,18 @@
 <ul>
 <li>拉取远程分支的更改并合并到本地分支：</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="w">  </span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>--rebase
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="w">  </span>git<span class="w"> </span>pull<span class="w"> </span>origin<span class="w"> </span>main<span class="w"> </span>--rebase
+</span></code></pre></div>
 <ul>
 <li>解决任何可能的冲突。如果有冲突，Git 会提示你解决冲突。解决冲突后，继续执行以下命令：</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="w">  </span>git<span class="w"> </span>rebase<span class="w"> </span>--continue
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="w">  </span>git<span class="w"> </span>rebase<span class="w"> </span>--continue
+</span></code></pre></div>
 <ul>
 <li>最后，推送本地分支到远程仓库：</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>git<span class="w"> </span>push<span class="w"> </span>-u<span class="w"> </span>origin<span class="w"> </span>main
+</span></code></pre></div>
 <h2 id="couldnt-connect-to-server">Couldn't connect to server<a class="headerlink" href="#couldnt-connect-to-server" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>Git: fatal: unable to access 'https://github.com/dearRongerr/Rongerr.github.io.git/': Failed to connect to github.com port 443 after 75002 ms: Couldn't connect to server</p>
@@ -3844,21 +3860,17 @@
 <li>（第一种情况）使用 vpn，网页可以打开github，这种情况说明命令行在拉取、推送代码时没有使用 vpn 打开代理，解决方法：</li>
 </ul>
 <p>配置 socks5 代理、配置http代理</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
-</span><span id="__span-3-2">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
-</span><span id="__span-3-3">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
-</span><span id="__span-3-4">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span>socks5<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>http.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>https.proxy<span class="w"> </span><span class="m">127</span>.0.0.1:7890
+</span></code></pre></div>
 <ul>
 <li>（第二种情况）如果未使用 vpn，此时解决方法，取消代理，终端输入：</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>http.proxy
-</span><span id="__span-4-2">git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>https.proxy
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>http.proxy
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>--unset<span class="w"> </span>https.proxy
+</span></code></pre></div>
 <p><img alt="c48810ebd48dced797261d9276177705" src="../images/c48810ebd48dced797261d9276177705.jpg" /></p>
 <h2 id="github_1">安装 github 上的库<a class="headerlink" href="#github_1" title="Permanent link">&para;</a></h2>
 <p>setup.py</p>
@@ -3881,38 +3893,6 @@
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月14日 10:19:26"><span class="timeago" datetime="2025-03-14T10:19:26+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月14日 10:19:26">2025-03-14</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024年11月15日 03:05:58"><span class="timeago" datetime="2024-11-15T03:05:58+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024年11月15日 03:05:58">2024-11-15</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -3941,6 +3921,11 @@
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -3957,14 +3942,6 @@
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

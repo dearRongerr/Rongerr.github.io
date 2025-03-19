@@ -48,14 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -280,7 +272,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1517,6 +1509,8 @@
       
         
       
+        
+      
     
     
       
@@ -1552,6 +1546,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2377,7 +2393,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2399,7 +2415,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2421,7 +2437,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2443,7 +2459,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2465,7 +2481,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -4308,140 +4324,78 @@
 <p><code>-listen 5998</code> 的意思的监听 <code>5998</code> 端口，也就是把 <code>python</code> 的调试程序连接到 <code>5998</code> 端口，然后调试，当然你设置成别的也就是可以的，</p>
 <p><mark>那我们怎么选择端口呢？</mark></p>
 <p>在命令行终端，运行以下代码，查看设备的空闲端口，然后你随便选一个，在 python 调试的<code>launch.json</code>的文件中修改</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">for port in {5000..6000}; do
-</span><span id="__span-0-2">    (echo &gt; /dev/tcp/localhost/$port) &gt;/dev/null 2&gt;&amp;1 || echo &quot;$port is free&quot;
-</span><span id="__span-0-3">done
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>for port in {5000..6000}; do
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    (echo &gt; /dev/tcp/localhost/$port) &gt;/dev/null 2&gt;&amp;1 || echo &quot;$port is free&quot;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>done
+</span></code></pre></div>
 <p><mark>那怎么找到 python 调试文件的 配置文件呢？</mark></p>
 <p>在VSCode按<code>Command+Shift+P</code>, 输入<code>Debug: Add Configuration</code> 即可打开 <code>launch.json</code>，当然了你也可以在 vscode 旁边的小虫子，点 <code>新建 launch.json</code></p>
 <p>找到以后，添加以下配置，注意是在 <code>configration</code> 的关键字下修改。</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">{
-</span><span id="__span-1-2">    &quot;version&quot;: &quot;0.2.0&quot;,
-</span><span id="__span-1-3">    &quot;configurations&quot;: [
-</span><span id="__span-1-4">        {
-</span><span id="__span-1-5">            &quot;name&quot;: &quot;[这里更换为任意名称]&quot;,
-</span><span id="__span-1-6">            &quot;type&quot;: &quot;python&quot;,
-</span><span id="__span-1-7">            &quot;request&quot;: &quot;attach&quot;,
-</span><span id="__span-1-8">            &quot;connect&quot;: {
-</span><span id="__span-1-9">                &quot;host&quot;: &quot;localhost&quot;,
-</span><span id="__span-1-10">                &quot;port&quot;: 5998
-</span><span id="__span-1-11">            }
-</span><span id="__span-1-12">        }
-</span><span id="__span-1-13">    ]
-</span><span id="__span-1-14">}
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>{
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    &quot;version&quot;: &quot;0.2.0&quot;,
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    &quot;configurations&quot;: [
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>        {
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>            &quot;name&quot;: &quot;[这里更换为任意名称]&quot;,
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>            &quot;type&quot;: &quot;python&quot;,
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            &quot;request&quot;: &quot;attach&quot;,
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>            &quot;connect&quot;: {
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>                &quot;host&quot;: &quot;localhost&quot;,
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>                &quot;port&quot;: 5998
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>            }
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>        }
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    ]
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>}
+</span></code></pre></div>
 <p>这是我的 launch.json文件的完整样子：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">{
-</span><span id="__span-2-2">    // 使用 IntelliSense 了解相关属性。 
-</span><span id="__span-2-3">    // 悬停以查看现有属性的描述。
-</span><span id="__span-2-4">    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
-</span><span id="__span-2-5">    &quot;version&quot;: &quot;0.2.0&quot;,
-</span><span id="__span-2-6">    &quot;configurations&quot;: [
-</span><span id="__span-2-7">
-</span><span id="__span-2-8">        {
-</span><span id="__span-2-9">            &quot;name&quot;: &quot;[这里更换为任意名称]&quot;,
-</span><span id="__span-2-10">            &quot;type&quot;: &quot;python&quot;,
-</span><span id="__span-2-11">            &quot;request&quot;: &quot;attach&quot;,
-</span><span id="__span-2-12">            &quot;connect&quot;: {
-</span><span id="__span-2-13">                &quot;host&quot;: &quot;localhost&quot;,
-</span><span id="__span-2-14">                &quot;port&quot;: 5998
-</span><span id="__span-2-15">            }
-</span><span id="__span-2-16">        },
-</span><span id="__span-2-17">        {
-</span><span id="__span-2-18">            &quot;type&quot;: &quot;bashdb&quot;,
-</span><span id="__span-2-19">            &quot;request&quot;: &quot;launch&quot;,
-</span><span id="__span-2-20">            &quot;name&quot;: &quot;Bash-Debug (type in script name)&quot;,
-</span><span id="__span-2-21">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
-</span><span id="__span-2-22">            &quot;program&quot;: &quot;${command:AskForScriptName}&quot;,
-</span><span id="__span-2-23">            &quot;args&quot;: []
-</span><span id="__span-2-24">        },
-</span><span id="__span-2-25">        {
-</span><span id="__span-2-26">            &quot;type&quot;: &quot;bashdb&quot;,
-</span><span id="__span-2-27">            &quot;request&quot;: &quot;launch&quot;,
-</span><span id="__span-2-28">            &quot;name&quot;: &quot;Bash-Debug (select script from list of sh files)&quot;,
-</span><span id="__span-2-29">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
-</span><span id="__span-2-30">            &quot;program&quot;: &quot;${command:SelectScriptName}&quot;,
-</span><span id="__span-2-31">            &quot;args&quot;: []
-</span><span id="__span-2-32">        },
-</span><span id="__span-2-33">        {
-</span><span id="__span-2-34">            &quot;type&quot;: &quot;bashdb&quot;,
-</span><span id="__span-2-35">            &quot;request&quot;: &quot;launch&quot;,
-</span><span id="__span-2-36">            &quot;name&quot;: &quot;Bash-Debug (hardcoded script name)&quot;,
-</span><span id="__span-2-37">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
-</span><span id="__span-2-38">            &quot;program&quot;: &quot;${workspaceFolder}/path/to/script.sh&quot;,
-</span><span id="__span-2-39">            &quot;args&quot;: []
-</span><span id="__span-2-40">        },
-</span><span id="__span-2-41">        {
-</span><span id="__span-2-42">            &quot;type&quot;: &quot;bashdb&quot;,
-</span><span id="__span-2-43">            &quot;request&quot;: &quot;launch&quot;,
-</span><span id="__span-2-44">            &quot;name&quot;: &quot;Bash-Debug (simplest configuration)&quot;,
-</span><span id="__span-2-45">            &quot;program&quot;: &quot;${file}&quot;
-</span><span id="__span-2-46">        }
-</span><span id="__span-2-47">    ]
-</span><span id="__span-2-48">}
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    // 使用 IntelliSense 了解相关属性。 
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    // 悬停以查看现有属性的描述。
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    // 欲了解更多信息，请访问: https://go.microsoft.com/fwlink/?linkid=830387
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    &quot;version&quot;: &quot;0.2.0&quot;,
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>    &quot;configurations&quot;: [
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        {
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            &quot;name&quot;: &quot;[这里更换为任意名称]&quot;,
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>            &quot;type&quot;: &quot;python&quot;,
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>            &quot;request&quot;: &quot;attach&quot;,
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>            &quot;connect&quot;: {
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>                &quot;host&quot;: &quot;localhost&quot;,
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>                &quot;port&quot;: 5998
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>            }
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>        },
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>        {
+</span><span id="__span-2-18"><a id="__codelineno-2-18" name="__codelineno-2-18" href="#__codelineno-2-18"></a>            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-2-19"><a id="__codelineno-2-19" name="__codelineno-2-19" href="#__codelineno-2-19"></a>            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-2-20"><a id="__codelineno-2-20" name="__codelineno-2-20" href="#__codelineno-2-20"></a>            &quot;name&quot;: &quot;Bash-Debug (type in script name)&quot;,
+</span><span id="__span-2-21"><a id="__codelineno-2-21" name="__codelineno-2-21" href="#__codelineno-2-21"></a>            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-2-22"><a id="__codelineno-2-22" name="__codelineno-2-22" href="#__codelineno-2-22"></a>            &quot;program&quot;: &quot;${command:AskForScriptName}&quot;,
+</span><span id="__span-2-23"><a id="__codelineno-2-23" name="__codelineno-2-23" href="#__codelineno-2-23"></a>            &quot;args&quot;: []
+</span><span id="__span-2-24"><a id="__codelineno-2-24" name="__codelineno-2-24" href="#__codelineno-2-24"></a>        },
+</span><span id="__span-2-25"><a id="__codelineno-2-25" name="__codelineno-2-25" href="#__codelineno-2-25"></a>        {
+</span><span id="__span-2-26"><a id="__codelineno-2-26" name="__codelineno-2-26" href="#__codelineno-2-26"></a>            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-2-27"><a id="__codelineno-2-27" name="__codelineno-2-27" href="#__codelineno-2-27"></a>            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-2-28"><a id="__codelineno-2-28" name="__codelineno-2-28" href="#__codelineno-2-28"></a>            &quot;name&quot;: &quot;Bash-Debug (select script from list of sh files)&quot;,
+</span><span id="__span-2-29"><a id="__codelineno-2-29" name="__codelineno-2-29" href="#__codelineno-2-29"></a>            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-2-30"><a id="__codelineno-2-30" name="__codelineno-2-30" href="#__codelineno-2-30"></a>            &quot;program&quot;: &quot;${command:SelectScriptName}&quot;,
+</span><span id="__span-2-31"><a id="__codelineno-2-31" name="__codelineno-2-31" href="#__codelineno-2-31"></a>            &quot;args&quot;: []
+</span><span id="__span-2-32"><a id="__codelineno-2-32" name="__codelineno-2-32" href="#__codelineno-2-32"></a>        },
+</span><span id="__span-2-33"><a id="__codelineno-2-33" name="__codelineno-2-33" href="#__codelineno-2-33"></a>        {
+</span><span id="__span-2-34"><a id="__codelineno-2-34" name="__codelineno-2-34" href="#__codelineno-2-34"></a>            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-2-35"><a id="__codelineno-2-35" name="__codelineno-2-35" href="#__codelineno-2-35"></a>            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-2-36"><a id="__codelineno-2-36" name="__codelineno-2-36" href="#__codelineno-2-36"></a>            &quot;name&quot;: &quot;Bash-Debug (hardcoded script name)&quot;,
+</span><span id="__span-2-37"><a id="__codelineno-2-37" name="__codelineno-2-37" href="#__codelineno-2-37"></a>            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;,
+</span><span id="__span-2-38"><a id="__codelineno-2-38" name="__codelineno-2-38" href="#__codelineno-2-38"></a>            &quot;program&quot;: &quot;${workspaceFolder}/path/to/script.sh&quot;,
+</span><span id="__span-2-39"><a id="__codelineno-2-39" name="__codelineno-2-39" href="#__codelineno-2-39"></a>            &quot;args&quot;: []
+</span><span id="__span-2-40"><a id="__codelineno-2-40" name="__codelineno-2-40" href="#__codelineno-2-40"></a>        },
+</span><span id="__span-2-41"><a id="__codelineno-2-41" name="__codelineno-2-41" href="#__codelineno-2-41"></a>        {
+</span><span id="__span-2-42"><a id="__codelineno-2-42" name="__codelineno-2-42" href="#__codelineno-2-42"></a>            &quot;type&quot;: &quot;bashdb&quot;,
+</span><span id="__span-2-43"><a id="__codelineno-2-43" name="__codelineno-2-43" href="#__codelineno-2-43"></a>            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-2-44"><a id="__codelineno-2-44" name="__codelineno-2-44" href="#__codelineno-2-44"></a>            &quot;name&quot;: &quot;Bash-Debug (simplest configuration)&quot;,
+</span><span id="__span-2-45"><a id="__codelineno-2-45" name="__codelineno-2-45" href="#__codelineno-2-45"></a>            &quot;program&quot;: &quot;${file}&quot;
+</span><span id="__span-2-46"><a id="__codelineno-2-46" name="__codelineno-2-46" href="#__codelineno-2-46"></a>        }
+</span><span id="__span-2-47"><a id="__codelineno-2-47" name="__codelineno-2-47" href="#__codelineno-2-47"></a>    ]
+</span><span id="__span-2-48"><a id="__codelineno-2-48" name="__codelineno-2-48" href="#__codelineno-2-48"></a>}
+</span></code></pre></div>
 <p>想说明的是，我这里还配置了，脚本的调试，分别是：</p>
 <p><code>"Bash-Debug (type in script name)"</code>  表示通过输入脚本名称启动调试</p>
 <p><code>"Bash-Debug (select script from list of sh files)",</code> 通过脚本列表选择调试文件，等等，就不说了，因为我也不是特别明白，这里的配置主要是对 shell 脚本的调试，配置了这个，那么 shell 脚本也就可以调试了。</p>
@@ -4450,66 +4404,37 @@
 <p>这样我们在 调用的python <code>run_longExp.py</code> 上，打断点并运行脚本，就可以调试了。</p>
 <p>🟢 还有另一种方法，就是直接把脚本文件丢给 chatgpt说：请你根据这个脚本文件写一个可以用于调试配置，添加到 <code>launch.json</code></p>
 <p>类似：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">       {
-</span><span id="__span-3-2">            &quot;name&quot;: &quot;Python: run_longExp.py&quot;,
-</span><span id="__span-3-3">            &quot;type&quot;: &quot;python&quot;,
-</span><span id="__span-3-4">            &quot;request&quot;: &quot;launch&quot;,
-</span><span id="__span-3-5">            &quot;program&quot;: &quot;${workspaceFolder}/run_longExp.py&quot;,
-</span><span id="__span-3-6">            &quot;args&quot;: [
-</span><span id="__span-3-7">                &quot;--model_id&quot;, &quot;illness_60_24&quot;,
-</span><span id="__span-3-8">                &quot;--is_training&quot;, &quot;1&quot; ,
-</span><span id="__span-3-9">                &quot;--model&quot;, &quot;SegRNN&quot;, 
-</span><span id="__span-3-10">                &quot;--data&quot;, &quot;custom&quot;,
-</span><span id="__span-3-11">                &quot;--root_path&quot;, &quot;./dataset/&quot;,
-</span><span id="__span-3-12">                &quot;--data_path&quot;, &quot;national_illness.csv&quot;,
-</span><span id="__span-3-13">                &quot;--features&quot;, &quot;M&quot;,
-</span><span id="__span-3-14">                &quot;--seq_len&quot;, &quot;60&quot;,
-</span><span id="__span-3-15">                &quot;--pred_len&quot;, &quot;24&quot;,
-</span><span id="__span-3-16">                &quot;--d_model&quot;, &quot;512&quot;,
-</span><span id="__span-3-17">                &quot;--dropout&quot;, &quot;0.0&quot;,
-</span><span id="__span-3-18">                &quot;--rnn_type&quot;, &quot;gru&quot;,
-</span><span id="__span-3-19">                &quot;--dec_way&quot;, &quot;pmf&quot;,
-</span><span id="__span-3-20">                &quot;--seg_len&quot;, &quot;12&quot;,
-</span><span id="__span-3-21">                &quot;--loss&quot;, &quot;mae&quot;,
-</span><span id="__span-3-22">                &quot;--des&quot;, &quot;test&quot;,
-</span><span id="__span-3-23">                &quot;--itr&quot;, &quot;1&quot;,
-</span><span id="__span-3-24">                &quot;--train_epochs&quot;, &quot;2&quot;,
-</span><span id="__span-3-25">                &quot;--num_workers&quot;, &quot;0&quot;
-</span><span id="__span-3-26">            ],
-</span><span id="__span-3-27">            &quot;console&quot;: &quot;integratedTerminal&quot;,
-</span><span id="__span-3-28">            &quot;justMyCode&quot;: true,
-</span><span id="__span-3-29">            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;
-</span><span id="__span-3-30">        },
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>       {
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>            &quot;name&quot;: &quot;Python: run_longExp.py&quot;,
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>            &quot;type&quot;: &quot;python&quot;,
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>            &quot;request&quot;: &quot;launch&quot;,
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>            &quot;program&quot;: &quot;${workspaceFolder}/run_longExp.py&quot;,
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>            &quot;args&quot;: [
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>                &quot;--model_id&quot;, &quot;illness_60_24&quot;,
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>                &quot;--is_training&quot;, &quot;1&quot; ,
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>                &quot;--model&quot;, &quot;SegRNN&quot;, 
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>                &quot;--data&quot;, &quot;custom&quot;,
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>                &quot;--root_path&quot;, &quot;./dataset/&quot;,
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>                &quot;--data_path&quot;, &quot;national_illness.csv&quot;,
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>                &quot;--features&quot;, &quot;M&quot;,
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>                &quot;--seq_len&quot;, &quot;60&quot;,
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>                &quot;--pred_len&quot;, &quot;24&quot;,
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>                &quot;--d_model&quot;, &quot;512&quot;,
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>                &quot;--dropout&quot;, &quot;0.0&quot;,
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>                &quot;--rnn_type&quot;, &quot;gru&quot;,
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>                &quot;--dec_way&quot;, &quot;pmf&quot;,
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>                &quot;--seg_len&quot;, &quot;12&quot;,
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>                &quot;--loss&quot;, &quot;mae&quot;,
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>                &quot;--des&quot;, &quot;test&quot;,
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>                &quot;--itr&quot;, &quot;1&quot;,
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>                &quot;--train_epochs&quot;, &quot;2&quot;,
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>                &quot;--num_workers&quot;, &quot;0&quot;
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>            ],
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>            &quot;console&quot;: &quot;integratedTerminal&quot;,
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>            &quot;justMyCode&quot;: true,
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>            &quot;cwd&quot;: &quot;${workspaceFolder}&quot;
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        },
+</span></code></pre></div>
 <p>这个叫以 启动模式调试文件，刚刚介绍的叫做 attach 附加模式。这种设置的好处是，直接选，直接调，超方便：</p>
 <p><img alt="image-20250307193657527" src="../images/image-20250307193657527.png" /></p>
 <p>哦，对了，<mark>怎么运行脚本文件</mark></p>
@@ -4526,8 +4451,8 @@
 <p>forward 的地方，能让我们看到 数据流动以及变化，这是最重要的部分了。</p>
 <p>还有一些你不明白的地方或者什么的，想打断点就打断点。好了，这是我想说的打断点的一下经验。</p>
 <p>下面继续开始我的断点 ，我的第二个断点在：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">Exp = Exp_Main
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>Exp = Exp_Main
+</span></code></pre></div>
 <p>这个断点是我想打 init 断点 <code>exp = Exp(args)</code> 和 forward 断点 <code>exp.train(setting)</code> 时，遇到第一个比较不明白的地方，我不明白，因为我第一次看到这么做的。</p>
 <p><mark>这里的逻辑是什么呢？</mark></p>
 <p>这里其实是类的重命名，也是 <code>Exp_Main</code> 本身就是一个类，但是在项目主文件用这个类的时候，重命名了一下，后面在项目主文件用的时候，用的都是这一个重命名的类，然后用这个重命名的类，进行的实例化。</p>
@@ -4702,8 +4627,8 @@
 <p>好了，我们主要来看怎么处理的这个时间，因为这里传进来 self.timeenc=1，所以执行 elif，并且又是 调用的 自定义函数 <code>time_features</code></p>
 <p>当你不知道这个函数是自定义的 还是 官方的，那就 按住 command+鼠标，跳进去看看，或者看看 <code>调试窗口</code>的 <code>全局变量窗口</code>的<code>函数变量</code></p>
 <p>稍微注意一下就是，我们传入进去的参数是 时间戳数据，以及 周期频率，<code>h</code> 表示小时。但其实对于这个疾病数据集来说，时间戳周期是 周，有点小问题，但影响不大。</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">data_stamp = time_features(pd.to_datetime(df_stamp[&#39;date&#39;].values), freq=self.freq)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>data_stamp = time_features(pd.to_datetime(df_stamp[&#39;date&#39;].values), freq=self.freq)
+</span></code></pre></div>
 <p>话不多说，<mark>步进</mark>，</p>
 <p><img alt="image-20250307233527623" src="../images/image-20250307233527623.png" /> </p>
 <p>看到又是一个调用，继续==步进==，而且是==同文件的 调用==。</p>
@@ -4799,26 +4724,17 @@
 <ul>
 <li>首先就是，数据主文件中，以下代码是调用了  <code>Dataset_Custom</code> 类的 init 方法，其中这个 init 方法又调用了类中魔法方法的  <code>__read_data__</code></li>
 </ul>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">    data_set = Data(
-</span><span id="__span-6-2">        root_path=args.root_path,
-</span><span id="__span-6-3">        data_path=args.data_path,
-</span><span id="__span-6-4">        flag=flag,
-</span><span id="__span-6-5">        size=[args.seq_len, args.label_len, args.pred_len],
-</span><span id="__span-6-6">        features=args.features,
-</span><span id="__span-6-7">        target=args.target,
-</span><span id="__span-6-8">        timeenc=timeenc,
-</span><span id="__span-6-9">        freq=freq
-</span><span id="__span-6-10">    )
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>    data_set = Data(
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>        root_path=args.root_path,
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        data_path=args.data_path,
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        flag=flag,
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        size=[args.seq_len, args.label_len, args.pred_len],
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        features=args.features,
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>        target=args.target,
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>        timeenc=timeenc,
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>        freq=freq
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    )
+</span></code></pre></div>
 <ul>
 <li>想要说明的一点是，这个 <mark>自定义的dataset 类</mark> 是 继承了 pytorch 官方定义的 Dataset 类，并重写了  init 方法、getitem 方法和 len 方法。getitem 魔法方法可以使得实例化以后的对象使用索引调用，而 len 方法，在使用 <code>len(实例化的对象)</code> 时 调用。</li>
 </ul>
@@ -4826,59 +4742,42 @@
 <p><img alt="image-20250314225333644" src="../images/image-20250314225333644.png" /></p>
 <h3 id="dataset_custom__len__"><code>Dataset_Custom.__len__</code><a class="headerlink" href="#dataset_custom__len__" title="Permanent link">&para;</a></h3>
 <p>然后，我们继续看数据主文件的下一行</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">print(flag, len(data_set))
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>print(flag, len(data_set))
+</span></code></pre></div>
 <p>调用了 自定义 Dataset 类的 len 方法，也就是重写的 pytorch Dataset 类的 len 方法，这个 len 方法就是给出了样本数</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">    def __len__(self):
-</span><span id="__span-8-2">        return len(self.data_x) - self.seq_len - self.pred_len + 1
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>    def __len__(self):
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a>        return len(self.data_x) - self.seq_len - self.pred_len + 1
+</span></code></pre></div>
 <p>我们来看这个样本数是怎么计算的，首先  这个 <code>self.data_x</code> 是怎么来的：  <code>self.data_x = data[border1:border2]</code>，通过 borders1 和 borders2 索引来的，具体来说，对于训练集有 676 个时间步，验证集 157 个时间步，测试集 253 个时间步，也就是分别对应着 训练集、验证集、测试集的 <code>len(self.data_x)</code> ，所以，len(训练集)、len(验证集)、len(测试集) 的也就是样本数 分别是 <code>676-60-24+1=593 、157-60-24+1=74、253-60-24+1=170</code> 个样本。</p>
 <p>在解释一下，就是 对于第一个样本的索引，应该从第一个时间步向后留出 60 个时间步，最后一个样本的索引应该从最后一个时间步向前留出 24 个预测时间步构成最后一个样本。中间留下的就是有效索引。也是样本数，但是我们索引一般都是从 0 开始，中间留下的有效索引不是从 0 开始的。所以，为了从 0 开始，那么就把第一个时间步作为第一个样本的索引，<mark>那么后面最后一个样本的索引就应该...</mark></p>
 <p>或者说，如果把第一个时间步作为第一个样本的索引，<mark>那么，最后一个样本的索引就应该</mark> 从 <code>676 个时间步-60 个输入序列时间步-24 个预测时间步+1=593索引，也就是最后一个时间步的索引。</code> 就是下面这张图展示的。</p>
 <p><img alt="image-20250314101525779" src="../images/image-20250314101525779.png" /></p>
 <p>接下来继续看 数据主文件中的  dataloader 方法：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">    data_loader = DataLoader(
-</span><span id="__span-9-2">        data_set,
-</span><span id="__span-9-3">        batch_size=batch_size,
-</span><span id="__span-9-4">        shuffle=shuffle_flag,
-</span><span id="__span-9-5">        num_workers=args.num_workers,
-</span><span id="__span-9-6">        drop_last=drop_last)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    data_loader = DataLoader(
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>        data_set,
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>        batch_size=batch_size,
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a>        shuffle=shuffle_flag,
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a>        num_workers=args.num_workers,
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>        drop_last=drop_last)
+</span></code></pre></div>
 <h3 id="getitem">getitem<a class="headerlink" href="#getitem" title="Permanent link">&para;</a></h3>
 <p>这里的 <code>Dataloader</code> 用的是 <code>pytorch</code> 自带的<code>Dataloader</code> 类。</p>
 <p>我们知道 实例化的类加==中括号[索引 index]== 会自动调用 <code>getitem</code> 方法，就是类似这样：<code>obj = MyClass([1, 2, 3])，print(obj[1])</code>  ，其中 <code>MyClass([1, 2, 3])</code> 会自动调用 <code>init</code> 方法，而 实例化的类  <code>obj[1]</code> 就会调用 <code>getitem</code> 方法。</p>
 <p>这里想说明的是，Dataloader 也会自动调用 Dataset 的 getitem 方法，那调用  getitem 方法就得有索引，<mark>索引怎么来的？</mark> 是通过 <code>shuffle</code> 生成的，如果 shuffle=True，就会自动生成 batchsize 个随机索引，并将这些索引 传递给 getitem，然后得到随机样本，封装成 dataloader，随机索引的范围是通过 Dataset 类的 len 方法限制的。如果 shuffle=false 的话，就按顺序选batchsize 个样本。</p>
 <p>接下来，我们仔细看这个  <code>__getitem__</code> 方法，只需要一个参数 index 即可。</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">    def __getitem__(self, index):
-</span><span id="__span-10-2">        s_begin = index
-</span><span id="__span-10-3">        s_end = s_begin + self.seq_len
-</span><span id="__span-10-4">        r_begin = s_end - self.label_len
-</span><span id="__span-10-5">        r_end = r_begin + self.label_len + self.pred_len
-</span><span id="__span-10-6">
-</span><span id="__span-10-7">        seq_x = self.data_x[s_begin:s_end]
-</span><span id="__span-10-8">        seq_y = self.data_y[r_begin:r_end]
-</span><span id="__span-10-9">        seq_x_mark = self.data_stamp[s_begin:s_end]
-</span><span id="__span-10-10">        seq_y_mark = self.data_stamp[r_begin:r_end]
-</span><span id="__span-10-11">
-</span><span id="__span-10-12">        return seq_x, seq_y, seq_x_mark, seq_y_mark
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>    def __getitem__(self, index):
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>        s_begin = index
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        s_end = s_begin + self.seq_len
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        r_begin = s_end - self.label_len
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        r_end = r_begin + self.label_len + self.pred_len
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>        seq_x = self.data_x[s_begin:s_end]
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        seq_y = self.data_y[r_begin:r_end]
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>        seq_x_mark = self.data_stamp[s_begin:s_end]
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>        seq_y_mark = self.data_stamp[r_begin:r_end]
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>        return seq_x, seq_y, seq_x_mark, seq_y_mark
+</span></code></pre></div>
 <p>现在我们就假设随机抽取训练集的样本，训练集的样本数是 593 个，dataloader 在生成随机索引时会限制在 len(dataset)中，我们设置的 batchsize 为 16，也我们假设生成的 16 个随机索引分别是  [0,23, 105, 67, 198, 54,..., 593]（总计16个索引），如果 shuffle=False 的话，就是按顺序取前 16 个索引也就是 0~15。得到的每个索引，根据每个索引得到样本，向后的 60 个时间步作为输入序列，因为 label_sequence=0，所以紧接着的 24 个时间步是预测序列；假设我们生成的随机索引为： 23，也就是 <code>index=23</code> 就会调用 <code>dataset</code> 的 <code>getitem</code> 方法。</p>
 <p><code>s_begin</code> 输入序列起始点；<code>s_end</code> 输入序列结束点；<code>r_begin</code>标签序列起点；<code>r_end</code> 标签+预测序列终点；</p>
 <p><img alt="image-20250314105323187" src="../images/image-20250314105323187.png" /></p>
@@ -4887,18 +4786,13 @@
 <p>预测序列起点 <code>=index+seq_len-label_len</code></p>
 <p>预测序列终点 <code>=index+seq_len+pred_len</code>  这里省略了 <code>-label_len+label_len</code></p>
 <p>然后</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">        seq_x = self.data_x[s_begin:s_end]
-</span><span id="__span-11-2">        seq_y = self.data_y[r_begin:r_end]
-</span><span id="__span-11-3">        seq_x_mark = self.data_stamp[s_begin:s_end]
-</span><span id="__span-11-4">        seq_y_mark = self.data_stamp[r_begin:r_end]
-</span><span id="__span-11-5">
-</span><span id="__span-11-6">        return seq_x, seq_y, seq_x_mark, seq_y_mark
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>        seq_x = self.data_x[s_begin:s_end]
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>        seq_y = self.data_y[r_begin:r_end]
+</span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>        seq_x_mark = self.data_stamp[s_begin:s_end]
+</span><span id="__span-11-4"><a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>        seq_y_mark = self.data_stamp[r_begin:r_end]
+</span><span id="__span-11-5"><a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>
+</span><span id="__span-11-6"><a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a>        return seq_x, seq_y, seq_x_mark, seq_y_mark
+</span></code></pre></div>
 <p>根据输入序列索引和预测序列索引，来得到 输入特征序列和预测特征序列、输入时间戳特征序列和预测时间戳特征序列</p>
 <p>疾病数据集：966×8（7 个特征+1 个时间戳，所以一共 8 列）</p>
 <p>对于单个样本的 <code>seq_x = self.seq_len × 7，seq_y = (label_len + pred_len) × 7</code>，<code>seq_x_mark = self.seq_len × 4 , seq_y_mark = self.seq_len × 4</code></p>
@@ -4924,42 +4818,25 @@
 <p>用图来理解就是这样的</p>
 <p><img alt="image-20250314150125444" src="../images/image-20250314150125444.png" /></p>
 <p>总结：DataLoader 通过调用 Dataset 的 <code>__getitem__</code> 方法获取单个样本，然后将它们堆叠成批次。样本的实际结构和滑动窗口逻辑由 Dataset 实现，DataLoader 只负责组装和批处理。</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">  <span class="n">data_set</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
-</span><span id="__span-12-2">        <span class="n">root_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">root_path</span><span class="p">,</span> <span class="c1"># &#39;./dataset/&#39;</span>
-</span><span id="__span-12-3">        <span class="n">data_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="c1"># &#39;national_illness.csv&#39;</span>
-</span><span id="__span-12-4">        <span class="n">flag</span><span class="o">=</span><span class="n">flag</span><span class="p">,</span> <span class="c1"># flag = &#39;train&#39;</span>
-</span><span id="__span-12-5">        <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">label_len</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">pred_len</span><span class="p">],</span> <span class="c1"># 60,0,24 args.label_len？ =0；解释：args.label_len 的解释：这个参数通常在编码器-解码器架构中使用，表示解码器输入中已知的标签长度。在这个例子中它是0，表示解码器没有已知标签作为输入（只依赖编码器的输出进行预测）</span>
-</span><span id="__span-12-6">        <span class="n">features</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="c1"># &#39;M&#39;</span>
-</span><span id="__span-12-7">        <span class="n">target</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="c1"># &#39;OT&#39;</span>
-</span><span id="__span-12-8">        <span class="n">timeenc</span><span class="o">=</span><span class="n">timeenc</span><span class="p">,</span> <span class="c1"># timeenc = 1</span>
-</span><span id="__span-12-9">        <span class="n">freq</span><span class="o">=</span><span class="n">freq</span> <span class="c1"># freq=&quot;h&quot;</span>
-</span><span id="__span-12-10">    <span class="p">)</span> <span class="c1"># 打断点，跳到 Dataset_Custom init 、、为什么这里能读到数据。答：data_set》Data》data_dict》Dataset_Custom》from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_Pred--》Dataset_Custom init</span>
-</span><span id="__span-12-11">    <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_set</span><span class="p">))</span>
-</span><span id="__span-12-12">    <span class="n">data_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
-</span><span id="__span-12-13">        <span class="n">data_set</span><span class="p">,</span>
-</span><span id="__span-12-14">        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="c1"># 16</span>
-</span><span id="__span-12-15">        <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle_flag</span><span class="p">,</span> <span class="c1"># True</span>
-</span><span id="__span-12-16">        <span class="n">num_workers</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span> <span class="c1"># 10</span>
-</span><span id="__span-12-17">        <span class="n">drop_last</span><span class="o">=</span><span class="n">drop_last</span><span class="p">)</span> <span class="c1"># True</span>
-</span><span id="__span-12-18">    <span class="k">return</span> <span class="n">data_set</span><span class="p">,</span> <span class="n">data_loader</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>  <span class="n">data_set</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>        <span class="n">root_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">root_path</span><span class="p">,</span> <span class="c1"># &#39;./dataset/&#39;</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>        <span class="n">data_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">data_path</span><span class="p">,</span> <span class="c1"># &#39;national_illness.csv&#39;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>        <span class="n">flag</span><span class="o">=</span><span class="n">flag</span><span class="p">,</span> <span class="c1"># flag = &#39;train&#39;</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>        <span class="n">size</span><span class="o">=</span><span class="p">[</span><span class="n">args</span><span class="o">.</span><span class="n">seq_len</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">label_len</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">pred_len</span><span class="p">],</span> <span class="c1"># 60,0,24 args.label_len？ =0；解释：args.label_len 的解释：这个参数通常在编码器-解码器架构中使用，表示解码器输入中已知的标签长度。在这个例子中它是0，表示解码器没有已知标签作为输入（只依赖编码器的输出进行预测）</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>        <span class="n">features</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">features</span><span class="p">,</span> <span class="c1"># &#39;M&#39;</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>        <span class="n">target</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">target</span><span class="p">,</span> <span class="c1"># &#39;OT&#39;</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>        <span class="n">timeenc</span><span class="o">=</span><span class="n">timeenc</span><span class="p">,</span> <span class="c1"># timeenc = 1</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>        <span class="n">freq</span><span class="o">=</span><span class="n">freq</span> <span class="c1"># freq=&quot;h&quot;</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="p">)</span> <span class="c1"># 打断点，跳到 Dataset_Custom init 、、为什么这里能读到数据。答：data_set》Data》data_dict》Dataset_Custom》from data_provider.data_loader import Dataset_ETT_hour, Dataset_ETT_minute, Dataset_Custom, Dataset_Pred--》Dataset_Custom init</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">data_set</span><span class="p">))</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="n">data_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>        <span class="n">data_set</span><span class="p">,</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="c1"># 16</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>        <span class="n">shuffle</span><span class="o">=</span><span class="n">shuffle_flag</span><span class="p">,</span> <span class="c1"># True</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>        <span class="n">num_workers</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">num_workers</span><span class="p">,</span> <span class="c1"># 10</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>        <span class="n">drop_last</span><span class="o">=</span><span class="n">drop_last</span><span class="p">)</span> <span class="c1"># True</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="k">return</span> <span class="n">data_set</span><span class="p">,</span> <span class="n">data_loader</span>
+</span></code></pre></div>
 <p><img alt="image-20250314150229405" src="../images/image-20250314150229405.png" /> </p>
 <h2 id="lendata_set">len(data_set)<a class="headerlink" href="#lendata_set" title="Permanent link">&para;</a></h2>
 <p>这里有一个问题需要注意一下，就是我们在打印训练集的时候，明明时间长度是 676，为什么 <code>len(data_set)=593</code> </p>
@@ -4979,48 +4856,28 @@
 <h2 id="segrnn-forward">SegRNN forward<a class="headerlink" href="#segrnn-forward" title="Permanent link">&para;</a></h2>
 <h3 id="_10">编码器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>我们就看SegRNN 的编码器部分，也就是主要是这部分：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">    def forward(self, x):
-</span><span id="__span-13-2">
-</span><span id="__span-13-3">        # b:batch_size c:channel_size s:seq_len s:seq_len
-</span><span id="__span-13-4">        # d:d_model w:seg_len n:seg_num_x m:seg_num_y
-</span><span id="__span-13-5">        batch_size = x.size(0)
-</span><span id="__span-13-6">
-</span><span id="__span-13-7">        # normalization and permute     b,s,c -&gt; b,c,s
-</span><span id="__span-13-8">        if self.revin:
-</span><span id="__span-13-9">            x = self.revinLayer(x, &#39;norm&#39;).permute(0, 2, 1)
-</span><span id="__span-13-10">        else:
-</span><span id="__span-13-11">            seq_last = x[:, -1:, :].detach()
-</span><span id="__span-13-12">            x = (x - seq_last).permute(0, 2, 1) # b,c,s
-</span><span id="__span-13-13">
-</span><span id="__span-13-14">        # segment and embedding    b,c,s -&gt; bc,n,w -&gt; bc,n,d
-</span><span id="__span-13-15">        x = self.valueEmbedding(x.reshape(-1, self.seg_num_x, self.seg_len))
-</span><span id="__span-13-16">
-</span><span id="__span-13-17">        # encoding
-</span><span id="__span-13-18">        if self.rnn_type == &quot;lstm&quot;:
-</span><span id="__span-13-19">            _, (hn, cn) = self.rnn(x)
-</span><span id="__span-13-20">        else:
-</span><span id="__span-13-21">            _, hn = self.rnn(x) # bc,n,d  1,bc,d
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>    def forward(self, x):
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a>        # b:batch_size c:channel_size s:seq_len s:seq_len
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>        # d:d_model w:seg_len n:seg_num_x m:seg_num_y
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a>        batch_size = x.size(0)
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a>
+</span><span id="__span-13-7"><a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a>        # normalization and permute     b,s,c -&gt; b,c,s
+</span><span id="__span-13-8"><a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a>        if self.revin:
+</span><span id="__span-13-9"><a id="__codelineno-13-9" name="__codelineno-13-9" href="#__codelineno-13-9"></a>            x = self.revinLayer(x, &#39;norm&#39;).permute(0, 2, 1)
+</span><span id="__span-13-10"><a id="__codelineno-13-10" name="__codelineno-13-10" href="#__codelineno-13-10"></a>        else:
+</span><span id="__span-13-11"><a id="__codelineno-13-11" name="__codelineno-13-11" href="#__codelineno-13-11"></a>            seq_last = x[:, -1:, :].detach()
+</span><span id="__span-13-12"><a id="__codelineno-13-12" name="__codelineno-13-12" href="#__codelineno-13-12"></a>            x = (x - seq_last).permute(0, 2, 1) # b,c,s
+</span><span id="__span-13-13"><a id="__codelineno-13-13" name="__codelineno-13-13" href="#__codelineno-13-13"></a>
+</span><span id="__span-13-14"><a id="__codelineno-13-14" name="__codelineno-13-14" href="#__codelineno-13-14"></a>        # segment and embedding    b,c,s -&gt; bc,n,w -&gt; bc,n,d
+</span><span id="__span-13-15"><a id="__codelineno-13-15" name="__codelineno-13-15" href="#__codelineno-13-15"></a>        x = self.valueEmbedding(x.reshape(-1, self.seg_num_x, self.seg_len))
+</span><span id="__span-13-16"><a id="__codelineno-13-16" name="__codelineno-13-16" href="#__codelineno-13-16"></a>
+</span><span id="__span-13-17"><a id="__codelineno-13-17" name="__codelineno-13-17" href="#__codelineno-13-17"></a>        # encoding
+</span><span id="__span-13-18"><a id="__codelineno-13-18" name="__codelineno-13-18" href="#__codelineno-13-18"></a>        if self.rnn_type == &quot;lstm&quot;:
+</span><span id="__span-13-19"><a id="__codelineno-13-19" name="__codelineno-13-19" href="#__codelineno-13-19"></a>            _, (hn, cn) = self.rnn(x)
+</span><span id="__span-13-20"><a id="__codelineno-13-20" name="__codelineno-13-20" href="#__codelineno-13-20"></a>        else:
+</span><span id="__span-13-21"><a id="__codelineno-13-21" name="__codelineno-13-21" href="#__codelineno-13-21"></a>            _, hn = self.rnn(x) # bc,n,d  1,bc,d
+</span></code></pre></div>
 <p>先说一下这里的思想，然后对应到代码也会很好理解：</p>
 <p>这里的流程图：</p>
 <p><img alt="image-20250314152432620" src="../images/image-20250314152432620.png" /></p>
@@ -5063,8 +4920,8 @@
 <p>(15)随机生成第 16个 index=129：从第 129 个时间开始</p>
 </li>
 </ul>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">x = self.revinLayer(x, &#39;norm&#39;).permute(0, 2, 1)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>x = self.revinLayer(x, &#39;norm&#39;).permute(0, 2, 1)
+</span></code></pre></div>
 <p>在进行转置之前进行了可逆实例标准化，也就是对训练样本内的特征进行实例标准化，目的是为了消除分布偏移，用一个例子来解释，就是：</p>
 <p><img alt="image-20250314153025741" src="../images/image-20250314153025741.png" /></p>
 <p>好处是：<mark>消除绝对水平和尺度的影响</mark>，让模型专注于学习序列的==相对变化模式==</p>
@@ -5085,8 +4942,8 @@
 <p>接下来呢，又开始对于这 60 个时间步，分段，分成 5 段，每段 12 个</p>
 <p>然后呢，就把分出来的 段，12 维 统统喂到 linear 中，嵌入到 512 维，用的一个嵌入空间，所以嵌入时使用权值矩阵是一样的，毕竟得在同一个准则下才有可比性，这一步就是学习了每一个小段内，时间之间的相关关系</p>
 <p>对应的源代码就是：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1">x = self.valueEmbedding(x.reshape(-1, self.seg_num_x, self.seg_len))
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>x = self.valueEmbedding(x.reshape(-1, self.seg_num_x, self.seg_len))
+</span></code></pre></div>
 <p><mark>这个代码的写法其实不太好理解，</mark></p>
 <p>-1 就是 16×7=112，它把样本batch 维度和特征维度，混到一起写，reshape 成（-1，seg_num_x,seg_dim）</p>
 <p>（0）样本 1-特征 1 ：【12】【12】【12】【12】【12】</p>
@@ -5105,14 +4962,11 @@
 <p>（15）样本 334-特征 7 ：【12】【12】【12】【12】【12】</p>
 <hr />
 <p>也就是 112 条序列、、、 112×5×12</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">Sequential(
-</span><span id="__span-16-2">  (0): Linear(in_features=12, out_features=512, bias=True)
-</span><span id="__span-16-3">  (1): ReLU()
-</span><span id="__span-16-4">)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Sequential(
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>  (0): Linear(in_features=12, out_features=512, bias=True)
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>  (1): ReLU()
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>)
+</span></code></pre></div>
 <p><mark>linear 就是把所有的 12 全部嵌入到 512 维</mark></p>
 <p>112×5×512</p>
 <p>（0）样本 1-特征 1 ：【512】【512】【512】【512】【512】→ 5步GRU → hn[0,0]</p>
@@ -5138,194 +4992,101 @@
 <p><img alt="image-20250314154509394" src="../images/image-20250314154509394.png" /></p>
 <p><img alt="image-20250314163313686" src="../images/image-20250314163313686.png" /></p>
 <p>整个 forward 过程的图解：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span>
-<span class="normal">63</span>
-<span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span>
-<span class="normal">83</span>
-<span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1">输入: x [16, 60, 7]
-</span><span id="__span-17-2">(16个批次，每个60个时间步，每步7个特征)
-</span><span id="__span-17-3">            │
-</span><span id="__span-17-4">            ▼
-</span><span id="__span-17-5">┌──────────────────────────────┐
-</span><span id="__span-17-6">│      RevIN 标准化 + 维度置换     │
-</span><span id="__span-17-7">│   x = revinLayer(x, &#39;norm&#39;)   │
-</span><span id="__span-17-8">│      .permute(0, 2, 1)       │
-</span><span id="__span-17-9">└──────────────┬───────────────┘
-</span><span id="__span-17-10">               │
-</span><span id="__span-17-11">               ▼
-</span><span id="__span-17-12">          x [16, 7, 60]
-</span><span id="__span-17-13">(16个批次，7个特征，每个特征60个时间步)
-</span><span id="__span-17-14">            │
-</span><span id="__span-17-15">            ▼
-</span><span id="__span-17-16">┌──────────────────────────────┐
-</span><span id="__span-17-17">│         重塑为分段格式          │
-</span><span id="__span-17-18">│ x.reshape(-1, seg_num_x, seg_len) │
-</span><span id="__span-17-19">└──────────────┬───────────────┘
-</span><span id="__span-17-20">               │
-</span><span id="__span-17-21">               ▼
-</span><span id="__span-17-22">          x [112, 5, 12]
-</span><span id="__span-17-23">(112个序列=16批次×7特征，每个分5段，每段12步)
-</span><span id="__span-17-24">            │
-</span><span id="__span-17-25">            ▼
-</span><span id="__span-17-26">┌──────────────────────────────┐
-</span><span id="__span-17-27">│          段值嵌入             │
-</span><span id="__span-17-28">│     x = valueEmbedding(x)     │
-</span><span id="__span-17-29">│  (Linear: 12 → 512 + ReLU)    │
-</span><span id="__span-17-30">└──────────────┬───────────────┘
-</span><span id="__span-17-31">               │
-</span><span id="__span-17-32">               ▼
-</span><span id="__span-17-33">          x [112, 5, 512]
-</span><span id="__span-17-34">(112个序列，5个段，每段表示为512维向量)
-</span><span id="__span-17-35">            │
-</span><span id="__span-17-36">            ▼
-</span><span id="__span-17-37">┌──────────────────────────────┐
-</span><span id="__span-17-38">│           GRU 编码            │
-</span><span id="__span-17-39">│      _, hn = self.rnn(x)      │
-</span><span id="__span-17-40">└──────────────┬───────────────┘
-</span><span id="__span-17-41">               │
-</span><span id="__span-17-42">               ▼
-</span><span id="__span-17-43">          hn [1, 112, 512]
-</span><span id="__span-17-44">(1层GRU，112个序列的最终隐藏状态)
-</span><span id="__span-17-45">            │
-</span><span id="__span-17-46">            ▼
-</span><span id="__span-17-47">┌────────────────┬─────────────┐
-</span><span id="__span-17-48">│    RMF 解码     │    PMF 解码   │
-</span><span id="__span-17-49">└────────┬───────┴──────┬──────┘
-</span><span id="__span-17-50">         │              │
-</span><span id="__span-17-51">┌────────▼───────┐  ┌───▼──────────┐
-</span><span id="__span-17-52">│  循环多步预测    │  │  并行多步预测   │
-</span><span id="__span-17-53">│(逐段自回归预测)  │  │(一次性预测所有段)│
-</span><span id="__span-17-54">└────────┬───────┘  └───┬──────────┘
-</span><span id="__span-17-55">         │              │
-</span><span id="__span-17-56">         │       ┌──────▼─────────┐
-</span><span id="__span-17-57">         │       │  位置和通道嵌入   │
-</span><span id="__span-17-58">         │       │   组合成条件     │
-</span><span id="__span-17-59">         │       └──────┬─────────┘
-</span><span id="__span-17-60">         │              │
-</span><span id="__span-17-61">         │       ┌──────▼─────────┐
-</span><span id="__span-17-62">         │       │ pos_emb [224, 1, 512] │
-</span><span id="__span-17-63">         │       │ (224=16×7×2)   │
-</span><span id="__span-17-64">         │       └──────┬─────────┘
-</span><span id="__span-17-65">         │              │
-</span><span id="__span-17-66">         │       ┌──────▼─────────┐
-</span><span id="__span-17-67">         │       │   条件GRU解码    │
-</span><span id="__span-17-68">         │       │ _, hy = rnn(pos_emb, hn) │
-</span><span id="__span-17-69">         │       └──────┬─────────┘
-</span><span id="__span-17-70">         │              │
-</span><span id="__span-17-71">         │       ┌──────▼─────────┐
-</span><span id="__span-17-72">         │       │ hy [1, 224, 512] │
-</span><span id="__span-17-73">         │       └──────┬─────────┘
-</span><span id="__span-17-74">         │              │
-</span><span id="__span-17-75">┌────────▼───────┐ ┌────▼──────────┐
-</span><span id="__span-17-76">│ 预测 + 堆叠各段  │ │     预测       │
-</span><span id="__span-17-77">└────────┬───────┘ │ y = predict(hy) │
-</span><span id="__span-17-78">         │         └────┬───────────┘
-</span><span id="__span-17-79">         │              │
-</span><span id="__span-17-80">         └──────┬───────┘
-</span><span id="__span-17-81">                │
-</span><span id="__span-17-82">                ▼
-</span><span id="__span-17-83">           y [16, 7, 24]
-</span><span id="__span-17-84"> (预测结果: 16个批次，7个特征，预测24个时间步)
-</span><span id="__span-17-85">                │
-</span><span id="__span-17-86">                ▼
-</span><span id="__span-17-87">┌───────────────────────────────┐
-</span><span id="__span-17-88">│      维度置换 + RevIN反标准化    │
-</span><span id="__span-17-89">│   y = revinLayer(y.permute(0, 2, 1), &#39;denorm&#39;)   │
-</span><span id="__span-17-90">└───────────────┬───────────────┘
-</span><span id="__span-17-91">                │
-</span><span id="__span-17-92">                ▼
-</span><span id="__span-17-93">       最终输出 y [16, 24, 7]
-</span><span id="__span-17-94">(16个批次，预测未来24个时间步，每步7个特征)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>输入: x [16, 60, 7]
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>(16个批次，每个60个时间步，每步7个特征)
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>            │
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>            ▼
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a>┌──────────────────────────────┐
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a>│      RevIN 标准化 + 维度置换     │
+</span><span id="__span-17-7"><a id="__codelineno-17-7" name="__codelineno-17-7" href="#__codelineno-17-7"></a>│   x = revinLayer(x, &#39;norm&#39;)   │
+</span><span id="__span-17-8"><a id="__codelineno-17-8" name="__codelineno-17-8" href="#__codelineno-17-8"></a>│      .permute(0, 2, 1)       │
+</span><span id="__span-17-9"><a id="__codelineno-17-9" name="__codelineno-17-9" href="#__codelineno-17-9"></a>└──────────────┬───────────────┘
+</span><span id="__span-17-10"><a id="__codelineno-17-10" name="__codelineno-17-10" href="#__codelineno-17-10"></a>               │
+</span><span id="__span-17-11"><a id="__codelineno-17-11" name="__codelineno-17-11" href="#__codelineno-17-11"></a>               ▼
+</span><span id="__span-17-12"><a id="__codelineno-17-12" name="__codelineno-17-12" href="#__codelineno-17-12"></a>          x [16, 7, 60]
+</span><span id="__span-17-13"><a id="__codelineno-17-13" name="__codelineno-17-13" href="#__codelineno-17-13"></a>(16个批次，7个特征，每个特征60个时间步)
+</span><span id="__span-17-14"><a id="__codelineno-17-14" name="__codelineno-17-14" href="#__codelineno-17-14"></a>            │
+</span><span id="__span-17-15"><a id="__codelineno-17-15" name="__codelineno-17-15" href="#__codelineno-17-15"></a>            ▼
+</span><span id="__span-17-16"><a id="__codelineno-17-16" name="__codelineno-17-16" href="#__codelineno-17-16"></a>┌──────────────────────────────┐
+</span><span id="__span-17-17"><a id="__codelineno-17-17" name="__codelineno-17-17" href="#__codelineno-17-17"></a>│         重塑为分段格式          │
+</span><span id="__span-17-18"><a id="__codelineno-17-18" name="__codelineno-17-18" href="#__codelineno-17-18"></a>│ x.reshape(-1, seg_num_x, seg_len) │
+</span><span id="__span-17-19"><a id="__codelineno-17-19" name="__codelineno-17-19" href="#__codelineno-17-19"></a>└──────────────┬───────────────┘
+</span><span id="__span-17-20"><a id="__codelineno-17-20" name="__codelineno-17-20" href="#__codelineno-17-20"></a>               │
+</span><span id="__span-17-21"><a id="__codelineno-17-21" name="__codelineno-17-21" href="#__codelineno-17-21"></a>               ▼
+</span><span id="__span-17-22"><a id="__codelineno-17-22" name="__codelineno-17-22" href="#__codelineno-17-22"></a>          x [112, 5, 12]
+</span><span id="__span-17-23"><a id="__codelineno-17-23" name="__codelineno-17-23" href="#__codelineno-17-23"></a>(112个序列=16批次×7特征，每个分5段，每段12步)
+</span><span id="__span-17-24"><a id="__codelineno-17-24" name="__codelineno-17-24" href="#__codelineno-17-24"></a>            │
+</span><span id="__span-17-25"><a id="__codelineno-17-25" name="__codelineno-17-25" href="#__codelineno-17-25"></a>            ▼
+</span><span id="__span-17-26"><a id="__codelineno-17-26" name="__codelineno-17-26" href="#__codelineno-17-26"></a>┌──────────────────────────────┐
+</span><span id="__span-17-27"><a id="__codelineno-17-27" name="__codelineno-17-27" href="#__codelineno-17-27"></a>│          段值嵌入             │
+</span><span id="__span-17-28"><a id="__codelineno-17-28" name="__codelineno-17-28" href="#__codelineno-17-28"></a>│     x = valueEmbedding(x)     │
+</span><span id="__span-17-29"><a id="__codelineno-17-29" name="__codelineno-17-29" href="#__codelineno-17-29"></a>│  (Linear: 12 → 512 + ReLU)    │
+</span><span id="__span-17-30"><a id="__codelineno-17-30" name="__codelineno-17-30" href="#__codelineno-17-30"></a>└──────────────┬───────────────┘
+</span><span id="__span-17-31"><a id="__codelineno-17-31" name="__codelineno-17-31" href="#__codelineno-17-31"></a>               │
+</span><span id="__span-17-32"><a id="__codelineno-17-32" name="__codelineno-17-32" href="#__codelineno-17-32"></a>               ▼
+</span><span id="__span-17-33"><a id="__codelineno-17-33" name="__codelineno-17-33" href="#__codelineno-17-33"></a>          x [112, 5, 512]
+</span><span id="__span-17-34"><a id="__codelineno-17-34" name="__codelineno-17-34" href="#__codelineno-17-34"></a>(112个序列，5个段，每段表示为512维向量)
+</span><span id="__span-17-35"><a id="__codelineno-17-35" name="__codelineno-17-35" href="#__codelineno-17-35"></a>            │
+</span><span id="__span-17-36"><a id="__codelineno-17-36" name="__codelineno-17-36" href="#__codelineno-17-36"></a>            ▼
+</span><span id="__span-17-37"><a id="__codelineno-17-37" name="__codelineno-17-37" href="#__codelineno-17-37"></a>┌──────────────────────────────┐
+</span><span id="__span-17-38"><a id="__codelineno-17-38" name="__codelineno-17-38" href="#__codelineno-17-38"></a>│           GRU 编码            │
+</span><span id="__span-17-39"><a id="__codelineno-17-39" name="__codelineno-17-39" href="#__codelineno-17-39"></a>│      _, hn = self.rnn(x)      │
+</span><span id="__span-17-40"><a id="__codelineno-17-40" name="__codelineno-17-40" href="#__codelineno-17-40"></a>└──────────────┬───────────────┘
+</span><span id="__span-17-41"><a id="__codelineno-17-41" name="__codelineno-17-41" href="#__codelineno-17-41"></a>               │
+</span><span id="__span-17-42"><a id="__codelineno-17-42" name="__codelineno-17-42" href="#__codelineno-17-42"></a>               ▼
+</span><span id="__span-17-43"><a id="__codelineno-17-43" name="__codelineno-17-43" href="#__codelineno-17-43"></a>          hn [1, 112, 512]
+</span><span id="__span-17-44"><a id="__codelineno-17-44" name="__codelineno-17-44" href="#__codelineno-17-44"></a>(1层GRU，112个序列的最终隐藏状态)
+</span><span id="__span-17-45"><a id="__codelineno-17-45" name="__codelineno-17-45" href="#__codelineno-17-45"></a>            │
+</span><span id="__span-17-46"><a id="__codelineno-17-46" name="__codelineno-17-46" href="#__codelineno-17-46"></a>            ▼
+</span><span id="__span-17-47"><a id="__codelineno-17-47" name="__codelineno-17-47" href="#__codelineno-17-47"></a>┌────────────────┬─────────────┐
+</span><span id="__span-17-48"><a id="__codelineno-17-48" name="__codelineno-17-48" href="#__codelineno-17-48"></a>│    RMF 解码     │    PMF 解码   │
+</span><span id="__span-17-49"><a id="__codelineno-17-49" name="__codelineno-17-49" href="#__codelineno-17-49"></a>└────────┬───────┴──────┬──────┘
+</span><span id="__span-17-50"><a id="__codelineno-17-50" name="__codelineno-17-50" href="#__codelineno-17-50"></a>         │              │
+</span><span id="__span-17-51"><a id="__codelineno-17-51" name="__codelineno-17-51" href="#__codelineno-17-51"></a>┌────────▼───────┐  ┌───▼──────────┐
+</span><span id="__span-17-52"><a id="__codelineno-17-52" name="__codelineno-17-52" href="#__codelineno-17-52"></a>│  循环多步预测    │  │  并行多步预测   │
+</span><span id="__span-17-53"><a id="__codelineno-17-53" name="__codelineno-17-53" href="#__codelineno-17-53"></a>│(逐段自回归预测)  │  │(一次性预测所有段)│
+</span><span id="__span-17-54"><a id="__codelineno-17-54" name="__codelineno-17-54" href="#__codelineno-17-54"></a>└────────┬───────┘  └───┬──────────┘
+</span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a>         │              │
+</span><span id="__span-17-56"><a id="__codelineno-17-56" name="__codelineno-17-56" href="#__codelineno-17-56"></a>         │       ┌──────▼─────────┐
+</span><span id="__span-17-57"><a id="__codelineno-17-57" name="__codelineno-17-57" href="#__codelineno-17-57"></a>         │       │  位置和通道嵌入   │
+</span><span id="__span-17-58"><a id="__codelineno-17-58" name="__codelineno-17-58" href="#__codelineno-17-58"></a>         │       │   组合成条件     │
+</span><span id="__span-17-59"><a id="__codelineno-17-59" name="__codelineno-17-59" href="#__codelineno-17-59"></a>         │       └──────┬─────────┘
+</span><span id="__span-17-60"><a id="__codelineno-17-60" name="__codelineno-17-60" href="#__codelineno-17-60"></a>         │              │
+</span><span id="__span-17-61"><a id="__codelineno-17-61" name="__codelineno-17-61" href="#__codelineno-17-61"></a>         │       ┌──────▼─────────┐
+</span><span id="__span-17-62"><a id="__codelineno-17-62" name="__codelineno-17-62" href="#__codelineno-17-62"></a>         │       │ pos_emb [224, 1, 512] │
+</span><span id="__span-17-63"><a id="__codelineno-17-63" name="__codelineno-17-63" href="#__codelineno-17-63"></a>         │       │ (224=16×7×2)   │
+</span><span id="__span-17-64"><a id="__codelineno-17-64" name="__codelineno-17-64" href="#__codelineno-17-64"></a>         │       └──────┬─────────┘
+</span><span id="__span-17-65"><a id="__codelineno-17-65" name="__codelineno-17-65" href="#__codelineno-17-65"></a>         │              │
+</span><span id="__span-17-66"><a id="__codelineno-17-66" name="__codelineno-17-66" href="#__codelineno-17-66"></a>         │       ┌──────▼─────────┐
+</span><span id="__span-17-67"><a id="__codelineno-17-67" name="__codelineno-17-67" href="#__codelineno-17-67"></a>         │       │   条件GRU解码    │
+</span><span id="__span-17-68"><a id="__codelineno-17-68" name="__codelineno-17-68" href="#__codelineno-17-68"></a>         │       │ _, hy = rnn(pos_emb, hn) │
+</span><span id="__span-17-69"><a id="__codelineno-17-69" name="__codelineno-17-69" href="#__codelineno-17-69"></a>         │       └──────┬─────────┘
+</span><span id="__span-17-70"><a id="__codelineno-17-70" name="__codelineno-17-70" href="#__codelineno-17-70"></a>         │              │
+</span><span id="__span-17-71"><a id="__codelineno-17-71" name="__codelineno-17-71" href="#__codelineno-17-71"></a>         │       ┌──────▼─────────┐
+</span><span id="__span-17-72"><a id="__codelineno-17-72" name="__codelineno-17-72" href="#__codelineno-17-72"></a>         │       │ hy [1, 224, 512] │
+</span><span id="__span-17-73"><a id="__codelineno-17-73" name="__codelineno-17-73" href="#__codelineno-17-73"></a>         │       └──────┬─────────┘
+</span><span id="__span-17-74"><a id="__codelineno-17-74" name="__codelineno-17-74" href="#__codelineno-17-74"></a>         │              │
+</span><span id="__span-17-75"><a id="__codelineno-17-75" name="__codelineno-17-75" href="#__codelineno-17-75"></a>┌────────▼───────┐ ┌────▼──────────┐
+</span><span id="__span-17-76"><a id="__codelineno-17-76" name="__codelineno-17-76" href="#__codelineno-17-76"></a>│ 预测 + 堆叠各段  │ │     预测       │
+</span><span id="__span-17-77"><a id="__codelineno-17-77" name="__codelineno-17-77" href="#__codelineno-17-77"></a>└────────┬───────┘ │ y = predict(hy) │
+</span><span id="__span-17-78"><a id="__codelineno-17-78" name="__codelineno-17-78" href="#__codelineno-17-78"></a>         │         └────┬───────────┘
+</span><span id="__span-17-79"><a id="__codelineno-17-79" name="__codelineno-17-79" href="#__codelineno-17-79"></a>         │              │
+</span><span id="__span-17-80"><a id="__codelineno-17-80" name="__codelineno-17-80" href="#__codelineno-17-80"></a>         └──────┬───────┘
+</span><span id="__span-17-81"><a id="__codelineno-17-81" name="__codelineno-17-81" href="#__codelineno-17-81"></a>                │
+</span><span id="__span-17-82"><a id="__codelineno-17-82" name="__codelineno-17-82" href="#__codelineno-17-82"></a>                ▼
+</span><span id="__span-17-83"><a id="__codelineno-17-83" name="__codelineno-17-83" href="#__codelineno-17-83"></a>           y [16, 7, 24]
+</span><span id="__span-17-84"><a id="__codelineno-17-84" name="__codelineno-17-84" href="#__codelineno-17-84"></a> (预测结果: 16个批次，7个特征，预测24个时间步)
+</span><span id="__span-17-85"><a id="__codelineno-17-85" name="__codelineno-17-85" href="#__codelineno-17-85"></a>                │
+</span><span id="__span-17-86"><a id="__codelineno-17-86" name="__codelineno-17-86" href="#__codelineno-17-86"></a>                ▼
+</span><span id="__span-17-87"><a id="__codelineno-17-87" name="__codelineno-17-87" href="#__codelineno-17-87"></a>┌───────────────────────────────┐
+</span><span id="__span-17-88"><a id="__codelineno-17-88" name="__codelineno-17-88" href="#__codelineno-17-88"></a>│      维度置换 + RevIN反标准化    │
+</span><span id="__span-17-89"><a id="__codelineno-17-89" name="__codelineno-17-89" href="#__codelineno-17-89"></a>│   y = revinLayer(y.permute(0, 2, 1), &#39;denorm&#39;)   │
+</span><span id="__span-17-90"><a id="__codelineno-17-90" name="__codelineno-17-90" href="#__codelineno-17-90"></a>└───────────────┬───────────────┘
+</span><span id="__span-17-91"><a id="__codelineno-17-91" name="__codelineno-17-91" href="#__codelineno-17-91"></a>                │
+</span><span id="__span-17-92"><a id="__codelineno-17-92" name="__codelineno-17-92" href="#__codelineno-17-92"></a>                ▼
+</span><span id="__span-17-93"><a id="__codelineno-17-93" name="__codelineno-17-93" href="#__codelineno-17-93"></a>       最终输出 y [16, 24, 7]
+</span><span id="__span-17-94"><a id="__codelineno-17-94" name="__codelineno-17-94" href="#__codelineno-17-94"></a>(16个批次，预测未来24个时间步，每步7个特征)
+</span></code></pre></div>
 <h3 id="_12">解码过程<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p>关于 SegRNN 的两个核心创新点</p>
 <p>（1）分段编码</p>
@@ -5381,10 +5142,9 @@
 <p>（2）hy 通过 RNN（循环神经网络）处理位置编码（pos_emb）后得到的隐藏状态</p>
 <p>（3）hy 的实际意义在于，它包含了通过 RNN 处理后的序列信息，并且可以用于进一步的预测或解码操作</p>
 <h3 id="selfpredict">预测 self.predict<a class="headerlink" href="#selfpredict" title="Permanent link">&para;</a></h3>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1"> # 1,bcm,d -&gt; 1,bcm,w -&gt; b,c,s
-</span><span id="__span-18-2">            y = self.predict(hy).view(-1, self.enc_in, self.pred_len)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a> # 1,bcm,d -&gt; 1,bcm,w -&gt; b,c,s
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>            y = self.predict(hy).view(-1, self.enc_in, self.pred_len)
+</span></code></pre></div>
 <p>首先 self.predict，其实就是一个线性映射层，将 512 维映射到 12 维。这个 12 维是什么？是解码阶段，60 个时间步分成 5 段每段的时间步 步长 12 步，这里的 12 维对应的就是 预测时间步步长 24 步，分成 2 段，每段 12 步。</p>
 <p><img alt="image-20250314172238111" src="../images/image-20250314172238111.png" /></p>
 <p>也就是前面 <code>RNN</code> 的调用：</p>
@@ -5398,32 +5158,22 @@
 <li>使用 <code>hy</code> 进行预测：</li>
 <li><code>y = self.predict(hy).view(-1, self.enc_in, self.pred_len)</code>：使用隐藏状态 hy 进行预测，并将预测结果调整为形状为 <code>(batch_size, self.enc_in, self.pred_len)</code> 的张量。（16×7×24）</li>
 </ul>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1">        if self.revin:
-</span><span id="__span-19-2">            y = self.revinLayer(y.permute(0, 2, 1), &#39;denorm&#39;)
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>        if self.revin:
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a>            y = self.revinLayer(y.permute(0, 2, 1), &#39;denorm&#39;)
+</span></code></pre></div>
 <p>最后，反实例标准化，因为之前进行了实例标准化，现在把还原回去。形状变成 <code>16×24×7</code>.</p>
 <p>对应源码：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1">    def _denormalize(self, x):
-</span><span id="__span-20-2">        if self.affine:
-</span><span id="__span-20-3">            x = x - self.affine_bias
-</span><span id="__span-20-4">            x = x / (self.affine_weight + self.eps*self.eps)
-</span><span id="__span-20-5">        x = x * self.stdev
-</span><span id="__span-20-6">        if self.subtract_last:
-</span><span id="__span-20-7">            x = x + self.last
-</span><span id="__span-20-8">        else:
-</span><span id="__span-20-9">            x = x + self.mean
-</span><span id="__span-20-10">        return x
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>    def _denormalize(self, x):
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>        if self.affine:
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>            x = x - self.affine_bias
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>            x = x / (self.affine_weight + self.eps*self.eps)
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        x = x * self.stdev
+</span><span id="__span-20-6"><a id="__codelineno-20-6" name="__codelineno-20-6" href="#__codelineno-20-6"></a>        if self.subtract_last:
+</span><span id="__span-20-7"><a id="__codelineno-20-7" name="__codelineno-20-7" href="#__codelineno-20-7"></a>            x = x + self.last
+</span><span id="__span-20-8"><a id="__codelineno-20-8" name="__codelineno-20-8" href="#__codelineno-20-8"></a>        else:
+</span><span id="__span-20-9"><a id="__codelineno-20-9" name="__codelineno-20-9" href="#__codelineno-20-9"></a>            x = x + self.mean
+</span><span id="__span-20-10"><a id="__codelineno-20-10" name="__codelineno-20-10" href="#__codelineno-20-10"></a>        return x
+</span></code></pre></div>
 <p>最重要的两步：<code>x = x * self.stdev</code>  和 <code>x = x + self.mean</code></p>
 <p>以上就是 SegRNN 的源码实现的理解。</p>
 
@@ -5433,38 +5183,6 @@
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月17日 12:13:52"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月17日 12:13:52">2025-03-17</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月7日 09:06:36"><span class="timeago" datetime="2025-03-07T09:06:36+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月7日 09:06:36">2025-03-07</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -5493,6 +5211,11 @@
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -5509,14 +5232,6 @@
     
     
       <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../../js/timeago.min.js"></script>
-      
-        <script src="../../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

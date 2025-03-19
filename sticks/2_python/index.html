@@ -48,14 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -282,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1594,6 +1586,8 @@
       
         
       
+        
+      
     
     
       
@@ -1629,6 +1623,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2448,7 +2464,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2470,7 +2486,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2492,7 +2508,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2514,7 +2530,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2536,7 +2552,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -3811,117 +3827,66 @@
 <li><code>__call__(self, ...)</code>：在将对象作为函数调用时调用，例如 obj()。</li>
 <li><code>__enter__(self)</code> 和 <code>__exit__(self, exc_type, exc_value, traceback)</code>：在使用 with 语句时调用，用于实现上下文管理。</li>
 </ul>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">class MyClass:
-</span><span id="__span-0-2">    def __init__(self, value):
-</span><span id="__span-0-3">        self.value = value
-</span><span id="__span-0-4">
-</span><span id="__span-0-5">    def __str__(self):
-</span><span id="__span-0-6">        return f&quot;MyClass with value: {self.value}&quot;
-</span><span id="__span-0-7">
-</span><span id="__span-0-8">    def __len__(self):
-</span><span id="__span-0-9">        return len(self.value)
-</span><span id="__span-0-10">
-</span><span id="__span-0-11">    def __getitem__(self, index):
-</span><span id="__span-0-12">        return self.value[index]
-</span><span id="__span-0-13">
-</span><span id="__span-0-14">    def __setitem__(self, index, value):
-</span><span id="__span-0-15">        self.value[index] = value
-</span><span id="__span-0-16">
-</span><span id="__span-0-17">    def __delitem__(self, index):
-</span><span id="__span-0-18">        del self.value[index]
-</span><span id="__span-0-19">
-</span><span id="__span-0-20">    def __call__(self, *args, **kwargs):
-</span><span id="__span-0-21">        print(&quot;Called with arguments:&quot;, args, kwargs)
-</span><span id="__span-0-22">
-</span><span id="__span-0-23"># 使用示例
-</span><span id="__span-0-24">obj = MyClass([1, 2, 3])
-</span><span id="__span-0-25">print(obj)  # 输出: MyClass with value: [1, 2, 3]
-</span><span id="__span-0-26">print(len(obj))  # 输出: 3
-</span><span id="__span-0-27">print(obj[1])  # 输出: 2
-</span><span id="__span-0-28">obj[1] = 42
-</span><span id="__span-0-29">print(obj[1])  # 输出: 42
-</span><span id="__span-0-30">del obj[1]
-</span><span id="__span-0-31">print(obj.value)  # 输出: [1, 3]
-</span><span id="__span-0-32">obj(10, 20, key=&quot;value&quot;)  # 输出: Called with arguments: (10, 20) {&#39;key&#39;: &#39;value&#39;}
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>class MyClass:
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    def __init__(self, value):
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>        self.value = value
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    def __str__(self):
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        return f&quot;MyClass with value: {self.value}&quot;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    def __len__(self):
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>        return len(self.value)
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    def __getitem__(self, index):
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>        return self.value[index]
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>    def __setitem__(self, index, value):
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>        self.value[index] = value
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    def __delitem__(self, index):
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>        del self.value[index]
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    def __call__(self, *args, **kwargs):
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>        print(&quot;Called with arguments:&quot;, args, kwargs)
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a># 使用示例
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>obj = MyClass([1, 2, 3])
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a>print(obj)  # 输出: MyClass with value: [1, 2, 3]
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a>print(len(obj))  # 输出: 3
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>print(obj[1])  # 输出: 2
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a>obj[1] = 42
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a>print(obj[1])  # 输出: 42
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a>del obj[1]
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a>print(obj.value)  # 输出: [1, 3]
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a>obj(10, 20, key=&quot;value&quot;)  # 输出: Called with arguments: (10, 20) {&#39;key&#39;: &#39;value&#39;}
+</span></code></pre></div>
 <p>getitem 使用索引访问；</p>
 <p>call 当成函数访问。</p>
 <h3 id="_3">受保护的方法<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <p>单下划线方法和变量（以单下划线开头）通常用于表示类的内部实现细节或受保护的成员。<mark>虽然 Python 没有真正的访问控制机制（如 private 和 protected），但使用单下划线是一种约定，表示这些成员不应在类外部直接访问。</mark></p>
 <p><strong>是一种约定</strong> </p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">class MyClass:
-</span><span id="__span-1-2">    def __init__(self, value):
-</span><span id="__span-1-3">        self._value = value  # 受保护的成员
-</span><span id="__span-1-4">
-</span><span id="__span-1-5">    def _internal_method(self):
-</span><span id="__span-1-6">        print(&quot;This is an internal method&quot;)
-</span><span id="__span-1-7">
-</span><span id="__span-1-8">    def public_method(self):
-</span><span id="__span-1-9">        self._internal_method()
-</span><span id="__span-1-10">        print(&quot;This is a public method&quot;)
-</span><span id="__span-1-11">
-</span><span id="__span-1-12"># 使用示例
-</span><span id="__span-1-13">obj = MyClass(42)
-</span><span id="__span-1-14">obj.public_method()
-</span><span id="__span-1-15"># 输出:
-</span><span id="__span-1-16"># This is an internal method
-</span><span id="__span-1-17"># This is a public method
-</span><span id="__span-1-18">
-</span><span id="__span-1-19"># 虽然可以访问，但不推荐
-</span><span id="__span-1-20">print(obj._value)  # 输出: 42
-</span><span id="__span-1-21">obj._internal_method()  # 输出: This is an internal method
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>class MyClass:
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    def __init__(self, value):
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>        self._value = value  # 受保护的成员
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    def _internal_method(self):
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        print(&quot;This is an internal method&quot;)
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    def public_method(self):
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>        self._internal_method()
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>        print(&quot;This is a public method&quot;)
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a># 使用示例
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>obj = MyClass(42)
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>obj.public_method()
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a># 输出:
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a># This is an internal method
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a># This is a public method
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a># 虽然可以访问，但不推荐
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a>print(obj._value)  # 输出: 42
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a>obj._internal_method()  # 输出: This is an internal method
+</span></code></pre></div>
 <ul>
 <li>双下划线方法（魔法方法）：用于实现对象的特殊行为，由 Python 解释器自动调用。</li>
 <li>单下划线方法和变量：表示类的内部实现细节或受保护的成员，约定不应在类外部直接访问。</li>
@@ -3933,38 +3898,6 @@
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月14日 10:19:26"><span class="timeago" datetime="2025-03-14T10:19:26+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月14日 10:19:26">2025-03-14</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年2月28日 02:36:42"><span class="timeago" datetime="2025-02-28T02:36:42+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年2月28日 02:36:42">2025-02-28</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -3993,6 +3926,11 @@
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -4009,14 +3947,6 @@
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

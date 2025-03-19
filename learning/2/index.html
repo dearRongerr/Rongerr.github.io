@@ -48,14 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -282,7 +274,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1519,6 +1511,8 @@
       
         
       
+        
+      
     
     
       
@@ -1555,6 +1549,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2601,7 +2617,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2623,7 +2639,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2645,7 +2661,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2667,7 +2683,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2689,7 +2705,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -4138,33 +4154,22 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 实际意义 &amp; 矩阵法 &amp; 计算机存储逻辑</li>
 </ul>
 <p><img alt="image-20241127215739102" src="../images/image-20241127215739102.png" /></p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span id="__span-0-2"><span class="n">times_steps</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span id="__span-0-3"><span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-0-4">
-</span><span id="__span-0-5"><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">times_steps</span><span class="p">,</span><span class="n">embedding_dim</span><span class="p">)</span> <span class="c1"># N*L*C</span>
-</span><span id="__span-0-6"><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">times_steps</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">times_steps</span><span class="p">,</span><span class="n">embedding_dim</span><span class="p">)</span> <span class="c1"># N*L*C</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span>
+</span></code></pre></div>
 <p>输出：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span>
-<span class="normal">6</span>
-<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1"><span class="n">tensor</span><span class="p">([[[</span> <span class="mf">0.8475</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5602</span><span class="p">,</span>  <span class="mf">1.4907</span><span class="p">],</span>
-</span><span id="__span-1-2">         <span class="p">[</span><span class="o">-</span><span class="mf">0.0746</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0021</span><span class="p">,</span>  <span class="mf">0.1291</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0343</span><span class="p">],</span>
-</span><span id="__span-1-3">         <span class="p">[</span><span class="o">-</span><span class="mf">0.3636</span><span class="p">,</span>  <span class="mf">1.8378</span><span class="p">,</span>  <span class="mf">0.1954</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0180</span><span class="p">]],</span>
-</span><span id="__span-1-4">
-</span><span id="__span-1-5">        <span class="p">[[</span><span class="o">-</span><span class="mf">1.0256</span><span class="p">,</span>  <span class="mf">1.0202</span><span class="p">,</span>  <span class="mf">0.7321</span><span class="p">,</span>  <span class="mf">0.3294</span><span class="p">],</span>
-</span><span id="__span-1-6">         <span class="p">[</span><span class="o">-</span><span class="mf">0.6416</span><span class="p">,</span>  <span class="mf">0.5399</span><span class="p">,</span>  <span class="mf">0.8733</span><span class="p">,</span>  <span class="mf">1.7110</span><span class="p">],</span>
-</span><span id="__span-1-7">         <span class="p">[</span><span class="o">-</span><span class="mf">1.1292</span><span class="p">,</span>  <span class="mf">0.2056</span><span class="p">,</span>  <span class="mf">0.6884</span><span class="p">,</span>  <span class="mf">0.2267</span><span class="p">]]])</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">tensor</span><span class="p">([[[</span> <span class="mf">0.8475</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.3956</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5602</span><span class="p">,</span>  <span class="mf">1.4907</span><span class="p">],</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>         <span class="p">[</span><span class="o">-</span><span class="mf">0.0746</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0021</span><span class="p">,</span>  <span class="mf">0.1291</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0343</span><span class="p">],</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>         <span class="p">[</span><span class="o">-</span><span class="mf">0.3636</span><span class="p">,</span>  <span class="mf">1.8378</span><span class="p">,</span>  <span class="mf">0.1954</span><span class="p">,</span> <span class="o">-</span><span class="mf">1.0180</span><span class="p">]],</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        <span class="p">[[</span><span class="o">-</span><span class="mf">1.0256</span><span class="p">,</span>  <span class="mf">1.0202</span><span class="p">,</span>  <span class="mf">0.7321</span><span class="p">,</span>  <span class="mf">0.3294</span><span class="p">],</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>         <span class="p">[</span><span class="o">-</span><span class="mf">0.6416</span><span class="p">,</span>  <span class="mf">0.5399</span><span class="p">,</span>  <span class="mf">0.8733</span><span class="p">,</span>  <span class="mf">1.7110</span><span class="p">],</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>         <span class="p">[</span><span class="o">-</span><span class="mf">1.1292</span><span class="p">,</span>  <span class="mf">0.2056</span><span class="p">,</span>  <span class="mf">0.6884</span><span class="p">,</span>  <span class="mf">0.2267</span><span class="p">]]])</span>
+</span></code></pre></div>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>torch.randn</code> &amp; <code>torch.rand</code></li>
 </ul>
@@ -4173,13 +4178,12 @@
 <p>输入：三维张量，也可以理解为二维数表，用括号分组，所以有了不同的意义</p>
 <h3 id="bn1d">怎么计算BN1D？<a class="headerlink" href="#bn1d" title="Permanent link">&para;</a></h3>
 <p><img alt="image-20241127220937242" src="../images/image-20241127220937242.png" /></p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1"><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-2-2"><span class="nb">print</span><span class="p">(</span><span class="n">bn_mean</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">bn_mean</span><span class="p">)</span>
+</span></code></pre></div>
 <p>输出：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1"><span class="n">tensor</span><span class="p">([[[</span> <span class="mf">0.0695</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6811</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1232</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5339</span><span class="p">]]])</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">tensor</span><span class="p">([[[</span> <span class="mf">0.0695</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.6811</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1232</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.5339</span><span class="p">]]])</span>
+</span></code></pre></div>
 <p>好嘟，这串代码是没有任何问题了</p>
 <h3 id="_1">代码实现<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
 <p>库函数要的输入格式：bnd <span class="arithmatex">\(\rightarrow\)</span> bdn</p>
@@ -4189,77 +4193,44 @@
 <p><img alt="image-20241127221904313" src="../images/image-20241127221904313.png" /></p>
 <p>官网api给了，输入bdn，输出bdn，所以输出以后再transpose，变成bnd</p>
 <p>还有一点，不管是BN还是LN都是不改变形状的</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
-</span><span id="__span-4-2"><span class="n">times_steps</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span id="__span-4-3"><span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-4-4">
-</span><span id="__span-4-5"><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">times_steps</span><span class="p">,</span><span class="n">embedding_dim</span><span class="p">)</span> <span class="c1"># N*L*C</span>
-</span><span id="__span-4-6"><span class="c1"># print(inputx)</span>
-</span><span id="__span-4-7"><span class="c1"># 1. 实现batch_norm并验证API</span>
-</span><span id="__span-4-8">
-</span><span id="__span-4-9"><span class="c1">## 调用 batch_norm API</span>
-</span><span id="__span-4-10"><span class="n">batch_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span><span class="n">affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-4-11"><span class="n">bn_y</span> <span class="o">=</span> <span class="n">batch_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
-</span><span id="__span-4-12">
-</span><span id="__span-4-13"><span class="c1">## 手写batch_norm</span>
-</span><span id="__span-4-14"><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-4-15"><span class="c1"># print(bn_mean)</span>
-</span><span id="__span-4-16"><span class="n">bn_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-</span><span id="__span-4-17"><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">bn_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">bn_std</span><span class="o">+</span><span class="mf">1e-5</span><span class="p">)</span>
-</span><span id="__span-4-18"><span class="nb">print</span><span class="p">(</span><span class="n">bn_y</span><span class="p">)</span>
-</span><span id="__span-4-19"><span class="nb">print</span><span class="p">(</span><span class="n">verify_bn_y</span><span class="p">)</span>
-</span><span id="__span-4-20"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">bn_y</span><span class="p">,</span><span class="n">verify_bn_y</span><span class="p">))</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">times_steps</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">embedding_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">times_steps</span><span class="p">,</span><span class="n">embedding_dim</span><span class="p">)</span> <span class="c1"># N*L*C</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># print(inputx)</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="c1"># 1. 实现batch_norm并验证API</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a><span class="c1">## 调用 batch_norm API</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a><span class="n">batch_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="n">embedding_dim</span><span class="p">,</span><span class="n">affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a><span class="n">bn_y</span> <span class="o">=</span> <span class="n">batch_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a><span class="c1">## 手写batch_norm</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a><span class="c1"># print(bn_mean)</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a><span class="n">bn_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">bn_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">bn_std</span><span class="o">+</span><span class="mf">1e-5</span><span class="p">)</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a><span class="nb">print</span><span class="p">(</span><span class="n">bn_y</span><span class="p">)</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">verify_bn_y</span><span class="p">)</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">bn_y</span><span class="p">,</span><span class="n">verify_bn_y</span><span class="p">))</span>
+</span></code></pre></div>
 <p>输出：</p>
-<div class="language-text highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">tensor([[[ 1.2288e+00,  2.1594e-01, -8.7470e-01,  1.3089e+00],
-</span><span id="__span-5-2">         [ 1.2093e+00,  5.8475e-01, -4.2434e-01, -4.7364e-01],
-</span><span id="__span-5-3">         [-1.0128e+00, -1.9468e+00, -1.2768e+00,  2.7564e-01]],
-</span><span id="__span-5-4">
-</span><span id="__span-5-5">        [[-1.1732e+00,  3.5125e-01,  1.5184e+00, -1.3330e+00],
-</span><span id="__span-5-6">         [ 4.1865e-01, -4.3382e-01, -4.6577e-04,  1.1563e+00],
-</span><span id="__span-5-7">         [-6.7079e-01,  1.2287e+00,  1.0579e+00, -9.3418e-01]]])
-</span><span id="__span-5-8">tensor([[[ 1.2288e+00,  2.1594e-01, -8.7470e-01,  1.3089e+00],
-</span><span id="__span-5-9">         [ 1.2093e+00,  5.8474e-01, -4.2434e-01, -4.7363e-01],
-</span><span id="__span-5-10">         [-1.0128e+00, -1.9468e+00, -1.2768e+00,  2.7564e-01]],
-</span><span id="__span-5-11">
-</span><span id="__span-5-12">        [[-1.1732e+00,  3.5125e-01,  1.5183e+00, -1.3330e+00],
-</span><span id="__span-5-13">         [ 4.1865e-01, -4.3382e-01, -4.6576e-04,  1.1563e+00],
-</span><span id="__span-5-14">         [-6.7079e-01,  1.2287e+00,  1.0579e+00, -9.3418e-01]]])
-</span><span id="__span-5-15">True
-</span></code></pre></div></td></tr></table></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>tensor([[[ 1.2288e+00,  2.1594e-01, -8.7470e-01,  1.3089e+00],
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>         [ 1.2093e+00,  5.8475e-01, -4.2434e-01, -4.7364e-01],
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>         [-1.0128e+00, -1.9468e+00, -1.2768e+00,  2.7564e-01]],
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>        [[-1.1732e+00,  3.5125e-01,  1.5184e+00, -1.3330e+00],
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>         [ 4.1865e-01, -4.3382e-01, -4.6577e-04,  1.1563e+00],
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>         [-6.7079e-01,  1.2287e+00,  1.0579e+00, -9.3418e-01]]])
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>tensor([[[ 1.2288e+00,  2.1594e-01, -8.7470e-01,  1.3089e+00],
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>         [ 1.2093e+00,  5.8474e-01, -4.2434e-01, -4.7363e-01],
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>         [-1.0128e+00, -1.9468e+00, -1.2768e+00,  2.7564e-01]],
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>        [[-1.1732e+00,  3.5125e-01,  1.5183e+00, -1.3330e+00],
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>         [ 4.1865e-01, -4.3382e-01, -4.6576e-04,  1.1563e+00],
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>         [-6.7079e-01,  1.2287e+00,  1.0579e+00, -9.3418e-01]]])
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>True
+</span></code></pre></div>
 <h2 id="bn2d">BN2D<a class="headerlink" href="#bn2d" title="Permanent link">&para;</a></h2>
 <p>图片的存储格式：bchw</p>
 <p>计算BN</p>
@@ -4285,46 +4256,30 @@
 <p><img alt="image-20241128154343080" src="../images/image-20241128154343080.png" /></p>
 <p><img alt="image-20241128154417113" src="../images/image-20241128154417113.png" /></p>
 <h3 id="_2">代码<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1"><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-</span><span id="__span-6-2"><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
-</span><span id="__span-6-3"><span class="c1"># 模拟⼀个输⼊张量</span>
-</span><span id="__span-6-4"><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># 例如，4个样本，每个样本有3个通道，每个通道的⼤⼩为2x2</span>
-</span><span id="__span-6-5"><span class="c1"># 定义⼀个批量归⼀化层</span>
-</span><span id="__span-6-6"><span class="n">batch_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">num_features</span><span class="o">=</span><span class="n">c</span><span class="p">)</span> <span class="c1"># c 是输⼊的通道数</span>
-</span><span id="__span-6-7"><span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-</span><span id="__span-6-8"><span class="nb">print</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
-</span><span id="__span-6-9"><span class="c1"># 应⽤批量归⼀化</span>
-</span><span id="__span-6-10"><span class="n">output_tensor</span> <span class="o">=</span> <span class="n">batch_norm</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
-</span><span id="__span-6-11"><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span>
-</span><span id="__span-6-12"><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># 输出的形状仍然是 [b, c, h, w]</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="c1"># 模拟⼀个输⼊张量</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># 例如，4个样本，每个样本有3个通道，每个通道的⼤⼩为2x2</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># 定义⼀个批量归⼀化层</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">batch_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">num_features</span><span class="o">=</span><span class="n">c</span><span class="p">)</span> <span class="c1"># c 是输⼊的通道数</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="c1"># 应⽤批量归⼀化</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">output_tensor</span> <span class="o">=</span> <span class="n">batch_norm</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="c1"># 输出的形状仍然是 [b, c, h, w]</span>
+</span></code></pre></div>
 <p>均值 &amp; 方差代码：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span>
-<span class="normal">3</span>
-<span class="normal">4</span>
-<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1"><span class="c1"># 计算每个通道的均值和⽅差</span>
-</span><span id="__span-7-2"><span class="n">mean</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-</span><span id="__span-7-3"><span class="n">var</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-7-4"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;均值: </span><span class="si">{</span><span class="n">mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span><span id="__span-7-5"><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⽅差: </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 计算每个通道的均值和⽅差</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="n">mean</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="n">var</span> <span class="o">=</span> <span class="n">input_tensor</span><span class="o">.</span><span class="n">var</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;均值: </span><span class="si">{</span><span class="n">mean</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;⽅差: </span><span class="si">{</span><span class="n">var</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</span></code></pre></div>
 <p>输出：</p>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1"><span class="n">均值</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">19.5000</span><span class="p">,</span> <span class="mf">23.5000</span><span class="p">,</span> <span class="mf">27.5000</span><span class="p">])</span>
-</span><span id="__span-8-2"><span class="err">⽅</span><span class="n">差</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">181.2500</span><span class="p">,</span> <span class="mf">181.2500</span><span class="p">,</span> <span class="mf">181.2500</span><span class="p">])</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">均值</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">19.5000</span><span class="p">,</span> <span class="mf">23.5000</span><span class="p">,</span> <span class="mf">27.5000</span><span class="p">])</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="err">⽅</span><span class="n">差</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([</span><span class="mf">181.2500</span><span class="p">,</span> <span class="mf">181.2500</span><span class="p">,</span> <span class="mf">181.2500</span><span class="p">])</span>
+</span></code></pre></div>
 <p><img alt="image-20241128155225803" src="../images/image-20241128155225803.png" /></p>
 <h2 id="ln1d">LN1D<a class="headerlink" href="#ln1d" title="Permanent link">&para;</a></h2>
 <h3 id="_3">文字描述、实际意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
@@ -4363,28 +4318,18 @@
 <h3 id="_7">文字描述<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>per sample</p>
 <h3 id="_8">数学例子<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1"><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-</span><span id="__span-9-2"><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
-</span><span id="__span-9-3"><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># 例如，10个样本，每个样本有3个通道，每个通道的⼤⼩为32x32</span>
-</span><span id="__span-9-4"><span class="c1"># 定义⼀个层归⼀化层</span>
-</span><span id="__span-9-5"><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">normalized_shape</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span> <span class="c1"># c, h, w 分别是通道数、⾼度和宽度</span>
-</span><span id="__span-9-6"><span class="c1"># 模拟⼀个输⼊张量</span>
-</span><span id="__span-9-7"><span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
-</span><span id="__span-9-8"><span class="c1"># 应⽤层归⼀化</span>
-</span><span id="__span-9-9"><span class="n">output_tensor</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
-</span><span id="__span-9-10"><span class="c1"># print(input_tensor)</span>
-</span><span id="__span-9-11"><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span> <span class="c1"># 输出的形状仍然是 [b, c, h, w]</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span> <span class="c1"># 例如，10个样本，每个样本有3个通道，每个通道的⼤⼩为32x32</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1"># 定义⼀个层归⼀化层</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="n">layer_norm</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">(</span><span class="n">normalized_shape</span><span class="o">=</span><span class="p">[</span><span class="n">c</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">])</span> <span class="c1"># c, h, w 分别是通道数、⾼度和宽度</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="c1"># 模拟⼀个输⼊张量</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="n">input_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">48</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">((</span><span class="mi">4</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">))</span><span class="o">.</span><span class="n">float</span><span class="p">()</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="c1"># 应⽤层归⼀化</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="n">output_tensor</span> <span class="o">=</span> <span class="n">layer_norm</span><span class="p">(</span><span class="n">input_tensor</span><span class="p">)</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="c1"># print(input_tensor)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">output_tensor</span><span class="p">)</span> <span class="c1"># 输出的形状仍然是 [b, c, h, w]</span>
+</span></code></pre></div>
 <p><img alt="image-20241128193622308" src="../images/image-20241128193622308.png" /></p>
 <p><img alt="image-20241128193635259" src="../images/image-20241128193635259.png" /></p>
 <p><img alt="image-20241128193710058" src="../images/image-20241128193710058.png" /></p>
@@ -4394,112 +4339,60 @@
 <p>对比：</p>
 <p><img alt="image-20241128195114249" src="../images/image-20241128195114249.png" /></p>
 <h3 id="_10">代码实现<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
-<div class="language-python highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
-<span class="normal"> 2</span>
-<span class="normal"> 3</span>
-<span class="normal"> 4</span>
-<span class="normal"> 5</span>
-<span class="normal"> 6</span>
-<span class="normal"> 7</span>
-<span class="normal"> 8</span>
-<span class="normal"> 9</span>
-<span class="normal">10</span>
-<span class="normal">11</span>
-<span class="normal">12</span>
-<span class="normal">13</span>
-<span class="normal">14</span>
-<span class="normal">15</span>
-<span class="normal">16</span>
-<span class="normal">17</span>
-<span class="normal">18</span>
-<span class="normal">19</span>
-<span class="normal">20</span>
-<span class="normal">21</span>
-<span class="normal">22</span>
-<span class="normal">23</span>
-<span class="normal">24</span>
-<span class="normal">25</span>
-<span class="normal">26</span>
-<span class="normal">27</span>
-<span class="normal">28</span>
-<span class="normal">29</span>
-<span class="normal">30</span>
-<span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
-<span class="normal">43</span>
-<span class="normal">44</span>
-<span class="normal">45</span>
-<span class="normal">46</span>
-<span class="normal">47</span>
-<span class="normal">48</span>
-<span class="normal">49</span>
-<span class="normal">50</span>
-<span class="normal">51</span>
-<span class="normal">52</span>
-<span class="normal">53</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1"><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-</span><span id="__span-10-2">
-</span><span id="__span-10-3"><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">4</span>
-</span><span id="__span-10-4"><span class="n">channels</span> <span class="o">=</span> <span class="mi">3</span>
-</span><span id="__span-10-5"><span class="n">h</span><span class="p">,</span><span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">2</span>
-</span><span id="__span-10-6">
-</span><span id="__span-10-7"><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">channels</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="c1"># BCHW 只要维度是正确的，数字可以随便生成</span>
-</span><span id="__span-10-8">
-</span><span id="__span-10-9"><span class="c1"># 1. 实现batch_norm并验证API</span>
-</span><span id="__span-10-10">
-</span><span id="__span-10-11"><span class="c1">## 调用 batch_norm API</span>
-</span><span id="__span-10-12"><span class="n">batch_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="n">affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-10-13"><span class="n">bn_y</span> <span class="o">=</span> <span class="n">batch_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span> <span class="c1"># torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-14">
-</span><span id="__span-10-15"><span class="c1">## 手写batch_norm</span>
-</span><span id="__span-10-16"><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># torch.Size([1, 3, 1, 1])</span>
-</span><span id="__span-10-17"><span class="n">bn_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># torch.Size([1, 3, 1, 1])</span>
-</span><span id="__span-10-18"><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">bn_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">bn_std</span><span class="o">+</span><span class="mf">1e-5</span><span class="p">)</span> <span class="c1"># torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-19">
-</span><span id="__span-10-20"><span class="c1"># print(bn_mean.shape) </span>
-</span><span id="__span-10-21"><span class="c1"># print(bn_std.shape) </span>
-</span><span id="__span-10-22"><span class="c1"># print(bn_y.shape)   </span>
-</span><span id="__span-10-23"><span class="c1"># print(verify_bn_y.shape)    </span>
-</span><span id="__span-10-24"><span class="c1"># print(torch.allclose(bn_y,verify_bn_y))</span>
-</span><span id="__span-10-25"><span class="sd">&#39;&#39;&#39;</span>
-</span><span id="__span-10-26"><span class="sd">    torch.Size([1, 3, 1, 1])</span>
-</span><span id="__span-10-27"><span class="sd">    torch.Size([1, 3, 1, 1])</span>
-</span><span id="__span-10-28"><span class="sd">    torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-29"><span class="sd">    torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-30"><span class="sd">    True</span>
-</span><span id="__span-10-31"><span class="sd">&#39;&#39;&#39;</span>
-</span><span id="__span-10-32"><span class="c1"># 2. 实现layer_norm 并验证api</span>
-</span><span id="__span-10-33">
-</span><span id="__span-10-34"><span class="c1">## 调用 layer_norm API</span>
-</span><span id="__span-10-35"><span class="n">layer_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">((</span><span class="n">channels</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">),</span><span class="n">elementwise_affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
-</span><span id="__span-10-36"><span class="n">ln_y</span> <span class="o">=</span> <span class="n">layer_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-37">
-</span><span id="__span-10-38"><span class="c1">## 手写layer_norm</span>
-</span><span id="__span-10-39"><span class="n">ln_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 1, 1, 1])</span>
-</span><span id="__span-10-40"><span class="n">ln_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 1, 1, 1])</span>
-</span><span id="__span-10-41"><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">ln_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">ln_std</span> <span class="o">+</span> <span class="mf">1e-05</span><span class="p">)</span>   <span class="c1"># torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-42"><span class="nb">print</span><span class="p">(</span><span class="n">ln_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span><span id="__span-10-43"><span class="nb">print</span><span class="p">(</span><span class="n">ln_std</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span><span id="__span-10-44"><span class="nb">print</span><span class="p">(</span><span class="n">ln_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span><span id="__span-10-45"><span class="nb">print</span><span class="p">(</span><span class="n">verify_bn_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
-</span><span id="__span-10-46"><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ln_y</span><span class="p">,</span><span class="n">verify_bn_y</span><span class="p">))</span>
-</span><span id="__span-10-47"><span class="sd">&#39;&#39;&#39;</span>
-</span><span id="__span-10-48"><span class="sd">    torch.Size([4, 1, 1, 1])</span>
-</span><span id="__span-10-49"><span class="sd">    torch.Size([4, 1, 1, 1])</span>
-</span><span id="__span-10-50"><span class="sd">    torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-51"><span class="sd">    torch.Size([4, 3, 2, 2])</span>
-</span><span id="__span-10-52"><span class="sd">    True</span>
-</span><span id="__span-10-53"><span class="sd">&#39;&#39;&#39;</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="n">channels</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a><span class="n">h</span><span class="p">,</span><span class="n">w</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span><span class="mi">2</span>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">channels</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">)</span> <span class="c1"># BCHW 只要维度是正确的，数字可以随便生成</span>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="c1"># 1. 实现batch_norm并验证API</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="c1">## 调用 batch_norm API</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a><span class="n">batch_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm2d</span><span class="p">(</span><span class="n">channels</span><span class="p">,</span><span class="n">affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a><span class="n">bn_y</span> <span class="o">=</span> <span class="n">batch_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span> <span class="c1"># torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a><span class="c1">## 手写batch_norm</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a><span class="n">bn_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># torch.Size([1, 3, 1, 1])</span>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="n">bn_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># torch.Size([1, 3, 1, 1])</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">bn_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">bn_std</span><span class="o">+</span><span class="mf">1e-5</span><span class="p">)</span> <span class="c1"># torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a><span class="c1"># print(bn_mean.shape) </span>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="c1"># print(bn_std.shape) </span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="c1"># print(bn_y.shape)   </span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># print(verify_bn_y.shape)    </span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a><span class="c1"># print(torch.allclose(bn_y,verify_bn_y))</span>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="sd">    torch.Size([1, 3, 1, 1])</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="sd">    torch.Size([1, 3, 1, 1])</span>
+</span><span id="__span-10-28"><a id="__codelineno-10-28" name="__codelineno-10-28" href="#__codelineno-10-28"></a><span class="sd">    torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-29"><a id="__codelineno-10-29" name="__codelineno-10-29" href="#__codelineno-10-29"></a><span class="sd">    torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-30"><a id="__codelineno-10-30" name="__codelineno-10-30" href="#__codelineno-10-30"></a><span class="sd">    True</span>
+</span><span id="__span-10-31"><a id="__codelineno-10-31" name="__codelineno-10-31" href="#__codelineno-10-31"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-10-32"><a id="__codelineno-10-32" name="__codelineno-10-32" href="#__codelineno-10-32"></a><span class="c1"># 2. 实现layer_norm 并验证api</span>
+</span><span id="__span-10-33"><a id="__codelineno-10-33" name="__codelineno-10-33" href="#__codelineno-10-33"></a>
+</span><span id="__span-10-34"><a id="__codelineno-10-34" name="__codelineno-10-34" href="#__codelineno-10-34"></a><span class="c1">## 调用 layer_norm API</span>
+</span><span id="__span-10-35"><a id="__codelineno-10-35" name="__codelineno-10-35" href="#__codelineno-10-35"></a><span class="n">layer_norm_op</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">LayerNorm</span><span class="p">((</span><span class="n">channels</span><span class="p">,</span><span class="n">h</span><span class="p">,</span><span class="n">w</span><span class="p">),</span><span class="n">elementwise_affine</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-10-36"><a id="__codelineno-10-36" name="__codelineno-10-36" href="#__codelineno-10-36"></a><span class="n">ln_y</span> <span class="o">=</span> <span class="n">layer_norm_op</span><span class="p">(</span><span class="n">inputx</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-37"><a id="__codelineno-10-37" name="__codelineno-10-37" href="#__codelineno-10-37"></a>
+</span><span id="__span-10-38"><a id="__codelineno-10-38" name="__codelineno-10-38" href="#__codelineno-10-38"></a><span class="c1">## 手写layer_norm</span>
+</span><span id="__span-10-39"><a id="__codelineno-10-39" name="__codelineno-10-39" href="#__codelineno-10-39"></a><span class="n">ln_mean</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 1, 1, 1])</span>
+</span><span id="__span-10-40"><a id="__codelineno-10-40" name="__codelineno-10-40" href="#__codelineno-10-40"></a><span class="n">ln_std</span> <span class="o">=</span> <span class="n">inputx</span><span class="o">.</span><span class="n">std</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">unbiased</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>  <span class="c1"># torch.Size([4, 1, 1, 1])</span>
+</span><span id="__span-10-41"><a id="__codelineno-10-41" name="__codelineno-10-41" href="#__codelineno-10-41"></a><span class="n">verify_bn_y</span> <span class="o">=</span> <span class="p">(</span><span class="n">inputx</span> <span class="o">-</span> <span class="n">ln_mean</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">ln_std</span> <span class="o">+</span> <span class="mf">1e-05</span><span class="p">)</span>   <span class="c1"># torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-42"><a id="__codelineno-10-42" name="__codelineno-10-42" href="#__codelineno-10-42"></a><span class="nb">print</span><span class="p">(</span><span class="n">ln_mean</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-10-43"><a id="__codelineno-10-43" name="__codelineno-10-43" href="#__codelineno-10-43"></a><span class="nb">print</span><span class="p">(</span><span class="n">ln_std</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-10-44"><a id="__codelineno-10-44" name="__codelineno-10-44" href="#__codelineno-10-44"></a><span class="nb">print</span><span class="p">(</span><span class="n">ln_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-10-45"><a id="__codelineno-10-45" name="__codelineno-10-45" href="#__codelineno-10-45"></a><span class="nb">print</span><span class="p">(</span><span class="n">verify_bn_y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-10-46"><a id="__codelineno-10-46" name="__codelineno-10-46" href="#__codelineno-10-46"></a><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ln_y</span><span class="p">,</span><span class="n">verify_bn_y</span><span class="p">))</span>
+</span><span id="__span-10-47"><a id="__codelineno-10-47" name="__codelineno-10-47" href="#__codelineno-10-47"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-10-48"><a id="__codelineno-10-48" name="__codelineno-10-48" href="#__codelineno-10-48"></a><span class="sd">    torch.Size([4, 1, 1, 1])</span>
+</span><span id="__span-10-49"><a id="__codelineno-10-49" name="__codelineno-10-49" href="#__codelineno-10-49"></a><span class="sd">    torch.Size([4, 1, 1, 1])</span>
+</span><span id="__span-10-50"><a id="__codelineno-10-50" name="__codelineno-10-50" href="#__codelineno-10-50"></a><span class="sd">    torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-51"><a id="__codelineno-10-51" name="__codelineno-10-51" href="#__codelineno-10-51"></a><span class="sd">    torch.Size([4, 3, 2, 2])</span>
+</span><span id="__span-10-52"><a id="__codelineno-10-52" name="__codelineno-10-52" href="#__codelineno-10-52"></a><span class="sd">    True</span>
+</span><span id="__span-10-53"><a id="__codelineno-10-53" name="__codelineno-10-53" href="#__codelineno-10-53"></a><span class="sd">&#39;&#39;&#39;</span>
+</span></code></pre></div>
 <h2 id="_11">总结<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>所有的图示 再看一遍</p>
 <p>BN常用于CV</p>
@@ -4513,38 +4406,6 @@
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024年11月28日 14:07:58"><span class="timeago" datetime="2024-11-28T14:07:58+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024年11月28日 14:07:58">2024-11-28</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2024年11月25日 14:33:46"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2024年11月25日 14:33:46">2024-11-25</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -4573,6 +4434,11 @@
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -4589,14 +4455,6 @@
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

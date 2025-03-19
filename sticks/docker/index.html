@@ -48,14 +48,6 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
-    
-      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
-    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -282,7 +274,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1801,6 +1793,8 @@
       
         
       
+        
+      
     
     
       
@@ -1836,6 +1830,28 @@
             笔记
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
             
               
                 
@@ -2655,7 +2671,7 @@
         
   
   <span class="md-ellipsis">
-    SegRNN
+    2023、SegRNN
     
   </span>
   
@@ -2677,7 +2693,7 @@
         
   
   <span class="md-ellipsis">
-    DLinear
+    2022、DLinear
     
   </span>
   
@@ -2699,7 +2715,7 @@
         
   
   <span class="md-ellipsis">
-    TimesNet
+    2023、TimesNet
     
   </span>
   
@@ -2721,7 +2737,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Informer
+    2021、 Informer
     
   </span>
   
@@ -2743,7 +2759,7 @@
         
   
   <span class="md-ellipsis">
-    2021|Autoformer
+    2021、Autoformer
     
   </span>
   
@@ -4211,39 +4227,39 @@
 <p><a href="https://www.zhihu.com/question/486938264/answer/2665791940">如何通过 Docker 部署深度学习项目环境？</a></p>
 <h2 id="_1">使用容器跑代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>1️⃣ 创建一个本地Ubuntu系统和docker容器共享的文件夹</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-0-1">sudo<span class="w"> </span>mkdir<span class="w"> </span>/loacal_data
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/loacal_data
+</span></code></pre></div>
 <p>2️⃣ 将代码文件复制到Ubuntu系统的<code>/loacal_data</code>目录下，这样该目录就和容器内部的<code>/container_data</code>目录连通了</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-1-1">sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/local_data:/container_data<span class="w"> </span>-itd<span class="w"> </span>image_name:v1<span class="w"> </span>bash
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/local_data:/container_data<span class="w"> </span>-itd<span class="w"> </span>image_name:v1<span class="w"> </span>bash
+</span></code></pre></div>
 <p>3️⃣ 查看此时正在运行的容器</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-2-1">sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>
+</span></code></pre></div>
 <p>该容器就是我们刚刚所创建的用于本地测试代码的容器</p>
 <p>4️⃣ 用<code>docker attach</code>进入容器</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-3-1">sudo<span class="w"> </span>docker<span class="w"> </span>attach<span class="w"> </span>500ad76de1cf
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>attach<span class="w"> </span>500ad76de1cf
+</span></code></pre></div>
 <p>5️⃣ 之后的步骤就是与在本地系统命令行的操作一样，进入代码的文件夹，用<code>python</code>命令执行代码</p>
 <h2 id="_2">本地拉取镜像上传服务器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><a href="https://blog.csdn.net/weixin_43474841/article/details/144285723">步骤</a></p>
 <p>🟢 第一步：拉取远程镜像，<a href="https://hub.docker.com/r/pytorch/pytorch/tags">docker pull</a></p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-4-1">docker<span class="w"> </span>pull<span class="w"> </span>pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
+</span></code></pre></div>
 <p><img alt="image-20250225201500742" src="../images/image-20250225201500742.png" />  </p>
 <p><img alt="image-20250225221519423" src="../images/image-20250225221519423.png" /></p>
 <p>🟢 第二步，标记镜像，为 pull 下来的镜像，打标签，推送到==服务器上的名称:版本号==</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-5-1">docker<span class="w"> </span>tag<span class="w"> </span>8d8f916f1de0<span class="w"> </span>geco_image:v1
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>8d8f916f1de0<span class="w"> </span>geco_image:v1
+</span></code></pre></div>
 <p><img alt="image-20250225221931500" src="../images/image-20250225221931500.png" /></p>
 <p>🟢 第三步：将本地的 docker 镜像保存为 tar 文件，就用刚刚 tag 的别名:标签，这样到服务商就是对应的名称和标签</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-6-1">docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>镜像tar文件名称.tar<span class="w"> </span>geco_image:v1
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>镜像tar文件名称.tar<span class="w"> </span>geco_image:v1
+</span></code></pre></div>
 <p><img alt="image-20250225223126609" src="../images/image-20250225223126609.png" /></p>
 <p>🟢 第四步：传输镜像，将保存的tar文件传输到远程服务上，FileZilla 即可</p>
 <p><img alt="image-20250225223611110" src="../images/image-20250225223611110.png" /></p>
 <p>🟢 第五步：在远程服务上加载镜像</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-7-1">docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div>
 <p><img alt="image-20250225202105226" src="../images/image-20250225202105226.png" /></p>
 <ul>
 <li>在服务器端启动 docker</li>
@@ -4280,8 +4296,8 @@
 </li>
 </ul>
 <h3 id="docker-tag">docker tag<a class="headerlink" href="#docker-tag" title="Permanent link">&para;</a></h3>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-8-1">docker<span class="w"> </span>tag<span class="w"> </span>SOURCE<span class="o">[</span>本地<span class="o">]</span>_IMAGE<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>TARGET_IMAGE<span class="o">[</span>服务器<span class="o">][</span>:TAG<span class="o">]</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>SOURCE<span class="o">[</span>本地<span class="o">]</span>_IMAGE<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>TARGET_IMAGE<span class="o">[</span>服务器<span class="o">][</span>:TAG<span class="o">]</span>
+</span></code></pre></div>
 <blockquote>
 <p>tag的作用：</p>
 <ul>
@@ -4310,8 +4326,8 @@ my-image            v1.0                d1e3f1e4f1e4        2 days ago          
 <p>该命令用于从一个 tar 文件中加载 Docker 镜像：</p>
 </li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-9-1">docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div>
 <ul>
 <li><code>docker load</code>：这是 Docker 的一个命令，用于从一个 tar 文件中加载镜像。</li>
 <li><code>-i</code>：这是 <code>--input</code> 的缩写，指定输入文件。</li>
@@ -4662,14 +4678,14 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </blockquote>
 <p>具体步骤：</p>
 <p>（1）打开终端，进入容器，使用<code>docker exec -it mynginx /bin/bash</code></p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-10-1">docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mynginx<span class="w"> </span>/bin/bash
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mynginx<span class="w"> </span>/bin/bash
+</span></code></pre></div>
 <p><code>it</code> 表示以交互模式，相当于进行交互，进行命令的发送，以交互模式进入到哪里呢？就写容器名，容器名叫<code>mynginx</code>（或者写 id 也是可以的）</p>
 <p>后边再加上，因为要进行交互，那么使用哪种方式进行交互？使用控制台交互，所以后面接 <code>/bin/bash</code> </p>
 <p><img alt="image-20250226205545912" src="../images/image-20250226205545912.png" /></p>
 <p>🟢（2）观察区别。原来是 <mark>root@VM......</mark> 变成 <mark>root@2d83bd....</mark>  表示现在已经进行到了 ngnix 容器内部</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-11-1">ls<span class="w"> </span>/
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>/
+</span></code></pre></div>
 <p><code>ls /</code> 列出目录结构</p>
 <p><img alt="image-20250226205939203" src="../images/image-20250226205939203.png" /></p>
 <p>控制台输出也是一个 LINUX系统的目录结构，也就是说容器有自己的文件系统，带了nginx完整的运行环境</p>
@@ -4705,8 +4721,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </ul>
 <h3 id="docker-commit">docker commit<a class="headerlink" href="#docker-commit" title="Permanent link">&para;</a></h3>
 <p>查看 docker commit 的功能：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-12-1">docker<span class="w"> </span>commit<span class="w"> </span>--help
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>--help
+</span></code></pre></div>
 <p>查看文档描述：</p>
 <p><img alt="image-20250226212754519" src="../images/image-20250226212754519.png" /></p>
 <p>docker commit可以创建一个new image新镜像，从一个容器的改变里边。</p>
@@ -4729,19 +4745,19 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </li>
 </ul>
 <p>用法：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-13-1">Usage:<span class="w">  </span>docker<span class="w"> </span>commit<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>CONTAINER<span class="w"> </span><span class="o">[</span>REPOSITORY<span class="o">[</span>:TAG<span class="o">]]</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Usage:<span class="w">  </span>docker<span class="w"> </span>commit<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>CONTAINER<span class="w"> </span><span class="o">[</span>REPOSITORY<span class="o">[</span>:TAG<span class="o">]]</span>
+</span></code></pre></div>
 <p>docker commit + 那一堆可选参数 + 容器   +  镜像 : 标签 </p>
 <p>演示：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-14-1">docker<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;update index.html&quot;</span><span class="w"> </span>mynginx<span class="w"> </span>mynginx:v1.0
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;update index.html&quot;</span><span class="w"> </span>mynginx<span class="w"> </span>mynginx:v1.0
+</span></code></pre></div>
 <p><img alt="image-20250226214255243" src="../images/image-20250226214255243.png" /></p>
 <p>运行成功，检查docker images，所有镜像列表</p>
 <p><img alt="image-20250226214526893" src="../images/image-20250226214526893.png" /></p>
 <h3 id="docker-save">docker save<a class="headerlink" href="#docker-save" title="Permanent link">&para;</a></h3>
 <p>打包文件</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-15-1">docker<span class="w"> </span>save<span class="w"> </span>--help
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>save<span class="w"> </span>--help
+</span></code></pre></div>
 <p>查看帮助文档 &amp; 命令功能：</p>
 <p><img alt="image-20250226214751183" src="../images/image-20250226214751183.png" /></p>
 <p>具体使用实例：</p>
@@ -4754,11 +4770,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🔴 问题描述：别人怎么使用？</p>
 <h3 id="docker-load_1">docker load<a class="headerlink" href="#docker-load_1" title="Permanent link">&para;</a></h3>
 <p>补充 同时删除多个镜像命令：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-16-1">docker<span class="w"> </span>rmi<span class="w"> </span>imageID1<span class="w"> </span>imageID2<span class="w"> </span>imageID3
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>rmi<span class="w"> </span>imageID1<span class="w"> </span>imageID2<span class="w"> </span>imageID3
+</span></code></pre></div>
 <p>删除容器：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-17-1">docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>container_id
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>container_id
+</span></code></pre></div>
 <p>🔵 场景描述：别人拷贝了 <code>mynginx.tar</code> ，那么对方怎么启动一模一样的应用呢？（如何把从别人那里拷贝来的镜像，运行出一样的容器（应用）？）</p>
 <p>安装 docker 的机器上，根目录只有  <code>mynginx.tar</code></p>
 <p><img alt="image-20250226220233188" src="../images/image-20250226220233188.png" /></p>
@@ -4812,12 +4828,12 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>理由：因为docker hub为了区分这些镜像，每一个镜像的名字都是它的用户名后边再加镜像，相当于我们本地的这个镜像缺少了用户名</p>
 </blockquote>
 <p>具体的 docker tag 怎么处理？</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-18-1">docker<span class="w"> </span>tag<span class="w"> </span>--help
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>--help
+</span></code></pre></div>
 <p>Usage 显示，docker tag 你原来的镜像和target新的目标镜像</p>
 <p>🟢 </p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-19-1">docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:v1.0
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:v1.0
+</span></code></pre></div>
 <p><img alt="image-20250226223724627" src="../images/image-20250226223724627.png" /></p>
 <p>执行完改名操作以后，<code>docker images</code> 检查</p>
 <p><img alt="image-20250226224133245" src="../images/image-20250226224133245.png" /></p>
@@ -4825,8 +4841,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>但是都是同一个镜像，所以镜像id是一样的，有了这个新镜像以后，使用<code>docker push</code>把它推送上去</p>
 <p>🟢 docker push</p>
 <p>📢 需要注意的是 此时的推送不能使用 image ID，因为这两个镜像id都一样，没法区分，直接写镜像加标签回车，进行镜像推送，连向的是docker hub，会比较慢一点</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-20-1">docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:v1.0
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:v1.0
+</span></code></pre></div>
 <p><img alt="image-20250226224333673" src="../images/image-20250226224333673.png" /></p>
 <p>整个推送完以后，这一块出现打印，来到个人主页，刷新 Repositories，就是个人的镜像仓库，而且是一个public镜像，所有人都可以访问。</p>
 <p><img alt="image-20250226224726009" src="../images/image-20250226224726009.png" /></p>
@@ -4845,12 +4861,12 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p><img alt="image-20250226225452411" src="../images/image-20250226225452411.png" /></p>
 <p>📢 推荐将镜像分享到社区时，除了上传指定版本的，还上传一个最新版本的，方便直接 docker pull</p>
 <p>🟢 具体的操作，使用 docker tag 改名即可</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-21-1">docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:latest
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:latest
+</span></code></pre></div>
 <p>🟢 docker images检查，发现有了 <code>leifengyang/mynginx:latest</code> 的最新镜像，这个 3 个镜像的 id 都是一样</p>
 <p>🟢 使用 docker push 推送最新镜像，这样别人拉取镜像即使不写版本号也不会报错。</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-22-1">docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:latest
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:latest
+</span></code></pre></div>
 <p><img alt="image-20250227102717495" src="../images/image-20250227102717495.png" /></p>
 <p><img alt="image-20250227104737604" src="../images/image-20250227104737604.png" /></p>
 <p>整个推送完成，刷新自己的仓库，有最新发布的版本还有指定的版本</p>
@@ -4862,8 +4878,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🔵 情况描述：现在已经有了一个运行中的 docker 容器，占用的 80 端口，现在在启动一个 docker 容器，镜像仍然是 mynginx:v1.0，这次占用外部主机的 88 端口，相当于容器内部的 80 端口</p>
 <p>需要注意的是，docker run -d 后台启动，-p 端口映射本地 88 端口到容器内 80 端口，--name app02此时 容器名绝对不可以跟之前的容器名重复，启动的镜像还是 mynginx:v1.0</p>
 <p>🟢 启动一个容器，-d 后台启动，-p 本地 88 端口映射容器内部 80 端口，名字叫做 app02，从镜像 mynginx 中启动，标签名为 v1.0</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-23-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>mynginx:v1.0
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>mynginx:v1.0
+</span></code></pre></div>
 <p><img alt="image-20250227105355015" src="../images/image-20250227105355015.png" /></p>
 <h2 id="docker_6">docker 存储<a class="headerlink" href="#docker_6" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20250227105737753" src="../images/image-20250227105737753.png" /></p>
@@ -4879,8 +4895,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <li>删除一个容器： <code>docker rm containerID</code></li>
 <li>🟢 第一步 ：拿到所有容器 ID</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-24-1">docker<span class="w"> </span>ps<span class="w"> </span>-aq
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-aq
+</span></code></pre></div>
 <p><img alt="image-20250227125847128" src="../images/image-20250227125847128.png" /></p>
 <blockquote>
 <p><code>docker ps -a</code> 拿到所有容器</p>
@@ -4892,28 +4908,28 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <ul>
 <li>🟢 第二步，批量删除所有容器  <code>-f</code> 表示强制删除</li>
 </ul>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-25-1">docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span></code></pre></div>
 <p><img alt="image-20250227130114520" src="../images/image-20250227130114520.png" /></p>
 <p><mark>现在演示在不挂在目录的情况下怎么修改默认页面</mark> </p>
 <p>🟢 第一步启动容器，如果没有镜像，那么 docker 会自动下载最新的镜像并启动容器：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-26-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
 <p>🟢 第二步，查看正在运行的容器</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-27-1">docker<span class="w"> </span>ps
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
 <p>🟢 第三步，终端进入容器内部  <code>-it</code> 以交互模式启动 <code>bash</code> 终端</p>
-<div class="language-docker highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-28-1">docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>35f<span class="w"> </span>bash
-</span></code></pre></div></td></tr></table></div>
+<div class="language-docker highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>35f<span class="w"> </span>bash
+</span></code></pre></div>
 <p>🟢 第四步，进入到想要修改的容器内部的文件，阅读官方镜像文档，找到目标目录</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-29-1"><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html/
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html/
+</span></code></pre></div>
 <p>🟢 第五步，打印该目录下的文件</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-30-1">ls
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ls
+</span></code></pre></div>
 <p>🟢 第六步，修改目标文件，刷新页面，完成修改</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-31-1"><span class="nb">echo</span><span class="w"> </span><span class="m">11111</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">11111</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
+</span></code></pre></div>
 <p><img alt="image-20250227130918653" src="../images/image-20250227130918653.png" /></p>
 <p>这样修改的步骤已经很繁琐了，而且如果想要编辑一个文件，docker 内部都不支持编辑命令 </p>
 <p><img alt="image-20250227131815045" src="../images/image-20250227131815045.png" /></p>
@@ -4921,11 +4937,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>演示另一种情况，不小心误删除容器，如果以相同的命令再次启动容器，此时容器变成了一个新的容器，刚刚的修改也不作数了</p>
 <p>具体操作：</p>
 <p>🟢 第一步 删除容器</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-32-1">docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>35f
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>35f
+</span></code></pre></div>
 <p>🟢 第二步，以相同的命令重新启动一个容器</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-33-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
 <p>此时，刷新页面，又变回了默认页面</p>
 <p><img alt="image-20250227132705776" src="../images/image-20250227132705776.png" /></p>
 <p>说明：容器只要一启动，相当于启动一个自己的空间、文件系统和进程。容器一旦销毁它的所有的文件、系统内容全部销毁，这样就产生了数据丢失问题</p>
@@ -4943,15 +4959,15 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>以上就是 挂载的理解 </p>
 </blockquote>
 <p><mark>怎么使用挂载？</mark></p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-34-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
 <p>依然是 docker run，加一个 -v 参数 本地目录:容器内目录</p>
 <p>docker run -d后台启动，-p端口映射，本地 80 端口映射容器内 80 端口，-v 本地 /app/nghtml挂载到 /usr/share/nginx/html目录。如果名--name app01，启动的镜像 nginx</p>
 <p>※ docker run </p>
 <p><img alt="image-20250227135508986" src="../images/image-20250227135508986.png" /></p>
 <p>关于目录挂载的说明</p>
-<div class="language-bat highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-35-1">docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bat highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx
+</span></code></pre></div>
 <p><img alt="image-20250227142018026" src="../images/image-20250227142018026.png" /></p>
 <p>（1）目录挂载启动一个容器以后，docker ps 查看容器状态，启动成功没问题，staus是up的；</p>
 <p>（2）而且外部一开始并没有创建这个目录，docker还会自动创建</p>
@@ -4964,8 +4980,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>（4）此时如果想要访问内容，就在外部准备一个页面</p>
 <p><img alt="image-20250227142634807" src="../images/image-20250227142634807.png" /></p>
 <p>现在在宿主机文件夹内新建一个 index.html，并且添加 2222</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-36-1"><span class="nb">echo</span><span class="w"> </span><span class="m">22222</span>&gt;index.html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">22222</span>&gt;index.html
+</span></code></pre></div>
 <p>在宿主机 nginx 里面放了一个 index.html，相当于在容器内部放了一个一样的，此时再刷新页面，看到默认页改变了。</p>
 <p>好处：</p>
 <blockquote>
@@ -4973,35 +4989,35 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢 误删除了容器</p>
 <p><img alt="image-20250227143046113" src="../images/image-20250227143046113.png" /></p>
 <p>🟢 外部的文件夹还在 <code>pwd</code> print working directory 打印当前正在工作的目录</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-37-1"><span class="nb">pwd</span>
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">pwd</span>
+</span></code></pre></div>
 <p><img alt="image-20250227143202189" src="../images/image-20250227143202189.png" /></p>
 <p>🟢 启动的时候用相同的命令，还是让外部的这个 <code>/app/nghtml</code> 文件夹挂载到内部 <code>/usr/share/nginx/html</code> </p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-38-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
 <p><img alt="image-20250227143303904" src="../images/image-20250227143303904.png" /></p>
 <p>此时，启动的nginx容器内部的内容就会跟外边保持一致，回车，启动的新容器docker ps 依然访问80端口，刷新内容一模一样</p>
 <p><img alt="image-20250227143708691" src="../images/image-20250227143708691.png" /></p>
 <p>如果进到容器内部，在内部进行文件修改，外部也是看得见的</p>
 <p><strong>演示过程：</strong></p>
 <p>🟢 进入到 <code>9d1</code>  <code>bash</code> 控制台</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-39-1">docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>9d1<span class="w"> </span>bash
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>9d1<span class="w"> </span>bash
+</span></code></pre></div>
 <p>🟢 cd到 内部目录</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-40-1"><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html
+</span></code></pre></div>
 <p>🟢 ls 查看目录中的文件列表</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-41-1">ls
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>ls
+</span></code></pre></div>
 <p>🟢 查看文件内容</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-42-1">cat<span class="w"> </span>index.html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>cat<span class="w"> </span>index.html
+</span></code></pre></div>
 <p>🟢 追加 3333 到 index.html</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-43-1"><span class="nb">echo</span><span class="w"> </span><span class="m">333333</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">333333</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.html
+</span></code></pre></div>
 <p>🟢 查看 index.html 中的更改是否有效</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-44-1">cat<span class="w"> </span>index.html
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>cat<span class="w"> </span>index.html
+</span></code></pre></div>
 <p>🟢  退出 容器，控制台输入  <code>exit</code></p>
 <p>🟢 docker ps 查看该容器正在运行，但是我们把容器内容改了，现在看容器外部的内容是不是和容器内部的保持一致</p>
 <p><img alt="image-20250227144054405" src="../images/image-20250227144054405.png" /></p>
@@ -5031,14 +5047,14 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🔴 也就是说在容器内部，有nginx的配置文件，如果想要修改这个配置文件，按照目录挂载的方式就是，在外部的位置 <code>/app/ngconf</code> 挂载内部目录 <code>/etc/nginx</code>，希望实现的效果是 ：在外部进行的修改，内部也发生变化</p>
 <p>那这样做可不可以呢？</p>
 <p>🟢  退出这个容器，重新启动，进行测试，同时挂载两个目录，写两个 -v</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-45-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>/app/ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>/app/ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>nginx
+</span></code></pre></div>
 <p>后台启动，端口映射，之前 80 端口已经占用了，所以本机 88 端口映射容器内部 80 端口，先挂则页面目录 <code>-v /app/nghtml:/usr/share/nginx/html</code> ，再挂载配置文件目录  <code>-v /app/ngconf:/etc/nginx</code>  ，名字叫 app02 ，启动的镜像是 nginx</p>
 <p>🟢 docker ps 查看文件状态，发现运行中的容器并没有app02，docker ps -a查看所有容器，显示 app02 是退出状态：</p>
 <p><img alt="image-20250227155239667" src="../images/image-20250227155239667.png" /></p>
 <p>那退出的原因是什么呢，检查 app02 的日志：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-46-1">docker<span class="w"> </span>logs<span class="w"> </span>app02
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>app02
+</span></code></pre></div>
 <p><img alt="image-20250227155418081" src="../images/image-20250227155418081.png" /></p>
 <p>最后一行显示，/etc/nginx/nginx.conf 没有这样的文件</p>
 <blockquote>
@@ -5056,8 +5072,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>这个卷docker会自动给卷创建一个存储位置，去把容器内部的这里面内容，即使在容器初始启动的时候就跟内部的这个内容保持完全一致</p>
 <p>演示：</p>
 <p>🟢 启动第三个容器：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-47-1">docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">99</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app03<span class="w"> </span>nginx
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">99</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app03<span class="w"> </span>nginx
+</span></code></pre></div>
 <p><img alt="image-20250227160605847" src="../images/image-20250227160605847.png" /></p>
 <p>重新启动一个容器，还是用之前的命令，来稍加修改，容器名 app03，88 端口被 app02 占用了，所以这里端口映射本机端口写 99 ，还有 -v 的时候，直接叫 ngconf 
 （叫做卷名）我启动一个app</p>
@@ -5072,8 +5088,8 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>（1）进入本机 volumes 文件夹下。可以看到 ngconf 卷</p>
 <p><img alt="image-20250227161330171" src="../images/image-20250227161330171.png" /></p>
 <p>（2）cd 进入卷 </p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-48-1"><span class="nb">cd</span><span class="w"> </span>ngconf/
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span>ngconf/
+</span></code></pre></div>
 <p><img alt="image-20250227161538219" src="../images/image-20250227161538219.png" /></p>
 <p>① <code>ls</code> 查看目录内容，只有一个 <code>-data</code> 文件夹</p>
 <p>② <code>cd _data</code></p>
@@ -5098,29 +5114,28 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>关于 docker 的卷命令：</p>
 <p>🟢 <code>docker volume ls</code> 列出本机所有卷，可以看到 <code>ngconf</code>，刚刚创建的卷</p>
 <p>补充 <code>cd ~</code> 表示进入根目录；pwd  <code>print working ddirectory</code></p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-49-1">docker<span class="w"> </span>volume<span class="w"> </span>ls
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</span></code></pre></div>
 <p><img alt="image-20250227162513266" src="../images/image-20250227162513266.png" /></p>
 <p>🟢 创建一个新的卷：docker create + 卷名</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-50-1">docker<span class="w"> </span>create<span class="w"> </span>haha
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>docker<span class="w"> </span>create<span class="w"> </span>haha
+</span></code></pre></div>
 <p><img alt="image-20250227162815956" src="../images/image-20250227162815956.png" /></p>
 <ul>
 <li>最终所有的卷中的内容都会放到 <code>/var/lib/docker/vlolumes/你起的卷名</code>的 <code>_data</code>文件夹下，关于这个路径也可以不用记：</li>
 </ul>
 <p>🟢 查看卷属性：</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-51-1">docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>ngconf
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>ngconf
+</span></code></pre></div>
 <p><img alt="image-20250227163518342" src="../images/image-20250227163518342.png" /></p>
 <p>docker会打印这个卷真正所在的位置是在哪，以及它的创建时间等等</p>
 <p>📢  另外注意的一点，如果删除容器，卷和挂载的本地目录不会被删除</p>
 <p>下次再启动容器，使用相同的卷或者相同的目录，它们的数据依然都是在的</p>
 <p><img alt="image-20250227165002739" src="../images/image-20250227165002739.png" /></p>
 <p>如图，删除app03，</p>
-<div class="language-bash highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
-<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code><span id="__span-52-1">docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>app03
-</span><span id="__span-52-2">docker<span class="w"> </span>volume<span class="w"> </span>ls
-</span></code></pre></div></td></tr></table></div>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>app03
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</span></code></pre></div>
 <p><code>ngconf</code>依然在</p>
 <p>如果下次再启动容器，依然是使用卷映射的方式，相当于以前<code>nginx</code>的所有配置都被保留</p>
 <p><a href="https://www.bilibili.com/video/BV1BE6PYUESb?spm_id_from=333.788.videopod.episodes&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e&amp;p=14">够用了，感谢</a></p>
@@ -5131,38 +5146,6 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月4日 13:01:00"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月4日 13:01:00">2025-03-04</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年2月26日 08:43:32"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年2月26日 08:43:32">2025-02-26</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -5191,6 +5174,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
       <div class="md-copyright">
   
   
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
 </div>
       
     </div>
@@ -5207,14 +5195,6 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
-      
-        <script src="../../mkdocs/javascripts/katex.js"></script>
-      
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       
