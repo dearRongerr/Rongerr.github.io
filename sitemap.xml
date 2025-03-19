@@ -377,6 +377,10 @@
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/logs/1_scripts/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/logs/diary/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
