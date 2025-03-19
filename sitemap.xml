@@ -25,6 +25,54 @@
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/Reproduction/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/1/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/2/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/3/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/4/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/5_SegRNN_index/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/5_SegRNN_v1/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/5_SegRNN_v2/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/6_AutoFormer/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/DAVE/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/CodeRepo/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Reproduction/CodeRepo/1_MultiHeadAttention/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
@@ -305,46 +353,6 @@
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/1/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/2/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/3/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/4/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/5_SegRNN_index/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/5_SegRNN_v1/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/5_SegRNN_v2/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/6_AutoFormer/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/literature/Reproduction/DAVE/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
          <loc>https://mydomain.org/mysite/literature/TSP/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
@@ -374,10 +382,6 @@
     </url>
     <url>
          <loc>https://mydomain.org/mysite/logs/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/logs/1_scripts/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>
