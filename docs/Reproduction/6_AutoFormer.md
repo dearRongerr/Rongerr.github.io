@@ -29,7 +29,7 @@ In long-term forecasting, Autoformer achieves SOTA, with a **38% relative improv
 
 ### git clone
 
-![image-20250317144505215](images/image-20250317144505215.png)
+![image-20250317144505215](images/image-20250317144505215.png) 
 
 克隆远程仓库的方法：
 
@@ -41,21 +41,21 @@ In long-term forecasting, Autoformer achieves SOTA, with a **38% relative improv
 
 我这里使用了 SSH 配置：
 
-![image-20250317144903028](images/image-20250317144903028.png)
+![image-20250317144903028](images/image-20250317144903028.png) 
 
 服务器直接 git clone 是很慢。所以本地 git clone，然后再上传服务器。
 
-![image-20250317145242243](images/image-20250317145242243.png)
+![image-20250317145242243](images/image-20250317145242243.png) 
 
 本地下载好以后，使用 FileZilla上传到远程服务器
 
-![image-20250317145427044](images/image-20250317145427044.png)
+![image-20250317145427044](images/image-20250317145427044.png)  
 
 down到本地以后，删除 .git文件，取消连接着远程仓库
 
-![image-20250317145705700](images/image-20250317145705700.png)
+![image-20250317145705700](images/image-20250317145705700.png) 
 
-![image-20250317145752968](images/image-20250317145752968.png)
+![image-20250317145752968](images/image-20250317145752968.png) 
 
 ### readme
 
@@ -63,17 +63,21 @@ down到本地以后，删除 .git文件，取消连接着远程仓库
 
 设置数据集路径
 
-![image-20250317150739551](images/image-20250317150739551.png)
+![image-20250317150739551](images/image-20250317150739551.png) 
 
 ### 调试配置
 
 新建配置文件
 
-![image-20250317150852423](images/image-20250317150852423.png)
+![image-20250317150852423](images/image-20250317150852423.png) 
+
+
 
 修改配置文件
 
-![image-20250317151048416](images/image-20250317151048416.png) 
+![image-20250317151048416](images/image-20250317151048416.png)  
+
+
 
 修改配置文件
 
@@ -150,7 +154,11 @@ conda activate Autoformer
 
 ![image-20250317154037815](images/image-20250317154037815.png) 
 
+
+
 ![image-20250317153952283](images/image-20250317153952283.png)
+
+
 
 ```
 conda install pytorch==1.9.0 torchvision==0.10.0 torchaudio==0.9.0 cudatoolkit=10.2 -c pytorch
@@ -178,6 +186,8 @@ conda install reformer_pytorch
 配置好以后，成功进入调试：
 
 ![image-20250317155629524](images/image-20250317155629524.png)  
+
+
 
 ## 开始调试
 
@@ -342,211 +352,9 @@ Model(
 
 数据集的加载是完全一样的。
 
-## forward 解读
-
-1. **输入处理**：
-   - 历史数据 x_enc [B, L, D]
-   - 预测和标签数据 x_dec [B, L+P, D]
-2. **时间序列分解**：
-   - 将历史序列分解为季节性和趋势两个成分
-3. **初始值准备**：
-   - 趋势初始值：历史序列均值
-   - 季节性初始值：全零张量
-4. **解码器输入构建**：
-   - 趋势输入：历史趋势末尾 + 趋势初始值
-   - 季节性输入：历史季节性末尾 + 季节性初始值(零)
-5. **编解码器处理**：
-   - 编码器处理历史数据
-   - 解码器利用编码器输出和组装的初始输入生成预测
-6. **最终输出**：
-   - 趋势和季节性预测相加
-   - 提取末尾 pred_len 长度作为最终预测结果
-
-这种设计体现了 Autoformer 的核心思想：将时间序列分解为不同频率成分并分别建模，再组合生成最终预测。
-
-### 趋势项 和 季节项
-
-```python
-seasonal_init, trend_init = self.decomp(x_enc)
-```
-
-▶️
-
-```python
-self.decomp = series_decomp(kernel_size)
-```
-
-▶️
-
-```python
-class series_decomp(nn.Module):
-```
-
-🟢 类的定义
-
-```python
-class series_decomp(nn.Module):
-    """
-    Series decomposition block
-    """
-    def __init__(self, kernel_size):
-        super(series_decomp, self).__init__()
-        self.moving_avg = moving_avg(kernel_size, stride=1)
-
-    def forward(self, x):
-
-        # 计算移动平均，提取序列趋势分量
-        # x 形状[B, L, D] -> moving_mean形状[B, L, D]
-        #  moving_avg内部会进行填充，保证输出形状与输入相同
-        moving_mean = self.moving_avg(x)
-
-        # 通过原始序列减去趋势分量，得到残差(季节性分量)，逐元素减法操作
-        # x形状[B, L, D] - moving_mean形状[B, L, D] -> res形状[B, L, D]
-        res = x - moving_mean
-
-        # 返回季节性分量和趋势分量，均保持原始形状[B, L, D]
-        # 第一个返回值res是季节性分量，第二个返回值moving_mean是趋势分量
-        return res, moving_mean
-```
-
-类内 调用 `moving_avg`
-
-![image-20250317202431440](images/image-20250317202431440.png)
-
-▶️
-
-```python
-class moving_avg(nn.Module):
-```
-
-🟢 `moving_avg` 定义
-
-```python
-class moving_avg(nn.Module):
-    """
-    Moving average block to highlight the trend of time series
-    """
-    def __init__(self, kernel_size, stride):
-        super(moving_avg, self).__init__()
-        self.kernel_size = kernel_size
-        self.avg = nn.AvgPool1d(kernel_size=kernel_size, stride=stride, padding=0)
-
-    def forward(self, x):
-        # padding on the both ends of time series
-
-        # 提取第一个时间步并重复，用于前端填充
-        #  [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
-        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
-
-        # 提取最后一个时间步并重复，用于后端填充
-        # [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
-        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
-
-        # 连接填充部分与原序列
-        # [B, (k-1)//2, D] + [B, L, D] + [B, (k-1)//2, D] -> [B, L+(k-1), D]
-        x = torch.cat([front, x, end], dim=1)
-
-        # 转置并应用一维平均池化
-        # [B, L+(k-1), D] -> [B, D, L+(k-1)] -> [B, D, L]
-        # 池化窗口大小为kernel_size，步长为1，输出长度为(L+(k-1)-k+1)=L （length + 2P - K + 1）
-        x = self.avg(x.permute(0, 2, 1))
-
-        # 转置回原始维度顺序 [B, D, L] -> [B, L, D]
-        x = x.permute(0, 2, 1)
-        return x
-```
-
-总结：3 次调用：
-
-```python
-seasonal_init, trend_init = self.decomp(x_enc)
-
-self.decomp = series_decomp(kernel_size)
-
-class series_decomp(nn.Module):
-    def __init__(self, kernel_size):
-        super(series_decomp, self).__init__()
-        self.moving_avg = moving_avg(kernel_size, stride=1)
-        
-    def forward(self, x):
-        moving_mean = self.moving_avg(x)
-
-class moving_avg(nn.Module):
-     def forward(self, x):
-        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
-        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
-        x = torch.cat([front, x, end], dim=1)
-        x = self.avg(x.permute(0, 2, 1))
-        x = x.permute(0, 2, 1)
-        return x	
-```
 
 
 
-#### Autoformer序列分解流程图
-
-```
-                    输入: x_enc [B, L, D]
-                          |
-                          v
-            +---------------------------+
-            | Model.forward()           |
-            | 调用: self.decomp(x_enc)  |
-            +---------------------------+
-                          |
-                          v
-            +---------------------------+
-            | series_decomp(kernel_size)|
-            | self.decomp实例           |
-            +---------------------------+
-                          |
-                          v
-            +---------------------------+
-            | series_decomp.forward(x)  |
-            | 1. 调用移动平均计算趋势   |
-            | 2. 原序列减去趋势得到季节性|
-            +---------------------------+
-                          |
-                  +-------+-------+
-                  |               |
-                  v               v
-    +---------------------------+  +---------------------------+
-    | moving_avg.forward(x)     |  | 季节性计算                |
-    | 步骤:                     |  | res = x - moving_mean     |
-    | 1.前后填充序列           |  |                           |
-    | 2.应用平均池化           |  |                           |
-    | 3.返回趋势分量           |  |                           |
-    +---------------------------+  +---------------------------+
-                  |               |
-                  v               v
-             趋势分量        季节性分量
-          trend_init [B,L,D]  seasonal_init [B,L,D]
-                  |               |
-                  +       +       +
-                          |
-                          v
-                返回到Model.forward()
-                进行后续处理
-```
-
-1. **Model.forward()** 调用 self.decomp(x_enc)进行序列分解
-
-2. **series_decomp.forward(x)**
-
-   包含两个主要步骤:
-
-   - 调用 self.moving_avg(x)计算移动平均，得到趋势分量
-   - 计算原序列与趋势分量的差值，得到季节性分量
-
-3. **moving_avg.forward(x)**
-
-   执行移动平均计算:
-
-   - 通过重复首尾元素进行序列填充
-   - 应用一维平均池化操作
-   - 返回平滑后的趋势分量
-
-这个分解过程将原始序列 x_enc 分解为两个相同形状 [B,L,D] 的张量：趋势成分和季节性成分
 
 ### 编码器
 
@@ -770,7 +578,7 @@ classDiagram
 
 代码：
 
-![image-20250319202142537](images/image-20250319202142537.png)
+![image-20250319202142537](images/image-20250319202142537.png) 
 
 逐字讲解：
 
@@ -786,7 +594,7 @@ model 训练从 exp_main.py的 train 函数开始，epoch 表示整个训练集�
 
 batchy 的 42 表示 18 的 label length，是取的 原始输入序列的 二分之一，这个在论文中有说
 
-![image-20250319202958076](images/image-20250319202958076.png)
+![image-20250319202958076](images/image-20250319202958076.png) 
 
 编码器的输入 是 `I times d`  $I$ 表示 输入序列长度，在这里例子就是 36，$d$ 是特征数，这里的特征数，都去掉了时间戳，也就是 7
 
@@ -794,4 +602,371 @@ batchy 的 42 表示 18 的 label length，是取的 原始输入序列的 二�
 
 batch x mark，batch y mark 就是处理的时间戳特征了，包含一天的第几个小时，一个月的第几天，一周的第几天，一个月的第几天，就是我们之前讲过的 SegRNN，这里处理还涉及了 归一化 和中心化，不再重复啦。
 
-好了，接下来进入 预测部分，也就是 predict 函数
+---
+
+**好了，接下来进入 预测部分，==步进==，也就是 predict 函数** 
+
+首先，构造完整的解码器输入，具体的操作是，切片 batch y 中的预测步长，填充 0，并与 之前的 label length 进行拼接。也就是这两行代码
+
+```python
+# decoder input 
+# 创建解码器输入的零张量部分，用于预测未来时间步
+# batch_y[B, label_len+pred_len, D] -> 切片 -> [B, pred_len, D] -> 创建相同形状全零张量 -> dec_inp[B, pred_len, D]
+dec_inp = torch.zeros_like(batch_y[:, -self.args.pred_len:, :]).float()
+
+# 将历史数据(标签序列)与零张量连接，形成完整的解码器输入，并移动到指定设备
+# [B, label_len, D] + [B, pred_len, D] -> torch.cat沿维度1拼接 -> [B, label_len+pred_len, D] -> to(device) -> 在GPU上的dec_inp
+dec_inp = torch.cat([batch_y[:, :self.args.label_len, :], dec_inp], dim=1).float().to(self.device)
+```
+
+构造的完整解码器的输入，形状还是 32,42,7。
+
+（这里的代码并不是那么重要，所以就不粘贴了，占地方）接下来是一个内部方法 run model，类似 forward，但因为不是一个具体的模型，所以就叫 run model了，类内调用了这个函数，才会执行，这里没有调用，进入下一步，判断是否采用了自动精度训练，我也不明白，大概是模型加速把，总之是 false，执行 else。
+
+```python
+else:
+    # 使用普通精度执行模型计算
+    # _run_model() -> outputs[B, label_len+pred_len, D]
+    outputs = _run_model()
+```
+
+调用的内部方法 `_run_model()`，步进，进入到 run model 内部。
+
+![image-20250319211512141](images/image-20250319211512141.png)
+
+首先，这里的 self.model 是 `Exp_Basic`中的 `build_model` 定义来的，而且`exp_main` ， `Basic` 的子类 重写了 父类的方法，并通过字典，键是字符串，值的类，索引进行类的初始化，这个也是 SegRNN 中介绍过的。总之，这里的 `self.model` 是 `Autoformer` 
+
+![image-20250319211736243](images/image-20250319211736243.png)
+
+**点击步进，进入 Autoformer 的 forward 中。一个 batch 中样本的处理** 
+
+----
+
+首先，这里Autoformer  forward 接收的参数：
+
+```python
+def forward(self, x_enc, x_mark_enc, x_dec, x_mark_dec,
+            enc_self_mask=None, 
+            dec_self_mask=None, 
+            dec_enc_mask=None):
+```
+
+必须传入的参数 是  `x_enc, x_mark_enc, x_dec, x_mark_dec` 我们这里就是 `batch x，batch y，batch x mark，batch y mark`，且形状分别是 `[32,36,7]、[32,42,7]、[32,36,4]、[32,42,4]`
+
+可选参数是 Transformer 中的 3 个 mask，默认是 None。解释一下 Transformer 中的三个 mask 分别是什么：
+
+> 三个mask机制，分别指的是
+>
+> - 第一个 编码端输⼊ 由于padding字符的mask，为了⼀个batchsize中，所有长度不相同的样本，能构成⼀个矩阵，所以有pad字符，但是在后⾯进⾏inputencoder的⾃注意⼒计算时，pad字符不能影响计算结果，所以需要mask；
+> - 第⼆个mask是解码端的mask，这个mask是涉及到因果的mask，因为Transformer是⼀个⾃回归模型，在进⾏运算时，为了并⾏计算，我们是把inputs和outputs⼀起喂给模型的，inputs直接给模型没事，但是outputs在得到最后的输出时，不能借助未来信息，只能是当前时刻及其之前时刻的输出，所以需要⼀个mask机制，这个mask是⼀个上三角矩阵，保证在预测当前输出时，不会借助未来信息。
+> - 第三个mask，是编码器和解码器的交互注意⼒，编码器的输出作为key和value，解码器的输出作为query，因为⽬标序列 每个样本的长度是不⼀样的，同时原序列的样本长度也是不⼀样的，⽽且⼀对之间 长度也是不⼀样的，所以需要⼀个mask 将原序列中某个单词某个位置 跟 ⽬标序列中 某个位置 如果它们之间 有⼀个pad的话 说明是⽆效字符，得到这样的掩码矩阵。
+>
+> 编码器以及 编码器和解码器的 mask 是为了保证长度的对齐，解码器的 mask 是为了在预测时 避免看到未来的信息
+
+回到 Autoformer 这里，看这个模型是怎么处理，输入数据和输出数据，以及模型的创新是怎么实现的。
+
+首先，看到下面这几行代码。
+
+![image-20250319214129515](images/image-20250319214129515.png)
+
+这几行代码的目的是为了解码器的输入的初始化，编码器阶段是用不到。
+
+---
+
+**看论文 输入序列的趋势序列和季节趋势是怎么提取的。** 
+
+本文将时间序列分解为 趋势序列和季节向量
+
+![image-20250319214344038](images/image-20250319214344038.png)
+
+趋势向量反映了数据的长期变化趋势和季节趋势。并且论文中提到 对于未来序列进行分解是不现实的，因为未来的所有序列都是不知道的。因此，为了解决这个问题，原文提出了 序列分解模块，思想是 从预测的中间隐藏变量中 逐步提取 长期稳定的趋势 。
+
+具体的做法，使用移动平均来平滑周期性波动来突出长期趋势。
+
+文中也给出了公式：
+
+![image-20250319220946468](images/image-20250319220946468.png)
+
+公式的解释：对于长度 为 L 的输入序列 X ，形状是 L×d，使用平均池化进行移动平均，并且使用填充操作保持序列长度不变。后面用一个 SeriesDecomp(X)来表示 上面的过程，简化一下记号。
+
+**论文中的模型结构图也有画出这部分**
+
+![image-20250319221443646](images/image-20250319221443646.png)
+
+首先 箭头指的地方时 直观地显示了 输入序列 趋势序列 和 季节序列是怎么来的。输入序列 的 趋势序列 是对 输入序列 去均值；季节信息，也就是周期波动信息是 输入序列 - 均值 ，这个周期波动信息 是围绕 0 进行波动的。基于对输入序列的分解的认识，对于解码器 趋势序列 和 季节序列的 初始化也是很有道理的。
+
+图片的下半部分，是解码器的输入，显示了 预测序列 趋势序列和季节序列的初始化，其中趋势序列使用输入序列的均值进行初始化，季节波动信息用 0 来初始化
+
+---
+
+**接下来，看代码中，对预测序列 的 趋势序列 和 季节序列的提取。**
+
+首先 有 历史数据 x_enc [B, L, D]的，预测和标签数据 x_dec [B, L+P, D]，接着进行时间序列分解 将历史序列分解为季节性和趋势两个成分
+
+```python
+seasonal_init, trend_init = self.decomp(x_enc)
+```
+
+得到 趋势初始值：历史序列均值，季节性初始值：全零张量
+
+基于 输入序列的 序列分解结果，构造 解码器的输入，具体来说：
+
+- 输出序列 趋势输入= 历史趋势末尾 + 趋势初始值
+
+- 输出序列 季节性输入 = 历史季节性末尾 + 季节性初始值(零)
+
+也就是源码中的这几行：
+
+```python
+mean = torch.mean(x_enc, dim=1).unsqueeze(1).repeat(1, self.pred_len, 1)
+zeros = torch.zeros([x_dec.shape[0], self.pred_len, x_dec.shape[2]], device=x_enc.device) 
+trend_init = torch.cat([trend_init[:, -self.label_len:, :], mean], dim=1)
+seasonal_init = torch.cat([seasonal_init[:, -self.label_len:, :], zeros], dim=1)
+```
+
+ 这个模型的结构简单来说是 利用 **编码器**处理历史数据，**解码器**利用编码器输出和组装的初始输入生成预测，就是一个很标准的 Transformer 处理数据的架构。我们得到的最终输出是 趋势和季节性预测相加，因为有 label length，所以对于输出 是 提取末尾 pred_len 长度作为最终预测结果
+
+Autoformer 的核心思想就是 将时间序列分解为不同频率成分并分别建模，再组合生成最终预测。
+
+**先有个大体的印象，后面看到代码 详细的讲解。**
+
+---
+
+在进行后面的Encoder 和 Decoder之前，**先看 趋势项 和 季节项 的具体实现方法。** 有点复杂，但是一步步来。
+
+▶️ 首先是调用 的   self.decomp
+
+```python
+seasonal_init, trend_init = self.decomp(x_enc)
+```
+
+▶️ 而 self.decomp 又是 初始化 series_decomp 类
+
+```python
+self.decomp = series_decomp(kernel_size)
+```
+
+▶️ 看到 series_decomp 类的定义
+
+```python
+class series_decomp(nn.Module):
+```
+
+🟢 类的定义
+
+```python
+class series_decomp(nn.Module):
+    """
+    Series decomposition block
+    """
+    def __init__(self, kernel_size):
+        super(series_decomp, self).__init__()
+        self.moving_avg = moving_avg(kernel_size, stride=1)
+
+    def forward(self, x):
+
+        # 计算移动平均，提取序列趋势分量
+        # x 形状[B, L, D] -> moving_mean形状[B, L, D]
+        #  moving_avg内部会进行填充，保证输出形状与输入相同
+        moving_mean = self.moving_avg(x)
+
+        # 通过原始序列减去趋势分量，得到残差(季节性分量)，逐元素减法操作
+        # x形状[B, L, D] - moving_mean形状[B, L, D] -> res形状[B, L, D]
+        res = x - moving_mean
+
+        # 返回季节性分量和趋势分量，均保持原始形状[B, L, D]
+        # 第一个返回值res是季节性分量，第二个返回值moving_mean是趋势分量
+        return res, moving_mean
+```
+
+▶️ 类内 调用 `moving_avg` 
+
+![image-20250317202431440](images/image-20250317202431440.png)
+
+▶️ 看到 `moving_avg` 类的定义
+
+```python
+class moving_avg(nn.Module):
+```
+
+🟢 `moving_avg` 定义
+
+```python
+class moving_avg(nn.Module):
+    """
+    Moving average block to highlight the trend of time series
+    """
+    def __init__(self, kernel_size, stride):
+        super(moving_avg, self).__init__()
+        self.kernel_size = kernel_size
+        self.avg = nn.AvgPool1d(kernel_size=kernel_size, stride=stride, padding=0)
+
+    def forward(self, x):
+        # padding on the both ends of time series
+
+        # 提取第一个时间步并重复，用于前端填充
+        #  [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
+        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
+
+        # 提取最后一个时间步并重复，用于后端填充
+        # [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
+        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+
+        # 连接填充部分与原序列
+        # [B, (k-1)//2, D] + [B, L, D] + [B, (k-1)//2, D] -> [B, L+(k-1), D]
+        x = torch.cat([front, x, end], dim=1)
+
+        # 转置并应用一维平均池化
+        # [B, L+(k-1), D] -> [B, D, L+(k-1)] -> [B, D, L]
+        # 池化窗口大小为kernel_size，步长为1，输出长度为(L+(k-1)-k+1)=L （length + 2P - K + 1）
+        x = self.avg(x.permute(0, 2, 1))
+
+        # 转置回原始维度顺序 [B, D, L] -> [B, L, D]
+        x = x.permute(0, 2, 1)
+        return x
+```
+
+总结：就是 3 次调用：
+
+```python
+seasonal_init, trend_init = self.decomp(x_enc)
+
+self.decomp = series_decomp(kernel_size)
+
+class series_decomp(nn.Module):
+    def __init__(self, kernel_size):
+        super(series_decomp, self).__init__()
+        self.moving_avg = moving_avg(kernel_size, stride=1)
+        
+    def forward(self, x):
+        moving_mean = self.moving_avg(x)
+
+class moving_avg(nn.Module):
+     def forward(self, x):
+        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
+        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+        x = torch.cat([front, x, end], dim=1)
+        x = self.avg(x.permute(0, 2, 1))
+        x = x.permute(0, 2, 1)
+        return x	
+```
+
+用一张图表示 Autoformer 序列分解的的过程，这个分解过程将原始序列 x_enc 分解为两个相同形状 [B,L,D] 的张量：趋势成分和季节性成分：
+
+```
+                    输入: x_enc [B, L, D]
+                          |
+                          v
+            +---------------------------+
+            | Model.forward()           |
+            | 调用: self.decomp(x_enc)  |
+            +---------------------------+
+                          |
+                          v
+            +---------------------------+
+            | series_decomp(kernel_size)|
+            | self.decomp实例           |
+            +---------------------------+
+                          |
+                          v
+            +---------------------------+
+            | series_decomp.forward(x)  |
+            | 1. 调用移动平均计算趋势   |
+            | 2. 原序列减去趋势得到季节性|
+            +---------------------------+
+                          |
+                  +-------+-------+
+                  |               |
+                  v               v
+    +---------------------------+  +---------------------------+
+    | moving_avg.forward(x)     |  | 季节性计算                |
+    | 步骤:                     |  | res = x - moving_mean     |
+    | 1.前后填充序列           |  |                           |
+    | 2.应用平均池化           |  |                           |
+    | 3.返回趋势分量           |  |                           |
+    +---------------------------+  +---------------------------+
+                  |               |
+                  v               v
+             趋势分量        季节性分量
+          trend_init [B,L,D]  seasonal_init [B,L,D]
+                  |               |
+                  +       +       +
+                          |
+                          v
+                返回到Model.forward()
+                进行后续处理
+```
+
+讲图 逐字稿：
+
+（1）**Model.forward()** 调用 self.decomp(x_enc)进行序列分解
+
+（2）**series_decomp.forward(x)**
+
+> 包含两个主要步骤:
+>
+> - 调用 self.moving_avg(x)计算移动平均，得到趋势分量
+> - 计算原序列与趋势分量的差值，得到季节性分量
+
+（3）**moving_avg.forward(x)**
+
+> 执行移动平均计算:
+>
+> - 通过重复首尾元素进行序列填充
+>
+> ```python
+> front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
+> end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+>  x = torch.cat([front, x, end], dim=1)
+> ```
+>
+> - 应用一维平均池化操作
+>
+> ```
+> x = self.avg(x.permute(0, 2, 1))
+> ```
+>
+> **说明 为什么填充，是为了 保证序列在平均池化后 长度不变**
+>
+> - 返回平滑后的趋势分量
+>
+> 这部分的形状变化： 
+>
+> ![image-20250319224010427](images/image-20250319224010427.png) 
+
+现在开始 返回 **moving_avg.forward(x)** 是利用 1D 平均池化 得到 趋势序列，将结果返回给 **series_decomp** ，也就是这句代码 `moving_mean = self.moving_avg(x)`，得到趋势序列以后，永远序列减趋势序列 `res = x - moving_mean` ，得到季节分量，也就是周期性信息。具体的代码：
+
+![image-20250319224315222](images/image-20250319224315222.png)
+
+最终 将结果 返回给 Autoformer forward 中的 seasonal_init, trend_init
+
+![image-20250319224700908](images/image-20250319224700908.png)
+
+并且 用这两个 init 初始化 解码器的输入。
+
+这里得注意一下，对于 标签序列，也就是 输入序列的趋势信息的提取用的是 1D平均池化，而对预测 predict length 的趋势信息初始化 就直接用的 输入序列的均值
+
+```python
+mean = torch.mean(x_enc, dim=1).unsqueeze(1).repeat(1, self.pred_len, 1)
+```
+
+周期性趋势也是，label length 的季节趋势是 残差，也就是 原始序列 减去 趋势序列，而 predict length 的 季节趋势就是直接初始化为 0 了。
+
+```python
+zeros = torch.zeros([x_dec.shape[0], self.pred_len, x_dec.shape[2]], device=x_enc.device) 
+```
+
+这里是 小小的区别，小小的注意。
+
+好了 这部分，序列分解说完了，代码讲了，原文讲了，公式对应上了，图也说了。原文 `Series decomposition block`  就过啦
+
+![image-20250319225341745](images/image-20250319225341745.png)
+
+序列分解 over
+
+---
+
+下面开始 模型的输入，先从论文开始讲解：
+
+![image-20250319225433558](images/image-20250319225433558.png)
+

@@ -131,7 +131,6 @@ nav:
   - 杂:
     - logs/index.md     
     - logs/diary.md 
-    - logs/1_scripts.md     
 
 theme:
   name: material
