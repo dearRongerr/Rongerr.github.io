@@ -764,3 +764,34 @@ classDiagram
     DecoderLayer --> series_decomp
 ```
 
+## 训练过程，形状变换
+
+（1）
+
+代码：
+
+![image-20250319202142537](images/image-20250319202142537.png)
+
+逐字讲解：
+
+model 训练从 exp_main.py的 train 函数开始，epoch 表示整个训练集迭代几次，for batchx、batchy、batch x mark、batch y mark 一个批次一个批次的训练，第一个 for 训练的 epoch 是我们自己可以设置的，第二个 for 训练的 iteration 迭代次数是 `数据集长度 ➗ batch size`
+
+接下来，调用 `self._predict` 方法进行预测，这里 predict 函数需要的参数 batchx、batchy、batch x mark、batch y mark 形状分别是 `batch_x = [32,36,7], batch_y = [32,42(18+24),7],batch_x_mark=[32,36,4],batch_y_mark = [32,42,4]`
+
+32 表示 一个 batch 样本的个数；
+
+36 表示每个样本的时间步，也可以说是回溯窗口的大小，或者叫输入序列的长度
+
+7 表示 illness 数据集的特征数
+
+batchy 的 42 表示 18 的 label length，是取的 原始输入序列的 二分之一，这个在论文中有说
+
+![image-20250319202958076](images/image-20250319202958076.png)
+
+编码器的输入 是 `I times d`  $I$ 表示 输入序列长度，在这里例子就是 36，$d$ 是特征数，这里的特征数，都去掉了时间戳，也就是 7
+
+解码器的输入是 `二分之 I + O`，`二分之 I `表示 输入序列长度的一半，`O` 表示预测步长，也就是输出序列的长度
+
+batch x mark，batch y mark 就是处理的时间戳特征了，包含一天的第几个小时，一个月的第几天，一周的第几天，一个月的第几天，就是我们之前讲过的 SegRNN，这里处理还涉及了 归一化 和中心化，不再重复啦。
+
+好了，接下来进入 预测部分，也就是 predict 函数

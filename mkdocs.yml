@@ -105,27 +105,29 @@ nav:
         - literature/ObejectCounting/rank17 RCC.md
         - literature/ObejectCounting/rank18 Omnicount.md
         - literature/ObejectCounting/rank19 FamNet.md
-    - 复现&代码: 
-      - literature/Reproduction/index.md
-      - literature/Reproduction/DAVE.md     
-      - literature/Reproduction/1.md
-      - literature/Reproduction/2.md
-      - literature/Reproduction/3.md
-      - literature/Reproduction/4.md
-      - literature/Reproduction/5_SegRNN_index.md
-      - literature/Reproduction/5_SegRNN_v1.md
-      - literature/Reproduction/5_SegRNN_v2.md
-      - literature/Reproduction/6_AutoFormer.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md
       - literature/ObjectDetection/1.md
       - literature/ObjectDetection/3.md
-      - literature/ObjectDetection/4.md
-      
+      - literature/ObjectDetection/4.md      
     - 多模态:
       - literature/MultiModal/index.md
       - literature/MultiModal/1.md
+  - 复现&代码: 
+    - Reproduction/index.md
+    - Reproduction/DAVE.md               
+    - Reproduction/5_SegRNN_index.md
+    - Reproduction/5_SegRNN_v1.md
+    - Reproduction/5_SegRNN_v2.md
+    - Reproduction/6_AutoFormer.md
+    - 一些代码:
+      - Reproduction/CodeRepo/index.md
+      - Reproduction/1.md
+      - Reproduction/2.md
+      - Reproduction/3.md
+      - Reproduction/4.md
+      - Reproduction/CodeRepo/1_MultiHeadAttention.md
   - 杂:
     - logs/index.md     
     - logs/diary.md 

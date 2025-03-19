@@ -325,3 +325,15 @@ graph TD
     ClassA.method_a -- "调用" --> ClassB.method_b
 ```
 
+
+
+## 远程仓库渲染 mermaid
+
+> 本地 localhost 能够渲染 mermaid，提交到远程仓库，工作流文件总是报错
+>
+> ![image-20250319175640999](images/image-20250319175640999.png)
+
+解决：修改工作流文件，安装 mermaid。
+
+![image-20250319175536189](images/image-20250319175536189.png)
+
