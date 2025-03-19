@@ -1,0 +1,4559 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/learning/8_WeightNorm/">
+      
+      
+        <link rel="prev" href="../7_Clip/">
+      
+      
+        <link rel="next" href="../9_cGAN/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>WeightNorm - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#weightnorm" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              WeightNorm
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 官方api解读
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 两个实例演示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 注释
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）定义常量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-linear-wn_linear-modulegv" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）探讨 linear 和 wn_linear 两个module的关系（计算g&amp;v）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 linear层演示代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-conv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 conv层的代码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-api" class="md-nav__link">
+    <span class="md-ellipsis">
+      1 官方api解读
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      2 代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2 代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.1 两个实例演示
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.2 注释
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.3 详解
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3 详解">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      （1）定义常量
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-linear-wn_linear-modulegv" class="md-nav__link">
+    <span class="md-ellipsis">
+      （2）探讨 linear 和 wn_linear 两个module的关系（计算g&amp;v）
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#24-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.4 linear层演示代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#25-conv" class="md-nav__link">
+    <span class="md-ellipsis">
+      2.5 conv层的代码
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="weightnorm">WeightNorm<a class="headerlink" href="#weightnorm" title="Permanent link">&para;</a></h1>
+<p><a href="https://www.bilibili.com/video/BV1NZ4y117VT?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">快速复现PyTorch的Weight Normalization</a></p>
+<h2 id="1-api">1 官方api解读<a class="headerlink" href="#1-api" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241205083326241" src="/docs/images/image-20241205083326241.png" /></p>
+<p>权重归一化的api</p>
+<p>生成式网络比如GAN，使用权重归一化使得网络训练更加稳定</p>
+<p>权重归一化的api在<code>torch.nn.utils</code>下的一个函数，不是class</p>
+<p>这个函数的传入参数：</p>
+<ul>
+<li>module：pytorch中很多class都是nn.module的子类，所以只需要传入module的对象即可，如：nn.Linear、nn.ReLu、nn.Conv、nn.RNN</li>
+<li>name：一般不会改</li>
+<li>dim：也一般是默认的</li>
+</ul>
+<p>权重归一化的论文：</p>
+<p><img alt="image-20241205083434371" src="/docs/images/image-20241205083434371.png" /></p>
+<p>标题：权重归一化：简单的参数重整化方法：加速深度神经网络的训练</p>
+<p>今天讲解：权重归一化主要做了什么事</p>
+<hr />
+<p>WeightNorm对module进行一层包裹</p>
+<p>例如 把一个nn.Linear放入WeightNorm中，WeightNorm仍然返回的是一个module，这个返回的module包含两个参数：Weight_g 和 Weight_v</p>
+<blockquote>
+<p>本来的Linear层，只有一个参数w，忽略bias，放入WeightNorm中处理，返回一个新的module，新的module有两个参数：Weight_g 和 Weight_v</p>
+<p>Weight_g 和 Weight_v就是WeightNorm公式中的g和v</p>
+<p><span class="arithmatex">\(w = g\frac{v}{||v||}\)</span></p>
+</blockquote>
+<p><img alt="image-20241205084452412" src="/docs/images/image-20241205084452412.png" /></p>
+<p>看公式</p>
+<p>相当于把原来的module中的 权重w 分解了，所以与其叫权重归一化，也可以叫权重分解</p>
+<p>相当于把原来module中的w分解成两项：</p>
+<ul>
+<li>g：g表示w的幅度，相当于w每阶向量的二阶模、范数</li>
+<li><span class="arithmatex">\(\frac{v}{||v||}\)</span>：单位向量，方向除以模长得到方向向量</li>
+</ul>
+<p>也就是说本来 module只有一个参数 w，现在变成两个参数，分别是 g 和 v ，也就是此时进行梯度下降更新参数时，不是对 w 进行更新了，而是对 g 和 v 进行更新（好处自己去看论文）</p>
+<h2 id="2">2 代码实现<a class="headerlink" href="#2" title="Permanent link">&para;</a></h2>
+<h3 id="21">2.1 两个实例演示<a class="headerlink" href="#21" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Linear层</li>
+<li>一维Conv的例子</li>
+</ol>
+<p>以上 两个例子 解释 WeightNorm官方api做了什么事</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="c1"># 关于权重归一化的再次说明</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="c1"># WeightNorm W = Magnitude * UnitDirection = Magnitude * (W/Norm(W))</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># step1:define constant</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">feat_dim</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">hid_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="n">wn_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">linear</span><span class="p">)</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="c1"># step2:Linear Layer:calculate g and v</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear.weight:&quot;</span><span class="p">,</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_magnitude:&quot;</span><span class="p">,</span><span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction:&quot;</span><span class="p">,</span><span class="n">weight_direction</span><span class="p">)</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="sd">linear.weight: tensor([[-0.2701, -0.0754,  0.3812],</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a><span class="sd">        [-0.1806,  0.1814,  0.4922],</span>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="sd">        [-0.2900, -0.5321, -0.4400],</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="sd">        [-0.5492,  0.0195, -0.5189]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)</span>
+</span><span id="__span-0-30"><a id="__codelineno-0-30" name="__codelineno-0-30" href="#__codelineno-0-30"></a><span class="sd">weight_magnitude: tensor([[1.2899],</span>
+</span><span id="__span-0-31"><a id="__codelineno-0-31" name="__codelineno-0-31" href="#__codelineno-0-31"></a><span class="sd">        [1.2000],</span>
+</span><span id="__span-0-32"><a id="__codelineno-0-32" name="__codelineno-0-32" href="#__codelineno-0-32"></a><span class="sd">        [1.0640],</span>
+</span><span id="__span-0-33"><a id="__codelineno-0-33" name="__codelineno-0-33" href="#__codelineno-0-33"></a><span class="sd">        [0.7558]])</span>
+</span><span id="__span-0-34"><a id="__codelineno-0-34" name="__codelineno-0-34" href="#__codelineno-0-34"></a><span class="sd">weight_direction: tensor([[-0.2094, -0.0584,  0.2956],</span>
+</span><span id="__span-0-35"><a id="__codelineno-0-35" name="__codelineno-0-35" href="#__codelineno-0-35"></a><span class="sd">        [-0.1505,  0.1512,  0.4102],</span>
+</span><span id="__span-0-36"><a id="__codelineno-0-36" name="__codelineno-0-36" href="#__codelineno-0-36"></a><span class="sd">        [-0.2726, -0.5001, -0.4135],</span>
+</span><span id="__span-0-37"><a id="__codelineno-0-37" name="__codelineno-0-37" href="#__codelineno-0-37"></a><span class="sd">        [-0.7267,  0.0259, -0.6865]], grad_fn=&lt;DivBackward0&gt;)</span>
+</span><span id="__span-0-38"><a id="__codelineno-0-38" name="__codelineno-0-38" href="#__codelineno-0-38"></a><span class="sd">magnitude of weight_direction: tensor([0.1346, 0.2138, 0.4954, 1.0000], grad_fn=&lt;SumBackward1&gt;)</span>
+</span><span id="__span-0-39"><a id="__codelineno-0-39" name="__codelineno-0-39" href="#__codelineno-0-39"></a><span class="sd">&#39;&#39;&#39;</span>
+</span></code></pre></div>
+<h3 id="22">2.2 注释<a class="headerlink" href="#22" title="Permanent link">&para;</a></h3>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="c1"># 关于权重归一化的再次说明</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="c1"># WeightNorm W = Magnitude * UnitDirection = Magnitude * (W/Norm(W))</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="c1"># step1:define constant</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a><span class="n">feat_dim</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a><span class="n">hid_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">)</span> <span class="c1"># 2×3</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="c1"># linear.weight=4×3</span>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a><span class="n">wn_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">linear</span><span class="p">)</span>
+</span><span id="__span-1-14"><a id="__codelineno-1-14" name="__codelineno-1-14" href="#__codelineno-1-14"></a>
+</span><span id="__span-1-15"><a id="__codelineno-1-15" name="__codelineno-1-15" href="#__codelineno-1-15"></a><span class="c1"># step2:Linear Layer:calculate g and v</span>
+</span><span id="__span-1-16"><a id="__codelineno-1-16" name="__codelineno-1-16" href="#__codelineno-1-16"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-1-17"><a id="__codelineno-1-17" name="__codelineno-1-17" href="#__codelineno-1-17"></a>                                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>                                <span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-1-19"><a id="__codelineno-1-19" name="__codelineno-1-19" href="#__codelineno-1-19"></a><span class="c1"># weight_magnitude：4×1</span>
+</span><span id="__span-1-20"><a id="__codelineno-1-20" name="__codelineno-1-20" href="#__codelineno-1-20"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span><span id="__span-1-21"><a id="__codelineno-1-21" name="__codelineno-1-21" href="#__codelineno-1-21"></a><span class="c1"># weight_direction：4×3</span>
+</span><span id="__span-1-22"><a id="__codelineno-1-22" name="__codelineno-1-22" href="#__codelineno-1-22"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear.weight:&quot;</span><span class="p">,</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span> <span class="c1"># linear.weight=4×3</span>
+</span><span id="__span-1-23"><a id="__codelineno-1-23" name="__codelineno-1-23" href="#__codelineno-1-23"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_magnitude:&quot;</span><span class="p">,</span><span class="n">weight_magnitude</span><span class="p">)</span> <span class="c1"># weight_magnitude：4×1</span>
+</span><span id="__span-1-24"><a id="__codelineno-1-24" name="__codelineno-1-24" href="#__codelineno-1-24"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction:&quot;</span><span class="p">,</span><span class="n">weight_direction</span><span class="p">)</span> <span class="c1"># weight_direction：4×3</span>
+</span><span id="__span-1-25"><a id="__codelineno-1-25" name="__codelineno-1-25" href="#__codelineno-1-25"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-1-26"><a id="__codelineno-1-26" name="__codelineno-1-26" href="#__codelineno-1-26"></a>
+</span><span id="__span-1-27"><a id="__codelineno-1-27" name="__codelineno-1-27" href="#__codelineno-1-27"></a>
+</span><span id="__span-1-28"><a id="__codelineno-1-28" name="__codelineno-1-28" href="#__codelineno-1-28"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-1-29"><a id="__codelineno-1-29" name="__codelineno-1-29" href="#__codelineno-1-29"></a><span class="sd">linear.weight: tensor([[-0.2701, -0.0754,  0.3812],</span>
+</span><span id="__span-1-30"><a id="__codelineno-1-30" name="__codelineno-1-30" href="#__codelineno-1-30"></a><span class="sd">        [-0.1806,  0.1814,  0.4922],</span>
+</span><span id="__span-1-31"><a id="__codelineno-1-31" name="__codelineno-1-31" href="#__codelineno-1-31"></a><span class="sd">        [-0.2900, -0.5321, -0.4400],</span>
+</span><span id="__span-1-32"><a id="__codelineno-1-32" name="__codelineno-1-32" href="#__codelineno-1-32"></a><span class="sd">        [-0.5492,  0.0195, -0.5189]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)</span>
+</span><span id="__span-1-33"><a id="__codelineno-1-33" name="__codelineno-1-33" href="#__codelineno-1-33"></a><span class="sd">weight_magnitude: tensor([[1.2899],</span>
+</span><span id="__span-1-34"><a id="__codelineno-1-34" name="__codelineno-1-34" href="#__codelineno-1-34"></a><span class="sd">        [1.2000],</span>
+</span><span id="__span-1-35"><a id="__codelineno-1-35" name="__codelineno-1-35" href="#__codelineno-1-35"></a><span class="sd">        [1.0640],</span>
+</span><span id="__span-1-36"><a id="__codelineno-1-36" name="__codelineno-1-36" href="#__codelineno-1-36"></a><span class="sd">        [0.7558]])</span>
+</span><span id="__span-1-37"><a id="__codelineno-1-37" name="__codelineno-1-37" href="#__codelineno-1-37"></a><span class="sd">weight_direction: tensor([[-0.2094, -0.0584,  0.2956],</span>
+</span><span id="__span-1-38"><a id="__codelineno-1-38" name="__codelineno-1-38" href="#__codelineno-1-38"></a><span class="sd">        [-0.1505,  0.1512,  0.4102],</span>
+</span><span id="__span-1-39"><a id="__codelineno-1-39" name="__codelineno-1-39" href="#__codelineno-1-39"></a><span class="sd">        [-0.2726, -0.5001, -0.4135],</span>
+</span><span id="__span-1-40"><a id="__codelineno-1-40" name="__codelineno-1-40" href="#__codelineno-1-40"></a><span class="sd">        [-0.7267,  0.0259, -0.6865]], grad_fn=&lt;DivBackward0&gt;)</span>
+</span><span id="__span-1-41"><a id="__codelineno-1-41" name="__codelineno-1-41" href="#__codelineno-1-41"></a><span class="sd">magnitude of weight_direction: tensor([0.1346, 0.2138, 0.4954, 1.0000], grad_fn=&lt;SumBackward1&gt;)</span>
+</span><span id="__span-1-42"><a id="__codelineno-1-42" name="__codelineno-1-42" href="#__codelineno-1-42"></a><span class="sd">&#39;&#39;&#39;</span>
+</span></code></pre></div>
+<h3 id="23">2.3 详解<a class="headerlink" href="#23" title="Permanent link">&para;</a></h3>
+<h4 id="1">（1）定义常量<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="c1"># 关于权重归一化的再次说明</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># WeightNorm W = Magnitude * UnitDirection = Magnitude * (W/Norm(W))</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="n">feat_dim</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">hid_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">)</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="n">wn_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">linear</span><span class="p">)</span>
+</span></code></pre></div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> feat_dim：数据维度</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> hid_dim：隐含层维度，指的是线性层的维度，线性层的隐含层或者Conv的输出通道数</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>inputx = torch.randn(batch_size,feat_dim)</code></li>
+</ul>
+<p>torch.randn初始化inputx，是一个二维张量，第一维度是 batch_size ，第二维度是 输入数据的特征维度</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>linear = nn.Linear(feat_dim,hid_dim,bias=False)</code></li>
+</ul>
+<p>实例化一个linear层，linear层的api：</p>
+<ul class="task-list">
+<li>第一个参数 输入数据的特征维度</li>
+<li>第二个参数 隐含层的特征维度</li>
+<li>
+<p>bias设置False，给关掉</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <code>wn_linear = torch.nn.utils.weight_norm(linear)</code></p>
+</li>
+</ul>
+<p>接下来，把linear作为一个参数，传入 torch 的 weight norm函数中，得到新的模块 weightnorm linear：<code>wn_linear</code>，仍然是一个module</p>
+<h4 id="2-linear-wn_linear-modulegv">（2）探讨 <code>linear</code> 和 <code>wn_linear</code> 两个module的关系（计算g&amp;v）<a class="headerlink" href="#2-linear-wn_linear-modulegv" title="Permanent link">&para;</a></h4>
+<p>根据公式，可以算出 g 和 <span class="arithmatex">\(\frac{v}{||v||}\)</span>，接下来研究怎么算这两个向量：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>                                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>                                <span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear.weight:&quot;</span><span class="p">,</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_magnitude:&quot;</span><span class="p">,</span><span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction:&quot;</span><span class="p">,</span><span class="n">weight_direction</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div>
+<ul>
+<li>首先 计算 g，g表示幅度</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>                                 <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>                                <span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span></code></pre></div>
+<blockquote>
+<p>幅度指的是 跟输入的每一个sample 进行内积的向量的幅度</p>
+<p>首先拿出linear层的权重矩阵，<code>linear.weight</code></p>
+<p>然后 找到每一个 跟sample进行内积的 向量，也就是 weight的每一行 <code>linear.weight[i:,]</code></p>
+<p>对 <code>linear.weight[i:,]</code> 的每一行进行遍历，计算norm：<code>linear.weight[i:,].norm()</code></p>
+<p><code>.norm()</code> 是 torch中的函数，计算L2范数，调用norm() 函数以后，得到每一行的范数</p>
+<p><code>.unsqueeze(-1)</code> 扩一维</p>
+</blockquote>
+<p>计算出 linear层，原来权重矩阵的 幅度值</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">weight_magnitude</span><span class="p">:</span> <span class="n">tensor</span><span class="p">([[</span><span class="mf">1.2899</span><span class="p">],</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>        <span class="p">[</span><span class="mf">1.2000</span><span class="p">],</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>        <span class="p">[</span><span class="mf">1.0640</span><span class="p">],</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>        <span class="p">[</span><span class="mf">0.7558</span><span class="p">]])</span>
+</span></code></pre></div>
+<p>权重矩阵是 4行的，每一行都能计算幅度值</p>
+<details class="question">
+<summary>inputx = 2×3，为什么 linear.weight=4×3?</summary>
+</details>
+<ul>
+<li>计算单位向量</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span></code></pre></div>
+<ul>
+<li>单位向量 就是 v 除以 v的模</li>
+<li>v其实就是w，所以在计算w的时候，就是把原来的权重矩阵 <code>linear.weight</code> 除以 我们刚刚算出来的 幅度值 <code>weight_magnitude</code></li>
+<li>
+<p>每一个权重向量 除以 向量的模，得到 <code>weight_direction</code></p>
+</li>
+<li>
+<p><code>weight_direction</code> 跟 weight 矩阵的形状是一样的，这个矩阵叫做单位向量矩阵，每一行都是单位向量</p>
+</li>
+<li>那为什么 是 单位向量矩阵呢？验证：</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div>
+<ul>
+<li>把 <code>weight_direction</code> 首先，每个元素取平方，然后再对每一行求和</li>
+</ul>
+<p>这里有问题：up主结果为1，我的结果不会是1，但结果应该是1</p>
+<p><img alt="image-20241205102325459" src="/docs/images/image-20241205102325459.png" /></p>
+<p>也不知道哪里出问题了，总之我的有问题，所以称之为 单位向量</p>
+<ul>
+<li>
+<p>叫做 单位向量的原因是 weight每一行的平方和 都是1</p>
+</li>
+<li>
+<p>也就是说 每一行向量长度都是 1，也就是单位向量，反映的是 每个向量的方向的，并且用 长度为1 的向量 反映方向</p>
+</li>
+<li>
+<p>上面已经算出来了 原来 linear层 的权重的幅度和方向：</p>
+</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span></code></pre></div>
+<p>下面将方向与幅度相乘：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>weight_direction * weight_magnitude:
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;MulBackward0&gt;)
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a>linear(inputx):
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>wn_linear(inputx):
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div>
+<p>（1）方向与幅度相乘，得到：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a># weight_direction * weight_magnitude:
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a># tensor([[ 0.4900, -0.5379,  0.5541],
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a>#         [-0.5104,  0.3061,  0.4884],
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>#         [-0.0247, -0.0822,  0.2893],
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>#         [-0.1487, -0.4578, -0.4388]], grad_fn=&lt;MulBackward0&gt;)
+</span></code></pre></div>
+<p>观察，linear.weight的结果和 方向与幅度相乘 得到的乘积  结果相同</p>
+<p>可以把 lienar.weight 的结果 分解为 幅度和方向的乘积</p>
+<p>（2）把inputx分别放入linear层和weight_linear层、inputx与weight_direction 方向和幅度 weight_magnitude做矩阵乘法：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-13-3"><a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-13-4"><a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-13-5"><a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-13-6"><a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div>
+<p>打印结果：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-14-2"><a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-3"><a id="__codelineno-14-3" name="__codelineno-14-3" href="#__codelineno-14-3"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-14-4"><a id="__codelineno-14-4" name="__codelineno-14-4" href="#__codelineno-14-4"></a>linear(inputx):
+</span><span id="__span-14-5"><a id="__codelineno-14-5" name="__codelineno-14-5" href="#__codelineno-14-5"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-6"><a id="__codelineno-14-6" name="__codelineno-14-6" href="#__codelineno-14-6"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-14-7"><a id="__codelineno-14-7" name="__codelineno-14-7" href="#__codelineno-14-7"></a>wn_linear(inputx):
+</span><span id="__span-14-8"><a id="__codelineno-14-8" name="__codelineno-14-8" href="#__codelineno-14-8"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-14-9"><a id="__codelineno-14-9" name="__codelineno-14-9" href="#__codelineno-14-9"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div>
+<p>发现 三个结果都是一样的</p>
+<ul>
+<li>wn_linear 这个新生成的层并不会改变模块的输出值，之前linear的输出是什么，加了WeightNorm输出依旧不变</li>
+<li>区别：（1）原始linear层的参数只有weight（2）weightNorm之后的层有g和v</li>
+</ul>
+<p><strong>查看wn_lienar的参数</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>weight_g Parameter containing:
+</span><span id="__span-16-2"><a id="__codelineno-16-2" name="__codelineno-16-2" href="#__codelineno-16-2"></a>tensor([[0.1483],
+</span><span id="__span-16-3"><a id="__codelineno-16-3" name="__codelineno-16-3" href="#__codelineno-16-3"></a>        [0.7043],
+</span><span id="__span-16-4"><a id="__codelineno-16-4" name="__codelineno-16-4" href="#__codelineno-16-4"></a>        [0.1192],
+</span><span id="__span-16-5"><a id="__codelineno-16-5" name="__codelineno-16-5" href="#__codelineno-16-5"></a>        [0.1339]], requires_grad=True)
+</span><span id="__span-16-6"><a id="__codelineno-16-6" name="__codelineno-16-6" href="#__codelineno-16-6"></a>weight_v Parameter containing:
+</span><span id="__span-16-7"><a id="__codelineno-16-7" name="__codelineno-16-7" href="#__codelineno-16-7"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-16-8"><a id="__codelineno-16-8" name="__codelineno-16-8" href="#__codelineno-16-8"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-16-9"><a id="__codelineno-16-9" name="__codelineno-16-9" href="#__codelineno-16-9"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-16-10"><a id="__codelineno-16-10" name="__codelineno-16-10" href="#__codelineno-16-10"></a>        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span></code></pre></div>
+<p>解释输出结果：</p>
+<p>wn_linear只有两个输出结果：</p>
+<ul>
+<li>weight g：linear权重的幅度</li>
+<li>weight v：weight的方向归一化</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-17-3"><a id="__codelineno-17-3" name="__codelineno-17-3" href="#__codelineno-17-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-17-4"><a id="__codelineno-17-4" name="__codelineno-17-4" href="#__codelineno-17-4"></a>
+</span><span id="__span-17-5"><a id="__codelineno-17-5" name="__codelineno-17-5" href="#__codelineno-17-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lienar.weight&quot;</span><span class="p">)</span>
+</span><span id="__span-17-6"><a id="__codelineno-17-6" name="__codelineno-17-6" href="#__codelineno-17-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>paramter of wn_linear:
+</span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>weight_g Parameter containing:
+</span><span id="__span-18-3"><a id="__codelineno-18-3" name="__codelineno-18-3" href="#__codelineno-18-3"></a>tensor([[0.1483],
+</span><span id="__span-18-4"><a id="__codelineno-18-4" name="__codelineno-18-4" href="#__codelineno-18-4"></a>        [0.7043],
+</span><span id="__span-18-5"><a id="__codelineno-18-5" name="__codelineno-18-5" href="#__codelineno-18-5"></a>        [0.1192],
+</span><span id="__span-18-6"><a id="__codelineno-18-6" name="__codelineno-18-6" href="#__codelineno-18-6"></a>        [0.1339]], requires_grad=True)
+</span><span id="__span-18-7"><a id="__codelineno-18-7" name="__codelineno-18-7" href="#__codelineno-18-7"></a>weight_v Parameter containing:
+</span><span id="__span-18-8"><a id="__codelineno-18-8" name="__codelineno-18-8" href="#__codelineno-18-8"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-18-9"><a id="__codelineno-18-9" name="__codelineno-18-9" href="#__codelineno-18-9"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-18-10"><a id="__codelineno-18-10" name="__codelineno-18-10" href="#__codelineno-18-10"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-18-11"><a id="__codelineno-18-11" name="__codelineno-18-11" href="#__codelineno-18-11"></a>        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span><span id="__span-18-12"><a id="__codelineno-18-12" name="__codelineno-18-12" href="#__codelineno-18-12"></a>lienar.weight
+</span><span id="__span-18-13"><a id="__codelineno-18-13" name="__codelineno-18-13" href="#__codelineno-18-13"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-18-14"><a id="__codelineno-18-14" name="__codelineno-18-14" href="#__codelineno-18-14"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-18-15"><a id="__codelineno-18-15" name="__codelineno-18-15" href="#__codelineno-18-15"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-18-16"><a id="__codelineno-18-16" name="__codelineno-18-16" href="#__codelineno-18-16"></a>        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span></code></pre></div>
+<p>值得注意的是：</p>
+<p>weight_v 和 lienar.weight的结果是相等的，其实weight_v 就是linear.weight但是公式中 对 weight_v进行了归一化 并乘以 幅度，所以 linear.weight可以拆成幅度向量和方向向量，如果不对weight_v 进行变换，那等式两边就不会相等的</p>
+<div class="arithmatex">\[ w = g \frac{v}{||v||}\]</div>
+<p>v就是w，对v做变换，使得等式两边相等</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-19-2"><a id="__codelineno-19-2" name="__codelineno-19-2" href="#__codelineno-19-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_g</span><span class="o">*</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">)</span><span class="o">/</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]))</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>construct weight of linear:
+</span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>tensor([[ 0.0999, -0.0231,  0.0066],
+</span><span id="__span-20-3"><a id="__codelineno-20-3" name="__codelineno-20-3" href="#__codelineno-20-3"></a>        [ 1.9504, -0.1039, -3.3245],
+</span><span id="__span-20-4"><a id="__codelineno-20-4" name="__codelineno-20-4" href="#__codelineno-20-4"></a>        [-0.0279, -0.0190,  0.0211],
+</span><span id="__span-20-5"><a id="__codelineno-20-5" name="__codelineno-20-5" href="#__codelineno-20-5"></a>        [ 0.1008,  0.0072, -0.0711]], grad_fn=&lt;DivBackward0&gt;)
+</span></code></pre></div>
+<p>这个结果和 weight_v 以及linear.weight的结果都是相等的</p>
+<h3 id="24-linear">2.4 linear层演示代码<a class="headerlink" href="#24-linear" title="Permanent link">&para;</a></h3>
+<p>所有linear层的代码：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-21-2"><a id="__codelineno-21-2" name="__codelineno-21-2" href="#__codelineno-21-2"></a><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
+</span><span id="__span-21-3"><a id="__codelineno-21-3" name="__codelineno-21-3" href="#__codelineno-21-3"></a>
+</span><span id="__span-21-4"><a id="__codelineno-21-4" name="__codelineno-21-4" href="#__codelineno-21-4"></a><span class="c1"># 关于权重归一化的再次说明</span>
+</span><span id="__span-21-5"><a id="__codelineno-21-5" name="__codelineno-21-5" href="#__codelineno-21-5"></a><span class="c1"># WeightNorm W = Magnitude * UnitDirection = Magnitude * (W/Norm(W))</span>
+</span><span id="__span-21-6"><a id="__codelineno-21-6" name="__codelineno-21-6" href="#__codelineno-21-6"></a>
+</span><span id="__span-21-7"><a id="__codelineno-21-7" name="__codelineno-21-7" href="#__codelineno-21-7"></a><span class="c1"># step1:define constant</span>
+</span><span id="__span-21-8"><a id="__codelineno-21-8" name="__codelineno-21-8" href="#__codelineno-21-8"></a><span class="n">batch_size</span> <span class="o">=</span> <span class="mi">2</span>
+</span><span id="__span-21-9"><a id="__codelineno-21-9" name="__codelineno-21-9" href="#__codelineno-21-9"></a><span class="n">feat_dim</span> <span class="o">=</span> <span class="mi">3</span>
+</span><span id="__span-21-10"><a id="__codelineno-21-10" name="__codelineno-21-10" href="#__codelineno-21-10"></a><span class="n">hid_dim</span> <span class="o">=</span> <span class="mi">4</span>
+</span><span id="__span-21-11"><a id="__codelineno-21-11" name="__codelineno-21-11" href="#__codelineno-21-11"></a><span class="n">inputx</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">batch_size</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">)</span>
+</span><span id="__span-21-12"><a id="__codelineno-21-12" name="__codelineno-21-12" href="#__codelineno-21-12"></a>
+</span><span id="__span-21-13"><a id="__codelineno-21-13" name="__codelineno-21-13" href="#__codelineno-21-13"></a><span class="c1"># x：2×3 3映射到4维 w^T 4×3 w 3×4 torch中存的就是 4×3的 直接进行 w（4 3）变成 2×4</span>
+</span><span id="__span-21-14"><a id="__codelineno-21-14" name="__codelineno-21-14" href="#__codelineno-21-14"></a><span class="n">linear</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-21-15"><a id="__codelineno-21-15" name="__codelineno-21-15" href="#__codelineno-21-15"></a><span class="n">wn_linear</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">linear</span><span class="p">)</span>
+</span></code></pre></div>
+<p><div class="language-python highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a><span class="c1"># step2:Linear Layer:calculate g and v</span>
+</span><span id="__span-22-2"><a id="__codelineno-22-2" name="__codelineno-22-2" href="#__codelineno-22-2"></a><span class="n">weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">:,]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span> <span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-22-3"><a id="__codelineno-22-3" name="__codelineno-22-3" href="#__codelineno-22-3"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">weight_magnitude</span>
+</span><span id="__span-22-4"><a id="__codelineno-22-4" name="__codelineno-22-4" href="#__codelineno-22-4"></a><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span><span class="p">)</span>
+</span><span id="__span-22-5"><a id="__codelineno-22-5" name="__codelineno-22-5" href="#__codelineno-22-5"></a><span class="c1"># print(&quot;inputx:&quot;,inputx.shape) # inputx: torch.Size([2, 3])</span>
+</span><span id="__span-22-6"><a id="__codelineno-22-6" name="__codelineno-22-6" href="#__codelineno-22-6"></a><span class="c1"># print(&quot;linear.weight:&quot;,linear.weight.shape) # linear.weight: torch.Size([4, 3])</span>
+</span><span id="__span-22-7"><a id="__codelineno-22-7" name="__codelineno-22-7" href="#__codelineno-22-7"></a><span class="c1"># print(&quot;linear(inputx)&quot;,linear(inputx).shape)  # linear(inputx) torch.Size([2, 4])</span>
+</span><span id="__span-22-8"><a id="__codelineno-22-8" name="__codelineno-22-8" href="#__codelineno-22-8"></a>
+</span><span id="__span-22-9"><a id="__codelineno-22-9" name="__codelineno-22-9" href="#__codelineno-22-9"></a><span class="c1"># print(&quot;weight_magnitude:&quot;,weight_magnitude.shape)  # torch.Size([4, 1])</span>
+</span><span id="__span-22-10"><a id="__codelineno-22-10" name="__codelineno-22-10" href="#__codelineno-22-10"></a><span class="c1"># print(&quot;weight_direction:&quot;,weight_direction.shape)  # weight_direction: torch.Size([4, 3])</span>
+</span><span id="__span-22-11"><a id="__codelineno-22-11" name="__codelineno-22-11" href="#__codelineno-22-11"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;magnitude of weight_direction:&quot;</span><span class="p">,(</span><span class="n">weight_direction</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">))</span>
+</span></code></pre></div>
+唯一有的一个问题：magnitude of weight_direction结果不是1</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>tensor([[ 0.1347, -0.1476,  0.0071],
+</span><span id="__span-23-2"><a id="__codelineno-23-2" name="__codelineno-23-2" href="#__codelineno-23-2"></a>        [ 0.5651, -0.1429, -0.7742],
+</span><span id="__span-23-3"><a id="__codelineno-23-3" name="__codelineno-23-3" href="#__codelineno-23-3"></a>        [-0.1938, -0.6252,  0.1177],
+</span><span id="__span-23-4"><a id="__codelineno-23-4" name="__codelineno-23-4" href="#__codelineno-23-4"></a>        [ 0.8338,  0.2848, -0.4729]], grad_fn=&lt;DivBackward0&gt;)
+</span><span id="__span-23-5"><a id="__codelineno-23-5" name="__codelineno-23-5" href="#__codelineno-23-5"></a>magnitude of weight_direction: tensor([0.0400, 0.9392, 0.4423, 1.0000], grad_fn=&lt;SumBackward1&gt;)
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;weight_direction * weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-24-2"><a id="__codelineno-24-2" name="__codelineno-24-2" href="#__codelineno-24-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-24-3"><a id="__codelineno-24-3" name="__codelineno-24-3" href="#__codelineno-24-3"></a>
+</span><span id="__span-24-4"><a id="__codelineno-24-4" name="__codelineno-24-4" href="#__codelineno-24-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;inputx @ (weight_direction * weight_magnitude).T:&quot;</span><span class="p">)</span>
+</span><span id="__span-24-5"><a id="__codelineno-24-5" name="__codelineno-24-5" href="#__codelineno-24-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">inputx</span> <span class="o">@</span> <span class="p">(</span><span class="n">weight_direction</span> <span class="o">*</span> <span class="n">weight_magnitude</span><span class="p">)</span><span class="o">.</span><span class="n">T</span><span class="p">)</span>
+</span><span id="__span-24-6"><a id="__codelineno-24-6" name="__codelineno-24-6" href="#__codelineno-24-6"></a>
+</span><span id="__span-24-7"><a id="__codelineno-24-7" name="__codelineno-24-7" href="#__codelineno-24-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-24-8"><a id="__codelineno-24-8" name="__codelineno-24-8" href="#__codelineno-24-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span><span id="__span-24-9"><a id="__codelineno-24-9" name="__codelineno-24-9" href="#__codelineno-24-9"></a>
+</span><span id="__span-24-10"><a id="__codelineno-24-10" name="__codelineno-24-10" href="#__codelineno-24-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wn_linear(inputx):&quot;</span><span class="p">)</span>
+</span><span id="__span-24-11"><a id="__codelineno-24-11" name="__codelineno-24-11" href="#__codelineno-24-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="p">(</span><span class="n">inputx</span><span class="p">))</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>weight_direction * weight_magnitude:
+</span><span id="__span-25-2"><a id="__codelineno-25-2" name="__codelineno-25-2" href="#__codelineno-25-2"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-25-3"><a id="__codelineno-25-3" name="__codelineno-25-3" href="#__codelineno-25-3"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-25-4"><a id="__codelineno-25-4" name="__codelineno-25-4" href="#__codelineno-25-4"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-25-5"><a id="__codelineno-25-5" name="__codelineno-25-5" href="#__codelineno-25-5"></a>        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;MulBackward0&gt;)
+</span><span id="__span-25-6"><a id="__codelineno-25-6" name="__codelineno-25-6" href="#__codelineno-25-6"></a>inputx @ (weight_direction * weight_magnitude).T:
+</span><span id="__span-25-7"><a id="__codelineno-25-7" name="__codelineno-25-7" href="#__codelineno-25-7"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-8"><a id="__codelineno-25-8" name="__codelineno-25-8" href="#__codelineno-25-8"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-25-9"><a id="__codelineno-25-9" name="__codelineno-25-9" href="#__codelineno-25-9"></a>linear(inputx):
+</span><span id="__span-25-10"><a id="__codelineno-25-10" name="__codelineno-25-10" href="#__codelineno-25-10"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-11"><a id="__codelineno-25-11" name="__codelineno-25-11" href="#__codelineno-25-11"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span><span id="__span-25-12"><a id="__codelineno-25-12" name="__codelineno-25-12" href="#__codelineno-25-12"></a>wn_linear(inputx):
+</span><span id="__span-25-13"><a id="__codelineno-25-13" name="__codelineno-25-13" href="#__codelineno-25-13"></a>tensor([[-0.2544, -0.1274, -0.3263,  0.1558],
+</span><span id="__span-25-14"><a id="__codelineno-25-14" name="__codelineno-25-14" href="#__codelineno-25-14"></a>        [-0.0517,  1.6473, -0.2235,  0.3099]], grad_fn=&lt;MmBackward0&gt;)
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;paramter of wn_linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-26-2"><a id="__codelineno-26-2" name="__codelineno-26-2" href="#__codelineno-26-2"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_linear</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-26-3"><a id="__codelineno-26-3" name="__codelineno-26-3" href="#__codelineno-26-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">)</span>
+</span><span id="__span-26-4"><a id="__codelineno-26-4" name="__codelineno-26-4" href="#__codelineno-26-4"></a>
+</span><span id="__span-26-5"><a id="__codelineno-26-5" name="__codelineno-26-5" href="#__codelineno-26-5"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lienar.weight&quot;</span><span class="p">)</span>
+</span><span id="__span-26-6"><a id="__codelineno-26-6" name="__codelineno-26-6" href="#__codelineno-26-6"></a><span class="nb">print</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>paramter of wn_linear:
+</span><span id="__span-27-2"><a id="__codelineno-27-2" name="__codelineno-27-2" href="#__codelineno-27-2"></a>weight_g Parameter containing:
+</span><span id="__span-27-3"><a id="__codelineno-27-3" name="__codelineno-27-3" href="#__codelineno-27-3"></a>tensor([[0.1483],
+</span><span id="__span-27-4"><a id="__codelineno-27-4" name="__codelineno-27-4" href="#__codelineno-27-4"></a>        [0.7043],
+</span><span id="__span-27-5"><a id="__codelineno-27-5" name="__codelineno-27-5" href="#__codelineno-27-5"></a>        [0.1192],
+</span><span id="__span-27-6"><a id="__codelineno-27-6" name="__codelineno-27-6" href="#__codelineno-27-6"></a>        [0.1339]], requires_grad=True)
+</span><span id="__span-27-7"><a id="__codelineno-27-7" name="__codelineno-27-7" href="#__codelineno-27-7"></a>weight_v Parameter containing:
+</span><span id="__span-27-8"><a id="__codelineno-27-8" name="__codelineno-27-8" href="#__codelineno-27-8"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-27-9"><a id="__codelineno-27-9" name="__codelineno-27-9" href="#__codelineno-27-9"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-27-10"><a id="__codelineno-27-10" name="__codelineno-27-10" href="#__codelineno-27-10"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-27-11"><a id="__codelineno-27-11" name="__codelineno-27-11" href="#__codelineno-27-11"></a>        [ 0.1116,  0.0381, -0.0633]], requires_grad=True)
+</span><span id="__span-27-12"><a id="__codelineno-27-12" name="__codelineno-27-12" href="#__codelineno-27-12"></a>lienar.weight
+</span><span id="__span-27-13"><a id="__codelineno-27-13" name="__codelineno-27-13" href="#__codelineno-27-13"></a>tensor([[ 0.0999, -0.1095,  0.0053],
+</span><span id="__span-27-14"><a id="__codelineno-27-14" name="__codelineno-27-14" href="#__codelineno-27-14"></a>        [ 0.4107, -0.1039, -0.5627],
+</span><span id="__span-27-15"><a id="__codelineno-27-15" name="__codelineno-27-15" href="#__codelineno-27-15"></a>        [-0.0347, -0.1121,  0.0211],
+</span><span id="__span-27-16"><a id="__codelineno-27-16" name="__codelineno-27-16" href="#__codelineno-27-16"></a>        [ 0.1116,  0.0381, -0.0633]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of linear:&quot;</span><span class="p">)</span>
+</span><span id="__span-28-2"><a id="__codelineno-28-2" name="__codelineno-28-2" href="#__codelineno-28-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_g</span><span class="o">*</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">)</span><span class="o">/</span><span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_linear</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">])]))</span>
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="n">construct</span> <span class="n">weight</span> <span class="n">of</span> <span class="n">linear</span><span class="p">:</span>
+</span><span id="__span-29-2"><a id="__codelineno-29-2" name="__codelineno-29-2" href="#__codelineno-29-2"></a><span class="n">tensor</span><span class="p">([[</span> <span class="mf">0.0999</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0231</span><span class="p">,</span>  <span class="mf">0.0066</span><span class="p">],</span>
+</span><span id="__span-29-3"><a id="__codelineno-29-3" name="__codelineno-29-3" href="#__codelineno-29-3"></a>        <span class="p">[</span> <span class="mf">1.9504</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1039</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.3245</span><span class="p">],</span>
+</span><span id="__span-29-4"><a id="__codelineno-29-4" name="__codelineno-29-4" href="#__codelineno-29-4"></a>        <span class="p">[</span><span class="o">-</span><span class="mf">0.0279</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0190</span><span class="p">,</span>  <span class="mf">0.0211</span><span class="p">],</span>
+</span><span id="__span-29-5"><a id="__codelineno-29-5" name="__codelineno-29-5" href="#__codelineno-29-5"></a>        <span class="p">[</span> <span class="mf">0.1008</span><span class="p">,</span>  <span class="mf">0.0072</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.0711</span><span class="p">]],</span> <span class="n">grad_fn</span><span class="o">=&lt;</span><span class="n">DivBackward0</span><span class="o">&gt;</span><span class="p">)</span>
+</span></code></pre></div>
+<hr />
+<h3 id="25-conv">2.5 conv层的代码<a class="headerlink" href="#25-conv" title="Permanent link">&para;</a></h3>
+<p>(全部代码)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>conv1d = nn.Conv1d(feat_dim,hid_dim,kernel_size=1,bias=False) # input:[B,C,T],weight:[oc,ic,1]
+</span><span id="__span-30-2"><a id="__codelineno-30-2" name="__codelineno-30-2" href="#__codelineno-30-2"></a>wn_conv1d = torch.nn.utils.weight_norm(conv1d)
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="n">covn1d_weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-31-2"><a id="__codelineno-31-2" name="__codelineno-31-2" href="#__codelineno-31-2"></a>                                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+</span><span id="__span-31-3"><a id="__codelineno-31-3" name="__codelineno-31-3" href="#__codelineno-31-3"></a>                                            <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+</span><span id="__span-31-4"><a id="__codelineno-31-4" name="__codelineno-31-4" href="#__codelineno-31-4"></a>                                        <span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-31-5"><a id="__codelineno-31-5" name="__codelineno-31-5" href="#__codelineno-31-5"></a>
+</span><span id="__span-31-6"><a id="__codelineno-31-6" name="__codelineno-31-6" href="#__codelineno-31-6"></a><span class="n">covn1d_weight_direction</span> <span class="o">=</span> <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">covn1d_weight_magnitude</span>
+</span><span id="__span-31-7"><a id="__codelineno-31-7" name="__codelineno-31-7" href="#__codelineno-31-7"></a>
+</span><span id="__span-31-8"><a id="__codelineno-31-8" name="__codelineno-31-8" href="#__codelineno-31-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-31-9"><a id="__codelineno-31-9" name="__codelineno-31-9" href="#__codelineno-31-9"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-31-10"><a id="__codelineno-31-10" name="__codelineno-31-10" href="#__codelineno-31-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>parameters of wn_conv1d:
+</span><span id="__span-32-2"><a id="__codelineno-32-2" name="__codelineno-32-2" href="#__codelineno-32-2"></a>weight_g Parameter containing:
+</span><span id="__span-32-3"><a id="__codelineno-32-3" name="__codelineno-32-3" href="#__codelineno-32-3"></a>tensor([[[0.4729]],
+</span><span id="__span-32-4"><a id="__codelineno-32-4" name="__codelineno-32-4" href="#__codelineno-32-4"></a>
+</span><span id="__span-32-5"><a id="__codelineno-32-5" name="__codelineno-32-5" href="#__codelineno-32-5"></a>        [[0.7834]],
+</span><span id="__span-32-6"><a id="__codelineno-32-6" name="__codelineno-32-6" href="#__codelineno-32-6"></a>
+</span><span id="__span-32-7"><a id="__codelineno-32-7" name="__codelineno-32-7" href="#__codelineno-32-7"></a>        [[0.5456]],
+</span><span id="__span-32-8"><a id="__codelineno-32-8" name="__codelineno-32-8" href="#__codelineno-32-8"></a>
+</span><span id="__span-32-9"><a id="__codelineno-32-9" name="__codelineno-32-9" href="#__codelineno-32-9"></a>        [[0.5718]]], requires_grad=True) torch.Size([4, 1, 1])
+</span><span id="__span-32-10"><a id="__codelineno-32-10" name="__codelineno-32-10" href="#__codelineno-32-10"></a>weight_v Parameter containing:
+</span><span id="__span-32-11"><a id="__codelineno-32-11" name="__codelineno-32-11" href="#__codelineno-32-11"></a>tensor([[[ 0.0987],
+</span><span id="__span-32-12"><a id="__codelineno-32-12" name="__codelineno-32-12" href="#__codelineno-32-12"></a>         [-0.1757],
+</span><span id="__span-32-13"><a id="__codelineno-32-13" name="__codelineno-32-13" href="#__codelineno-32-13"></a>         [ 0.4279]],
+</span><span id="__span-32-14"><a id="__codelineno-32-14" name="__codelineno-32-14" href="#__codelineno-32-14"></a>
+</span><span id="__span-32-15"><a id="__codelineno-32-15" name="__codelineno-32-15" href="#__codelineno-32-15"></a>        [[ 0.4962],
+</span><span id="__span-32-16"><a id="__codelineno-32-16" name="__codelineno-32-16" href="#__codelineno-32-16"></a>         [-0.4026],
+</span><span id="__span-32-17"><a id="__codelineno-32-17" name="__codelineno-32-17" href="#__codelineno-32-17"></a>         [ 0.4533]],
+</span><span id="__span-32-18"><a id="__codelineno-32-18" name="__codelineno-32-18" href="#__codelineno-32-18"></a>
+</span><span id="__span-32-19"><a id="__codelineno-32-19" name="__codelineno-32-19" href="#__codelineno-32-19"></a>        [[ 0.4717],
+</span><span id="__span-32-20"><a id="__codelineno-32-20" name="__codelineno-32-20" href="#__codelineno-32-20"></a>         [-0.1782],
+</span><span id="__span-32-21"><a id="__codelineno-32-21" name="__codelineno-32-21" href="#__codelineno-32-21"></a>         [-0.2082]],
+</span><span id="__span-32-22"><a id="__codelineno-32-22" name="__codelineno-32-22" href="#__codelineno-32-22"></a>
+</span><span id="__span-32-23"><a id="__codelineno-32-23" name="__codelineno-32-23" href="#__codelineno-32-23"></a>
+</span><span id="__span-32-24"><a id="__codelineno-32-24" name="__codelineno-32-24" href="#__codelineno-32-24"></a>        [[-0.5708],
+</span><span id="__span-32-25"><a id="__codelineno-32-25" name="__codelineno-32-25" href="#__codelineno-32-25"></a>         [ 0.0271],
+</span><span id="__span-32-26"><a id="__codelineno-32-26" name="__codelineno-32-26" href="#__codelineno-32-26"></a>         [-0.0208]]], requires_grad=True) torch.Size([4, 3, 1])         
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-33-2"><a id="__codelineno-33-2" name="__codelineno-33-2" href="#__codelineno-33-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_g</span> <span class="o">*</span> <span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+</span><span id="__span-33-3"><a id="__codelineno-33-3" name="__codelineno-33-3" href="#__codelineno-33-3"></a>    <span class="p">[</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-33-4"><a id="__codelineno-33-4" name="__codelineno-33-4" href="#__codelineno-33-4"></a>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-33-5"><a id="__codelineno-33-5" name="__codelineno-33-5" href="#__codelineno-33-5"></a>                            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>construct weight of conv1d:
+</span><span id="__span-34-2"><a id="__codelineno-34-2" name="__codelineno-34-2" href="#__codelineno-34-2"></a>tensor([[[ 0.0987],
+</span><span id="__span-34-3"><a id="__codelineno-34-3" name="__codelineno-34-3" href="#__codelineno-34-3"></a>         [-0.1757],
+</span><span id="__span-34-4"><a id="__codelineno-34-4" name="__codelineno-34-4" href="#__codelineno-34-4"></a>         [ 0.4279]],
+</span><span id="__span-34-5"><a id="__codelineno-34-5" name="__codelineno-34-5" href="#__codelineno-34-5"></a>
+</span><span id="__span-34-6"><a id="__codelineno-34-6" name="__codelineno-34-6" href="#__codelineno-34-6"></a>        [[ 0.4962],
+</span><span id="__span-34-7"><a id="__codelineno-34-7" name="__codelineno-34-7" href="#__codelineno-34-7"></a>         [-0.4026],
+</span><span id="__span-34-8"><a id="__codelineno-34-8" name="__codelineno-34-8" href="#__codelineno-34-8"></a>         [ 0.4533]],
+</span><span id="__span-34-9"><a id="__codelineno-34-9" name="__codelineno-34-9" href="#__codelineno-34-9"></a>
+</span><span id="__span-34-10"><a id="__codelineno-34-10" name="__codelineno-34-10" href="#__codelineno-34-10"></a>        [[ 0.4717],
+</span><span id="__span-34-11"><a id="__codelineno-34-11" name="__codelineno-34-11" href="#__codelineno-34-11"></a>         [-0.1782],
+</span><span id="__span-34-12"><a id="__codelineno-34-12" name="__codelineno-34-12" href="#__codelineno-34-12"></a>         [-0.2082]],
+</span><span id="__span-34-13"><a id="__codelineno-34-13" name="__codelineno-34-13" href="#__codelineno-34-13"></a>
+</span><span id="__span-34-14"><a id="__codelineno-34-14" name="__codelineno-34-14" href="#__codelineno-34-14"></a>        [[-0.5708],
+</span><span id="__span-34-15"><a id="__codelineno-34-15" name="__codelineno-34-15" href="#__codelineno-34-15"></a>         [ 0.0271],
+</span><span id="__span-34-16"><a id="__codelineno-34-16" name="__codelineno-34-16" href="#__codelineno-34-16"></a>         [-0.0208]]], grad_fn=&lt;MulBackward0&gt;)
+</span></code></pre></div>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conv1d.weight:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-2"><a id="__codelineno-35-2" name="__codelineno-35-2" href="#__codelineno-35-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-35-3"><a id="__codelineno-35-3" name="__codelineno-35-3" href="#__codelineno-35-3"></a>
+</span><span id="__span-35-4"><a id="__codelineno-35-4" name="__codelineno-35-4" href="#__codelineno-35-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-5"><a id="__codelineno-35-5" name="__codelineno-35-5" href="#__codelineno-35-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-35-6"><a id="__codelineno-35-6" name="__codelineno-35-6" href="#__codelineno-35-6"></a>
+</span><span id="__span-35-7"><a id="__codelineno-35-7" name="__codelineno-35-7" href="#__codelineno-35-7"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-35-8"><a id="__codelineno-35-8" name="__codelineno-35-8" href="#__codelineno-35-8"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a>conv1d.weight:
+</span><span id="__span-36-2"><a id="__codelineno-36-2" name="__codelineno-36-2" href="#__codelineno-36-2"></a>tensor([[[ 0.0987],
+</span><span id="__span-36-3"><a id="__codelineno-36-3" name="__codelineno-36-3" href="#__codelineno-36-3"></a>         [-0.1757],
+</span><span id="__span-36-4"><a id="__codelineno-36-4" name="__codelineno-36-4" href="#__codelineno-36-4"></a>         [ 0.4279]],
+</span><span id="__span-36-5"><a id="__codelineno-36-5" name="__codelineno-36-5" href="#__codelineno-36-5"></a>
+</span><span id="__span-36-6"><a id="__codelineno-36-6" name="__codelineno-36-6" href="#__codelineno-36-6"></a>        [[ 0.4962],
+</span><span id="__span-36-7"><a id="__codelineno-36-7" name="__codelineno-36-7" href="#__codelineno-36-7"></a>         [-0.4026],
+</span><span id="__span-36-8"><a id="__codelineno-36-8" name="__codelineno-36-8" href="#__codelineno-36-8"></a>         [ 0.4533]],
+</span><span id="__span-36-9"><a id="__codelineno-36-9" name="__codelineno-36-9" href="#__codelineno-36-9"></a>
+</span><span id="__span-36-10"><a id="__codelineno-36-10" name="__codelineno-36-10" href="#__codelineno-36-10"></a>        [[ 0.4717],
+</span><span id="__span-36-11"><a id="__codelineno-36-11" name="__codelineno-36-11" href="#__codelineno-36-11"></a>         [-0.1782],
+</span><span id="__span-36-12"><a id="__codelineno-36-12" name="__codelineno-36-12" href="#__codelineno-36-12"></a>         [-0.2082]],
+</span><span id="__span-36-13"><a id="__codelineno-36-13" name="__codelineno-36-13" href="#__codelineno-36-13"></a>
+</span><span id="__span-36-14"><a id="__codelineno-36-14" name="__codelineno-36-14" href="#__codelineno-36-14"></a>        [[-0.5708],
+</span><span id="__span-36-15"><a id="__codelineno-36-15" name="__codelineno-36-15" href="#__codelineno-36-15"></a>         [ 0.0271],
+</span><span id="__span-36-16"><a id="__codelineno-36-16" name="__codelineno-36-16" href="#__codelineno-36-16"></a>         [-0.0208]]], grad_fn=&lt;WeightNormInterfaceBackward0&gt;)
+</span><span id="__span-36-17"><a id="__codelineno-36-17" name="__codelineno-36-17" href="#__codelineno-36-17"></a>covn1d_weight_magnitude:
+</span><span id="__span-36-18"><a id="__codelineno-36-18" name="__codelineno-36-18" href="#__codelineno-36-18"></a>tensor([[[0.4729],
+</span><span id="__span-36-19"><a id="__codelineno-36-19" name="__codelineno-36-19" href="#__codelineno-36-19"></a>         [0.4729],
+</span><span id="__span-36-20"><a id="__codelineno-36-20" name="__codelineno-36-20" href="#__codelineno-36-20"></a>         [0.4729]],
+</span><span id="__span-36-21"><a id="__codelineno-36-21" name="__codelineno-36-21" href="#__codelineno-36-21"></a>
+</span><span id="__span-36-22"><a id="__codelineno-36-22" name="__codelineno-36-22" href="#__codelineno-36-22"></a>        [[0.7834],
+</span><span id="__span-36-23"><a id="__codelineno-36-23" name="__codelineno-36-23" href="#__codelineno-36-23"></a>         [0.7834],
+</span><span id="__span-36-24"><a id="__codelineno-36-24" name="__codelineno-36-24" href="#__codelineno-36-24"></a>         [0.7834]],
+</span><span id="__span-36-25"><a id="__codelineno-36-25" name="__codelineno-36-25" href="#__codelineno-36-25"></a>
+</span><span id="__span-36-26"><a id="__codelineno-36-26" name="__codelineno-36-26" href="#__codelineno-36-26"></a>        [[0.5456],
+</span><span id="__span-36-27"><a id="__codelineno-36-27" name="__codelineno-36-27" href="#__codelineno-36-27"></a>         [0.5456],
+</span><span id="__span-36-28"><a id="__codelineno-36-28" name="__codelineno-36-28" href="#__codelineno-36-28"></a>         [0.5456]],
+</span><span id="__span-36-29"><a id="__codelineno-36-29" name="__codelineno-36-29" href="#__codelineno-36-29"></a>        [[0.5718],
+</span><span id="__span-36-30"><a id="__codelineno-36-30" name="__codelineno-36-30" href="#__codelineno-36-30"></a>         [0.5718],
+</span><span id="__span-36-31"><a id="__codelineno-36-31" name="__codelineno-36-31" href="#__codelineno-36-31"></a>         [0.5718]]])
+</span><span id="__span-36-32"><a id="__codelineno-36-32" name="__codelineno-36-32" href="#__codelineno-36-32"></a>covn1d_weight_direction:
+</span><span id="__span-36-33"><a id="__codelineno-36-33" name="__codelineno-36-33" href="#__codelineno-36-33"></a>tensor([[[ 0.2086],
+</span><span id="__span-36-34"><a id="__codelineno-36-34" name="__codelineno-36-34" href="#__codelineno-36-34"></a>         [-0.3715],
+</span><span id="__span-36-35"><a id="__codelineno-36-35" name="__codelineno-36-35" href="#__codelineno-36-35"></a>         [ 0.9047]],
+</span><span id="__span-36-36"><a id="__codelineno-36-36" name="__codelineno-36-36" href="#__codelineno-36-36"></a>
+</span><span id="__span-36-37"><a id="__codelineno-36-37" name="__codelineno-36-37" href="#__codelineno-36-37"></a>        [[ 0.6334],
+</span><span id="__span-36-38"><a id="__codelineno-36-38" name="__codelineno-36-38" href="#__codelineno-36-38"></a>         [-0.5139],
+</span><span id="__span-36-39"><a id="__codelineno-36-39" name="__codelineno-36-39" href="#__codelineno-36-39"></a>         [ 0.5785]],
+</span><span id="__span-36-40"><a id="__codelineno-36-40" name="__codelineno-36-40" href="#__codelineno-36-40"></a>
+</span><span id="__span-36-41"><a id="__codelineno-36-41" name="__codelineno-36-41" href="#__codelineno-36-41"></a>        [[ 0.8647],
+</span><span id="__span-36-42"><a id="__codelineno-36-42" name="__codelineno-36-42" href="#__codelineno-36-42"></a>         [-0.3267],
+</span><span id="__span-36-43"><a id="__codelineno-36-43" name="__codelineno-36-43" href="#__codelineno-36-43"></a>         [-0.3816]],
+</span><span id="__span-36-44"><a id="__codelineno-36-44" name="__codelineno-36-44" href="#__codelineno-36-44"></a>
+</span><span id="__span-36-45"><a id="__codelineno-36-45" name="__codelineno-36-45" href="#__codelineno-36-45"></a>        [[-0.9982],
+</span><span id="__span-36-46"><a id="__codelineno-36-46" name="__codelineno-36-46" href="#__codelineno-36-46"></a>         [ 0.0475],
+</span><span id="__span-36-47"><a id="__codelineno-36-47" name="__codelineno-36-47" href="#__codelineno-36-47"></a>         [-0.0364]]], grad_fn=&lt;DivBackward0&gt;)         
+</span></code></pre></div>
+<p>解读：</p>
+<p>（1）实例化一个 1×1 的卷积层</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="n">conv1d</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Conv1d</span><span class="p">(</span><span class="n">feat_dim</span><span class="p">,</span><span class="n">hid_dim</span><span class="p">,</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">bias</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</span><span id="__span-37-2"><a id="__codelineno-37-2" name="__codelineno-37-2" href="#__codelineno-37-2"></a><span class="c1"># input:[B,C,T],weight:[oc,ic,1]</span>
+</span><span id="__span-37-3"><a id="__codelineno-37-3" name="__codelineno-37-3" href="#__codelineno-37-3"></a><span class="n">wn_conv1d</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">nn</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">weight_norm</span><span class="p">(</span><span class="n">conv1d</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>1×1 的卷积层 类似 MLP</li>
+<li>输入通道数 设置为 feat_dim，输出通道数是  hid_dim，kernel_size设为1，不要bias</li>
+<li>1×1的卷积层，输入的数据格式：batchsize × channel×length</li>
+<li>权重的维度是 output channel×input channel ×kernel size，这里kernel size=1</li>
+<li>把一维卷积 conv1d 作为 module，送入到weight Norm函数中，得到WeightNorm包裹后的convolution：wn_conv1d（即加了权重归一化的模块）</li>
+</ul>
+<p>（2）计算 covn1d_weight_magnitude</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a><span class="n">covn1d_weight_magnitude</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-38-2"><a id="__codelineno-38-2" name="__codelineno-38-2" href="#__codelineno-38-2"></a>                                        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span><span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
+</span><span id="__span-38-3"><a id="__codelineno-38-3" name="__codelineno-38-3" href="#__codelineno-38-3"></a>                                            <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span>
+</span><span id="__span-38-4"><a id="__codelineno-38-4" name="__codelineno-38-4" href="#__codelineno-38-4"></a>                                        <span class="p">)</span><span class="o">.</span><span class="n">tile</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="n">feat_dim</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-38-5"><a id="__codelineno-38-5" name="__codelineno-38-5" href="#__codelineno-38-5"></a>
+</span><span id="__span-38-6"><a id="__codelineno-38-6" name="__codelineno-38-6" href="#__codelineno-38-6"></a><span class="n">covn1d_weight_direction</span> <span class="o">=</span> <span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span> <span class="o">/</span> <span class="n">covn1d_weight_magnitude</span>
+</span><span id="__span-38-7"><a id="__codelineno-38-7" name="__codelineno-38-7" href="#__codelineno-38-7"></a>
+</span><span id="__span-38-8"><a id="__codelineno-38-8" name="__codelineno-38-8" href="#__codelineno-38-8"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-38-9"><a id="__codelineno-38-9" name="__codelineno-38-9" href="#__codelineno-38-9"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-38-10"><a id="__codelineno-38-10" name="__codelineno-38-10" href="#__codelineno-38-10"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span></code></pre></div>
+<ul>
+<li>conv1d.weight拿出卷积层的权重，计算权重矩阵的幅度，权重是一个三维矩阵，格式是weight:[oc,ic,1]，对每一行计算模，每一行是一个二阶张量，每一个二阶张量 跟 input 进行乘法操作，所以我们对每一行 计算范数，然后拼起来，然后进行扩维，得到幅度 covn1d_weight_magnitude</li>
+<li>单位向量 同样是 weight 除以 幅度，得到单位向量，也就是方向向量</li>
+</ul>
+<p>（3）打印幅度、单位向量、原来的权重，以及wn_conv1d中的两个参数：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;parameters of wn_conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-2"><a id="__codelineno-39-2" name="__codelineno-39-2" href="#__codelineno-39-2"></a><span class="k">for</span> <span class="n">n</span><span class="p">,</span><span class="n">p</span> <span class="ow">in</span> <span class="n">wn_conv1d</span><span class="o">.</span><span class="n">named_parameters</span><span class="p">():</span>
+</span><span id="__span-39-3"><a id="__codelineno-39-3" name="__codelineno-39-3" href="#__codelineno-39-3"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">p</span><span class="p">,</span><span class="n">p</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-39-4"><a id="__codelineno-39-4" name="__codelineno-39-4" href="#__codelineno-39-4"></a>
+</span><span id="__span-39-5"><a id="__codelineno-39-5" name="__codelineno-39-5" href="#__codelineno-39-5"></a>
+</span><span id="__span-39-6"><a id="__codelineno-39-6" name="__codelineno-39-6" href="#__codelineno-39-6"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;construct weight of conv1d:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-7"><a id="__codelineno-39-7" name="__codelineno-39-7" href="#__codelineno-39-7"></a><span class="nb">print</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_g</span> <span class="o">*</span> <span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span>
+</span><span id="__span-39-8"><a id="__codelineno-39-8" name="__codelineno-39-8" href="#__codelineno-39-8"></a>    <span class="p">[</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="p">[</span><span class="n">i</span><span class="p">,:,:]</span><span class="o">.</span><span class="n">norm</span><span class="p">()</span> 
+</span><span id="__span-39-9"><a id="__codelineno-39-9" name="__codelineno-39-9" href="#__codelineno-39-9"></a>     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">wn_conv1d</span><span class="o">.</span><span class="n">weight_v</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])],</span>
+</span><span id="__span-39-10"><a id="__codelineno-39-10" name="__codelineno-39-10" href="#__codelineno-39-10"></a>                            <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)))</span>
+</span><span id="__span-39-11"><a id="__codelineno-39-11" name="__codelineno-39-11" href="#__codelineno-39-11"></a>
+</span><span id="__span-39-12"><a id="__codelineno-39-12" name="__codelineno-39-12" href="#__codelineno-39-12"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;conv1d.weight:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-13"><a id="__codelineno-39-13" name="__codelineno-39-13" href="#__codelineno-39-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">conv1d</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
+</span><span id="__span-39-14"><a id="__codelineno-39-14" name="__codelineno-39-14" href="#__codelineno-39-14"></a>
+</span><span id="__span-39-15"><a id="__codelineno-39-15" name="__codelineno-39-15" href="#__codelineno-39-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-16"><a id="__codelineno-39-16" name="__codelineno-39-16" href="#__codelineno-39-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-39-17"><a id="__codelineno-39-17" name="__codelineno-39-17" href="#__codelineno-39-17"></a>
+</span><span id="__span-39-18"><a id="__codelineno-39-18" name="__codelineno-39-18" href="#__codelineno-39-18"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-39-19"><a id="__codelineno-39-19" name="__codelineno-39-19" href="#__codelineno-39-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div>
+<p>① wn_conv1d中的两个参数：有weight_g  和 weight_v</p>
+<p>weight_g  卷积的权重的幅度</p>
+<p>weight_v  就是卷积的权重</p>
+<p>区分：</p>
+<p>weight_v 就是权重</p>
+<p>除以v的范数 才是方向</p>
+<p>除以v的范数 再乘以 幅度 还是权重 还是 weight_v</p>
+<p>② </p>
+<p>把 幅度 与单位向量 相乘</p>
+<p>幅度：wn_conv1d.weight_g</p>
+<p>单位向量：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a>wn_conv1d.weight_v / torch.tensor(
+</span><span id="__span-40-2"><a id="__codelineno-40-2" name="__codelineno-40-2" href="#__codelineno-40-2"></a>    [wn_conv1d.weight_v[i,:,:].norm() 
+</span><span id="__span-40-3"><a id="__codelineno-40-3" name="__codelineno-40-3" href="#__codelineno-40-3"></a>     for i in torch.arange(wn_conv1d.weight_v.shape[0])],
+</span><span id="__span-40-4"><a id="__codelineno-40-4" name="__codelineno-40-4" href="#__codelineno-40-4"></a>                            dtype=torch.float32)
+</span></code></pre></div>
+<p>本质是 weight向量 除以 weight 向量的模，得到单位方向向量，或者叫 单位长度的方向向量</p>
+<p>幅度 × 单位长度的方向向量 得到  <code>construct weight of conv1d</code></p>
+<p>值得注意的是：<code>construct weight of conv1d</code> 与 <code>weight_v</code> 与 <code>conv1d.weight</code> 是一样的，就是卷积的权重</p>
+<p>③ 对比  <code>weight_v</code>     <code>construct weight of conv1d</code>     <code>conv1d.weight</code>  都是一样的</p>
+<p>在一维卷积中 也是一样的，加了权重归一化，就是把幅度与 权重的单位长度的方向向量 解耦开来，打印权重的幅度 和 权重的单位长度的方向向量</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_magnitude:&quot;</span><span class="p">)</span>
+</span><span id="__span-41-2"><a id="__codelineno-41-2" name="__codelineno-41-2" href="#__codelineno-41-2"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_magnitude</span><span class="p">)</span>
+</span><span id="__span-41-3"><a id="__codelineno-41-3" name="__codelineno-41-3" href="#__codelineno-41-3"></a>
+</span><span id="__span-41-4"><a id="__codelineno-41-4" name="__codelineno-41-4" href="#__codelineno-41-4"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;covn1d_weight_direction:&quot;</span><span class="p">)</span>
+</span><span id="__span-41-5"><a id="__codelineno-41-5" name="__codelineno-41-5" href="#__codelineno-41-5"></a><span class="nb">print</span><span class="p">(</span><span class="n">covn1d_weight_direction</span><span class="p">)</span>
+</span></code></pre></div>
+<p>以上的WeightNorm的原理，最重要的就是 公式：</p>
+<p><img alt="image-20241208195121293" src="/docs/images/image-20241208195121293.png" /></p>
+<p>（1）如果不加 WeightNorm，只需要优化一个参数，加了WeightNorm之后，需要优化两个参数，把loss同时对g求梯度，对v求一个梯度</p>
+<p>（2）并且WeightNorm并没有带来额外的参数，并没有带来实质意义上的额外参数，对比BatchNorm会需要计算额外的统计量，而WeightNorm并没有增加额外的参数</p>
+<p>（3）经过以上的实验，可以看到做了WeightNorm之后，输出值是没有变化的，比如：</p>
+<p><img alt="image-20241208195346405" src="/docs/images/image-20241208195346405.png" /></p>
+<p>展示了三种计算，</p>
+<p>① inputx跟方向向量相乘</p>
+<p>②inputx放入linear层</p>
+<p>③inputx放入WeightNorm linear层</p>
+<p>输出值都是一样的，权重归一化不会改变模块的输出值，只是改变了参数内部的乘法操作的模式，相当于矩阵分解的过程</p>
+<p>所以权重归一化 也可以 理解为权重分解</p>
+<p>把权重的幅度 跟 单位长度的 方向向量 解耦开来，在pytorch中通过torch.nn.utils.weight_norm的函数，把一个module包裹起来，返回一个新的module，新的module参数是两个，一个是weight_g 一个是 weight_v</p>
+<p>weight_g 是原来权重的幅度，weight_v 就是原来的权重</p>
+<p>问题：为什么要除以 v的模？</p>
+<p>答：因为除以 v的模，得到单位长度的方向向量，再跟幅度相乘，得到原来的权重，如果不除以模的话，所有两边是不会相等的</p>
+<p><img alt="image-20241208195843990" src="/docs/images/image-20241208195843990.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

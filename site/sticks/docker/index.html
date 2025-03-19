@@ -1,0 +1,5088 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/sticks/docker/">
+      
+      
+        <link rel="prev" href="../screen/">
+      
+      
+        <link rel="next" href="../writting/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>Docker - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Docker
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../learning/3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用容器跑代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地拉取镜像上传服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 配置加速阿里云镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      dockerfile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统学习docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统学习docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker run 后台启动
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改容器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保存镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker save
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker push
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结 docker 的常用命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      补充端口映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 存储
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="docker 存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录挂载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录挂载&amp;卷映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      卷映射
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      使用容器跑代码
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      本地拉取镜像上传服务器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 配置加速阿里云镜像源
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      一些命令
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="一些命令">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-tag" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker tag
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockerfile" class="md-nav__link">
+    <span class="md-ellipsis">
+      dockerfile
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      系统学习docker
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="系统学习docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      安装docker
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 命令
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      启动容器
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-run" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker run 后台启动
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      修改容器
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      保存镜像
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="保存镜像">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#docker-commit" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker commit
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-save" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker save
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#docker-load_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker load
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker-push" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker push
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      总结 docker 的常用命令
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      补充端口映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#docker_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      docker 存储
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="docker 存储">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录挂载
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      目录挂载&amp;卷映射
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      卷映射
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
+<p>占位：<a href="https://hub.docker.com/_/python">docker hub</a></p>
+<p><img alt="image-20250221141051912" src="/docs/images/image-20250221141051912.png" /> </p>
+<p><a href="https://blog.csdn.net/A24kk42__/article/details/131970979">小白入门：如何在docker中运行python程序</a></p>
+<p><a href="https://www.zhihu.com/question/486938264/answer/2665791940">如何通过 Docker 部署深度学习项目环境？</a></p>
+<h2 id="_1">使用容器跑代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>1️⃣ 创建一个本地Ubuntu系统和docker容器共享的文件夹</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>sudo<span class="w"> </span>mkdir<span class="w"> </span>/loacal_data
+</span></code></pre></div>
+<p>2️⃣ 将代码文件复制到Ubuntu系统的<code>/loacal_data</code>目录下，这样该目录就和容器内部的<code>/container_data</code>目录连通了</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>run<span class="w"> </span>-v<span class="w"> </span>/local_data:/container_data<span class="w"> </span>-itd<span class="w"> </span>image_name:v1<span class="w"> </span>bash
+</span></code></pre></div>
+<p>3️⃣ 查看此时正在运行的容器</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>ps<span class="w"> </span>
+</span></code></pre></div>
+<p>该容器就是我们刚刚所创建的用于本地测试代码的容器</p>
+<p>4️⃣ 用<code>docker attach</code>进入容器</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>sudo<span class="w"> </span>docker<span class="w"> </span>attach<span class="w"> </span>500ad76de1cf
+</span></code></pre></div>
+<p>5️⃣ 之后的步骤就是与在本地系统命令行的操作一样，进入代码的文件夹，用<code>python</code>命令执行代码</p>
+<h2 id="_2">本地拉取镜像上传服务器<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a href="https://blog.csdn.net/weixin_43474841/article/details/144285723">步骤</a></p>
+<p>🟢 第一步：拉取远程镜像，<a href="https://hub.docker.com/r/pytorch/pytorch/tags">docker pull</a></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
+</span></code></pre></div>
+<p><img alt="image-20250225201500742" src="/docs/images/image-20250225201500742.png" />  </p>
+<p><img alt="image-20250225221519423" src="/docs/images/image-20250225221519423.png" /></p>
+<p>🟢 第二步，标记镜像，为 pull 下来的镜像，打标签，推送到==服务器上的名称:版本号==</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>8d8f916f1de0<span class="w"> </span>geco_image:v1
+</span></code></pre></div>
+<p><img alt="image-20250225221931500" src="/docs/images/image-20250225221931500.png" /></p>
+<p>🟢 第三步：将本地的 docker 镜像保存为 tar 文件，就用刚刚 tag 的别名:标签，这样到服务商就是对应的名称和标签</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>镜像tar文件名称.tar<span class="w"> </span>geco_image:v1
+</span></code></pre></div>
+<p><img alt="image-20250225223126609" src="/docs/images/image-20250225223126609.png" /></p>
+<p>🟢 第四步：传输镜像，将保存的tar文件传输到远程服务上，FileZilla 即可</p>
+<p><img alt="image-20250225223611110" src="/docs/images/image-20250225223611110.png" /></p>
+<p>🟢 第五步：在远程服务上加载镜像</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div>
+<p><img alt="image-20250225202105226" src="/docs/images/image-20250225202105226.png" /></p>
+<ul>
+<li>在服务器端启动 docker</li>
+</ul>
+<p><code>docker run -it #####image_id#####</code></p>
+<p><img alt="image-20250225203349984" src="/docs/images/image-20250225203349984.png" /></p>
+<p>docker run -it 镜像，run起来就是容器（或者叫应用），是可以修改的。</p>
+<h2 id="docker_1">docker 配置加速<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像</a>源<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250225201005904" src="/docs/images/image-20250225201005904.png" /></p>
+<p><img alt="image-20250225201030052" src="/docs/images/image-20250225201030052.png" /></p>
+<p><img alt="image-20250225200841314" src="/docs/images/image-20250225200841314.png" /></p>
+<h2 id="_3">一些命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>
+<p>docker images</p>
+</li>
+<li>
+<p>查看已经有的 docker</p>
+</li>
+<li>
+<p>docker pull  ###</p>
+</li>
+<li>
+<p>docker pull asappinc/python-38-cuda118</p>
+</li>
+<li>
+<p>拉取远程 docker</p>
+</li>
+<li>
+<p>删除本地拉取过来的 docker：</p>
+</li>
+<li>
+<p>docker 安装成功没   docker help</p>
+</li>
+</ul>
+<h3 id="docker-tag">docker tag<a class="headerlink" href="#docker-tag" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>SOURCE<span class="o">[</span>本地<span class="o">]</span>_IMAGE<span class="o">[</span>:TAG<span class="o">]</span><span class="w"> </span>TARGET_IMAGE<span class="o">[</span>服务器<span class="o">][</span>:TAG<span class="o">]</span>
+</span></code></pre></div>
+<blockquote>
+<p>tag的作用：</p>
+<ul>
+<li><code>SOURCE_IMAGE[:TAG]</code>：源镜像的名称和可选的标签。如果未指定标签，默认为 <code>latest</code>。</li>
+<li><code>TARGET_IMAGE[:TAG]</code>：目标镜像的名称和可选的标签。</li>
+<li>假设你有一个名为 <code>my-image</code> 的镜像，并且你想为它创建一个新的标签 <code>v1.0</code>，可以使用以下命令：<code>docker tag my-image my-image:v1.0</code></li>
+<li>这将为 <code>my-image</code> 镜像创建一个新的标签 <code>v1.0</code>。你可以使用 <code>docker images</code> 命令查看镜像和标签：<code>docker images</code></li>
+<li>输出示例：</li>
+</ul>
+<p>REPOSITORY          TAG                 IMAGE ID            CREATED             SIZE
+my-image            latest              d1e3f1e4f1e4        2 days ago          500MB
+my-image            v1.0                d1e3f1e4f1e4        2 days ago          500MB</p>
+<ul>
+<li>值得注意的是：</li>
+</ul>
+<p>两个镜像的 ID 一样是因为它们实际上是同一个镜像，只是被打上了不同的标签。这意味着你可以通过任意一个标签来引用这个镜像，并且删除其中一个标签不会影响镜像的实际数据。</p>
+<p>当你删除一个镜像标签时，实际上只是删除了这个标签，而镜像本身仍然存在，直到所有引用它的标签都被删除。</p>
+</blockquote>
+<h3 id="docker-load">docker load<a class="headerlink" href="#docker-load" title="Permanent link">&para;</a></h3>
+<p><code>docker load -i 镜像tar文件名称.tar</code> </p>
+<ul>
+<li>
+<p>加载完成后，使用 <code>docker images</code> 即可查看 加载到的镜像</p>
+</li>
+<li>
+<p>该命令用于从一个 tar 文件中加载 Docker 镜像：</p>
+</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
+</span></code></pre></div>
+<ul>
+<li><code>docker load</code>：这是 Docker 的一个命令，用于从一个 tar 文件中加载镜像。</li>
+<li><code>-i</code>：这是 <code>--input</code> 的缩写，指定输入文件。</li>
+<li><code>镜像tar文件名称.tar</code>：这是包含 Docker 镜像的 tar 文件的名称。</li>
+</ul>
+<p><img alt="image-20250225224035189" src="/docs/images/image-20250225224035189.png" /></p>
+<h2 id="dockerfile">dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250224224441779" src="/docs/images/image-20250224224441779.png" /></p>
+<p>查看官方源，以<a href="https://hub.docker.com/_/python">python</a>为例</p>
+<p><img alt="image-20250224224521579" src="/docs/images/image-20250224224521579.png" /></p>
+<h2 id="docker_2">系统学习docker<a class="headerlink" href="#docker_2" title="Permanent link">&para;</a></h2>
+<h3 id="docker_3">安装docker<a class="headerlink" href="#docker_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>docker的安装命令：参照<a href="https://www.docker.com/">docker官网访问docker.com</a></li>
+<li><a href="https://docs.docker.com/engine/install/centos/">点击：开发者--&gt;文档--&gt;manuals手册(包含how to install、如何安装)--&gt;docker引擎 docker engine --&gt;  install安装--&gt;选择我们系统的版本（如 CentOS）--&gt; 参照步骤， 直接复制命令</a></li>
+<li>第一步，移除系统里边的旧版本</li>
+</ul>
+<p><img alt="image-20250225134400943" src="/docs/images/image-20250225134400943.png" /></p>
+<p><img alt="image-20250225134508044" src="/docs/images/image-20250225134508044.png" /></p>
+<ul>
+<li>第二步：配置docker的下载源</li>
+</ul>
+<p>安装 yum-utils 工具类，用这个工具类配置docker的下载地址源
+因为这里的docker下载地址是连接docker官网的，下载起来比较慢</p>
+<p><img alt="image-20250225134911413" src="/docs/images/image-20250225134911413.png" /></p>
+<p>参照如下：</p>
+<p><img alt="image-20250225134831604" src="/docs/images/image-20250225134831604.png" /></p>
+<p>把docker的下载源配置成阿里云的地址</p>
+<ul>
+<li>第三步，安装docker引擎：</li>
+</ul>
+<p><img alt="image-20250225135147161" src="/docs/images/image-20250225135147161.png" /></p>
+<p>包含</p>
+<p>（1）docker-ce：docker引擎</p>
+<p>（2）docker-ce-cli：docker引擎的命令行程序，命令行可以给docker的demon后台进程去发送命令</p>
+<p>（3）container.io：docker的运行时容器环境</p>
+<p>（4）以及docker用来构建镜像的插件工具</p>
+<p>（5）还有docker compose：做批量</p>
+<p><img alt="image-20250225140906758" src="/docs/images/image-20250225140906758.png" /></p>
+<p>输入Y确认下载安装</p>
+<ul>
+<li>第四步：启动docker</li>
+</ul>
+<p><img alt="image-20250225141102192" src="/docs/images/image-20250225141102192.png" /></p>
+<p>输入system control start docker
+sudo 表示 使用超级管理员权限，使用的是root的话，可以直接粘贴命令回车，完成 docker启动</p>
+<p><img alt="image-20250225141211110" src="/docs/images/image-20250225141211110.png" /></p>
+<p>运行docker命令，<code>docker ps</code>，查看正在运行中的应用</p>
+<p>注意：这个命令启动docker只是当前启动，如果关机，下次还得用这个命令启动docker， 所以额外加一个叫system control enable docker</p>
+<p><img alt="image-20250225141444395" src="/docs/images/image-20250225141444395.png" /></p>
+<p>让docker开机也启动，至此docker安装完成</p>
+<p><mark>补充配置：</mark> </p>
+<p><img alt="image-20250225141925977" src="/docs/images/image-20250225141925977.png" /></p>
+<p>docker已经启动安装完成以后，可以配置docker的加速</p>
+<p>因为docker去下载镜像， 默认从docker hub官网下载，而连接国外比较慢，所以一般配置国内镜像源地址</p>
+<p>命令行示例如下：</p>
+<p><img alt="image-20250225142141205" src="/docs/images/image-20250225142141205.png" /></p>
+<p>配置好加速源地址以后，重启docker的后台进程以及重启docker</p>
+<p>注意这里的配置原理，是docker后台进程的配置文件，在etc/docker/demon.json中，给这个json中配置了一个选项：registry - mirrors指向国内镜像源，相当于修改了docker的配置文件</p>
+<p>全部配置成功以后再次验证，如果docker ps 等 docker 命令可以运行证明没有问题</p>
+<h3 id="docker_4">docker 命令<a class="headerlink" href="#docker_4" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20250225142643751" src="/docs/images/image-20250225142643751.png" /></p>
+<p><mark>问题描述：</mark> </p>
+<p><img alt="image-20250225142736105" src="/docs/images/image-20250225142736105.png" /></p>
+<p>用docker启动一个nginx应用，并且将nginx的默认首页改成自己的页面，这样别人来访问这个nginx，就能看到你自己的页面，并且将改好的应用发布出去，发布到应用市场，让所有人都能从市场里边下载这个应用，直接运行</p>
+<p><mark>步骤如下：</mark></p>
+<p><img alt="image-20250225142944621" src="/docs/images/image-20250225142944621.png" /></p>
+<ul>
+<li>第一步去应用市场下载NGINX软件镜像</li>
+<li>然后docker使用这个镜像启动一个应用容器</li>
+<li>接下来修改容器里的默认页面，把它改成自己的页面</li>
+<li>最后把修改的整个软件，保存一个新的镜像，把这个镜像发布到应用市场里边，让别人可以下载</li>
+</ul>
+<p>第一步，下载镜像：</p>
+<p><img alt="image-20250225143244238" src="/docs/images/image-20250225143244238.png" /></p>
+<p>跟镜像相关的命令
+- 检索，使用docker search先找一下有没有这个镜像
+- 再利用docker pull把这个镜像下载过来
+- 使用docker images，查看已经下载来的所有镜像列表
+- 使用docker rmi，remove image的缩写，删除某一个镜像</p>
+<p>🟢 先来用docker search来搜一下有没有nginx镜像</p>
+<p><img alt="image-20250225143534847" src="/docs/images/image-20250225143534847.png" /></p>
+<ul>
+<li>打印一个列表</li>
+<li>name：镜像的名字</li>
+<li>description：对这个镜像的描述</li>
+<li>stars：这个镜像有多少的star</li>
+<li>official：这个镜像是不是官方发布的镜像，如果OK代表这是官方镜像，否则就是第三方制作的镜像</li>
+</ul>
+<p><img alt="image-20250225143744177" src="/docs/images/image-20250225143744177.png" /></p>
+<ul>
+<li>
+<p>显示 有一个NGINX，直接进行下载 </p>
+</li>
+<li>
+<p>使用docker pull命令直接写镜像名回车，镜像进入下载流程，下载完成以后，使用docker images检查一下</p>
+</li>
+</ul>
+<p><img alt="image-20250225143922325" src="/docs/images/image-20250225143922325.png" /></p>
+<ul>
+<li>显示 系统里现在有一个镜像</li>
+<li>打印的列表：</li>
+</ul>
+<p>1️⃣ repository：代表镜像的名字</p>
+<p>2️⃣ TAG 是镜像的标签，一般代表镜像的版本，latest代表最新版本</p>
+<p>3️⃣ image id代表镜像的唯一id</p>
+<p>4️⃣ created ：镜像是多少天前创建出来的</p>
+<p>5️⃣ size： 镜像的大小</p>
+<p>📢 这里演示下载的镜像NGINX，是最新版的， 那如果要下载指定版本的呢？</p>
+<ul>
+<li>
+<p>镜像的完整名，其实是镜像名冒号加标签</p>
+</li>
+<li>
+<p>所以docker pull 下载nginx，其实等于docker put nginx加上它的标签，也就是版本latest，下载最新版本</p>
+</li>
+<li>
+<p>如果要下载指定版本，那此时就不推荐docker search搜索镜像，而是去<a href="https://hub.docker.com/explore">docker hub网站</a>自己来搜索镜像，在这个网站里有完整的版本列表，看上哪个去下载哪个</p>
+</li>
+</ul>
+<p><img alt="image-20250225145149411" src="/docs/images/image-20250225145149411.png" /></p>
+<p>搜索想要的镜像，输入NGINX回车，有NGINX镜像
+注意加了这两个标志的都是官方镜像</p>
+<p><img alt="image-20250225145506282" src="/docs/images/image-20250225145506282.png" /></p>
+<p>点进来，每一个镜像都有说明，包括这个镜像如何启动，也提供了docker run命令</p>
+<p><img alt="image-20250225145609207" src="/docs/images/image-20250225145609207.png" /></p>
+<p><img alt="image-20250225145624912" src="/docs/images/image-20250225145624912.png" /></p>
+<p>参考每一个镜像的说明，如果想要下载其他版本的nginx，点击 TAGS 里</p>
+<p><img alt="image-20250225145813958" src="/docs/images/image-20250225145813958.png" /></p>
+<ul>
+<li>每一个tag都是一种版本，比如1.26</li>
+</ul>
+<p><img alt="image-20250225145919696" src="/docs/images/image-20250225145919696.png" /></p>
+<p>下载它，直接复制命令到我们的命令行，重新下载docker pull，冒号指定了镜像版本</p>
+<p><img alt="image-20250225150207687" src="/docs/images/image-20250225150207687.png" /></p>
+<p>下载完以后，使用<code>docker images</code>，完整写法是image ls，列出所有的镜像列表</p>
+<p><img alt="image-20250225152414867" src="/docs/images/image-20250225152414867.png" /></p>
+<p>看到有nginx1.26.0镜像 ，还有nginx lastest 镜像
+🟢 如果想要删除某一个镜像，可以使用docker rmi，就是remove image，写镜像的名加上完整标签</p>
+<p><img alt="image-20250225152705012" src="/docs/images/image-20250225152705012.png" /></p>
+<ul>
+<li>
+<p>比如要删latest，就写latest <code>docker rmi nginx：latest</code></p>
+</li>
+<li>
+<p>或者，每一个镜像有它的唯一id也可以用它的唯一id ，来进行删除</p>
+</li>
+<li>镜像就被删除了</li>
+<li>再来检查docker images，列表里边只有NGINX1.2.6.0</li>
+</ul>
+<p><img alt="image-20250225152926024" src="/docs/images/image-20250225152926024.png" /></p>
+<h3 id="_4">启动容器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20250225152950832" src="/docs/images/image-20250225152950832.png" /></p>
+<p>第一步，下载nginx镜像
+第二步，启动容器，每一个容器都代表一个运行中的应用</p>
+<p>🟢 跟容器相关的命令  </p>
+<ul>
+<li>
+<p>运行使用docker run  </p>
+</li>
+<li>
+<p>查看正在运行的容器 docker ps  </p>
+</li>
+<li>
+<p>停止stop   </p>
+</li>
+<li>
+<p>启动start  </p>
+</li>
+<li>
+<p>重启restart  </p>
+</li>
+<li>
+<p>查看容器的状态，比如CPU内存占用，使用docker states  </p>
+</li>
+<li>
+<p>查看容器的日志，也就是应用运行过程中产生的日志，使用docker logs  </p>
+</li>
+<li>
+<p>进入容器内部进行修改，使用docker exec  </p>
+</li>
+<li>
+<p>删除一个容器，使用docker rm  </p>
+</li>
+</ul>
+<p>📢 其中docker run和docker exec 这两个命令，比较复杂  </p>
+<p><mark>首先第一个docker run</mark></p>
+<p>当已经有了一个nginx镜像以后，想要启动这个应用</p>
+<p>第一步是docker run，启动一个应用</p>
+<p><img alt="image-20250225153515100" src="/docs/images/image-20250225153515100.png" /></p>
+<ul>
+<li>docker run --help 查看这个命令怎么用</li>
+</ul>
+<p><img alt="image-20250225153806270" src="/docs/images/image-20250225153806270.png" /></p>
+<p>用法usage是docker run <code>options</code>，options就是参数项</p>
+<p>启动一个容器能加的参数项：</p>
+<p><img alt="image-20250225153924326" src="/docs/images/image-20250225153924326.png" /></p>
+<ul>
+<li>
+<p>image代表镜像</p>
+</li>
+<li>
+<p>中括号代表 可选参数</p>
+</li>
+<li>后边[command] [ARG...] 翻译过来是 ：<mark>命令和参数</mark>。表示如果启动这个镜像，要使用什么样的启动命令，可以自己定义，但一般镜像后边的命令和参数，不用写，因为每一个镜像有它自己的启动命令和参数，这是镜像里边默认带好的，除非我们要改变镜像的默认启动行为，否则都不用管</li>
+<li>使用就是：</li>
+</ul>
+<p>1️⃣ 直接使用docker run加上 镜像名，就可以用这个镜像启动一个应用</p>
+<p>2️⃣ 如果要加入一些参数设置，那就给run和image中间加上参数设置项</p>
+<p>现在直接使用<code>docker run nginx</code></p>
+<p>但如果不写镜像的版本号，就会使用最新镜像，如果第一次启动没有这个镜像，会自动下载，启动阻塞了控制台，此时不可以退出控制台，一停，应用跟着也就停了</p>
+<p><img alt="image-20250226172156272" src="/docs/images/image-20250226172156272.png" /></p>
+<p>复制一个视图，在这个会话中用第二个命令：docker ps，可以查看运行中的应用</p>
+<p><img alt="image-20250225155319072" src="/docs/images/image-20250225155319072.png" /></p>
+<p>看到有一个nginx在运行</p>
+<p>完整打印参数解释：</p>
+<ul>
+<li>container id 代表正在运行的应用的唯一id</li>
+<li>image 使用哪个镜像运行的，<mark>没带tag标签，说明是使用最新镜像</mark></li>
+<li>command 代表这个容器自己的启动命令，不用管</li>
+<li>create代表 是多长时间之前启动的</li>
+<li>status 启动状态，up 代表上线成功了</li>
+<li>
+<p>ports 代表这个应用占用的端口是 80 端口</p>
+</li>
+<li>
+<p>names代表应用容器的名字，会给一个随机名字</p>
+</li>
+</ul>
+<p>▶️ 此时把这个应用控制台 CTRL C 中断掉，会发现这个应用停了</p>
+<ul>
+<li>再使用docker ps 来检查，就没有运行中的这个应用了</li>
+</ul>
+<p><img alt="image-20250225155545302" src="/docs/images/image-20250225155545302.png" /></p>
+<p>注意docker ps  查看所有运行中的容器</p>
+<ul>
+<li>停了的，可以使用<code>docker ps -a</code> 就可以查看所有的容器，包括停止了的</li>
+</ul>
+<p><img alt="image-20250225160047398" src="/docs/images/image-20250225160047398.png" /></p>
+<p>可以看到这个容器之前是运行的，现在<code>status</code>状态是<code>exist</code>已经退出了</p>
+<p>▶️ 退出的容器如果再想启动怎么做呢？</p>
+<ul>
+<li>
+<p>使用 docker start，相当于把这个容器重新启动</p>
+</li>
+<li>
+<p>docker start 写容器的名字、容器的id、id也可以只写三位，能跟其他人区分就行</p>
+</li>
+</ul>
+<p><img alt="image-20250225160217916" src="/docs/images/image-20250225160217916.png" /></p>
+<p>以上，代表把它启动起来了</p>
+<p>docker ps 查看，这个应用<code>up</code>，表示启动起来了</p>
+<p>▶️ 启动的应用如果想停掉，可以使用<code>docker stop</code>命令，把这个应用停掉，可以使用它的应用名</p>
+<p><img alt="image-20250225160755915" src="/docs/images/image-20250225160755915.png" /></p>
+<p>docker ps查看运行中的应用就没有了</p>
+<p>想要看到它就ps -a</p>
+<p><img alt="image-20250225160935176" src="/docs/images/image-20250225160935176.png" /></p>
+<p>看到七秒前退出</p>
+<p>▶️ docker restart</p>
+<p>无论这个容器是运行中还是停止了，都可以使用restart重启一下</p>
+<p><img alt="image-20250225161040369" src="/docs/images/image-20250225161040369.png" /></p>
+<p>docker ps ，看一下，又重新<code>up</code>上线了</p>
+<p>▶️ <code>docker states</code> </p>
+<p>查看这个应用CPU内存等占用情况</p>
+<p><img alt="image-20250225161208395" src="/docs/images/image-20250225161208395.png" /></p>
+<p>打印592容器，CPU内存包括网络IO整个情况，而且是每秒变化的，这一块没有变化的原因是因为这个容器现在没有处理任何请求，所以整个资源的占用没有变化</p>
+<p>▶️ <code>docker logs 592</code></p>
+<p><img alt="image-20250225161428210" src="/docs/images/image-20250225161428210.png" /></p>
+<p>容器在运行过程中会产生大量日志，有时要用日志排错等</p>
+<p>就可以使用docker logs查看容器日志</p>
+<p><img alt="image-20250226172508258" src="/docs/images/image-20250226172508258.png" /></p>
+<p>🟢 删除容器</p>
+<p>run 起来的镜像 叫做 容器。想要删除一个容器，必须先stop停了，才能删除；也可以使用false remove强制删除</p>
+<p><img alt="image-20250226195008163" src="/docs/images/image-20250226195008163.png" /></p>
+<p>🟢 强制删除的写法：</p>
+<p><img alt="image-20250226195035369" src="/docs/images/image-20250226195035369.png" /></p>
+<p>这样运行中的容器也能删除</p>
+<p>🟢检查：docker ps；docker ps -a</p>
+<p><img alt="image-20250226195138222" src="/docs/images/image-20250226195138222.png" /></p>
+<p>都没有</p>
+<h2 id="docker-run">docker run 后台启动<a class="headerlink" href="#docker-run" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>问题描述：直接使用 <code>docker run image</code>会将控制台阻死，并且不能访问端口，想要后台启动，并且设置可以访问的端口</p>
+</blockquote>
+<p>🟢 docker rm -f container_id/name 强制删除启动的容器（run 起来的 image）</p>
+<p>🟢docker rmi image:tag 删除镜像</p>
+<p>🟢 最简单的 docker run image（默认启动最新的 image，docker ps 查看该镜像的容器 id）</p>
+<p>🟢docker run -d（后台启动） --name my_image_container(给启动的镜像起一个容器名，如果不给名字，会起一个随机名字)  image</p>
+<p><img alt="image-20250226200007594" src="/docs/images/image-20250226200007594.png" /></p>
+<p>（1）这样启动以后，容器状态是 UP，并且名字是指定的名字</p>
+<p>（2）并且启动是后台启动，返回的是容器的完整 id</p>
+<blockquote>
+<p>问题描述：此时依然不能访问端口</p>
+</blockquote>
+<p>原因分析：</p>
+<blockquote>
+<p>原因在于启动的这个容器，是运行在自己的环境内</p>
+<p>具体解释：</p>
+<p>当docker run启动一个容器，首先是本地的主机安装了docker，每一个容器其实在自己的环境内运行，是隔离的；每一个容器它都拥有自己完整的文件系统、名称空间、CPU内存进程等这些操作；如果docker run启动了一个nginx，其实nginx就安装到了这个容器中，也就是小型LINUX系统里边跑的一个软件，而这个nginx占用的是80端口，也就是如果你想要访问nginx，除非是来到这个小LINUX系统里边，访问小系统的80 端口，就可以访问到nginx</p>
+<p>但是现在想要访问的是外部主机的一个端口，就去访问到nginx，比如想要访问外部主机的88 端口，最终访问到nginx，那么就可以来做一个操作叫端口映射</p>
+<p><img alt="image-20250226200929555" src="/docs/images/image-20250226200929555.png" /></p>
+<p>使用 <code>-p</code> 这个参数写一个<code>外部端口:内部端口</code>就代表访问主机外部的88端口就等于访问容器内部的<code>80</code> 端口，这个操作叫端口映射，<code>p</code>就是<code>port</code>的简写</p>
+</blockquote>
+<p>🟢 端口映射 </p>
+<p><code>docker run -d 后台启动 --name 容器名 -p 本地 80 端口:容器内 80 端口 镜像名 nginx</code></p>
+<p><img alt="image-20250226201428506" src="/docs/images/image-20250226201428506.png" /></p>
+<p>此时，docker ps，查看容器状态</p>
+<p><img alt="image-20250226201623026" src="/docs/images/image-20250226201623026.png" /></p>
+<p>跟之前的打印有所区别：在PORTS端口这一块，<code>0.0.0.0:80</code> 代表任何<code>IP</code>访问<code>80</code>端口就是容器内部的<code>80</code>端口</p>
+<p>此时，浏览器上重新刷新</p>
+<p><img alt="image-20250226201928833" src="/docs/images/image-20250226201928833.png" /></p>
+<p>nginx的默认页面就展示出来了。
+03:19 所以非常重要的一个点
+03:21 就是如果我们使用docker启动一个容器
+03:24 想要让外边随时能访问
+03:26 一定要为这个容器暴露端口
+03:29 也就是来做端口映射</p>
+<blockquote>
+<p>问题描述：<code>本机 88 端口</code>映射到<code>容器 80 端口</code>，两个端口，<code>本机 88 端口</code>可以重复吗？<code>容器 80 端口</code>可以重复吗？</p>
+<p>复述问题：如果启动一个新的容器，新的容器内部也用<code>80 端口</code>，外部端口映射到 <code>88 端口</code>可以吗？</p>
+</blockquote>
+<p>🟢 答：<code>本机 88 端口</code>不可以重复，<code>容器内部80端口</code>可以重复，也就是同一个镜像，启动的容器 A 可以是 <code>80 端口</code>，容器 B 也可以是 <code>80 端口</code></p>
+<blockquote>
+<p>理由：
+因为88 端口是占到我们自己主机上的同一台机器，同一个端口只能开一个
+而80 端口可以重复的，因为这个80是容器的80 端口，容器 A 可以是 <code>80 端口</code>，容器 B 也可以是 <code>80 端口</code>，因为 容器之间是隔离的，只是在做端口映射的时候，注意防止冲突即可。每一个容器都可以认为是一个独立的LINUX服务器。</p>
+</blockquote>
+<h2 id="_5">修改容器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>问题描述：</p>
+<p><img alt="image-20250226202918260" src="/docs/images/image-20250226202918260.png" /></p>
+<p>默认是nginx欢迎页，想要把它改成自己的欢迎页面。怎么修改呢？</p>
+</blockquote>
+<p>🟢 需要用到的命令：dockr exec 命令</p>
+<p>使用dockr exec命令，进入到装了ngnix的这个容器里边，在这个容器里边有一个文件路径叫user/share/nginx/html，ngnix的默认页在这存着。</p>
+<blockquote>
+<p>问题描述：怎么知道修改的文档在哪里？</p>
+</blockquote>
+<p><img alt="image-20250226204731964" src="/docs/images/image-20250226204731964.png" /></p>
+<blockquote>
+<p>怎么知道修改的文档在哪里？</p>
+</blockquote>
+<p>阅读官方文档，docker hub，下载 ngnix 镜像的时候，镜像的介绍页 Overview，会说明 静态页面位置在哪。</p>
+<p><img alt="image-20250226204947941" src="/docs/images/image-20250226204947941.png" /></p>
+<p><img alt="image-20250226205049036" src="/docs/images/image-20250226205049036.png" /></p>
+<blockquote>
+<p>回到我们的问题：如果我们想要修改ngnix默认页，因为ngnix是装到容器里边的，所以我们需要进入到这个容器里边的ngnix存页面的位置进行修改</p>
+</blockquote>
+<p>具体步骤：</p>
+<p>（1）打开终端，进入容器，使用<code>docker exec -it mynginx /bin/bash</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>mynginx<span class="w"> </span>/bin/bash
+</span></code></pre></div>
+<p><code>it</code> 表示以交互模式，相当于进行交互，进行命令的发送，以交互模式进入到哪里呢？就写容器名，容器名叫<code>mynginx</code>（或者写 id 也是可以的）</p>
+<p>后边再加上，因为要进行交互，那么使用哪种方式进行交互？使用控制台交互，所以后面接 <code>/bin/bash</code> </p>
+<p><img alt="image-20250226205545912" src="/docs/images/image-20250226205545912.png" /></p>
+<p>🟢（2）观察区别。原来是 <mark>root@VM......</mark> 变成 <mark>root@2d83bd....</mark>  表示现在已经进行到了 ngnix 容器内部</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>/
+</span></code></pre></div>
+<p><code>ls /</code> 列出目录结构</p>
+<p><img alt="image-20250226205939203" src="/docs/images/image-20250226205939203.png" /></p>
+<p>控制台输出也是一个 LINUX系统的目录结构，也就是说容器有自己的文件系统，带了nginx完整的运行环境</p>
+<p>而nginx页面的位置在<code>usr/share/nginx/html/</code> ，进入该文件</p>
+<p><img alt="image-20250226210222116" src="/docs/images/image-20250226210222116.png" /> </p>
+<p><code>ls</code> 可以看到有一个index页面，可以修改</p>
+<p><img alt="image-20250226210409374" src="/docs/images/image-20250226210409374.png" /></p>
+<p><code>vi index.html</code> 回车</p>
+<p><img alt="image-20250226210519721" src="/docs/images/image-20250226210519721.png" /></p>
+<p>容器为了保持轻量级，内部的这个LINUX系统没有 <code>vi</code> 命令，如果想要修改页面使用 <code>echo</code> 方式。如图所示即可。</p>
+<p>再次来访问，刷新浏览器，展示新的页面</p>
+<p><img alt="image-20250226210721372" src="/docs/images/image-20250226210721372.png" /></p>
+<blockquote>
+<p>问题描述：每次想要修改容器内部的东西，还要使用docker exec进入到内部再进行修改，有点麻烦，比较简单的方式？</p>
+</blockquote>
+<p>🟢 使用<code>docker</code> 的存储把内部的一个文件夹，直接映射到外部主机的一个位置以后， 在主机位置改，内部也会发生变化（具体方式，蹲一个）</p>
+<p>（3）修改完成以后，exit 退出容器，重新回到本地机器的主控制界面</p>
+<p><img alt="image-20250226211130994" src="/docs/images/image-20250226211130994.png" /></p>
+<p>以上整个过程实现了，本地主机访问 80 端口可以访问到已经修改好的页面。</p>
+<h2 id="_6">保存镜像<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>🔴 问题描述 ：把制作好的这个软件，能默认首页返回hello docker的软件，发布到应用市场，让别人下载这个软件，默认访问也能展示hello docker</p>
+</blockquote>
+<p><img alt="image-20250226211451577" src="/docs/images/image-20250226211451577.png" /></p>
+<p>第四步，保存镜像。</p>
+<p>之前启动了容器内部的页面，也修改了，现在希望把这个运行中的软件，打包成一个镜像保存起来，最终可以分享到社区</p>
+<p>需要用到的命令如下：</p>
+<p><img alt="image-20250226212610867" src="/docs/images/image-20250226212610867.png" /></p>
+<ul>
+<li>提交：docker commit</li>
+<li>保存：docker save</li>
+<li>加载：docker load</li>
+</ul>
+<h3 id="docker-commit">docker commit<a class="headerlink" href="#docker-commit" title="Permanent link">&para;</a></h3>
+<p>查看 docker commit 的功能：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>--help
+</span></code></pre></div>
+<p>查看文档描述：</p>
+<p><img alt="image-20250226212754519" src="/docs/images/image-20250226212754519.png" /></p>
+<p>docker commit可以创建一个new image新镜像，从一个容器的改变里边。</p>
+<blockquote>
+<p>也就是利用commit命令，可以把整个容器以及它的所有变化，打包成一个新的镜像</p>
+</blockquote>
+<p>参数说明：</p>
+<ul>
+<li>
+<p><code>-a</code> 指定作者</p>
+</li>
+<li>
+<p><code>-c</code>  有哪些改变的列表</p>
+</li>
+<li>
+<p><code>-m</code> 此次提交了的信息</p>
+</li>
+<li>
+<p><code>-p</code>  打包期间加上 <code>-p</code> 可以暂停容器的运行</p>
+</li>
+</ul>
+<p>用法：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a>Usage:<span class="w">  </span>docker<span class="w"> </span>commit<span class="w"> </span><span class="o">[</span>OPTIONS<span class="o">]</span><span class="w"> </span>CONTAINER<span class="w"> </span><span class="o">[</span>REPOSITORY<span class="o">[</span>:TAG<span class="o">]]</span>
+</span></code></pre></div>
+<p>docker commit + 那一堆可选参数 + 容器   +  镜像 : 标签 </p>
+<p>演示：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;update index.html&quot;</span><span class="w"> </span>mynginx<span class="w"> </span>mynginx:v1.0
+</span></code></pre></div>
+<p><img alt="image-20250226214255243" src="/docs/images/image-20250226214255243.png" /></p>
+<p>运行成功，检查docker images，所有镜像列表</p>
+<p><img alt="image-20250226214526893" src="/docs/images/image-20250226214526893.png" /></p>
+<h3 id="docker-save">docker save<a class="headerlink" href="#docker-save" title="Permanent link">&para;</a></h3>
+<p>打包文件</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>save<span class="w"> </span>--help
+</span></code></pre></div>
+<p>查看帮助文档 &amp; 命令功能：</p>
+<p><img alt="image-20250226214751183" src="/docs/images/image-20250226214751183.png" /></p>
+<p>具体使用实例：</p>
+<p><img alt="image-20250226214949978" src="/docs/images/image-20250226214949978.png" /></p>
+<p>docker save，加上镜像，先来写<code>docker save</code>，要保存的镜像是<code>myngnix</code>，标签 <code>v1.0</code></p>
+<p>镜像中间可以加一些参数，即 <code>save</code>跟<code>image</code>中间加 <code>options</code></p>
+<p><code>option</code>里边可以指定 <code>-o</code> 就是将这个镜像输出成一个 <code>.tar</code> 压缩文件，这个压缩包文件，可以随便起名，这里也叫 <code>myngnix.tar</code></p>
+<p><img alt="image-20250226215521893" src="/docs/images/image-20250226215521893.png" /></p>
+<p>这个包，可以放到U盘传输给别人，别人就能使用了</p>
+<p>🔴 问题描述：别人怎么使用？</p>
+<h3 id="docker-load_1">docker load<a class="headerlink" href="#docker-load_1" title="Permanent link">&para;</a></h3>
+<p>补充 同时删除多个镜像命令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-16-1"><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>docker<span class="w"> </span>rmi<span class="w"> </span>imageID1<span class="w"> </span>imageID2<span class="w"> </span>imageID3
+</span></code></pre></div>
+<p>删除容器：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>container_id
+</span></code></pre></div>
+<p>🔵 场景描述：别人拷贝了 <code>mynginx.tar</code> ，那么对方怎么启动一模一样的应用呢？（如何把从别人那里拷贝来的镜像，运行出一样的容器（应用）？）</p>
+<p>安装 docker 的机器上，根目录只有  <code>mynginx.tar</code></p>
+<p><img alt="image-20250226220233188" src="/docs/images/image-20250226220233188.png" /></p>
+<p>此时使用，docker load，具体怎么使用，先查帮助文档</p>
+<p><img alt="image-20250226220349430" src="/docs/images/image-20250226220349430.png" /></p>
+<p>参数解读：</p>
+<ul>
+<li><code>-i</code> 指定压缩包位置，会自动将压缩包读取进来</li>
+</ul>
+<p><img alt="image-20250226220547475" src="/docs/images/image-20250226220547475.png" /></p>
+<p><code>docker images</code> 检查</p>
+<p><img alt="image-20250226220715601" src="/docs/images/image-20250226220715601.png" /></p>
+<p>🟢 有了镜像（only read）以后，使用docker run命令启动容器（实例化的镜像），</p>
+<p>docker run myngnix:v1.0  (镜像名:版本号)</p>
+<p>中间加可读参数：</p>
+<p><code>-d</code> 后台启动；<code>--name</code> 容器名称；<code>-p 80:80</code> 端口映射</p>
+<p><img alt="image-20250226220927516" src="/docs/images/image-20250226220927516.png" /></p>
+<p>返回完整的容器名。</p>
+<p><code>docker ps</code> 查看正在运行的容器；刷新浏览器，访问本地 80 端口，就是改过的页面，运行了一模一样的应用。</p>
+<p><img alt="image-20250226221330973" src="/docs/images/image-20250226221330973.png" /></p>
+<p>总结：</p>
+<ul>
+<li>docker commit：容器提交为镜像</li>
+<li>docker save：镜像打包成可移植的 tar 文件</li>
+<li>docker load：加载镜像文件</li>
+<li>docker run：启动镜像，实例化镜像，启动应用，实例化成一个容器</li>
+<li>[TODO] 还得补，怎么本地修改和镜像修改...</li>
+</ul>
+<p>🔵 场景描述：把镜像保存成一个文件的方式，方便利用文件传输的手段进行传输，另外一种方式，把镜像推送给社区，直接使用docker pull 进行下载</p>
+<h2 id="docker-push">docker push<a class="headerlink" href="#docker-push" title="Permanent link">&para;</a></h2>
+<p>分享社区</p>
+<p><img alt="image-20250226222012601" src="/docs/images/image-20250226222012601.png" /></p>
+<p>最后一步，分享社区，把镜像 <code>mynginx:v1.0</code>  分享到官方的docker hub 仓库</p>
+<p>需要用到的 3 个命令：</p>
+<ul>
+<li>docker login：首先登录到 docker hub</li>
+<li>docker tag：docker hub 要求给镜像重新起一个名字</li>
+<li>docker push：最后将镜像推送上去</li>
+</ul>
+<p>🟢 docker login</p>
+<ul>
+<li>查看用户名</li>
+</ul>
+<p><img alt="image-20250226223048263" src="/docs/images/image-20250226223048263.png" /></p>
+<p>🟢 <code>docker login</code>，按照提示 输入<code>用户名</code>和<code>密码</code></p>
+<p><img alt="image-20250226223121382" src="/docs/images/image-20250226223121382.png" /></p>
+<p>如果想要推送到网页端，在网页端登录以后，客户端（也就是终端）也需要登录，直接输入 <code>docker login</code>，按照提示输入 <code>用户名</code>和<code>密码</code>即可。</p>
+<p><img alt="image-20250226223516996" src="/docs/images/image-20250226223516996.png" /></p>
+<p>🟢 登录成功以后，想要推送 <code>mynginx</code> 镜像，接下来，使用 <code>docker tag</code> 对这个镜像进行改名</p>
+<blockquote>
+<p>理由：因为docker hub为了区分这些镜像，每一个镜像的名字都是它的用户名后边再加镜像，相当于我们本地的这个镜像缺少了用户名</p>
+</blockquote>
+<p>具体的 docker tag 怎么处理？</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-18-1"><a id="__codelineno-18-1" name="__codelineno-18-1" href="#__codelineno-18-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>--help
+</span></code></pre></div>
+<p>Usage 显示，docker tag 你原来的镜像和target新的目标镜像</p>
+<p>🟢 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:v1.0
+</span></code></pre></div>
+<p><img alt="image-20250226223724627" src="/docs/images/image-20250226223724627.png" /></p>
+<p>执行完改名操作以后，<code>docker images</code> 检查</p>
+<p><img alt="image-20250226224133245" src="/docs/images/image-20250226224133245.png" /></p>
+<p>拥有了一个新镜像 <code>leifengyang/mynginx:v1.0</code> ，虽然镜像名跟标签跟上一个不一样</p>
+<p>但是都是同一个镜像，所以镜像id是一样的，有了这个新镜像以后，使用<code>docker push</code>把它推送上去</p>
+<p>🟢 docker push</p>
+<p>📢 需要注意的是 此时的推送不能使用 image ID，因为这两个镜像id都一样，没法区分，直接写镜像加标签回车，进行镜像推送，连向的是docker hub，会比较慢一点</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:v1.0
+</span></code></pre></div>
+<p><img alt="image-20250226224333673" src="/docs/images/image-20250226224333673.png" /></p>
+<p>整个推送完以后，这一块出现打印，来到个人主页，刷新 Repositories，就是个人的镜像仓库，而且是一个public镜像，所有人都可以访问。</p>
+<p><img alt="image-20250226224726009" src="/docs/images/image-20250226224726009.png" /></p>
+<p>点进这个镜像，也能看到这个镜像，推了一个标签叫v1.0</p>
+<p><img alt="image-20250226224906416" src="/docs/images/image-20250226224906416.png" /></p>
+<p>可以为这个镜像去来编写一个说明书</p>
+<p><img alt="image-20250226224939405" src="/docs/images/image-20250226224939405.png" /></p>
+<p>点击 <code>Add overview</code> ，支持markdown语法</p>
+<p><img alt="image-20250226225032193" src="/docs/images/image-20250226225032193.png" /></p>
+<p>镜像特性：修改了NGINX默认页，返回hello docker</p>
+<p>启动命令：来告诉别人怎么用这个镜像</p>
+<p>docker run -d 以后台方式启动 -p端口 暴露外部的80访问容器的80 --name mynginx</p>
+<p>然后使用这个镜像，全称+标签 <code>leifengyang/mynginx:v1.0</code></p>
+<p>点击更新，就为这个镜像写了一个说明书</p>
+<p>有了这个说明书以后呢，别人去docker hub去来搜你的这个镜像，然后根据描述启动镜像。</p>
+<p><img alt="image-20250226225452411" src="/docs/images/image-20250226225452411.png" /></p>
+<p>📢 推荐将镜像分享到社区时，除了上传指定版本的，还上传一个最新版本的，方便直接 docker pull</p>
+<p>🟢 具体的操作，使用 docker tag 改名即可</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:latest
+</span></code></pre></div>
+<p>🟢 docker images检查，发现有了 <code>leifengyang/mynginx:latest</code> 的最新镜像，这个 3 个镜像的 id 都是一样</p>
+<p>🟢 使用 docker push 推送最新镜像，这样别人拉取镜像即使不写版本号也不会报错。</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:latest
+</span></code></pre></div>
+<p><img alt="image-20250227102717495" src="/docs/images/image-20250227102717495.png" /></p>
+<p><img alt="image-20250227104737604" src="/docs/images/image-20250227104737604.png" /></p>
+<p>整个推送完成，刷新自己的仓库，有最新发布的版本还有指定的版本</p>
+<h2 id="docker_5">总结 docker 的常用命令<a class="headerlink" href="#docker_5" title="Permanent link">&para;</a></h2>
+<p>尤其是 docker run 运行一个容器</p>
+<p><img alt="image-20250227104855212" src="/docs/images/image-20250227104855212.png" /></p>
+<h2 id="_7">补充端口映射<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250227105127653" src="/docs/images/image-20250227105127653.png" /></p>
+<p>🔵 情况描述：现在已经有了一个运行中的 docker 容器，占用的 80 端口，现在在启动一个 docker 容器，镜像仍然是 mynginx:v1.0，这次占用外部主机的 88 端口，相当于容器内部的 80 端口</p>
+<p>需要注意的是，docker run -d 后台启动，-p 端口映射本地 88 端口到容器内 80 端口，--name app02此时 容器名绝对不可以跟之前的容器名重复，启动的镜像还是 mynginx:v1.0</p>
+<p>🟢 启动一个容器，-d 后台启动，-p 本地 88 端口映射容器内部 80 端口，名字叫做 app02，从镜像 mynginx 中启动，标签名为 v1.0</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>mynginx:v1.0
+</span></code></pre></div>
+<p><img alt="image-20250227105355015" src="/docs/images/image-20250227105355015.png" /></p>
+<h2 id="docker_6">docker 存储<a class="headerlink" href="#docker_6" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250227105737753" src="/docs/images/image-20250227105737753.png" /></p>
+<p>🔴 问题描述：</p>
+<blockquote>
+<p>（1）如果想要修改nginx的默认页面，需要知道在容器内部/usr/share/nginx/html这个位置下存了 nginx 的默认页，想要修改这个页面，需要使用docker exec，进入到容器内部进行修改</p>
+<p>（2）因为容器有自己的文件系统运行在自己的进程内，那数据自然也存到自己的容器内部，某一天假如这个容器炸了或者误删除，再重新启动一个，就相当于启动了一个新容器，原来容器里边的数据也会丢失</p>
+<p>以上描述了两种情况 ① 修改不容易 ② 容易丢失</p>
+<p><img alt="image-20250227112252417" src="/docs/images/image-20250227112252417.png" /></p>
+</blockquote>
+<p>📢  补充批量删除的所有容器的技巧</p>
+<ul>
+<li>删除一个容器： <code>docker rm containerID</code></li>
+<li>🟢 第一步 ：拿到所有容器 ID</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-aq
+</span></code></pre></div>
+<p><img alt="image-20250227125847128" src="/docs/images/image-20250227125847128.png" /></p>
+<blockquote>
+<p><code>docker ps -a</code> 拿到所有容器</p>
+<p><code>docker ps --help</code> </p>
+<p><img alt="image-20250227125742405" src="/docs/images/image-20250227125742405.png" /></p>
+<p>-a  显示所有容器</p>
+<p>-q 显示所有容器 ID</p>
+</blockquote>
+<ul>
+<li>🟢 第二步，批量删除所有容器  <code>-f</code> 表示强制删除</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
+</span></code></pre></div>
+<p><img alt="image-20250227130114520" src="/docs/images/image-20250227130114520.png" /></p>
+<p><mark>现在演示在不挂在目录的情况下怎么修改默认页面</mark> </p>
+<p>🟢 第一步启动容器，如果没有镜像，那么 docker 会自动下载最新的镜像并启动容器：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
+<p>🟢 第二步，查看正在运行的容器</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-27-1"><a id="__codelineno-27-1" name="__codelineno-27-1" href="#__codelineno-27-1"></a>docker<span class="w"> </span>ps
+</span></code></pre></div>
+<p>🟢 第三步，终端进入容器内部  <code>-it</code> 以交互模式启动 <code>bash</code> 终端</p>
+<div class="language-docker highlight"><pre><span></span><code><span id="__span-28-1"><a id="__codelineno-28-1" name="__codelineno-28-1" href="#__codelineno-28-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>35f<span class="w"> </span>bash
+</span></code></pre></div>
+<p>🟢 第四步，进入到想要修改的容器内部的文件，阅读官方镜像文档，找到目标目录</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-29-1"><a id="__codelineno-29-1" name="__codelineno-29-1" href="#__codelineno-29-1"></a><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html/
+</span></code></pre></div>
+<p>🟢 第五步，打印该目录下的文件</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-30-1"><a id="__codelineno-30-1" name="__codelineno-30-1" href="#__codelineno-30-1"></a>ls
+</span></code></pre></div>
+<p>🟢 第六步，修改目标文件，刷新页面，完成修改</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">11111</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
+</span></code></pre></div>
+<p><img alt="image-20250227130918653" src="/docs/images/image-20250227130918653.png" /></p>
+<p>这样修改的步骤已经很繁琐了，而且如果想要编辑一个文件，docker 内部都不支持编辑命令 </p>
+<p><img alt="image-20250227131815045" src="/docs/images/image-20250227131815045.png" /></p>
+<p>🔴以上情况都说明了容器内部的所有数据管理起来是非常不容易的</p>
+<p>演示另一种情况，不小心误删除容器，如果以相同的命令再次启动容器，此时容器变成了一个新的容器，刚刚的修改也不作数了</p>
+<p>具体操作：</p>
+<p>🟢 第一步 删除容器</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-32-1"><a id="__codelineno-32-1" name="__codelineno-32-1" href="#__codelineno-32-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>35f
+</span></code></pre></div>
+<p>🟢 第二步，以相同的命令重新启动一个容器</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
+<p>此时，刷新页面，又变回了默认页面</p>
+<p><img alt="image-20250227132705776" src="/docs/images/image-20250227132705776.png" /></p>
+<p>说明：容器只要一启动，相当于启动一个自己的空间、文件系统和进程。容器一旦销毁它的所有的文件、系统内容全部销毁，这样就产生了数据丢失问题</p>
+<p>总之目录挂载可以解决的两个问题</p>
+<p>① 容器内部的文件修改不容易</p>
+<p>② 数据丢失问题</p>
+<h3 id="_8">目录挂载<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20250227133114007" src="/docs/images/image-20250227133114007.png" /></p>
+<p><mark>什么是目录挂载？</mark></p>
+<blockquote>
+<p>（1）docker允许在自己的机器中专门开辟一个目录，比如上图中演示的 <code>/app/nghtml</code>，然后告诉docker，这个目录对应容器内部的目录 <code>/usr/share/nginx/html</code>  </p>
+<p>（2）本地目录和容器的目录 相当于形成了关联关系</p>
+<p>（3）在外部的目录进行所有的内容修改，内部也看得见；内部发生了任何变化，外边也看得见，因为两个目录是一个挂载</p>
+<p>类比现实，就是电脑上插个 U 盘，（容器内的）这个目录其实就是一个U盘，把U盘插入电脑，那么电脑上的某一个位置，就会显示U盘里边的内容，U盘里边改了，电脑里边看得见，电脑里边给U盘里边也可以写东西，电脑里边改了，U盘里边也改了</p>
+<p>以上就是 挂载的理解 </p>
+</blockquote>
+<p><mark>怎么使用挂载？</mark></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-34-1"><a id="__codelineno-34-1" name="__codelineno-34-1" href="#__codelineno-34-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
+<p>依然是 docker run，加一个 -v 参数 本地目录:容器内目录</p>
+<p>docker run -d后台启动，-p端口映射，本地 80 端口映射容器内 80 端口，-v 本地 /app/nghtml挂载到 /usr/share/nginx/html目录。如果名--name app01，启动的镜像 nginx</p>
+<p>※ docker run </p>
+<p><img alt="image-20250227135508986" src="/docs/images/image-20250227135508986.png" /></p>
+<p>关于目录挂载的说明</p>
+<div class="language-bat highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx
+</span></code></pre></div>
+<p><img alt="image-20250227142018026" src="/docs/images/image-20250227142018026.png" /></p>
+<p>（1）目录挂载启动一个容器以后，docker ps 查看容器状态，启动成功没问题，staus是up的；</p>
+<p>（2）而且外部一开始并没有创建这个目录，docker还会自动创建</p>
+<p>（3）<code>ls</code> 访问LINUX主机的app下边有没有东西，确实有一个 <code>nginx</code> 目录</p>
+<p><img alt="image-20250227142202126" src="/docs/images/image-20250227142202126.png" /></p>
+<p>对于宿主机来说，它是新建的一个空目录， 此时再来访问这个nginx，来到浏览器刷新</p>
+<p><img alt="image-20250227142405357" src="/docs/images/image-20250227142405357.png" /></p>
+<p>显示，nginx 返回403拒绝访问，因为现在nginx的默认页，要==以外边的文件夹为准==</p>
+<p>而我们宿主机文件夹没有默认页，所以内部也认为没有数据。</p>
+<p>（4）此时如果想要访问内容，就在外部准备一个页面</p>
+<p><img alt="image-20250227142634807" src="/docs/images/image-20250227142634807.png" /></p>
+<p>现在在宿主机文件夹内新建一个 index.html，并且添加 2222</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">22222</span>&gt;index.html
+</span></code></pre></div>
+<p>在宿主机 nginx 里面放了一个 index.html，相当于在容器内部放了一个一样的，此时再刷新页面，看到默认页改变了。</p>
+<p>好处：</p>
+<blockquote>
+<p>修改数据会非常容易，不用担心数据丢失，如果 docker ps 误删除了容器，外部的这个文件夹还在，而如果启动的时候用相同的命令，依然访问 80 端口，内容一模一样。</p>
+<p>🟢 误删除了容器</p>
+<p><img alt="image-20250227143046113" src="/docs/images/image-20250227143046113.png" /></p>
+<p>🟢 外部的文件夹还在 <code>pwd</code> print working directory 打印当前正在工作的目录</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">pwd</span>
+</span></code></pre></div>
+<p><img alt="image-20250227143202189" src="/docs/images/image-20250227143202189.png" /></p>
+<p>🟢 启动的时候用相同的命令，还是让外部的这个 <code>/app/nghtml</code> 文件夹挂载到内部 <code>/usr/share/nginx/html</code> </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
+</span></code></pre></div>
+<p><img alt="image-20250227143303904" src="/docs/images/image-20250227143303904.png" /></p>
+<p>此时，启动的nginx容器内部的内容就会跟外边保持一致，回车，启动的新容器docker ps 依然访问80端口，刷新内容一模一样</p>
+<p><img alt="image-20250227143708691" src="/docs/images/image-20250227143708691.png" /></p>
+<p>如果进到容器内部，在内部进行文件修改，外部也是看得见的</p>
+<p><strong>演示过程：</strong></p>
+<p>🟢 进入到 <code>9d1</code>  <code>bash</code> 控制台</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-39-1"><a id="__codelineno-39-1" name="__codelineno-39-1" href="#__codelineno-39-1"></a>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>9d1<span class="w"> </span>bash
+</span></code></pre></div>
+<p>🟢 cd到 内部目录</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-40-1"><a id="__codelineno-40-1" name="__codelineno-40-1" href="#__codelineno-40-1"></a><span class="nb">cd</span><span class="w"> </span>/usr/share/nginx/html
+</span></code></pre></div>
+<p>🟢 ls 查看目录中的文件列表</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-41-1"><a id="__codelineno-41-1" name="__codelineno-41-1" href="#__codelineno-41-1"></a>ls
+</span></code></pre></div>
+<p>🟢 查看文件内容</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-42-1"><a id="__codelineno-42-1" name="__codelineno-42-1" href="#__codelineno-42-1"></a>cat<span class="w"> </span>index.html
+</span></code></pre></div>
+<p>🟢 追加 3333 到 index.html</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-43-1"><a id="__codelineno-43-1" name="__codelineno-43-1" href="#__codelineno-43-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">333333</span><span class="w"> </span>&gt;&gt;<span class="w"> </span>index.html
+</span></code></pre></div>
+<p>🟢 查看 index.html 中的更改是否有效</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-44-1"><a id="__codelineno-44-1" name="__codelineno-44-1" href="#__codelineno-44-1"></a>cat<span class="w"> </span>index.html
+</span></code></pre></div>
+<p>🟢  退出 容器，控制台输入  <code>exit</code></p>
+<p>🟢 docker ps 查看该容器正在运行，但是我们把容器内容改了，现在看容器外部的内容是不是和容器内部的保持一致</p>
+<p><img alt="image-20250227144054405" src="/docs/images/image-20250227144054405.png" /></p>
+<p>现在看容器外部的内容是不是和容器内部的保持一致</p>
+<p>具体操作为</p>
+<p>🟢 打印当前工作目录 <code>pwd</code></p>
+<p>🟢  查看目录中的文件  <code>ls</code></p>
+<p>🟢 查看文件中的内容  <code>cat index.html</code></p>
+<p><img alt="image-20250227145311592" src="/docs/images/image-20250227145311592.png" /></p>
+<p>内容和容器内的文件保持一致，外部的目录挂载到容器内部的一个位置</p>
+</blockquote>
+<p>总结，目录挂载，使用 -v 的方式，将外部的文件挂载到容器内的文件</p>
+<h2 id="_9">目录挂载&amp;卷映射<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
+<p><a href="https://blog.csdn.net/m0_74606902/article/details/145067567">参考</a></p>
+<p>目录挂载会把 容器内相应的文件清空，然后将宿主机or主机or 本机的文件，复制到容器内对应的位置，如果宿主机文件夹内部是空的，那么容器内也是空的</p>
+<p>🔵 如果是容器启动的必要 config 配置文件挂载了，那么容器就会启动失败，因为目录挂载会清空 容器内目录，解决办法就是：</p>
+<p>🟢 卷映射</p>
+<p><img alt="image-20250227145910395" src="/docs/images/image-20250227145910395.png" /></p>
+<h2 id="_10">卷映射<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
+<p>🔴 问题描述：</p>
+<p>之前启动的nginx容器，想修改它的配置文件，它的配置文件在容器内部的位置叫<code>etc/nginx/</code> 也就是 <code>nginx.conf</code></p>
+<p><img alt="image-20250227151607088" src="/docs/images/image-20250227151607088.png" /></p>
+<p>具体来说，</p>
+<p>（1）首先 docker exec -it 以交互模式启动容器 9d1的 bash 控制台</p>
+<p>（2）在容器内部，进入 etc/nginx文件夹</p>
+<p>（3）ls 看到文件 nginx.conf</p>
+<p>🔴 也就是说在容器内部，有nginx的配置文件，如果想要修改这个配置文件，按照目录挂载的方式就是，在外部的位置 <code>/app/ngconf</code> 挂载内部目录 <code>/etc/nginx</code>，希望实现的效果是 ：在外部进行的修改，内部也发生变化</p>
+<p>那这样做可不可以呢？</p>
+<p>🟢  退出这个容器，重新启动，进行测试，同时挂载两个目录，写两个 -v</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-45-1"><a id="__codelineno-45-1" name="__codelineno-45-1" href="#__codelineno-45-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>/app/ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>nginx
+</span></code></pre></div>
+<p>后台启动，端口映射，之前 80 端口已经占用了，所以本机 88 端口映射容器内部 80 端口，先挂则页面目录 <code>-v /app/nghtml:/usr/share/nginx/html</code> ，再挂载配置文件目录  <code>-v /app/ngconf:/etc/nginx</code>  ，名字叫 app02 ，启动的镜像是 nginx</p>
+<p>🟢 docker ps 查看文件状态，发现运行中的容器并没有app02，docker ps -a查看所有容器，显示 app02 是退出状态：</p>
+<p><img alt="image-20250227155239667" src="/docs/images/image-20250227155239667.png" /></p>
+<p>那退出的原因是什么呢，检查 app02 的日志：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>app02
+</span></code></pre></div>
+<p><img alt="image-20250227155418081" src="/docs/images/image-20250227155418081.png" /></p>
+<p>最后一行显示，/etc/nginx/nginx.conf 没有这样的文件</p>
+<blockquote>
+<p>解释：因为如果使用目录挂载的话，会默认先在容器外边创建一个空文件夹，叫做 <code>ngconfig</code>，而这个空文件夹里边什么都没有，那再来挂载到容器内部的<code>/etc/nginx/</code>下，相当于容器内部目录内什么都没有，但是容器启动，又要使用默认的 <code>/etc/nginx/</code> 下的配置文件，所以容器报错导致没有启动</p>
+<p>也就是挂载配置文件是不可以的，除非提前把配置文件放到本机挂载的目录下，因为默认以外边的挂载目录为准，而容器刚启动本机挂载目录是空目录，那容器内部就是空目录</p>
+</blockquote>
+<p>🔴 有没有一种方式能让容器启动的时候，虽然在本机目录来挂载容器内部目录，但是容器内部目录有什么内容，能让本机挂载的目录跟容器内部目录的内容保持一致 ，外部目录初始化就有容器内部的内容？</p>
+<p><mark>解决方式 ： 卷映射</mark></p>
+<p>🔴 怎么使用卷映射？</p>
+<p><img alt="image-20250227160141631" src="/docs/images/image-20250227160141631.png" /></p>
+<p>卷映射的写法：-v</p>
+<p>case1：如果是目录挂载，需要写主机要挂载的目录位置</p>
+<p>case2：而如果是卷映射，写的是称为<code>卷名</code> ，所谓的卷其实指的就是一个存储，按照卷形式的写法，只需要起一个卷名</p>
+<p>卷名跟路径的区别，就是不以点杠（<code>./</code>）或者杠(<code>/</code>)这些路径开始，就是一个卷</p>
+<p>这个卷docker会自动给卷创建一个存储位置，去把容器内部的这里面内容，即使在容器初始启动的时候就跟内部的这个内容保持完全一致</p>
+<p>演示：</p>
+<p>🟢 启动第三个容器：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">99</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app03<span class="w"> </span>nginx
+</span></code></pre></div>
+<p><img alt="image-20250227160605847" src="/docs/images/image-20250227160605847.png" /></p>
+<p>重新启动一个容器，还是用之前的命令，来稍加修改，容器名 app03，88 端口被 app02 占用了，所以这里端口映射本机端口写 99 ，还有 -v 的时候，直接叫 ngconf 
+（叫做卷名）我启动一个app</p>
+<p><img alt="image-20250227160937628" src="/docs/images/image-20250227160937628.png" /></p>
+<p>docker ps 查看状态，app03 成功启动了。 </p>
+<p>这个 docker run 即使用了目录挂载，又使用了卷映射，</p>
+<p>🔴 问题：如果想修改配置文件，那怎么在本机去找文件存储位置？</p>
+<p>🟢 答：卷的位置 ，docker统一放在了这个目录下：</p>
+<p><code>/var/lib/docker/volumes/&lt;volume-nanme&gt;</code></p>
+<p><img alt="image-20250227161206705" src="/docs/images/image-20250227161206705.png" /></p>
+<p>实操：</p>
+<p>（1）进入本机 volumes 文件夹下。可以看到 ngconf 卷</p>
+<p><img alt="image-20250227161330171" src="/docs/images/image-20250227161330171.png" /></p>
+<p>（2）cd 进入卷 </p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span>ngconf/
+</span></code></pre></div>
+<p><img alt="image-20250227161538219" src="/docs/images/image-20250227161538219.png" /></p>
+<p>① <code>ls</code> 查看目录内容，只有一个 <code>-data</code> 文件夹</p>
+<p>② <code>cd _data</code></p>
+<p>③ <code>ls</code> 查看 目录内容</p>
+<p><img alt="image-20250227161749780" src="/docs/images/image-20250227161749780.png" /></p>
+<p>也就是说明 原来容器内部  <code>/etc/nginx</code> 中的所有内容 都被完全的放到了 <code>卷</code>下面</p>
+<p>（1）本机修改 nginx.conf 文件</p>
+<p>（2）进入容器内部</p>
+<p>（3）cd 进文件夹</p>
+<p>（4）ls 显示目录内容</p>
+<p>（5）cat 显示文件内容，刚刚本机修改的内容，容器内部也被修改了</p>
+<p><img alt="image-20250227162019517" src="/docs/images/image-20250227162019517.png" /></p>
+<p>总结：以上演示了卷映射存储的两种方式</p>
+<blockquote>
+<ul>
+<li>一种目录挂载</li>
+<li>一种是卷映射</li>
+<li>目录挂载，初始启动外边的目录是空的，里边也是空的， </li>
+<li>卷映射，初始启动，容器外边（也就是本机目录）的目录要以内部的为准，启动起来了以后，容器里外随便修改，容器内外都能看到</li>
+</ul>
+</blockquote>
+<p>关于 docker 的卷命令：</p>
+<p>🟢 <code>docker volume ls</code> 列出本机所有卷，可以看到 <code>ngconf</code>，刚刚创建的卷</p>
+<p>补充 <code>cd ~</code> 表示进入根目录；pwd  <code>print working ddirectory</code></p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</span></code></pre></div>
+<p><img alt="image-20250227162513266" src="/docs/images/image-20250227162513266.png" /></p>
+<p>🟢 创建一个新的卷：docker create + 卷名</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>docker<span class="w"> </span>create<span class="w"> </span>haha
+</span></code></pre></div>
+<p><img alt="image-20250227162815956" src="/docs/images/image-20250227162815956.png" /></p>
+<ul>
+<li>最终所有的卷中的内容都会放到 <code>/var/lib/docker/vlolumes/你起的卷名</code>的 <code>_data</code>文件夹下，关于这个路径也可以不用记：</li>
+</ul>
+<p>🟢 查看卷属性：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>ngconf
+</span></code></pre></div>
+<p><img alt="image-20250227163518342" src="/docs/images/image-20250227163518342.png" /></p>
+<p>docker会打印这个卷真正所在的位置是在哪，以及它的创建时间等等</p>
+<p>📢  另外注意的一点，如果删除容器，卷和挂载的本地目录不会被删除</p>
+<p>下次再启动容器，使用相同的卷或者相同的目录，它们的数据依然都是在的</p>
+<p><img alt="image-20250227165002739" src="/docs/images/image-20250227165002739.png" /></p>
+<p>如图，删除app03，</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>app03
+</span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
+</span></code></pre></div>
+<p><code>ngconf</code>依然在</p>
+<p>如果下次再启动容器，依然是使用卷映射的方式，相当于以前<code>nginx</code>的所有配置都被保留</p>
+<p><a href="https://www.bilibili.com/video/BV1BE6PYUESb?spm_id_from=333.788.videopod.episodes&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e&amp;p=14">够用了，感谢</a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

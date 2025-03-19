@@ -1,5 +1,304 @@
 # 乐观 & 坚强
 
+## 2025年 3 月 19 日
+
+mkdocs  yml 配置文件，今天修改了配置文件，页面嵌入本地 pdf
+
+```yaml
+site_name: My Docs
+site_name: 溶err
+site_url: https://mydomain.org/mysite
+# edit_uri: edit/main/docs/
+# - 建站：241114 
+
+edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
+nav:
+# 为了将页面链接到某个部分，
+# 请在相应的文件夹中创建一个名为 index.md 的新文档，
+# 并将其添加到导航部分的开头
+  - 便签:   
+    - sticks/mkdocs_learn.md
+    - sticks/markdwon_learn.md
+    - sticks/latex.md
+    - sticks/GitHub.md
+    - sticks/MacOS.md
+    - sticks/shell.md
+    - sticks/linux.md
+    - sticks/screen.md
+    - sticks/docker.md  
+    - sticks/writting.md
+    - sticks/1_github_v1.md
+    - sticks/2_python.md
+    - sticks/3_vscode.md
+  - 面试:
+    - 题目:
+      - bagu/questions/1_questions.md
+    - 力扣:
+      - bagu/leetcode/index.md
+      - bagu/leetcode/1.md
+      - bagu/leetcode/2.md
+    - 深度学习: 
+      - bagu/deeplearning/index.md
+      - bagu/deeplearning/transformer.md
+      - bagu/deeplearning/former1.md
+      - bagu/deeplearning/former2.md 
+      - bagu/deeplearning/pytorch_shape_function.md
+      - bagu/deeplearning/1.md
+    - 机器学习: 
+      - bagu/machinelearning/kmeans.md
+      - bagu/machinelearning/2.md
+  - 捉个虫:
+    - Error/github.md
+    - Error/latex.md 
+    - Error/python.md 
+    - Error/macos.md
+    - Error/docker.md      
+  - 笔记:
+    - learning/3_ViT.md
+    - learning/1_clip.md
+    - learning/2_MOCO.md
+    - learning/2.md
+    - learning/1.md
+    - learning/vit.md
+    - learning/swintransformer.md
+    - learning/pe.md
+    - learning/convs.md
+    - learning/3.md
+    - learning/4_GAN.md
+    - learning/5_Bert.md
+    - learning/6_Diffusion.md
+    - learning/6_Diffusion1.md
+    - learning/7_Clip.md
+    - learning/8_WeightNorm.md
+    - learning/9_cGAN.md 
+    - learning/10_ResNet.md
+    - learning/11_excelcsvtensor.md 
+    - learning/12_KLdivergence.md
+    - learning/13_RNN.md
+    - learning/14_LSTM.md
+    - learning/15_ContrastiveLearning.md
+    - learning/16_YOLO.md
+    - learning/17_DETR.md
+    - learning/18_DINO.md
+    - learning/19_GPT.md  
+    - learning/20_distill.md
+    - learning/21_FastRCNN.md
+    - learning/22_DilatedConv.md    
+  - 文献:
+    - literature/index.md
+    - 时间序列预测: 
+      - literature/TSP/index.md
+      - literature/TSP/0_note.md
+      - literature/TSP/1_SegRNN.md  
+      - literature/TSP/2_DLinear.md
+      - literature/TSP/3_TimesNet.md
+      - literature/TSP/4_Informer.md
+      - literature/TSP/5_Autoformer.md
+    - 目标计数:
+        - literature/ObejectCounting/index.md
+        - literature/ObejectCounting/rank1 CountGD.md
+        - literature/ObejectCounting/rank2 GeCo.md
+        - literature/ObejectCounting/rank3 DAVE.md
+        - literature/ObejectCounting/rank4 CACViT.md
+        - literature/ObejectCounting/rank5 SSD.md
+        - literature/ObejectCounting/rank6 LOCA.md
+        - literature/ObejectCounting/rank7 SemAug_CountTR.md
+        - literature/ObejectCounting/rank8 CounTR.md
+        - literature/ObejectCounting/rank9 SemAug_SAFECount.md
+        - literature/ObejectCounting/rank10 SPDCN.md
+        - literature/ObejectCounting/rank11 GCA_SUN.md
+        - literature/ObejectCounting/rank12 SAFECount.md
+        - literature/ObejectCounting/rank13 BMNet.md
+        - literature/ObejectCounting/rank14 LaoNet.md
+        - literature/ObejectCounting/rank15 CounTX.md
+        - literature/ObejectCounting/rank16 Counting_DETR.md
+        - literature/ObejectCounting/rank17 RCC.md
+        - literature/ObejectCounting/rank18 Omnicount.md
+        - literature/ObejectCounting/rank19 FamNet.md
+    - 复现&代码: 
+      - literature/Reproduction/index.md
+      - literature/Reproduction/DAVE.md     
+      - literature/Reproduction/1.md
+      - literature/Reproduction/2.md
+      - literature/Reproduction/3.md
+      - literature/Reproduction/4.md
+      - literature/Reproduction/5_SegRNN_index.md
+      - literature/Reproduction/5_SegRNN_v1.md
+      - literature/Reproduction/5_SegRNN_v2.md
+      - literature/Reproduction/6_AutoFormer.md
+    - 目标检测:
+      - literature/ObjectDetection/2.md
+      - literature/ObjectDetection/index.md
+      - literature/ObjectDetection/1.md
+      - literature/ObjectDetection/3.md
+      - literature/ObjectDetection/4.md
+      
+    - 多模态:
+      - literature/MultiModal/index.md
+      - literature/MultiModal/1.md
+  - 杂:
+    - logs/index.md     
+    - logs/diary.md      
+
+theme:
+  name: material
+  features:
+    - toc.follow
+    # 给每个 Tab 添加一个 index.md，且在点击 Tab 时打开
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#section-index-pages-with-section-index-pages
+    # - navigation.indexes  
+    # 返回顶部的按钮，在上滑时出现
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-navigation/#back-to-top-button
+    - navigation.top  
+    # 搜索输入一些字母时推荐补全整个单词
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-suggestions
+    - search.suggest
+    # 搜索的关键词文章加入高亮
+    # https://squidfunk.github.io/mkdocs-material/setup/setting-up-site-search/#search-highlighting
+    - search.highlight
+    # 可以通过按钮复制代码
+    # https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#code-copy-button
+    - content.code.copy
+    # [点击按钮跳转至 GitHub 修改 Markdown 源文件]
+    # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+    # - content.action.edit # 不要，改了会有不同步的问题
+    # - navigation.footer # 页脚可以包含指向当前页面的上一页和下一页的链接
+    - navigation.tabs  # 设置导航
+    - navigation.tabs.sticky # 粘性导航
+    - navigation.sections # 不知道是啥 加上试一下  
+    # 功能标志 navigation.tabs 和 navigation.sections 可以相互组合。
+    # 如果启用了两个功能标志，则会为级别 2 导航项呈现部分。
+    - navigation.expand  # 下拉的导航默认展开
+    - navigation.indexes # 索引页
+  palette: 
+    # Palette toggle for light mode 设置白天模式
+    - scheme: default
+      primary: light blue  # 设置横幅颜色
+      accent: light blue  # 设置鼠标悬停颜色
+      toggle:
+        icon: material/brightness-7 
+        name: Switch to dark mode
+
+    # Palette toggle for dark mode  设置夜间模式
+    - scheme: slate
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+# repo_url: https://github.com/squidfunk/mkdocs-material # 添加github仓库，跟theme是同一个级别
+# repo_url: https://github.com/dearRongerr
+# repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
+# repo_name: dearRongerr's github
+# copyright: dearRongerr | 24.11.14 
+
+
+
+markdown_extensions:
+  - pymdownx.pathconverter:
+    base_path: 'docs/pdf_files' # 设置基础路径为你的 PDF 文件所在目录
+    absolute: false # 将路径转换为绝对路径
+    tags: 'a script img link object embed' # 需要转换路径的 HTML 标签
+  - abbr
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  # - pymdownx.emoji:
+  #     emoji_generator: !!python/name:material.extensions.emoji.to_svg
+  #     emoji_index: !!python/name:material.extensions.emoji.twemoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.caret
+  - pymdownx.mark
+  - pymdownx.tilde
+  # [数学公式支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
+  - pymdownx.arithmatex:
+      generic: true
+  # [图片功能支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/images/
+  # 给 Markdown 图片语法后面添加 `{width="300"}` 设置大小
+  - attr_list
+  - md_in_html
+  # [给标题添加链接]
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown/#+toc.permalink
+  - toc:
+      permalink: true # 固定标题位置为当前位置
+  # [代码语法高亮]
+  # https://squidfunk.github.io/mkdocs-material/reference/code-blocks/#code-blocks
+  # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#highlight
+  - pymdownx.highlight:
+      # 显示行号
+      linenums: true
+      # # 显示编程语言名称
+      # auto_title: true
+      # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#+pymdownx.highlight.line_spans
+      line_spans: __span
+      # https://squidfunk.github.io/mkdocs-material/setup/extensions/python-markdown-extensions/#+pymdownx.highlight.pygments_lang_class
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+  # [Markdown 提示]
+  # https://squidfunk.github.io/mkdocs-material/reference/admonitions/
+  - admonition
+  - pymdownx.details
+  # [Markdown footnote 语法支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/footnotes/
+  - footnotes
+  
+extra_javascript:
+  # [数学公式支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
+  - mkdocs/javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+extra_css:
+  # [数学公式支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  # [自定义 css]
+  # 不使用底部的翻页
+  - mkdocs/css/no-footer.css
+  # 无序列表符号自定义
+  - mkdocs/css/unordered-list-symbols.css
+  # 标题自动编号
+extra:
+  generator: false
+
+plugins:
+  - search
+  # 显示创建日期、修改日期
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago #时间类型
+      # type: date #日期类型
+      custom_format: "%d. %B %Y"  # 时间格式
+      fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
+      locale: zh #首选语言
+      # exclude:  #排除的页面
+      #     - index.md
+      enabled: true #是否启用
+      # strict: true      
+```
+
+
+
 ## 2025 年 3 月 14 日
 
 真好啊，真好啊，SegRNN 的代码看完了，下面还有一些细节部分，模型的损失什么的，主体部分都看好了。下面一步，就是完全跑完论文，看看实验结果，包括消融实验的部分。顺着实验：

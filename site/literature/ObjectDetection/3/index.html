@@ -1,0 +1,4537 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/literature/ObjectDetection/3/">
+      
+      
+        <link rel="prev" href="../1/">
+      
+      
+        <link rel="next" href="../4/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>（DETR）End-to-End Object Detection with Transformer - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#detrend-to-end-object-detection-with-transformer" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              （DETR）End-to-End Object Detection with Transformer
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ 摘要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modern-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 Modern detectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      图1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#based-on-transformers-self-attention-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段 based on transformers &amp; self-attention mechanisms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trained-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三段 trained end-to-end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipartite-matching-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四段 bipartite matching loss
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五段 baseline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differ-from-standard-object-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六段 differ from standard object detectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extend-to-more-complex-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七段 extend to more complex tasks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ Related work
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ Related work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1set-prediction-rightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关领域工作1：Set Prediction $\rightarrow $ 匈牙利损失
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2transformers-and-parallel-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关工作2：Transformers and Parallel Decoding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作2：Transformers and Parallel Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 介绍Transformer是什么，以及优点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段 tr的缺点 以及 我们
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关工作3 Object detection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作3 Object detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 是什么
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-based-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分 Set-based loss.基于集合的损失
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分 Set-based loss.基于集合的损失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrent-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分 Recurrent detectors. 检测方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分 Recurrent detectors. 检测方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ 结论
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ 结论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-detr-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ The DETR model
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ 摘要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ Introduction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ Introduction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#modern-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 Modern detectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      图1
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#based-on-transformers-self-attention-mechanisms" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段 based on transformers &amp; self-attention mechanisms
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#trained-end-to-end" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三段 trained end-to-end
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bipartite-matching-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四段 bipartite matching loss
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#baseline" class="md-nav__link">
+    <span class="md-ellipsis">
+      第五段 baseline
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#differ-from-standard-object-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第六段 differ from standard object detectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extend-to-more-complex-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      第七段 extend to more complex tasks
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ Related work
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ Related work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1set-prediction-rightarrow" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关领域工作1：Set Prediction $\rightarrow $ 匈牙利损失
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2transformers-and-parallel-decoding" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关工作2：Transformers and Parallel Decoding
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作2：Transformers and Parallel Decoding">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#transformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 介绍Transformer是什么，以及优点
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tr" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段 tr的缺点 以及 我们
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      相关工作3 Object detection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="相关工作3 Object detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段 是什么
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#set-based-loss" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一部分 Set-based loss.基于集合的损失
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第一部分 Set-based loss.基于集合的损失">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      第三段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recurrent-detectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二部分 Recurrent detectors. 检测方法
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="第二部分 Recurrent detectors. 检测方法">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      第四段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ 结论
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="⭐️ 结论">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      第一段
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      第二段
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-detr-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      ⭐️ The DETR model
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="detrend-to-end-object-detection-with-transformer">（DETR）End-to-End Object Detection with Transformer<a class="headerlink" href="#detrend-to-end-object-detection-with-transformer" title="Permanent link">&para;</a></h1>
+<p><a href="https://arxiv.org/pdf/2005.12872">论文</a></p>
+<p><a href="https://github.com/facebookresearch/detr">源码</a></p>
+<p><img alt="image-20241127115450547" src="/docs/images/image-20241127115450547.png" /></p>
+<p>题目：端到端的、基于Transformer的目标检测</p>
+<p>作者：Facebook</p>
+<p>时间：2020年5月28日</p>
+<p>期刊：</p>
+<h2 id="_1">⭐️ 摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>We present a new method that views object detection as a direct set prediction problem. </p>
+</blockquote>
+<p>将目标检测看做是一个预测问题</p>
+<blockquote>
+<p>Our approach streamlines the detection pipeline, effectively removing the need for many hand-designed components like a non-maximum suppression procedure or anchor generation that explicitly encode our prior knowledge about the task. </p>
+</blockquote>
+<p>简化了检测过程、去掉了很多人工步骤：NMS、生成锚框</p>
+<blockquote>
+<p>The main ingredients of the new framework, called DEtection TRansformer or DETR, are a set-based global loss that forces unique predictions via bipartite matching, and a transformer encoder-decoder architecture. </p>
+</blockquote>
+<p>我们的模型名字：DETR、全局损失、匈牙利二分匹配算法、基于Transformer Encoder decoder的检测结构</p>
+<blockquote>
+<p>Given a fixed small set of learned object queries, DETR reasons about the relations of the objects and the global image context to directly output the final set of predictions in parallel.</p>
+</blockquote>
+<p>给定learned object queries？，DETR推理 对象和全局图像的上下文关系，并行的输出最终的预测集合</p>
+<blockquote>
+<p>The new model is conceptually simple and does not require a specialized library, unlike many other modern detectors. </p>
+</blockquote>
+<p>DETR概念上简单、不需要专门的库、跟其他检测器不太一样</p>
+<blockquote>
+<p>（结果）DETR demonstrates accuracy and run-time performance on par with the well-established and highly-optimized Faster RCNN baseline on the challenging COCO object detection dataset. </p>
+</blockquote>
+<p>DETR的准确性和运行时间性能 都可以媲美 很成熟的、优化很好的 faster RCNN</p>
+<p>检测数据集的baseline：COCO</p>
+<blockquote>
+<p>Moreover, DETR can be easily generalized to produce panoptic segmentation in a unified manner. We show that it significantly outperforms competitive baselines.</p>
+</blockquote>
+<p>任务的泛化性能，DETR可以推广到全景分割任务</p>
+<h2 id="introduction">⭐️ Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<h3 id="modern-detectors">第一段 Modern detectors<a class="headerlink" href="#modern-detectors" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>The goal of object detection is to predict a set of bounding boxes and category labels for each object of interest.</p>
+</blockquote>
+<p>目标检测任务的定义</p>
+<blockquote>
+<p>Modern detectors address this set prediction task in an indirect way, by defining surrogate regression and classification problems on a large set of proposals [37,5], anchors [23], or window centers [53,46]. </p>
+</blockquote>
+<p>现在的检测方法：间接的方法进行检测</p>
+<blockquote>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Their performances are significantly influenced by postprocessing steps to collapse near-duplicate predictions, by the design of the anchor sets and by the heuristics that assign target boxes to anchors [52]. </li>
+</ul>
+</blockquote>
+<p>现在的检测方法：表现受到后处理步骤的显著影响，这些步骤包括合并近重复的预测、锚点集的设计，以及将目标框分配给锚点的启发式方法[52]。</p>
+<blockquote>
+<p>To simplify these pipelines, we propose a direct set prediction approach to bypass the surrogate tasks. </p>
+</blockquote>
+<p>为了简化这些流程，我们提出了一种直接的集合预测方法</p>
+<blockquote>
+<p>This end-to-end philosophy has led to significant advances in complex structured prediction tasks such as machine translation or speech recognition, but not yet in object detection: previous attempts [43,16,4,39] either add other forms of prior knowledge, or have not proven to be competitive with strong baselines on challenging benchmarks.</p>
+</blockquote>
+<p>这种端到端的理念在复杂的结构化预测任务中取得了显著进展，比如机器翻译或语音识别，但在目标检测领域尚未实现：之前的尝试[43,16,4,39]要么增加了其他形式的先验知识，要么在具有挑战性的基准测试中未能证明与强大的基线相竞争。</p>
+<blockquote>
+<p>This paper aims to bridge this gap.</p>
+</blockquote>
+<h3 id="1">图1<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20241127132150037" src="/docs/images/image-20241127132150037.png" /></p>
+<ul>
+<li>DETR直接、并行的预测最终的检测集合</li>
+<li>DETR：CNN和Transformer架构组合</li>
+<li>训练阶段：二部图匹配将预测和真实框关联起来、没有匹配的预测能够产生一个没有对象的类别预测</li>
+</ul>
+<h3 id="based-on-transformers-self-attention-mechanisms">第二段 based on transformers &amp; self-attention mechanisms<a class="headerlink" href="#based-on-transformers-self-attention-mechanisms" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>We streamline the training pipeline by viewing object detection as a direct set prediction problem. </p>
+</blockquote>
+<p>将目标检测视为一个直接的集合预测问题来简化训练流程</p>
+<blockquote>
+<p>We adopt an encoder-decoder architecture based on transformers [47], a popular architecture for sequence prediction. </p>
+</blockquote>
+<p>采用基于Transformer的结构</p>
+<blockquote>
+<p>The self-attention mechanisms of transformers, which explicitly model all pairwise interactions between elements in a sequence, make these architectures particularly suitable for specific constraints of set prediction such as removing duplicate predictions.</p>
+</blockquote>
+<p>Transformer的自注意力机制：明确给出序列中所有元素的成对交互，特别适合于集合预测的特定约束，例如去除重复预测</p>
+<p>（就是说明Transformer的自注意力机制很适合目标检测任务，给出成对元素之间的关系）</p>
+<h3 id="trained-end-to-end">第三段 trained end-to-end<a class="headerlink" href="#trained-end-to-end" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Our DEtection TRansformer (DETR, see Figure 1) predicts all objects at once, and is trained end-to-end with a set loss function which performs bipartite matching between predicted and ground-truth objects. </p>
+</blockquote>
+<ul>
+<li>一次性、端到段预测</li>
+<li>通过一个集合损失函数进行端到端训练，该函数在预测对象和真实对象之间执行二分图匹配</li>
+</ul>
+<blockquote>
+<p>DETR simplifies the detection pipeline by dropping multiple hand-designed components that encode prior knowledge, like spatial anchors or non-maximal suppression. </p>
+</blockquote>
+<p>DETR通过舍弃多个编码先验知识的手工设计组件，如空间锚点或非极大值抑制，简化了检测流程。</p>
+<blockquote>
+<p>Unlike most existing detection methods, DETR doesn’t require any customized layers, and thus can be reproduced easily in any framework that contains standard CNN and transformer classes.1</p>
+</blockquote>
+<p>与大多数现有的检测方法不同，DETR不需要任何定制层，因此可以在包含标准CNN和变换器类的任何框架中轻松复现。</p>
+<h3 id="bipartite-matching-loss">第四段 bipartite matching loss<a class="headerlink" href="#bipartite-matching-loss" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>Compared to most previous work on direct set prediction, the main features of DETR are the conjunction of the bipartite matching loss and transformers with (non-autoregressive) parallel decoding [29,12,10,8]. </p>
+</blockquote>
+<p>DETR的特点：结合二分图匹配损失和Transformer的并行解码损失</p>
+<p>📢 transformers with (non-autoregressive) 非自回归</p>
+<blockquote>
+<p>In contrast, previous work focused on autoregressive decoding with RNNs [43,41,30,36,42]. </p>
+</blockquote>
+<p>先前的损失是：RNN解码器的自回归损失</p>
+<blockquote>
+<p>Our matching loss function uniquely assigns a prediction to a ground truth object, and is invariant to a permutation of predicted objects, so we can emit them in parallel.</p>
+</blockquote>
+<p>匹配损失函数唯一地将预测分配给真实对象，并且对预测对象的排列是不变的，因此我们可以并行地输出它们。</p>
+<h3 id="baseline">第五段 baseline<a class="headerlink" href="#baseline" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>We evaluate DETR on one of the most popular object detection datasets, COCO [24], against a very competitive Faster R-CNN baseline [37]. </p>
+</blockquote>
+<p>数据集：object detection datasets, COCO</p>
+<p>模型：Faster R-CNN baseline</p>
+<blockquote>
+<p>More precisely, DETR demonstrates significantly better performance on large objects, a result likely enabled by the non-local computations of the transformer. </p>
+</blockquote>
+<p>DETR在大目标的检测性能比较好</p>
+<p>可能的原因：Transformer的非局部计算（是的，Transformer是对所有词，两两之间任意可能得关系都进行建模，是一种全局建模方法，问题就是 会对不那么重要的词 也进行了关注）</p>
+<blockquote>
+<p>It obtains, however, lower performances on small objects. We expect that future work will improve this aspect in the same way the development of FPN [22] did for Faster R-CNN.</p>
+</blockquote>
+<p>但是，小物体检测性能就不那么好</p>
+<h3 id="differ-from-standard-object-detectors">第六段 differ from standard object detectors<a class="headerlink" href="#differ-from-standard-object-detectors" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>The new model requires extra-long training schedule and benefits from auxiliary decoding losses in the transformer. </p>
+</blockquote>
+<p>新模型（DETR）需要一个超长的训练时间表，并且从transformer中的辅助解码损失中受益</p>
+<h3 id="extend-to-more-complex-tasks">第七段 extend to more complex tasks<a class="headerlink" href="#extend-to-more-complex-tasks" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>The design ethos of DETR easily extend to more complex tasks. </p>
+</blockquote>
+<p>可以扩展到其他任务</p>
+<blockquote>
+<p>In our experiments, we show that a simple segmentation head trained on top of a pretrained DETR outperfoms competitive baselines on <strong>Panoptic Segmentation</strong> [19], a challenging pixel-level recognition task that has recently gained popularity.</p>
+</blockquote>
+<p>（全景分割）在我们的实验中，我们展示了一个简单的分割头，它在预训练的DETR之上训练，其性能在Panoptic分割[19]上超越了竞争基线，Panoptic分割是一个具有挑战性的像素级识别任务，最近变得流行起来。</p>
+<h2 id="related-work">⭐️ Related work<a class="headerlink" href="#related-work" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Our work build on prior work in several domains: bipartite matching losses for set prediction, encoder-decoder architectures based on the transformer, parallel decoding, and object detection methods.</p>
+</blockquote>
+<p><strong>DETR涉及到的相关领域：</strong></p>
+<ul>
+<li>bipartite matching losses for set prediction 对于集合预测的二分图匹配损失</li>
+<li>encoder-decoder architectures based on the transformer </li>
+<li>parallel decoding 并行解码</li>
+<li>object detection methods.</li>
+</ul>
+<h3 id="1set-prediction-rightarrow">相关领域工作1：Set Prediction $\rightarrow  $ 匈牙利损失<a class="headerlink" href="#1set-prediction-rightarrow" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>There is no canonical（标准的） deep learning model to directly predict sets. </p>
+</blockquote>
+<p>对于集合预测，没有标准的深度学习模型</p>
+<blockquote>
+<p>The basic set prediction task is multilabel classification for which the baseline approach, one-vs-rest, does not apply to problems such as detection where there is an underlying structure between elements (i.e., near-identical boxes). </p>
+</blockquote>
+<p>集合预测任务是一种多标签分类任务，一对多，不适合检测任务</p>
+<p>检测任务的特点：元素之间有结构关系，例如，检测中的近相同框</p>
+<blockquote>
+<p>The first difficulty in these tasks is to avoid near-duplicates.（避免近似重复） </p>
+</blockquote>
+<p>检测任务的第一个难点：去重</p>
+<blockquote>
+<p>Most current detectors use postprocessings such as non-maximal suppression to address this issue, but direct set prediction are postprocessing-free. </p>
+</blockquote>
+<p>检测任务的后处理方法：NMS</p>
+<p>但是，集合预测是 不需要进行后处理的</p>
+<blockquote>
+<p>They need global inference schemes that model interactions between all predicted elements to avoid redundancy. </p>
+</blockquote>
+<p>集合预测需要 全局推理</p>
+<p>（说的是IOU、NMS）需要全局推理方案，这些方案模拟所有预测元素之间的交互以避免冗余</p>
+<blockquote>
+<p>For constant-size set prediction, dense fully connected networks [9] are sufficient but costly. A general approach is to use auto-regressive sequence models such as recurrent neural networks [48].</p>
+</blockquote>
+<p>对于固定大小的集合预测问题：全连接网，缺点：成本高</p>
+<p>解决：自回归模型 RNN</p>
+<blockquote>
+<p>In all cases, the loss function should be invariant by a permutation of the predictions. </p>
+</blockquote>
+<p>集合预测的损失函数 应该与预测的顺序 无关</p>
+<blockquote>
+<p>The usual solution is to design a loss based on the Hungarian algorithm [20], to find a bipartite matching between ground-truth and prediction. </p>
+</blockquote>
+<p>如何实现 损失函数与顺序无关？ 匈牙利算法</p>
+<p>寻找gt和预测的二分匹配</p>
+<blockquote>
+<p>This enforces permutation-invariance, and guarantees that each target element has a unique match. </p>
+</blockquote>
+<p>特点：</p>
+<ul>
+<li>顺序排列不变形</li>
+<li>唯一匹配</li>
+</ul>
+<blockquote>
+<p>We follow the bipartite matching loss approach. In contrast to most prior work however, we step away from autoregressive models and use transformers with parallel decoding.</p>
+</blockquote>
+<ul>
+<li>DETR 使用 二分匹配损失方法</li>
+<li>使用Transformer的并行解码模型</li>
+<li>没有用自回归模型</li>
+</ul>
+<h3 id="2transformers-and-parallel-decoding">相关工作2：Transformers and Parallel Decoding<a class="headerlink" href="#2transformers-and-parallel-decoding" title="Permanent link">&para;</a></h3>
+<h4 id="transformer">第一段 介绍Transformer是什么，以及优点<a class="headerlink" href="#transformer" title="Permanent link">&para;</a></h4>
+<p><strong>Transformers</strong>  were introduced by Vaswani et al . [47] as a new attention-based building block for machine translation. </p>
+<p><strong>Attention mechanisms</strong>  [2] are neural network layers that aggregate information from the entire input sequence. </p>
+<p>Transformers introduced <strong>self-attention layers</strong>, which, similarly to Non-Local Neural Networks [49], scan through each element of a sequence and update it by aggregating information from the whole sequence. </p>
+<blockquote>
+<p>自注意力层，类似非局部神经网络</p>
+<p>扫描序列中每个元素，聚合整个序列的信息并进行更新</p>
+</blockquote>
+<p>One of the main <strong>advantages</strong>  of attention-based models is their global computations and perfect memory, which makes them more suitable than RNNs on long sequences. Transformers are now replacing RNNs in many problems in natural language processing, speech processing and computer vision [8,27,45,34,31].</p>
+<h4 id="tr">第二段  tr的缺点 以及 我们<a class="headerlink" href="#tr" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Transformers were first used in auto-regressive models, following early sequence-to-sequence models [44], generating output tokens one by one. </p>
+</blockquote>
+<p>Transforme的应用领域：自回归模型，seq2seq模型，one by one输出</p>
+<blockquote>
+<p>However, the prohibitive inference cost (proportional to output length, and hard to batch) lead to the development of parallel sequence generation, in the domains of audio [29], machine translation [12,10], word representation learning [8], and more recently speech recognition [6]. </p>
+</blockquote>
+<p>Transformer的缺点：平方复杂度，高昂的计算成本</p>
+<blockquote>
+<p>We also combine transformers and parallel decoding for their suitable trade-off between computational cost and the ability to perform the global computations required for set prediction.</p>
+</blockquote>
+<p>我们的做法：Transformer+并行解码</p>
+<p>权衡 计算成本 和 全局计算能力</p>
+<h3 id="3-object-detection">相关工作3 Object detection<a class="headerlink" href="#3-object-detection" title="Permanent link">&para;</a></h3>
+<h4 id="_2">第一段 是什么<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<blockquote>
+<p>Most  <strong>modern object detection</strong>  methods make predictions relative to some initial guesses. </p>
+</blockquote>
+<p>现在的目标检测方法 需要给出 初始猜测</p>
+<blockquote>
+<p><strong>Two-stage detectors</strong>  [37,5] predict boxes w.r.t. proposals, whereas  <strong>single-stage methods</strong>  make predictions w.r.t. anchors [23] or a grid of possible object centers [53,46]. </p>
+</blockquote>
+<p>两阶段检测方法 &amp; 单阶段检测方法</p>
+<p>两阶段预测 预测框</p>
+<p>单阶段预测 预测锚点 or 目标中心的网格</p>
+<blockquote>
+<p>Recent work [52] demonstrate that the final performance of these systems heavily depends on the exact way these initial guesses are set.</p>
+</blockquote>
+<p>缺点：依赖初值</p>
+<blockquote>
+<p>In our model we are able to remove this hand-crafted process and streamline the detection process by directly predicting the set of detections with absolute box prediction w.r.t. the input image rather than an anchor.</p>
+</blockquote>
+<p>我们：</p>
+<p>how？</p>
+<ul>
+<li>移除手工过程</li>
+<li>简化检测过程</li>
+</ul>
+<p>what？</p>
+<ul>
+<li>（直接说是什么）直接预测检测集：直接预测框</li>
+<li>（用相对关系说是什么）是图像而不是锚点</li>
+</ul>
+<hr />
+<h4 id="set-based-loss">第一部分 Set-based loss.基于集合的损失<a class="headerlink" href="#set-based-loss" title="Permanent link">&para;</a></h4>
+<h5 id="_3">第二段<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h5>
+<p>Several object detectors [9,25,35] used the bipartite matching loss. However, in these early deep learning models, the relation between different prediction was modeled with convolutional or fully-connected layers only and a hand-designed NMS post-processing can improve their performance. More recent detectors [37,23,53] use non-unique assignment rules between ground truth and predictions together with an NMS.</p>
+<h5 id="_4">第三段<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h5>
+<p>Learnable NMS methods [16,4] and relation networks [17] explicitly model relations between different predictions with attention. Using direct set losses, they do not require any post-processing steps. However, these methods employ additional hand-crafted context features like proposal box coordinates to model relations between detections efficiently, while we look for solutions that reduce the prior knowledge encoded in the model.</p>
+<h4 id="recurrent-detectors">第二部分 Recurrent detectors.  检测方法<a class="headerlink" href="#recurrent-detectors" title="Permanent link">&para;</a></h4>
+<h5 id="_5">第四段<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h5>
+<p>Closest to our approach are end-to-end set predictions for object detection [43] and instance segmentation [41,30,36,42]. Similarly to us, they use bipartite-matching losses with encoder-decoder architectures based on CNN activations to directly produce a set of bounding boxes. These approaches, however, were only evaluated on small datasets and not against modern baselines. In particular, they are based on autoregressive models (more precisely RNNs), so they do not leverage the recent transformers with parallel decoding.</p>
+<h2 id="_6">⭐️ 结论<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
+<h3 id="_7">第一段<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<p>We presented DETR, a new design for object detection systems based on transformers and bipartite matching loss for direct set prediction. The approach achieves comparable results to an optimized Faster R-CNN baseline on the challenging COCO dataset. DETR is straightforward to implement and has a flexible architecture that is easily extensible to panoptic segmentation, with competitive results. In addition, it achieves significantly better performance on large objects than Faster R-CNN, likely thanks to the processing of global information performed by the self-attention. </p>
+<h3 id="_8">第二段<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<p>This new design for detectors also comes with new challenges, in particular regarding training, optimization and performances on small objects. Current detectors required several years of improvements to cope with similar issues, and we expect future work to successfully address them for DETR.</p>
+<h2 id="the-detr-model">⭐️ The DETR model<a class="headerlink" href="#the-detr-model" title="Permanent link">&para;</a></h2>
+<p>Two ingredients are essential for direct set predictions in detection: (1) a set prediction loss that forces unique matching between predicted and ground truth boxes; (2) an architecture that predicts (in a single pass) a set of objects and models their relation. We describe our architecture in detail in Figure 2.</p>
+<p>Object detection set prediction loss</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

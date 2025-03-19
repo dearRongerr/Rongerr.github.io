@@ -1,4 +1,4 @@
-# DLinear
+# 2022、DLinear
 
 [Are Transformers Effective for Time Series Forecasting?](https://paperswithcode.com/paper/are-transformers-effective-for-time-series)
 

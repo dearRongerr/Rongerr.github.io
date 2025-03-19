@@ -6,6 +6,8 @@
 
 [vscode设置关键字高亮](https://www.cnblogs.com/penuel/p/17442855.html)
 
+![image-20250317215440411](images/image-20250317215440411.png)
+
 `command+shift+p`打开命令窗口，搜索`Highlight Toggle Current`命令，此命令可高亮选中的单词
 
 ```

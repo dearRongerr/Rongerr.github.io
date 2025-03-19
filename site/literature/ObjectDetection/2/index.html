@@ -1,0 +1,4418 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/literature/ObjectDetection/2/">
+      
+      
+        <link rel="prev" href="../../Reproduction/6_AutoFormer/">
+      
+      
+        <link rel="next" href="../">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>目标检测基础知识 - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              目标检测基础知识
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iou_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iou_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU怎么实现？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOU怎么实现？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方api
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box_iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      box_iou
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_box_inter_union" class="md-nav__link">
+    <span class="md-ellipsis">
+      _box_inter_union
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box_area" class="md-nav__link">
+    <span class="md-ellipsis">
+      box_area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference 代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nms" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么NMS？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nms_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS怎么实现？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NMS怎么实现？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方api
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounding-box-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding box regression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anchor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anchor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      交并比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nms_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOU">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#iou_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#iou_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      IOU怎么实现？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="IOU怎么实现？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方api
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box_iou" class="md-nav__link">
+    <span class="md-ellipsis">
+      box_iou
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_box_inter_union" class="md-nav__link">
+    <span class="md-ellipsis">
+      _box_inter_union
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#box_area" class="md-nav__link">
+    <span class="md-ellipsis">
+      box_area
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reference 代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nms" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NMS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nms_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nms_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么NMS？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nms_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS怎么实现？
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="NMS怎么实现？">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#api_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      官方api
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bounding-box-regression" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding box regression
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#anchor" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anchor
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      交并比
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#nms_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      NMS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1">目标检测基础知识<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="iou">IOU<a class="headerlink" href="#iou" title="Permanent link">&para;</a></h2>
+<h3 id="iou_1">IOU是什么？<a class="headerlink" href="#iou_1" title="Permanent link">&para;</a></h3>
+<p>文字：Intersection over Union、两个box区域的交集比上并集、交并比</p>
+<p><a href="https://zhuanlan.zhihu.com/p/54709759">图示</a>：<img alt="image-20241126113242206" src="/docs/images/image-20241126113242206.png" /></p>
+<h3 id="iou_2">IOU怎么实现？<a class="headerlink" href="#iou_2" title="Permanent link">&para;</a></h3>
+<p>思路：（注意维度一致）</p>
+<ul>
+<li>
+<p>首先计算两个box左上角点坐标的最大值和右下角坐标的最小值 </p>
+</li>
+<li>
+<p>然后计算交集面积 </p>
+</li>
+<li>
+<p>最后把交集面积除以对应的并集面积</p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>左上角坐标和右下角坐标确定一个框</p>
+</div>
+<h4 id="api">官方api<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20241126114453538" src="/docs/images/image-20241126114453538.png" /></p>
+<p><img alt="image-20241126114654034" src="/docs/images/image-20241126114654034.png" /></p>
+<p>pytorch源码：</p>
+<p>（注意矩阵维度的变化）</p>
+<h4 id="box_iou">box_iou<a class="headerlink" href="#box_iou" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">def</span> <span class="nf">box_iou</span><span class="p">(</span><span class="n">boxes1</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">boxes2</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="sd">    Return intersection-over-union (Jaccard index) between two sets of boxes.</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="sd">    Both sets of boxes are expected to be in ``(x1, y1, x2, y2)`` format with</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="sd">    ``0 &lt;= x1 &lt; x2`` and ``0 &lt;= y1 &lt; y2``.</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="sd">    Args:</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="sd">        boxes1 (Tensor[N, 4]): first set of boxes</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="sd">        boxes2 (Tensor[M, 4]): second set of boxes</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="sd">    Returns:</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="sd">        Tensor[N, M]: the NxM matrix containing the pairwise IoU values for every element in boxes1 and boxes2</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">is_scripting</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">is_tracing</span><span class="p">():</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a>        <span class="n">_log_api_usage_once</span><span class="p">(</span><span class="n">box_iou</span><span class="p">)</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">inter</span><span class="p">,</span> <span class="n">union</span> <span class="o">=</span> <span class="n">_box_inter_union</span><span class="p">(</span><span class="n">boxes1</span><span class="p">,</span> <span class="n">boxes2</span><span class="p">)</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">iou</span> <span class="o">=</span> <span class="n">inter</span> <span class="o">/</span> <span class="n">union</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="k">return</span> <span class="n">iou</span>
+</span></code></pre></div>
+<p><strong><u>懂了</u></strong>：boxes1有N个，boxes2有M个，返回的N×M是boxes1中的所有检测框与boxes2中所有检测框的IOU值，boxes：集合、框的集合</p>
+<h4 id="_box_inter_union">_box_inter_union<a class="headerlink" href="#_box_inter_union" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">def</span> <span class="nf">_box_inter_union</span><span class="p">(</span><span class="n">boxes1</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">,</span> <span class="n">boxes2</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tuple</span><span class="p">[</span><span class="n">Tensor</span><span class="p">,</span> <span class="n">Tensor</span><span class="p">]:</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    <span class="n">area1</span> <span class="o">=</span> <span class="n">box_area</span><span class="p">(</span><span class="n">boxes1</span><span class="p">)</span> <span class="c1"># (x1, y1, x2, y2)</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    <span class="n">area2</span> <span class="o">=</span> <span class="n">box_area</span><span class="p">(</span><span class="n">boxes2</span><span class="p">)</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>    <span class="n">lt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>  <span class="c1"># [N,M,2] 找到左上角的最大值</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>    <span class="n">rb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span>  <span class="c1"># [N,M,2] 找到右下角的最小值</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    <span class="n">wh</span> <span class="o">=</span> <span class="n">_upcast</span><span class="p">(</span><span class="n">rb</span> <span class="o">-</span> <span class="n">lt</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>  <span class="c1"># [N,M,2]</span>
+</span><span id="__span-1-9"><a id="__codelineno-1-9" name="__codelineno-1-9" href="#__codelineno-1-9"></a>    <span class="n">inter</span> <span class="o">=</span> <span class="n">wh</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">wh</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>  <span class="c1"># [N,M]</span>
+</span><span id="__span-1-10"><a id="__codelineno-1-10" name="__codelineno-1-10" href="#__codelineno-1-10"></a>
+</span><span id="__span-1-11"><a id="__codelineno-1-11" name="__codelineno-1-11" href="#__codelineno-1-11"></a>    <span class="n">union</span> <span class="o">=</span> <span class="n">area1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">area2</span> <span class="o">-</span> <span class="n">inter</span>
+</span><span id="__span-1-12"><a id="__codelineno-1-12" name="__codelineno-1-12" href="#__codelineno-1-12"></a>
+</span><span id="__span-1-13"><a id="__codelineno-1-13" name="__codelineno-1-13" href="#__codelineno-1-13"></a>    <span class="k">return</span> <span class="n">inter</span><span class="p">,</span> <span class="n">union</span>
+</span></code></pre></div>
+<h4 id="box_area">box_area<a class="headerlink" href="#box_area" title="Permanent link">&para;</a></h4>
+<p><strong>是什么？</strong></p>
+<p>给定一系列边界框坐标集合，计算每个边界框的面积  </p>
+<p><strong>返回值</strong>：N的边界框的面积</p>
+<p><strong>怎么实现的？</strong> 面积的计算公式：<code>(boxes[:, 2] - boxes[:, 0]) * (boxes[:, 3] - boxes[:, 1])</code></p>
+<p><strong>边界框的坐标集合？</strong> <code>(x1, y1, x2, y2)</code> </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">box_area</span><span class="p">(</span><span class="n">boxes</span><span class="p">:</span> <span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Tensor</span><span class="p">:</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="sd">    Computes the area of a set of bounding boxes, which are specified by their</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="sd">    (x1, y1, x2, y2) coordinates.</span>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="sd">    Args:</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="sd">        boxes (Tensor[N, 4]): boxes for which the area will be computed. They</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a><span class="sd">            are expected to be in (x1, y1, x2, y2) format with</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="sd">            ``0 &lt;= x1 &lt; x2`` and ``0 &lt;= y1 &lt; y2``.</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="sd">    Returns:</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="sd">        Tensor[N]: the area for each box</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="sd">    &quot;&quot;&quot;</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>    <span class="k">if</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">is_scripting</span><span class="p">()</span> <span class="ow">and</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">jit</span><span class="o">.</span><span class="n">is_tracing</span><span class="p">():</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>        <span class="n">_log_api_usage_once</span><span class="p">(</span><span class="n">box_area</span><span class="p">)</span>
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>    <span class="n">boxes</span> <span class="o">=</span> <span class="n">_upcast</span><span class="p">(</span><span class="n">boxes</span><span class="p">)</span>
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
+</span></code></pre></div>
+<h4 id="reference"><a href="https://zhuanlan.zhihu.com/p/54709759">Reference  代码实现</a><a class="headerlink" href="#reference" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20241126124613097" src="/docs/images/image-20241126124613097.png" /></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="c1"># IOU计算</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="c1"># 假设box1维度为[N,4]   box2维度为[M,4]</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="k">def</span> <span class="nf">iou</span><span class="p">(</span><span class="n">box1</span><span class="p">,</span> <span class="n">box2</span><span class="p">):</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    <span class="n">N</span> <span class="o">=</span> <span class="n">box1</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>    <span class="n">M</span> <span class="o">=</span> <span class="n">box2</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>    <span class="n">lt</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span>  <span class="c1"># 左上角的点</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a>        <span class="n">box1</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>   <span class="c1"># [N,2]-&gt;[N,1,2]-&gt;[N,M,2]</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a>        <span class="n">box2</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>   <span class="c1"># [M,2]-&gt;[1,M,2]-&gt;[N,M,2]</span>
+</span><span id="__span-3-14"><a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a>    <span class="p">)</span>
+</span><span id="__span-3-15"><a id="__codelineno-3-15" name="__codelineno-3-15" href="#__codelineno-3-15"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lt&quot;</span><span class="p">,</span><span class="n">lt</span><span class="p">)</span>
+</span><span id="__span-3-16"><a id="__codelineno-3-16" name="__codelineno-3-16" href="#__codelineno-3-16"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;lt shape&quot;</span><span class="p">,</span><span class="n">lt</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-3-17"><a id="__codelineno-3-17" name="__codelineno-3-17" href="#__codelineno-3-17"></a>
+</span><span id="__span-3-18"><a id="__codelineno-3-18" name="__codelineno-3-18" href="#__codelineno-3-18"></a>    <span class="n">rb</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span>
+</span><span id="__span-3-19"><a id="__codelineno-3-19" name="__codelineno-3-19" href="#__codelineno-3-19"></a>        <span class="n">box1</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-3-20"><a id="__codelineno-3-20" name="__codelineno-3-20" href="#__codelineno-3-20"></a>        <span class="n">box2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">M</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>
+</span><span id="__span-3-21"><a id="__codelineno-3-21" name="__codelineno-3-21" href="#__codelineno-3-21"></a>    <span class="p">)</span>
+</span><span id="__span-3-22"><a id="__codelineno-3-22" name="__codelineno-3-22" href="#__codelineno-3-22"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rb&quot;</span><span class="p">,</span><span class="n">rb</span><span class="p">)</span>
+</span><span id="__span-3-23"><a id="__codelineno-3-23" name="__codelineno-3-23" href="#__codelineno-3-23"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;rb shape&quot;</span><span class="p">,</span><span class="n">rb</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-3-24"><a id="__codelineno-3-24" name="__codelineno-3-24" href="#__codelineno-3-24"></a>
+</span><span id="__span-3-25"><a id="__codelineno-3-25" name="__codelineno-3-25" href="#__codelineno-3-25"></a>    <span class="n">wh</span> <span class="o">=</span> <span class="n">rb</span> <span class="o">-</span> <span class="n">lt</span>  <span class="c1"># [N,M,2]</span>
+</span><span id="__span-3-26"><a id="__codelineno-3-26" name="__codelineno-3-26" href="#__codelineno-3-26"></a>    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wh&quot;</span><span class="p">,</span><span class="n">wh</span><span class="p">)</span>
+</span><span id="__span-3-27"><a id="__codelineno-3-27" name="__codelineno-3-27" href="#__codelineno-3-27"></a>    <span class="n">wh</span><span class="p">[</span><span class="n">wh</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>   <span class="c1"># 两个box没有重叠区域</span>
+</span><span id="__span-3-28"><a id="__codelineno-3-28" name="__codelineno-3-28" href="#__codelineno-3-28"></a>    <span class="n">inter</span> <span class="o">=</span> <span class="n">wh</span><span class="p">[:,:,</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">wh</span><span class="p">[:,:,</span><span class="mi">1</span><span class="p">]</span>   <span class="c1"># [N,M]</span>
+</span><span id="__span-3-29"><a id="__codelineno-3-29" name="__codelineno-3-29" href="#__codelineno-3-29"></a>
+</span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>    <span class="n">area1</span> <span class="o">=</span> <span class="p">(</span><span class="n">box1</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">box1</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">box1</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">box1</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># (N,)</span>
+</span><span id="__span-3-31"><a id="__codelineno-3-31" name="__codelineno-3-31" href="#__codelineno-3-31"></a>    <span class="n">area2</span> <span class="o">=</span> <span class="p">(</span><span class="n">box2</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span><span class="o">-</span><span class="n">box2</span><span class="p">[:,</span><span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">box2</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span><span class="o">-</span><span class="n">box2</span><span class="p">[:,</span><span class="mi">1</span><span class="p">])</span>  <span class="c1"># (M,)</span>
+</span><span id="__span-3-32"><a id="__codelineno-3-32" name="__codelineno-3-32" href="#__codelineno-3-32"></a>    <span class="n">area1</span> <span class="o">=</span> <span class="n">area1</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>  <span class="c1"># (N,M)</span>
+</span><span id="__span-3-33"><a id="__codelineno-3-33" name="__codelineno-3-33" href="#__codelineno-3-33"></a>    <span class="n">area2</span> <span class="o">=</span> <span class="n">area2</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="n">N</span><span class="p">,</span><span class="n">M</span><span class="p">)</span>  <span class="c1"># (N,M)</span>
+</span><span id="__span-3-34"><a id="__codelineno-3-34" name="__codelineno-3-34" href="#__codelineno-3-34"></a>
+</span><span id="__span-3-35"><a id="__codelineno-3-35" name="__codelineno-3-35" href="#__codelineno-3-35"></a>    <span class="n">iou</span> <span class="o">=</span> <span class="n">inter</span> <span class="o">/</span> <span class="p">(</span><span class="n">area1</span> <span class="o">+</span> <span class="n">area2</span> <span class="o">-</span> <span class="n">inter</span><span class="p">)</span>
+</span><span id="__span-3-36"><a id="__codelineno-3-36" name="__codelineno-3-36" href="#__codelineno-3-36"></a>    <span class="k">return</span> <span class="n">iou</span>
+</span><span id="__span-3-37"><a id="__codelineno-3-37" name="__codelineno-3-37" href="#__codelineno-3-37"></a>
+</span><span id="__span-3-38"><a id="__codelineno-3-38" name="__codelineno-3-38" href="#__codelineno-3-38"></a><span class="c1"># # 测试代码1</span>
+</span><span id="__span-3-39"><a id="__codelineno-3-39" name="__codelineno-3-39" href="#__codelineno-3-39"></a><span class="c1"># M=1</span>
+</span><span id="__span-3-40"><a id="__codelineno-3-40" name="__codelineno-3-40" href="#__codelineno-3-40"></a><span class="c1"># N=1</span>
+</span><span id="__span-3-41"><a id="__codelineno-3-41" name="__codelineno-3-41" href="#__codelineno-3-41"></a><span class="c1"># box1 = torch.tensor([[20, 30, 40, 50]], dtype=torch.float)  # 手动设置有重叠区域的框</span>
+</span><span id="__span-3-42"><a id="__codelineno-3-42" name="__codelineno-3-42" href="#__codelineno-3-42"></a><span class="c1"># box2 = torch.tensor([[30, 40, 50, 60]], dtype=torch.float)</span>
+</span><span id="__span-3-43"><a id="__codelineno-3-43" name="__codelineno-3-43" href="#__codelineno-3-43"></a><span class="c1"># # IOU: tensor([[0.1429]])</span>
+</span><span id="__span-3-44"><a id="__codelineno-3-44" name="__codelineno-3-44" href="#__codelineno-3-44"></a>
+</span><span id="__span-3-45"><a id="__codelineno-3-45" name="__codelineno-3-45" href="#__codelineno-3-45"></a><span class="c1"># 测试代码2</span>
+</span><span id="__span-3-46"><a id="__codelineno-3-46" name="__codelineno-3-46" href="#__codelineno-3-46"></a><span class="n">M</span><span class="o">=</span><span class="mi">2</span>
+</span><span id="__span-3-47"><a id="__codelineno-3-47" name="__codelineno-3-47" href="#__codelineno-3-47"></a><span class="n">N</span><span class="o">=</span><span class="mi">1</span>
+</span><span id="__span-3-48"><a id="__codelineno-3-48" name="__codelineno-3-48" href="#__codelineno-3-48"></a><span class="n">box1</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>  <span class="c1"># 手动设置有重叠区域的框</span>
+</span><span id="__span-3-49"><a id="__codelineno-3-49" name="__codelineno-3-49" href="#__codelineno-3-49"></a><span class="nb">print</span><span class="p">(</span><span class="n">box1</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-3-50"><a id="__codelineno-3-50" name="__codelineno-3-50" href="#__codelineno-3-50"></a><span class="n">box2</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">60</span><span class="p">],</span> <span class="p">[</span><span class="mi">15</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="mi">35</span><span class="p">,</span> <span class="mi">45</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+</span><span id="__span-3-51"><a id="__codelineno-3-51" name="__codelineno-3-51" href="#__codelineno-3-51"></a><span class="nb">print</span><span class="p">(</span><span class="n">box2</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
+</span><span id="__span-3-52"><a id="__codelineno-3-52" name="__codelineno-3-52" href="#__codelineno-3-52"></a>
+</span><span id="__span-3-53"><a id="__codelineno-3-53" name="__codelineno-3-53" href="#__codelineno-3-53"></a><span class="c1"># IOU: tensor([[0.1429, 0.3913]])</span>
+</span><span id="__span-3-54"><a id="__codelineno-3-54" name="__codelineno-3-54" href="#__codelineno-3-54"></a>
+</span><span id="__span-3-55"><a id="__codelineno-3-55" name="__codelineno-3-55" href="#__codelineno-3-55"></a><span class="c1"># 测试代码3</span>
+</span><span id="__span-3-56"><a id="__codelineno-3-56" name="__codelineno-3-56" href="#__codelineno-3-56"></a><span class="c1"># N=2</span>
+</span><span id="__span-3-57"><a id="__codelineno-3-57" name="__codelineno-3-57" href="#__codelineno-3-57"></a><span class="c1"># M=3</span>
+</span><span id="__span-3-58"><a id="__codelineno-3-58" name="__codelineno-3-58" href="#__codelineno-3-58"></a><span class="c1"># box1 = torch.tensor([[20, 30, 40, 50], [60, 70, 80, 90]], dtype=torch.float)  # 手动设置有重叠区域的框</span>
+</span><span id="__span-3-59"><a id="__codelineno-3-59" name="__codelineno-3-59" href="#__codelineno-3-59"></a><span class="c1"># print(box1.shape)</span>
+</span><span id="__span-3-60"><a id="__codelineno-3-60" name="__codelineno-3-60" href="#__codelineno-3-60"></a><span class="c1"># box2 = torch.tensor([[30, 40, 50, 60], [70, 80, 90, 100], [15, 25, 35, 45]], dtype=torch.float)</span>
+</span><span id="__span-3-61"><a id="__codelineno-3-61" name="__codelineno-3-61" href="#__codelineno-3-61"></a><span class="c1"># print(box2.shape)</span>
+</span><span id="__span-3-62"><a id="__codelineno-3-62" name="__codelineno-3-62" href="#__codelineno-3-62"></a>
+</span><span id="__span-3-63"><a id="__codelineno-3-63" name="__codelineno-3-63" href="#__codelineno-3-63"></a><span class="c1"># print(&quot;Box1:&quot;, box1)</span>
+</span><span id="__span-3-64"><a id="__codelineno-3-64" name="__codelineno-3-64" href="#__codelineno-3-64"></a><span class="c1"># print(&quot;Box2:&quot;, box2)</span>
+</span><span id="__span-3-65"><a id="__codelineno-3-65" name="__codelineno-3-65" href="#__codelineno-3-65"></a><span class="c1"># print(&quot;IOU:&quot;, iou(box1, box2))</span>
+</span><span id="__span-3-66"><a id="__codelineno-3-66" name="__codelineno-3-66" href="#__codelineno-3-66"></a>
+</span><span id="__span-3-67"><a id="__codelineno-3-67" name="__codelineno-3-67" href="#__codelineno-3-67"></a><span class="c1"># # 绘制边界框</span>
+</span><span id="__span-3-68"><a id="__codelineno-3-68" name="__codelineno-3-68" href="#__codelineno-3-68"></a><span class="c1"># fig, ax = plt.subplots(1)</span>
+</span><span id="__span-3-69"><a id="__codelineno-3-69" name="__codelineno-3-69" href="#__codelineno-3-69"></a>
+</span><span id="__span-3-70"><a id="__codelineno-3-70" name="__codelineno-3-70" href="#__codelineno-3-70"></a><span class="c1"># # 绘制box1</span>
+</span><span id="__span-3-71"><a id="__codelineno-3-71" name="__codelineno-3-71" href="#__codelineno-3-71"></a><span class="c1"># for i in range(N):</span>
+</span><span id="__span-3-72"><a id="__codelineno-3-72" name="__codelineno-3-72" href="#__codelineno-3-72"></a><span class="c1">#     rect = patches.Rectangle((box1[i, 0], box1[i, 1]), box1[i, 2] - box1[i, 0], box1[i, 3] - box1[i, 1], linewidth=1, edgecolor=&#39;r&#39;, facecolor=&#39;none&#39;)</span>
+</span><span id="__span-3-73"><a id="__codelineno-3-73" name="__codelineno-3-73" href="#__codelineno-3-73"></a><span class="c1">#     ax.add_patch(rect)</span>
+</span><span id="__span-3-74"><a id="__codelineno-3-74" name="__codelineno-3-74" href="#__codelineno-3-74"></a>
+</span><span id="__span-3-75"><a id="__codelineno-3-75" name="__codelineno-3-75" href="#__codelineno-3-75"></a><span class="c1"># # 绘制box2</span>
+</span><span id="__span-3-76"><a id="__codelineno-3-76" name="__codelineno-3-76" href="#__codelineno-3-76"></a><span class="c1"># for i in range(M):</span>
+</span><span id="__span-3-77"><a id="__codelineno-3-77" name="__codelineno-3-77" href="#__codelineno-3-77"></a><span class="c1">#     rect = patches.Rectangle((box2[i, 0], box2[i, 1]), box2[i, 2] - box2[i, 0], box2[i, 3] - box2[i, 1], linewidth=1, edgecolor=&#39;b&#39;, facecolor=&#39;none&#39;)</span>
+</span><span id="__span-3-78"><a id="__codelineno-3-78" name="__codelineno-3-78" href="#__codelineno-3-78"></a><span class="c1">#     ax.add_patch(rect)</span>
+</span><span id="__span-3-79"><a id="__codelineno-3-79" name="__codelineno-3-79" href="#__codelineno-3-79"></a>
+</span><span id="__span-3-80"><a id="__codelineno-3-80" name="__codelineno-3-80" href="#__codelineno-3-80"></a><span class="c1"># plt.xlim(0, 100)</span>
+</span><span id="__span-3-81"><a id="__codelineno-3-81" name="__codelineno-3-81" href="#__codelineno-3-81"></a><span class="c1"># plt.ylim(0, 100)</span>
+</span><span id="__span-3-82"><a id="__codelineno-3-82" name="__codelineno-3-82" href="#__codelineno-3-82"></a><span class="c1"># plt.gca().set_aspect(&#39;equal&#39;, adjustable=&#39;box&#39;)</span>
+</span><span id="__span-3-83"><a id="__codelineno-3-83" name="__codelineno-3-83" href="#__codelineno-3-83"></a><span class="c1"># plt.show()</span>
+</span></code></pre></div>
+<p>其中：</p>
+<p>torch.unsqueeze(1) 表示增加一个维度，增加位置为维度1</p>
+<p>torch.squeeze(1) 表示减少一个维度</p>
+<p>🌰：</p>
+<p><img alt="image-20241126141029848" src="/docs/images/image-20241126141029848.png" /></p>
+<p><span class="arithmatex">\(\frac{1}{7}\)</span></p>
+<h2 id="nms">NMS<a class="headerlink" href="#nms" title="Permanent link">&para;</a></h2>
+<h3 id="nms_1">NMS是什么？<a class="headerlink" href="#nms_1" title="Permanent link">&para;</a></h3>
+<p>5个字：过滤冗余框</p>
+<blockquote>
+<p>文字描述、数学实例</p>
+</blockquote>
+<p>文字：</p>
+<ul>
+<li>Non-maximum suppression、非极大值抑制算法</li>
+</ul>
+<p><a href="https://zhuanlan.zhihu.com/p/60794316">数学实例</a></p>
+<p><a href="https://blog.csdn.net/m0_56569131/article/details/136192324">图示</a>：</p>
+<p>需要给定的输入：预测的边界框及置信度</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>非极大值抑制（NMS）算法，用于去除重叠的边界框   <br />
+:param bboxes: 边界框列表，每个边界框格式为[xmin, ymin, xmax, ymax]    <br />
+:param scores: 边界框对应的置信度列表  <br />
+:param iou _thresh: IOU（交并比）阈值，用于判断两个边界框是否重叠               <br />
+:return: 经过NMS处理后的边界框和置信度列表</p>
+</div>
+<p><img alt="image-20241126144123636" src="/docs/images/image-20241126144123636.png" /></p>
+<h3 id="nms_2">为什么NMS？<a class="headerlink" href="#nms_2" title="Permanent link">&para;</a></h3>
+<p>NMS的作用是去除多个预测同一物体的冗余检测框</p>
+<p><strong>哪里需要用？</strong></p>
+<p>以RCNN系列、Yolo系列为首的一些模型在目标检测领域已经取得了非常成熟的应用效果，但不管是单阶段模型（如Yolo、SSD）还是两阶段模型（如RCNN），都需要进行非极大值抑制（Non-Maximum Suppression，简称NMS）的后处理操作。</p>
+<p><strong>缺点</strong></p>
+<p>① O(n)的算法，当框很多时，比较费时；</p>
+<p>② 在进行NMS时，并没有使用到图像特征，而是仅仅使用了预测框的参数。也就是说，NMS算法是没有“看到”图像的，这就会导致一个问题，有些离得非常近甚至重合的物体（比如人群中的两个人）对应的检测框会被NMS算法给去除掉而只保留一个，这是因为NMS算法没有“看到“图片，并不知道这里面有两个人，只知道两个框的IoU（intersection over union）非常大而已；</p>
+<p>③ NMS需要设置超参数阈值，这需要一定的先验知识，而且在设计时会根据不同的任务case by case，这使得方法不够general</p>
+<p><strong>为什么会有冗余框？</strong></p>
+<p>主要的原因：在对每个anchor进行回归的时候，是独立进行的。</p>
+<p>也就是说，假设anchor A和anchor B预测的是同一个人，然而anchor A和anchor B之间并没有信息交换，因此它们会分别预测出相似的结果（甚至可能置信分数都很高）。因此，如果能够让anchor B知道，已经有anchor A在预测这个物体了，就可以避免anchor B去预测重复的冗余框了。</p>
+<h3 id="nms_3">NMS怎么实现？<a class="headerlink" href="#nms_3" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>代码</p>
+</blockquote>
+<h4 id="api_1">官方api<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h4>
+<p><img alt="image-20241126141513223" src="/docs/images/image-20241126141513223.png" /></p>
+<p><img alt="image-20241126141452536" src="/docs/images/image-20241126141452536.png" /></p>
+<p>source</p>
+<p><img alt="image-20241126141556478" src="/docs/images/image-20241126141556478.png" /></p>
+<p>我扒不到源码</p>
+<h4 id="_2">代码实现<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
+<ol>
+<li>
+<p>选取这类box中scores最大的哪一个，记为box_best，并保留它</p>
+</li>
+<li>
+<p>计算box_best与其余的box的IOU</p>
+</li>
+<li>
+<p>如果其IOU&gt;0.5了，那么就舍弃这个box</p>
+</li>
+</ol>
+<p>（由于可能这两个box表示同一目标，所以保留分数高的哪一个）</p>
+<ol>
+<li>从最后剩余的boxes中，再找出最大scores的哪一个，如此循环往复</li>
+</ol>
+<p><img alt="image-20241126143624696" src="/docs/images/image-20241126143624696.png" /></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="c1"># NMS算法</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="c1"># bboxes维度为[N,4]，scores维度为[N,], 均为tensor</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="k">def</span> <span class="nf">nms</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">):</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">bboxes</span><span class="p">[:,</span><span class="mi">0</span><span class="p">]</span>
+</span><span id="__span-4-9"><a id="__codelineno-4-9" name="__codelineno-4-9" href="#__codelineno-4-9"></a>    <span class="n">y1</span> <span class="o">=</span> <span class="n">bboxes</span><span class="p">[:,</span><span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-4-10"><a id="__codelineno-4-10" name="__codelineno-4-10" href="#__codelineno-4-10"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">bboxes</span><span class="p">[:,</span><span class="mi">2</span><span class="p">]</span>
+</span><span id="__span-4-11"><a id="__codelineno-4-11" name="__codelineno-4-11" href="#__codelineno-4-11"></a>    <span class="n">y2</span> <span class="o">=</span> <span class="n">bboxes</span><span class="p">[:,</span><span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-4-12"><a id="__codelineno-4-12" name="__codelineno-4-12" href="#__codelineno-4-12"></a>    <span class="n">areas</span> <span class="o">=</span> <span class="p">(</span><span class="n">x2</span><span class="o">-</span><span class="n">x1</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="n">y2</span><span class="o">-</span><span class="n">y1</span><span class="p">)</span>   <span class="c1"># [N,] 每个bbox的面积</span>
+</span><span id="__span-4-13"><a id="__codelineno-4-13" name="__codelineno-4-13" href="#__codelineno-4-13"></a>    <span class="n">_</span><span class="p">,</span> <span class="n">order</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">descending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>    <span class="c1"># 降序排列</span>
+</span><span id="__span-4-14"><a id="__codelineno-4-14" name="__codelineno-4-14" href="#__codelineno-4-14"></a>
+</span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="n">keep</span> <span class="o">=</span> <span class="p">[]</span>
+</span><span id="__span-4-16"><a id="__codelineno-4-16" name="__codelineno-4-16" href="#__codelineno-4-16"></a>    <span class="k">while</span> <span class="n">order</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>       <span class="c1"># torch.numel()返回张量元素个数</span>
+</span><span id="__span-4-17"><a id="__codelineno-4-17" name="__codelineno-4-17" href="#__codelineno-4-17"></a>        <span class="k">if</span> <span class="n">order</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>     <span class="c1"># 保留框只剩一个</span>
+</span><span id="__span-4-18"><a id="__codelineno-4-18" name="__codelineno-4-18" href="#__codelineno-4-18"></a>            <span class="n">i</span> <span class="o">=</span> <span class="n">order</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+</span><span id="__span-4-19"><a id="__codelineno-4-19" name="__codelineno-4-19" href="#__codelineno-4-19"></a>            <span class="n">keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-4-20"><a id="__codelineno-4-20" name="__codelineno-4-20" href="#__codelineno-4-20"></a>            <span class="k">break</span>
+</span><span id="__span-4-21"><a id="__codelineno-4-21" name="__codelineno-4-21" href="#__codelineno-4-21"></a>        <span class="k">else</span><span class="p">:</span>
+</span><span id="__span-4-22"><a id="__codelineno-4-22" name="__codelineno-4-22" href="#__codelineno-4-22"></a>            <span class="n">i</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>    <span class="c1"># 保留scores最大的那个框box[i]</span>
+</span><span id="__span-4-23"><a id="__codelineno-4-23" name="__codelineno-4-23" href="#__codelineno-4-23"></a>            <span class="n">keep</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+</span><span id="__span-4-24"><a id="__codelineno-4-24" name="__codelineno-4-24" href="#__codelineno-4-24"></a>
+</span><span id="__span-4-25"><a id="__codelineno-4-25" name="__codelineno-4-25" href="#__codelineno-4-25"></a>        <span class="c1"># 计算box[i]与其余各框的IOU(思路很好)</span>
+</span><span id="__span-4-26"><a id="__codelineno-4-26" name="__codelineno-4-26" href="#__codelineno-4-26"></a>        <span class="n">xx1</span> <span class="o">=</span> <span class="n">x1</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="n">x1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>   <span class="c1"># [N-1,]</span>
+</span><span id="__span-4-27"><a id="__codelineno-4-27" name="__codelineno-4-27" href="#__codelineno-4-27"></a>        <span class="n">yy1</span> <span class="o">=</span> <span class="n">y1</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="n">y1</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-4-28"><a id="__codelineno-4-28" name="__codelineno-4-28" href="#__codelineno-4-28"></a>        <span class="n">xx2</span> <span class="o">=</span> <span class="n">x2</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="n">x2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-4-29"><a id="__codelineno-4-29" name="__codelineno-4-29" href="#__codelineno-4-29"></a>        <span class="n">yy2</span> <span class="o">=</span> <span class="n">y2</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">max</span><span class="o">=</span><span class="n">y2</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</span><span id="__span-4-30"><a id="__codelineno-4-30" name="__codelineno-4-30" href="#__codelineno-4-30"></a>        <span class="n">inter</span> <span class="o">=</span> <span class="p">(</span><span class="n">xx2</span><span class="o">-</span><span class="n">xx1</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">yy2</span><span class="o">-</span><span class="n">yy1</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>   <span class="c1"># [N-1,]</span>
+</span><span id="__span-4-31"><a id="__codelineno-4-31" name="__codelineno-4-31" href="#__codelineno-4-31"></a>
+</span><span id="__span-4-32"><a id="__codelineno-4-32" name="__codelineno-4-32" href="#__codelineno-4-32"></a>        <span class="n">iou</span> <span class="o">=</span> <span class="n">inter</span> <span class="o">/</span> <span class="p">(</span><span class="n">areas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">+</span><span class="n">areas</span><span class="p">[</span><span class="n">order</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span><span class="o">-</span><span class="n">inter</span><span class="p">)</span>  <span class="c1"># [N-1,]</span>
+</span><span id="__span-4-33"><a id="__codelineno-4-33" name="__codelineno-4-33" href="#__codelineno-4-33"></a>        <span class="n">idx</span> <span class="o">=</span> <span class="p">(</span><span class="n">iou</span> <span class="o">&lt;=</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">nonzero</span><span class="p">()</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span> <span class="c1"># 注意此时idx为[N-1,] 而order为[N,]</span>
+</span><span id="__span-4-34"><a id="__codelineno-4-34" name="__codelineno-4-34" href="#__codelineno-4-34"></a>        <span class="k">if</span> <span class="n">idx</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+</span><span id="__span-4-35"><a id="__codelineno-4-35" name="__codelineno-4-35" href="#__codelineno-4-35"></a>            <span class="k">break</span>
+</span><span id="__span-4-36"><a id="__codelineno-4-36" name="__codelineno-4-36" href="#__codelineno-4-36"></a>        <span class="n">order</span> <span class="o">=</span> <span class="n">order</span><span class="p">[</span><span class="n">idx</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span>  <span class="c1"># 修补索引之间的差值</span>
+</span><span id="__span-4-37"><a id="__codelineno-4-37" name="__codelineno-4-37" href="#__codelineno-4-37"></a>    <span class="k">return</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">keep</span><span class="p">)</span>   <span class="c1"># Pytorch的索引值为LongTensor</span>
+</span><span id="__span-4-38"><a id="__codelineno-4-38" name="__codelineno-4-38" href="#__codelineno-4-38"></a>
+</span><span id="__span-4-39"><a id="__codelineno-4-39" name="__codelineno-4-39" href="#__codelineno-4-39"></a><span class="c1"># 测试代码</span>
+</span><span id="__span-4-40"><a id="__codelineno-4-40" name="__codelineno-4-40" href="#__codelineno-4-40"></a><span class="n">bboxes</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span>
+</span><span id="__span-4-41"><a id="__codelineno-4-41" name="__codelineno-4-41" href="#__codelineno-4-41"></a>    <span class="p">[</span><span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">,</span> <span class="mi">50</span><span class="p">],</span>
+</span><span id="__span-4-42"><a id="__codelineno-4-42" name="__codelineno-4-42" href="#__codelineno-4-42"></a>    <span class="p">[</span><span class="mi">22</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">52</span><span class="p">],</span>
+</span><span id="__span-4-43"><a id="__codelineno-4-43" name="__codelineno-4-43" href="#__codelineno-4-43"></a>    <span class="p">[</span><span class="mi">100</span><span class="p">,</span> <span class="mi">100</span><span class="p">,</span> <span class="mi">120</span><span class="p">,</span> <span class="mi">130</span><span class="p">]</span>
+</span><span id="__span-4-44"><a id="__codelineno-4-44" name="__codelineno-4-44" href="#__codelineno-4-44"></a><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+</span><span id="__span-4-45"><a id="__codelineno-4-45" name="__codelineno-4-45" href="#__codelineno-4-45"></a>
+</span><span id="__span-4-46"><a id="__codelineno-4-46" name="__codelineno-4-46" href="#__codelineno-4-46"></a><span class="n">scores</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mf">0.9</span><span class="p">,</span> <span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.6</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float</span><span class="p">)</span>
+</span><span id="__span-4-47"><a id="__codelineno-4-47" name="__codelineno-4-47" href="#__codelineno-4-47"></a>
+</span><span id="__span-4-48"><a id="__codelineno-4-48" name="__codelineno-4-48" href="#__codelineno-4-48"></a><span class="c1"># 调用NMS函数</span>
+</span><span id="__span-4-49"><a id="__codelineno-4-49" name="__codelineno-4-49" href="#__codelineno-4-49"></a><span class="n">keep_indices</span> <span class="o">=</span> <span class="n">nms</span><span class="p">(</span><span class="n">bboxes</span><span class="p">,</span> <span class="n">scores</span><span class="p">,</span> <span class="n">threshold</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span>
+</span><span id="__span-4-50"><a id="__codelineno-4-50" name="__codelineno-4-50" href="#__codelineno-4-50"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;保留的框索引:&quot;</span><span class="p">,</span> <span class="n">keep_indices</span><span class="p">)</span>
+</span><span id="__span-4-51"><a id="__codelineno-4-51" name="__codelineno-4-51" href="#__codelineno-4-51"></a>
+</span><span id="__span-4-52"><a id="__codelineno-4-52" name="__codelineno-4-52" href="#__codelineno-4-52"></a><span class="c1"># # 可视化结果</span>
+</span><span id="__span-4-53"><a id="__codelineno-4-53" name="__codelineno-4-53" href="#__codelineno-4-53"></a><span class="c1"># fig, ax = plt.subplots(1)</span>
+</span><span id="__span-4-54"><a id="__codelineno-4-54" name="__codelineno-4-54" href="#__codelineno-4-54"></a>
+</span><span id="__span-4-55"><a id="__codelineno-4-55" name="__codelineno-4-55" href="#__codelineno-4-55"></a><span class="c1"># # 绘制所有边界框</span>
+</span><span id="__span-4-56"><a id="__codelineno-4-56" name="__codelineno-4-56" href="#__codelineno-4-56"></a><span class="c1"># for i in range(bboxes.size(0)):</span>
+</span><span id="__span-4-57"><a id="__codelineno-4-57" name="__codelineno-4-57" href="#__codelineno-4-57"></a><span class="c1">#     rect = patches.Rectangle((bboxes[i, 0], bboxes[i, 1]), bboxes[i, 2] - bboxes[i, 0], bboxes[i, 3] - bboxes[i, 1], linewidth=1, edgecolor=&#39;r&#39;, facecolor=&#39;none&#39;, label=&#39;All Boxes&#39; if i == 0 else &quot;&quot;)</span>
+</span><span id="__span-4-58"><a id="__codelineno-4-58" name="__codelineno-4-58" href="#__codelineno-4-58"></a><span class="c1">#     ax.add_patch(rect)</span>
+</span><span id="__span-4-59"><a id="__codelineno-4-59" name="__codelineno-4-59" href="#__codelineno-4-59"></a>
+</span><span id="__span-4-60"><a id="__codelineno-4-60" name="__codelineno-4-60" href="#__codelineno-4-60"></a><span class="c1"># # 绘制保留的边界框</span>
+</span><span id="__span-4-61"><a id="__codelineno-4-61" name="__codelineno-4-61" href="#__codelineno-4-61"></a><span class="c1"># for i in keep_indices:</span>
+</span><span id="__span-4-62"><a id="__codelineno-4-62" name="__codelineno-4-62" href="#__codelineno-4-62"></a><span class="c1">#     rect = patches.Rectangle((bboxes[i, 0], bboxes[i, 1]), bboxes[i, 2] - bboxes[i, 0], bboxes[i, 3] - bboxes[i, 1], linewidth=2, edgecolor=&#39;b&#39;, facecolor=&#39;none&#39;, label=&#39;Kept Boxes&#39; if i == keep_indices[0] else &quot;&quot;)</span>
+</span><span id="__span-4-63"><a id="__codelineno-4-63" name="__codelineno-4-63" href="#__codelineno-4-63"></a><span class="c1">#     ax.add_patch(rect)</span>
+</span><span id="__span-4-64"><a id="__codelineno-4-64" name="__codelineno-4-64" href="#__codelineno-4-64"></a>
+</span><span id="__span-4-65"><a id="__codelineno-4-65" name="__codelineno-4-65" href="#__codelineno-4-65"></a><span class="c1"># # 添加图例</span>
+</span><span id="__span-4-66"><a id="__codelineno-4-66" name="__codelineno-4-66" href="#__codelineno-4-66"></a><span class="c1"># handles, labels = ax.get_legend_handles_labels()</span>
+</span><span id="__span-4-67"><a id="__codelineno-4-67" name="__codelineno-4-67" href="#__codelineno-4-67"></a><span class="c1"># by_label = dict(zip(labels, handles))</span>
+</span><span id="__span-4-68"><a id="__codelineno-4-68" name="__codelineno-4-68" href="#__codelineno-4-68"></a><span class="c1"># ax.legend(by_label.values(), by_label.keys())</span>
+</span><span id="__span-4-69"><a id="__codelineno-4-69" name="__codelineno-4-69" href="#__codelineno-4-69"></a>
+</span><span id="__span-4-70"><a id="__codelineno-4-70" name="__codelineno-4-70" href="#__codelineno-4-70"></a><span class="c1"># plt.xlim(0, 150)</span>
+</span><span id="__span-4-71"><a id="__codelineno-4-71" name="__codelineno-4-71" href="#__codelineno-4-71"></a><span class="c1"># plt.ylim(0, 150)</span>
+</span><span id="__span-4-72"><a id="__codelineno-4-72" name="__codelineno-4-72" href="#__codelineno-4-72"></a><span class="c1"># plt.gca().set_aspect(&#39;equal&#39;, adjustable=&#39;box&#39;)</span>
+</span><span id="__span-4-73"><a id="__codelineno-4-73" name="__codelineno-4-73" href="#__codelineno-4-73"></a><span class="c1"># plt.show()</span>
+</span></code></pre></div>
+<p>torch.numel() 表示一个张量总元素的个数   </p>
+<p>torch.clamp(min, max) 设置上下限</p>
+<p>tensor.item() 把tensor元素取出作为numpy数字</p>
+<p><a href="https://blog.csdn.net/m0_56569131/article/details/136192324">另补充代码示例</a></p>
+<h2 id="bounding-box-regression">Bounding box regression<a class="headerlink" href="#bounding-box-regression" title="Permanent link">&para;</a></h2>
+<h2 id="anchor">Anchor<a class="headerlink" href="#anchor" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250217140037734" src="/docs/images/image-20250217140037734.png" /></p>
+<p><img alt="image-20250217140109446" src="/docs/images/image-20250217140109446.png" /></p>
+<p><img alt="image-20250217140715341" src="/docs/images/image-20250217140715341.png" /></p>
+<p>锚框A1跟人像区域非常接近</p>
+<h2 id="_3">交并比<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250217140726634" src="/docs/images/image-20250217140726634.png" /></p>
+<p><img alt="image-20250217135751451" src="/docs/images/image-20250217135751451.png" /></p>
+<p><img alt="image-20250217135830819" src="/docs/images/image-20250217135830819.png" /></p>
+<ul>
+<li>什么情况下两个矩形框的IoU等于1？ </li>
+</ul>
+<p>答案：两个矩形框完全重合。</p>
+<ul>
+<li>什么情况下两个矩形框的IoU等于0？</li>
+</ul>
+<p>答案：两个矩形框完全不相交。</p>
+<p>对于同一个物体，会产生多个预测框。因此需要消除重叠较大的冗余预测框。具体的处理方法就是非极大值抑制（NMS）。</p>
+<h2 id="nms_4">NMS<a class="headerlink" href="#nms_4" title="Permanent link">&para;</a></h2>
+<p>假设使用模型对图片进行预测，一共输出了11个预测框及其得分，在图上画出预测框如 <strong>图1</strong> 所示。在每个人像周围，都出现了多个预测框，需要消除冗余的预测框以得到最终的预测结果。</p>
+<p><img alt="image-20250217140607600" src="/docs/images/image-20250217140607600.png" /></p>
+<p><img alt="image-20250217141218432" src="/docs/images/image-20250217141218432.png" /></p>
+<p><img alt="image-20250217141234499" src="/docs/images/image-20250217141234499.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

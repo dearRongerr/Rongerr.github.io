@@ -1,0 +1,4498 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/learning/3/">
+      
+      
+        <link rel="prev" href="../convs/">
+      
+      
+        <link rel="next" href="../4_GAN/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>李沐 目标检测部分 - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              李沐 目标检测部分
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      k1 边界框
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="k1 边界框">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么实现？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k2" class="md-nav__link">
+    <span class="md-ellipsis">
+      K2 锚框
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K2 锚框">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      锚框是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成多个锚框
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torchmeshgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.meshgrid()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      全部代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchmeshgrid-reshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.meshgrid &amp; reshape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      公式的整体逻辑是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      细节：为什么索引是这样？？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3" class="md-nav__link">
+    <span class="md-ellipsis">
+      K3 交并比
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K3 交并比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是交并比
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要交并比？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么实现交并比？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标检测的步骤
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#k1" class="md-nav__link">
+    <span class="md-ellipsis">
+      k1 边界框
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="k1 边界框">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么实现？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k2" class="md-nav__link">
+    <span class="md-ellipsis">
+      K2 锚框
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K2 锚框">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      锚框是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      生成多个锚框
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      代码实现
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="代码实现">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#torchmeshgrid" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.meshgrid()
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      全部代码
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#torchmeshgrid-reshape" class="md-nav__link">
+    <span class="md-ellipsis">
+      torch.meshgrid &amp; reshape
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      公式的整体逻辑是什么？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      细节：为什么索引是这样？？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#k3" class="md-nav__link">
+    <span class="md-ellipsis">
+      K3 交并比
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="K3 交并比">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      什么是交并比
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      为什么需要交并比？
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      怎么实现交并比？
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      目标检测的步骤
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+<h1 id="_1"><a href="https://zh-v2.d2l.ai/chapter_computer-vision/bounding-box.html">李沐</a> 目标检测部分<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
+<h2 id="k1">k1 边界框<a class="headerlink" href="#k1" title="Permanent link">&para;</a></h2>
+<h3 id="_2"><strong>是什么？</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
+<p>文字：bounding box</p>
+<p>图示：</p>
+<p><img alt="image-20241126170337518" src="/docs/images/image-20241126170337518.png" /></p>
+<h3 id="_3"><strong>怎么实现？</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<ol>
+<li>两角表示法：由矩形左上角的以及右下角的x和y坐标决定</li>
+<li>中心宽度表示法：边界框中心的(x,y)轴坐标以及框的宽度和高度</li>
+</ol>
+<p>pytorch中常用的格式：</p>
+<p>boxes：</p>
+<ul>
+<li>x1, y1, x2, y2 （shape=n×4）</li>
+<li>cx, cy, w, h（shape=n×4）</li>
+</ul>
+<p>n表示框的数量，不止一个框</p>
+<h3 id="_4">代码实现<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>含测试代码</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="c1">#@save</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="k">def</span> <span class="nf">box_corner_to_center</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;从（左上，右下）转换到（中间，宽度，高度）&quot;&quot;&quot;</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>    <span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>    <span class="n">cx</span> <span class="o">=</span> <span class="p">(</span><span class="n">x1</span> <span class="o">+</span> <span class="n">x2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    <span class="n">cy</span> <span class="o">=</span> <span class="p">(</span><span class="n">y1</span> <span class="o">+</span> <span class="n">y2</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    <span class="n">w</span> <span class="o">=</span> <span class="n">x2</span> <span class="o">-</span> <span class="n">x1</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    <span class="n">h</span> <span class="o">=</span> <span class="n">y2</span> <span class="o">-</span> <span class="n">y1</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    <span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>    <span class="k">return</span> <span class="n">boxes</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="c1">#@save</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="k">def</span> <span class="nf">box_center_to_corner</span><span class="p">(</span><span class="n">boxes</span><span class="p">):</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;从（中间，宽度，高度）转换到（左上，右下）&quot;&quot;&quot;</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a>    <span class="n">cx</span><span class="p">,</span> <span class="n">cy</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span> <span class="o">=</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">],</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span>
+</span><span id="__span-0-18"><a id="__codelineno-0-18" name="__codelineno-0-18" href="#__codelineno-0-18"></a>    <span class="n">x1</span> <span class="o">=</span> <span class="n">cx</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span>
+</span><span id="__span-0-19"><a id="__codelineno-0-19" name="__codelineno-0-19" href="#__codelineno-0-19"></a>    <span class="n">y1</span> <span class="o">=</span> <span class="n">cy</span> <span class="o">-</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span>
+</span><span id="__span-0-20"><a id="__codelineno-0-20" name="__codelineno-0-20" href="#__codelineno-0-20"></a>    <span class="n">x2</span> <span class="o">=</span> <span class="n">cx</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">w</span>
+</span><span id="__span-0-21"><a id="__codelineno-0-21" name="__codelineno-0-21" href="#__codelineno-0-21"></a>    <span class="n">y2</span> <span class="o">=</span> <span class="n">cy</span> <span class="o">+</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="n">h</span>
+</span><span id="__span-0-22"><a id="__codelineno-0-22" name="__codelineno-0-22" href="#__codelineno-0-22"></a>    <span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="n">x1</span><span class="p">,</span> <span class="n">y1</span><span class="p">,</span> <span class="n">x2</span><span class="p">,</span> <span class="n">y2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-0-23"><a id="__codelineno-0-23" name="__codelineno-0-23" href="#__codelineno-0-23"></a>    <span class="k">return</span> <span class="n">boxes</span>
+</span><span id="__span-0-24"><a id="__codelineno-0-24" name="__codelineno-0-24" href="#__codelineno-0-24"></a>
+</span><span id="__span-0-25"><a id="__codelineno-0-25" name="__codelineno-0-25" href="#__codelineno-0-25"></a><span class="c1"># bbox是边界框的英文缩写</span>
+</span><span id="__span-0-26"><a id="__codelineno-0-26" name="__codelineno-0-26" href="#__codelineno-0-26"></a><span class="n">dog_bbox</span><span class="p">,</span> <span class="n">cat_bbox</span> <span class="o">=</span> <span class="p">[</span><span class="mf">60.0</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">378.0</span><span class="p">,</span> <span class="mf">516.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">400.0</span><span class="p">,</span> <span class="mf">112.0</span><span class="p">,</span> <span class="mf">655.0</span><span class="p">,</span> <span class="mf">493.0</span><span class="p">]</span>
+</span><span id="__span-0-27"><a id="__codelineno-0-27" name="__codelineno-0-27" href="#__codelineno-0-27"></a>
+</span><span id="__span-0-28"><a id="__codelineno-0-28" name="__codelineno-0-28" href="#__codelineno-0-28"></a><span class="n">boxes</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">dog_bbox</span><span class="p">,</span> <span class="n">cat_bbox</span><span class="p">))</span>
+</span><span id="__span-0-29"><a id="__codelineno-0-29" name="__codelineno-0-29" href="#__codelineno-0-29"></a><span class="n">box_center_to_corner</span><span class="p">(</span><span class="n">box_corner_to_center</span><span class="p">(</span><span class="n">boxes</span><span class="p">))</span> <span class="o">==</span> <span class="n">boxes</span>
+</span></code></pre></div>
+<p>OUT：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">array</span><span class="p">([[</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">],</span>      
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>       <span class="p">[</span> <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">,</span>  <span class="kc">True</span><span class="p">]])</span>
+</span></code></pre></div>
+<p>这里想强调的一点：</p>
+<p>我们用的电脑屏幕和pytorch中，默认的原点在左上角</p>
+<p>图像中坐标的原点是图像的左上角，向右的方向为x轴的正方向，向下的方向为y轴的正方向。</p>
+<p><img alt="image-20241126164125475" src="/docs/images/image-20241126164125475.png" /></p>
+<h2 id="k2">K2 锚框<a class="headerlink" href="#k2" title="Permanent link">&para;</a></h2>
+<h3 id="_5">锚框是什么？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<ul>
+<li>anchor box</li>
+<li>以每个像素为中心，生成多个缩放比和宽高比（aspect ratio）不同的边界框</li>
+<li>应用：基于锚框的目标检测模型</li>
+<li>是一种 <strong>区域采样方法</strong></li>
+</ul>
+<p>图示：</p>
+<p><img alt="image-20241126170206905" src="/docs/images/image-20241126170206905.png" /></p>
+<h3 id="_6">生成多个锚框<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p><strong>这里要解决的问题：给定输入图像高度h、宽度w，缩放比s，宽高比r，问题锚框的宽度和高度？</strong></p>
+<blockquote>
+<p>缩放比<span class="arithmatex">\(s\)</span>：对输入图像进行缩放，输入图像的宽度和高度分别缩放s倍，得到锚框的宽度和高度</p>
+<p>宽高比<span class="arithmatex">\(r\)</span></p>
+<p><del>① 指的是锚框的宽和高之比</del></p>
+<p>② <span class="arithmatex">\(r\)</span>是对于输入图像宽高比的放缩，例如输入图像的宽高比是<span class="arithmatex">\(w/h\)</span>，添加r后变成了<span class="arithmatex">\((w/h)*r\)</span>，得到锚框的宽高比<span class="arithmatex">\((w/h)*r\)</span></p>
+<blockquote>
+<p>其实我觉得这个r可以理解为输入图像宽高比的缩放比率，只不是这个比率 <span class="arithmatex">\(r&gt;0\)</span>即可，因为可以在原始图像宽高比的基础上放大宽高比 或者 减少宽高比</p>
+</blockquote>
+<p>总结：</p>
+<p>s：scale</p>
+<p>r：aspect ratio</p>
+<p>从原始图像到确定锚框，需要知道锚框的......</p>
+</blockquote>
+<hr />
+<p><strong>书上：</strong> </p>
+<p><img alt="image-20241126174134561" src="/docs/images/image-20241126174134561.png" /></p>
+<p>要搞清楚的点：</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 缩放比s的意义</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 宽高比r的意义</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 锚框的宽度和高度怎么来？</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 什么叫做原始图像归一化为正方形？</li>
+</ul>
+<blockquote>
+<p>因为锚框的生成是在单位像素内进行的，参照系变了
+</p>
+</blockquote>
+<p>首先<a href="https://fkjkkll.github.io/2021/11/23/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BSSD/">解释(from 讨论区)</a>这里锚框的宽度和高度：</p>
+<p><img alt="image-20241126173225339" src="/docs/images/image-20241126173225339.png" /></p>
+<hr />
+<p><span id='001'><strong>书上：</strong> </span></p>
+<p><img alt="image-20241126221347240" src="/docs/images/image-20241126221347240.png" /></p>
+<p>问题：要生成多个锚框</p>
+<p>解决：设置多个<span class="arithmatex">\(s\)</span>和<span class="arithmatex">\(r\)</span>即可，然后考虑每个可能的s与r的组合，<mark>但是实践中往往只考虑s1和r1的所有组合</mark></p>
+<h3 id="_7">代码实现<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> todo：为什么需要半宽、半高，后面都是什么意思？锚框生成的步骤是怎么样的？</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1"># 除以2来获得半高和半宽</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">anchor_manipulations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="o">-</span><span class="n">w</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>                                    <span class="n">in_height</span> <span class="o">*</span> <span class="n">in_width</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="c1"># 每个中心点都将有“boxes_per_pixel”个锚框，</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="c1"># 所以生成含所有锚框中心的网格，重复了“boxes_per_pixel”次</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="n">out_grid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">shift_x</span><span class="p">,</span> <span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span><span class="p">,</span> <span class="n">shift_y</span><span class="p">],</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>            <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat_interleave</span><span class="p">(</span><span class="n">boxes_per_pixel</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="n">output</span> <span class="o">=</span> <span class="n">out_grid</span> <span class="o">+</span> <span class="n">anchor_manipulations</span>
+</span></code></pre></div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> in_height, in_width = data.shape[-2:]</li>
+</ul>
+<p>data format：b c h w</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> device, num_sizes, num_ratios = data.device, len(sizes), len(ratios)</li>
+</ul>
+<p>num_sizes表示scale、num_ratios表示aspect ratio</p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <a href="#001">boxes_per_pixel = (num_sizes + num_ratios - 1)</a></p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> center_h = (torch.arange(in_height, device=device) + offset_h) * steps_h 乘 steps_h？</p>
+</li>
+<li>
+<p>因为原点在左上角，所以是锚框中心点分别加offset_h、offset_w</p>
+</li>
+<li>对每个像素点生成锚框，每个像素点都有生成 num_sizes+num_ratios-1的锚框</li>
+<li>所以对于单个像素点来说，参考点变了，全部变成了单位坐标下的度量，所以乘以 steps_h 和 steps_w</li>
+<li>
+<p>steps_h = 1/原始高度 &amp;  steps_w = 1/原始宽度</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> torch.meshgrid？</p>
+</li>
+</ul>
+<blockquote>
+<p>shift_y, shift_x = torch.meshgrid(center_h, center_w, indexing='ij')</p>
+<p>shift_y, shift_x = shift_y.reshape(-1), shift_x.reshape(-1)</p>
+</blockquote>
+<h4 id="torchmeshgrid"><strong>torch.meshgrid()</strong><a class="headerlink" href="#torchmeshgrid" title="Permanent link">&para;</a></h4>
+<ul>
+<li>输入：一组一维张量</li>
+<li>输出：一个多维网格坐标</li>
+<li>deal：每个输出张量的形状与输入张量的形状相同，但每个输出张量的值是沿着相应维度的网格坐标。</li>
+</ul>
+<p>举例：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="c1"># 定义一维张量</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="n">y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span><span class="mi">7</span><span class="p">,</span><span class="mi">10</span><span class="p">])</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1"># 生成网格坐标</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="n">grid_x</span><span class="p">,</span> <span class="n">grid_y</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</span><span id="__span-3-9"><a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a>
+</span><span id="__span-3-10"><a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grid_x:&quot;</span><span class="p">)</span>
+</span><span id="__span-3-11"><a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid_x</span><span class="p">)</span>
+</span><span id="__span-3-12"><a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;grid_y:&quot;</span><span class="p">)</span>
+</span><span id="__span-3-13"><a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="nb">print</span><span class="p">(</span><span class="n">grid_y</span><span class="p">)</span>
+</span></code></pre></div>
+<p>Out:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>grid_x:
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>tensor([[1, 1, 1, 1],
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>        [9, 9, 9, 9]])
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>grid_y:
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>tensor([[ 4,  5,  7, 10],
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        [ 4,  5,  7, 10]])
+</span></code></pre></div>
+<p>解释为什么的这样的输出：</p>
+<blockquote>
+<ul>
+<li>结果解读：</li>
+</ul>
+<p>grid_x 和 grid_y 对应位置的元素构成一对坐标，所以可以看到 grid_x 和 grid_y 形状是相同的</p>
+<p>具体来说就是，x的所有取值和y的所有取值，能构成多少对坐标</p>
+<p>x={1,9}，y={4, 5,7,10}</p>
+<p>所以 x 和 y 的所有坐标的集合：</p>
+<p>(1,4)(1,5)(1,7)(1,10)</p>
+<p>(9,4)(9,5)(9,7)(9,10)</p>
+<p>然后把所有的x取出来，得到grid_x：</p>
+<p>[1,1,1,1]</p>
+<p>[9,9,9,9]</p>
+<p>同理，由y得到grid_y：</p>
+<p>[4,5,7,10]</p>
+<p>[4,5,7,10]</p>
+</blockquote>
+<h4 id="_8">全部代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="k">def</span> <span class="nf">multibox_prior</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">sizes</span><span class="p">,</span> <span class="n">ratios</span><span class="p">):</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;生成以每个像素为中心具有不同形状的锚框&quot;&quot;&quot;</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>    <span class="n">in_height</span><span class="p">,</span> <span class="n">in_width</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span> <span class="c1"># b c h w</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    <span class="n">device</span><span class="p">,</span> <span class="n">num_sizes</span><span class="p">,</span> <span class="n">num_ratios</span> <span class="o">=</span> <span class="n">data</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">sizes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">ratios</span><span class="p">)</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    <span class="n">boxes_per_pixel</span> <span class="o">=</span> <span class="p">(</span><span class="n">num_sizes</span> <span class="o">+</span> <span class="n">num_ratios</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    <span class="c1"># boxes_per_pixel = num_sizes * num_ratios</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>    <span class="n">size_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">sizes</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># sizes：scale input h &amp; w 分别缩放 size</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    <span class="n">ratio_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">ratios</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="c1"># ratio：aspect ratio</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a>    <span class="c1"># 为了将锚点移动到像素的中心，需要设置偏移量。</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a>    <span class="c1"># 因为一个像素的高为1且宽为1，我们选择偏移我们的中心0.5</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a>    <span class="n">offset_h</span><span class="p">,</span> <span class="n">offset_w</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a>    <span class="n">steps_h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">in_height</span>  <span class="c1"># 在y轴上缩放步长</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a>    <span class="n">steps_w</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">in_width</span>  <span class="c1"># 在x轴上缩放步长</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a>    <span class="c1"># 生成锚框的所有中心点</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a>    <span class="c1"># 因为原点在左上角，所以是锚框中心点分别加offset_h、offset_w</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a>    <span class="n">center_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_height</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">steps_h</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a>    <span class="n">center_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_width</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_w</span><span class="p">)</span> <span class="o">*</span> <span class="n">steps_w</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a>    <span class="c1"># 对每个像素点生成锚框，每个像素点都有生成 num_sizes+num_ratios-1的锚框，所以对于单个像素点来说</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a>    <span class="c1"># 参考点变了，全部变成了单位坐标下的度量，所以除以 steps_h 和 steps_w</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a>    <span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">center_h</span><span class="p">,</span> <span class="n">center_w</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a>    <span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span> <span class="o">=</span> <span class="n">shift_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">shift_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a>    <span class="c1"># 生成“boxes_per_pixel”个高和宽，</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a>    <span class="c1"># 之后用于创建锚框的四角坐标(xmin,xmax,ymin,ymax)</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a>    <span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">size_tensor</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a>                   <span class="n">sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>\
+</span><span id="__span-5-31"><a id="__codelineno-5-31" name="__codelineno-5-31" href="#__codelineno-5-31"></a>                   <span class="o">*</span> <span class="n">in_height</span> <span class="o">/</span> <span class="n">in_width</span>  <span class="c1"># 处理矩形输入</span>
+</span><span id="__span-5-32"><a id="__codelineno-5-32" name="__codelineno-5-32" href="#__codelineno-5-32"></a>    <span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">size_tensor</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+</span><span id="__span-5-33"><a id="__codelineno-5-33" name="__codelineno-5-33" href="#__codelineno-5-33"></a>                   <span class="n">sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>
+</span><span id="__span-5-34"><a id="__codelineno-5-34" name="__codelineno-5-34" href="#__codelineno-5-34"></a>    <span class="c1"># 除以2来获得半高和半宽</span>
+</span><span id="__span-5-35"><a id="__codelineno-5-35" name="__codelineno-5-35" href="#__codelineno-5-35"></a>    <span class="n">anchor_manipulations</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">((</span><span class="o">-</span><span class="n">w</span><span class="p">,</span> <span class="o">-</span><span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">repeat</span><span class="p">(</span>
+</span><span id="__span-5-36"><a id="__codelineno-5-36" name="__codelineno-5-36" href="#__codelineno-5-36"></a>                                        <span class="n">in_height</span> <span class="o">*</span> <span class="n">in_width</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+</span><span id="__span-5-37"><a id="__codelineno-5-37" name="__codelineno-5-37" href="#__codelineno-5-37"></a>
+</span><span id="__span-5-38"><a id="__codelineno-5-38" name="__codelineno-5-38" href="#__codelineno-5-38"></a>    <span class="c1"># 每个中心点都将有“boxes_per_pixel”个锚框，</span>
+</span><span id="__span-5-39"><a id="__codelineno-5-39" name="__codelineno-5-39" href="#__codelineno-5-39"></a>    <span class="c1"># 所以生成含所有锚框中心的网格，重复了“boxes_per_pixel”次</span>
+</span><span id="__span-5-40"><a id="__codelineno-5-40" name="__codelineno-5-40" href="#__codelineno-5-40"></a>    <span class="n">out_grid</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">stack</span><span class="p">([</span><span class="n">shift_x</span><span class="p">,</span> <span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span><span class="p">,</span> <span class="n">shift_y</span><span class="p">],</span>
+</span><span id="__span-5-41"><a id="__codelineno-5-41" name="__codelineno-5-41" href="#__codelineno-5-41"></a>                <span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">repeat_interleave</span><span class="p">(</span><span class="n">boxes_per_pixel</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-5-42"><a id="__codelineno-5-42" name="__codelineno-5-42" href="#__codelineno-5-42"></a>    <span class="n">output</span> <span class="o">=</span> <span class="n">out_grid</span> <span class="o">+</span> <span class="n">anchor_manipulations</span>
+</span><span id="__span-5-43"><a id="__codelineno-5-43" name="__codelineno-5-43" href="#__codelineno-5-43"></a>    <span class="k">return</span> <span class="n">output</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-5-44"><a id="__codelineno-5-44" name="__codelineno-5-44" href="#__codelineno-5-44"></a>
+</span><span id="__span-5-45"><a id="__codelineno-5-45" name="__codelineno-5-45" href="#__codelineno-5-45"></a><span class="n">h</span> <span class="o">=</span> <span class="mi">561</span>
+</span><span id="__span-5-46"><a id="__codelineno-5-46" name="__codelineno-5-46" href="#__codelineno-5-46"></a><span class="n">w</span> <span class="o">=</span> <span class="mi">728</span>
+</span><span id="__span-5-47"><a id="__codelineno-5-47" name="__codelineno-5-47" href="#__codelineno-5-47"></a><span class="n">X</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">h</span><span class="p">,</span> <span class="n">w</span><span class="p">))</span> <span class="c1"># 随机生成输入图像 b c h w</span>
+</span><span id="__span-5-48"><a id="__codelineno-5-48" name="__codelineno-5-48" href="#__codelineno-5-48"></a><span class="n">Y</span> <span class="o">=</span> <span class="n">multibox_prior</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">sizes</span><span class="o">=</span><span class="p">[</span><span class="mf">0.75</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span> <span class="n">ratios</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">])</span>
+</span><span id="__span-5-49"><a id="__codelineno-5-49" name="__codelineno-5-49" href="#__codelineno-5-49"></a><span class="n">Y</span><span class="o">.</span><span class="n">shape</span>
+</span></code></pre></div>
+<h4 id="torchmeshgrid-reshape">torch.meshgrid &amp; reshape<a class="headerlink" href="#torchmeshgrid-reshape" title="Permanent link">&para;</a></h4>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="kn">import</span> <span class="nn">torch</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="n">in_height</span><span class="p">,</span> <span class="n">in_width</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="n">device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s1">&#39;cpu&#39;</span><span class="p">)</span>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="n">offset_h</span><span class="p">,</span> <span class="n">offset_w</span> <span class="o">=</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="n">steps_h</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">in_height</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="n">steps_w</span> <span class="o">=</span> <span class="mf">1.0</span> <span class="o">/</span> <span class="n">in_width</span>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a><span class="n">center_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_height</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">steps_h</span>
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a><span class="n">center_w</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_width</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_w</span><span class="p">)</span> <span class="o">*</span> <span class="n">steps_w</span>
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a><span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">center_h</span><span class="p">,</span> <span class="n">center_w</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s1">&#39;ij&#39;</span><span class="p">)</span>
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shift_y (before reshape):&quot;</span><span class="p">)</span>
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a><span class="nb">print</span><span class="p">(</span><span class="n">shift_y</span><span class="p">)</span>
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shift_x (before reshape):&quot;</span><span class="p">)</span>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a><span class="nb">print</span><span class="p">(</span><span class="n">shift_x</span><span class="p">)</span>
+</span><span id="__span-6-17"><a id="__codelineno-6-17" name="__codelineno-6-17" href="#__codelineno-6-17"></a>
+</span><span id="__span-6-18"><a id="__codelineno-6-18" name="__codelineno-6-18" href="#__codelineno-6-18"></a><span class="n">shift_y</span><span class="p">,</span> <span class="n">shift_x</span> <span class="o">=</span> <span class="n">shift_y</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">),</span> <span class="n">shift_x</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</span><span id="__span-6-19"><a id="__codelineno-6-19" name="__codelineno-6-19" href="#__codelineno-6-19"></a>
+</span><span id="__span-6-20"><a id="__codelineno-6-20" name="__codelineno-6-20" href="#__codelineno-6-20"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shift_y (after reshape):&quot;</span><span class="p">)</span>
+</span><span id="__span-6-21"><a id="__codelineno-6-21" name="__codelineno-6-21" href="#__codelineno-6-21"></a><span class="nb">print</span><span class="p">(</span><span class="n">shift_y</span><span class="p">)</span>
+</span><span id="__span-6-22"><a id="__codelineno-6-22" name="__codelineno-6-22" href="#__codelineno-6-22"></a><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;shift_x (after reshape):&quot;</span><span class="p">)</span>
+</span><span id="__span-6-23"><a id="__codelineno-6-23" name="__codelineno-6-23" href="#__codelineno-6-23"></a><span class="nb">print</span><span class="p">(</span><span class="n">shift_x</span><span class="p">)</span>
+</span></code></pre></div>
+<p>输出：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>shift_y (before reshape):
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>tensor([[0.1667, 0.1667, 0.1667],
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>        [0.5000, 0.5000, 0.5000],
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>        [0.8333, 0.8333, 0.8333]])
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a>shift_x (before reshape):
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a>tensor([[0.1667, 0.5000, 0.8333],
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a>        [0.1667, 0.5000, 0.8333],
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>        [0.1667, 0.5000, 0.8333]])
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a>shift_y (after reshape):
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a>tensor([0.1667, 0.1667, 0.1667, 0.5000, 0.5000, 0.5000, 0.8333, 0.8333, 0.8333])
+</span><span id="__span-7-11"><a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>shift_x (after reshape):
+</span><span id="__span-7-12"><a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a>tensor([0.1667, 0.5000, 0.8333, 0.1667, 0.5000, 0.8333, 0.1667, 0.5000, 0.8333])
+</span></code></pre></div>
+<p>Test </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_height</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_h</span>
+</span></code></pre></div>
+<p>输出：tensor([0.5000, 1.5000, 2.5000])</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="n">center_h</span> <span class="o">=</span> <span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">in_height</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="n">device</span><span class="p">)</span> <span class="o">+</span> <span class="n">offset_h</span><span class="p">)</span> <span class="o">*</span> <span class="n">steps_h</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="n">center_h</span>    
+</span></code></pre></div>
+<p>输出：tensor([0.1667, 0.5000, 0.8333])</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> <a href="https://discuss.d2l.ai/t/topic/2946/8?filter=summary">创建锚框的四角坐标</a>(xmin,xmax,ymin,ymax)</li>
+</ul>
+<blockquote>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="sd">    h = 561</span>
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="sd">    w = 728</span>
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a><span class="sd">    X = torch.rand(size=(1, 3, h, w)) # 随机生成输入图像 b c h w</span>
+</span><span id="__span-10-7"><a id="__codelineno-10-7" name="__codelineno-10-7" href="#__codelineno-10-7"></a>
+</span><span id="__span-10-8"><a id="__codelineno-10-8" name="__codelineno-10-8" href="#__codelineno-10-8"></a><span class="sd">    Y = multibox_prior(X, sizes=[0.75, 0.5, 0.25], ratios=[1, 2, 0.5])</span>
+</span><span id="__span-10-9"><a id="__codelineno-10-9" name="__codelineno-10-9" href="#__codelineno-10-9"></a><span class="sd">&#39;&#39;&#39;</span>
+</span><span id="__span-10-10"><a id="__codelineno-10-10" name="__codelineno-10-10" href="#__codelineno-10-10"></a>
+</span><span id="__span-10-11"><a id="__codelineno-10-11" name="__codelineno-10-11" href="#__codelineno-10-11"></a><span class="n">w</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">size_tensor</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+</span><span id="__span-10-12"><a id="__codelineno-10-12" name="__codelineno-10-12" href="#__codelineno-10-12"></a>                <span class="n">sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>\
+</span><span id="__span-10-13"><a id="__codelineno-10-13" name="__codelineno-10-13" href="#__codelineno-10-13"></a>                <span class="o">*</span> <span class="n">in_height</span> <span class="o">/</span> <span class="n">in_width</span>  <span class="c1"># 处理矩形输入</span>
+</span><span id="__span-10-14"><a id="__codelineno-10-14" name="__codelineno-10-14" href="#__codelineno-10-14"></a><span class="n">h</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">cat</span><span class="p">((</span><span class="n">size_tensor</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span>
+</span><span id="__span-10-15"><a id="__codelineno-10-15" name="__codelineno-10-15" href="#__codelineno-10-15"></a>                <span class="n">sizes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">/</span> <span class="n">torch</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">ratio_tensor</span><span class="p">[</span><span class="mi">1</span><span class="p">:])))</span>
+</span><span id="__span-10-16"><a id="__codelineno-10-16" name="__codelineno-10-16" href="#__codelineno-10-16"></a>
+</span><span id="__span-10-17"><a id="__codelineno-10-17" name="__codelineno-10-17" href="#__codelineno-10-17"></a><span class="c1"># print(size_tensor)  tensor([0.7500, 0.5000, 0.2500])</span>
+</span><span id="__span-10-18"><a id="__codelineno-10-18" name="__codelineno-10-18" href="#__codelineno-10-18"></a><span class="c1"># print(ratio_tensor[0])  tensor(1.)</span>
+</span><span id="__span-10-19"><a id="__codelineno-10-19" name="__codelineno-10-19" href="#__codelineno-10-19"></a><span class="c1"># print(size_tensor * torch.sqrt(ratio_tensor[0])) tensor([0.7500, 0.5000, 0.2500])</span>
+</span><span id="__span-10-20"><a id="__codelineno-10-20" name="__codelineno-10-20" href="#__codelineno-10-20"></a>
+</span><span id="__span-10-21"><a id="__codelineno-10-21" name="__codelineno-10-21" href="#__codelineno-10-21"></a><span class="c1"># print(sizes[0]) 0.75</span>
+</span><span id="__span-10-22"><a id="__codelineno-10-22" name="__codelineno-10-22" href="#__codelineno-10-22"></a><span class="c1"># print(ratio_tensor[1:]) tensor([2.0000, 0.5000])</span>
+</span><span id="__span-10-23"><a id="__codelineno-10-23" name="__codelineno-10-23" href="#__codelineno-10-23"></a><span class="c1"># print(sizes[0] * torch.sqrt(ratio_tensor[1:]))  tensor([1.0607, 0.5303])</span>
+</span><span id="__span-10-24"><a id="__codelineno-10-24" name="__codelineno-10-24" href="#__codelineno-10-24"></a>
+</span><span id="__span-10-25"><a id="__codelineno-10-25" name="__codelineno-10-25" href="#__codelineno-10-25"></a><span class="c1"># print(torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]),</span>
+</span><span id="__span-10-26"><a id="__codelineno-10-26" name="__codelineno-10-26" href="#__codelineno-10-26"></a><span class="c1">#                sizes[0] * torch.sqrt(ratio_tensor[1:]))))</span>
+</span><span id="__span-10-27"><a id="__codelineno-10-27" name="__codelineno-10-27" href="#__codelineno-10-27"></a><span class="c1"># tensor([0.7500, 0.5000, 0.2500, 1.0607, 0.5303])</span>
+</span></code></pre></div>
+</blockquote>
+<h4 id="_9">公式的整体逻辑是什么？<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
+<p>下次再看：输入什么东西？解决什么问题？</p>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> todo</p>
+</li>
+<li>
+<p>解释1</p>
+</li>
+<li>
+<p>解释2</p>
+</li>
+</ul>
+<p>全部来自评论区</p>
+<p>算了，搞不懂 <code>* in_height / in_width</code>，这步很迷惑，大概的意思就是处理输入图像是矩形的情况，但算了，实际处理时，大部分输入图像都是 方形的，比值=1，其余的，遇到了再看吧。</p>
+<p>me：也许常识是：输入图像宽高比=1，锚框要生成各种形状的，而不能仅仅局限于方形；</p>
+<p>我的理解：如果输入图像是矩阵（非方形）的话，但是每个像素点的参照系还是方形的，且是单位方形，左上角为原点，那么 从原来的宽和高 去缩放 到单位像素点，就需要这个东西。还是从<a href="https://discuss.d2l.ai/t/topic/2946/35?filter=summary">例子</a>出发：</p>
+<p><img alt="image-20241127111707338" src="/docs/images/image-20241127111707338.png" /></p>
+<p>还是不明白，算了。</p>
+<p><mark>解释1</mark></p>
+<p><span class="arithmatex">\(w = s\times \sqrt{r}\)</span></p>
+<p><span class="arithmatex">\(h = \frac{s}{ \sqrt{r}}\)</span></p>
+<p><img alt="image-20241127102914876" src="/docs/images/image-20241127102914876.png" /></p>
+<p><img alt="image-20241127095635951" src="/docs/images/image-20241127095635951.png" /></p>
+<p><img alt="image-20241127095733658" src="/docs/images/image-20241127095733658.png" /></p>
+<p><a href="https://fkjkkll.github.io/2021/11/23/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BSSD/">想强调一点</a>：实际在我们进行目标检测时，特征图长和宽都是相同的，比如 (19, 19)、(7, 7)，所以 <code>in_height / in_width</code> 恒等于 1，因此对于实际的使用并不会带来副作用。</p>
+<p><mark>解释2：</mark></p>
+<p><img alt="image-20241127103645130" src="/docs/images/image-20241127103645130.png" /></p>
+<p>主要看 <code>三、d2l代码解析</code></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 解释最后一句，<code>分别归一化</code> 是什么意思 ？ <code>移项</code></li>
+</ul>
+<p><img alt="image-20241127103951315" src="/docs/images/image-20241127103951315.png" /></p>
+<h4 id="_10">细节：为什么索引是这样？？<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> solved</li>
+</ul>
+<blockquote>
+<p>w = torch.cat((size_tensor * torch.sqrt(ratio_tensor[0]),
+                sizes[0] * torch.sqrt(ratio_tensor[1:]))) *in_height / in_width  # 处理矩形输入</p>
+</blockquote>
+<p>sizes=[0.75, 0.5, 0.25], ratios=[1, 2, 0.5]</p>
+<p>解释这里的索引，之前已经说过了 只考虑 sizes和ratios 的第一元素 的组合：</p>
+<p>(0.75,1)(0.75,2)(0.75,0.5)</p>
+<p><del>(0.75,1)</del>   (0.5,1)(0.25,1)  去重、删掉一个</p>
+<blockquote>
+<p>锚框要生成不同宽高比的，ratio表示方形，一般在设置宽高比的时候，ratio的第一个元素一般都是1，但是锚框的覆盖范围不能仅仅是方形，这一点的实现是通过scale的第一个元素与ratio的各个元素组合实现的</p>
+</blockquote>
+<p>∴ 代码的实现逻辑如下（解释索引为什么是那样的）</p>
+<p><code>size_tensor * torch.sqrt(ratio_tensor[0])</code> ： (0.75,1) (0.5,1)(0.25,1)</p>
+<p><code>sizes[0] * torch.sqrt(ratio_tensor[1:])</code> ：(0.75,2)(0.75,0.5)</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ......</li>
+</ul>
+<h2 id="k3">K3 交并比<a class="headerlink" href="#k3" title="Permanent link">&para;</a></h2>
+<ul>
+<li>什么是交并比</li>
+<li>为什么需要交并比</li>
+<li>怎么实现交并比</li>
+</ul>
+<h3 id="_11">什么是交并比<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<p>像素集的杰卡德系数=交并比</p>
+<p><img alt="image-20241127113234354" src="/docs/images/image-20241127113234354.png" /></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 图解：</li>
+</ul>
+<p><img alt="image-20241127113320268" src="/docs/images/image-20241127113320268.png" /></p>
+<h3 id="_12">为什么需要交并比？<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<p>① 使用交并比来衡量锚框和真实边界框之间、以及不同锚框之间的相似度</p>
+<p>② 某个锚框“较好地”覆盖了图像中的狗。 如果已知目标的真实边界框，那么这里的“好”该如何如何量化呢？就是交并比</p>
+<h3 id="_13">怎么实现交并比？<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>一定要注意原点在左上角，所以：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">inter_upperlefts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="n">inter_lowerrights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span>
+</span></code></pre></div>
+<p>左上取最大、右下角取最小值</p>
+</div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>.clamp</code> 什么意思？</li>
+</ul>
+<p><code>inters = (inter_lowerrights - inter_upperlefts).clamp(min=0)</code></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="c1">#@save</span>
+</span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">def</span> <span class="nf">box_iou</span><span class="p">(</span><span class="n">boxes1</span><span class="p">,</span> <span class="n">boxes2</span><span class="p">):</span>
+</span><span id="__span-12-3"><a id="__codelineno-12-3" name="__codelineno-12-3" href="#__codelineno-12-3"></a><span class="w">    </span><span class="sd">&quot;&quot;&quot;计算两个锚框或边界框列表中成对的交并比&quot;&quot;&quot;</span>
+</span><span id="__span-12-4"><a id="__codelineno-12-4" name="__codelineno-12-4" href="#__codelineno-12-4"></a>    <span class="n">box_area</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">boxes</span><span class="p">:</span> <span class="p">((</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span>
+</span><span id="__span-12-5"><a id="__codelineno-12-5" name="__codelineno-12-5" href="#__codelineno-12-5"></a>                              <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]))</span>
+</span><span id="__span-12-6"><a id="__codelineno-12-6" name="__codelineno-12-6" href="#__codelineno-12-6"></a>    <span class="c1"># boxes1,boxes2,areas1,areas2的形状:</span>
+</span><span id="__span-12-7"><a id="__codelineno-12-7" name="__codelineno-12-7" href="#__codelineno-12-7"></a>    <span class="c1"># boxes1：(boxes1的数量,4),</span>
+</span><span id="__span-12-8"><a id="__codelineno-12-8" name="__codelineno-12-8" href="#__codelineno-12-8"></a>    <span class="c1"># boxes2：(boxes2的数量,4),</span>
+</span><span id="__span-12-9"><a id="__codelineno-12-9" name="__codelineno-12-9" href="#__codelineno-12-9"></a>    <span class="c1"># areas1：(boxes1的数量,),</span>
+</span><span id="__span-12-10"><a id="__codelineno-12-10" name="__codelineno-12-10" href="#__codelineno-12-10"></a>    <span class="c1"># areas2：(boxes2的数量,)</span>
+</span><span id="__span-12-11"><a id="__codelineno-12-11" name="__codelineno-12-11" href="#__codelineno-12-11"></a>    <span class="n">areas1</span> <span class="o">=</span> <span class="n">box_area</span><span class="p">(</span><span class="n">boxes1</span><span class="p">)</span>
+</span><span id="__span-12-12"><a id="__codelineno-12-12" name="__codelineno-12-12" href="#__codelineno-12-12"></a>    <span class="n">areas2</span> <span class="o">=</span> <span class="n">box_area</span><span class="p">(</span><span class="n">boxes2</span><span class="p">)</span>
+</span><span id="__span-12-13"><a id="__codelineno-12-13" name="__codelineno-12-13" href="#__codelineno-12-13"></a>    <span class="c1"># inter_upperlefts,inter_lowerrights,inters的形状:</span>
+</span><span id="__span-12-14"><a id="__codelineno-12-14" name="__codelineno-12-14" href="#__codelineno-12-14"></a>    <span class="c1"># (boxes1的数量,boxes2的数量,2)</span>
+</span><span id="__span-12-15"><a id="__codelineno-12-15" name="__codelineno-12-15" href="#__codelineno-12-15"></a>    <span class="n">inter_upperlefts</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:</span><span class="mi">2</span><span class="p">],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="p">:</span><span class="mi">2</span><span class="p">])</span>
+</span><span id="__span-12-16"><a id="__codelineno-12-16" name="__codelineno-12-16" href="#__codelineno-12-16"></a>    <span class="n">inter_lowerrights</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">boxes1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">:],</span> <span class="n">boxes2</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">:])</span>
+</span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>    <span class="n">inters</span> <span class="o">=</span> <span class="p">(</span><span class="n">inter_lowerrights</span> <span class="o">-</span> <span class="n">inter_upperlefts</span><span class="p">)</span><span class="o">.</span><span class="n">clamp</span><span class="p">(</span><span class="nb">min</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+</span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="c1"># inter_areasandunion_areas的形状:(boxes1的数量,boxes2的数量)</span>
+</span><span id="__span-12-19"><a id="__codelineno-12-19" name="__codelineno-12-19" href="#__codelineno-12-19"></a>    <span class="n">inter_areas</span> <span class="o">=</span> <span class="n">inters</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">inters</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span>
+</span><span id="__span-12-20"><a id="__codelineno-12-20" name="__codelineno-12-20" href="#__codelineno-12-20"></a>    <span class="n">union_areas</span> <span class="o">=</span> <span class="n">areas1</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span> <span class="o">+</span> <span class="n">areas2</span> <span class="o">-</span> <span class="n">inter_areas</span>
+</span><span id="__span-12-21"><a id="__codelineno-12-21" name="__codelineno-12-21" href="#__codelineno-12-21"></a>    <span class="k">return</span> <span class="n">inter_areas</span> <span class="o">/</span> <span class="n">union_areas</span>
+</span></code></pre></div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ...</li>
+</ul>
+<h2 id="_14">目标检测的步骤<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20241127114551108" src="/docs/images/image-20241127114551108.png" /></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

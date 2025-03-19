@@ -206,7 +206,7 @@ df2048_fc3_ebtimeF_dtTrue_Exp_0
 
 **Autoformer model**
 
-```
+```python
 Model(
   (decomp): series_decomp(
     (moving_avg): moving_avg(
@@ -341,3 +341,434 @@ Model(
 
 
 数据集的加载是完全一样的。
+
+## forward 解读
+
+1. **输入处理**：
+   - 历史数据 x_enc [B, L, D]
+   - 预测和标签数据 x_dec [B, L+P, D]
+2. **时间序列分解**：
+   - 将历史序列分解为季节性和趋势两个成分
+3. **初始值准备**：
+   - 趋势初始值：历史序列均值
+   - 季节性初始值：全零张量
+4. **解码器输入构建**：
+   - 趋势输入：历史趋势末尾 + 趋势初始值
+   - 季节性输入：历史季节性末尾 + 季节性初始值(零)
+5. **编解码器处理**：
+   - 编码器处理历史数据
+   - 解码器利用编码器输出和组装的初始输入生成预测
+6. **最终输出**：
+   - 趋势和季节性预测相加
+   - 提取末尾 pred_len 长度作为最终预测结果
+
+这种设计体现了 Autoformer 的核心思想：将时间序列分解为不同频率成分并分别建模，再组合生成最终预测。
+
+### 趋势项 和 季节项
+
+```python
+seasonal_init, trend_init = self.decomp(x_enc)
+```
+
+▶️
+
+```python
+self.decomp = series_decomp(kernel_size)
+```
+
+▶️
+
+```python
+class series_decomp(nn.Module):
+```
+
+🟢 类的定义
+
+```python
+class series_decomp(nn.Module):
+    """
+    Series decomposition block
+    """
+    def __init__(self, kernel_size):
+        super(series_decomp, self).__init__()
+        self.moving_avg = moving_avg(kernel_size, stride=1)
+
+    def forward(self, x):
+
+        # 计算移动平均，提取序列趋势分量
+        # x 形状[B, L, D] -> moving_mean形状[B, L, D]
+        #  moving_avg内部会进行填充，保证输出形状与输入相同
+        moving_mean = self.moving_avg(x)
+
+        # 通过原始序列减去趋势分量，得到残差(季节性分量)，逐元素减法操作
+        # x形状[B, L, D] - moving_mean形状[B, L, D] -> res形状[B, L, D]
+        res = x - moving_mean
+
+        # 返回季节性分量和趋势分量，均保持原始形状[B, L, D]
+        # 第一个返回值res是季节性分量，第二个返回值moving_mean是趋势分量
+        return res, moving_mean
+```
+
+类内 调用 `moving_avg`
+
+![image-20250317202431440](images/image-20250317202431440.png)
+
+▶️
+
+```python
+class moving_avg(nn.Module):
+```
+
+🟢 `moving_avg` 定义
+
+```python
+class moving_avg(nn.Module):
+    """
+    Moving average block to highlight the trend of time series
+    """
+    def __init__(self, kernel_size, stride):
+        super(moving_avg, self).__init__()
+        self.kernel_size = kernel_size
+        self.avg = nn.AvgPool1d(kernel_size=kernel_size, stride=stride, padding=0)
+
+    def forward(self, x):
+        # padding on the both ends of time series
+
+        # 提取第一个时间步并重复，用于前端填充
+        #  [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
+        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
+
+        # 提取最后一个时间步并重复，用于后端填充
+        # [B, L, D] -> [B, 1, D] -> [B, (kernel_size-1)//2, D]
+        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+
+        # 连接填充部分与原序列
+        # [B, (k-1)//2, D] + [B, L, D] + [B, (k-1)//2, D] -> [B, L+(k-1), D]
+        x = torch.cat([front, x, end], dim=1)
+
+        # 转置并应用一维平均池化
+        # [B, L+(k-1), D] -> [B, D, L+(k-1)] -> [B, D, L]
+        # 池化窗口大小为kernel_size，步长为1，输出长度为(L+(k-1)-k+1)=L （length + 2P - K + 1）
+        x = self.avg(x.permute(0, 2, 1))
+
+        # 转置回原始维度顺序 [B, D, L] -> [B, L, D]
+        x = x.permute(0, 2, 1)
+        return x
+```
+
+总结：3 次调用：
+
+```python
+seasonal_init, trend_init = self.decomp(x_enc)
+
+self.decomp = series_decomp(kernel_size)
+
+class series_decomp(nn.Module):
+    def __init__(self, kernel_size):
+        super(series_decomp, self).__init__()
+        self.moving_avg = moving_avg(kernel_size, stride=1)
+        
+    def forward(self, x):
+        moving_mean = self.moving_avg(x)
+
+class moving_avg(nn.Module):
+     def forward(self, x):
+        front = x[:, 0:1, :].repeat(1, (self.kernel_size - 1) // 2, 1) 
+        end = x[:, -1:, :].repeat(1, (self.kernel_size - 1) // 2, 1)
+        x = torch.cat([front, x, end], dim=1)
+        x = self.avg(x.permute(0, 2, 1))
+        x = x.permute(0, 2, 1)
+        return x	
+```
+
+
+
+#### Autoformer序列分解流程图
+
+```
+                    输入: x_enc [B, L, D]
+                          |
+                          v
+            +---------------------------+
+            | Model.forward()           |
+            | 调用: self.decomp(x_enc)  |
+            +---------------------------+
+                          |
+                          v
+            +---------------------------+
+            | series_decomp(kernel_size)|
+            | self.decomp实例           |
+            +---------------------------+
+                          |
+                          v
+            +---------------------------+
+            | series_decomp.forward(x)  |
+            | 1. 调用移动平均计算趋势   |
+            | 2. 原序列减去趋势得到季节性|
+            +---------------------------+
+                          |
+                  +-------+-------+
+                  |               |
+                  v               v
+    +---------------------------+  +---------------------------+
+    | moving_avg.forward(x)     |  | 季节性计算                |
+    | 步骤:                     |  | res = x - moving_mean     |
+    | 1.前后填充序列           |  |                           |
+    | 2.应用平均池化           |  |                           |
+    | 3.返回趋势分量           |  |                           |
+    +---------------------------+  +---------------------------+
+                  |               |
+                  v               v
+             趋势分量        季节性分量
+          trend_init [B,L,D]  seasonal_init [B,L,D]
+                  |               |
+                  +       +       +
+                          |
+                          v
+                返回到Model.forward()
+                进行后续处理
+```
+
+1. **Model.forward()** 调用 self.decomp(x_enc)进行序列分解
+
+2. **series_decomp.forward(x)**
+
+   包含两个主要步骤:
+
+   - 调用 self.moving_avg(x)计算移动平均，得到趋势分量
+   - 计算原序列与趋势分量的差值，得到季节性分量
+
+3. **moving_avg.forward(x)**
+
+   执行移动平均计算:
+
+   - 通过重复首尾元素进行序列填充
+   - 应用一维平均池化操作
+   - 返回平滑后的趋势分量
+
+这个分解过程将原始序列 x_enc 分解为两个相同形状 [B,L,D] 的张量：趋势成分和季节性成分
+
+### 编码器
+
+目的：结合时间特征，将 数据特征嵌入到指定维度
+
+```python
+enc_out = self.enc_embedding(x_enc, x_mark_enc)
+```
+
+
+
+```python
+self.enc_embedding = DataEmbedding_wo_pos(configs.enc_in, configs.d_model, configs.embed, configs.freq,configs.dropout)
+```
+
+
+
+![image-20250317204752276](images/image-20250317204752276.png)
+
+
+
+![image-20250317205258626](images/image-20250317205258626.png)
+
+
+
+**流程图**
+
+```python
+输入:
+x_enc [B, L, D]        x_mark_enc [B, L, time_features]
+    |                        |
+    v                        v
++-----------------------------------------------+
+|           Model.forward()调用                  |
+|      self.enc_embedding(x_enc, x_mark_enc)    |
++-----------------------------------------------+
+            |                |
+            v                v
++------------------------+  +---------------------------+
+| TokenEmbedding (值嵌入) |  | TemporalEmbedding (时间嵌入)|
++------------------------+  +---------------------------+
+| 输入: x [B, L, D]      |  | 输入: x_mark [B, L, time_f]|
+|                        |  |                           |
+| 操作:                  |  | 操作:                     |
+| 1.转置: [B, D, L]      |  | 1.转换为long类型          |
+| 2.1D卷积: D -> d_model |  | 2.提取时间特征:           |
+| 3.转置回: [B, L, d_model]|  |   - month_x (x[:,:,0])   |
+|                        |  |   - day_x (x[:,:,1])      |
+| 输出: [B, L, d_model]  |  |   - weekday_x (x[:,:,2])  |
+|                        |  |   - hour_x (x[:,:,3])     |
++------------------------+  |   - minute_x (可选)       |
+            |               |                           |
+            |               | 3.查表获取各时间特征的嵌入  |
+            |               | 4.将所有时间嵌入相加       |
+            |               |                           |
+            |               | 输出: [B, L, d_model]     |
+            |               +---------------------------+
+            |                        |
+            +------------+------------+
+                         v
+            +---------------------------+
+            | 相加并应用Dropout         |
+            | value_emb + temporal_emb |
+            +---------------------------+
+                         |
+                         v
+                  输出: enc_out
+                 [B, L, d_model]
+```
+
+
+
+1. **值嵌入 (TokenEmbedding)**:
+   - 通过卷积操作将原始特征 [B, L, D] 映射到更高维度表示 [B, L, d_model]
+   - 使用循环填充的1D卷积捕获局部特征模式
+2. **时间嵌入 (TemporalEmbedding)**:
+   - 将时间标记 [B, L, time_features] 转换为 [B, L, d_model] 的嵌入向量
+   - 分别为月、日、星期、小时等时间特征查表获取嵌入，然后相加
+   - 时间嵌入帮助模型识别时间模式(季节性、每日/每周周期等)
+3. **组合嵌入**:
+   - 将值嵌入和时间嵌入相加，形成最终编码器输入 [B, L, d_model]
+   - 注意此版本不包含位置嵌入(DataEmbedding_wo_pos)
+
+这种多重嵌入方式使模型能同时利用时间序列的值信息和时间特征信息，为后续的注意力机制和时间序列建模提供丰富的上下文。
+
+## 模型定义
+
+### 嵌入部分
+
+```mermaid
+
+```
+
+
+
+
+
+
+
+### 嵌入部分
+
+```mermaid
+classDiagram
+    class DataEmbedding_wo_pos {
+        +TokenEmbedding value_embedding
+        +PositionalEmbedding position_embedding
+        +TemporalEmbedding temporal_embedding
+        +Dropout dropout
+        +forward(x, x_mark)
+    }
+    
+    class TokenEmbedding {
+        +Conv1d tokenConv
+        +forward(x)
+    }
+    
+    class PositionalEmbedding {
+        +Tensor pe
+        +forward(x)
+    }
+    
+    class TemporalEmbedding {
+        +Embedding minute_embed
+        +Embedding hour_embed
+        +Embedding weekday_embed
+        +Embedding day_embed
+        +Embedding month_embed
+        +forward(x)
+    }
+    
+    class TimeFeatureEmbedding {
+        +Linear embed
+        +forward(x)
+    }
+    
+    DataEmbedding_wo_pos --> TokenEmbedding
+    DataEmbedding_wo_pos --> PositionalEmbedding
+    DataEmbedding_wo_pos --> TemporalEmbedding
+    TemporalEmbedding --> TimeFeatureEmbedding
+```
+
+
+
+### 编码器 解码器部分
+
+```mermaid
+classDiagram
+    class Model {
+        +DataEmbedding_wo_pos enc_embedding
+        +DataEmbedding_wo_pos dec_embedding
+        +Encoder encoder
+        +Decoder decoder
+        +series_decomp decomp
+        +forward(x_enc, x_mark_enc, x_dec, x_mark_dec, enc_self_mask, dec_self_mask, dec_enc_mask)
+    }
+    
+    class Encoder {
+        +List~EncoderLayer~ layers
+        +my_Layernorm norm_layer
+        +forward(x, attn_mask)
+    }
+    
+    class EncoderLayer {
+        +AutoCorrelationLayer attention
+        +Conv1d conv1
+        +Conv1d conv2
+        +series_decomp decomp1
+        +series_decomp decomp2
+        +Dropout dropout
+        +activation
+        +forward(x, attn_mask)
+    }
+    
+    class AutoCorrelationLayer {
+        +AutoCorrelation attention
+        +Linear query_projection
+        +Linear key_projection
+        +Linear value_projection
+        +Linear out_projection
+        +forward(queries, keys, values, attn_mask)
+    }
+    
+    class AutoCorrelation {
+        +bool mask_flag
+        +int factor
+        +float scale
+        +Dropout dropout
+        +bool output_attention
+        +time_delay_agg_training(values, corr)
+        +time_delay_agg_inference(values, corr)
+        +forward(queries, keys, values, attn_mask)
+    }
+    
+    class Decoder {
+        +List~DecoderLayer~ layers
+        +my_Layernorm norm_layer
+        +Linear projection
+        +forward(x, enc_out, x_mask, cross_mask, trend)
+    }
+    
+    class DecoderLayer {
+        +AutoCorrelationLayer self_attention
+        +AutoCorrelationLayer cross_attention
+        +Conv1d conv1
+        +Conv1d conv2
+        +series_decomp decomp1
+        +series_decomp decomp2
+        +Dropout dropout
+        +activation
+        +forward(x, enc_out, x_mask, cross_mask, trend)
+    }
+    
+    Model --> Encoder
+    Model --> Decoder
+    Encoder --> EncoderLayer
+    EncoderLayer --> AutoCorrelationLayer
+    EncoderLayer --> Conv1d
+    EncoderLayer --> series_decomp
+    AutoCorrelationLayer --> AutoCorrelation
+    Decoder --> DecoderLayer
+    DecoderLayer --> AutoCorrelationLayer
+    DecoderLayer --> Conv1d
+    DecoderLayer --> series_decomp
+```
+

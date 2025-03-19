@@ -1,0 +1,4270 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/literature/ObejectCounting/rank1%20CountGD/">
+      
+      
+        <link rel="prev" href="../">
+      
+      
+        <link rel="next" href="../rank2%20GeCo/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.44">
+    
+    
+      
+        <title>rank1 CountGD - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#_1" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              rank1 CountGD
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Clip
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DialtedConv
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      多模态特征开放世界目标计数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countgd-multi-modal-open-world-counting" class="md-nav__link">
+    <span class="md-ellipsis">
+      CountGD: Multi-Modal Open-World Counting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      摘要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言-贡献
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion &amp; Future Work
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Work
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-map-versus-detection-based-object-counting-axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Density Map versus Detection-based Object Counting (Axis 1).
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      维度二：特定类别 对比 开放世界物体计数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      角度三：视觉特征和文本特征
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-of-counting-to-other-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation of Counting to other areas. 与其它领域工作的关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-counting-with-visual-exemplars-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Counting with Visual Exemplars &amp; Text
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Counting with Visual Exemplars & Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-countgd-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 COUNTGD Architecture Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现 SegRNN_v2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+          
+          
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--section md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_6" id="__nav_5_6_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_6">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      多模态特征开放世界目标计数
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#countgd-multi-modal-open-world-counting" class="md-nav__link">
+    <span class="md-ellipsis">
+      CountGD: Multi-Modal Open-World Counting
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      摘要
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-" class="md-nav__link">
+    <span class="md-ellipsis">
+      引言-贡献
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#conclusion-future-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Conclusion &amp; Future Work
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#related-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      Related Work
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Related Work">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#density-map-versus-detection-based-object-counting-axis-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Density Map versus Detection-based Object Counting (Axis 1).
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      维度二：特定类别 对比 开放世界物体计数
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      角度三：视觉特征和文本特征
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relation-of-counting-to-other-areas" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relation of Counting to other areas. 与其它领域工作的关系
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-counting-with-visual-exemplars-text" class="md-nav__link">
+    <span class="md-ellipsis">
+      3 Counting with Visual Exemplars &amp; Text
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3 Counting with Visual Exemplars & Text">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-overview" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.1 Overview
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-countgd-architecture-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      3.2 COUNTGD Architecture Components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  
+  
+
+
+  <h1>rank1 CountGD</h1>
+
+<h2 id="_1">多模态特征开放世界目标计数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>2024年7月5日 发表</p>
+<p>5 Jul 2024 · Niki Amini-Naieni, Tengda Han, Andrew Zisserman · </p>
+<p><img alt="image-20241115223300216" src="/docs/images/image-20241115223300216.png" /></p>
+<h2 id="countgd-multi-modal-open-world-counting">CountGD: Multi-Modal Open-World Counting<a class="headerlink" href="#countgd-multi-modal-open-world-counting" title="Permanent link">&para;</a></h2>
+<p><a href="https://arxiv.org/pdf/2407.04619v1">原文链接</a></p>
+<p>为了解决什么问题，提出了什么样的解决方法。</p>
+<p>文本描述和视觉信号，一起进行计数，文本描述比如会过滤颜色，位置等；</p>
+<p>一句话总结本文：Here, we describe COUNTGD, a single-stage model for open-world object counting that accepts either visual exemplars or text or both together as prompts to specify the object to count.</p>
+<p>在这里，我们描述了COUNTGD，一个开放世界物体计数的单阶段模型，它接受视觉样本或文本或两者共同作为提示来指定要计数的物体。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>COUNTGD的几个关键词，开放世界的物体计数，单阶段模型，视觉信号和文本信号</p>
+</div>
+<p>文本特征哪里来呢？</p>
+<ul>
+<li>对于FSC147数据集，For text descriptions, we use the singular forms of the class names in <code>FSC-147-D [1]</code> with any prefixes such as “the" removed. For example, <strong>we change “the donuts in the donut tray" in FSC-147-D to “donut" by removing the prefix “the,"</strong> extracting the class name “donuts," and then singularizing it to “donut."  托盘中的甜甜圈 <span class="arithmatex">\(\rightarrow\)</span> 甜甜圈</li>
+<li>CARPK：We use the class name “car" as the text description.</li>
+</ul>
+<h2 id="_2">摘要<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>The goal of this paper is to improve the generality and accuracy of open-vocabulary object counting in images. </p>
+<p>为了提高准确性和泛化性，计数现实词表中的一切物体</p>
+<p>To improve the generality, we repurpose an open vocabulary detection foundation model (GroundingDINO) for the counting task, and also extend its capabilities by introducing modules to enable specifying the target object to count by visual exemplars. </p>
+<p>为了提高泛化性，重新设计基于开放词表的检测模型：GroundingDINO</p>
+<p>增加模块，通过样例框指定计数目标</p>
+<p>In turn, these new capabilities – being able to specify the target object by multi-modalites (text and exemplars) – lead to an improvement in counting accuracy. </p>
+<p>通过多模态信息，指定计数目标，提高计数的准确性</p>
+<p>we introduce the first open-world counting model, COUNTGD, where the prompt can be specified by a text description or visual exemplars or both; </p>
+<p>本文提出的模型：COUNTGD，可以利用多模态信息：文本、视觉样例、或者两个都</p>
+<h2 id="-">引言-贡献<a class="headerlink" href="#-" title="Permanent link">&para;</a></h2>
+<p>In summary, we make the following <strong>three contributions</strong>: </p>
+<p><strong>First,</strong> we introduce COUNTGD, the first openworld object counting model that accepts either text or visual exemplars or both simultaneously, in a single-stage architecture; </p>
+<p>单一结构，同时接收文本信号和视觉信号进行计数</p>
+<p><strong>Second,</strong> we evaluate the model on multiple standard counting benchmarks, including FSC-147 [39], CARPK [18] and CountBench [36], and show that COUNTGD significantly improves on the state-of-the-art performance by specifying the target object using both exemplars and text. It also meets or improves on the state-of-the-art for text-only approaches when trained and evaluated using text-only; </p>
+<p>本文所用数据集：FSC-147 [39], CARPK [18] and CountBench [36]</p>
+<p><strong>Third,</strong> we investigate how the text can be used to refine the visual information provided by the exemplar, for example by filtering on color or relative position in the image, to specify a sub-set of the objects to count.</p>
+<p>文本是如何细化由样例提供的视觉信息的，比如：通过对图像中的颜色或相对位置进行过滤，来指定要计数的对象的子集</p>
+<p><strong>In addition</strong> we make two minor improvements to the inference stage: one that addresses the problem of double counting due to self-similarity, and the other to handle the problem of a very high count.</p>
+<p>推理阶段的两个改进：</p>
+<ul>
+<li>由于自相似性的重复计数问题</li>
+<li>极度密集场景的计数问题</li>
+</ul>
+<blockquote>
+<p>目标计数的两大问题：</p>
+<p>物体堆叠导致的重复计数</p>
+<p>密集场景的计数问题
+</p>
+</blockquote>
+<details class="question">
+<summary>难道不是同一个问题？</summary>
+</details>
+<h2 id="conclusion-future-work">Conclusion &amp; Future Work<a class="headerlink" href="#conclusion-future-work" title="Permanent link">&para;</a></h2>
+<p>We have extended the generality of open-world counting by introducing a model that can accept visual exemplars or text descriptions or both as prompts to specify the target object to count. </p>
+<p>第一点我们进行了开放世界的语义物体计数问题，接收文本描述和示例框信息或者共同</p>
+<blockquote>
+<p>me：开放世界的语义物体计数、文本描述和视觉示例框</p>
+<p>文本描述是对示例框物体的选择引入额外的监督信号，短语限制</p>
+</blockquote>
+<p>The complementarity of these prompts in turn leads to improved counting performance. </p>
+<p>未来的三个研究方向：</p>
+<p>There are three research directions that naturally follow on from this work: </p>
+<p>(i) the performance could probably be further improved by <strong>training on larger scale datasets</strong>, for example using synthetic data as demonstrated recently for counting [24]; </p>
+<p>第一个研究方向：扩展输入数据的丰富性，比如合成数据，呜呜呜呜，跟我想的一样 </p>
+<p>(ii) a larger training set would enable a thorough investigation of freezing more of the GroundingDINO model when adding our new visual exemplar modules; and finally, </p>
+<p>更大的训练数据集，对GroundingDINO模型进行更彻底的实验</p>
+<p>(iii) the model does not currently predict the errors of its counting. We discuss this point in the Limitations in the Appendix.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>countGD；开放世界的语义物体计数问题；泛化性准确性；text and exemplar</p>
+</div>
+<h2 id="related-work">Related Work<a class="headerlink" href="#related-work" title="Permanent link">&para;</a></h2>
+<p>Prior work on object counting has developed along three axes: 目标计数的三个研究维度</p>
+<p>(1) the density map versus detection axis, 基于回归的 &amp; 基于检测的</p>
+<p>(2) the class-specific versus open-world (also referred to as “class-agnostic") axis, and 特定类别计数 &amp; 开放世界物体计数（类别不敏感计数）</p>
+<p>(3) the visual exemplar versus text axis.  基于视觉信号的计数 和 基于文本的计数</p>
+<p>The pattern is that detection, open-world, and text-based methods tend to offer more capabilities and be <strong>more general</strong> than their analogues along each axis. </p>
+<p>基于检测、开放世界、文本的方法，泛化性更好</p>
+<p>On the other hand, density map, class-specific, and visual exemplar-based methods tend to be more accurate at the counting tasks they apply to. </p>
+<p>基于回归密度图、特定类别、视觉样例框的准确性更好</p>
+<p>COUNTGD integrates the third axis – the visual exemplar versus text axis – to achieve more general and accurate counting overall. Below, we discuss where prior work falls along each axis and where COUNTGD stands.</p>
+<p>COUNTGD整合了第三个维度，既用文本，又用示例框</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>我们这个counGD整合了第三个维度，既有视觉信号又有文本信号，再次强调，文本信号泛化性好、视觉信号准确性好，因此既有视觉信号又有文本信号的泛化性和准确性都很好。接下来讨论先前的工作在每个维度的发展以及COUNTGD</p>
+</div>
+<h3 id="density-map-versus-detection-based-object-counting-axis-1">Density Map versus Detection-based Object Counting (Axis 1).<a class="headerlink" href="#density-map-versus-detection-based-object-counting-axis-1" title="Permanent link">&para;</a></h3>
+<p>维度一：基于密度和基于检测</p>
+<p><strong>Density Map versus Detection-based Object Counting (Axis 1).</strong> </p>
+<p>In the past, counting techniques that regress and sum density maps [2, 3, 6, 25, 26, 33, 42], instead of detecting and enumerating bounding boxes [5, 8, 18, 35], have proven more accurate in cluttered and dense scenes. 在先前的工作中，已经证明了，基于密度的物体计数方法在密集场景下的计数适用性</p>
+<p>For example, density map-based approaches like CounTX [1], LOCA [10], and CounTR [29] achieve lower counting errors than detection-based approaches such as Mask-RCNN [16] and RetinaNet [27] on standard counting benchmarks. </p>
+<p>举例说明，基于密度比基于检测的发展优势。</p>
+<p>Concurrent to our work, DAVE [37], integrates density map regression with object detection to construct a more accurate and explainable two-stage counting system. Like DAVE, COUNTGD outputs explicit object locations.</p>
+<p>与我们的工作相一致，DAVE [ 37 ]将密度图回归与目标检测结合起来，构建了一个更精确和可解释的两阶段计数系统。与DAVE一样，COUNTGD输出明确的对象位置。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>DAVE密度图回归和物体检测，输出目标的位置
+两阶段，准确性&amp;泛化性</p>
+</div>
+<p>However, COUNTGD is a single-stage approach that achieves better counting accuracy than DAVE and other density map-based techniques.</p>
+<p>然而，COUNTGD是一种单阶段的方法，其计数精度优于DAVE和其他基于密度图的技术。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>嗯，DAVE两阶段，我一阶段，而且是 text&amp;exemplar</p>
+</div>
+<p>Therefore,while density map-based approaches tend to be more accurate than detectors in highly populated scenes, recent detection-based techniques, including COUNTGD, are beginning to achieve better accuracy than density map-based alternatives.</p>
+<p>虽然基于密度图的方法在人口稠密的场景中往往比检测器更准确，但最近的基于检测的技术，包括COUNTGD，已经开始取得比基于密度图的方法更好的准确性。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>虽然基于密度的很好，但最近基于检测的发展不甘示弱
+COUNTGD 就是基于检测的计数</p>
+</div>
+<details class="question">
+<summary>为什么叫CountGD？</summary>
+</details>
+<h3 id="_3">维度二：特定类别 对比 开放世界物体计数<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
+<p>Class-specific versus Open-world Object Counting (Axis 2). </p>
+<p>Object counting methods first developed as class-specific techniques [3, 4, 34, 42], solving the counting problem for only one category of object, but recent methods have generalized these approaches to open-world settings, where counting arbitrary objects is possible. 就是说，最开始发展的对特定类别的计数，后来演变成对任意物体的计数问题</p>
+<p>Class-specific methods have been developed to count cars [22], humans [4], and cells [13]. In contrast, open-world methods can count instances from all three categories [32]. </p>
+<p>举例具体说明</p>
+<p>Because class-specific techniques are more specialized than open-world approaches, they tend to be more accurate at counting instances from the class they were designed for. </p>
+<p>就是说，针对特定类别的物体计数准确性确实很好</p>
+<p>Recent advancements in <strong>Vision-Language Foundation Models (VLMs)</strong> such as <strong>CLIP [38] and GroundingDINO [30]</strong> trained on web-scale image-text pairs produce semantically rich visual and textual features. </p>
+<p>视觉-语言基础模型( Vision-Language Foundation Models，VLMs )的最新进展，如CLIP [ 38 ]和GroundingDINO [ 30 ]，在网络规模的图像-文本对上进行训练，产生了语义丰富的视觉和文本特征。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>emm在这么大规模的数据集上训练，最后就是得到丰富的视觉特征和文本特征</p>
+</div>
+<p>These features generalize to a wide range of open-world downstream tasks. Building on top of these pre-trained VLMs, recent open-world methods [1, 7, 10, 21, 29, 40, 45] have begun to surpass class-specific approaches in counting accuracy. COUNTGD, like these recent approaches, is an open-world object counter that achieves competitive performance in comparison to class-specific alternatives.</p>
+<p>这些特征泛化到了广泛的开放世界下游任务中。在这些预训练的VLMs的基础上，最近的开放世界方法[ 1、7、10、21、29、40、45]已经开始超越特定类别的方法在计数精度上。与这些最近的方法一样，COUNTGD是一个开放世界的对象计数器，与特定类的替代品相比，它具有竞争性的性能。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>获得语义更加丰富的特征，可以更好的泛化到下游任务。   </p>
+</div>
+<h3 id="_4">角度三：视觉特征和文本特征<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
+<p>Counting with Visual Exemplars versus Counting with Text (Axis 3).</p>
+<p>Most open-world object counters approach the problem by using visual exemplars to select the objects in the input image [10, 14, 28, 29, 32, 35, 39, 40, 44, 45], but very recent work [1, 7, 19, 21, 43] has attempted to replace the visual exemplars with text, enabling new capabilities at the cost of reduced accuracy. The stateof-the-art text-based approaches, such as GroundingREC [7], CounTX [1], CLIP-Count [19], and VLCounter [21] are built on top of vision-language foundation models pretrained on large quantities of data to relate images to textual inputs and map them to a joint embedding space. </p>
+<p>大多数开放世界对象计数器通过使用视觉样本来选择输入图像[ 10、14、28、29、32、35、39、40、44、45]中的对象来解决问题，但最近的工作[ 1、7、19、21、43]尝试用文本代替视觉样本，以降低准确性为代价来实现新的功能。目前最先进的基于文本的方法，如GroundingREC [ 7 ]，CounTX [ 1 ]，CLIP-Count [ 19 ]和VLCounter [ 21 ]，都是建立在基于大量数据预训练的视觉语言基础模型之上，将图像与文本输入相关联，并将其映射到一个联合嵌入空间。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>之前的计数方法都是通过示例框选择输入图像的目标；最近的工作开始使用文本，还记得吧，文本信号泛化性好，视觉信号准确性好，因此当使用文本信号时，是牺牲了准确性。然后就说，基于文本的预测方法</p>
+</div>
+<p>This allows these foundation models to understand general concepts learned during extensive pretraining and provides a mechanism for users to specify extrinsic object properties through text. However, text-based approaches perform significantly worse than state-of-the-art visual exemplar-based approaches such as LOCA [10], CounTR [29], and few-shot DAVE [37]. For example, while both GroundingREC and COUNTGD use the pretrained GroundingDINO [30] vision-language foundation model, unlike GroundingREC, COUNTGD allows the user to input both visual exemplars and text instead of just text. This enables COUNTGD to achieve superior counting accuracy in comparison to GroundingREC.</p>
+<p>这使得这些基础模型能够理解在广泛的预训练中学习到的一般概念，并为用户提供了一种通过文本指定外部对象属性的机制。然而，基于文本的方法的性能明显差于最先进的基于视觉样本的方法，如LOCA [ 10 ]，CounTR [ 29 ]和小样本DAVE [ 37 ]。例如，GroundingREC和COUNTGD都使用了预训练的GroundingDINO [ 30 ]视觉语言基础模型，但与GroundingREC不同的是，COUNTGD允许用户同时输入视觉示例和文本，而不仅仅是文本。这使得COUNTGD相比GroundingREC具有更高的计数精度。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>你知道的吧，在视觉文本模型中，可以学到一般概念，所以泛化性更好。但还是那句话，准确性不够。这里还说了与CountGD工作很相似的模型GroundingREC，但是输入信号不一样，相似在于都是基于预训练的GroundingDINO。不相似在于输入信号不一样的</p>
+</div>
+<p>Notably, DAVE [37] is a visual exemplar-based approach that also enables textual prompts, but differs from COUNTGD in three important ways:COUNTGD 与DAVE的三个显著不同</p>
+<p>(1) it does not address the case when both text and visual exemplars are available while COUNTGD does,视觉信号和文本信号都来</p>
+<p>(2) its comparison between text features and image features is not learned as it is by COUNTGD with attention, and     COUNTGD有注意力机制学习文本特征和图像特征</p>
+<p>(3) it is a two-stage approach, while COUNTGD solves the problem in a single stage, without relying on another visual exemplar-based counting model. DAVE两阶段检测方法</p>
+<p>值得注意的是，DAVE [ 37 ]是一种基于视觉样例的方法，也可以实现文本提示，但与COUNTGD有3个重要的区别：( 1 )它没有解决COUNTGD同时提供文本和视觉样例的情况；( 2 )它没有像COUNTGD那样在有注意力的情况下学习文本特征和图像特征之间的比较；( 3 )它是一个两阶段的方法，而COUNTGD在一个阶段中解决问题，而不依赖于另一个基于视觉样例的计数模型。</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>这篇论文的改进论文是DAVE，目标都是一样的，motivation：提高准确率 &amp; 召回率</p>
+</div>
+<h3 id="relation-of-counting-to-other-areas">Relation of Counting to other areas. 与其它领域工作的关系<a class="headerlink" href="#relation-of-counting-to-other-areas" title="Permanent link">&para;</a></h3>
+<blockquote>
+<p>跟开山之作的相关工作叙述有点像</p>
+</blockquote>
+<p>Our work is related to few-shot image classification [41] and image detection [12, 20] methods.   小样本图像分类和检测</p>
+<p>These works require a few query images of novel objects, and then compare the test image with these image examples to determine its semantic content (for image classification), or to spatially localize instances (for object detection). </p>
+<p>我们的工作与小样本图像分类[ 41 ]和图像检测[ 12、20]方法相关。这些工作需要一些新颖对象的查询图像，然后将测试图像与这些图像示例进行比较，以确定其语义内容(对图像进行分类)，或者对实例(针对目标检测)进行空间定位。</p>
+<p>Like these methods, COUNTGD enables us to specify the object to count with visual exemplars (i.e., “query images") but also allows for textual inputs, and then compares the test image with the multi-modal specifications to get the final count. Furthermore, we focus on the counting problem, a challenging task for object detectors.</p>
+<p>与这些方法一样，COUNTGD允许我们用可视化示例(即"查询图像")指定要计数的对象，但也允许文本输入，然后将测试图像与多模态规范进行比较，得到最终的计数。此外，我们关注计数问题，这是目标检测器的一个具有挑战性的任务。</p>
+<blockquote>
+<p>基于检测的方法、完成计数任务，其实现在用基于检测的算法来进行计数任务是比较少的
+</p>
+</blockquote>
+<h2 id="3-counting-with-visual-exemplars-text">3 Counting with Visual Exemplars &amp; Text<a class="headerlink" href="#3-counting-with-visual-exemplars-text" title="Permanent link">&para;</a></h2>
+<p>Here, we describe COUNTGD, a single-stage model for open-world object counting that accepts either visual exemplars or text or both together as prompts to specify the object to count.</p>
+<ul>
+<li>a single-stage model</li>
+<li>接收的输入：visual exemplars or text or both together</li>
+</ul>
+<h3 id="31-overview">3.1 Overview<a class="headerlink" href="#31-overview" title="Permanent link">&para;</a></h3>
+<p><strong>符号说明</strong></p>
+<p><img alt="image-20241202130512978" src="/docs/images/image-20241202130512978.png" /></p>
+<p>接收指定物体的信号：</p>
+<ul>
+<li>视觉信号：<span class="arithmatex">\(B=\{b_1,......,b_N\}\)</span></li>
+<li>文本信号：<span class="arithmatex">\(t\)</span></li>
+<li>both：<span class="arithmatex">\(\{B,t\}\)</span></li>
+</ul>
+<p>查询图片：<span class="arithmatex">\(X\in \mathbb{R}^{H×W×3}\)</span></p>
+<p><span class="arithmatex">\(\hat{y}=f(X,B,t)\)</span></p>
+<p>计数模型记为：f，输出计数数量 <span class="arithmatex">\(\hat{y}\)</span></p>
+<p><img alt="image-20241202130924273" src="/docs/images/image-20241202130924273.png" /></p>
+<p><img alt="image-20241202130934175" src="/docs/images/image-20241202130934175.png" /></p>
+<p>图2：模型结构图 </p>
+<p>GD 指的是  GroundingDINO的首字母缩写</p>
+<p>COUNTGD：是基于GroundingDINO的</p>
+<p>GroundingDINO：基于真实世界的开放词表建立的目标检测器</p>
+<p>与GroundingDINO不同的是：</p>
+<ul>
+<li>GroundingDINO只接收文本指定查询对象、COUNTGD也可以接受视觉信号</li>
+</ul>
+<p>首先 介绍COUNTGD，然后介绍COUNTGD与GroundingDINO的关系，特别是GroundingDINO哪里是被冻结的，哪里是被训练的，以及哪里是被添加到GroundingDINO的</p>
+<p><img alt="image-20241202131412078" src="/docs/images/image-20241202131412078.png" /></p>
+<p>组件说明：</p>
+<ul>
+<li>推理阶段：At inference the object to be counted can be specified by visual exemplars or text prompts or both.指定计数物体的方法</li>
+<li>输入图像的处理：<span class="arithmatex">\(f_{\theta_{SwinT}}\)</span> 提取不同尺度的信息</li>
+<li><span class="arithmatex">\(RoIAlign\)</span>获得 visual exemplar token</li>
+<li>text token的获得：<span class="arithmatex">\(f_{\theta_{TT}}\)</span></li>
+<li>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span> ：自注意力模块提取 视觉信号和文本信号，交叉注意力模块融合视觉信号和文本信号，产生特征 <span class="arithmatex">\(z_{v,t}\)</span> 、图像特征 <span class="arithmatex">\(z_I\)</span></li>
+<li>产生跨模态特征： 余弦相似度最高的 <span class="arithmatex">\(k\)</span> 个图像特征 <span class="arithmatex">\(z_I\)</span> 和 视觉信号和文本信号的 融合特征 <span class="arithmatex">\(z_{v,t}\)</span> 传入 跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span></li>
+<li>计算 跨模态解码器 $ f_{\psi}$ 的输出 和 <span class="arithmatex">\(z_{v,t}\)</span>  得到 <span class="arithmatex">\(\hat{Y}\)</span></li>
+<li>最终的检测输出： <span class="arithmatex">\(z_{v,t} ＞ \sigma\)</span> 获得最大相似度的输出</li>
+<li>整个的模型框架 都是在 GroundingDINO 框架的基础上上改进的，另外添加的部分 用蓝色表示</li>
+</ul>
+<p><img alt="image-20241202140330295" src="/docs/images/image-20241202140330295.png" /></p>
+<p><img alt="image-20241202140354610" src="/docs/images/image-20241202140354610.png" /></p>
+<p>图3：视觉特征提取模块</p>
+<p>（a）对于输入图像，标准的SwinTransformer模型提取视觉特征的 多空间特征</p>
+<p>（b）对于有样例框的输入特征图，将多个视觉特征样例框上采样到输入图像的大小，拼接这些特征图，通过1×1卷积，投影到256个通道；最后应用 带有边界框坐标的  RoIAlign 获得 样例框的视觉特征</p>
+<h3 id="32-countgd-architecture-components">3.2 COUNTGD Architecture Components<a class="headerlink" href="#32-countgd-architecture-components" title="Permanent link">&para;</a></h3>
+<p><img alt="image-20241202141042720" src="/docs/images/image-20241202141042720.png" /></p>
+<p>图像编码器 <span class="arithmatex">\(f_{\theta_{SwinT}}\)</span></p>
+<ul>
+<li>处理两个输入信号：输入图像 <span class="arithmatex">\(X\)</span> 和 视觉样例框 <span class="arithmatex">\(B\)</span></li>
+<li>使用的SwinTransformer的版本 Swin-B</li>
+<li>（输入图像X的建模）如图3(a) 所示，对于输入图像 <span class="arithmatex">\(X\)</span> 提取3个不同空间尺度的 特征<blockquote>
+<ul>
+<li>三不同大小的统建特征图 通过1×1的卷积核 投影到256维，产生图像token</li>
+<li>不同尺度的图像块对应长度为256的特征向量，作为特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span>的输入</li>
+</ul>
+</blockquote>
+</li>
+<li>（样例框 B的建模）如图3(b)，对于视觉样例框 B，复用 输入图像 <span class="arithmatex">\(X\)</span> 的 空间特征图 <span class="arithmatex">\(f_{\theta_{SwinT}}(X)\)</span></li>
+<li>使用 ROI pooling（对齐的感兴趣区域池化?），与视觉示例B指定的像素坐标</li>
+<li>产生的视觉特征 和 图像和文本token 一样的大小：256维度</li>
+</ul>
+<p><img alt="image-20241202143028422" src="/docs/images/image-20241202143028422.png" /></p>
+<p><img alt="image-20241202143038205" src="/docs/images/image-20241202143038205.png" /></p>
+<p>文本编码器</p>
+<ul>
+<li>
+<p>对于文本编码器 <span class="arithmatex">\(f_{\theta_{TT}}\)</span>，使用基于bert的文本Transformer</p>
+</li>
+<li>
+<p>预训练的数据集：检测和短语定位数据，有图像编码器 <span class="arithmatex">\(f_{\theta_{SwinT}}\)</span></p>
+</li>
+<li>
+<p>文本编码器将输入对象描述 <span class="arithmatex">\(t\)</span> 投影到最多256个 token</p>
+</li>
+<li>
+<p>编码后的文本 特征向量是256维的（256个token）</p>
+</li>
+<li>
+<p>图像编码器 <span class="arithmatex">\(f_{{\theta}_{SwinT}}\)</span> 从输入图像中 提取 <span class="arithmatex">\(n\)</span> 个 图像块 特征</p>
+</li>
+</ul>
+<blockquote>
+<ul>
+<li>当有 <span class="arithmatex">\(p\)</span> 个 视觉示例 可用时，视觉编码器产生 p 个视觉示例特征</li>
+<li>当bert分词器在文本t中有q个token，文本编码器产生q 个标记</li>
+</ul>
+</blockquote>
+<ul>
+<li>最后，获得 特征增强模块的 输入 <span class="arithmatex">\(f_{\phi}\)</span> 有 ① n个图像token   ②p个视觉样例框token   ③q个文本token</li>
+</ul>
+<p>使用注意力模块融合这三个源的信息</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>文本特征：
+clip   bert</p>
+</div>
+<p><img alt="image-20241202145211442" src="/docs/images/image-20241202145211442.png" /></p>
+<p>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span></p>
+<ul>
+<li>由6个块组成</li>
+<li>自注意力机制 融合 视觉样例框特征和 文本token</li>
+<li>交叉注意力模块 融合 合并后的特征和 图像块标记</li>
+<li>每个模块包括 视觉示例 和 文本标记 连接后的自注意力、图像块 标记之间的可变形自注意力，以及融合后的 视觉示例和文本标记 与图像块标记之间 的图像到文本的交叉注意力 和 文本到图像的交叉注意力</li>
+<li>这些模块使得COUNTGD能够学习将输入图像、视觉示例和文本查询的信息综合起来</li>
+<li>特征增强模块 <span class="arithmatex">\(f_{\phi}\)</span> 输出两组特征，分别表示为  <span class="arithmatex">\(z_{v,t}\)</span>  和 <span class="arithmatex">\(z_I\)</span></li>
+</ul>
+<p><img alt="image-20241202150056053" src="/docs/images/image-20241202150056053.png" /></p>
+<ul>
+<li>融合图像块token、文本token、样例框token</li>
+</ul>
+<p><img alt="image-20241202152304324" src="/docs/images/image-20241202152304324.png" /></p>
+<p>语言和视觉样例框引导的查询选择</p>
+<ul>
+<li>k个图像块 token <span class="arithmatex">\(z_I\)</span> 和文本 标记 <span class="arithmatex">\(z_{v,t}\)</span> 具有最高的相似度，这个操作表示 <span class="arithmatex">\(Select(z_I,z_Iz_v^T,k)\)</span> </li>
+<li>其中 <span class="arithmatex">\(z_Iz_{v,t}^T \in \mathbb{R}^{n ×(p+q)}\)</span>  表示 n个图像块 token 和 p+q个视觉样例框和文本 token</li>
+<li>正如 GroundingDINO，k设置为900</li>
+<li>具有更高相似度的900个图像token作为跨模态查询 输入到 跨模态解码器 <span class="arithmatex">\(f_{\phi}\)</span></li>
+</ul>
+<p><img alt="image-20241202153403349" src="/docs/images/image-20241202153403349.png" /></p>
+<p>跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span></p>
+<ul>
+<li>跨模态解码器 <span class="arithmatex">\(f_{\psi}\)</span> 使用自注意力增强跨模态查询</li>
+<li>图像交叉注意力将图像块特征 <span class="arithmatex">\(z_I\)</span> 融合到 跨模态查询中</li>
+<li>使用交叉注意力将视觉示例和文本特征 <span class="arithmatex">\(z_{v,t}\)</span> 融合到跨模态查询中</li>
+<li>跨模态解码器由6个这样的自注意力和交叉注意力模块组成</li>
+<li>跨模态查询与融合后的视觉示例和文本标记 <span class="arithmatex">\(z_{v,t}\)</span> 进行点积，并通过逐元素的Sigmoid函数处理，以获得最终的置信度分数，如下所示：</li>
+</ul>
+<p><img alt="image-20241202154115498" src="/docs/images/image-20241202154115498.png" /></p>
+<ul>
+<li><span class="arithmatex">\(z_{v,t}\)</span>是融合的视觉示例和文本特征</li>
+<li><span class="arithmatex">\(z_I\)</span> 是查询（即检测到的对象的最大数量）</li>
+<li><span class="arithmatex">\(\hat{Y}\)</span> 最终相似度分数</li>
+<li>分数根据置信度阈值 <span class="arithmatex">\(\sigma\)</span> 进行阈值处理，并在推理时 用于估计最终的对象计数 <span class="arithmatex">\(\hat{y}\)</span></li>
+</ul>
+<p><img alt="image-20241202161257806" src="/docs/images/image-20241202161257806.png" /></p>
+<p>设计选择与GroundingDINO的关系</p>
+<p>我们选择GroundingDINO[30]而不是其他视觉语言模型（VLMs），是因为其在视觉定位数据上的预训练，使其与其他VLMs（如CLIP[17]）相比具有更细粒度的特征。</p>
+<p>为了扩展GroundingDINO以接受视觉示例，我们将其视为文本标记。因为视觉示例和文本都指定了对象，我们认为视觉示例可以被GroundingDINO像文本标记一样对待，并将其整合到训练和推理过程中。在将视觉示例视为短语中的附加文本标记时，我们在对应于视觉示例的短语和视觉示例之间添加自注意力，而不是将它们分开。这使得COUNTGD能够学习融合视觉示例和文本标记，以形成对要计数对象的更具信息性的规范。同样，GroundingDINO的特征增强器和跨模态解码器中图像和文本特征之间的交叉注意力在COUNTGD中变为图像与融合后的视觉示例和文本特征之间的交叉注意力。在GroundingDINO中的语言引导查询选择在COUNTGD中变为语言和视觉示例引导的查询选择。通过这种方式，COUNTGD自然地扩展了GroundingDINO，使其能够输入文本和视觉示例来描述对象。</p>
+<p>在GroundingDINO中，图像编码器 <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 与文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 一起在丰富的检测和短语定位数据上进行了预训练，为其提供了丰富的区域和文本感知特征。由于我们希望建立在这个预训练的联合视觉-语言嵌入之上，我们保持图像编码器  <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 和文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 不变。</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

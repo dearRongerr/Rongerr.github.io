@@ -209,3 +209,36 @@ docs/文件夹（导航横栏）/md文件（左侧栏）/一级标题（标题�
 
 - 
    文件结构变了，记得修改yml的路径
+
+
+
+## 嵌入 pdf 文档并显示
+
+[如何在github页面上mkdocs生成的网站中嵌入本地pdf文件？](https://cloud.tencent.com/developer/ask/sof/107585802)
+
+![image-20250319100640822](images/image-20250319100640822.png)
+
+**（1）修改配置文件：** 
+
+```yaml
+markdown_extensions:
+  - pymdownx.pathconverter:
+      base_path: 'docs/pdf_files' # 设置基础路径为你的 PDF 文件所在目录
+      absolute: false # 将路径不转换为绝对路径
+      tags: 'a script img link object embed' # 需要转换路径的 HTML 标签
+```
+
+（2）**新建 markdown 文件**，嵌入 pdf 链接即可，注意路径的配置，嵌入链接的方法和嵌入外链的逻辑是一样的，只是这里设置的本地的（指的是 现在 工作的路径）相对路径
+
+```markdown
+# 📒
+这里都是一些之前的笔记，陆陆续续的搬到这里。
+
+## 膨胀卷积
+
+[点击这里查看 PDF 文件](../pdf_files/1_dilatedConv.pdf)
+```
+
+
+
+> 我最开始的报错是，路径错了；还有 `absolute: false` 这里设置成 false

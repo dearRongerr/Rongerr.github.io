@@ -1,4 +1,4 @@
-# 2021|Autoformer
+# 2021、Autoformer
 
 [序列分解预测模型Autoformer](https://www.bilibili.com/video/BV1KZ6ZYDEfK?spm_id_from=333.788.player.switch&vd_source=ddd7d236ab3e9b123c4086c415f4939e) 
 
@@ -63,3 +63,27 @@ Second, canonical Transformers with self-attention mechanisms are computationall
 > （2）还是 Transformer 的计算复杂度太高了。现在一般采用稀疏的逐点计算，但是，损失信息了。
 
 本文采用分解的概念。但是在之前的用处中，分解主要是预处理的步骤，因为未来数据的分解是观测不到的。
+
+
+
+```mermaid
+graph TD
+    classDef component fill:#e2f0cb,stroke:#333,stroke-width:1px
+    classDef operation fill:#ffd6cc,stroke:#333,stroke-width:1px
+
+    %% 类层次结构
+    ClassA[ClassA]:::component
+    ClassB[ClassB]:::component
+    
+    %% 初始化关系
+    subgraph 初始化过程
+    I_B[创建ClassB实例]:::operation --> I_A[创建ClassA实例]:::operation
+    end
+    
+    %% 方法调用关系
+    ClassA -- "调用" --> ClassB
+    ClassA.method_a -- "调用" --> ClassB.method_b
+```
+
+
+

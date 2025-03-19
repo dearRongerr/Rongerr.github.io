@@ -1,4 +1,4 @@
-# SegRNN
+# 2023、SegRNN
 
 [https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for](https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for)
 

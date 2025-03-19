@@ -1,4 +1,4 @@
-# TimesNet
+# 2023、TimesNet
 
 [TIMESNET: TEMPORAL 2D-VARIATION MODELING
 FOR GENERAL TIME SERIES ANALYSIS](https://openreview.net/pdf?id=ju_Uqw384Oq)

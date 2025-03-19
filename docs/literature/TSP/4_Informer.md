@@ -1,4 +1,4 @@
-# 2021|Informer
+# 2021、 Informer
 
 ![image-20250317120535689](images/image-20250317120535689.png)
 
