@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4266,14 +4274,14 @@
 <li>其中全局标准化主要的作用是 <mark>消除量纲的影响</mark>，可以理解为不划分 batch 的标准化</li>
 <li>可逆实例标准化就是对训练样本内的特征进行实例标准化，目的是为了==消除分布偏移==，用一个例子来解释，就是：</li>
 </ul>
-<p><img alt="image-20250314153025741" src="/docs/images/image-20250314153025741.png" /></p>
+<p><img alt="image-20250314153025741" src="../images/image-20250314153025741.png" /></p>
 <p>好处是：<mark>消除绝对水平和尺度的影响</mark>，让模型专注于学习序列的==相对变化模式==</p>
 <ul>
 <li>对于两次标准化更直观的例子：</li>
 </ul>
-<p><img alt="image-20250314153230628" src="/docs/images/image-20250314153230628.png" /></p>
-<p><img alt="image-20250314153240519" src="/docs/images/image-20250314153240519.png" /></p>
-<p><img alt="image-20250314153326574" src="/docs/images/image-20250314153326574.png" /></p>
+<p><img alt="image-20250314153230628" src="../images/image-20250314153230628.png" /></p>
+<p><img alt="image-20250314153240519" src="../images/image-20250314153240519.png" /></p>
+<p><img alt="image-20250314153326574" src="../images/image-20250314153326574.png" /></p>
 <ul>
 <li>
 <p>同时顺着 实例标准化给大家补充了批标准化、层标准化、分组标准化，从分组标准化又拓展到了分组卷积，从分组卷积又扩展了卷积的几种方式，膨胀卷积、分组卷积、转置卷积、深度可分离卷积、逐点卷积等，然后回到我们自己的项目</p>
@@ -4332,7 +4340,7 @@
 <ul>
 <li>进入 <code>Dataset_Custom</code> 中的 init 方法，加载数据，首先又是一些参数初始化</li>
 </ul>
-<p><img alt="image-20250315111753108" src="/docs/images/image-20250315111753108.png" /></p>
+<p><img alt="image-20250315111753108" src="../images/image-20250315111753108.png" /></p>
 <ul>
 <li>在这个调试的项目中，回溯窗口是 60，预测窗口是 24，也就是使用未来 60 个时间步的8 个特征，预测未来 24 个时间步的疾病感染人数。</li>
 <li>关于这里的 8 个特征，想说明的是（其实是 1+7 个特征，时间戳特征单独处理，7 个特征的处理就是两个标准化，一种是全局标准化一种是实例标准化）</li>
@@ -4375,7 +4383,7 @@
 <li>border1s 和 border2s 分别定义了测试集、验证集、训练集的左右边界。</li>
 <li>原文的时间步划分，应该是 数据行0-676是训练集，676 到 676+97=773 是验证集，966-193=773 ，也就是索引 773-966是测试集，用图来表示，就是这样的：  </li>
 </ul>
-<p><img alt="image-20250314092914764" src="/docs/images/image-20250314092914764.png" /> </p>
+<p><img alt="image-20250314092914764" src="../images/image-20250314092914764.png" /> </p>
 <ul>
 <li>
 <p>但实际上看，左右边界的定义，左边界都减去了一个 回溯窗口长度，也就是 <code>self.seq_len = 60</code> </p>
@@ -4385,7 +4393,7 @@
 </li>
 </ul>
 <p>用图来表示就是：</p>
-<p><img alt="image-20250314093340428" src="/docs/images/image-20250314093340428.png" /></p>
+<p><img alt="image-20250314093340428" src="../images/image-20250314093340428.png" /></p>
 <p>（1）训练集时间步是前0-676 个时间点</p>
 <p>（2）验证集是 616 到 773 个时间点</p>
 <p>（3）测试集是713 到 966 个时间步</p>
@@ -4494,7 +4502,7 @@
 <li><code>df_stamp['date'] = pd.to_datetime(df_stamp.date)</code> 调用 pandas 将日期数据转换成标准的时间日期数据</li>
 <li>在执行完这一句后，看到调试窗口，<mark>鼠标悬停</mark>，查看 时间戳数据框数据 <code>df_stamp</code></li>
 </ul>
-<p><img alt="image-20250315141853608" src="/docs/images/image-20250315141853608.png" /></p>
+<p><img alt="image-20250315141853608" src="../images/image-20250315141853608.png" /></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>if self.timeenc == 0:
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>            df_stamp[&#39;month&#39;] = df_stamp.date.apply(lambda row: row.month, 1)
 </span><span id="__span-11-3"><a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>            df_stamp[&#39;day&#39;] = df_stamp.date.apply(lambda row: row.day, 1)
@@ -4518,7 +4526,7 @@
 </ul>
 <h5 id="time_features">time_features<a class="headerlink" href="#time_features" title="Permanent link">&para;</a></h5>
 <p>接下来，我们 <mark>步进</mark> ，看这个时间戳数据是怎么建模的。</p>
-<p><img alt="image-20250307233527623" src="/docs/images/image-20250307233527623.png" /></p>
+<p><img alt="image-20250307233527623" src="../images/image-20250307233527623.png" /></p>
 <ul>
 <li>看到又是一个调用，继续==步进==，而且是==同文件的 调用==。</li>
 </ul>
@@ -4526,21 +4534,21 @@
 <ul>
 <li><mark>步进</mark> 到 <code>time_features_from_frequency_str</code> 函数内部，首先有一个 特征偏移字典</li>
 </ul>
-<p><img alt="image-20250313204621624" src="/docs/images/image-20250313204621624.png" /></p>
+<p><img alt="image-20250313204621624" src="../images/image-20250313204621624.png" /></p>
 <ul>
 <li>来到下面这行：</li>
 </ul>
-<p><img alt="image-20250313204841059" src="/docs/images/image-20250313204841059.png" /></p>
+<p><img alt="image-20250313204841059" src="../images/image-20250313204841059.png" /></p>
 <ul>
 <li>根据给定的时间频率字符串选择合适的时间特征</li>
 <li>我们先看一下调试窗口这里，<code>&lt;built-in function to_offset&gt;</code> 表示的是指向 Pandas 库中 to_offset函数的引用。（也就是 内置函数）</li>
 </ul>
-<p><img alt="image-20250307234111281" src="/docs/images/image-20250307234111281.png" /></p>
+<p><img alt="image-20250307234111281" src="../images/image-20250307234111281.png" /></p>
 <ul>
 <li><code>to_offset</code> 是 Pandas 中的函数，用于将频率字符串（如 'H'、'D'、'W' 等）转换为对应的偏移对象</li>
 <li>比如我们这里，'H' 转换为  Hour  偏移对象，</li>
 </ul>
-<p><img alt="image-20250313205246648" src="/docs/images/image-20250313205246648.png" /></p>
+<p><img alt="image-20250313205246648" src="../images/image-20250313205246648.png" /></p>
 <ul>
 <li>这段 for 循环的作用就是根据 输入的 <code>freq_str</code>  也就是频率字符串，去<code>偏移特征字典</code>中 索引到特征类列表，最终返回类的实例</li>
 <li>**具体来说，**就是首先 <code>offset = to_offset(freq_str)</code>   根据传入的 <code>'H'</code> 字符串得到 <code>&lt;Hour&gt;</code> 对象 </li>
@@ -4552,7 +4560,7 @@
 </ul>
 <h5 id="time_feature">返回 time_feature<a class="headerlink" href="#time_feature" title="Permanent link">&para;</a></h5>
 <p>接下来，继续看  <code>np.vstack</code>  这一行，</p>
-<p><img alt="image-20250313210814703" src="/docs/images/image-20250313210814703.png" /></p>
+<p><img alt="image-20250313210814703" src="../images/image-20250313210814703.png" /></p>
 <ul>
 <li>
 <p>首先，<code>time_features_from_frequency_str(freq)</code> 返回的是 <code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code></p>
@@ -4562,15 +4570,15 @@
 </li>
 <li>首先我们传入的 dates，是标准的日期，pandas 会自动解析出 年、月、日、小时，因为全是 0 点，所以省略了。</li>
 </ul>
-<p><img alt="image-20250313211350878" src="/docs/images/image-20250313211350878.png" /></p>
+<p><img alt="image-20250313211350878" src="../images/image-20250313211350878.png" /></p>
 <ul>
 <li>具体来说的处理是：</li>
 </ul>
-<p><img alt="image-20250313211456998" src="/docs/images/image-20250313211456998.png" /></p>
+<p><img alt="image-20250313211456998" src="../images/image-20250313211456998.png" /></p>
 <ul>
 <li>点击步进 ，可以看到 <code>index.day</code>，自动摘出所有的日期，这里的的处理是 -1 /30 是为了归一化，因为我们的日期记号为 1 号到 31 号，对日期减1，变成 0~30，÷30，变成 0~1，－0.5 表示 中心化，最终的数据范围是 <code>-0.5~0.5</code></li>
 </ul>
-<p><img alt="image-20250313211631503" src="/docs/images/image-20250313211631503.png" /></p>
+<p><img alt="image-20250313211631503" src="../images/image-20250313211631503.png" /></p>
 <ul>
 <li>HourOfDay()：表示 一天中的第几个小时</li>
 <li>DayOfWeek()：表示一周中的星期几</li>
@@ -4584,7 +4592,7 @@
 <ul>
 <li>最终得到的数据和形状：</li>
 </ul>
-<p><img alt="image-20250313213938346" src="/docs/images/image-20250313213938346.png" /></p>
+<p><img alt="image-20250313213938346" src="../images/image-20250313213938346.png" /></p>
 <h3 id="_3">总结<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ul>
 <li>经过以上这一大串，终于完成了 <code>自定义Dataset类</code>的初始化 <code>Dataset_Custom(Dataset)</code>，具体来说就是调用了 <code>init</code> 方法，同时 <code>init</code> 方法中，又调用了 <code>read_data方法</code></li>
@@ -4604,11 +4612,11 @@
 </ul>
 <h4 id="1">（1）第一步<a class="headerlink" href="#1" title="Permanent link">&para;</a></h4>
 <p>721 划分数据集，得到这张图：</p>
-<p><img alt="image-20250314092914764" src="/docs/images/image-20250314092914764.png" /></p>
+<p><img alt="image-20250314092914764" src="../images/image-20250314092914764.png" /></p>
 <p><strong>也就是说理论上，训练集时间步：676；验证集时间步：97；测试集时间步：193</strong></p>
 <h4 id="2">（2）第二步<a class="headerlink" href="#2" title="Permanent link">&para;</a></h4>
 <p>为了保证验证集第一个时间步和测试集的第一个时间步可以构成一个样本，回溯了 60 个时间步，得到：</p>
-<p><img alt="image-20250314093340428" src="/docs/images/image-20250314093340428.png" /></p>
+<p><img alt="image-20250314093340428" src="../images/image-20250314093340428.png" /></p>
 <p><strong>但实际上使用的训练集时间步有 676 个；验证集时间步157 个；测试集时间步有 253 个</strong> </p>
 <h4 id="3">（3）第三步<a class="headerlink" href="#3" title="Permanent link">&para;</a></h4>
 <p>接下来是就是这么些个时间步能构成多少个样本？</p>
@@ -4627,9 +4635,9 @@
 <li>具体来说，对于训练集的 676 个时间步，验证集 157 个时间步，测试集 253 个时间步，也就是分别对应着 训练集、验证集、测试集的 <code>len(self.data_x)</code> </li>
 <li>所以，len(训练集)、len(验证集)、len(测试集) 的也就是==样本数== 分别是 <code>676-60-24+1=593 、157-60-24+1=74、253-60-24+1=170</code> 个样本。</li>
 </ul>
-<p><img alt="image-20250314101525779" src="/docs/images/image-20250314101525779.png" /></p>
+<p><img alt="image-20250314101525779" src="../images/image-20250314101525779.png" /></p>
 <p>执行完以后，终端输出训练集样本数：</p>
-<p><img alt="image-20250315144946836" src="/docs/images/image-20250315144946836.png" /></p>
+<p><img alt="image-20250315144946836" src="../images/image-20250315144946836.png" /></p>
 <p><strong>我记得我最开始看这个的时候，我会有一个疑问就是索引会不会超出范围？</strong>  所以这里想着重说一下这个问题</p>
 <blockquote>
 <p>其实是不会的。</p>
@@ -4665,7 +4673,7 @@
 <li>得到每个索引，根据每个索引得到样本，向后的 60 个时间步作为输入序列，因为 label_sequence=0，所以紧接着的 24 个时间步是预测序列</li>
 <li>假设我们生成的随机索引为： 23，也就是 <code>index=23</code> 就会调用 <code>dataset</code> 的 <code>getitem</code> 方法。</li>
 </ul>
-<p><img alt="image-20250314105323187" src="/docs/images/image-20250314105323187.png" /></p>
+<p><img alt="image-20250314105323187" src="../images/image-20250314105323187.png" /></p>
 <ul>
 <li><code>s_begin</code> 输入序列起始点；<code>s_end</code> 输入序列结束点；<code>r_begin</code>标签序列起点；<code>r_end</code> 标签+预测序列终点；</li>
 </ul>
@@ -4695,7 +4703,7 @@
 <p>dataloader 封装了 <code>batchsize</code> 个 <code>seq_x, seq_y, seq_x_mark, seq_y_mark</code></p>
 </li>
 </ul>
-<p><img alt="image-20250314144441399" src="/docs/images/image-20250314144441399.png" /></p>
+<p><img alt="image-20250314144441399" src="../images/image-20250314144441399.png" /></p>
 <p>当我们执行完了以上源码以后，从哪儿来的，回哪里去</p>
 <ul>
 <li>首先 <code>data_provider</code>返回的<code>return data_set, data_loader</code></li>
@@ -4709,12 +4717,12 @@
 </blockquote>
 <p>对于一张二维数表，时间序列都是二维数表，行是每个时间点，列是每个时间点采集的数据，比如疾病感染人数，记录的 2002 年 1 月开始，到 2020 年 1 月结束，每周一采集数据，除了记录疾病感染人数，还可以记录一些与感染疾病人数的相关的比如当地天气什么的；</p>
 <p>具体来说就是：</p>
-<p><img alt="image-20250307202937957" src="/docs/images/image-20250307202937957.png" /> </p>
+<p><img alt="image-20250307202937957" src="../images/image-20250307202937957.png" /> </p>
 <p>Y 目标列，时间序列数据与其他图像或者 NLP 任务不同的是，特征，在未来时间点，我们是不知道所有的特征的，完全都是未知的。</p>
 <p>时间序列样本的构造：用于训练的时间步，记作 <code>sequence_length</code>，用于预测的时间步 <code>pred_length</code>，还有一个比较特殊的概念 <code>label_length</code> ，表示用于训练的时间步有多少用于指导预测，用一张图表示：</p>
-<p><img alt="image-20250307203200171" src="/docs/images/image-20250307203200171.png" /></p>
+<p><img alt="image-20250307203200171" src="../images/image-20250307203200171.png" /></p>
 <p>有几个 batch 我们就移动几个小时，构造几个 batch。</p>
-<p><img alt="image-20250307210941318" src="/docs/images/image-20250307210941318.png" /></p>
+<p><img alt="image-20250307210941318" src="../images/image-20250307210941318.png" /></p>
 <p>当然了，这里也有一个遗留问题，就是这样构造 batch的话，不就是按照特征的顺序喂给模型了吗，模型不就会依赖这个顺序了嘛，而一般我们在构建 Dataloader 的时候，会设置一个参数 <code>shuffle=True</code> ，也就是 会随机选取 batch 个索引 index，从这个索引开始选择 sequence length 个时间步以及后面的 predict length 进行封装，封装成一个样本。</p>
 <p>966×8（1+7）的时间序列数据集，1 表示时间戳特征，7 表示记录的特征。</p>
 <p>在这个项目的 illness 数据集中，有 966 个时间点，每个时间点记录了 7 个特征，batch size=16，sequence length=60，feature=7，更具体来说时间序列的数据封装就是：</p>
@@ -4746,7 +4754,7 @@
 </li>
 </ul>
 <p>用图来理解就是这样的</p>
-<p><img alt="image-20250314150125444" src="/docs/images/image-20250314150125444.png" /></p>
+<p><img alt="image-20250314150125444" src="../images/image-20250314150125444.png" /></p>
 <p>总结：DataLoader 通过调用 Dataset 的 <code>__getitem__</code> 方法获取单个样本，然后将它们堆叠成批次。样本的实际结构和滑动窗口逻辑由 Dataset 实现，DataLoader 只负责组装和批处理</p>
 
 
@@ -4755,6 +4763,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-17</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4804,6 +4844,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

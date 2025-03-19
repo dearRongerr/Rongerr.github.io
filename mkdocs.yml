@@ -185,7 +185,41 @@ markdown_extensions:
   - pymdownx.mark
   - pymdownx.tilde
   - pymdownx.snippets
-  - pymdownx.superfences
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
 
 extra_javascript:
+  # [数学公式支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
+  - mkdocs/javascripts/katex.js
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+extra_css:
+  # [数学公式支持]
+  # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
+  - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css
+  # [自定义 css]
+  # 不使用底部的翻页
+  - mkdocs/css/no-footer.css
+  # 无序列表符号自定义
+  - mkdocs/css/unordered-list-symbols.css
+  # 标题自动编号
+plugins:
+  - search
+  - mermaid2
+  # 显示创建日期、修改日期
+  # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
+  - git-revision-date-localized:
+      enable_creation_date: true
+      type: timeago #时间类型
+      # type: date #日期类型
+      custom_format: "%d. %B %Y"  # 时间格式
+      fallback_to_build_date: false #许回退到git 不可用时mkdocs build执行的时间
+      locale: zh #首选语言
+      # exclude:  #排除的页面
+      #     - index.md
+      enabled: true #是否启用
+      # strict: true      

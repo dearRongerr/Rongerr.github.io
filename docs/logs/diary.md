@@ -2,7 +2,16 @@
 
 ## 2025年 3 月 19 日
 
+好了好了，干活了，看 Autoformer
+
+- [x] mkdocs 页面嵌入 pdf
+- [x] mkdocs & mermaid
+
 mkdocs  yml 配置文件，今天修改了配置文件，页面嵌入本地 pdf
+
+这个相当于备份。
+
+这里的配置缩进，非常容易报错，AI 自动给错输出的全文本内容会有删减，细心点吧。
 
 ```yaml
 site_name: My Docs

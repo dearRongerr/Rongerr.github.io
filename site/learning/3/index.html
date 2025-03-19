@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -2045,7 +2074,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2340,27 +2369,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4002,7 +4010,7 @@
 <h3 id="_2"><strong>是什么？</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
 <p>文字：bounding box</p>
 <p>图示：</p>
-<p><img alt="image-20241126170337518" src="/docs/images/image-20241126170337518.png" /></p>
+<p><img alt="image-20241126170337518" src="../images/image-20241126170337518.png" /></p>
 <h3 id="_3"><strong>怎么实现？</strong><a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <ol>
 <li>两角表示法：由矩形左上角的以及右下角的x和y坐标决定</li>
@@ -4054,7 +4062,7 @@
 <p>这里想强调的一点：</p>
 <p>我们用的电脑屏幕和pytorch中，默认的原点在左上角</p>
 <p>图像中坐标的原点是图像的左上角，向右的方向为x轴的正方向，向下的方向为y轴的正方向。</p>
-<p><img alt="image-20241126164125475" src="/docs/images/image-20241126164125475.png" /></p>
+<p><img alt="image-20241126164125475" src="../images/image-20241126164125475.png" /></p>
 <h2 id="k2">K2 锚框<a class="headerlink" href="#k2" title="Permanent link">&para;</a></h2>
 <h3 id="_5">锚框是什么？<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4064,7 +4072,7 @@
 <li>是一种 <strong>区域采样方法</strong></li>
 </ul>
 <p>图示：</p>
-<p><img alt="image-20241126170206905" src="/docs/images/image-20241126170206905.png" /></p>
+<p><img alt="image-20241126170206905" src="../images/image-20241126170206905.png" /></p>
 <h3 id="_6">生成多个锚框<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p><strong>这里要解决的问题：给定输入图像高度h、宽度w，缩放比s，宽高比r，问题锚框的宽度和高度？</strong></p>
 <blockquote>
@@ -4082,7 +4090,7 @@
 </blockquote>
 <hr />
 <p><strong>书上：</strong> </p>
-<p><img alt="image-20241126174134561" src="/docs/images/image-20241126174134561.png" /></p>
+<p><img alt="image-20241126174134561" src="../images/image-20241126174134561.png" /></p>
 <p>要搞清楚的点：</p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 缩放比s的意义</li>
@@ -4095,10 +4103,10 @@
 </p>
 </blockquote>
 <p>首先<a href="https://fkjkkll.github.io/2021/11/23/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BSSD/">解释(from 讨论区)</a>这里锚框的宽度和高度：</p>
-<p><img alt="image-20241126173225339" src="/docs/images/image-20241126173225339.png" /></p>
+<p><img alt="image-20241126173225339" src="../images/image-20241126173225339.png" /></p>
 <hr />
 <p><span id='001'><strong>书上：</strong> </span></p>
-<p><img alt="image-20241126221347240" src="/docs/images/image-20241126221347240.png" /></p>
+<p><img alt="image-20241126221347240" src="../images/image-20241126221347240.png" /></p>
 <p>问题：要生成多个锚框</p>
 <p>解决：设置多个<span class="arithmatex">\(s\)</span>和<span class="arithmatex">\(r\)</span>即可，然后考虑每个可能的s与r的组合，<mark>但是实践中往往只考虑s1和r1的所有组合</mark></p>
 <h3 id="_7">代码实现<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
@@ -4341,22 +4349,22 @@
 <p>算了，搞不懂 <code>* in_height / in_width</code>，这步很迷惑，大概的意思就是处理输入图像是矩形的情况，但算了，实际处理时，大部分输入图像都是 方形的，比值=1，其余的，遇到了再看吧。</p>
 <p>me：也许常识是：输入图像宽高比=1，锚框要生成各种形状的，而不能仅仅局限于方形；</p>
 <p>我的理解：如果输入图像是矩阵（非方形）的话，但是每个像素点的参照系还是方形的，且是单位方形，左上角为原点，那么 从原来的宽和高 去缩放 到单位像素点，就需要这个东西。还是从<a href="https://discuss.d2l.ai/t/topic/2946/35?filter=summary">例子</a>出发：</p>
-<p><img alt="image-20241127111707338" src="/docs/images/image-20241127111707338.png" /></p>
+<p><img alt="image-20241127111707338" src="../images/image-20241127111707338.png" /></p>
 <p>还是不明白，算了。</p>
 <p><mark>解释1</mark></p>
 <p><span class="arithmatex">\(w = s\times \sqrt{r}\)</span></p>
 <p><span class="arithmatex">\(h = \frac{s}{ \sqrt{r}}\)</span></p>
-<p><img alt="image-20241127102914876" src="/docs/images/image-20241127102914876.png" /></p>
-<p><img alt="image-20241127095635951" src="/docs/images/image-20241127095635951.png" /></p>
-<p><img alt="image-20241127095733658" src="/docs/images/image-20241127095733658.png" /></p>
+<p><img alt="image-20241127102914876" src="../images/image-20241127102914876.png" /></p>
+<p><img alt="image-20241127095635951" src="../images/image-20241127095635951.png" /></p>
+<p><img alt="image-20241127095733658" src="../images/image-20241127095733658.png" /></p>
 <p><a href="https://fkjkkll.github.io/2021/11/23/%E7%9B%AE%E6%A0%87%E6%A3%80%E6%B5%8BSSD/">想强调一点</a>：实际在我们进行目标检测时，特征图长和宽都是相同的，比如 (19, 19)、(7, 7)，所以 <code>in_height / in_width</code> 恒等于 1，因此对于实际的使用并不会带来副作用。</p>
 <p><mark>解释2：</mark></p>
-<p><img alt="image-20241127103645130" src="/docs/images/image-20241127103645130.png" /></p>
+<p><img alt="image-20241127103645130" src="../images/image-20241127103645130.png" /></p>
 <p>主要看 <code>三、d2l代码解析</code></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 解释最后一句，<code>分别归一化</code> 是什么意思 ？ <code>移项</code></li>
 </ul>
-<p><img alt="image-20241127103951315" src="/docs/images/image-20241127103951315.png" /></p>
+<p><img alt="image-20241127103951315" src="../images/image-20241127103951315.png" /></p>
 <h4 id="_10">细节：为什么索引是这样？？<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> solved</li>
@@ -4386,11 +4394,11 @@
 </ul>
 <h3 id="_11">什么是交并比<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>像素集的杰卡德系数=交并比</p>
-<p><img alt="image-20241127113234354" src="/docs/images/image-20241127113234354.png" /></p>
+<p><img alt="image-20241127113234354" src="../images/image-20241127113234354.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 图解：</li>
 </ul>
-<p><img alt="image-20241127113320268" src="/docs/images/image-20241127113320268.png" /></p>
+<p><img alt="image-20241127113320268" src="../images/image-20241127113320268.png" /></p>
 <h3 id="_12">为什么需要交并比？<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p>① 使用交并比来衡量锚框和真实边界框之间、以及不同锚框之间的相似度</p>
 <p>② 某个锚框“较好地”覆盖了图像中的狗。 如果已知目标的真实边界框，那么这里的“好”该如何如何量化呢？就是交并比</p>
@@ -4433,7 +4441,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ...</li>
 </ul>
 <h2 id="_14">目标检测的步骤<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241127114551108" src="/docs/images/image-20241127114551108.png" /></p>
+<p><img alt="image-20241127114551108" src="../images/image-20241127114551108.png" /></p>
 
 
 
@@ -4441,6 +4449,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-27T14:44:30+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-27</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T14:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4490,6 +4530,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

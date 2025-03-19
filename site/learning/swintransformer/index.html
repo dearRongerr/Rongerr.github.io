@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -2078,7 +2107,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2373,27 +2402,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4101,18 +4109,18 @@
 <p><a href="https://b23.tv/wIUDsVU">【12.1 Swin-Transformer网络结构详解-哔哩哔哩】</a></p>
 <p><mark>第一次学的时候，所有的swin全都写成了swim，呆，又双叒叕丢人显眼了，笑）</mark></p>
 <h2 id="swintransformer_1">SwinTransformer效果有多好<a class="headerlink" href="#swintransformer_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117180806171" src="/docs/images/image-20241117180806171.png" /></p>
-<p><img alt="image-20241117180855864" src="/docs/images/image-20241117180855864.png" /></p>
+<p><img alt="image-20241117180806171" src="../images/image-20241117180806171.png" /></p>
+<p><img alt="image-20241117180855864" src="../images/image-20241117180855864.png" /></p>
 <p>2021年3月发表</p>
 <p>COCO数据集 目标检测下的模型排名 都有SwinTransformer的影子</p>
-<p><img alt="image-20241117183018587" src="/docs/images/image-20241117183018587.png" /></p>
-<p><img alt="image-20241117180924209" src="/docs/images/image-20241117180924209.png" /></p>
+<p><img alt="image-20241117183018587" src="../images/image-20241117183018587.png" /></p>
+<p><img alt="image-20241117180924209" src="../images/image-20241117180924209.png" /></p>
 <h2 id="_1">内容目录<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117180944583" src="/docs/images/image-20241117180944583.png" /></p>
+<p><img alt="image-20241117180944583" src="../images/image-20241117180944583.png" /></p>
 <p>完全不记得，我居然学过这些，也算是 复习了-.-</p>
 <p>第四点、第五点不好理解</p>
 <h2 id="swintransformervit">对比SwinTransformer&amp;ViT<a class="headerlink" href="#swintransformervit" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181038219" src="/docs/images/image-20241117181038219.png" /></p>
+<p><img alt="image-20241117181038219" src="../images/image-20241117181038219.png" /></p>
 <p>两点不同：</p>
 <p>第一点：</p>
 <p>（a）swintransformer的feature map具有层次性，类似CNN，随着层的加深，feature map的高和宽越来越小，分别是4倍下采样、8倍下采样和16倍下采样，因为层次性的特征图，所以对于目标检测，分割任务有更大的优势</p>
@@ -4120,102 +4128,102 @@
 <p>第二点：</p>
 <p>SwinTransformer使用一个一个窗口的形式把feature map分开了，窗口与窗口之间 不重叠</p>
 <p>ViT中，窗口是一个整体，没有分割</p>
-<p><img alt="image-20241117181049038" src="/docs/images/image-20241117181049038.png" /></p>
+<p><img alt="image-20241117181049038" src="../images/image-20241117181049038.png" /></p>
 <p><strong>看最后一列</strong></p>
-<p><img alt="image-20241117181112260" src="/docs/images/image-20241117181112260.png" /></p>
+<p><img alt="image-20241117181112260" src="../images/image-20241117181112260.png" /></p>
 <h2 id="_2">网络整体框架<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181133553" src="/docs/images/image-20241117181133553.png" /></p>
-<p><img alt="image-20241117181148224" src="/docs/images/image-20241117181148224.png" /></p>
+<p><img alt="image-20241117181133553" src="../images/image-20241117181133553.png" /></p>
+<p><img alt="image-20241117181148224" src="../images/image-20241117181148224.png" /></p>
 <h2 id="patch-partition">什么是patch partition?<a class="headerlink" href="#patch-partition" title="Permanent link">&para;</a></h2>
 <p>是取原始图像的像素值，然后展平，我觉得这里有点问题，<span class="arithmatex">\(4×4×3 \rightarrow 16×3\)</span> 应该是2×2的window？</p>
-<p><img alt="image-20241117181201663" src="/docs/images/image-20241117181201663.png" /></p>
-<p><img alt="image-20241117181216285" src="/docs/images/image-20241117181216285.png" /></p>
+<p><img alt="image-20241117181201663" src="../images/image-20241117181201663.png" /></p>
+<p><img alt="image-20241117181216285" src="../images/image-20241117181216285.png" /></p>
 <p>为什么这里是48个kernel？</p>
 <h2 id="swintransformer-block">为什么SwinTransformer block都是偶数次？<a class="headerlink" href="#swintransformer-block" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181230711" src="/docs/images/image-20241117181230711.png" /></p>
+<p><img alt="image-20241117181230711" src="../images/image-20241117181230711.png" /></p>
 <h2 id="patch-merging">Patch merging？<a class="headerlink" href="#patch-merging" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181242909" src="/docs/images/image-20241117181242909.png" /></p>
-<p><img alt="image-20241117185754698" src="/docs/images/image-20241117185754698.png" /></p>
-<p><img alt="image-20241117181537076" src="/docs/images/image-20241117181537076.png" /></p>
-<p><img alt="image-20241117181547934" src="/docs/images/image-20241117181547934.png" /></p>
+<p><img alt="image-20241117181242909" src="../images/image-20241117181242909.png" /></p>
+<p><img alt="image-20241117185754698" src="../images/image-20241117185754698.png" /></p>
+<p><img alt="image-20241117181537076" src="../images/image-20241117181537076.png" /></p>
+<p><img alt="image-20241117181547934" src="../images/image-20241117181547934.png" /></p>
 <h2 id="w-msa">W-MSA？<a class="headerlink" href="#w-msa" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181600588" src="/docs/images/image-20241117181600588.png" /></p>
-<p><img alt="image-20241117181626768" src="/docs/images/image-20241117181626768.png" /></p>
+<p><img alt="image-20241117181600588" src="../images/image-20241117181600588.png" /></p>
+<p><img alt="image-20241117181626768" src="../images/image-20241117181626768.png" /></p>
 <p>缺点：window之间没有信息交互，那么感受野就会变小，也就是没有办法看到全局的视野，最终预测结果会不好</p>
 <h2 id="msaw-msa">MSA和W-MSA计算量的讨论<a class="headerlink" href="#msaw-msa" title="Permanent link">&para;</a></h2>
 <p>普通的多头注意力机制 和 带窗的多头注意力机制</p>
-<p><img alt="image-20241117181637383" src="/docs/images/image-20241117181637383.png" /></p>
-<p><img alt="image-20241117181647474" src="/docs/images/image-20241117181647474.png" /></p>
-<p><img alt="image-20241117181659712" src="/docs/images/image-20241117181659712.png" /></p>
+<p><img alt="image-20241117181637383" src="../images/image-20241117181637383.png" /></p>
+<p><img alt="image-20241117181647474" src="../images/image-20241117181647474.png" /></p>
+<p><img alt="image-20241117181659712" src="../images/image-20241117181659712.png" /></p>
 <p>以下来自：<a href="https://blog.csdn.net/qq_37541097/article/details/121119988?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522A8B9FF3A-7205-477C-A0F8-A05E242F5D09%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=A8B9FF3A-7205-477C-A0F8-A05E242F5D09&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-3-121119988-null-null.nonecase&amp;utm_term=%E8%AE%A1%E7%AE%97%E9%87%8F&amp;spm=1018.2226.3001.4450">up主的博文</a></p>
-<p><img alt="image-20241117181712256" src="/docs/images/image-20241117181712256.png" /></p>
+<p><img alt="image-20241117181712256" src="../images/image-20241117181712256.png" /></p>
 <p>补充矩阵乘法当中   FLOPS计算方式：</p>
-<p><img alt="image-20241117191252892" src="/docs/images/image-20241117191252892.png" /></p>
+<p><img alt="image-20241117191252892" src="../images/image-20241117191252892.png" /></p>
 <p>如果矩阵A是a×b的，矩阵B是b×c的，那么矩阵相乘以后的flops计算量是 a×b×c的</p>
-<p><img alt="image-20241117191449173" src="/docs/images/image-20241117191449173.png" /></p>
+<p><img alt="image-20241117191449173" src="../images/image-20241117191449173.png" /></p>
 <p><a href="https://blog.csdn.net/qq_37541097/article/details/117691873?ops_request_misc=%257B%2522request%255Fid%2522%253A%2522A8B9FF3A-7205-477C-A0F8-A05E242F5D09%2522%252C%2522scm%2522%253A%252220140713.130102334.pc%255Fblog.%2522%257D&amp;request_id=A8B9FF3A-7205-477C-A0F8-A05E242F5D09&amp;biz_id=0&amp;utm_medium=distribute.pc_search_result.none-task-blog-2~blog~first_rank_ecpm_v1~rank_v31_ecpm-1-117691873-null-null.nonecase&amp;utm_term=%E8%AE%A1%E7%AE%97%E9%87%8F&amp;spm=1018.2226.3001.4450">单头注意力机制和多头注意力机制的计算量flops</a></p>
-<p><img alt="image-20241117191649631" src="/docs/images/image-20241117191649631.png" /></p>
+<p><img alt="image-20241117191649631" src="../images/image-20241117191649631.png" /></p>
 <p>所以使用多头注意力机制，最后还要使用 <span class="arithmatex">\(W^O\)</span>的计算量</p>
-<p><img alt="image-20241117181726235" src="/docs/images/image-20241117181726235.png" /></p>
-<p><img alt="image-20241117191829583" src="/docs/images/image-20241117191829583.png" /></p>
+<p><img alt="image-20241117181726235" src="../images/image-20241117181726235.png" /></p>
+<p><img alt="image-20241117191829583" src="../images/image-20241117191829583.png" /></p>
 <h2 id="shifted-window-multihead-self-attention">shifted window multihead self attention模块<a class="headerlink" href="#shifted-window-multihead-self-attention" title="Permanent link">&para;</a></h2>
 <h3 id="shift-window-multihead-self-attention">为什么需要 shift window multihead self attention？<a class="headerlink" href="#shift-window-multihead-self-attention" title="Permanent link">&para;</a></h3>
 <p>为了解决window与window之间没有信息交互的问题</p>
-<p><img alt="image-20241117181735285" src="/docs/images/image-20241117181735285.png" /></p>
-<p><img alt="image-20241117181746472" src="/docs/images/image-20241117181746472.png" /></p>
+<p><img alt="image-20241117181735285" src="../images/image-20241117181735285.png" /></p>
+<p><img alt="image-20241117181746472" src="../images/image-20241117181746472.png" /></p>
 <h3 id="shift">怎么理解shift ？<a class="headerlink" href="#shift" title="Permanent link">&para;</a></h3>
 <p>下面图，黄色框 向下、向右移动</p>
-<p><img alt="image-20241117181801825" src="/docs/images/image-20241117181801825.png" /></p>
+<p><img alt="image-20241117181801825" src="../images/image-20241117181801825.png" /></p>
 <h3 id="shift_1">怎么理解shift以后的信息交互？<a class="headerlink" href="#shift_1" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117181811544" src="/docs/images/image-20241117181811544.png" /></p>
+<p><img alt="image-20241117181811544" src="../images/image-20241117181811544.png" /></p>
 <h3 id="shift_2">shift之后，计算自注意力会出现的新问题？<a class="headerlink" href="#shift_2" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117181827268" src="/docs/images/image-20241117181827268.png" /></p>
+<p><img alt="image-20241117181827268" src="../images/image-20241117181827268.png" /></p>
 <h3 id="_3">解决窗口变多且不一样大计算 自注意力的问题<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117181839500" src="/docs/images/image-20241117181839500.png" /></p>
+<p><img alt="image-20241117181839500" src="../images/image-20241117181839500.png" /></p>
 <p>原文中给的解释，不好看懂，up主给出了自己的解决方式</p>
-<p><img alt="image-20241117181850099" src="/docs/images/image-20241117181850099.png" /></p>
-<p><img alt="image-20241117181900878" src="/docs/images/image-20241117181900878.png" /></p>
+<p><img alt="image-20241117181850099" src="../images/image-20241117181850099.png" /></p>
+<p><img alt="image-20241117181900878" src="../images/image-20241117181900878.png" /></p>
 <h3 id="shift-windowmask">shift window和mask<a class="headerlink" href="#shift-windowmask" title="Permanent link">&para;</a></h3>
 <h3 id="35-mask">区域3和区域5 的mask<a class="headerlink" href="#35-mask" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117181912493" src="/docs/images/image-20241117181912493.png" /></p>
-<p><img alt="image-20241117181924428" src="/docs/images/image-20241117181924428.png" /></p>
-<p><img alt="image-20241117181933746" src="/docs/images/image-20241117181933746.png" /></p>
-<p><img alt="image-20241117181942901" src="/docs/images/image-20241117181942901.png" /></p>
+<p><img alt="image-20241117181912493" src="../images/image-20241117181912493.png" /></p>
+<p><img alt="image-20241117181924428" src="../images/image-20241117181924428.png" /></p>
+<p><img alt="image-20241117181933746" src="../images/image-20241117181933746.png" /></p>
+<p><img alt="image-20241117181942901" src="../images/image-20241117181942901.png" /></p>
 <h2 id="sw-msa">继续讨论 SW-MSA<a class="headerlink" href="#sw-msa" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117181954756" src="/docs/images/image-20241117181954756.png" /></p>
-<p><img alt="image-20241117182005857" src="/docs/images/image-20241117182005857.png" /></p>
+<p><img alt="image-20241117181954756" src="../images/image-20241117181954756.png" /></p>
+<p><img alt="image-20241117182005857" src="../images/image-20241117182005857.png" /></p>
 <p><strong>移动的规律，先把上面移动到下面，再把左边移动到右边</strong></p>
-<p><img alt="image-20241117182016437" src="/docs/images/image-20241117182016437.png" /></p>
+<p><img alt="image-20241117182016437" src="../images/image-20241117182016437.png" /></p>
 <p><strong>注意看 这里黄色 每个window都能融合四个window的信息</strong></p>
 <p><strong>对于紫色的区域并不是连续的，需要使用mask-msa</strong></p>
 <p>区分好 哪里是连续的 哪里不是连续的</p>
-<p><img alt="image-20241117182026428" src="/docs/images/image-20241117182026428.png" /></p>
+<p><img alt="image-20241117182026428" src="../images/image-20241117182026428.png" /></p>
 <p>记得看代码怎么实现，up主也讲了</p>
 <h2 id="relative-position-bias">相对位置偏移？relative position bias<a class="headerlink" href="#relative-position-bias" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117182134004" src="/docs/images/image-20241117182134004.png" /></p>
-<p><img alt="image-20241117182146374" src="/docs/images/image-20241117182146374.png" /></p>
-<p><img alt="image-20241117182158117" src="/docs/images/image-20241117182158117.png" /></p>
+<p><img alt="image-20241117182134004" src="../images/image-20241117182134004.png" /></p>
+<p><img alt="image-20241117182146374" src="../images/image-20241117182146374.png" /></p>
+<p><img alt="image-20241117182158117" src="../images/image-20241117182158117.png" /></p>
 <h3 id="_4">什么是相对位置偏置？<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117182227196" src="/docs/images/image-20241117182227196.png" /></p>
-<p><img alt="image-20241117182246446" src="/docs/images/image-20241117182246446.png" /></p>
+<p><img alt="image-20241117182227196" src="../images/image-20241117182227196.png" /></p>
+<p><img alt="image-20241117182246446" src="../images/image-20241117182246446.png" /></p>
 <p><strong>区分 相对位置索引和相对位置偏置</strong></p>
-<p><img alt="image-20241117182300025" src="/docs/images/image-20241117182300025.png" /></p>
+<p><img alt="image-20241117182300025" src="../images/image-20241117182300025.png" /></p>
 <h3 id="_5">二元坐标怎么转化成一元坐标<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241117182314000" src="/docs/images/image-20241117182314000.png" /></p>
-<p><img alt="image-20241117182343507" src="/docs/images/image-20241117182343507.png" /></p>
-<p><img alt="image-20241117182359460" src="/docs/images/image-20241117182359460.png" /></p>
+<p><img alt="image-20241117182314000" src="../images/image-20241117182314000.png" /></p>
+<p><img alt="image-20241117182343507" src="../images/image-20241117182343507.png" /></p>
+<p><img alt="image-20241117182359460" src="../images/image-20241117182359460.png" /></p>
 <h3 id="_6">从相对位置索引到相对位置偏移<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>我们要训练的参数是 relative Position bias table</p>
-<p><img alt="image-20241117182414524" src="/docs/images/image-20241117182414524.png" /></p>
-<p><img alt="image-20241117182424778" src="/docs/images/image-20241117182424778.png" /></p>
-<p><img alt="image-20241117182435513" src="/docs/images/image-20241117182435513.png" /></p>
-<p><img alt="image-20241117182450420" src="/docs/images/image-20241117182450420.png" /></p>
+<p><img alt="image-20241117182414524" src="../images/image-20241117182414524.png" /></p>
+<p><img alt="image-20241117182424778" src="../images/image-20241117182424778.png" /></p>
+<p><img alt="image-20241117182435513" src="../images/image-20241117182435513.png" /></p>
+<p><img alt="image-20241117182450420" src="../images/image-20241117182450420.png" /></p>
 <h2 id="_7">模型详细配置参数<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117182504393" src="/docs/images/image-20241117182504393.png" /></p>
-<p><img alt="image-20241117182518129" src="/docs/images/image-20241117182518129.png" /></p>
-<p><img alt="image-20241117182532018" src="/docs/images/image-20241117182532018.png" /></p>
-<p><img alt="image-20241117182544781" src="/docs/images/image-20241117182544781.png" /></p>
-<p><img alt="image-20241117182600270" src="/docs/images/image-20241117182600270.png" /></p>
+<p><img alt="image-20241117182504393" src="../images/image-20241117182504393.png" /></p>
+<p><img alt="image-20241117182518129" src="../images/image-20241117182518129.png" /></p>
+<p><img alt="image-20241117182532018" src="../images/image-20241117182532018.png" /></p>
+<p><img alt="image-20241117182544781" src="../images/image-20241117182544781.png" /></p>
+<p><img alt="image-20241117182600270" src="../images/image-20241117182600270.png" /></p>
 
 
 
@@ -4223,6 +4231,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-18T12:53:47+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-18</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T11:19:11+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4272,6 +4312,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

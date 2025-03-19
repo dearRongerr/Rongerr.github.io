@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -1991,7 +2020,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2286,27 +2315,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3890,18 +3898,18 @@
 
 
 <h1 id="clip">CLIP<a class="headerlink" href="#clip" title="Permanent link">&para;</a></h1>
-<p><img alt="image-20241221182529069" src="/docs/images/image-20241221182529069.png" /></p>
+<p><img alt="image-20241221182529069" src="../images/image-20241221182529069.png" /></p>
 <h2 id="_1">动机<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>之前的图片分类网络都只能对固定类别进行分类，不论是 ImageNet 的 1000 类，CIFAR10 的 10 类，还是CIFAR100 的 100 类，带来的问题有两个：</p>
 <p>（1）训练好的模型能对固定类别进行分类，不能迁移到其他类别</p>
-<p><img alt="image-20241221182720392" src="/docs/images/image-20241221182720392.png" /></p>
+<p><img alt="image-20241221182720392" src="../images/image-20241221182720392.png" /></p>
 <p>（2）固定好的类别需要根据类别来标注数据，费时费力</p>
 <p>由此引发思考：有没有视觉模型不用对数据进行标注就可以训练，并且可以对任意类别进行预测，不用事先固定分类的类别？</p>
 <h2 id="_2">启发<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>在作者提出 CLIP 模型的同时，自然语言处理领域因为 Transformer 架构的提出发生了翻天覆地的变化</p>
-<p><img alt="image-20241221182918277" src="/docs/images/image-20241221182918277.png" /></p>
+<p><img alt="image-20241221182918277" src="../images/image-20241221182918277.png" /></p>
 <p>Encoder的部分成就了 Bert；decoder 部分成就了 GPT</p>
-<p><img alt="image-20241221183116588" src="/docs/images/image-20241221183116588.png" /></p>
+<p><img alt="image-20241221183116588" src="../images/image-20241221183116588.png" /></p>
 <p>首先看 Bert 模型，预测任务有两个，但都是自监督的，不需要人工标注数据</p>
 <p>（1）第 1 个任务是训练带掩码的语言模型，就是把一句话里面的部分词遮住，让模型根据上下文预测被遮住的词</p>
 <p>（2）第 2 个任务是给出两句话，让模型判断两句话是否在原文中是连续的</p>
@@ -3914,7 +3922,7 @@
 <p>只要把任务通过 prompt 告诉 GPT3，它就能完成对应的任务，而不需要在下游任务上进行迁移学习</p>
 <p>GPT3 是 OpenAI 的工作，CLIP 也是 OpenAI 提出的，所以自然就想到是否能用自监督学习解决数据需要标注的问题，同时利用 Prompt 来实现下游任务需要迁移学习的问题</p>
 <h3 id="_3">关于自监督学习<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221185518396" src="/docs/images/image-20241221185518396.png" /></p>
+<p><img alt="image-20241221185518396" src="../images/image-20241221185518396.png" /></p>
 <p>自监督学习 &amp; 杨立昆蛋糕图</p>
 <p><strong>解读 杨立昆蛋糕图</strong></p>
 <p>如果把模型学到的东西比作 1 个蛋糕的话：</p>
@@ -3933,7 +3941,7 @@
 <p>比如 GPT3 模型用的大量真实文本训练，预测的就是真实的文本，也就使得 GPT3 取得了很好的效果</p>
 </blockquote>
 <h2 id="_4">数据<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221190007754" src="/docs/images/image-20241221190007754.png" /></p>
+<p><img alt="image-20241221190007754" src="../images/image-20241221190007754.png" /></p>
 <p>OpenAI 作为大公司，在训练 CLIP 时，收集了4 亿个文本图片对，其中光文本的量就和训练 GPT2 的文本相当</p>
 <p>如图是文本对的例子</p>
 <p>如果传统的分类模型，第一张图片可能被打上草地的标签，监督信号就只有"草地"，第二张图片图片就被打上"房间"的标签</p>
@@ -3941,12 +3949,12 @@
 <p>可以明显看到"草地"、"房间"这样的标签相比实际收集到的文本含有更多的信息量，对图片的描述也更加细节，也就是说有更多的监督信号</p>
 <p>如果能充分利用这些监督信号，一定可以训练出更好的模型</p>
 <h2 id="_5">论文题目<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221191035703" src="/docs/images/image-20241221191035703.png" /></p>
+<p><img alt="image-20241221191035703" src="../images/image-20241221191035703.png" /></p>
 <p>看 CLIP 原论文的题目：利用自然语言的监督信号学习一个可迁移的视觉模型</p>
 <p>这里的可迁移指的是在下游任务时不需要再训练模型，哪怕是分类头也不再需要。</p>
 <p><strong>思考：那如何利用自然语言的监督信号呢？</strong></p>
 <h2 id="_6">训练任务<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221191254811" src="/docs/images/image-20241221191254811.png" /></p>
+<p><img alt="image-20241221191254811" src="../images/image-20241221191254811.png" /></p>
 <p>刚开始OpenAI 想到的是通过图片来预测文本，可是训练时发现训练速度太慢了，为什么呢？</p>
 <p>因为根据一张图片生成文本本来就是一个很难的任务，对于同一张图片可以有无数种正确的答案</p>
 <blockquote>
@@ -3958,12 +3966,12 @@
 <p>所以作者就改为了右图中的 <code>图片和文本的配对任务</code></p>
 <p>可以明显看到图文配对的任务相对简单，模型也更容易训练，CLIP 做图片和文本配对也非常简单直接</p>
 <h2 id="_7">模型训练<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221191718359" src="/docs/images/image-20241221191718359.png" /></p>
+<p><img alt="image-20241221191718359" src="../images/image-20241221191718359.png" /></p>
 <p>文本通过 <code>Text Encoder</code> </p>
 <p>图片通过 <code>Image Encoder</code></p>
 <p>然后分别得到文本的向量表示和图片的向量表示，再分别通过一个线性投射层，投射到一个共同的多模态向量空间中，在这个向量空间中，尽量拉近配对文本和图片的向量，而让不配对的文本和图片向量距离尽可能的远</p>
 <p>这里的文本 Encoder 和图片 Encoder 用什么模型都可以，只要能把图片和文本变成向量即可</p>
-<p><img alt="image-20241221192108912" src="/docs/images/image-20241221192108912.png" /></p>
+<p><img alt="image-20241221192108912" src="../images/image-20241221192108912.png" /></p>
 <p>作者实验时，对于图像编码器尝试了 ResNet50、ResNet101、以及对 ResNet50 的深度宽度进行扩展的 ResNet50×4、ResNet50×16、ResNet50×64</p>
 <p>×4 的意思是 ResNet50×4 的计算代价是 ResNet50 的 4 倍</p>
 <p>同时作者也尝试了 ViT模型，ViT-B/32、ViT-B/16、ViT-L/14</p>
@@ -3976,18 +3984,18 @@
 <p>输入文本前边会加一个 SOS token，表示 start of sentence，文本后边会增加一个 EOS token，表示 end of sentence</p>
 <p>然后拿最后一层 EOS 位置 token 的输出来作为整个句子的 embedding，因为只有EOS token 可以看到整个序列的其他 token 来总结整个句子的意思</p>
 <p>需要注意的是，虽然这里模型结构类似于 GPT，但是这里是作为编码器使用的，只提取最后一个 EOS token 的输出作为整个句子的编码，文本编码器只有 6300 万的参数</p>
-<p><img alt="image-20241221221719235" src="/docs/images/image-20241221221719235.png" /></p>
+<p><img alt="image-20241221221719235" src="../images/image-20241221221719235.png" /></p>
 <p>作者发现文本编码器的大小对于 CLIP 模型的性能影响不大，所以并没有尝试不同大小的文本编码器，训练的 batchsize 为3(w)2(k)768，一个非常大的 batchsize，而且从左边图上也可以看到 随着视觉编码器模型计算量的增大，CLIP 模型的错误率是稳步减小的</p>
 <p>而且因为训练数据有 4 亿个图文对，数据量足够大，所以图片编码器和文本编码器都没有进行预训练，直接从随机初始化开始训练，图片也没有做过多的图像增强，唯一做的就是随机裁剪，整个 CLIP 实现非常简单</p>
 <h2 id="_8">模型训练伪代码<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221222029541" src="/docs/images/image-20241221222029541.png" /></p>
+<p><img alt="image-20241221222029541" src="../images/image-20241221222029541.png" /></p>
 <p>i 代表 batch 的 n 个图片数据</p>
 <p>t 代表 1 个 batch 的 n 个文本数据</p>
-<p><img alt="image-20241221223718035" src="/docs/images/image-20241221223718035.png" /></p>
+<p><img alt="image-20241221223718035" src="../images/image-20241221223718035.png" /></p>
 <ul>
 <li>图片数据经过图片编码器，文本数据经过文本编码器，分别得到原始的图像向量表示和文本向量表示 </li>
 </ul>
-<p><img alt="image-20241221223732136" src="/docs/images/image-20241221223732136.png" /></p>
+<p><img alt="image-20241221223732136" src="../images/image-20241221223732136.png" /></p>
 <ul>
 <li>接着通过各自的线性映射层映射到共同的多模态向量空间 </li>
 </ul>
@@ -3996,7 +4004,7 @@
 <li>然后进行 L2 归一化，方便后面直接通过点积，来计算余弦相似度</li>
 <li>下面 通过两个点积计算，得到任意两个图片和文本的相似度</li>
 </ul>
-<p><img alt="image-20241221223816720" src="/docs/images/image-20241221223816720.png" /></p>
+<p><img alt="image-20241221223816720" src="../images/image-20241221223816720.png" /></p>
 <ul>
 <li>后面 <span class="arithmatex">\(*np.\exp(t)\)</span> 的部分，是温度系数，一般训练对比模型时，都会有一个 <span class="arithmatex">\(&gt;0\)</span> 的，可以调节的超参数，温度系数 t ，但是 CLIP 中直接把温度系数作为一个可以学习的参数</li>
 </ul>
@@ -4008,7 +4016,7 @@
 <p>温度越低，logits 通过 softmax 后，差别会更加陡峭</p>
 <p>但是因为这里 t 是可学习的参数，用乘法和除法都是一样的，让模型自己去学习</p>
 </blockquote>
-<p><img alt="image-20241221223321079" src="/docs/images/image-20241221223321079.png" /></p>
+<p><img alt="image-20241221223321079" src="../images/image-20241221223321079.png" /></p>
 <ul>
 <li>下一步，生成 label，可以看右边的图，和 batch 的第一个图片对应的是 batch 里的第一个文本</li>
 <li>第 2 个图片对应的是第 2 个文本，也就是 label 都是在对角线上的元素，所以这里用了 <code>np.arrang</code>，来生成 label</li>
@@ -4017,7 +4025,7 @@
 <li>最后，总的损失等于两个损失的平均值</li>
 </ul>
 <h2 id="_9">模型推理<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221223410266" src="/docs/images/image-20241221223410266.png" /></p>
+<p><img alt="image-20241221223410266" src="../images/image-20241221223410266.png" /></p>
 <p><strong>训练好的模型如何进行推理？</strong></p>
 <p>以 ImageNet 里的 1k 个类别为例，可以先生成 1k 句话，分别是：</p>
 <ul>
@@ -4031,14 +4039,14 @@
 <p>准备好这 1k 个向量之后，就可以对图片进行预测</p>
 <p>假设给定一张图片，通过图像编码器 和 线性映射层后，得到图片的向量表示，和之前得到的 1k 个类别的文本向量计算余弦相似度，哪个相似度最大，就对应哪个类别</p>
 <h2 id="prompt-enginerring-ensembling">Prompt Enginerring &amp; Ensembling<a class="headerlink" href="#prompt-enginerring-ensembling" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221224106744" src="/docs/images/image-20241221224106744.png" /></p>
+<p><img alt="image-20241221224106744" src="../images/image-20241221224106744.png" /></p>
 <p><strong>为什么要把类别名嵌入到句子中再做文本 编码呢？</strong></p>
 <p>论文的作者也做了实验，和直接用类别名做编码向量相比，把类别名嵌入到一个类似于"这是什么什么什么的照片"这样的简单句子中，在 ImageNet 上的精度可以提升 1.3%</p>
 <p>如果是针对特定的数据集比如对于宠物分类的数据集，可以在编码时在句子中明确的说明"这是一个什么什么宠物的照片"，把"宠物"这个信息编码到文本向量中，可以进一步提升 clip 模型的精度</p>
 <p>另外作者还提到一种提升精度的办法，就是做 Prompt ensembling，它的做法是生成多个 Prompt 的模版，把一个类别分别嵌入到多个模版，最后用多个模版生成的类别的文本向量分别和图片向量计算相似度，将多个向量相似度的值进行平均作为最终该图片和类别的相似度</p>
 <p>右图表明，通过 Prompt engineering 和 ensembling 之后模型精度可以提升 5 个点</p>
 <h2 id="_10"><a href="https://www.bilibili.com/video/BV1pYmDYgEDW?spm_id_from=333.788.player.switch&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">实验效果</a><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241222194808961" src="/docs/images/image-20241222194808961.png" /></p>
+<p><img alt="image-20241222194808961" src="../images/image-20241222194808961.png" /></p>
 <p><strong>第 1 个图</strong></p>
 <p>CLIP在自己4 亿个图文对上训练后，不在其他数据集上做任何训练，直接进行 zero-shot 的预测</p>
 <p>ResNet50 是在 ImageNet 上进行预训练，在这些数据集上冻结模型参数，只训练一个分类头的结果，这明显对 ResNet50 更占优势，因为可以在这些数据上进行微调</p>
@@ -4049,24 +4057,24 @@
 <p>zero shot 和 few shot 都是 CLIP 领先</p>
 <p><strong><u>第 3 张图</u></strong> </p>
 <p>作者思考如果用下游所有的数据来微调分类头，结果发现还是 CLIP 领先</p>
-<p><img alt="image-20241222194922751" src="/docs/images/image-20241222194922751.png" /></p>
+<p><img alt="image-20241222194922751" src="../images/image-20241222194922751.png" /></p>
 <p>在 ImageNet 上训练的 ResNet101 对 ImageNet 里"香蕉"识别的准确率 和 zero-shot 的 CLIP 是一样的，都是 76.2%</p>
 <p>但是如果换了其他数据集，比如卡通的、素描的数据集等在 ImageNet 上训练的 ResNet 性能马上下降，而 zero-shot CLIP 识别准确率比较稳健，展示了强大的泛化性能</p>
 <p>因为 CLIP 通过文本理解了什么是香蕉，CLIP 从文本里学到了香蕉的形状、大小、颜色、结构等细节信息，而不是只找到了 1 个捷径</p>
 <h2 id="_11">对比学习<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241222200833979" src="/docs/images/image-20241222200833979.png" /></p>
+<p><img alt="image-20241222200833979" src="../images/image-20241222200833979.png" /></p>
 <p>对比学习是一种无监督学习，不需要定义具体地类别，只需要给出哪些样本是相同的，哪些是不同的</p>
 <p>比如 CLIP 中定义只有对应的图文对是相同的，不对应的图文对是不同的，对比学习通过定义代理任务来学习样本的特征表示，学到的特征让相同的样本特征尽可能的相似，不同的样本特征差距尽可能的大，最终得到的模型就是一个特征编码器</p>
 <p>对比学习一般采用 InfoNCE 作为损失函数</p>
 <h2 id="clip_1">CLIP 模型的优点<a class="headerlink" href="#clip_1" title="Permanent link">&para;</a></h2>
 <p><strong>CLIP 模型的好处有哪些？</strong></p>
-<p><img alt="image-20241222201401160" src="/docs/images/image-20241222201401160.png" /></p>
+<p><img alt="image-20241222201401160" src="../images/image-20241222201401160.png" /></p>
 <p>第一，利用了丰富的语义来作为监督信号，让模型可以学习图片中很多细节语义特征，做到真正的理解图片，能更好的泛化</p>
 <p>第二，是多模态的模型，连通了图片和文本，可以通过文本来查询图片</p>
 <p>第三，摆脱了图片分类必须是固定的类别，创新的提出了利用 Prompt 来分类的方法，做到可以对任意类别进行分类</p>
 <p>之前将 CLIP 的图片分类是先生成不同类别的文本向量，然后来了图片通过图片向量查找最相似的文本类别向量</p>
 <h2 id="_12">应用<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241222201839882" src="/docs/images/image-20241222201839882.png" /></p>
+<p><img alt="image-20241222201839882" src="../images/image-20241222201839882.png" /></p>
 <p>以上是 CLIP 的一个例子</p>
 <p>同样是用 CLIP，可以先把视频中所有的关键帧图片生成图片向量，然后输入一个句子，生成句子向量，查找相似度最高的图片，比如</p>
 <p>（1）查找文本为"穿着蓝色上衣骑自行车的人"，可以检索到右图显示的监督画面</p>
@@ -4080,6 +4088,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-22T15:17:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-22</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4129,6 +4169,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

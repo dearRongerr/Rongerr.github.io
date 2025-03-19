@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -2255,7 +2284,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2550,27 +2579,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4420,25 +4428,25 @@
 <h1 id="5">5种归一化方法<a class="headerlink" href="#5" title="Permanent link">&para;</a></h1>
 <p><a href="https://www.bilibili.com/video/BV1Pq4y1a7pH?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">45、五种归一化的原理与PyTorch逐行手写实现讲解(BatchNorm/LayerNorm/InsNorm/GroupNorm/WeightNorm)</a></p>
 <p><a href="https://mp.weixin.qq.com/s/PQhr3hqwNI54BfuextFt7Q">图源</a></p>
-<p><img alt="image-20241204091638649" src="/docs/images/image-20241204091638649.png" /></p>
-<p><img alt="image-20241125213344927" src="/docs/images/image-20241125213344927.png" /></p>
+<p><img alt="image-20241204091638649" src="../images/image-20241204091638649.png" /></p>
+<p><img alt="image-20241125213344927" src="../images/image-20241125213344927.png" /></p>
 <h2 id="batchnorm">BatchNorm<a class="headerlink" href="#batchnorm" title="Permanent link">&para;</a></h2>
 <h3 id="_1">图示<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241202085427932" src="/docs/images/image-20241202085427932.png" /></p>
-<p><img alt="image-20241202085500136" src="/docs/images/image-20241202085500136.png" /></p>
+<p><img alt="image-20241202085427932" src="../images/image-20241202085427932.png" /></p>
+<p><img alt="image-20241202085500136" src="../images/image-20241202085500136.png" /></p>
 <blockquote>
 <p>批归一化、通道级别的归一化</p>
 </blockquote>
 <h3 id="apibatchnorm1d-2d">官网api，BatchNorm1D &amp; 2D<a class="headerlink" href="#apibatchnorm1d-2d" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241125213959648" src="/docs/images/image-20241125213959648.png" /></p>
+<p><img alt="image-20241125213959648" src="../images/image-20241125213959648.png" /></p>
 <p>BatchNorm1D的输入：NCL，用于NLP</p>
-<p><img alt="image-20241125214107222" src="/docs/images/image-20241125214107222.png" /></p>
+<p><img alt="image-20241125214107222" src="../images/image-20241125214107222.png" /></p>
 <p>BatchNorm2D的输入是四维的，用于图像</p>
-<p><img alt="image-20241125214207707" src="/docs/images/image-20241125214207707.png" /></p>
+<p><img alt="image-20241125214207707" src="../images/image-20241125214207707.png" /></p>
 <p>一个是三维tensor作为输入</p>
 <p>一个是四维tensor作为输入</p>
 <h3 id="batchnorm1d">BatchNorm1D<a class="headerlink" href="#batchnorm1d" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241125215123844" src="/docs/images/image-20241125215123844.png" /></p>
+<p><img alt="image-20241125215123844" src="../images/image-20241125215123844.png" /></p>
 <ul>
 <li>首先，位于torch.nn模块下，是一个class，所以要用的话，需要实例化</li>
 <li>接下来，看实例化需要接收的参数：</li>
@@ -4454,7 +4462,7 @@
 </li>
 </ul>
 <p>官网定义：</p>
-<p><img alt="image-20241125220039574" src="/docs/images/image-20241125220039574.png" /></p>
+<p><img alt="image-20241125220039574" src="../images/image-20241125220039574.png" /></p>
 <p>（解释官网定义）均值和标准差是经过整个mini_batch</p>
 <blockquote>
 <p>一句话说明 BatchNorm：per channel across mini-batch</p>
@@ -4524,7 +4532,7 @@
 <li>计算标准差的时候，用的是有偏估计，设置unbiased=false</li>
 </ul>
 <h2 id="layernorm">LayerNorm<a class="headerlink" href="#layernorm" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241128165050327" src="/docs/images/image-20241128165050327.png" /></p>
+<p><img alt="image-20241128165050327" src="../images/image-20241128165050327.png" /></p>
 <p>层归一化的概括：per sample、per Layer，对单一样本、每一个层 单独计算，不需要考虑minibatch</p>
 <p>LayerNorm最典型的使用场景：NLP</p>
 <p>把网络中 每一次 每一个时刻 当成一层</p>
@@ -4535,8 +4543,8 @@
 <p>应为nlp中，不同句子长度是不一样的，也就是说 对于每个batch中的 或者 句子中 词数是不一样的；或者测试时，句子的长度可能训练时也没见过，而BatchNorm是across batch的，所以最好保证batch内部L是固定的</p>
 <p>一句话：句子中词的数量并不一样</p>
 <h3 id="_2">图示<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241202085600317" src="/docs/images/image-20241202085600317.png" /></p>
-<p><img alt="image-20241202085611761" src="/docs/images/image-20241202085611761.png" /></p>
+<p><img alt="image-20241202085600317" src="../images/image-20241202085600317.png" /></p>
+<p><img alt="image-20241202085611761" src="../images/image-20241202085611761.png" /></p>
 <h3 id="_3">语言描述实际意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
 <h4 id="for-nlp">for nlp<a class="headerlink" href="#for-nlp" title="Permanent link">&para;</a></h4>
 <ul class="task-list">
@@ -4586,7 +4594,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 4个句子，每个句子3个词，每个词嵌入4个维度，得到12个均值和方差（ln、nlp）</li>
 </ul>
 <h3 id="api">官方api<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241128171627848" src="/docs/images/image-20241128171627848.png" /></p>
+<p><img alt="image-20241128171627848" src="../images/image-20241128171627848.png" /></p>
 <p>LayerNorm只有一个api</p>
 <p>同样也是一个class，如果要去实例化的话，只需要指定一下 被归一化的形状，以及是否需要进行缩放变换</p>
 <p>也就是说接收的输入：</p>
@@ -4595,7 +4603,7 @@
 <li>elementwise_affine：是否需要进行缩放变换</li>
 </ul>
 <p>接下来看定义：</p>
-<p><img alt="image-20241128172336820" src="/docs/images/image-20241128172336820.png" /></p>
+<p><img alt="image-20241128172336820" src="../images/image-20241128172336820.png" /></p>
 <ul>
 <li>这里的均值和方差是在最后一个维度计算的（over the last dimension）对于 over across minibatch</li>
 <li>D就是 我们要传入的 normalized shape</li>
@@ -4811,12 +4819,12 @@
 </span><span id="__span-6-31"><a id="__codelineno-6-31" name="__codelineno-6-31" href="#__codelineno-6-31"></a><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">ln_y</span><span class="p">,</span><span class="n">verify_bn_y</span><span class="p">))</span>
 </span></code></pre></div>
 <h2 id="instance-norm">Instance Norm<a class="headerlink" href="#instance-norm" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241128204149052" src="/docs/images/image-20241128204149052.png" /></p>
+<p><img alt="image-20241128204149052" src="../images/image-20241128204149052.png" /></p>
 <p>实例归一化，通常用在 风格迁移上</p>
 <p>per sample、per channel</p>
 <p>这时计算均值和标准差的时候，是对每一个样本的、每一个维度</p>
 <p><u>官网api</u></p>
-<p><img alt="image-20241128204455692" src="/docs/images/image-20241128204455692.png" /></p>
+<p><img alt="image-20241128204455692" src="../images/image-20241128204455692.png" /></p>
 <ul>
 <li>是一个class</li>
 <li><code>num_features</code>：要实现一个Instance Norm的话，需要传入特征维度或者说 通道维度（model dim 可以理解为 channel），因为 我们要逐样本，逐通道的进行归一化</li>
@@ -4824,7 +4832,7 @@
 </ul>
 <h3 id="instance1d">INSTANCE1D<a class="headerlink" href="#instance1d" title="Permanent link">&para;</a></h3>
 <p>代码实现需要注意，接收的输入数据格式是什么样的，输出的数据格式又是什么样的，看官网api</p>
-<p><img alt="image-20241128204939894" src="/docs/images/image-20241128204939894.png" /></p>
+<p><img alt="image-20241128204939894" src="../images/image-20241128204939894.png" /></p>
 <p>NCL</p>
 <p>for nlp：嵌入维度放到中间、词数滞后</p>
 <p>for cv：<strong>INSTANCE2D</strong> ：bchw 不变</p>
@@ -4832,9 +4840,9 @@
 <p>所以会有两次转置</p>
 <h3 id="_5">图示<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
 <h4 id="for-nlp_1">for NLP<a class="headerlink" href="#for-nlp_1" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241128214343529" src="/docs/images/image-20241128214343529.png" /></p>
+<p><img alt="image-20241128214343529" src="../images/image-20241128214343529.png" /></p>
 <h4 id="for-cv_1">for CV<a class="headerlink" href="#for-cv_1" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241128220642978" src="/docs/images/image-20241128220642978.png" /></p>
+<p><img alt="image-20241128220642978" src="../images/image-20241128220642978.png" /></p>
 <h3 id="_6">代码实现<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <h4 id="for-nlp-instancenorm1d">For nlp InstanceNorm1d<a class="headerlink" href="#for-nlp-instancenorm1d" title="Permanent link">&para;</a></h4>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1"># 3. 实现instance_norm并验证API</span>
@@ -4888,14 +4896,14 @@
 </ul>
 <h2 id="groupnormalization">GroupNormalization<a class="headerlink" href="#groupnormalization" title="Permanent link">&para;</a></h2>
 <p>分组归一化、群归一化</p>
-<p><img alt="image-20241129144247851" src="/docs/images/image-20241129144247851.png" /></p>
+<p><img alt="image-20241129144247851" src="../images/image-20241129144247851.png" /></p>
 <p>per sample、per group</p>
 <p>这个跟LayerNorm是最像的</p>
 <p>需要将channel划分成group，类似分组卷积、把输入通道划分成不同的group</p>
 <p>首先对input tensor划分成不同的group，然后对于每个样本，每个group计算归一化即可</p>
 <p>这里仍然是跟batch size无关的，batch Norm是跟batch size有关的</p>
 <h3 id="api_1">官方api<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241129144619652" src="/docs/images/image-20241129144619652.png" /></p>
+<p><img alt="image-20241129144619652" src="../images/image-20241129144619652.png" /></p>
 <p>（1）是一个class</p>
 <p>（2）实现群归一化的话，需要的传入参数：</p>
 <ul>
@@ -4909,7 +4917,7 @@
 <li>实例化class</li>
 <li>输入的参数，以及输入的形状</li>
 </ul>
-<p><img alt="image-20241129145154438" src="/docs/images/image-20241129145154438.png" /></p>
+<p><img alt="image-20241129145154438" src="../images/image-20241129145154438.png" /></p>
 <p>输入通道数 需要放在中间的维度，调用groupNorm需要类似BatchNorm，做一个转置，也是跟instanceNorm是类似的</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1"># 4. 实现group_norm并验证API</span>
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>
@@ -4921,9 +4929,9 @@
 <p>首先需要将inputx划分成 num_groups组，需要调用划分的api，也就是split，切成多个tensor</p>
 <p>指定好维度以及切分的大小</p>
 <p>官网api，torch.split函数怎么用，需要传入什么参数</p>
-<p><img alt="image-20241129145947587" src="/docs/images/image-20241129145947587.png" /></p>
+<p><img alt="image-20241129145947587" src="../images/image-20241129145947587.png" /></p>
 <p>需要传入的参数：</p>
-<p><img alt="image-20241129150049199" src="/docs/images/image-20241129150049199.png" /></p>
+<p><img alt="image-20241129150049199" src="../images/image-20241129150049199.png" /></p>
 <ul>
 <li>tensor：切谁</li>
 <li>split_size_or_sections:切成多大的</li>
@@ -4954,7 +4962,7 @@
 </span><span id="__span-11-19"><a id="__codelineno-11-19" name="__codelineno-11-19" href="#__codelineno-11-19"></a><span class="nb">print</span><span class="p">(</span><span class="n">torch</span><span class="o">.</span><span class="n">allclose</span><span class="p">(</span><span class="n">gn_y</span><span class="p">,</span><span class="n">verify_gn_y</span><span class="p">))</span>
 </span></code></pre></div>
 <h4 id="_8">图示<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241129152630571" src="/docs/images/image-20241129152630571.png" /></p>
+<p><img alt="image-20241129152630571" src="../images/image-20241129152630571.png" /></p>
 <h3 id="cvgn">CV&amp;GN<a class="headerlink" href="#cvgn" title="Permanent link">&para;</a></h3>
 <p>写代码时需要注意：</p>
 <p><code>ValueError: num_channels must be divisible by num_groups</code></p>
@@ -4989,17 +4997,17 @@
 </span></code></pre></div>
 <h4 id="_10">图示<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
 <p>6通道，分成3组，每组两通道</p>
-<p><img alt="image-20241129155651305" src="/docs/images/image-20241129155651305.png" /></p>
+<p><img alt="image-20241129155651305" src="../images/image-20241129155651305.png" /></p>
 <h2 id="_11">权重归一化<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
 <p>文字、数学、图示、代码</p>
-<p><img alt="image-20241202091955074" src="/docs/images/image-20241202091955074.png" /></p>
+<p><img alt="image-20241202091955074" src="../images/image-20241202091955074.png" /></p>
 <ul>
 <li>权重归一化与之前介绍的归一化不太一样</li>
 <li>把权重进行解耦，幅度和方向解耦</li>
 <li>看官网api的介绍</li>
 <li>搜索：<code>torch.nn.utils.weight_norm</code>  是对权重进行归一化</li>
 </ul>
-<p><img alt="image-20241202092226745" src="/docs/images/image-20241202092226745.png" /></p>
+<p><img alt="image-20241202092226745" src="../images/image-20241202092226745.png" /></p>
 <ul>
 <li>是一个函数，且是一个包裹的函数，包裹的对象是module</li>
 <li>
@@ -5018,7 +5026,7 @@
 <ul>
 <li>返回值，还是module</li>
 </ul>
-<p><img alt="image-20241202092502877" src="/docs/images/image-20241202092502877.png" /></p>
+<p><img alt="image-20241202092502877" src="../images/image-20241202092502877.png" /></p>
 <h3 id="_12">代码实现<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1"># 5.实现weight_norm 并验证api</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a>
@@ -5079,7 +5087,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">weight_direction</span> <span class="o">=</span> <span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">/</span><span class="p">(</span><span class="n">linear</span><span class="o">.</span><span class="n">weight</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">keepdim</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
 </span></code></pre></div>
 <p>接下来 还需要幅度参数 <code>weight_magnitude</code>，也就是 公式中的g，要保证跟api的g一样，在官网api中给出 weight_g表示幅度，weight_v表示方向</p>
-<p><img alt="image-20241202100004175" src="/docs/images/image-20241202100004175.png" /></p>
+<p><img alt="image-20241202100004175" src="../images/image-20241202100004175.png" /></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>weight_magnitude = wh_linear.weight_g
 </span></code></pre></div>
 <p>查看 方向的形状和幅度的形状</p>
@@ -5094,7 +5102,7 @@
 </blockquote>
 <h2 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
 <h3 id="_14">框架<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241202092023837" src="/docs/images/image-20241202092023837.png" /></p>
+<p><img alt="image-20241202092023837" src="../images/image-20241202092023837.png" /></p>
 <p>batch size：per channel across minibatch，归一化的时候对每个通道单独进行归一化，第二个归一化是层归一化，对每个样本单独进行归一化，并且对每一个层单独进行归一化，可以理解为nlp中的时间，第三个是实例归一化，风格迁移中经常使用，做法是per sample、per channel，对每个样本的每个通道单独做，第四个是群归一化，对每个样本分组进行归一化，组是指对channel进行分组，第五个权重归一化，对权重进行归一化再scale</p>
 <p>总结统计量维度：</p>
 <p>batchnorm</p>
@@ -5284,6 +5292,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-04T14:16:24+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-04</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5333,6 +5373,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3744,10 +3752,10 @@
 
   <h1>rank3 DAVE</h1>
 
-<p><img alt="image-20241117103916730" src="/docs/images/image-20241117103916730.png" /></p>
+<p><img alt="image-20241117103916730" src="../images/image-20241117103916730.png" /></p>
 <p><a href="https://paperswithcode.com/paper/dave-a-detect-and-verify-paradigm-for-low">原文链接</a></p>
 <p><a href="https://github.com/jerpelhan/dave">源码链接</a></p>
-<p><img alt="image-20241117113107549" src="/docs/images/image-20241117113107549.png" /></p>
+<p><img alt="image-20241117113107549" src="../images/image-20241117113107549.png" /></p>
 <p>arxiv日期：2024年4月25日</p>
 <p><a href="https://www.computer.org/csdl/proceedings-article/cvpr/2024/530000x293/20hPgz8Mxqg">论文正式发表页面</a></p>
 <p>today：241117</p>
@@ -3768,7 +3776,7 @@
 </span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="nb">}</span>
 </span></code></pre></div>
 <p><strong>LOCA  &amp; DAVE</strong></p>
-<p><img alt="image-20241117110053231" src="/docs/images/image-20241117110053231.png" /></p>
+<p><img alt="image-20241117110053231" src="../images/image-20241117110053231.png" /></p>
 <h2 id="abstract">Abstract<a class="headerlink" href="#abstract" title="Permanent link">&para;</a></h2>
 <p>Low-shot counters estimate the number of objects corresponding to a selected category, based on only few or no exemplars annotated in the image. The current state-ofthe-art estimates the total counts as the sum over the object location density map, but does <strong>not provide individual object locations and sizes（提出问题）</strong>, which are crucial for many applications. This is addressed by <strong>detection-based counters, which, however fall behind in the total count accuracy</strong> （基于检测的计数方法可以解决，但是准确性不高）. Furthermore, both approaches tend to overestimate the counts in the presence of other object classes due to many false positives. （这些方法的共性问题：假阳性过高）</p>
 <p>（本文）We propose DAVE, a low-shot counter based on a detect-and-verify paradigm, that avoids the aforementioned issues by first generating a high-recall detection set and then verifying the detections to identify and remove the outliers. This jointly increases the recall and precision, leading to accurate counts. </p>
@@ -3888,14 +3896,14 @@
 <p><strong>第五段</strong></p>
 <p>With minimal architectural changes, the recent few-shot methods [6, 16] also demonstrated a remarkable zero-shot counting performance. A common drawback of densitybased counters is that they do not provide object locations.</p>
 <p>在结构变化很小的情况下，最近的少样本方法[ 6、16 ]也表现出了出色的零样本计数性能。基于密度的计数器的一个共同缺点是它们不提供对象位置。</p>
-<p><img alt="image-20241117140134150" src="/docs/images/image-20241117140134150.png" /></p>
-<p><img alt="image-20241117140210571" src="/docs/images/image-20241117140210571.png" /></p>
+<p><img alt="image-20241117140134150" src="../images/image-20241117140134150.png" /></p>
+<p><img alt="image-20241117140210571" src="../images/image-20241117140210571.png" /></p>
 <p>[6]  LOCA  [16]CounTR</p>
 <p>开始引出可以提供定位的计数 方法</p>
 <p><strong>第六段</strong></p>
 <p>To address the aforementioned limitation of density based counters, the first few shot counting and detection method [22] has been recently proposed by extending a transformer-based object detector [2] with an ability to detect objects specified by exemplars.</p>
 <p><u>文献22 第一个基于检测的FSC方法</u> </p>
-<p><img alt="image-20241117135756279" src="/docs/images/image-20241117135756279.png" /></p>
+<p><img alt="image-20241117135756279" src="../images/image-20241117135756279.png" /></p>
 <p>However, the detection based counter falls far behind in total count estimation compared with the best density-based counters.</p>
 <p>基于检测的方法，最大的弊端：计数准确性不高(241117)</p>
 <h2 id="3-counting-by-detection-and-verification">3. Counting by detection and verification<a class="headerlink" href="#3-counting-by-detection-and-verification" title="Permanent link">&para;</a></h2>
@@ -3907,6 +3915,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-17T08:27:10+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T11:19:11+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3956,6 +3996,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

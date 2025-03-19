@@ -66,24 +66,5 @@ Second, canonical Transformers with self-attention mechanisms are computationall
 
 
 
-```mermaid
-graph TD
-    classDef component fill:#e2f0cb,stroke:#333,stroke-width:1px
-    classDef operation fill:#ffd6cc,stroke:#333,stroke-width:1px
-
-    %% 类层次结构
-    ClassA[ClassA]:::component
-    ClassB[ClassB]:::component
-    
-    %% 初始化关系
-    subgraph 初始化过程
-    I_B[创建ClassB实例]:::operation --> I_A[创建ClassA实例]:::operation
-    end
-    
-    %% 方法调用关系
-    ClassA -- "调用" --> ClassB
-    ClassA.method_a -- "调用" --> ClassB.method_b
-```
-
 
 

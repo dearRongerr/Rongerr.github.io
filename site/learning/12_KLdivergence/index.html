@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -1819,7 +1848,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2208,27 +2237,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3756,7 +3764,7 @@
 <li>大概率事件，它发生的难度比较小，所以有较小的信息量</li>
 </ul>
 <p><strong>例子：</strong></p>
-<p><img alt="image-20241210143829069" src="/docs/images/image-20241210143829069.png" /></p>
+<p><img alt="image-20241210143829069" src="../images/image-20241210143829069.png" /></p>
 <p><strong>性质：</strong></p>
 <p>对于独立事件A、B：<span class="arithmatex">\(P(AB)=P(A)P(B)\)</span></p>
 <p>两个事件同时发生的信息量 等于 两个事件的信息量 相加 ：<span class="arithmatex">\(I(AB)=I(A)+I(B)\)</span></p>
@@ -3779,7 +3787,7 @@
 <p>（4）以2为底，是转换到二进制下表示复杂度（以e为底、以10为底都可以，只是以2为底更优）</p>
 </blockquote>
 <p><strong>计算信息量的例子：</strong></p>
-<p><img alt="image-20241210143640233" src="/docs/images/image-20241210143640233.png" /></p>
+<p><img alt="image-20241210143640233" src="../images/image-20241210143640233.png" /></p>
 <p>信息量的定义：log以2为底概率分之一</p>
 <h2 id="3">3 熵<a class="headerlink" href="#3" title="Permanent link">&para;</a></h2>
 <p>熵 Entropy</p>
@@ -3791,7 +3799,7 @@
 <p><strong>公式：</strong></p>
 <p><span class="arithmatex">\(H(P)=\sum p_i I_i = \sum p_i \log_2 \frac{1}{p_i} = -\sum p_i \log_2 p_i\)</span></p>
 <p>计算实例：</p>
-<p><img alt="image-20241210144456304" src="/docs/images/image-20241210144456304.png" /></p>
+<p><img alt="image-20241210144456304" src="../images/image-20241210144456304.png" /></p>
 <p><strong>作用：</strong></p>
 <p>用来评估 概率模型 的不确定程度</p>
 <ul>
@@ -3799,13 +3807,13 @@
 <li>不确定性越小，熵越小</li>
 </ul>
 <p>图示：</p>
-<p><img alt="image-20241210144613813" src="/docs/images/image-20241210144613813.png" /></p>
+<p><img alt="image-20241210144613813" src="../images/image-20241210144613813.png" /></p>
 <ul>
 <li>概率完全相等时，我们完全不确定哪个会发生</li>
 <li>对于 第二张图，第三个事件的概率高一些，所以更有可能发生，也就是说 这个系统的熵小一些</li>
 </ul>
 <p><strong>例子：</strong></p>
-<p><img alt="image-20241210144830041" src="/docs/images/image-20241210144830041.png" /></p>
+<p><img alt="image-20241210144830041" src="../images/image-20241210144830041.png" /></p>
 <p>从例子中可以得出结论：（例1 系统的熵 &gt; 例2 的熵）</p>
 <ul>
 <li>若概率密度均匀，产生的随机变量不确定性就更高，则熵的值就更大</li>
@@ -3827,7 +3835,7 @@
 <p><span class="arithmatex">\(H(p,q)=\sum p_iI_i^q=-\sum p_i \log_2(q_i)\)</span></p>
 <p><span class="arithmatex">\(H(p,q) = \sum p_iI(q_i)\)</span></p>
 <p><mark>例子：</mark></p>
-<p><img alt="image-20241210153112485" src="/docs/images/image-20241210153112485.png" /></p>
+<p><img alt="image-20241210153112485" src="../images/image-20241210153112485.png" /></p>
 <p>由例子的结果，观察可知：</p>
 <p>（1）预估爱侣分布 与 真实概率分布 越接近，交叉熵越小</p>
 <p>（2）交叉熵的值 总是大于 熵的值 （根据 吉布斯不等式）</p>
@@ -3867,7 +3875,7 @@
 <p>（2）<span class="arithmatex">\(KL散度的值 \geq 0\)</span>    <span class="arithmatex">\(\iff\)</span> <span class="arithmatex">\(D_{KL}(p||q) \geq 0\)</span></p>
 <blockquote>
 <p>吉布斯不等式说明：</p>
-<p><img alt="image-20241210155818393" src="/docs/images/image-20241210155818393.png" /></p>
+<p><img alt="image-20241210155818393" src="../images/image-20241210155818393.png" /></p>
 <p>所以   <span class="arithmatex">\(D_{KL}(p||q) \geq 0\)</span></p>
 <p>特别的，当分布 <span class="arithmatex">\(q\)</span>与分布<span class="arithmatex">\(p\)</span>完全一样时，<span class="arithmatex">\(D(p||q)=0\)</span></p>
 <p>真实概率p的熵 <span class="arithmatex">\(\leq\)</span>  p和q的交叉熵</p>
@@ -3932,6 +3940,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-10T14:56:23+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-10</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-10T14:56:23+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-10</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3981,6 +4021,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

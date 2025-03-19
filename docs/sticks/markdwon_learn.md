@@ -54,7 +54,12 @@ quadrantChart
 
 ```
 
+[mermaid在线预览工具](https://mermaid-live.nodejs.cn/edit#pako:eNqFks9v0zAUx_-V6E27pZUXJ03jA1JLLxw4wYkFTW7sLBFJHCWO2Kh64YeY1N2AXdAm7cQOCDH1BJXgnyHN_gzcei3RBMIXP7_vV5_3bL8JBIJxIHBY0DwyHo_8zFArSGhZjnhoBCLNRcYzaYRxkpAdboUoGJulLMQzTnYwxrdx53nMZET28qM7BJHzgspYZLeEMGS9IPgPQTN2d43melFfv1x-vmwW75YXr3X-_oo92NfbU0LItsuWPtT68I6-Jdcn5_WnWX16Vr-ZN_OFzpfVWD_EVr35-ba5mmn1wcFwvz75WC--a3T95eLXj9mqwJ9Ldjr3lG_Q9g3-4tNAnrFWR8uzb8v5h5uvr5r3V-2mNESRDR-06sO6ju6ibeqmXEaCHdB_ujeOMZiQ8iKlMVO_P1lBfJART7kPRIWMh7RKpA9-NlVWWknx6DgLgMii4iYUojqMNocqZ1TyUUzV26VAQpqUKpvT7IkQ6cakjkAmcATEslAXOZ6NUB95juOivgnHQFy366C-jaw917M91MNTE16sAajruLaFe9jpYQ8jbFsmcBZLUTzUw7ue4elvJ04HSQ) 如图所示。
 
+- [x] mkdocs不解析mermaid（已解决 见 `mkdocs learn`）
+
+
+![image-20250319123838739](images/image-20250319123838739.png)
 
 ## 锚点设置
 
@@ -69,6 +74,70 @@ quadrantChart
 ```markdown
 <span id = "jump">跳转到的位置</span>
 ```
+
+**锚点 m2**
+
+主要还是 两种情况
+
+- 一种是 配合a 标签  `<a name="你起名字">` 使用
+- 一种是 配合 span 标签 `<span id="你又起了的一个名字">`
+- 然后 `</` 会自动补全
+
+演示示例：
+
+- a 标签 + name
+
+```markdown
+# 目录
+- [跳转到部分1](#section-1)
+- [跳转到部分2](#section-2)
+
+<a name="section-1"></a>
+## 部分1
+这里是部分1的内容。
+
+<a name="section-2"></a>
+## 部分2
+这里是部分2的内容。
+```
+
+**<u>a 标签 锚点演示</u>** 
+
+- [跳转到部分1](#section-1)
+
+<a name="section-1">部分1</a>
+
+- span 标签 +  id
+
+```markdown
+# 目录
+- [跳转到部分1](#section1)
+- [跳转到部分2](#section2)
+
+<span id="section1"></span>
+## 部分1
+这里是部分1的内容。
+
+<span id="section2"></span>
+## 部分2
+这里是部分2的内容。
+```
+
+**<u>span 标签 锚点演示</u>**
+
+- [跳转到部分2](#section2)
+
+<span id="section2">span 标签 +  id  ||部分 2</span> 
+
+> ==看出区别来了吗？== 
+>
+> **a 标签+name，从哪儿跳，跳到哪儿都有变色**
+>
+> ![image-20250319133740580](images/image-20250319133740580.png)
+>
+> **span 标签+id，从哪儿跳有变色，跳到哪儿没有变色**
+>
+> ![image-20250319133839761](images/image-20250319133839761.png) 
 
 ## 箭头上写字
 

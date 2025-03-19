@@ -97,3 +97,47 @@ obj._internal_method()  # 输出: This is an internal method
 
 - 双下划线方法（魔法方法）：用于实现对象的特殊行为，由 Python 解释器自动调用。
 - 单下划线方法和变量：表示类的内部实现细节或受保护的成员，约定不应在类外部直接访问。
+
+## 虚拟环境
+
+（1）新建
+
+**m1**  <u>conda 安装</u>
+
+```bash
+conda create -n dave python==3.8
+conda activate dave
+conda install pytorch==2.1.2 torchvision==0.16.2 torchaudio==2.1.2 pytorch-cuda=11.8 -c pytorch -c nvidia
+conda install numpy
+conda install scikit-image
+conda install scikit-learn
+conda install tqdm
+conda install pycocotools
+```
+
+**m2**  `requirements.txt` 安装 
+
+```bash
+conda create -n SegRNN python=3.8
+conda activate SegRNN
+pip install -r requirements.txt
+```
+
+（2）查看
+
+```bash
+conda env list
+```
+
+（3）激活
+
+```bash
+conda activate Autoformer
+```
+
+（4）退出
+
+```bash
+conda deactivate
+```
+

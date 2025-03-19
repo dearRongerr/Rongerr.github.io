@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3859,7 +3867,7 @@
   <h1>rank12 SAFECount</h1>
 
 <p>today：241119 TUE</p>
-<p><img alt="image-20241119115038027" src="/docs/images/image-20241119115038027.png" /></p>
+<p><img alt="image-20241119115038027" src="../images/image-20241119115038027.png" /></p>
 <p><a href="https://arxiv.org/pdf/2201.08959v5">原文链接</a></p>
 <p><a href="https://github.com/zhiyuanyou/SAFECount">源码链接</a></p>
 <p>axriv日期：2022年9月11日</p>
@@ -3871,7 +3879,7 @@
 <blockquote>
 <p>三年前的文章</p>
 </blockquote>
-<p><img alt="image-20241119115302785" src="/docs/images/image-20241119115302785.png" /></p>
+<p><img alt="image-20241119115302785" src="../images/image-20241119115302785.png" /></p>
 <p>Title：Few-shot Object Counting with Similarity-Aware Feature Enhancement</p>
 <p>基于相似性感知特征增强的少样本计数</p>
 <h2 id="_1">摘要<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -3904,7 +3912,7 @@
 <p>尝试大致分为两种。一种是基于特征的方法[ 20 ]，如图2a所示，其中池化的支持特征被连接到查询特征上，然后是一个回归头来识别两个特征是否足够接近。</p>
 <p>空间信息由于池化没有了</p>
 <p><strong>However</strong>, the spatial information of the support image is omitted by pooling, leaving the feature comparison unreliable. </p>
-<p><img alt="image-20241119133949853" src="/docs/images/image-20241119133949853.png" /></p>
+<p><img alt="image-20241119133949853" src="../images/image-20241119133949853.png" /></p>
 <p>The other is similarity-based [24,46], as shown in Fig. 2b, where a similarity map is developed from raw features as the regression object. Nevertheless, the similarity is far less informative than feature, making it hard to identify clear boundaries between objects (see Fig. 5). Accordingly, the counting performance heavily deteriorates when the target objects are densely packed in the query image, like the shoal of fish in Fig. 1.</p>
 <p>另一种是基于相似性的[ 24、46 ]，如图2b所示，其中相似性图是由原始特征作为回归对象开发的。然而，相似度的信息量远不如特征，这使得(见图5)的对象之间很难识别出清晰的边界。因此，当目标物体在查询图像中密集排列时，计数性能严重恶化，如图1中的鱼群。</p>
 <h3 id="p4">P4贡献<a class="headerlink" href="#p4" title="Permanent link">&para;</a></h3>
@@ -3940,6 +3948,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T01:09:29+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T11:19:11+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3989,6 +4029,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

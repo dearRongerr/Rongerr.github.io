@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -2072,7 +2101,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2367,27 +2396,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4061,7 +4069,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 大核卷积</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 1D 卷积</li>
 </ul>
-<p><img alt="image-20241125105147313" src="/docs/images/image-20241125105147313.png" /></p>
+<p><img alt="image-20241125105147313" src="../images/image-20241125105147313.png" /></p>
 <h2 id="1">1 库函数实现卷积<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <ul>
 <li>类：<code>torch.nn.Conv2d</code></li>
@@ -4095,7 +4103,7 @@
 </span></code></pre></div>
 <h3 id="api">首先看一下 二维卷积的api<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
 <blockquote>
-<p><img alt="image-20241125105756485" src="/docs/images/image-20241125105756485.png" /></p>
+<p><img alt="image-20241125105756485" src="../images/image-20241125105756485.png" /></p>
 </blockquote>
 <p>谷歌搜索 pytorch conv2d，出现两个api ：</p>
 <ul>
@@ -4122,7 +4130,7 @@
 </ul>
 </blockquote>
 <h3 id="conv2d">CONV2D<a class="headerlink" href="#conv2d" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241125120445236" src="/docs/images/image-20241125120445236.png" /></p>
+<p><img alt="image-20241125120445236" src="../images/image-20241125120445236.png" /></p>
 <ul>
 <li>调用：torch.nn.Conv2d</li>
 <li>需要传入的参数：</li>
@@ -4148,7 +4156,7 @@
 <li>数学例子：</li>
 </ul>
 <blockquote>
-<p><img alt="image-20241125135101570" src="/docs/images/image-20241125135101570.png" /></p>
+<p><img alt="image-20241125135101570" src="../images/image-20241125135101570.png" /></p>
 <ul>
 <li>假设我们的input feature map=4×4，kernel=3×3，卷积操作就是将kernel在图片上 不同位置元素相乘 element-wise，不同位置元素相乘再相加，得到输出；</li>
 <li>k=3，p=0，s=1</li>
@@ -4183,13 +4191,13 @@
 </li>
 </ul>
 <blockquote>
-<p><img alt="image-20241125140243598" src="/docs/images/image-20241125140243598.png" /></p>
+<p><img alt="image-20241125140243598" src="../images/image-20241125140243598.png" /></p>
 </blockquote>
 <ul>
 <li>并且打印 卷积层的 weight，也就是kernel，还可以打印输入和输出</li>
 </ul>
 <blockquote>
-<p><img alt="image-20241125140007045" src="/docs/images/image-20241125140007045.png" /></p>
+<p><img alt="image-20241125140007045" src="../images/image-20241125140007045.png" /></p>
 <blockquote>
 <ul>
 <li>
@@ -4216,7 +4224,7 @@
 </li>
 </ul>
 <blockquote>
-<p><img alt="image-20241125140339530" src="/docs/images/image-20241125140339530.png" /></p>
+<p><img alt="image-20241125140339530" src="../images/image-20241125140339530.png" /></p>
 </blockquote>
 <p>对于这个api 我们需要手动的指定 weight 和 bias，为了验证，我们可以直接把刚刚的weight传入，可以看到 结果是一样的:</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">output_feature_map1</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">conv2d</span><span class="p">(</span><span class="n">input_feature_map</span><span class="p">,</span><span class="n">conv_layer</span><span class="o">.</span><span class="n">weight</span><span class="p">)</span>
@@ -4402,11 +4410,11 @@
 </span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>          <span class="p">[</span> <span class="mf">0.5796</span><span class="p">,</span> <span class="o">-</span><span class="mf">3.2003</span><span class="p">,</span>  <span class="mf">3.8138</span><span class="p">,</span>  <span class="mf">0.9070</span><span class="p">]]]])</span>
 </span></code></pre></div>
 <h3 id="torchunfold-api">torch.unfold api<a class="headerlink" href="#torchunfold-api" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241125142430923" src="/docs/images/image-20241125142430923.png" /></p>
+<p><img alt="image-20241125142430923" src="../images/image-20241125142430923.png" /></p>
 <p>查官网，看具体用法：</p>
-<p><img alt="image-20241125142457039" src="/docs/images/image-20241125142457039.png" /></p>
+<p><img alt="image-20241125142457039" src="../images/image-20241125142457039.png" /></p>
 <h4 id="_2">实例讲解<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241125142529716" src="/docs/images/image-20241125142529716.png" /></p>
+<p><img alt="image-20241125142529716" src="../images/image-20241125142529716.png" /></p>
 <p>逐行解释：</p>
 <ul>
 <li>第一行，实例化 Unfold操作，这里调用的是nn.Unfold，然后传入 kernel size，kernel size是2×3的</li>
@@ -4465,7 +4473,7 @@
 <ol>
 <li>首先是把整个input，input是5×5，把整个input拉成一个25×1的向量，再把每一步的kernel，也把它变成一个长度为25的向量，方法是把每一步的kernel填充成5×5的大小</li>
 </ol>
-<p><img alt="image-20241125144755231" src="/docs/images/image-20241125144755231.png" /></p>
+<p><img alt="image-20241125144755231" src="../images/image-20241125144755231.png" /></p>
 <ol>
 <li>
 <p>9个kernel 跟 同一个 input 进行内积操作</p>
@@ -4604,12 +4612,12 @@
 <p>以上是矩阵乘积得到转置卷积的；</p>
 </blockquote>
 <p>为了验证，我们可以调用pytorch转置卷积的api</p>
-<p><img alt="image-20241125174156737" src="/docs/images/image-20241125174156737.png" /></p>
+<p><img alt="image-20241125174156737" src="../images/image-20241125174156737.png" /></p>
 <ol>
 <li>类形式</li>
 <li>函数形式</li>
 </ol>
-<p><img alt="image-20241125174308099" src="/docs/images/image-20241125174308099.png" /></p>
+<p><img alt="image-20241125174308099" src="../images/image-20241125174308099.png" /></p>
 <ul>
 <li>实例化class，调用的还是函数形式；现在我们来调用一下这个函数</li>
 <li>就是F.conv_transpose2d()一样的，首先传入上面的output，就是把上面的pytorch_conv2d_output作为输入，kernel也要传进去，kernel就是之前写的kernel，同样也要对它进行两次的unsqueeze操作（batch size × channel × height × width），这样得到pytorch_transposed_conv2d_output API</li>
@@ -4633,7 +4641,7 @@
 <p>转置卷积 反卷积=transpose conv2d</p>
 <h2 id="4">4 膨胀卷积 &amp; 空洞卷积<a class="headerlink" href="#4" title="Permanent link">&para;</a></h2>
 <p>intro，官方api：</p>
-<p><img alt="image-20241125180526663" src="/docs/images/image-20241125180526663.png" /></p>
+<p><img alt="image-20241125180526663" src="../images/image-20241125180526663.png" /></p>
 <p>在默认的api中 dilation的值等于1，groups的值 也是等于1 的，也就是我们常用的卷积都没有指定，常用的值都为1</p>
 <p>什么是dilation？</p>
 <blockquote>
@@ -4642,12 +4650,12 @@
 </blockquote>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">7</span><span class="p">,</span><span class="mi">7</span><span class="p">)</span>
 </span></code></pre></div>
-<p><img alt="image-20241125180705640" src="/docs/images/image-20241125180705640.png" /></p>
+<p><img alt="image-20241125180705640" src="../images/image-20241125180705640.png" /></p>
 <ul>
 <li>dilation=2  a[0:5:2,0:5:2] 索引0到索引5，跳过一个取一个，最后一个取不到</li>
 <li>dilation=3 用索引表示的话 就是 0到7，然后间隔是3；a[0:7:3,0:7:3] # dilation=3 同样列数也是一样的 0到7 间隔是3；索引间隔为3</li>
 </ul>
-<p><img alt="image-20241125180926621" src="/docs/images/image-20241125180926621.png" /></p>
+<p><img alt="image-20241125180926621" src="../images/image-20241125180926621.png" /></p>
 <p>一句话说清dilation是什么？卷积的覆盖区域 索引间隔多少</p>
 <blockquote>
 <p>如果 input size=7×7 kernel size=3×3，dilation=3，我们只需要 取一次就好了；</p>
@@ -4668,13 +4676,13 @@
 <p><a href="https://zhuanlan.zhihu.com/p/80041030">深度可分离卷积 &amp; 1×1卷积</a></p>
 <p><a href="https://yinguobing.com/separable-convolution/#fn2">卷积神经网络中的Separable Convolution</a></p>
 <p>一张图看懂深度可分离卷积：</p>
-<p><img alt="image-20241125200302038" src="/docs/images/image-20241125200302038.png" /></p>
+<p><img alt="image-20241125200302038" src="../images/image-20241125200302038.png" /></p>
 <p>Depthwise Convolution完成后的Feature map数量与输入层的depth相同，但是这种运算对输入层的每个channel独立进行卷积运算后就结束了，没有有效的利用不同map在相同空间位置上的信息。因此需要增加另外一步操作来将这些map进行组合生成新的Feature map，即接下来的Pointwise Convolution。（<a href="https://yinguobing.com/separable-convolution/#fn2">摘自</a>）</p>
 <p>一张图看懂1×1卷积：</p>
-<p><img alt="image-20241125200417890" src="/docs/images/image-20241125200417890.png" /></p>
+<p><img alt="image-20241125200417890" src="../images/image-20241125200417890.png" /></p>
 <p>Pointwise Convolution的运算与常规卷积运算非常相似，不同之处在于卷积核的尺寸为 1×1×M，M为上一层的depth。所以这里的卷积运算会将上一步的map在深度方向上进行加权组合，生成新的Feature map。有几个Filter就有几个Feature map。（<a href="https://yinguobing.com/separable-convolution/#fn2">摘自</a>）</p>
 <p>补充普通卷积：</p>
-<p><img alt="image-20241125201354298" src="/docs/images/image-20241125201354298.png" /></p>
+<p><img alt="image-20241125201354298" src="../images/image-20241125201354298.png" /></p>
 <h3 id="_6">为什么需要分组卷积？<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>归纳偏置：</p>
 <p>每一个模型 都有自己的假设，或者叫 归纳偏置 inductive bias；</p>
@@ -5019,8 +5027,8 @@
 </span><span id="__span-17-55"><a id="__codelineno-17-55" name="__codelineno-17-55" href="#__codelineno-17-55"></a><span class="nb">print</span><span class="p">(</span><span class="n">flag</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="7-1d">7 1D 卷积<a class="headerlink" href="#7-1d" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250216193620221" src="/docs/images/image-20250216193620221.png" /></p>
-<p><img alt="image-20250216193732681" src="/docs/images/image-20250216193732681.png" /></p>
+<p><img alt="image-20250216193620221" src="../images/image-20250216193620221.png" /></p>
+<p><img alt="image-20250216193732681" src="../images/image-20250216193732681.png" /></p>
 <h2 id="8">8 深度可分离卷积<a class="headerlink" href="#8" title="Permanent link">&para;</a></h2>
 <p>2025.2.20</p>
 <p>深度可分离卷积（Depthwise Separable Convolution）是一种高效的卷积操作，它将标准卷积分解为两个更简单的操作：深度卷积（Depthwise Convolution）和逐点卷积（Pointwise Convolution）。</p>
@@ -5082,7 +5090,7 @@
 </span></code></pre></div>
 <p>先进行深度卷积，再进行逐点卷积。</p>
 <p>深度可分离卷积广泛应用于轻量级神经网络架构中，如 MobileNet 和 Xception，用于减少计算量和参数量，同时保持较好的性能。</p>
-<p><img alt="image-20250220192443698" src="/docs/images/image-20250220192443698.png" /></p>
+<p><img alt="image-20250220192443698" src="../images/image-20250220192443698.png" /></p>
 <h2 id="_8">卷积过后输出特征图的大小<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
 <p>分组其实不影响输出特征图的大小，会影响卷积核的通道数，也不影响卷积核的个数，会影响卷积的参数量，因为通道变少了</p>
 <p>正常卷积：</p>
@@ -5127,6 +5135,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-23T05:08:30+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-23</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5176,6 +5216,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

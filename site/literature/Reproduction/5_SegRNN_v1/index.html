@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4201,9 +4209,9 @@
 <p><mark>那这个时候，怎么调试 python 呢？</mark></p>
 <p>我们来看到这个 shell 脚本调用 python 的方法</p>
 <p>一般 shell 脚本是存储在 scripts 文件夹下的，以 .sh 结尾的文件。好来看到这个 shell 脚本调用 python 的命名是 <code>python -u run_longExp.py</code>  ，<code>-u</code> 表示直接修改python 文件传入参数的意思，这里我想说一下，我所讲的内容，都是我根据自己调试这个项目以及遇到的内容学习到的，所以讲的不对的地方一定要告诉我，我们一起讨论。</p>
-<p><img alt="image-20250307153626333" src="/docs/images/image-20250307153626333.png" /> </p>
+<p><img alt="image-20250307153626333" src="../images/image-20250307153626333.png" /> </p>
 <p>好，回到正题，现在我们就要修改 shell 调用 python 文件的方法，具体来说就是改成：<code>python -m debugpy --listen 5998 --wait-for-client run_longExp.py</code></p>
-<p><img alt="image-20250307153924467" src="/docs/images/image-20250307153924467.png" /></p>
+<p><img alt="image-20250307153924467" src="../images/image-20250307153924467.png" /></p>
 <p>现在我来一个个解释这行命令的意思：</p>
 <p><code>-m debugpy</code> 的意思就是调用 <code>debugpy</code> ，就是调用 <code>python 调试程序</code>，对 python 进行调试，注意 <code>debugpy</code> 是 python 的一个库，所以我们在使用这个的命令的时候，首先就是 <code>pip install debugpy</code></p>
 <p><code>-listen 5998</code> 的意思的监听 <code>5998</code> 端口，也就是把 <code>python</code> 的调试程序连接到 <code>5998</code> 端口，然后调试，当然你设置成别的也就是可以的，</p>
@@ -4321,15 +4329,15 @@
 </span><span id="__span-3-30"><a id="__codelineno-3-30" name="__codelineno-3-30" href="#__codelineno-3-30"></a>        },
 </span></code></pre></div>
 <p>这个叫以 启动模式调试文件，刚刚介绍的叫做 attach 附加模式。这种设置的好处是，直接选，直接调，超方便：</p>
-<p><img alt="image-20250307193657527" src="/docs/images/image-20250307193657527.png" /></p>
+<p><img alt="image-20250307193657527" src="../images/image-20250307193657527.png" /></p>
 <p>哦，对了，<mark>怎么运行脚本文件</mark></p>
 <p>在 vscode 的命令行就可以直接运行两种方法，一个是 <code>./你想运行的脚本文件的路径</code>，还有就是 <code>sh 你想运行的脚本文件的路径</code>，这两种方法，有点区别，但我还没有可以的区分。哦，对了，如果有的时候，可能需要先添加权限，才能正常的运行 shell 脚本，具体就是在运行脚本前执行 chang mode 添加 <strong>执行权限</strong>，具体的命令就是命令行直接输入： <code>chmod +x 脚本文件名称</code></p>
-<p><img alt="image-20250314173940288" src="/docs/images/image-20250314173940288.png" /></p>
+<p><img alt="image-20250314173940288" src="../images/image-20250314173940288.png" /></p>
 <p>以上是第一部分的讲解：shell 调用的python，我们怎么进行调试。</p>
 <p>现在我们终于可以调试 我们的项目了。开始。</p>
 <h2 id="_1">调试项目文件<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>首先**第一个断点**，打到调用的 python 文件的开始，</p>
-<p><img alt="image-20250307155829281" src="/docs/images/image-20250307155829281.png" /></p>
+<p><img alt="image-20250307155829281" src="../images/image-20250307155829281.png" /></p>
 <p>我把这个  <code>run_longExp</code>文件，叫做**项目主文件**，主要包括的模型的迭代训练，整个项目的 python 参数设置，而等一下我们 会看到这个  <code>run_longExp.py</code> 会频繁调用 <code>exp_main.py</code>，我把它 叫 <strong>模型主文件</strong>，主要包含的东西就是，运行一次模型我们需要加载的训练集、验证集和测试集。</p>
 <p>然后应该打的断点就是 <code>初始化init</code> 处，和<code>训练 forward 处、或者 train 处、或者调用的 model(x)处</code>。</p>
 <p><code>初始化 init</code> 处，可以让我们知道 文件之间的调用关系，因为越好的项目封装的越好，但是也越抽象，需要不断的捋明白类之间的调用关系，而类又封装到一个个 python 文件中。</p>
@@ -4344,12 +4352,12 @@
 <p>我现在想说一下，这个<code>Exp_Main</code>，是从哪里来的： from exp.exp_main import Exp_Main，是这句话。也就是 这个类 在 exp 文件夹下 exp_main.py 的 Exp_Main 类。记住这个<code>模型主文件 exp_main.py</code>，因为经常用。</p>
 <p>然后没什么想说的了，进入下一个部分，类的 初始化 <code>exp = Exp(args)</code> </p>
 <p>哦，对，你看我这儿，我还在 setting 这打了一个记录点，就是我不明白的地方</p>
-<p><img alt="image-20250307161516290" src="/docs/images/image-20250307161516290.png" /></p>
+<p><img alt="image-20250307161516290" src="../images/image-20250307161516290.png" /></p>
 <p>断点的类型还是挺多的，直接断点、记录点，条件断点，命中次数断点。记录点不停，就是打印信息。我有些断点之前不明白就是普通断点，明白了就变成了记录点，不想停了但是做个标记，然后不明白的地方也标记一下，也弄成记录点。后面再看。</p>
 <p>好，继续回到，<code>exp = Exp(args)  # set experiments</code></p>
 <p><mark>点，步进。</mark></p>
 <p>步进就是一步步执行，会进入到函数内部，逐过程就是逐步执行，不会进入调用的函数，然后还有继续执行，就是一直执行，直到遇到 下一个断点。</p>
-<p><img alt="image-20250307162644874" src="/docs/images/image-20250307162644874.png" /></p>
+<p><img alt="image-20250307162644874" src="../images/image-20250307162644874.png" /></p>
 <p>因为我已经实现标了一个记录点，然后步进 执行到这句，也触发了记录点。打印了信息。花括号包裹的部分，会自动替换成 python 程序的变量，输出到调试控制台。</p>
 <p>想说明的就是，这里能停止，是因为步进到了这里，并不是因为打了记录点。</p>
 <p>说完了。然后继续回到 项目的执行。</p>
@@ -4361,97 +4369,97 @@
 <p><del>我现在把类的重命名是理解为 多态（错！）</del>，有理解更好的欢迎找我讨论，而类的继承一般就是 类的名称小括号里的东西 <code>class Exp_Main(Exp_Basic):</code>，或者你看类 init 方法下面的第一句 super 什么什么的<code>super(Exp_Main, self).__init__(args)</code></p>
 <p>然后，对于深度学习来说，一般是继承自 <code>nn.Module</code>的，而这里继承的是 <code>Exp_Basic</code> ，也就是也是一个自定义函数，那，话不多说，</p>
 <p><strong>步进</strong>，看看它到底是什么东西，诶，然后我们就看到了，Exp_Main有的，Exp_Basic都有，方法都是一样的，但是 Exp_Main 更全，相当于 Exp_Basic是一个模版</p>
-<p><img alt="image-20250307164027611" src="/docs/images/image-20250307164027611.png" /></p>
+<p><img alt="image-20250307164027611" src="../images/image-20250307164027611.png" /></p>
 <p>现在我们步进到了继承的父类文件，开始逐步执行这里，一步步的</p>
-<p><img alt="image-20250307164209910" src="/docs/images/image-20250307164209910.png" /></p>
+<p><img alt="image-20250307164209910" src="../images/image-20250307164209910.png" /></p>
 <p>到这里，想说的是，涉及到了 方法的重写，也就是 子类和父类中都有 这个 <code>self._build_model()</code>，但是 很明显父类中什么也没有，但是子类更全，方法重写是，先看子类的，子类没有重写，就执行父类，所以当逐步执行的时候，下一步，我们又返回到了 模型主文件的 <code>._build_model()</code>，方法。</p>
 <p>既然回到了 模型主文件的 <code>build_model</code> 方法，那就看，首先定义了一个字典，通过字符串 所以到对应的类，因为索引到了类，我们才能继续操作呀，比如实例化，forward。</p>
 <p>然后就到了 model 的定义</p>
 <p><code>model = model_dict[self.args.model].Model(self.args).float()</code></p>
 <p>通过 <code>self.args.model</code> 参数去字典中 <code>model_dict</code> 中索引到类，然后调用这个类的额 <code>.Model()</code> 方法，<code>float</code> 不说了，就是转换数据类型</p>
 <p>这里传入的参数，也就是 <code>self.args.model=SegRNN</code>，是个字符串，通过字典索引到了类，并且是自定义的类，并且，类是先 <code>init 初始化</code>，然后 forward 传入数据，进行数据的流动，所以这句应该是也是到了<code>某个 init</code> 中，那话不多说，<mark>步进</mark>，如我们所料，就是到了 SegRNN.py Model方法中的 init，</p>
-<p><img alt="image-20250307165130160" src="/docs/images/image-20250307165130160.png" /></p>
+<p><img alt="image-20250307165130160" src="../images/image-20250307165130160.png" /></p>
 <p>嗯，因为我之前也打了一个记录点，所以调试控制台有输出。现在我们现在的位置，models 文件下，SegRNN.py 的 Model 类中，并且调用的是 init 方法。</p>
-<p><img alt="image-20250307165351040" src="/docs/images/image-20250307165351040.png" /></p>
+<p><img alt="image-20250307165351040" src="../images/image-20250307165351040.png" /></p>
 <p>不信你就一个个点点看看：</p>
-<p><img alt="image-20250307194021085" src="/docs/images/image-20250307194021085.png" /></p>
+<p><img alt="image-20250307194021085" src="../images/image-20250307194021085.png" /></p>
 <p>，你按住 command 也可以跳到定义的地方。一样的。</p>
 <p>接下来就看这个 SegRNN 的 init 方法，直接点 <mark>继续</mark>，跳到下一个断点，注意这行：</p>
-<p><img alt="image-20250307194218433" src="/docs/images/image-20250307194218433.png" /></p>
+<p><img alt="image-20250307194218433" src="../images/image-20250307194218433.png" /></p>
 <p>这行是 可逆实例化层，这里可以提前说一下，对于时间序列来说，有两种归一化，之前说过 BatchNorm 和 LayerNorm，一个按列归一化，一个按行归一化；对于时间序列来说分别进行了 全局归一化，就是整个 样本集维度的归一化，减均值除以方差，相当于不划分 batch 的归一化；<mark>实例归一化 相当于 划分出来的 同一个样本内 同一个特征的归一化</mark>。对于</p>
 <h2 id="_2">标准化方法补充<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>用以下这几张图来直观的看一下：</p>
 <p><strong>BatchNorm：</strong> </p>
-<p><img alt="image-20250307200153258" src="/docs/images/image-20250307200153258.png" /></p>
+<p><img alt="image-20250307200153258" src="../images/image-20250307200153258.png" /></p>
 <p><strong>LayerNorm</strong></p>
-<p><img alt="image-20250307200216018" src="/docs/images/image-20250307200216018.png" /></p>
+<p><img alt="image-20250307200216018" src="../images/image-20250307200216018.png" /></p>
 <p><strong>实例归一化</strong></p>
-<p><img alt="image-20250307200300138" src="/docs/images/image-20250307200300138.png" /> </p>
+<p><img alt="image-20250307200300138" src="../images/image-20250307200300138.png" /> </p>
 <p>除了，批归一化，层归一化，实例归一化，还想给大家补充一个 分组归一化，可以补充一个小点就是分组卷积。意思就是对图像中的通道分组，分别训练每一个组内的卷积核。传统卷积是一张3 通道图片对应一个好几个 3 通道的卷积核，对于分组来说，可能就是一张 4 通道的特征图，对前 2 个通道用一个卷积核，对后2个通道用一个卷积核，这样学的好处就是更精细的学习特征。组归一化的图：</p>
-<p><img alt="image-20250307200944540" src="/docs/images/image-20250307200944540.png" /></p>
+<p><img alt="image-20250307200944540" src="../images/image-20250307200944540.png" /></p>
 <p>哦，对，说到这个分组卷积，其实卷积还有膨胀卷积，深度可分离卷积，转置卷积，需要注意的是，所谓的转置卷积是指恢复原始图片的形状，并不是完全恢复原始图片等，好，能拓展的已经拓展完了。提一下深度可分离卷积就是 深度卷积和 逐点卷积。深度卷积就是一张图，有几个通道就用分成几个组，就用几个卷积核。逐点卷积就是 1×1 的卷积核，点对点的卷积。</p>
 <h2 id="_3">卷积补充<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>诶，对还想说一点，就是 在做图像的时候，conv 层的定义是（inputchannel，outputchannel，kernelsize，padding，stride）</p>
 <p>当我们看到 kernelsize=3，padding=1 的时候，就可以直接说是不变卷积，全称就是不变形状卷积。不变形状卷积还有 1×1 的卷积，也是不改变特征图大小的，只是改变通道数，用于升维和降维，对于图片来说，维度就是通道数。这些都是在 stride=1 的情况下。</p>
-<p><img alt="0a07e152b9bbb944a01ba838c0a60379" src="/docs/images/0a07e152b9bbb944a01ba838c0a60379.png" /></p>
-<p><img alt="047b2a39386fc9e69a0e986e29572891" src="/docs/images/047b2a39386fc9e69a0e986e29572891.png" /></p>
+<p><img alt="0a07e152b9bbb944a01ba838c0a60379" src="../images/0a07e152b9bbb944a01ba838c0a60379.png" /></p>
+<p><img alt="047b2a39386fc9e69a0e986e29572891" src="../images/047b2a39386fc9e69a0e986e29572891.png" /></p>
 <p>好，回到这个实例归一化。</p>
 <h2 id="segrnn-init">SegRNN init<a class="headerlink" href="#segrnn-init" title="Permanent link">&para;</a></h2>
 <p>继续调试我们的项目，<mark>逐步</mark></p>
 <p>我们在 SegRNN.py初始化好的 model，会返回给 <code>exp_main.py</code> 中的 model，这边我又打了一个记录点，打印了模型结构</p>
-<p><img alt="image-20250307211852109" src="/docs/images/image-20250307211852109.png" /> </p>
+<p><img alt="image-20250307211852109" src="../images/image-20250307211852109.png" /> </p>
 <p>我们定义的 SegRNN 的模型结构：有一个 valueEmbedding 层、RNN 层，本文的 RNN 层用的是 RNN 变体GRU ，还有一个预测层。后面我们在 SegRNN 的 forward 层中再详细的看每一步的执行过程。</p>
 <p>好，我们一直逐步执行，然后我们回到了 项目主文件，可以看到初始化的模型，传给了 <code>exp</code></p>
-<p><img alt="image-20250307212859752" src="/docs/images/image-20250307212859752.png" /></p>
+<p><img alt="image-20250307212859752" src="../images/image-20250307212859752.png" /></p>
 <p>好了，我们点 <mark>继续</mark> ，来到模型的 训练阶段</p>
 <h2 id="exptrain">exp.train()<a class="headerlink" href="#exptrain" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250307213006741" src="/docs/images/image-20250307213006741.png" /></p>
+<p><img alt="image-20250307213006741" src="../images/image-20250307213006741.png" /></p>
 <p>点击 <mark>步进</mark>， 进入到 模型主文件 <code>train</code> 方法，开始模型的训练，首先加载数据集，训练集、验证集和测试集，我们只调试 train Data set 的加载，因为这些数据集的加载方法是一样的。</p>
 <p>首先，训练集调用的自定义方法 <code>self._get_data</code>，</p>
-<p><img alt="image-20250307213557658" src="/docs/images/image-20250307213557658.png" /></p>
+<p><img alt="image-20250307213557658" src="../images/image-20250307213557658.png" /></p>
 <p>点击 <mark>步进</mark> 看怎么获取的训练集，又看到 调用的 <code>data_provider</code> ，又是自定义的函数，继续  <mark>步进</mark></p>
-<p><img alt="image-20250307220719166" src="/docs/images/image-20250307220719166.png" /></p>
+<p><img alt="image-20250307220719166" src="../images/image-20250307220719166.png" /></p>
 <p>，步进会运行一步停一步，步进到这一步，同时触发 我提前打的记录点，调试控制台输出当前位置，看导航栏 也是一样的</p>
-<p><img alt="image-20250307220947604" src="/docs/images/image-20250307220947604.png" /></p>
+<p><img alt="image-20250307220947604" src="../images/image-20250307220947604.png" /></p>
 <p>这里没有调用了，我们==逐步执行==</p>
 <p>因为我们的 flag 是 train，所以执行 else，逐步执行到 dataset，dataset 的加载 用的是一个 Data 类，鼠标悬停，发现是一个 自定义类 dataprovider 文件夹下，<code>data_loader.py</code>文件下的 <code>Dataset_Custom</code>类</p>
-<p><img alt="image-20250307221258653" src="/docs/images/image-20250307221258653.png" /></p>
+<p><img alt="image-20250307221258653" src="../images/image-20250307221258653.png" /></p>
 <p>，那==步进==</p>
 <p>相当于<code>data_factor.py</code> 接收加载好的数据集</p>
 <p><code>data_loader.py</code> 里面定义的具体类 的是 <code>真正的数据加载主文件</code>，里面是每个数据集具体的数据加载方法</p>
 <p>在这个类中，前面都是一些数据加载的初始化，最后一句 <code>self.__read_data__()</code>，开始读数据集，那话不多说，<mark>步进</mark></p>
 <p>我的记录点记录的方式是，箭头表示调用，跳进了新的文件。调用了新的类。</p>
-<p><img alt="image-20250307222103551" src="/docs/images/image-20250307222103551.png" /></p>
+<p><img alt="image-20250307222103551" src="../images/image-20250307222103551.png" /></p>
 <p>来看具体的，首先 定义了一个 全局标准化，就是刚刚说的对所有的特征维度进行归一化，消除量纲的影响；</p>
 <p>后面就是 pandas 读 csv 数据，cols 拿到所有的类名，然后就是重新排列一下列的顺序，后面按照 7,2,1 的顺序划分训练集、测试集和验证集，</p>
-<p><img alt="image-20250307224241151" src="/docs/images/image-20250307224241151.png" /></p>
+<p><img alt="image-20250307224241151" src="../images/image-20250307224241151.png" /></p>
 <p>具体来说，我们逐步执行完以后看左边的调试窗口，</p>
 <h2 id="_4">调试窗口<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p>这里插入一句，调试窗口怎么看。我们重点看这个 Locals 局部变量，就是我们这个 函数内部的变量，局部变量窗口，包含了这个类里面所有定义的 变量。</p>
 <p><mark>全局变量窗口</mark>，就是这个函数文件中定义的所有类，我们调用的所有官方的库、自定义的库、还有函数，这里的特殊变量就不是重点关注得了，因为封装的更抽象，一个下划线是受保护，两个下划线的隐私的，外部不可访问，总之过于抽象，就不看了吧。</p>
-<p><img alt="image-20250307224816061" src="/docs/images/image-20250307224816061.png" /></p>
+<p><img alt="image-20250307224816061" src="../images/image-20250307224816061.png" /></p>
 <p>总结来说，重点还是看 局部变量窗口，全局变量窗口，就看看我们定义了什么类，调用了什么函数等。</p>
 <h2 id="_5">数据集划分<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250314221421265" src="/docs/images/image-20250314221421265.png" /></p>
+<p><img alt="image-20250314221421265" src="../images/image-20250314221421265.png" /></p>
 <p>首先，按照 721 划分，理论上训练集时间步：676；验证集时间步：97；测试集时间步：193，用图来表示的话，就是：</p>
 <p>也就是说 总共是 966 个数据点，8 个特征，具体处理的时候，时间戳特征单独处理，7 个特征一起处理。</p>
 <p>而且，我们看这个 python 文件，在取训练集的时候，用的是 int（）取整方法取得 数据集长度的 0.7，测试集也是，为了不丢样本，验证集用的是减法，所以还是很严谨的</p>
 <h2 id="border1s-border2s">border1s &amp; border2s<a class="headerlink" href="#border1s-border2s" title="Permanent link">&para;</a></h2>
 <p>这里先说明 border1s &amp; border2s 的含义。后面再仔细的讲解 border1s &amp; border2s 的具体实现方法。</p>
 <p>首先 就是 我们的 border1s、border2s是分别定义了训练集、验证集、测试集的左边界和右边界；</p>
-<p><img alt="image-20250314222149356" src="/docs/images/image-20250314222149356.png" /></p>
+<p><img alt="image-20250314222149356" src="../images/image-20250314222149356.png" /></p>
 <p>border1 和 border2是根据 传进来的 <code>self.set_type</code>，来拿到对应的训练集、验证集或者测试集的 左右边界索引。我们这里的 <code>self.set_type=0</code>，这个又是怎么来的呢？</p>
 <p><mark>鼠标 command，跳转</mark>  ，可以看到是通过一个字典映射拿到的，根据我们传入的 <code>flag=train</code>，拿到了 左右边界索引 ，分别保存训练集的左边界索引和右边界索引。</p>
 <p>我们已经知道 训练集时间步：676；验证集时间步：97；测试集时间步：193；本来应该是：</p>
-<p><img alt="image-20250314092914764" src="/docs/images/image-20250314092914764.png" /> </p>
+<p><img alt="image-20250314092914764" src="../images/image-20250314092914764.png" /> </p>
 <p>这里想提前说明的是： python 索引的是一个左闭右开的区间，就是说 索引 0 到 676，能够索引到第 0 行，但是最后一个的索引是 第675 行，就能索引到 676 个时间步，所以后面讲的时候也不做过多区分。 </p>
 <p><strong>下面 我们特地强调一下这里的数据集划分</strong> </p>
 <p><mark>也就是说：</mark>  本来训练集时间步是前0-676 个时间点，验证集是紧随其后的 97 个时间步，对应的索引应该是 676+97=773,测试集是是验证集 的结束索引时间步 773到后面紧随其后的 193 个时间步，也就是 773+193=966 ，刚好是数据集长度</p>
 <p><mark>但是，</mark>  实际上是， borders1 和 borders2的 定义在源码中是：</p>
-<p><img alt="image-20250314221327938" src="/docs/images/image-20250314221327938.png" /></p>
+<p><img alt="image-20250314221327938" src="../images/image-20250314221327938.png" /></p>
 <p><mark>也就是</mark> </p>
 <p>用图来表示就是：</p>
-<p><img alt="image-20250314093340428" src="/docs/images/image-20250314093340428.png" /></p>
+<p><img alt="image-20250314093340428" src="../images/image-20250314093340428.png" /></p>
 <p>训练集时间步是前0-676 个时间点，验证集是 616 到 773 个时间点，测试集是713 到 966 个时间步</p>
 <p><mark>为什么是这样的呢？</mark></p>
 <p>这样做的意义是，为了保证每个样本都有 60 个时间步的输入序列和 24 个时间步的预测目标，具体来说，对于验证集的第一个时间步，如果让它构成一个完成的样本，就需要向前回退 60 个时间步，同样对于测试集的第一个时间步来说，让它构成一个样本，也需要回退 60 个时间步。</p>
@@ -4459,7 +4467,7 @@
 <p>训练集时间步有 676 个，验证集时间步有 $773-616=157 $个，或者就是 <span class="arithmatex">\(97+60=157\)</span> 个时间步；测试集 有 <span class="arithmatex">\(253\)</span> 个时间步。</p>
 <p>当我们知道了数据集时间步的划分以后，现在我们讨论，<mark>这些时间步能构成多少个样本？</mark>，这个问题当代码执行到哪一步再说。</p>
 <h2 id="selffeatures">self.features<a class="headerlink" href="#selffeatures" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250307230325176" src="/docs/images/image-20250307230325176.png" /></p>
+<p><img alt="image-20250307230325176" src="../images/image-20250307230325176.png" /></p>
 <p>这里是说 时间序列的3 种任务，</p>
 <p>多变量预测多变量，多变量预测单变量，单变量预测单变量</p>
 <p>具体来说，这里想额外说明的一点是，时间序列预测，我们日期特征的提取是通过 偏移来处理的，这个我们后面会说，对应到代码中可以看到 在使用多变量的时候，都是不拿第 0 列特征的，因为日期我们等会处理。</p>
@@ -4497,17 +4505,17 @@
 </blockquote>
 <p>好了，下面看</p>
 <h2 id="selfscale">self.scale<a class="headerlink" href="#selfscale" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250307231759308" src="/docs/images/image-20250307231759308.png" /></p>
+<p><img alt="image-20250307231759308" src="../images/image-20250307231759308.png" /></p>
 <p>还记得我们刚开始定义的 <code>self.scaler = StandardScaler()</code> 全局数据标准化器嘛</p>
 <p>现在开始拟合，注意这里拟合的时候，只用的是训练数据进行拟合，因为在真实情况中 验证集和测试集是观测不到的，所以这里的执行逻辑就是，先拿出 训练集数据，然后用训练集数据拟合 标准化器，然后用拟合好的标准化器来标准化全局数据。忽然觉得叫归一化不太合适，因为 是 减均值  除以 标准差的 标准化，并不是归一化。</p>
 <h2 id="df_stamp">df_stamp<a class="headerlink" href="#df_stamp" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250307232307911" src="/docs/images/image-20250307232307911.png" /></p>
+<p><img alt="image-20250307232307911" src="../images/image-20250307232307911.png" /></p>
 <p>终于用到了我们的 border1，border2，就是处理我们现在想处理的数据集了，首先将我们先处理的 数据集时间戳拿出来，传给 <code>df_stamp</code> ，之前我们已经说过了，就是时间序列数据，日期有自己的特征构造方法，使用的的 <code>offset 偏移</code> 的概念</p>
 <p>先看一下 我们这个原始的时间戳数据长啥样：</p>
 <p>在调试窗口，局部变量窗口，悬停，即可查看。这里因为时间都是 <code>00:00:00</code> 所以省略了</p>
-<p><img alt="image-20250307232605439" src="/docs/images/image-20250307232605439.png" /></p>
+<p><img alt="image-20250307232605439" src="../images/image-20250307232605439.png" /></p>
 <p>这是我们正在调试使用的疾病数据集：</p>
-<p><img alt="image-20250307232725826" src="/docs/images/image-20250307232725826.png" /> </p>
+<p><img alt="image-20250307232725826" src="../images/image-20250307232725826.png" /> </p>
 <p>标准的时间戳数据：年月日、时分秒</p>
 <p>好了，我们主要来看怎么处理的这个时间，因为这里传进来 self.timeenc=1，所以执行 elif，并且又是 调用的 自定义函数 <code>time_features</code></p>
 <p>当你不知道这个函数是自定义的 还是 官方的，那就 按住 command+鼠标，跳进去看看，或者看看 <code>调试窗口</code>的 <code>全局变量窗口</code>的<code>函数变量</code></p>
@@ -4515,21 +4523,21 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>data_stamp = time_features(pd.to_datetime(df_stamp[&#39;date&#39;].values), freq=self.freq)
 </span></code></pre></div>
 <p>话不多说，<mark>步进</mark>，</p>
-<p><img alt="image-20250307233527623" src="/docs/images/image-20250307233527623.png" /> </p>
+<p><img alt="image-20250307233527623" src="../images/image-20250307233527623.png" /> </p>
 <p>看到又是一个调用，继续==步进==，而且是==同文件的 调用==。</p>
 <p>我们先看一下这里，<code>&lt;built-in function to_offset&gt;</code> 表示的是指向 Pandas 库中 to_offset函数的引用。（也就是 内置函数）</p>
-<p><img alt="image-20250307234111281" src="/docs/images/image-20250307234111281.png" /></p>
+<p><img alt="image-20250307234111281" src="../images/image-20250307234111281.png" /></p>
 <p>好，继续回到源代码 </p>
 <p>步进到 <code>time_features_from_frequency_str</code> 函数内部，首先有一个 特征偏移字典</p>
-<p><img alt="image-20250313204621624" src="/docs/images/image-20250313204621624.png" /></p>
+<p><img alt="image-20250313204621624" src="../images/image-20250313204621624.png" /></p>
 <p>来到下面这行：</p>
-<p><img alt="image-20250313204841059" src="/docs/images/image-20250313204841059.png" /></p>
+<p><img alt="image-20250313204841059" src="../images/image-20250313204841059.png" /></p>
 <p>根据给定的时间频率字符串选择合适的时间特征</p>
 <ul>
 <li><code>to_offset</code> 是 Pandas 中的函数，用于将频率字符串（如 'H'、'D'、'W' 等）转换为对应的偏移对象</li>
 <li>比如我们这里，'H' 转换为  Hour  偏移对象，</li>
 </ul>
-<p><img alt="image-20250313205246648" src="/docs/images/image-20250313205246648.png" /></p>
+<p><img alt="image-20250313205246648" src="../images/image-20250313205246648.png" /></p>
 <ul>
 <li>这段 for 循环的作用就是根据 输入的 freq_str 也就是频率字符串，去偏移特征字典中 索引到特征类列表，最终返回类的实例</li>
 <li>**具体来说，**就是首先 <code>offset = to_offset(freq_str)</code>   根据传入的 <code>'H'</code> 字符串得到 <code>&lt;Hour&gt;</code> 对象 </li>
@@ -4540,14 +4548,14 @@
 <li>返回这些类的实例列表：<code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code></li>
 </ul>
 <p>接下来，继续看  <code>np.vstack</code>  这一行，</p>
-<p><img alt="image-20250313210814703" src="/docs/images/image-20250313210814703.png" /></p>
+<p><img alt="image-20250313210814703" src="../images/image-20250313210814703.png" /></p>
 <p>首先，<code>time_features_from_frequency_str(freq)</code> 返回的是 <code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code></p>
 <p>然后，根据得到的  <code>[HourOfDay(), DayOfWeek(), DayOfMonth(), DayOfYear()]</code> 对传入的 <code>dates</code> 进行处理，首先我们传入的 dates，是标准的日期，pandas 会自动解析出 年、月、日、小时，因为全是 0 点，所以省略了。</p>
-<p><img alt="image-20250313211350878" src="/docs/images/image-20250313211350878.png" /></p>
+<p><img alt="image-20250313211350878" src="../images/image-20250313211350878.png" /></p>
 <p>根具体来说的处理是：</p>
-<p><img alt="image-20250313211456998" src="/docs/images/image-20250313211456998.png" /></p>
+<p><img alt="image-20250313211456998" src="../images/image-20250313211456998.png" /></p>
 <p>点击步进 ，可以看到 index.day，自动摘出所有的日期，这里的的处理是 -1 /30 是为了归一化，因为我们的日期记号为 1 号到 31 号，对日期减1，变成 0~30，÷30，变成 0~1，－0.5 表示 中心化，最终的数据范围是 <code>-0.5~0.5</code></p>
-<p><img alt="image-20250313211631503" src="/docs/images/image-20250313211631503.png" /></p>
+<p><img alt="image-20250313211631503" src="../images/image-20250313211631503.png" /></p>
 <ul>
 <li>HourOfDay()：表示 一天中的第几个小时</li>
 <li>DayOfWeek()：表示一周中的星期几</li>
@@ -4558,27 +4566,27 @@
 <p>返回的形状是 <code>[特征数, 日期数]</code> 也就是 <code>4 × 676</code></p>
 <p>这里 np.vstack 堆叠的是 列表，所以是 4 行 676 列，对应的后面是，有一个  transpose 操作，<code>data_stamp = data_stamp.transpose(1, 0)</code> ，变成 <code>676 ×4</code> 的格式</p>
 <p>最终得到的数据和形状：</p>
-<p><img alt="image-20250313213938346" src="/docs/images/image-20250313213938346.png" /></p>
+<p><img alt="image-20250313213938346" src="../images/image-20250313213938346.png" /></p>
 <h2 id="selfdata_x">self.data_x<a class="headerlink" href="#selfdata_x" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250314230649155" src="/docs/images/image-20250314230649155.png" /></p>
+<p><img alt="image-20250314230649155" src="../images/image-20250314230649155.png" /></p>
 <p>接下来就完成了 dataset 类的实现，得到了 训练集、验证集 或者测试集，这里两个变量的意思是，x 序列用来索引 输入序列，y 序列用来索引 预测序列，具体的用处在 <code>__getitem__</code> 方法中。同时 <code>self.</code> 定义的变量在类内相当于全局变量。</p>
 <p>既然说到了 这个  <code>__getitem__</code> 方法，那就说明一下 这个魔法方法是怎么调用和实现的。</p>
 <h2 id="1">（强调 1）时间序列样本构造的实现<a class="headerlink" href="#1" title="Permanent link">&para;</a></h2>
 <p>上节课有跳过的部分，在进行 SegRNN 的 forward 过程之前，仔细讲讲==时间序列中时间步与样本构造的关系。==</p>
 <p>这一部分主要涉及的源码是  <code>data_factor.py</code> 文件中 <code>data_provider</code> 函数中 重写的 Dataset 类和 dataloader。</p>
-<p><img alt="image-20250314224639324" src="/docs/images/image-20250314224639324.png" /></p>
+<p><img alt="image-20250314224639324" src="../images/image-20250314224639324.png" /></p>
 <p>还有就是 dataloader.py中的 <code>Dataset_Custom</code>类 <code>class Dataset_Custom(Dataset):</code> ，这里的 init 方法、getitem 方法还有 len 方法都是需要着重注意的。</p>
-<p><img alt="image-20250314224917326" src="/docs/images/image-20250314224917326.png" /></p>
+<p><img alt="image-20250314224917326" src="../images/image-20250314224917326.png" /></p>
 <h3 id="_6">直观地理解<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>那就说一下这个时间序列的样本是怎么划分的，以及为什么要这样做。</p>
 <p>对于一张二维数表，时间序列都是二维数表，行是每个时间点，列是每个时间点采集的数据，比如疾病感染人数，记录的 2002 年 1 月开始，到 2020 年 1 月结束，每周一采集数据，除了记录疾病感染人数，还可以记录一些与感染疾病人数的相关的比如当地天气什么的；</p>
 <p>具体来说就是：</p>
-<p><img alt="image-20250307202937957" src="/docs/images/image-20250307202937957.png" /> </p>
+<p><img alt="image-20250307202937957" src="../images/image-20250307202937957.png" /> </p>
 <p>Y 目标列，时间序列数据与其他图像或者 NLP 任务不同的是，特征，在未来时间点，我们是不知道所有的特征的，完全都是未知的。</p>
 <p>时间序列样本的构造：用于训练的时间步，记作 <code>sequence_length</code>，用于预测的时间步 <code>pred_length</code>，还有一个比较特殊的概念 <code>label_length</code> ，表示用于训练的时间步有多少用于指导预测，用一张图表示：</p>
-<p><img alt="image-20250307203200171" src="/docs/images/image-20250307203200171.png" /></p>
+<p><img alt="image-20250307203200171" src="../images/image-20250307203200171.png" /></p>
 <p>有几个 batch 我们就移动几个小时，构造几个 batch。</p>
-<p><img alt="image-20250307210941318" src="/docs/images/image-20250307210941318.png" /></p>
+<p><img alt="image-20250307210941318" src="../images/image-20250307210941318.png" /></p>
 <p>当然了，这里也有一个遗留问题，就是这样构造 batch的话，不就是按照特征的顺序喂给模型了吗，模型不就会依赖这个顺序了嘛，而一般我们在构建 Dataloader 的时候，会设置一个参数 <code>shuffle=True</code> ，也就是 会随机选取 batch 个索引 index，从这个索引开始选择 sequence length 个时间步以及后面的 predict length 进行封装，封装成一个样本。</p>
 <p>在这个项目的 illness 数据集中，有 966 个时间点，每个时间点记录了 7 个特征，batch size=16，sequence length=60，feature=7，更具体来说时间序列的数据封装就是：</p>
 <blockquote>
@@ -4596,14 +4604,14 @@
 <p>我们有一个 966×8（1+7）的时间序列数据集，1 表示时间戳特征，7 表示记录的特征。</p>
 <h3 id="_7">样本的构成<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
 <p>这里样本的构成，就看 dataset 类中 重写的 len 方法。</p>
-<p><img alt="image-20250314222758563" src="/docs/images/image-20250314222758563.png" /></p>
+<p><img alt="image-20250314222758563" src="../images/image-20250314222758563.png" /></p>
 <p>这个 len 方法就是给出了样本数</p>
 <p><mark>我们来看这个样本数是怎么计算的，</mark> </p>
 <p>首先  这个 <code>self.data_x</code> 是怎么来的：  <code>self.data_x = data[border1:border2]</code>，通过 borders1 和 borders2 索引来的，具体来说，对于训练集有 676 个时间步，验证集 157 个时间步，测试集 253 个时间步，也就是分别对应着 训练集、验证集、测试集的 <code>len(self.data_x)</code> ，所以，len(训练集)、len(验证集)、len(测试集) 的也就是样本数 分别是 <code>676-60-24+1=593 、157-60-24+1=74、253-60-24+1=170</code> 个样本。</p>
 <p><mark>再解释一下</mark> </p>
 <p>就是 对于第一个样本的索引，应该从第一个时间步向后留出 60 个时间步，最后一个样本的索引应该从最后一个时间步向前留出 24 个预测时间步构成最后一个样本。中间留下的就是有效索引。也是样本数，但是我们索引一般都是从 0 开始，中间留下的有效索引不是从 0 开始的。所以，为了从 0 开始，那么就把第一个时间步作为第一个样本的索引， <mark>那么后面最后一个样本的索引就应该</mark>   从 <code>676 个时间步-60 个输入序列时间步-24 个预测时间步+1=593索引，也就是最后一个时间步的索引。</code> </p>
 <p>就是下面这张图展示的。</p>
-<p><img alt="image-20250314101525779" src="/docs/images/image-20250314101525779.png" /></p>
+<p><img alt="image-20250314101525779" src="../images/image-20250314101525779.png" /></p>
 <h3 id="dataset_custom__init__"><code>Dataset_Custom.__init__</code><a class="headerlink" href="#dataset_custom__init__" title="Permanent link">&para;</a></h3>
 <p>再具体的，我们来看这个 <code>Dataset_Custom</code> 类</p>
 <ul>
@@ -4624,7 +4632,7 @@
 <li>想要说明的一点是，这个 <mark>自定义的dataset 类</mark> 是 继承了 pytorch 官方定义的 Dataset 类，并重写了  init 方法、getitem 方法和 len 方法。getitem 魔法方法可以使得实例化以后的对象使用索引调用，而 len 方法，在使用 <code>len(实例化的对象)</code> 时 调用。</li>
 </ul>
 <p>这里 <code>__read_data__</code>的讲解，前面讲了一半：也就是这一部分</p>
-<p><img alt="image-20250314225333644" src="/docs/images/image-20250314225333644.png" /></p>
+<p><img alt="image-20250314225333644" src="../images/image-20250314225333644.png" /></p>
 <h3 id="dataset_custom__len__"><code>Dataset_Custom.__len__</code><a class="headerlink" href="#dataset_custom__len__" title="Permanent link">&para;</a></h3>
 <p>然后，我们继续看数据主文件的下一行</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>print(flag, len(data_set))
@@ -4636,7 +4644,7 @@
 <p>我们来看这个样本数是怎么计算的，首先  这个 <code>self.data_x</code> 是怎么来的：  <code>self.data_x = data[border1:border2]</code>，通过 borders1 和 borders2 索引来的，具体来说，对于训练集有 676 个时间步，验证集 157 个时间步，测试集 253 个时间步，也就是分别对应着 训练集、验证集、测试集的 <code>len(self.data_x)</code> ，所以，len(训练集)、len(验证集)、len(测试集) 的也就是样本数 分别是 <code>676-60-24+1=593 、157-60-24+1=74、253-60-24+1=170</code> 个样本。</p>
 <p>在解释一下，就是 对于第一个样本的索引，应该从第一个时间步向后留出 60 个时间步，最后一个样本的索引应该从最后一个时间步向前留出 24 个预测时间步构成最后一个样本。中间留下的就是有效索引。也是样本数，但是我们索引一般都是从 0 开始，中间留下的有效索引不是从 0 开始的。所以，为了从 0 开始，那么就把第一个时间步作为第一个样本的索引，<mark>那么后面最后一个样本的索引就应该...</mark></p>
 <p>或者说，如果把第一个时间步作为第一个样本的索引，<mark>那么，最后一个样本的索引就应该</mark> 从 <code>676 个时间步-60 个输入序列时间步-24 个预测时间步+1=593索引，也就是最后一个时间步的索引。</code> 就是下面这张图展示的。</p>
-<p><img alt="image-20250314101525779" src="/docs/images/image-20250314101525779.png" /></p>
+<p><img alt="image-20250314101525779" src="../images/image-20250314101525779.png" /></p>
 <p>接下来继续看 数据主文件中的  dataloader 方法：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>    data_loader = DataLoader(
 </span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>        data_set,
@@ -4665,7 +4673,7 @@
 </span></code></pre></div>
 <p>现在我们就假设随机抽取训练集的样本，训练集的样本数是 593 个，dataloader 在生成随机索引时会限制在 len(dataset)中，我们设置的 batchsize 为 16，也我们假设生成的 16 个随机索引分别是  [0,23, 105, 67, 198, 54,..., 593]（总计16个索引），如果 shuffle=False 的话，就是按顺序取前 16 个索引也就是 0~15。得到的每个索引，根据每个索引得到样本，向后的 60 个时间步作为输入序列，因为 label_sequence=0，所以紧接着的 24 个时间步是预测序列；假设我们生成的随机索引为： 23，也就是 <code>index=23</code> 就会调用 <code>dataset</code> 的 <code>getitem</code> 方法。</p>
 <p><code>s_begin</code> 输入序列起始点；<code>s_end</code> 输入序列结束点；<code>r_begin</code>标签序列起点；<code>r_end</code> 标签+预测序列终点；</p>
-<p><img alt="image-20250314105323187" src="/docs/images/image-20250314105323187.png" /></p>
+<p><img alt="image-20250314105323187" src="../images/image-20250314105323187.png" /></p>
 <p>输入序列起点 <code>=index</code></p>
 <p>输入序列终点 <code>=index+seq_len</code></p>
 <p>预测序列起点 <code>=index+seq_len-label_len</code></p>
@@ -4682,7 +4690,7 @@
 <p>疾病数据集：966×8（7 个特征+1 个时间戳，所以一共 8 列）</p>
 <p>对于单个样本的 <code>seq_x = self.seq_len × 7，seq_y = (label_len + pred_len) × 7</code>，<code>seq_x_mark = self.seq_len × 4 , seq_y_mark = self.seq_len × 4</code></p>
 <p>dataloader 封装了 <code>batchsize</code> 个 <code>seq_x, seq_y, seq_x_mark, seq_y_mark</code></p>
-<p><img alt="image-20250314144441399" src="/docs/images/image-20250314144441399.png" /></p>
+<p><img alt="image-20250314144441399" src="../images/image-20250314144441399.png" /></p>
 <h3 id="_8">滑动窗口和样本堆叠<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
 <p>时间序列数据的滑动窗口是在 <code>__getitem__</code> 方法中通过索引切片实现的：</p>
 <ul>
@@ -4701,7 +4709,7 @@
 </li>
 </ul>
 <p>用图来理解就是这样的</p>
-<p><img alt="image-20250314150125444" src="/docs/images/image-20250314150125444.png" /></p>
+<p><img alt="image-20250314150125444" src="../images/image-20250314150125444.png" /></p>
 <p>总结：DataLoader 通过调用 Dataset 的 <code>__getitem__</code> 方法获取单个样本，然后将它们堆叠成批次。样本的实际结构和滑动窗口逻辑由 Dataset 实现，DataLoader 只负责组装和批处理。</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>  <span class="n">data_set</span> <span class="o">=</span> <span class="n">Data</span><span class="p">(</span>
 </span><span id="__span-12-2"><a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a>        <span class="n">root_path</span><span class="o">=</span><span class="n">args</span><span class="o">.</span><span class="n">root_path</span><span class="p">,</span> <span class="c1"># &#39;./dataset/&#39;</span>
@@ -4722,22 +4730,22 @@
 </span><span id="__span-12-17"><a id="__codelineno-12-17" name="__codelineno-12-17" href="#__codelineno-12-17"></a>        <span class="n">drop_last</span><span class="o">=</span><span class="n">drop_last</span><span class="p">)</span> <span class="c1"># True</span>
 </span><span id="__span-12-18"><a id="__codelineno-12-18" name="__codelineno-12-18" href="#__codelineno-12-18"></a>    <span class="k">return</span> <span class="n">data_set</span><span class="p">,</span> <span class="n">data_loader</span>
 </span></code></pre></div>
-<p><img alt="image-20250314150229405" src="/docs/images/image-20250314150229405.png" /> </p>
+<p><img alt="image-20250314150229405" src="../images/image-20250314150229405.png" /> </p>
 <h2 id="lendata_set">len(data_set)<a class="headerlink" href="#lendata_set" title="Permanent link">&para;</a></h2>
 <p>这里有一个问题需要注意一下，就是我们在打印训练集的时候，明明时间长度是 676，为什么 <code>len(data_set)=593</code> </p>
-<p><img alt="image-20250313214306328" src="/docs/images/image-20250313214306328.png" />  </p>
+<p><img alt="image-20250313214306328" src="../images/image-20250313214306328.png" />  </p>
 <p>是因为，Dataset_Custom类，重写了 len 方法，这里的 len 计算方法是 <code>676-60-24+1=593</code>  为什么这样计算？</p>
-<p><img alt="image-20250313214545088" src="/docs/images/image-20250313214545088.png" /></p>
+<p><img alt="image-20250313214545088" src="../images/image-20250313214545088.png" /></p>
 <p>解释：这是因为 我们训练集有 676 个时间步，不代表有 676 个训练样本，一个训练样本要有 60 个时间步对应的预测时间步是紧随其后的 24 个时间步，也就是用 60 个历史时间步来预测未来的 24 个时间步，这样构成一个样本，所以 676 个时间步，最后一个样本的索引应该预留出 60+24 个时间步。也就是 676 个时间步 构成 593 个训练样本。同样的，按照这个逻辑，验证集有 <mark>97-60-24+1=14，</mark> ，测试集：<mark>193-60-24+1=110？</mark></p>
 <p>这里产生问题了，是因为，</p>
-<p><img alt="image-20250313220726617" src="/docs/images/image-20250313220726617.png" /></p>
+<p><img alt="image-20250313220726617" src="../images/image-20250313220726617.png" /></p>
 <p>这里还没有执行完，应该 <code>Data（）</code>会自动调用 ，这个 <code>Dataset_Custom</code> 类的  <code>__getitem__</code> 方法 </p>
-<p><img alt="image-20250313220806286" src="/docs/images/image-20250313220806286.png" /></p>
+<p><img alt="image-20250313220806286" src="../images/image-20250313220806286.png" /></p>
 <h2 id="_9">模型训练迭代<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h2>
 <p>时间步和样本：</p>
-<p><img alt="image-20250314151434798" src="/docs/images/image-20250314151434798.png" /></p>
+<p><img alt="image-20250314151434798" src="../images/image-20250314151434798.png" /></p>
 <p>模型迭代训练：</p>
-<p><img alt="image-20250314145801914" src="/docs/images/image-20250314145801914.png" /></p>
+<p><img alt="image-20250314145801914" src="../images/image-20250314145801914.png" /></p>
 <h2 id="segrnn-forward">SegRNN forward<a class="headerlink" href="#segrnn-forward" title="Permanent link">&para;</a></h2>
 <h3 id="_10">编码器<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
 <p>我们就看SegRNN 的编码器部分，也就是主要是这部分：</p>
@@ -4765,7 +4773,7 @@
 </span></code></pre></div>
 <p>先说一下这里的思想，然后对应到代码也会很好理解：</p>
 <p>这里的流程图：</p>
-<p><img alt="image-20250314152432620" src="/docs/images/image-20250314152432620.png" /></p>
+<p><img alt="image-20250314152432620" src="../images/image-20250314152432620.png" /></p>
 <p>首先，16 batchsize，60<code>sequendce_length</code>，7 个特征的通俗解释</p>
 <ul>
 <li>
@@ -4808,12 +4816,12 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>x = self.revinLayer(x, &#39;norm&#39;).permute(0, 2, 1)
 </span></code></pre></div>
 <p>在进行转置之前进行了可逆实例标准化，也就是对训练样本内的特征进行实例标准化，目的是为了消除分布偏移，用一个例子来解释，就是：</p>
-<p><img alt="image-20250314153025741" src="/docs/images/image-20250314153025741.png" /></p>
+<p><img alt="image-20250314153025741" src="../images/image-20250314153025741.png" /></p>
 <p>好处是：<mark>消除绝对水平和尺度的影响</mark>，让模型专注于学习序列的==相对变化模式==</p>
 <p>对于两次标准化更直观的例子：</p>
-<p><img alt="image-20250314153230628" src="/docs/images/image-20250314153230628.png" /></p>
-<p><img alt="image-20250314153240519" src="/docs/images/image-20250314153240519.png" /></p>
-<p><img alt="image-20250314153326574" src="/docs/images/image-20250314153326574.png" /></p>
+<p><img alt="image-20250314153230628" src="../images/image-20250314153230628.png" /></p>
+<p><img alt="image-20250314153240519" src="../images/image-20250314153240519.png" /></p>
+<p><img alt="image-20250314153326574" src="../images/image-20250314153326574.png" /></p>
 <h3 id="_11">交换维度<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
 <p>在进行完标准化以后，进行 permute，交换第1 维度和 2 维度，对应就是：</p>
 <p>接下来 16x60x7 --》 16×7×60</p>
@@ -4869,13 +4877,13 @@
 <p>....</p>
 <p>（15）样本 334-特征 7 ：【512】【512】【512】【512】【512】→ 5步GRU → hn[0,111]</p>
 <hr />
-<p><img alt="image-20250314154132904" src="/docs/images/image-20250314154132904.png" /></p>
+<p><img alt="image-20250314154132904" src="../images/image-20250314154132904.png" /></p>
 <p>补充一下：</p>
-<p><img alt="image-20250314163912008" src="/docs/images/image-20250314163912008.png" /></p>
+<p><img alt="image-20250314163912008" src="../images/image-20250314163912008.png" /></p>
 <h3 id="gru">传统 GRU<a class="headerlink" href="#gru" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20250314154428696" src="/docs/images/image-20250314154428696.png" /></p>
-<p><img alt="image-20250314154509394" src="/docs/images/image-20250314154509394.png" /></p>
-<p><img alt="image-20250314163313686" src="/docs/images/image-20250314163313686.png" /></p>
+<p><img alt="image-20250314154428696" src="../images/image-20250314154428696.png" /></p>
+<p><img alt="image-20250314154509394" src="../images/image-20250314154509394.png" /></p>
+<p><img alt="image-20250314163313686" src="../images/image-20250314163313686.png" /></p>
 <p>整个 forward 过程的图解：</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a>输入: x [16, 60, 7]
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a>(16个批次，每个60个时间步，每步7个特征)
@@ -4977,11 +4985,11 @@
 <p>（1）分段编码</p>
 <p>（2）并行解码</p>
 <p>接下来我们来看并行解码过程，因为是一次解码，所以需要位置编码，来看这个位置编码的定义，有段的编码和通道特征编码，经过拼接构成了完整的位置编码。</p>
-<p><img alt="image-20250314164550849" src="/docs/images/image-20250314164550849.png" /></p>
+<p><img alt="image-20250314164550849" src="../images/image-20250314164550849.png" /></p>
 <p>具体来说，self.pos_emb.shape = 2 × 256；</p>
 <p>其中，<code>self.seg_num_y = self.pred_len // self.seg_len = 24 //12</code>，24 是预测步长，12 是分段步长，也就是 预测的 y 分成 2 段，每段 12 个步长，用 256 维的向量表示 1 个位置，2 个位置，就是 2 个 256 维的向量，得到每个段的位置编码；</p>
 <p>由于每个段是用 7 个特征表示的，所以还需要表示特征位置编码，<code>self.channel_emb.shape = 7×256</code> 也就是 第0 特征位置是一个256 维的向量表示，第 1 特征是一个 256 维的向量表示，以此类推得到 通道位置编码，接下来继续看位置编码怎么加到序列上的。</p>
-<p><img alt="image-20250314164555203" src="/docs/images/image-20250314164555203.png" /></p>
+<p><img alt="image-20250314164555203" src="../images/image-20250314164555203.png" /></p>
 <p>看注释，预测的2 段位置编码，是 2×256 的，第 0 维扩一维，变成 1×2×256 的，在第一维重复 7 次（也就是特征数），最后变成 7×2×256 维度的；</p>
 <p>通道位置编码是 7×256 的，第 1 维扩 1 维，变成 7×1×256 的，第 1 维重复 预测时间步分段次数，变成 7×2×256 的</p>
 <p>然后，在最后一维 也就是dim=-1进行拼接（torch.cat），变成 7×2×512 的形状</p>
@@ -4997,9 +5005,9 @@
 </blockquote>
 <p>位置编码的作用是为每个预测段（segment）添加唯一的位置信息，使模型能够区分不同位置的元素。这对于捕捉序列中的时间依赖性和顺序信息非常重要。</p>
 <p>接下来 进行论文的这一部分：</p>
-<p><img alt="image-20250314170944008" src="/docs/images/image-20250314170944008.png" /></p>
+<p><img alt="image-20250314170944008" src="../images/image-20250314170944008.png" /></p>
 <p>也就是源码中的这一句：</p>
-<p><img alt="image-20250314171012023" src="/docs/images/image-20250314171012023.png" /></p>
+<p><img alt="image-20250314171012023" src="../images/image-20250314171012023.png" /></p>
 <ul>
 <li>然后，将位置编码 pos_emb 输入到 RNN 中，并使用之前的隐藏状态 hn 进行==初始化；== </li>
 </ul>
@@ -5031,7 +5039,7 @@
 </span><span id="__span-18-2"><a id="__codelineno-18-2" name="__codelineno-18-2" href="#__codelineno-18-2"></a>            y = self.predict(hy).view(-1, self.enc_in, self.pred_len)
 </span></code></pre></div>
 <p>首先 self.predict，其实就是一个线性映射层，将 512 维映射到 12 维。这个 12 维是什么？是解码阶段，60 个时间步分成 5 段每段的时间步 步长 12 步，这里的 12 维对应的就是 预测时间步步长 24 步，分成 2 段，每段 12 步。</p>
-<p><img alt="image-20250314172238111" src="/docs/images/image-20250314172238111.png" /></p>
+<p><img alt="image-20250314172238111" src="../images/image-20250314172238111.png" /></p>
 <p>也就是前面 <code>RNN</code> 的调用：</p>
 <ul>
 <li>
@@ -5068,6 +5076,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-14T10:19:26+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-14</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-07T09:06:36+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-07</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5117,6 +5157,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -1904,7 +1933,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2199,27 +2228,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3732,9 +3740,9 @@
 </ol>
 <hr />
 <p><a href="https://b23.tv/is1p6aN">【46、四种Position Embedding的原理与PyTorch手写逐行实现（Transformer/ViT/Swin-T/MAE）-哔哩哔哩】</a></p>
-<p><img alt="image-20241117170228318" src="/docs/images/image-20241117170228318.png" /></p>
+<p><img alt="image-20241117170228318" src="../images/image-20241117170228318.png" /></p>
 <h2 id="transformer">原始Transformer的位置编码 ：一维绝对、常数位置编码<a class="headerlink" href="#transformer" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117170648419" src="/docs/images/image-20241117170648419.png" /></p>
+<p><img alt="image-20241117170648419" src="../images/image-20241117170648419.png" /></p>
 <p>pos：句子中词的位置（0-max sequence length）</p>
 <p>i：词嵌入位置（0—255）</p>
 <p>1D绝对位置编码，常数不需要训练</p>
@@ -3783,7 +3791,7 @@
 </span><span id="__span-1-18"><a id="__codelineno-1-18" name="__codelineno-1-18" href="#__codelineno-1-18"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">pe_table</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="vit-1">ViT  1维绝对的可学习的位置编码<a class="headerlink" href="#vit-1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117173149421" src="/docs/images/image-20241117173149421.png" /></p>
+<p><img alt="image-20241117173149421" src="../images/image-20241117173149421.png" /></p>
 <p>标准的、可学习的一维位置编码；二维的位置编码并没有带来更好的效果</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">def</span> <span class="nf">create_1d_absolute_trainable_embeddings</span><span class="p">(</span><span class="n">max_sequence_length</span><span class="p">,</span><span class="n">model_dim</span><span class="p">):</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    <span class="n">pe</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Embedding</span><span class="p">(</span><span class="n">max_sequence_length</span><span class="p">,</span><span class="n">model_dim</span><span class="p">)</span>
@@ -3792,7 +3800,7 @@
 </span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>    <span class="k">return</span> <span class="n">pe</span>
 </span></code></pre></div>
 <h2 id="swintransformer-2">SwinTransformer 2维的、相对的、基于位置偏差可训练的位置编码<a class="headerlink" href="#swintransformer-2" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241117174359681" src="/docs/images/image-20241117174359681.png" /></p>
+<p><img alt="image-20241117174359681" src="../images/image-20241117174359681.png" /></p>
 <ul>
 <li>相对位置编码、可学习的、相对位置偏差加到每一个头上</li>
 <li><span class="arithmatex">\(QK^T\)</span> 的维度是 <span class="arithmatex">\(序列长度 × 序列长度\)</span>，所以B的形状也是  <span class="arithmatex">\(序列长度 × 序列长度\)</span></li>
@@ -3840,7 +3848,7 @@
 </span></code></pre></div>
 <h2 id="mae">MAE中的位置编码<a class="headerlink" href="#mae" title="Permanent link">&para;</a></h2>
 <p>附录部分</p>
-<p><img alt="image-20241125101957652" src="/docs/images/image-20241125101957652.png" /></p>
+<p><img alt="image-20241125101957652" src="../images/image-20241125101957652.png" /></p>
 <ul>
 <li>sin、cos位置编码</li>
 <li>没有相对位置或者Layer scaling</li>
@@ -3863,10 +3871,10 @@
 </span><span id="__span-4-15"><a id="__codelineno-4-15" name="__codelineno-4-15" href="#__codelineno-4-15"></a>    <span class="k">return</span> <span class="n">position_embedding</span>
 </span></code></pre></div>
 <p>全部代码</p>
-<p><img alt="image-20241125103456704" src="/docs/images/image-20241125103456704.png" /></p>
-<p><img alt="image-20241125103519421" src="/docs/images/image-20241125103519421.png" /></p>
-<p><img alt="image-20241125103552862" src="/docs/images/image-20241125103552862.png" /></p>
-<p><img alt="image-20241125103632410" src="/docs/images/image-20241125103632410.png" /></p>
+<p><img alt="image-20241125103456704" src="../images/image-20241125103456704.png" /></p>
+<p><img alt="image-20241125103519421" src="../images/image-20241125103519421.png" /></p>
+<p><img alt="image-20241125103552862" src="../images/image-20241125103552862.png" /></p>
+<p><img alt="image-20241125103632410" src="../images/image-20241125103632410.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 旋转位置编码</li>
 </ul>
@@ -3877,6 +3885,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-25T14:33:46+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-25</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3926,6 +3966,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

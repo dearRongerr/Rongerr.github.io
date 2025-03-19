@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4016,7 +4024,7 @@
 <h2 id="iou">IOU<a class="headerlink" href="#iou" title="Permanent link">&para;</a></h2>
 <h3 id="iou_1">IOU是什么？<a class="headerlink" href="#iou_1" title="Permanent link">&para;</a></h3>
 <p>文字：Intersection over Union、两个box区域的交集比上并集、交并比</p>
-<p><a href="https://zhuanlan.zhihu.com/p/54709759">图示</a>：<img alt="image-20241126113242206" src="/docs/images/image-20241126113242206.png" /></p>
+<p><a href="https://zhuanlan.zhihu.com/p/54709759">图示</a>：<img alt="image-20241126113242206" src="../images/image-20241126113242206.png" /></p>
 <h3 id="iou_2">IOU怎么实现？<a class="headerlink" href="#iou_2" title="Permanent link">&para;</a></h3>
 <p>思路：（注意维度一致）</p>
 <ul>
@@ -4035,8 +4043,8 @@
 <p>左上角坐标和右下角坐标确定一个框</p>
 </div>
 <h4 id="api">官方api<a class="headerlink" href="#api" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241126114453538" src="/docs/images/image-20241126114453538.png" /></p>
-<p><img alt="image-20241126114654034" src="/docs/images/image-20241126114654034.png" /></p>
+<p><img alt="image-20241126114453538" src="../images/image-20241126114453538.png" /></p>
+<p><img alt="image-20241126114654034" src="../images/image-20241126114654034.png" /></p>
 <p>pytorch源码：</p>
 <p>（注意矩阵维度的变化）</p>
 <h4 id="box_iou">box_iou<a class="headerlink" href="#box_iou" title="Permanent link">&para;</a></h4>
@@ -4101,7 +4109,7 @@
 </span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>    <span class="k">return</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="p">(</span><span class="n">boxes</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">]</span> <span class="o">-</span> <span class="n">boxes</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">])</span>
 </span></code></pre></div>
 <h4 id="reference"><a href="https://zhuanlan.zhihu.com/p/54709759">Reference  代码实现</a><a class="headerlink" href="#reference" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241126124613097" src="/docs/images/image-20241126124613097.png" /></p>
+<p><img alt="image-20241126124613097" src="../images/image-20241126124613097.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="kn">import</span> <span class="nn">torch</span>
 </span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
@@ -4190,7 +4198,7 @@
 <p>torch.unsqueeze(1) 表示增加一个维度，增加位置为维度1</p>
 <p>torch.squeeze(1) 表示减少一个维度</p>
 <p>🌰：</p>
-<p><img alt="image-20241126141029848" src="/docs/images/image-20241126141029848.png" /></p>
+<p><img alt="image-20241126141029848" src="../images/image-20241126141029848.png" /></p>
 <p><span class="arithmatex">\(\frac{1}{7}\)</span></p>
 <h2 id="nms">NMS<a class="headerlink" href="#nms" title="Permanent link">&para;</a></h2>
 <h3 id="nms_1">NMS是什么？<a class="headerlink" href="#nms_1" title="Permanent link">&para;</a></h3>
@@ -4213,7 +4221,7 @@
 :param iou _thresh: IOU（交并比）阈值，用于判断两个边界框是否重叠               <br />
 :return: 经过NMS处理后的边界框和置信度列表</p>
 </div>
-<p><img alt="image-20241126144123636" src="/docs/images/image-20241126144123636.png" /></p>
+<p><img alt="image-20241126144123636" src="../images/image-20241126144123636.png" /></p>
 <h3 id="nms_2">为什么NMS？<a class="headerlink" href="#nms_2" title="Permanent link">&para;</a></h3>
 <p>NMS的作用是去除多个预测同一物体的冗余检测框</p>
 <p><strong>哪里需要用？</strong></p>
@@ -4230,10 +4238,10 @@
 <p>代码</p>
 </blockquote>
 <h4 id="api_1">官方api<a class="headerlink" href="#api_1" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20241126141513223" src="/docs/images/image-20241126141513223.png" /></p>
-<p><img alt="image-20241126141452536" src="/docs/images/image-20241126141452536.png" /></p>
+<p><img alt="image-20241126141513223" src="../images/image-20241126141513223.png" /></p>
+<p><img alt="image-20241126141452536" src="../images/image-20241126141452536.png" /></p>
 <p>source</p>
-<p><img alt="image-20241126141556478" src="/docs/images/image-20241126141556478.png" /></p>
+<p><img alt="image-20241126141556478" src="../images/image-20241126141556478.png" /></p>
 <p>我扒不到源码</p>
 <h4 id="_2">代码实现<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h4>
 <ol>
@@ -4251,7 +4259,7 @@
 <ol>
 <li>从最后剩余的boxes中，再找出最大scores的哪一个，如此循环往复</li>
 </ol>
-<p><img alt="image-20241126143624696" src="/docs/images/image-20241126143624696.png" /></p>
+<p><img alt="image-20241126143624696" src="../images/image-20241126143624696.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kn">import</span> <span class="nn">torch</span>
 </span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
 </span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="kn">import</span> <span class="nn">matplotlib.patches</span> <span class="k">as</span> <span class="nn">patches</span>
@@ -4332,14 +4340,14 @@
 <p><a href="https://blog.csdn.net/m0_56569131/article/details/136192324">另补充代码示例</a></p>
 <h2 id="bounding-box-regression">Bounding box regression<a class="headerlink" href="#bounding-box-regression" title="Permanent link">&para;</a></h2>
 <h2 id="anchor">Anchor<a class="headerlink" href="#anchor" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250217140037734" src="/docs/images/image-20250217140037734.png" /></p>
-<p><img alt="image-20250217140109446" src="/docs/images/image-20250217140109446.png" /></p>
-<p><img alt="image-20250217140715341" src="/docs/images/image-20250217140715341.png" /></p>
+<p><img alt="image-20250217140037734" src="../images/image-20250217140037734.png" /></p>
+<p><img alt="image-20250217140109446" src="../images/image-20250217140109446.png" /></p>
+<p><img alt="image-20250217140715341" src="../images/image-20250217140715341.png" /></p>
 <p>锚框A1跟人像区域非常接近</p>
 <h2 id="_3">交并比<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250217140726634" src="/docs/images/image-20250217140726634.png" /></p>
-<p><img alt="image-20250217135751451" src="/docs/images/image-20250217135751451.png" /></p>
-<p><img alt="image-20250217135830819" src="/docs/images/image-20250217135830819.png" /></p>
+<p><img alt="image-20250217140726634" src="../images/image-20250217140726634.png" /></p>
+<p><img alt="image-20250217135751451" src="../images/image-20250217135751451.png" /></p>
+<p><img alt="image-20250217135830819" src="../images/image-20250217135830819.png" /></p>
 <ul>
 <li>什么情况下两个矩形框的IoU等于1？ </li>
 </ul>
@@ -4351,9 +4359,9 @@
 <p>对于同一个物体，会产生多个预测框。因此需要消除重叠较大的冗余预测框。具体的处理方法就是非极大值抑制（NMS）。</p>
 <h2 id="nms_4">NMS<a class="headerlink" href="#nms_4" title="Permanent link">&para;</a></h2>
 <p>假设使用模型对图片进行预测，一共输出了11个预测框及其得分，在图上画出预测框如 <strong>图1</strong> 所示。在每个人像周围，都出现了多个预测框，需要消除冗余的预测框以得到最终的预测结果。</p>
-<p><img alt="image-20250217140607600" src="/docs/images/image-20250217140607600.png" /></p>
-<p><img alt="image-20250217141218432" src="/docs/images/image-20250217141218432.png" /></p>
-<p><img alt="image-20250217141234499" src="/docs/images/image-20250217141234499.png" /></p>
+<p><img alt="image-20250217140607600" src="../images/image-20250217140607600.png" /></p>
+<p><img alt="image-20250217141218432" src="../images/image-20250217141218432.png" /></p>
+<p><img alt="image-20250217141234499" src="../images/image-20250217141234499.png" /></p>
 
 
 
@@ -4361,6 +4369,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-20T14:28:38+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-20</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T14:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4410,6 +4450,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

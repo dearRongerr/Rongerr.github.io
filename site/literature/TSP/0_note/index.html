@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3966,7 +3974,7 @@
 
 <h1 id="note">NOTE<a class="headerlink" href="#note" title="Permanent link">&para;</a></h1>
 <h2 id="_1">时间序列预测任务的定义<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250302195903494" src="/docs/images/image-20250302195903494.png" /></p>
+<p><img alt="image-20250302195903494" src="../images/image-20250302195903494.png" /></p>
 <h2 id="_2">基础知识<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p>【参看】</p>
 <p><a href="https://zhuanlan.zhihu.com/p/19763358">傅里叶分析之掐死教程（完整版）更新于2014.06.06</a></p>
@@ -3975,21 +3983,21 @@
 <ul>
 <li>伸缩与旋转与复数</li>
 </ul>
-<p><img alt="image-20250303170409884" src="/docs/images/image-20250303170409884.png" /></p>
+<p><img alt="image-20250303170409884" src="../images/image-20250303170409884.png" /></p>
 <ul>
 <li>复数表示，保留了二维信息</li>
 </ul>
 <p>复数直观的理解就是旋转！<span class="arithmatex">\(4*i*i = -4\)</span></p>
 <p>就是“4”在数轴上旋转了180度。那么4*i就是旋转了90度。</p>
-<p><img alt="image-20250303171202038" src="/docs/images/image-20250303171202038.png" /></p>
-<p><img alt="image-20250303171247241" src="/docs/images/image-20250303171247241.png" /></p>
+<p><img alt="image-20250303171202038" src="../images/image-20250303171202038.png" /></p>
+<p><img alt="image-20250303171247241" src="../images/image-20250303171247241.png" /></p>
 <p>嗯，为啥？指数上加 i，就转起来了，还是螺旋线？得有一个不变量，比如 <span class="arithmatex">\(sin^2x+cos^2x=1\)</span> 怎么体现</p>
-<p><img alt="image-20250303171338840" src="/docs/images/image-20250303171338840.png" /></p>
+<p><img alt="image-20250303171338840" src="../images/image-20250303171338840.png" /></p>
 <h3 id="_4">欧拉公式<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
 <p><span class="arithmatex">\(e^{ix}=cosx+isinx\)</span></p>
 <p><span class="arithmatex">\(e^{ix}\)</span> 中 <code>x</code> 是不断变换的，是一条逆时针旋转的螺旋线</p>
 <p>问题：为什么 sinx 和 cosx 能跟数轴联系起来？</p>
-<p><img alt="image-20250303154817697" src="/docs/images/image-20250303154817697.png" /></p>
+<p><img alt="image-20250303154817697" src="../images/image-20250303154817697.png" /></p>
 <p>这里有一条数轴，在数轴上有一个红色的线段，它的长度是1</p>
 <ul>
 <li>
@@ -4000,7 +4008,7 @@
 </li>
 </ul>
 <p>我们知道乘<code>-1</code>其实就是乘了两次 <code>i</code>使线段旋转了180度，那么乘一次 <code>i</code> 呢——答案很简单——逆时针旋转了90度</p>
-<p><img alt="image-20250303154919884" src="/docs/images/image-20250303154919884.png" /></p>
+<p><img alt="image-20250303154919884" src="../images/image-20250303154919884.png" /></p>
 <p>同时，我们获得了一个垂直的虚数轴。实数轴与虚数轴共同构成了一个复数的平面，也称复平面。这样我们就了解到，乘虚数<code>i</code>的一个功能——旋转。</p>
 <ul>
 <li><span class="arithmatex">\(sinx\)</span> 是单位圆半径到 <span class="arithmatex">\(x\)</span> 轴的距离，从 <span class="arithmatex">\(x\)</span> 轴躺着，开始逆时针转</li>
@@ -4015,7 +4023,7 @@
 <li><span class="arithmatex">\(e^{ix}=cosx+isinx\)</span></li>
 <li>为什么  <span class="arithmatex">\(e^{ix}=cosx+isinx\)</span> 不等于 <span class="arithmatex">\(sinx+icosx\)</span></li>
 </ul>
-<p><img alt="image-20250303164004621" src="/docs/images/image-20250303164004621.png" /></p>
+<p><img alt="image-20250303164004621" src="../images/image-20250303164004621.png" /></p>
 <p>还是折腾不明白，如果都是单位圆上的点：</p>
 <ul>
 <li>如果 y 轴的度量是 1，那么就是，cos x,sinx，因为要保证模长等于 1</li>
@@ -4029,21 +4037,21 @@
 <p>低频则是频率较低的信号或波动，低频信号的周期较长，波动缓慢，变化速度慢。</p>
 <h3 id="fft">FFT<a class="headerlink" href="#fft" title="Permanent link">&para;</a></h3>
 <p><a href="https://upload.wikimedia.org/wikipedia/commons/7/7e/Fourier_series_sawtooth_wave_circles_animation.gif">动图</a></p>
-<p><img alt="image-20250303195032389" src="/docs/images/image-20250303195032389.png" /></p>
-<p><img alt="image-20250303171710405" src="/docs/images/image-20250303171710405.png" /></p>
+<p><img alt="image-20250303195032389" src="../images/image-20250303195032389.png" /></p>
+<p><img alt="image-20250303171710405" src="../images/image-20250303171710405.png" /></p>
 <p><a href="https://www.bilibili.com/video/BV1rC4y1E7FD/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">动画讲懂傅里叶变换</a></p>
-<p><img alt="image-20250303172115079" src="/docs/images/image-20250303172115079.png" /></p>
-<p><img alt="image-20250303172126240" src="/docs/images/image-20250303172126240.png" /></p>
+<p><img alt="image-20250303172115079" src="../images/image-20250303172115079.png" /></p>
+<p><img alt="image-20250303172126240" src="../images/image-20250303172126240.png" /></p>
 <p>直角坐标下 （4,3），在 x 轴的投影，x 的单位（1,0），所以投影用内积表示</p>
 <p>（4,3）×（1,0）=4 也就是在 x 轴上的投影</p>
 <p>对应到混合波× 第一个频率的单位波，得到这个波上的投影长度也就是振幅</p>
-<p><img alt="image-20250303172414120" src="/docs/images/image-20250303172414120.png" /></p>
+<p><img alt="image-20250303172414120" src="../images/image-20250303172414120.png" /></p>
 <p>内积等于 0，表示作用不可取代，就比如 <span class="arithmatex">\(x\)</span> 轴<span class="arithmatex">\((1,0)\)</span>和 <span class="arithmatex">\(y\)</span> 轴 <span class="arithmatex">\((0,1)\)</span>，内积=0，作用不可取代</p>
-<p><img alt="image-20250303172712661" src="/docs/images/image-20250303172712661.png" /></p>
-<p><img alt="image-20250303172716677" src="/docs/images/image-20250303172716677.png" /></p>
-<p><img alt="image-20250303172754410" src="/docs/images/image-20250303172754410.png" /></p>
+<p><img alt="image-20250303172712661" src="../images/image-20250303172712661.png" /></p>
+<p><img alt="image-20250303172716677" src="../images/image-20250303172716677.png" /></p>
+<p><img alt="image-20250303172754410" src="../images/image-20250303172754410.png" /></p>
 <p>负频率和直流分量</p>
-<p><img alt="image-20250303194820599" src="/docs/images/image-20250303194820599.png" /></p>
+<p><img alt="image-20250303194820599" src="../images/image-20250303194820599.png" /></p>
 <h3 id="_6">小波变换<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <h2 id="_7">方法的分类<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4068,7 +4076,7 @@
 <p>分段时间；并行计算</p>
 </blockquote>
 <h2 id="_8">数据集介绍<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250307202518201" src="/docs/images/image-20250307202518201.png" /></p>
+<p><img alt="image-20250307202518201" src="../images/image-20250307202518201.png" /></p>
 <ul>
 <li>ETT（电变压器温度）</li>
 </ul>
@@ -4117,37 +4125,37 @@
 <p><strong>Challenge2</strong>： 堆叠层太多了-》 蒸馏机制，（梯形）</p>
 <p><strong>Challenge3</strong>： 自回归式预测太慢了 --》 </p>
 </blockquote>
-<p><img alt="image-20250317113437526" src="/docs/images/image-20250317113437526.png" /></p>
-<p><img alt="image-20250317113453078" src="/docs/images/image-20250317113453078.png" /></p>
-<p><img alt="image-20250317113529381" src="/docs/images/image-20250317113529381.png" /></p>
+<p><img alt="image-20250317113437526" src="../images/image-20250317113437526.png" /></p>
+<p><img alt="image-20250317113453078" src="../images/image-20250317113453078.png" /></p>
+<p><img alt="image-20250317113529381" src="../images/image-20250317113529381.png" /></p>
 <p>3 个挑战，3 个创新点</p>
-<p><img alt="image-20250317113630008" src="/docs/images/image-20250317113630008.png" /></p>
-<p><img alt="image-20250317113726712" src="/docs/images/image-20250317113726712.png" /></p>
-<p><img alt="image-20250317113953588" src="/docs/images/image-20250317113953588.png" /></p>
-<p><img alt="image-20250317114026140" src="/docs/images/image-20250317114026140.png" /></p>
-<p><img alt="image-20250317114114378" src="/docs/images/image-20250317114114378.png" /></p>
-<p><img alt="image-20250317114221283" src="/docs/images/image-20250317114221283.png" /></p>
-<p><img alt="image-20250317114521546" src="/docs/images/image-20250317114521546.png" /></p>
+<p><img alt="image-20250317113630008" src="../images/image-20250317113630008.png" /></p>
+<p><img alt="image-20250317113726712" src="../images/image-20250317113726712.png" /></p>
+<p><img alt="image-20250317113953588" src="../images/image-20250317113953588.png" /></p>
+<p><img alt="image-20250317114026140" src="../images/image-20250317114026140.png" /></p>
+<p><img alt="image-20250317114114378" src="../images/image-20250317114114378.png" /></p>
+<p><img alt="image-20250317114221283" src="../images/image-20250317114221283.png" /></p>
+<p><img alt="image-20250317114521546" src="../images/image-20250317114521546.png" /></p>
 <h4 id="_9"><strong>概率稀疏自注意力机制 总结：</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20250317114558663" src="/docs/images/image-20250317114558663.png" /></p>
+<p><img alt="image-20250317114558663" src="../images/image-20250317114558663.png" /></p>
 <h4 id="_10"><strong>自注意力蒸馏机制</strong><a class="headerlink" href="#_10" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20250317114808306" src="/docs/images/image-20250317114808306.png" /></p>
-<p><img alt="image-20250317114909632" src="/docs/images/image-20250317114909632.png" /></p>
-<p><img alt="image-20250317115020671" src="/docs/images/image-20250317115020671.png" /></p>
-<p><img alt="image-20250317115141425" src="/docs/images/image-20250317115141425.png" /></p>
-<p><img alt="image-20250317115248103" src="/docs/images/image-20250317115248103.png" /></p>
-<p><img alt="image-20250317115317569" src="/docs/images/image-20250317115317569.png" /></p>
+<p><img alt="image-20250317114808306" src="../images/image-20250317114808306.png" /></p>
+<p><img alt="image-20250317114909632" src="../images/image-20250317114909632.png" /></p>
+<p><img alt="image-20250317115020671" src="../images/image-20250317115020671.png" /></p>
+<p><img alt="image-20250317115141425" src="../images/image-20250317115141425.png" /></p>
+<p><img alt="image-20250317115248103" src="../images/image-20250317115248103.png" /></p>
+<p><img alt="image-20250317115317569" src="../images/image-20250317115317569.png" /></p>
 <h4 id="_11">解码器生成<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20250317115415679" src="/docs/images/image-20250317115415679.png" /></p>
-<p><img alt="image-20250317115532472" src="/docs/images/image-20250317115532472.png" /></p>
-<p><img alt="image-20250317115630361" src="/docs/images/image-20250317115630361.png" /></p>
+<p><img alt="image-20250317115415679" src="../images/image-20250317115415679.png" /></p>
+<p><img alt="image-20250317115532472" src="../images/image-20250317115532472.png" /></p>
+<p><img alt="image-20250317115630361" src="../images/image-20250317115630361.png" /></p>
 <h4 id="_12">预测预测 &amp; 滚动预测<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20250317115724422" src="/docs/images/image-20250317115724422.png" /></p>
-<p><img alt="image-20250317115811869" src="/docs/images/image-20250317115811869.png" /></p>
+<p><img alt="image-20250317115724422" src="../images/image-20250317115724422.png" /></p>
+<p><img alt="image-20250317115811869" src="../images/image-20250317115811869.png" /></p>
 <p>不再是 自回归预测</p>
 <h4 id="_13">总结<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h4>
-<p><img alt="image-20250317120027517" src="/docs/images/image-20250317120027517.png" /></p>
-<p><img alt="image-20250317120043790" src="/docs/images/image-20250317120043790.png" /> </p>
+<p><img alt="image-20250317120027517" src="../images/image-20250317120027517.png" /></p>
+<p><img alt="image-20250317120043790" src="../images/image-20250317120043790.png" /> </p>
 
 
 
@@ -4155,6 +4163,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-17T12:13:52+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-17</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-04</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4204,6 +4244,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

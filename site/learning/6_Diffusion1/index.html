@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -2060,7 +2089,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2355,27 +2384,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4034,14 +4042,14 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> </li>
 </ul>
-<p><img alt="image-20241219183646260" src="/docs/images/image-20241219183646260.png" /></p>
+<p><img alt="image-20241219183646260" src="../images/image-20241219183646260.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> </li>
 </ul>
-<p><img alt="image-20241219183714343" src="/docs/images/image-20241219183714343.png" /></p>
+<p><img alt="image-20241219183714343" src="../images/image-20241219183714343.png" /></p>
 <h2 id="1-vae">1 VAE<a class="headerlink" href="#1-vae" title="Permanent link">&para;</a></h2>
 <h3 id="11">1.1 极大似然模型<a class="headerlink" href="#11" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219183921071" src="/docs/images/image-20241219183921071.png" /></p>
+<p><img alt="image-20241219183921071" src="../images/image-20241219183921071.png" /></p>
 <p>目的是使得模型学得数据集的分布</p>
 <p>给定数据集 <span class="arithmatex">\(x_D\)</span>，通过模型学得 <span class="arithmatex">\(\phi\)</span>参数，得到模型 <span class="arithmatex">\(p_{\phi}(x_D)\)</span>，训练模型最大化 <span class="arithmatex">\(p_{\phi}(x_D)\)</span>，使得 <span class="arithmatex">\(p_{\phi}(x_D)\)</span> 能够拟合样本 <span class="arithmatex">\(x'\)</span></p>
 <p>得到模型 <span class="arithmatex">\(p_{\phi}(x_D)\)</span> 以后，还能够进行采样，采样出来的样本可能不在数据集里面，但是采样出来的样本是符合概率分布的值</p>
@@ -4049,7 +4057,7 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 重点在于理解：VAE就是建立 真实图片 <span class="arithmatex">\(x\)</span> 与 隐变量高斯分布<span class="arithmatex">\(z\)</span> 之间的转换，工具是 Encoder和decoder</li>
 </ul>
-<p><img alt="image-20241219184216314" src="/docs/images/image-20241219184216314.png" /></p>
+<p><img alt="image-20241219184216314" src="../images/image-20241219184216314.png" /></p>
 <p>首先，生成模型必须要有能够采样的能力，而不能只能固定生成一些样本</p>
 <p>所以，首先要有一个分布供我采样，有了分布才能采样，VAE就借助了一个非常简单的分布，就是标准高斯分布，用公式表达：以0为均值，<span class="arithmatex">\(I\)</span> 为方差的一个分布，注意是多维的  <span class="arithmatex">\(N \sim N(z;\mathrm{0},\mathrm{I})\)</span></p>
 <p>VAE的结构首先分为两个部分：Encoder+decoder</p>
@@ -4065,35 +4073,35 @@
 <p>因为让模型直接学习 <span class="arithmatex">\(x\)</span>的分布比较难，<span class="arithmatex">\(x\)</span>可能并不是常见的分布，所以没有办法采样，但如果把<span class="arithmatex">\(x\)</span>与一个标准高斯分布联系起来，那么每在标准高斯分布上采样一个值，接着通过decoder就能映射成在<span class="arithmatex">\(x\)</span>也就是pixel这个像素空间上，生成一张图片，这样就会有很多样本产生，因为标准高斯分布可以采样出无穷无尽个样本</p>
 </blockquote>
 <p>也就是这句话：</p>
-<p><img alt="image-20241219190459040" src="/docs/images/image-20241219190459040.png" /></p>
+<p><img alt="image-20241219190459040" src="../images/image-20241219190459040.png" /></p>
 <p>z 表示隐变量，一般采用高斯分布，且一般是多维的，理论上讲可以是任意一个能够进行方便采样的分布，只是因为高斯部分比较简洁，推导也比较简单，所以一般采用高斯分布作为隐变量。</p>
 <p>一句话，VAE就是建立 真实图片 <span class="arithmatex">\(x\)</span> 与 隐变量高斯分布<span class="arithmatex">\(z\)</span> 之间的转换</p>
 <h3 id="13-vae">1.3 VAE的数学原理<a class="headerlink" href="#13-vae" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219190822523" src="/docs/images/image-20241219190822523.png" /></p>
+<p><img alt="image-20241219190822523" src="../images/image-20241219190822523.png" /></p>
 <p>首先，VAE的优化目标，学习到的分布 <span class="arithmatex">\(p_{\phi}(x)\)</span> 趋近于 真实分布 <span class="arithmatex">\(p(x)\)</span></p>
 <p>首先明确优化目标：  <span class="arithmatex">\(p_{\phi}(x) \rightarrow p(x)\)</span></p>
 <p>那具体怎么实现目标呢？思想就类似于辅助线 &amp; 中间变量，这里借助的中间变量就是 <span class="arithmatex">\(z\)</span></p>
 <p>首先，真实分布 <span class="arithmatex">\(p(x)\)</span> 一般用对数估计，表示成 <span class="arithmatex">\(logp(x)\)</span> ，且有下界 <span class="arithmatex">\(\mathbb{E}_{q_{\phi}(z|x)}[log \frac{p(x,z)}{q_{\phi}(z|x)}]\)</span></p>
 <p>以上步骤都很简单，没啥好说的，值得注意的是琴生不等式，也就是把log内移</p>
 <p>理解琴生不等式：</p>
-<p><img alt="image-20241219202848486" src="/docs/images/image-20241219202848486.png" /></p>
+<p><img alt="image-20241219202848486" src="../images/image-20241219202848486.png" /></p>
 <p>文字描述：任意两点的期望 ＞ 期望的函数值</p>
 <p>图示：任意两点的连线，永远在曲线上方</p>
 <p>函数值的期望 ＞ 期望的函数值（对于凸函数来说：期望&gt;函数值）</p>
 <p>而log函数是个凹函数，反过来的，也就是 弦 在 曲线的 下方（也就是 函数值 &gt; 期望）借助脑袋中的图像理解</p>
 <p>不用死记硬背，去想图像，画个图即可，也就是看明白了公式，这个公式证明出来有什么用？</p>
 <h3 id="14-vaeelbo">1.4 为什么说 优化VAE《==》最大化ELBO？<a class="headerlink" href="#14-vaeelbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219203427130" src="/docs/images/image-20241219203427130.png" /></p>
-<p><img alt="image-20241219203705045" src="/docs/images/image-20241219203705045.png" /></p>
+<p><img alt="image-20241219203427130" src="../images/image-20241219203427130.png" /></p>
+<p><img alt="image-20241219203705045" src="../images/image-20241219203705045.png" /></p>
 <p><span class="arithmatex">\(ELBO= \mathbb{E}_{q_{\phi}(z|x)}[log \frac{p(x,z)}{q_{\phi}(z|x)}]\)</span></p>
 <p>再解释一下：给定数据集 <span class="arithmatex">\(x\)</span>，那么<span class="arithmatex">\(p(x)\)</span>确定，也就是<span class="arithmatex">\(logp(x)\)</span>确定</p>
 <p>Encoder的优化目标 <span class="arithmatex">\(q_{\phi}(z|x)=p(z|x)\)</span>  《====》 KL散度=0</p>
 <p>那和又是固定的，所以拟合未知但是确定的p(x)，变成了最大化 ELBO</p>
 <p>VAE的目的就是学到真实<span class="arithmatex">\(x\)</span>的分布<span class="arithmatex">\(p(x)\)</span>，但是又不好直接学到，所以借助辅助变量z，通过Encoder和decoder间接学到<span class="arithmatex">\(x\)</span>的分布，又推出了下界，下界就是<span class="arithmatex">\(ELBO\)</span>，但是<span class="arithmatex">\(logP(x)=ELBO+KL散度\)</span>，<span class="arithmatex">\(KL散度\)</span>是Encoder的目标，等于<span class="arithmatex">\(0\)</span>最好就是 <span class="arithmatex">\(q(z|x)\)</span>无限接近<span class="arithmatex">\(p(z|x)\)</span></p>
 <h3 id="15-elbo">1.5 拆解ELBO<a class="headerlink" href="#15-elbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219204225027" src="/docs/images/image-20241219204225027.png" /></p>
+<p><img alt="image-20241219204225027" src="../images/image-20241219204225027.png" /></p>
 <p>使用链式法则的原因是因为，我们用的是中间变量<span class="arithmatex">\(z\)</span></p>
-<p><img alt="image-20241219205129747" src="/docs/images/image-20241219205129747.png" /></p>
+<p><img alt="image-20241219205129747" src="../images/image-20241219205129747.png" /></p>
 <p>将 ELBO拆成了 <code>ELBO=重建项-先验匹配项</code></p>
 <p><span class="arithmatex">\(=\mathbb{E}_{q_{\phi}}(z|x)[logp_{\theta}(x|z)]-D_{KL}(q_{\phi}(z|x)||p(z))\)</span></p>
 <ul class="task-list">
@@ -4135,16 +4143,16 @@
 </ul>
 <p>AE模型没有了采样能力，decoder出来的东西也就不是多样的，不是一个全新的，此时<span class="arithmatex">\(z\)</span>的分布，就是AutoEncoder的z分布是未知的，因为我们没有把<span class="arithmatex">\(x\)</span>强制的归于某个分布，也就是<span class="arithmatex">\(z\)</span>是未知的，此时是没有办法进行有效采样的，也就没有办法生成更多的图片</p>
 <h3 id="16-vae">1.6 VAE的结构<a class="headerlink" href="#16-vae" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219212251385" src="/docs/images/image-20241219212251385.png" /></p>
+<p><img alt="image-20241219212251385" src="../images/image-20241219212251385.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 描述图片</li>
 </ul>
-<p><img alt="image-20241219212447151" src="/docs/images/image-20241219212447151.png" /></p>
+<p><img alt="image-20241219212447151" src="../images/image-20241219212447151.png" /></p>
 <p>首先有一张训练集图片x，通过Encoder，Encoder就是会把训练的x映射到z上面，z所在的是一个隐空间，隐空间怎么表达呢？因为我们就是要把x映射到正态分布空间上，正态分布是通过均值和方差描述的，也就是会得到一个均值向量 <span class="arithmatex">\(\mu_{\phi}(x)\)</span> 和一个方差向量  <span class="arithmatex">\(\sigma^2_{\phi}(x)\)</span> ，因为我们使用的是标准高斯分布，所以我们优化的目标就是 <span class="arithmatex">\(\mu_{\phi}(x) → 0\)</span> 和 <span class="arithmatex">\(\sigma^2_{\phi}(x) → \mathrm{1}\)</span> <code>全0向量</code> 和 <code>全1向量</code></p>
-<p><img alt="image-20241219213021667" src="/docs/images/image-20241219213021667.png" /></p>
+<p><img alt="image-20241219213021667" src="../images/image-20241219213021667.png" /></p>
 <p>上面描述的过程 也就是 公式中的 先验匹配项，也就是第二项</p>
 <p>接下来：</p>
-<p><img alt="image-20241219213155117" src="/docs/images/image-20241219213155117.png" /></p>
+<p><img alt="image-20241219213155117" src="../images/image-20241219213155117.png" /></p>
 <p>我们得到了尽可能得<code>全0向量</code> <span class="arithmatex">\(\mu_{\phi}(x)\)</span>  、<code>全1向量</code> <span class="arithmatex">\(\sigma^2_{\phi}(x)\)</span> ，</p>
 <p><span class="arithmatex">\(z'\)</span>是根据Encoder得到的 <span class="arithmatex">\(\mu\)</span> 和<span class="arithmatex">\(\sigma\)</span> 重参数化得到的 <span class="arithmatex">\(z'\)</span></p>
 <p>正式采样的时候，不需要Encoder，而是直接从 "标准"正态分布<span class="arithmatex">\(z'\)</span>采样出来的，然后通过decoder得到一张新的图片</p>
@@ -4153,7 +4161,7 @@
 <p>Encoder出来的<span class="arithmatex">\(z\)</span>，就是<span class="arithmatex">\(z'\)</span>是希望尽可能为标准正态分布的</p>
 </blockquote>
 <h3 id="17">1.7 参数重整化<a class="headerlink" href="#17" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219213804065" src="/docs/images/image-20241219213804065.png" /></p>
+<p><img alt="image-20241219213804065" src="../images/image-20241219213804065.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 为什么？重参数化技巧</li>
 </ul>
@@ -4170,7 +4178,7 @@
 <p>首先，我们的随机过程是在一个没有参数的噪声中采样的，也就是说这个随机过程是不包含参数的，那后面对参数 <span class="arithmatex">\(\phi\)</span> 优化的时候，就可以直接求导了，因为这个参数是 剥离出这个随机过程的，以上就是重参数化的过程；</p>
 <p>总之重参数化过程 保证了 采样的分布没有变，然后又让所有参数是可导的，而没有在一个随机的过程中，这样模型才能训练，也就是重参数化技巧的好处</p>
 <h3 id="18-vae">1.8 VAE模型小结<a class="headerlink" href="#18-vae" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219215311622" src="/docs/images/image-20241219215311622.png" /></p>
+<p><img alt="image-20241219215311622" src="../images/image-20241219215311622.png" /></p>
 <p>首先是 模型的整体架构，并包含了 重参数化技巧</p>
 <p>第二点，优化VAE 等价于 优化 ELBO，更具体来说就是 最大化 ELBO</p>
 <p>第三点，继续拆解ELBO，ELBO包含两部分（1）重建项（2）先验匹配项</p>
@@ -4179,9 +4187,9 @@
 <p>第四点，重参数化技巧的好处</p>
 <p>第五点，生成的时候就不需要Encoder了，每次只需要在Encoder出来的变量采样一个z，这样就可以通过decoder生成一张新的图片了，以上是一个VAE的过程</p>
 <h2 id="2-mhvae">2 MHVAE的推导<a class="headerlink" href="#2-mhvae" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241219220033045" src="/docs/images/image-20241219220033045.png" /></p>
+<p><img alt="image-20241219220033045" src="../images/image-20241219220033045.png" /></p>
 <p>中文：马尔科夫链的级联的VAE（级联马尔科夫链VAE）</p>
-<p><img alt="image-20241219220243622" src="/docs/images/image-20241219220243622.png" /></p>
+<p><img alt="image-20241219220243622" src="../images/image-20241219220243622.png" /></p>
 <ul>
 <li>实际上就是把很多VAE堆叠起来，而且每一个状态值依赖前一个和它相邻的前一个状态，而与之前的更长更远的状态是无关的，也就是马尔科夫链</li>
 <li>公式推导的变化：</li>
@@ -4189,10 +4197,10 @@
 <p>（1）公式推导的原理是一模一样的</p>
 <p>（2）区别在于，之前单个VAE只需要一个辅助变量<span class="arithmatex">\(z\)</span>，现在级联马尔科夫VAE，有多个辅助变量<span class="arithmatex">\(z\)</span>，所以从<span class="arithmatex">\(z→z_{1:T}\)</span></p>
 <h2 id="3-vdm">3 VDM理论推导<a class="headerlink" href="#3-vdm" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241219220509277" src="/docs/images/image-20241219220509277.png" /></p>
+<p><img alt="image-20241219220509277" src="../images/image-20241219220509277.png" /></p>
 <p>中文翻译：Variational Diffusion Models 变分扩散模型</p>
 <p>区分：（ <strong>Denoising Diffusion Probabilistic Models</strong>，DDPM）去噪概率扩散模型</p>
-<p><img alt="image-20241219220558491" src="/docs/images/image-20241219220558491.png" /></p>
+<p><img alt="image-20241219220558491" src="../images/image-20241219220558491.png" /></p>
 <p>从 级联马尔科夫VAE <span class="arithmatex">\(MHVAE\)</span>  →  <span class="arithmatex">\(VDM\)</span></p>
 <p>MHVAE+3个限制条件 就会变成 VDM</p>
 <p><u>限制1：数据<span class="arithmatex">\(x\)</span>和所有的隐变量<span class="arithmatex">\(z_t\)</span>维度相同</u></p>
@@ -4207,7 +4215,7 @@
 <p>也就是Encoder映射<span class="arithmatex">\(x\)</span>到<span class="arithmatex">\(z_t\)</span>的过程本来是通过学习使其能够映射到一个标准高斯分布，而现在是通过认为定义让它去映射到一个高斯分布，所以要求，我们定义的高斯分布<span class="arithmatex">\(q\)</span>，一定要使得最后的 <span class="arithmatex">\(z_t\)</span> 是标准高斯分布，也就满足了之前VAE推导的过程</p>
 <p><code>总结：MHVAE+3个限制=VDM</code></p>
 <h3 id="31">3.1 限制是怎么加的？<a class="headerlink" href="#31" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241219222539023" src="/docs/images/image-20241219222539023.png" /></p>
+<p><img alt="image-20241219222539023" src="../images/image-20241219222539023.png" /></p>
 <ul>
 <li>限制1和限制2，要求维度相同，实际上主要在限制2，限制1要求维度相同，限制1是限制2的前提，因为如果限制1都不满足，也就是维度都不相同的话，那么是没有办法直接以前一状态（乘以某个系数）为均值的，因为维度都不相同，是不可以直接以前一状态为均值的，因此，首先第一点，限制1和限制2要一起看</li>
 <li>因此，具体地做法是：人为的定义一个高斯分布，做Encoder，在文章中的定义是：</li>
@@ -4227,13 +4235,13 @@
 <li><span class="arithmatex">\(\alpha\)</span>是什么呢？ <span class="arithmatex">\(\alpha\)</span>  是一个超参数，是人为定义的，类似于学习率，可以人为定义一个公式，与t有关的公式，或者通过学习得到，总之定义出来的 <span class="arithmatex">\(\alpha_t\)</span>要满足 <span class="arithmatex">\(x_t\)</span>  无限接近于 高斯分布，一般是认为定义公式，当一个超参数</li>
 <li>限制3，最后一个时刻 <span class="arithmatex">\(x_t\)</span>要满足高斯分布，数学表达就是 <span class="arithmatex">\(p(x_t)\sim N(x_T;\mathrm{0,I})\)</span></li>
 </ul>
-<p><img alt="image-20241220092141181" src="/docs/images/image-20241220092141181.png" /></p>
+<p><img alt="image-20241220092141181" src="../images/image-20241220092141181.png" /></p>
 <ul>
 <li>以上是VDM的图示</li>
 <li>如果只是MHVAE的话，每一个p和q都是要学习的，现在VDM的话，只有p是要学习的，通过 <span class="arithmatex">\(\theta\)</span> 来拟合，但是 <span class="arithmatex">\(q\)</span> （q表示从上一个状态到下一个状态）每一个状态都是已知的（递推已知），都是人为定义的，包括 <span class="arithmatex">\(z_t\)</span>  也是已知的，并且满足 标准高斯分布，因此 VDM要学习的只是 上面一部分 p 过程，降低模型学习难度</li>
 </ul>
 <h3 id="32-vdmelbo">3.2 VDM的ELBO推导<a class="headerlink" href="#32-vdmelbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220092732595" src="/docs/images/image-20241220092732595.png" /></p>
+<p><img alt="image-20241220092732595" src="../images/image-20241220092732595.png" /></p>
 <ul>
 <li>
 <p>VAE → MHVAE → VDM 推导都是很类似的，区别就是一些符号的细节</p>
@@ -4249,15 +4257,15 @@
 <h3 id="33-elbo">3.3  ELBO的拆解<a class="headerlink" href="#33-elbo" title="Permanent link">&para;</a></h3>
 <p>继续沿用之前的研究步骤，拆解VDM的ELBO，观察与VAE的拆解有什么不同</p>
 <p><span class="arithmatex">\(VAE的ELBO拆解=重建项-KL散度（先验匹配项）\)</span></p>
-<p><img alt="image-20241220095510645" src="/docs/images/image-20241220095510645.png" /></p>
+<p><img alt="image-20241220095510645" src="../images/image-20241220095510645.png" /></p>
 <ul>
 <li>马尔科夫性质：<strong>只</strong> 与前一个状态有关</li>
 <li>p过程是后向 decoder过程，所以是以 <span class="arithmatex">\(x_t\)</span> 为条件</li>
 <li>q过程是前向 Encoder过程，所以是以 <span class="arithmatex">\(x_{t-1}\)</span> 为条件</li>
 </ul>
 <p>继续推导：</p>
-<p><img alt="image-20241220100056992" src="/docs/images/image-20241220100056992.png" /></p>
-<p><img alt="image-20241220100227096" src="/docs/images/image-20241220100227096.png" /></p>
+<p><img alt="image-20241220100056992" src="../images/image-20241220100056992.png" /></p>
+<p><img alt="image-20241220100227096" src="../images/image-20241220100227096.png" /></p>
 <ul>
 <li>着重理解 什么叫 删掉无关变量</li>
 </ul>
@@ -4269,20 +4277,20 @@
 <p>蓝色框同理</p>
 <p>期望里面只与 <span class="arithmatex">\(x_T\)</span> 和 <span class="arithmatex">\(x_{T-1}\)</span>有关，期望下标就只保留 <span class="arithmatex">\(x_{T}\)</span> 和 <span class="arithmatex">\(x_{T-1}\)</span> 有关的分布即可，删掉无关变量即无关的分布</p>
 <p><strong><u>最后一步的推导，先看蓝色框部分：</u></strong></p>
-<p><img alt="image-20241220101256770" src="/docs/images/image-20241220101256770.png" /></p>
+<p><img alt="image-20241220101256770" src="../images/image-20241220101256770.png" /></p>
 <ul>
 <li>首先求期望，并且是对两个变量求期望，所以用多元函数期望的定义</li>
 <li>由马尔科夫性质：<span class="arithmatex">\(q(x_T|x_{T-1},x_0)\)</span>  可以划掉 <span class="arithmatex">\(x_0\)</span> 变成 <span class="arithmatex">\(q(x_T|x_{T-1})\)</span> ，但是 <span class="arithmatex">\(q(x_{T-1}|x_0)\)</span>划不掉</li>
 <li>拽出 <span class="arithmatex">\(x_T\)</span>，<span class="arithmatex">\(dx_{T}\)</span> 积分号，要积分的分布，和要积分的函数，构成一个期望</li>
 </ul>
-<p><img alt="image-20241220101819356" src="/docs/images/image-20241220101819356.png" /></p>
+<p><img alt="image-20241220101819356" src="../images/image-20241220101819356.png" /></p>
 <ul>
 <li>接着 就变成了一个 KL散度 <span class="arithmatex">\(KL(A||B)=\int P(A)\log\frac{P(A)}{P(B)}?\)</span>这公式真记不住</li>
 </ul>
 <p>Okay,蓝色框推导完了</p>
-<p><img alt="image-20241220102346450" src="/docs/images/image-20241220102346450.png" /></p>
+<p><img alt="image-20241220102346450" src="../images/image-20241220102346450.png" /></p>
 <p>推导绿色框</p>
-<p><img alt="image-20241220102401822" src="/docs/images/image-20241220102401822.png" /></p>
+<p><img alt="image-20241220102401822" src="../images/image-20241220102401822.png" /></p>
 <ul>
 <li>一个积分变量+一个积分号 → 1元期望</li>
 <li>2个积分变量+2个积分号 → 2元期望</li>
@@ -4295,7 +4303,7 @@
 </ul>
 <p>ELBO拆解的证明，现在看每一项具体地含义</p>
 <h3 id="34-elbo">3.4 ELBO拆解出来的含义<a class="headerlink" href="#34-elbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220103243350" src="/docs/images/image-20241220103243350.png" /></p>
+<p><img alt="image-20241220103243350" src="../images/image-20241220103243350.png" /></p>
 <p><strong>首先，第一项：<span class="arithmatex">\(\mathbb{E}_{q(x_1|x_0)}[\log p_{\theta}(x_0|x_1)]\)</span></strong></p>
 <p>重建项</p>
 <ul>
@@ -4318,20 +4326,20 @@
 <li>所以在优化 Diffusion 时，第三项，consistency term 是占主导的项</li>
 </ul>
 <h3 id="35-elbo">3.5 ELBO 拆解项图示<a class="headerlink" href="#35-elbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220144534940" src="/docs/images/image-20241220144534940.png" /></p>
+<p><img alt="image-20241220144534940" src="../images/image-20241220144534940.png" /></p>
 <ul>
 <li>借用 MHVAE 的图，来可视化</li>
 <li>首先，reconstruction term 表示从 x1 到 x0 的分布，在图上就是：</li>
 </ul>
-<p><img alt="image-20241220144705609" src="/docs/images/image-20241220144705609.png" /></p>
+<p><img alt="image-20241220144705609" src="../images/image-20241220144705609.png" /></p>
 <ul>
 <li>其次，prior matching term，箭头来说就是最后一项，表示 <span class="arithmatex">\(x_{T-1}\)</span> 到 <span class="arithmatex">\(x_T\)</span>的分布：</li>
 </ul>
-<p><img alt="image-20241220144942042" src="/docs/images/image-20241220144942042.png" /></p>
+<p><img alt="image-20241220144942042" src="../images/image-20241220144942042.png" /></p>
 <ul>
 <li>而最后的 consistency term 就是剩下的所有箭头</li>
 </ul>
-<p><img alt="image-20241220145125536" src="/docs/images/image-20241220145125536.png" /></p>
+<p><img alt="image-20241220145125536" src="../images/image-20241220145125536.png" /></p>
 <p>具体来说，</p>
 <ul>
 <li><span class="arithmatex">\(q(x_t|x_{t-1})\)</span> 就是粉红色的箭头</li>
@@ -4343,7 +4351,7 @@
 <p>以上是三个 loss 在 MHVAE 中直观地表达</p>
 <h3 id="36-consistency-term">3.6 consistency term：去噪方向预估<a class="headerlink" href="#36-consistency-term" title="Permanent link">&para;</a></h3>
 <p>说明第三项  </p>
-<p><img alt="image-20241220152723559" src="/docs/images/image-20241220152723559.png" /></p>
+<p><img alt="image-20241220152723559" src="../images/image-20241220152723559.png" /></p>
 <p><span class="arithmatex">\(consistency\_term  = \sum_{t=1}^{T-1} \mathbb{E}_{q(x_{t-1},x_{t+1}|x_0)}[D_{KL}(q(x_t|x_{t-1})||p_{\theta}(x_t|x_{t+1}))]\)</span></p>
 <blockquote>
 <p>这个表达是有问题的。</p>
@@ -4359,16 +4367,16 @@
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 接下来，讨论能不能降低这个方差</li>
 </ul>
-<p><img alt="image-20241220153321421" src="/docs/images/image-20241220153321421.png" /></p>
+<p><img alt="image-20241220153321421" src="../images/image-20241220153321421.png" /></p>
 <p>具体来说，就是把 2 个随机变量变成 1 个</p>
 <p>分析思路：既然都是要求 <span class="arithmatex">\(x_t\)</span> ，思考把 <span class="arithmatex">\(x_{t-1}\)</span> 到 <span class="arithmatex">\(x_t\)</span> <u>变成</u> <span class="arithmatex">\(x_{t+1}\)</span> 到 <span class="arithmatex">\(x_t\)</span>，记住贝叶斯公式</p>
 <p>仔细看 ppt 上的贝叶斯公式，在不看 <span class="arithmatex">\(x_0\)</span>的情况下，余下的部分就是标准的贝叶斯公式</p>
-<p><img alt="image-20241220153441383" src="/docs/images/image-20241220153441383.png" /></p>
+<p><img alt="image-20241220153441383" src="../images/image-20241220153441383.png" /></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 接下来讨论，如何通过贝叶斯公式，把第三项变成只有一个随机变量，来预估 <span class="arithmatex">\(x_t\)</span></li>
 </ul>
-<p><img alt="image-20241220153611199" src="/docs/images/image-20241220153611199.png" /></p>
-<p><img alt="image-20241220154005291" src="/docs/images/image-20241220154005291.png" /></p>
+<p><img alt="image-20241220153611199" src="../images/image-20241220153611199.png" /></p>
+<p><img alt="image-20241220154005291" src="../images/image-20241220154005291.png" /></p>
 <p>（1）看第一个划掉的，拿出来：</p>
 <p><span class="arithmatex">\(\log \prod_{t=2}^T\frac{1}{\frac{q(x_t|x_0)}{q(x_{t-1}|x_0)}}\)</span></p>
 <p><span class="arithmatex">\(=\log \prod_{t=2}^{T}\frac{q(x_{t-1}|x_0)}{q(x_t|x_0)}\)</span></p>
@@ -4378,7 +4386,7 @@
 <p><span class="arithmatex">\(=\log q(x_1|x_0) - \log q(x_T|x_0)\)</span></p>
 <p><span class="arithmatex">\(=\log \frac{q(x_1|x_0)}{q(x_T|x_0)}\)</span></p>
 <p>（2）<code>denoising matching term</code> 的推导</p>
-<p><img alt="image-20241220155235487" src="/docs/images/image-20241220155235487.png" /></p>
+<p><img alt="image-20241220155235487" src="../images/image-20241220155235487.png" /></p>
 <ul>
 <li>这个过程和前面 prior matching term 的推导是一样的</li>
 <li>具体来说：要求期望，用定义展开，变成积分的形式</li>
@@ -4386,13 +4394,13 @@
 <li>接着链式法则，拆 <span class="arithmatex">\(q(x_t,x_{t-1}|x_0)\)</span> 拆成 <span class="arithmatex">\(=q(x_t|x_0)q(x_{t-1}|x_t,x_0)\)</span></li>
 <li>链接法则以后，合并，出现一个期望：</li>
 </ul>
-<p><img alt="image-20241220155815189" src="/docs/images/image-20241220155815189.png" /></p>
+<p><img alt="image-20241220155815189" src="../images/image-20241220155815189.png" /></p>
 <p>也就是 KL 散度（注意是负的）</p>
-<p><img alt="image-20241220155931433" src="/docs/images/image-20241220155931433.png" /></p>
+<p><img alt="image-20241220155931433" src="../images/image-20241220155931433.png" /></p>
 <ul>
 <li>最后就是对 KL 散度求期望，得到最后：</li>
 </ul>
-<p><img alt="image-20241220160029381" src="/docs/images/image-20241220160029381.png" /></p>
+<p><img alt="image-20241220160029381" src="../images/image-20241220160029381.png" /></p>
 <p><code>分布、函数、积分号、积分符号都有 → 期望</code></p>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> KL 散度的文字描述：</li>
@@ -4408,7 +4416,7 @@
 </blockquote>
 <h3 id="37-vdm-e-lbo-2">3.7 VDM 的E LBO 拆解2<a class="headerlink" href="#37-vdm-e-lbo-2" title="Permanent link">&para;</a></h3>
 <p>最后得到的表达式：</p>
-<p><img alt="image-20241220160441213" src="/docs/images/image-20241220160441213.png" /></p>
+<p><img alt="image-20241220160441213" src="../images/image-20241220160441213.png" /></p>
 <ul>
 <li>观察第三项，此时对于 <span class="arithmatex">\(x_{t-1}\)</span>不需要既知道前一个状态又知道后一个状态，如果要预估 <span class="arithmatex">\(x_{t-1}\)</span>，只需要知道 <span class="arithmatex">\(x_t\)</span> 即可</li>
 <li>这样就把之前需要两个变量预估第三项（denosing matching term）表达式 变成了 一个变量 就是 由 <span class="arithmatex">\(x_t\)</span> 得到 <span class="arithmatex">\(x_{t-1}\)</span> ，因此减小了这项误差</li>
@@ -4417,21 +4425,21 @@
 <li>其实是一个东西，只是通过推导，使用一个方向的预估，可以使得 方差变小，预估更准确</li>
 </ul>
 <h3 id="38-vdm-elbo-vae-elbo">3.8 VDM 的 ELBO 拆解&amp;VAE 的ELBO 拆解<a class="headerlink" href="#38-vdm-elbo-vae-elbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220184111605" src="/docs/images/image-20241220184111605.png" /></p>
+<p><img alt="image-20241220184111605" src="../images/image-20241220184111605.png" /></p>
 <p>对比 VAE 的 ELBO 拆解</p>
 <p>（1）VAE 的 ELBO 拆解</p>
 <p>（2）VDM 的 ELBO 拆解</p>
 <p>① 可以看到前两项是一样的，都有 reconstruction term 和 prior matching term</p>
 <p>② 相比于 VAE，VDM 多了最后两项，denoising matching term，而且对于这个求和项，如果 <span class="arithmatex">\(T=1\)</span> 的话，这项就是等于 <span class="arithmatex">\(0\)</span> 的，因为 <span class="arithmatex">\(t\)</span> 是从 <span class="arithmatex">\(2\)</span> 开始的，所以 <span class="arithmatex">\(T=1\)</span>，这项就是没有的</p>
-<p><img alt="image-20241220184511355" src="/docs/images/image-20241220184511355.png" /></p>
+<p><img alt="image-20241220184511355" src="../images/image-20241220184511355.png" /></p>
 <p>此时 <code>VAE 的 ELBO 拆解=VDM 的 ELBO 拆解</code></p>
 <p>当然啦，要注意符号的对应呦~</p>
-<p><img alt="image-20241220184758217" src="/docs/images/image-20241220184758217.png" /></p>
+<p><img alt="image-20241220184758217" src="../images/image-20241220184758217.png" /></p>
 <p><span class="arithmatex">\(VDM ：x_0 → VAE：x\)</span></p>
 <p><span class="arithmatex">\(VDM ：x_1 → VAE：z\)</span></p>
 <p>这也说明了，VAE 和 VDM（Diffusion model）底层的 loss 表达是一致的，理论基础的一脉相承的</p>
 <h3 id="39-vdm-elbo">3.9 VDM 的 ELBO 优化<a class="headerlink" href="#39-vdm-elbo" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220185005831" src="/docs/images/image-20241220185005831.png" /></p>
+<p><img alt="image-20241220185005831" src="../images/image-20241220185005831.png" /></p>
 <p>（1）第一项：reconstruction term  <span class="arithmatex">\(\mathbb{E}_{\log p_{\theta}(x_0|x_1)}[\log p_{\theta}(x_0|x_1)]\)</span></p>
 <p>只有 1 项，并不是优化的重点</p>
 <p>（2）第二项：prior matching term  <span class="arithmatex">\(D_{KL}(q(x_T|x_0)||p(x_T))\)</span></p>
@@ -4448,7 +4456,7 @@
 <p>其实 q 是加噪过程，p 是从 <span class="arithmatex">\(x_0\)</span> 到 <span class="arithmatex">\(x_T\)</span> 的，但是经过转换这里的 q 从 <span class="arithmatex">\(x_t\)</span> 到 <span class="arithmatex">\(x_0\)</span></p>
 </blockquote>
 <h3 id="310-qx_t-1x_tx_0-ground-truth">3.10 <span class="arithmatex">\(q(x_{t-1}|x_t,x_0)\)</span> 的 ground truth<a class="headerlink" href="#310-qx_t-1x_tx_0-ground-truth" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241220201353736" src="/docs/images/image-20241220201353736.png" /></p>
+<p><img alt="image-20241220201353736" src="../images/image-20241220201353736.png" /></p>
 <p>思路：已知 <span class="arithmatex">\(q(x_t|x_{t-1})\)</span> 的分布是已知的，现在要求 <span class="arithmatex">\(q(x_{t-1}|x_t)\)</span> 的分布，方法就是借助贝叶斯公式</p>
 <ul>
 <li>ppt 上写的，可以先不用看 <span class="arithmatex">\(x_0\)</span>，余下的部分就是标准的贝叶斯公式</li>
@@ -4465,11 +4473,11 @@
 <p>（for <span class="arithmatex">\(q(x_t|x_0)\)</span>）现在要通过 <span class="arithmatex">\(x_0\)</span> 得到 <span class="arithmatex">\(x_{t-1}\)</span> 和 <span class="arithmatex">\(x_t\)</span>，方法：借助重参数化公式，递推，具体的步骤：</p>
 </li>
 </ul>
-<p><img alt="image-20241220202329958" src="/docs/images/image-20241220202329958.png" /></p>
+<p><img alt="image-20241220202329958" src="../images/image-20241220202329958.png" /></p>
 <p>说明</p>
 <p>（1）不管是 <span class="arithmatex">\(\epsilon_{t-1}^*\)</span>、<span class="arithmatex">\(\epsilon_{t-2}^*\)</span>、<span class="arithmatex">\(\epsilon_{t-2}\)</span> <span class="arithmatex">\(\sim N(0,1)\)</span> ，都是标准高斯分布的随机噪声，只是表示符号不同</p>
 <p>（2）重点说下：</p>
-<p><img alt="image-20241220202935386" src="/docs/images/image-20241220202935386.png" /></p>
+<p><img alt="image-20241220202935386" src="../images/image-20241220202935386.png" /></p>
 <p>这里用的知识点：两个高斯分布的和 还是 高斯分布，且均值和方差的公式有</p>
 <p><span class="arithmatex">\(a\epsilon_{t-2}^*+b\epsilon_{t-1}^* \sim N(0,a^2+b^2)\)</span></p>
 <p>还有，<span class="arithmatex">\(任意正态分布 = \sigma N(0,1) + \mu\)</span></p>
@@ -4481,41 +4489,41 @@
 <li>for <span class="arithmatex">\(q(x_{t-1}|x_0)\)</span>  只需要把 上面得到 <span class="arithmatex">\(q(x_t|x_0)\)</span>相关的，t 都换成 <span class="arithmatex">\(t-1\)</span> 即可</li>
 </ul>
 <p>如图：</p>
-<p><img alt="image-20241220203938791" src="/docs/images/image-20241220203938791.png" /></p>
+<p><img alt="image-20241220203938791" src="../images/image-20241220203938791.png" /></p>
 <ul>
 <li>以上，就得到了三项的表达式</li>
 <li>接下来，把得到的表达式，代入到公式中，也就是两个分布相乘 除以 另外两个分布</li>
 <li>省略系数</li>
 <li>把 <span class="arithmatex">\(x_{t-1}\)</span>视为未知数，合并同类项，因为要求的就是 <span class="arithmatex">\(x_{t-1}\)</span>的分布。别忘了是在利用贝叶斯公式 求 <span class="arithmatex">\(q(x_{t-1}|x_t)\)</span></li>
 </ul>
-<p><img alt="image-20241220204344399" src="/docs/images/image-20241220204344399.png" /></p>
+<p><img alt="image-20241220204344399" src="../images/image-20241220204344399.png" /></p>
 <p>合并 x_{t-1} 的平方项、一次项、常数项，得到最后的表达式</p>
 <ul>
 <li>忽略常数项 或者 系数 都是加了 <code>正比</code> 符号</li>
 </ul>
-<p><img alt="image-20241220204539026" src="/docs/images/image-20241220204539026.png" /></p>
+<p><img alt="image-20241220204539026" src="../images/image-20241220204539026.png" /></p>
 <p>注意看箭头指向&amp;对应关系：</p>
-<p><img alt="image-20241220204726800" src="/docs/images/image-20241220204726800.png" /></p>
+<p><img alt="image-20241220204726800" src="../images/image-20241220204726800.png" /></p>
 <p>得到了 以红框为方差，黄框为均值的 高斯分布，也就是推出了 <span class="arithmatex">\(q(x_t|x_{t-1})\)</span></p>
-<p><img alt="image-20241220205149532" src="/docs/images/image-20241220205149532.png" /></p>
+<p><img alt="image-20241220205149532" src="../images/image-20241220205149532.png" /></p>
 </blockquote>
-<p><img alt="image-20241220205234378" src="/docs/images/image-20241220205234378.png" /></p>
-<p><img alt="image-20241220205304475" src="/docs/images/image-20241220205304475.png" /></p>
-<p><img alt="image-20241220205444325" src="/docs/images/image-20241220205444325.png" /></p>
-<p><img alt="image-20241220212135141" src="/docs/images/image-20241220212135141.png" /></p>
-<p><img alt="image-20241220212211679" src="/docs/images/image-20241220212211679.png" /></p>
-<p><img alt="image-20241220212400721" src="/docs/images/image-20241220212400721.png" /></p>
-<p><img alt="image-20241220212452170" src="/docs/images/image-20241220212452170.png" /></p>
-<p><img alt="image-20241220212652146" src="/docs/images/image-20241220212652146.png" /></p>
-<p><img alt="image-20241220212638498" src="/docs/images/image-20241220212638498.png" /></p>
-<p><img alt="image-20241220212728543" src="/docs/images/image-20241220212728543.png" /></p>
+<p><img alt="image-20241220205234378" src="../images/image-20241220205234378.png" /></p>
+<p><img alt="image-20241220205304475" src="../images/image-20241220205304475.png" /></p>
+<p><img alt="image-20241220205444325" src="../images/image-20241220205444325.png" /></p>
+<p><img alt="image-20241220212135141" src="../images/image-20241220212135141.png" /></p>
+<p><img alt="image-20241220212211679" src="../images/image-20241220212211679.png" /></p>
+<p><img alt="image-20241220212400721" src="../images/image-20241220212400721.png" /></p>
+<p><img alt="image-20241220212452170" src="../images/image-20241220212452170.png" /></p>
+<p><img alt="image-20241220212652146" src="../images/image-20241220212652146.png" /></p>
+<p><img alt="image-20241220212638498" src="../images/image-20241220212638498.png" /></p>
+<p><img alt="image-20241220212728543" src="../images/image-20241220212728543.png" /></p>
 <p>用的基础知识：</p>
 <ul>
 <li>期望的定义</li>
 <li>KL 散度的公式</li>
 <li>贝叶斯公式</li>
 </ul>
-<p><img alt="image-20241220212918904" src="/docs/images/image-20241220212918904.png" /></p>
+<p><img alt="image-20241220212918904" src="../images/image-20241220212918904.png" /></p>
 
 
 
@@ -4523,6 +4531,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-20T14:49:27+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-20</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-19T14:26:51+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-19</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4572,6 +4612,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

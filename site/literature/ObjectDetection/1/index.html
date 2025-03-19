@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3872,63 +3880,63 @@
 </ul>
 </div>
 <h2 id="detr_1">DETR论文<a class="headerlink" href="#detr_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126094341959" src="/docs/images/image-20241126094341959.png" /></p>
-<p><img alt="image-20241126094412950" src="/docs/images/image-20241126094412950.png" /></p>
-<p><img alt="image-20241126112408864" src="/docs/images/image-20241126112408864.png" /></p>
-<p><img alt="image-20241126094430630" src="/docs/images/image-20241126094430630.png" /></p>
+<p><img alt="image-20241126094341959" src="../images/image-20241126094341959.png" /></p>
+<p><img alt="image-20241126094412950" src="../images/image-20241126094412950.png" /></p>
+<p><img alt="image-20241126112408864" src="../images/image-20241126112408864.png" /></p>
+<p><img alt="image-20241126094430630" src="../images/image-20241126094430630.png" /></p>
 <p>rpn阶段、roi阶段两次sample正负样本的数量</p>
 <p>首先在rpn阶段，首先生成不同比例的宽高，以及在不同比例的特征图的比例上生成</p>
 <p>需要定义anchor的宽高比、数量</p>
 <p>fast RCNN需要在rpn阶段、roi阶段进行两次NMS的计算，消除相同位置重复区域的预测</p>
-<p><img alt="image-20241126094805311" src="/docs/images/image-20241126094805311.png" /></p>
-<p><img alt="image-20241126094837655" src="/docs/images/image-20241126094837655.png" /></p>
+<p><img alt="image-20241126094805311" src="../images/image-20241126094805311.png" /></p>
+<p><img alt="image-20241126094837655" src="../images/image-20241126094837655.png" /></p>
 <p>DETR移除了Anchor的生成，在fast rcnn中，需要在第一阶段生成预设的数量以及宽高比，一些anchor，这些anchor在后续的第二阶段，在网络的输出中进行微调，DETR完全摒弃了这种方式</p>
-<p><img alt="image-20241126095035129" src="/docs/images/image-20241126095035129.png" /></p>
+<p><img alt="image-20241126095035129" src="../images/image-20241126095035129.png" /></p>
 <p>DETR属于集合预测的模型</p>
 <p>目标检测NMS的过程就是排除掉在一些相近的位置上对于同一个类别重复的预测</p>
 <p>在DETR中，是没有了这个过程，网络所给出的输出在定义中就是100个结果，这100个结果也是最终的网络预测的结果，包括图片中隐式类的结果，或者某些预测结果是没有目标的，这个预测值100指的是在所有可能的预测结果中的最大值，一般来说一张图片也不会定义100个gt，在其他的目标检测中，在最后一个阶段输出的网络结果的目标框，在没有进行NMS之前，这个数量是多过于100的</p>
 <p>DETR的两个核心内容：</p>
-<p><img alt="image-20241126095505941" src="/docs/images/image-20241126095505941.png" /></p>
+<p><img alt="image-20241126095505941" src="../images/image-20241126095505941.png" /></p>
 <p>一个是Transformer的结果，从标题中就可以看出；第二个是指的二分图匹配</p>
 <p>首先介绍二分图匹配</p>
-<p><img alt="image-20241126095600693" src="/docs/images/image-20241126095600693.png" /></p>
+<p><img alt="image-20241126095600693" src="../images/image-20241126095600693.png" /></p>
 <p>二分图就是定义了两个集合，在每一个集合，在各自的集合内，每一个点没有连接，在两个集合间，有边进行连接；二分图匹配与匈牙利算法，就是如何计算两个集合得到最优分配的问题</p>
-<p><img alt="image-20241126095807937" src="/docs/images/image-20241126095807937.png" /></p>
-<p><img alt="image-20241126101125135" src="/docs/images/image-20241126101125135.png" /></p>
-<p><img alt="image-20241126101146415" src="/docs/images/image-20241126101146415.png" /></p>
-<p><img alt="image-20241126101406144" src="/docs/images/image-20241126101406144.png" /></p>
-<p><img alt="image-20241126101429504" src="/docs/images/image-20241126101429504.png" /></p>
-<p><img alt="image-20241126101450752" src="/docs/images/image-20241126101450752.png" /></p>
-<p><img alt="image-20241126101528015" src="/docs/images/image-20241126101528015.png" /></p>
+<p><img alt="image-20241126095807937" src="../images/image-20241126095807937.png" /></p>
+<p><img alt="image-20241126101125135" src="../images/image-20241126101125135.png" /></p>
+<p><img alt="image-20241126101146415" src="../images/image-20241126101146415.png" /></p>
+<p><img alt="image-20241126101406144" src="../images/image-20241126101406144.png" /></p>
+<p><img alt="image-20241126101429504" src="../images/image-20241126101429504.png" /></p>
+<p><img alt="image-20241126101450752" src="../images/image-20241126101450752.png" /></p>
+<p><img alt="image-20241126101528015" src="../images/image-20241126101528015.png" /></p>
 <p>辅助损失</p>
-<p><img alt="image-20241126101556192" src="/docs/images/image-20241126101556192.png" /></p>
-<p><img alt="image-20241126101653064" src="/docs/images/image-20241126101653064.png" /></p>
+<p><img alt="image-20241126101556192" src="../images/image-20241126101556192.png" /></p>
+<p><img alt="image-20241126101653064" src="../images/image-20241126101653064.png" /></p>
 <p>但是对于小目标的结果不太好，可能Transformer不太适合小目标</p>
-<p><img alt="image-20241126101743110" src="/docs/images/image-20241126101743110.png" /></p>
-<p><img alt="image-20241126101854237" src="/docs/images/image-20241126101854237.png" /></p>
+<p><img alt="image-20241126101743110" src="../images/image-20241126101743110.png" /></p>
+<p><img alt="image-20241126101854237" src="../images/image-20241126101854237.png" /></p>
 <h3 id="detr_2">DETR是什么？<a class="headerlink" href="#detr_2" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241126112542474" src="/docs/images/image-20241126112542474.png" /></p>
+<p><img alt="image-20241126112542474" src="../images/image-20241126112542474.png" /></p>
 <h2 id="deformable-detr">Deformable DETR 可变形<a class="headerlink" href="#deformable-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126105649180" src="/docs/images/image-20241126105649180.png" /></p>
+<p><img alt="image-20241126105649180" src="../images/image-20241126105649180.png" /></p>
 <h2 id="conditional-detr-detr">Conditional DETR 有条件的DETR<a class="headerlink" href="#conditional-detr-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126105624003" src="/docs/images/image-20241126105624003.png" /></p>
+<p><img alt="image-20241126105624003" src="../images/image-20241126105624003.png" /></p>
 <h2 id="anchor-detr">Anchor DETR<a class="headerlink" href="#anchor-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126110002303" src="/docs/images/image-20241126110002303.png" /></p>
+<p><img alt="image-20241126110002303" src="../images/image-20241126110002303.png" /></p>
 <h2 id="dab-detr">DAB-DETR<a class="headerlink" href="#dab-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126110145156" src="/docs/images/image-20241126110145156.png" /></p>
-<p><img alt="image-20241126110231457" src="/docs/images/image-20241126110231457.png" /></p>
+<p><img alt="image-20241126110145156" src="../images/image-20241126110145156.png" /></p>
+<p><img alt="image-20241126110231457" src="../images/image-20241126110231457.png" /></p>
 <h2 id="dn-detr-detr">DN-DETR 去噪DETR<a class="headerlink" href="#dn-detr-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126110400202" src="/docs/images/image-20241126110400202.png" /></p>
+<p><img alt="image-20241126110400202" src="../images/image-20241126110400202.png" /></p>
 <h2 id="dino">DINO<a class="headerlink" href="#dino" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126110743159" src="/docs/images/image-20241126110743159.png" /></p>
+<p><img alt="image-20241126110743159" src="../images/image-20241126110743159.png" /></p>
 <h2 id="lite-detr">Lite DETR<a class="headerlink" href="#lite-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126110855724" src="/docs/images/image-20241126110855724.png" /></p>
+<p><img alt="image-20241126110855724" src="../images/image-20241126110855724.png" /></p>
 <h2 id="focus-detr">Focus DETR<a class="headerlink" href="#focus-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126111557307" src="/docs/images/image-20241126111557307.png" /></p>
-<p><img alt="image-20241126111606712" src="/docs/images/image-20241126111606712.png" /></p>
+<p><img alt="image-20241126111557307" src="../images/image-20241126111557307.png" /></p>
+<p><img alt="image-20241126111606712" src="../images/image-20241126111606712.png" /></p>
 <h2 id="h-detr">H-DETR<a class="headerlink" href="#h-detr" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241126111852117" src="/docs/images/image-20241126111852117.png" /></p>
-<p><img alt="image-20241126111916701" src="/docs/images/image-20241126111916701.png" /></p>
+<p><img alt="image-20241126111852117" src="../images/image-20241126111852117.png" /></p>
+<p><img alt="image-20241126111916701" src="../images/image-20241126111916701.png" /></p>
 
 
 
@@ -3936,6 +3944,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T14:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-26T14:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-26</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3985,6 +4025,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

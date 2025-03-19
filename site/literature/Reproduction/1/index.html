@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3967,8 +3975,8 @@
 <h1 id="_1">一些模块<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <h2 id="_2">通道注意力及其变体<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <h2 id="senet">√ SENet<a class="headerlink" href="#senet" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250216195102911" src="/docs/images/image-20250216195102911.png" /></p>
-<p><img alt="image-20250216195120988" src="/docs/images/image-20250216195120988.png" /></p>
+<p><img alt="image-20250216195102911" src="../images/image-20250216195102911.png" /></p>
+<p><img alt="image-20250216195120988" src="../images/image-20250216195120988.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="kn">import</span> <span class="nn">torch</span>
 </span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
@@ -4078,9 +4086,9 @@
 </ul>
 <p><strong>SE Net的核心贡献是通过SE块显式建模通道间的依赖关系</strong></p>
 <h2 id="sknet">√ SKNet<a class="headerlink" href="#sknet" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250216201417591" src="/docs/images/image-20250216201417591.png" /></p>
-<p><img alt="image-20250222123945075" src="/docs/images/image-20250222123945075.png" /></p>
-<p><img alt="image-20250222124005731" src="/docs/images/image-20250222124005731.png" /></p>
+<p><img alt="image-20250216201417591" src="../images/image-20250216201417591.png" /></p>
+<p><img alt="image-20250222123945075" src="../images/image-20250222123945075.png" /></p>
+<p><img alt="image-20250222124005731" src="../images/image-20250222124005731.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kn">import</span> <span class="nn">torch</span>
 </span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">nn</span>
@@ -4154,9 +4162,9 @@
 </span></code></pre></div>
 <h2 id="cbam">√ CBAM<a class="headerlink" href="#cbam" title="Permanent link">&para;</a></h2>
 <p>论文《CBAM: Convolutional Block Attention Module》</p>
-<p><img alt="image-20250222123629324" src="/docs/images/image-20250222123629324.png" /></p>
-<p><img alt="image-20250222123709287" src="/docs/images/image-20250222123709287.png" /></p>
-<p><img alt="image-20250222123740942" src="/docs/images/image-20250222123740942.png" /></p>
+<p><img alt="image-20250222123629324" src="../images/image-20250222123629324.png" /></p>
+<p><img alt="image-20250222123709287" src="../images/image-20250222123709287.png" /></p>
+<p><img alt="image-20250222123740942" src="../images/image-20250222123740942.png" /></p>
 <p><strong>作用：</strong></p>
 <p>是为了提升前馈卷积神经网络性能而提出的一种简单而有效的注意力模块。CBAM通过顺序地推断两个维度上的注意力图（通道和空间），然后将这些注意力图乘以输入特征图进行自适应特征精炼。</p>
 <p>1、<strong>通道注意力模块（Channel Attention Module）</strong>：</p>
@@ -4228,8 +4236,8 @@
 </span></code></pre></div>
 <h2 id="eca">√ECA<a class="headerlink" href="#eca" title="Permanent link">&para;</a></h2>
 <p>论文《ECA-Net: Efficient Channel Attention for Deep Convolutional Neural Networks》</p>
-<p><img alt="image-20250222124459369" src="/docs/images/image-20250222124459369.png" /></p>
-<p><img alt="image-20250222124515086" src="/docs/images/image-20250222124515086.png" /></p>
+<p><img alt="image-20250222124459369" src="../images/image-20250222124459369.png" /></p>
+<p><img alt="image-20250222124515086" src="../images/image-20250222124515086.png" /></p>
 <p><strong>作用：</strong></p>
 <p>ECA模块旨在通过引入一种高效的通道注意力机制来增强深度卷积神经网络的特征表示能力。它着重于捕获通道间的动态依赖关系，从而使网络能够更加精确地重视对当前任务更重要的特征，提升模型在各种视觉任务上的性能。</p>
 <p><strong>机制：</strong></p>
@@ -4346,8 +4354,8 @@
 </span></code></pre></div>
 <h2 id="coordinate-attention">√ Coordinate Attention<a class="headerlink" href="#coordinate-attention" title="Permanent link">&para;</a></h2>
 <p>论文《Coordinate Attention for Efficient Mobile Network Design》</p>
-<p><img alt="image-20250222170038241" src="/docs/images/image-20250222170038241.png" /></p>
-<p><img alt="image-20250222170042846" src="/docs/images/image-20250222170042846.png" /></p>
+<p><img alt="image-20250222170038241" src="../images/image-20250222170038241.png" /></p>
+<p><img alt="image-20250222170042846" src="../images/image-20250222170042846.png" /></p>
 <ul>
 <li>Coordinate Attention提出了一种新的注意力机制，用于在移动网络中嵌入位置信息到通道注意力中。这种方法不仅关注“哪些通道是重要的”，而且关注“在哪里”关注，通过更精细地控制空间选择性注意力图的生成，进一步提升模型性能。</li>
 </ul>
@@ -4527,9 +4535,9 @@
 </span></code></pre></div>
 <h2 id="cotattention">CoTAttention<a class="headerlink" href="#cotattention" title="Permanent link">&para;</a></h2>
 <p>论文《Contextual Transformer Networks for Visual Recognition》</p>
-<p><img alt="image-20250222124330864" src="/docs/images/image-20250222124330864.png" /></p>
-<p><img alt="image-20250222124345663" src="/docs/images/image-20250222124345663.png" /></p>
-<p><img alt="image-20250222124401106" src="/docs/images/image-20250222124401106.png" /></p>
+<p><img alt="image-20250222124330864" src="../images/image-20250222124330864.png" /></p>
+<p><img alt="image-20250222124345663" src="../images/image-20250222124345663.png" /></p>
+<p><img alt="image-20250222124401106" src="../images/image-20250222124401106.png" /></p>
 <blockquote>
 <p>作用</p>
 </blockquote>
@@ -4611,9 +4619,9 @@
 </span></code></pre></div>
 <h2 id="tripletattention">√ TripletAttention<a class="headerlink" href="#tripletattention" title="Permanent link">&para;</a></h2>
 <p>论文《Rotate to Attend: Convolutional Triplet Attention Module》三分支注意力</p>
-<p><img alt="image-20250222124137926" src="/docs/images/image-20250222124137926.png" /></p>
-<p><img alt="image-20250222124159250" src="/docs/images/image-20250222124159250.png" /></p>
-<p><img alt="image-20250222172404187" src="/docs/images/image-20250222172404187.png" /></p>
+<p><img alt="image-20250222124137926" src="../images/image-20250222124137926.png" /></p>
+<p><img alt="image-20250222124159250" src="../images/image-20250222124159250.png" /></p>
+<p><img alt="image-20250222172404187" src="../images/image-20250222172404187.png" /></p>
 <p>Triplet Attention是一种新颖的注意力机制，它通过**捕获跨维度交互**，利用**三分支结构**来计算注意力权重。对于输入张量，Triplet Attention通过**旋转操作**建立维度间的依赖关系，随后通过残差变换对信道和空间信息进行编码，实现了几乎不增加计算成本的情况下，有效增强视觉表征的能力。</p>
 <blockquote>
 <p>机制</p>
@@ -4800,14 +4808,14 @@
 <h2 id="danet">√DANet<a class="headerlink" href="#danet" title="Permanent link">&para;</a></h2>
 <p>标题：Dual Attention Network for Scene Segmentation</p>
 <p>双重注意力网络</p>
-<p><img alt="image-20250222124748077" src="/docs/images/image-20250222124748077.png" /></p>
-<p><img alt="image-20250222124830648" src="/docs/images/image-20250222124830648.png" /></p>
-<p><img alt="image-20250222124841327" src="/docs/images/image-20250222124841327.png" /></p>
+<p><img alt="image-20250222124748077" src="../images/image-20250222124748077.png" /></p>
+<p><img alt="image-20250222124830648" src="../images/image-20250222124830648.png" /></p>
+<p><img alt="image-20250222124841327" src="../images/image-20250222124841327.png" /></p>
 <p>我应该也学一下 自己绘制 计算流程图</p>
-<p><img alt="image-20250222124930464" src="/docs/images/image-20250222124930464.png" /></p>
-<p><img alt="image-20250222124949328" src="/docs/images/image-20250222124949328.png" /></p>
-<p><img alt="image-20250222125003225" src="/docs/images/image-20250222125003225.png" /></p>
-<p><img alt="image-20250222125024697" src="/docs/images/image-20250222125024697.png" /></p>
+<p><img alt="image-20250222124930464" src="../images/image-20250222124930464.png" /></p>
+<p><img alt="image-20250222124949328" src="../images/image-20250222124949328.png" /></p>
+<p><img alt="image-20250222125003225" src="../images/image-20250222125003225.png" /></p>
+<p><img alt="image-20250222125024697" src="../images/image-20250222125024697.png" /></p>
 <p>优质注释</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-11-2"><a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="kn">import</span> <span class="nn">torch</span>
@@ -5033,13 +5041,13 @@
 <p>论文《Learning Spatial Fusion for Single-Shot Object Detection》</p>
 <p>自适应空间特征融合</p>
 <p><a href="https://mp.weixin.qq.com/s/LzAFyaH5Pj42uGHS8_0DWQ">ASFF</a></p>
-<p><img alt="image-20250223122423399" src="/docs/images/image-20250223122423399.png" /></p>
-<p><img alt="image-20250223122919658" src="/docs/images/image-20250223122919658.png" /></p>
-<p><img alt="image-20250223122932770" src="/docs/images/image-20250223122932770.png" /></p>
+<p><img alt="image-20250223122423399" src="../images/image-20250223122423399.png" /></p>
+<p><img alt="image-20250223122919658" src="../images/image-20250223122919658.png" /></p>
+<p><img alt="image-20250223122932770" src="../images/image-20250223122932770.png" /></p>
 <p><strong>主要解决：不同特征尺度不一致的问题</strong> </p>
 <p>softmax：</p>
-<p><img alt="image-20250223122755770" src="/docs/images/image-20250223122755770.png" /></p>
-<p><img alt="image-20250223122819398" src="/docs/images/image-20250223122819398.png" /></p>
+<p><img alt="image-20250223122755770" src="../images/image-20250223122755770.png" /></p>
+<p><img alt="image-20250223122819398" src="../images/image-20250223122819398.png" /></p>
 <p>（实践出真知）</p>
 <p><strong>优质注释</strong></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="kn">import</span> <span class="nn">torch</span>
@@ -5193,19 +5201,19 @@
 </span><span id="__span-12-149"><a id="__codelineno-12-149" name="__codelineno-12-149" href="#__codelineno-12-149"></a><span class="c1"># TODO 计算流程图、原文框架图、公式表示</span>
 </span></code></pre></div>
 <h2 id="fpn">√ <a href="https://arxiv.org/pdf/1612.03144">FPN</a> 特征金字塔网络<a class="headerlink" href="#fpn" title="Permanent link">&para;</a></h2>
-<p><img alt="IMG_0295" src="/docs/images/IMG_0295.jpg" /></p>
+<p><img alt="IMG_0295" src="../images/IMG_0295.jpg" /></p>
 <p><strong><a href="https://mp.weixin.qq.com/s?__biz=MzkzODQ0Nzk5Nw==&amp;mid=2247484987&amp;idx=1&amp;sn=e7fea22826dbda623f23e1a2f00f5552&amp;chksm=c2814329f5f6ca3f0c5cb6bab48a6cc719bf2f83f774c941c4960b30fba8d2c2b2c58e3dd618&amp;cur_album_id=3010807818071064579&amp;scene=190#rd">Feature Pyramid Network（FPN）</a></strong></p>
-<p><img alt="image-20250223135703949" src="/docs/images/image-20250223135703949.png" /></p>
-<p><img alt="image-20250223160541609" src="/docs/images/image-20250223160541609.png" /></p>
-<p><img alt="image-20250223160600857" src="/docs/images/image-20250223160600857.png" /></p>
+<p><img alt="image-20250223135703949" src="../images/image-20250223135703949.png" /></p>
+<p><img alt="image-20250223160541609" src="../images/image-20250223160541609.png" /></p>
+<p><img alt="image-20250223160600857" src="../images/image-20250223160600857.png" /></p>
 <p><a href="https://www.bilibili.com/video/BV1dh411U7D9/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">讲解</a></p>
-<p><img alt="image-20250223135758297" src="/docs/images/image-20250223135758297.png" /></p>
+<p><img alt="image-20250223135758297" src="../images/image-20250223135758297.png" /></p>
 <p>2016 年论文</p>
-<p><img alt="image-20250223160755182" src="/docs/images/image-20250223160755182.png" /></p>
-<p><img alt="image-20250223160922542" src="/docs/images/image-20250223160922542.png" /></p>
-<p><img alt="image-20250223160954522" src="/docs/images/image-20250223160954522.png" /></p>
-<p><img alt="image-20250223161125762" src="/docs/images/image-20250223161125762.png" /></p>
-<p><img alt="image-20250223161229485" src="/docs/images/image-20250223161229485.png" /></p>
+<p><img alt="image-20250223160755182" src="../images/image-20250223160755182.png" /></p>
+<p><img alt="image-20250223160922542" src="../images/image-20250223160922542.png" /></p>
+<p><img alt="image-20250223160954522" src="../images/image-20250223160954522.png" /></p>
+<p><img alt="image-20250223161125762" src="../images/image-20250223161125762.png" /></p>
+<p><img alt="image-20250223161229485" src="../images/image-20250223161229485.png" /></p>
 <p><a href="https://blog.csdn.net/weixin_41552975/article/details/135530473">代码</a>（已注释）：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-13-1"><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="kn">import</span> <span class="nn">torch.nn</span> <span class="k">as</span> <span class="nn">nn</span>
 </span><span id="__span-13-2"><a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="kn">import</span> <span class="nn">torch</span>
@@ -5284,10 +5292,10 @@
 <p><a href="https://openaccess.thecvf.com/content_ICCV_2019/papers/Wang_PANet_Few-Shot_Image_Semantic_Segmentation_With_Prototype_Alignment_ICCV_2019_paper.pdf">PANet: Few-Shot Image Semantic Segmentation with Prototype Alignment</a></p>
 <h2 id="_4">空间注意力及变体<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <h2 id="attention">√Attention<a class="headerlink" href="#attention" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250223172648964" src="/docs/images/image-20250223172648964.png" /></p>
-<p><img alt="image-20250223172826491" src="/docs/images/image-20250223172826491.png" /></p>
+<p><img alt="image-20250223172648964" src="../images/image-20250223172648964.png" /></p>
+<p><img alt="image-20250223172826491" src="../images/image-20250223172826491.png" /></p>
 <p>QKV 是 X 在三种不同向量空间的表示，增强了模型的表达能力</p>
-<p><img alt="image-20250223172907126" src="/docs/images/image-20250223172907126.png" /></p>
+<p><img alt="image-20250223172907126" src="../images/image-20250223172907126.png" /></p>
 <p><mark>为什么 QK 之间做乘法？</mark></p>
 <ul>
 <li>向量乘法可以用来衡量向量之间的相似度</li>
@@ -5307,7 +5315,7 @@
 <p>把向量的维度设置为64和设置为512</p>
 <p>在计算点积的时候，维度越大点积的数值越大，此时在计算 softmax 也就是 e 的 x 次方的时候，指数函数的数值会变大，会造成梯度不稳定，所以除以一个缩放因子，也就是根号下<span class="arithmatex">\(D_k\)</span>，既可以保持数值上的稳定性，也可以保持梯度上的稳定性。</p>
 <p><mark>多头注意力机制</mark></p>
-<p><img alt="image-20250223173913249" src="/docs/images/image-20250223173913249.png" /></p>
+<p><img alt="image-20250223173913249" src="../images/image-20250223173913249.png" /></p>
 <p>多头自注意力机制是由多个自注意、多个缩放点击注意力构成的，大家各计算各的互不相干，最后只要将每个自注意力机制的一个输出进行一个拼接，再通过一个线性层融合就可以了</p>
 <p><mark>第一个点，如何划分多头？</mark></p>
 <p>最简单的方式，当给定一个BCHW矩阵的时候，在这个通道C上平均划分为M组，每组通道数量是K，M乘K等于C</p>
@@ -5425,19 +5433,19 @@
 </span><span id="__span-14-105"><a id="__codelineno-14-105" name="__codelineno-14-105" href="#__codelineno-14-105"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">output</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </span></code></pre></div>
 <h2 id="attention_1">Attention 拓展<a class="headerlink" href="#attention_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250223213343729" src="/docs/images/image-20250223213343729.png" /></p>
-<p><img alt="image-20250223213743962" src="/docs/images/image-20250223213743962.png" /></p>
-<p><img alt="image-20250223214012716" src="/docs/images/image-20250223214012716.png" /></p>
+<p><img alt="image-20250223213343729" src="../images/image-20250223213343729.png" /></p>
+<p><img alt="image-20250223213743962" src="../images/image-20250223213743962.png" /></p>
+<p><img alt="image-20250223214012716" src="../images/image-20250223214012716.png" /></p>
 <h2 id="cot">上下文 CoT<a class="headerlink" href="#cot" title="Permanent link">&para;</a></h2>
 <ul>
 <li>首先 query 并没有经过 1x1 的 conv 变换（也就是对应序列的 linear），而是直接 x = query</li>
 <li>key 是聚合了 3 x 3 窗口范围内的上下文信息</li>
 <li>query 和 key 在通道上进行拼接，经过两个 1x1 的卷积，得到权重矩阵</li>
 </ul>
-<p><img alt="image-20250223223714588" src="/docs/images/image-20250223223714588.png" /></p>
+<p><img alt="image-20250223223714588" src="../images/image-20250223223714588.png" /></p>
 <p>难点：<mark>怎么理解 query 和 key 在通道上进行拼接，经过两个 1x1 的卷积，得到权重矩阵？</mark>  </p>
 <p><mark>一个拼接后的向量，它怎么就能变成注意力权重矩阵？</mark></p>
-<p><img alt="image-20250223223642221" src="/docs/images/image-20250223223642221.png" /></p>
+<p><img alt="image-20250223223642221" src="../images/image-20250223223642221.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 </span><span id="__span-15-2"><a id="__codelineno-15-2" name="__codelineno-15-2" href="#__codelineno-15-2"></a><span class="kn">import</span> <span class="nn">torch</span>
 </span><span id="__span-15-3"><a id="__codelineno-15-3" name="__codelineno-15-3" href="#__codelineno-15-3"></a><span class="kn">from</span> <span class="nn">torch</span> <span class="kn">import</span> <span class="n">flatten</span><span class="p">,</span> <span class="n">nn</span>
@@ -5531,6 +5539,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-24T02:39:20+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-24</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-20T14:28:38+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-20</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5580,6 +5620,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

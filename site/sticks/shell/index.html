@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1531,6 +1539,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1829,7 +1858,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2124,27 +2153,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3597,24 +3605,24 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>cat /etc/shells
 </span></code></pre></div>
 <p>查看系统中所有的 bash版本</p>
-<p><img alt="image-20250228162135165" src="/docs/images/image-20250228162135165.png" /></p>
+<p><img alt="image-20250228162135165" src="../images/image-20250228162135165.png" /></p>
 <p>查看环境变量、系统的查找路径（系统会在这些路径中查找各种命令的执行文件）、shell环境变量就是用来存储当前系统默认使用的shell的路径的、<code>$0</code> 查看当前正在执行的脚本的名称</p>
-<p><img alt="image-20250228162357398" src="/docs/images/image-20250228162357398.png" /></p>
+<p><img alt="image-20250228162357398" src="../images/image-20250228162357398.png" /></p>
 <p>切换 shell</p>
-<p><img alt="image-20250228162735475" src="/docs/images/image-20250228162735475.png" /></p>
+<p><img alt="image-20250228162735475" src="../images/image-20250228162735475.png" /></p>
 <p>（3）shell 基础</p>
 <p>① 新建</p>
-<p><img alt="image-20250228162931588" src="/docs/images/image-20250228162931588.png" /></p>
+<p><img alt="image-20250228162931588" src="../images/image-20250228162931588.png" /></p>
 <p>② 脚本文件的第一行：系统自动调用bash来解释执行</p>
-<p><img alt="image-20250228162950840" src="/docs/images/image-20250228162950840.png" /></p>
-<p><img alt="image-20250228163052714" src="/docs/images/image-20250228163052714.png" /></p>
+<p><img alt="image-20250228162950840" src="../images/image-20250228162950840.png" /></p>
+<p><img alt="image-20250228163052714" src="../images/image-20250228163052714.png" /></p>
 <p>③ 运行一个脚本文件的例子</p>
 <p>脚本文件中的内容</p>
-<p><img alt="image-20250228163149357" src="/docs/images/image-20250228163149357.png" /></p>
+<p><img alt="image-20250228163149357" src="../images/image-20250228163149357.png" /></p>
 <p>🔵 :wq保存并退出，回到命令行</p>
 <p>🔵 在 linux 中执行脚本文件，要给这个文件添加执行权限，a+x 给所有用户添加执行权限</p>
 <p>之后执行：执行的方式是在命令行中输入  <code>./</code> ，然后加上脚本文件的名称就可以了</p>
-<p><img alt="image-20250228163232397" src="/docs/images/image-20250228163232397.png" /></p>
+<p><img alt="image-20250228163232397" src="../images/image-20250228163232397.png" /></p>
 
 
 
@@ -3622,6 +3630,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-04</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-04</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3671,6 +3711,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

@@ -242,3 +242,86 @@ markdown_extensions:
 
 
 > 我最开始的报错是，路径错了；还有 `absolute: false` 这里设置成 false
+
+## mkdocs & mermaid
+
+项目地址：[https://github.com/fralau/mkdocs-mermaid2-plugin](https://github.com/fralau/mkdocs-mermaid2-plugin)
+
+> 另附 ：[Mermaid 在线编辑器](https://mermaid-live.nodejs.cn/edit#pako:eNpVkcFOwzAMhl8l8gmkbgpdu7Q5ILEOdhkCiZ1od4jadIlYkipNNUbbdyfrBAKfbP-ff1l2D6WpOFCoj-ZUCmYd2q0LjXw85JmwsnWKtXs0m90PG-6QMpqfB7S62RjUCtM0Uh9ur_zqAqGs314wjpyQ-mO8Stk0_6L5gNb5ljXONPu_yu5kBvSYy1fh7f8rwnI_9ZTXjNZsVjKLMmYnBAJQ3ComK79-f-kU4ARXvADq04rXrDu6Ago9epR1zryddQnU2Y4HYE13EOA9j62vuqZijq8lO1imfpCG6Xdj1C_ka6A9fAINQzzHcRphnOA0jglOAjgDJWQe4yTC4R1JoxQvF2MAX5MDnsckChfLhQ-CQ5yQAHglnbHP1_NPXxi_AcRZec0) 
+
+可以<u>正确解析</u>： 
+
+![image-20250319130453547](images/image-20250319130453547.png)
+
+第一步：终端安装
+
+```python
+pip install mkdocs-mermaid2-plugin
+```
+
+第二步：更新配置文件：
+
+```yaml
+plugins:
+    - search
+    - mermaid2
+```
+
+第三步：修改一下主题
+
+```yaml
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:mermaid2.fence_mermaid_custom
+```
+
+需要注意的问题：上面的缩进，非常容易报错，AI 自动给输出的全文本内容会有删减，细心点吧。
+
+具体的位置：
+
+![image-20250319131024863](images/image-20250319131024863.png)
+
+示例代码 ````mermaid`
+
+```
+graph TD
+    classDef component fill:#e2f0cb,stroke:#333,stroke-width:1px
+    classDef operation fill:#ffd6cc,stroke:#333,stroke-width:1px
+
+    %% 类层次结构
+    ClassA[ClassA]:::component
+    ClassB[ClassB]:::component
+    
+    %% 初始化关系
+    subgraph 初始化过程
+    I_B[创建ClassB实例]:::operation --> I_A[创建ClassA实例]:::operation
+    end
+    
+    %% 方法调用关系
+    ClassA -- "调用" --> ClassB
+    ClassA.method_a -- "调用" --> ClassB.method_b
+```
+
+ 正确解析出的效果
+
+```mermaid
+graph TD
+    classDef component fill:#e2f0cb,stroke:#333,stroke-width:1px
+    classDef operation fill:#ffd6cc,stroke:#333,stroke-width:1px
+
+    %% 类层次结构
+    ClassA[ClassA]:::component
+    ClassB[ClassB]:::component
+    
+    %% 初始化关系
+    subgraph 初始化过程
+    I_B[创建ClassB实例]:::operation --> I_A[创建ClassA实例]:::operation
+    end
+    
+    %% 方法调用关系
+    ClassA -- "调用" --> ClassB
+    ClassA.method_a -- "调用" --> ClassB.method_b
+```
+

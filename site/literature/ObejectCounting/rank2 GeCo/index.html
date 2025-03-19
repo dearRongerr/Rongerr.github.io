@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3712,8 +3720,8 @@
   
 
 
-<p><img alt="image-20241117084827344" src="/docs/images/image-20241117084827344.png" /></p>
-<p><img alt="image-20241117084608910" src="/docs/images/image-20241117084608910.png" /></p>
+<p><img alt="image-20241117084827344" src="../images/image-20241117084827344.png" /></p>
+<p><img alt="image-20241117084608910" src="../images/image-20241117084608910.png" /></p>
 <p><a href="https://arxiv.org/pdf/2409.18686v1">原文链接</a></p>
 <p><a href="https://github.com/jerpelhan/GeCo">源码链接</a></p>
 <p>reading in 241117</p>
@@ -3813,7 +3821,7 @@
 <p>Post-hoc detection verification methods have been considered [20; 33] to address the issue, but their multi-stage formulation prevents exploiting the benefits of end-to-end training.</p>
 <p>事后检测验证方法一直被认为是[ 20 ; 33]来解决该问题，但它们的多阶段制定阻止了利用端到端训练的好处。</p>
 <p>me：先检测再验证挺好的，但是 不是单一阶段的，他说的是DAVE，一个作者的工作</p>
-<p><img alt="image-20241117093558528" src="/docs/images/image-20241117093558528.png" /></p>
+<p><img alt="image-20241117093558528" src="../images/image-20241117093558528.png" /></p>
 <p><strong>（第四段）</strong>    Currently, the best detection counters [20; 33] predict object locations based on the local maxima in the correlation map. </p>
 <p>目前，最好的检测计数器[ 20 ; 33]是根据相关图中的局部极大值来预测目标位置。</p>
 <p>During training, the map prediction is supervised by a unit Gaussian placed on each object center. </p>
@@ -3822,7 +3830,7 @@
 <p>然而，由此产生的替代损失容易受到中心标注噪声的影响，需要非平凡的启发式选择高斯核大小，并且在实际中导致紧凑的块状结构(见图1 ,列1和2)的检测偏好。</p>
 <p>Recently, DETR [1] inspired counter was proposed to avoid this issue [19], however, it fails in densely populated regions even though it applies a very large number of detection queries in a regular grid (see Figure 1, column 3&amp;4).</p>
 <p>最近，DETR [ 1 ]启发的计数器被提出来避免这个问题[ 19 ]，然而，尽管它在规则网格(见图1 ,第3、4列)中应用了大量的检测查询，但它在人口密集的地区失败了。</p>
-<p><img alt="image-20241117093540352" src="/docs/images/image-20241117093540352.png" /></p>
+<p><img alt="image-20241117093540352" src="../images/image-20241117093540352.png" /></p>
 <p>Figure 1: DAVE [20] predicts object centers (red dots) biased towards blob-like structures, leading to incorrect partial detections of ants (bottom left), while GeCo(ours) addresses this with the new loss (top left). 图1：DAVE [ 20 ]预测的目标中心(红色圆点)偏向于blob - like结构，导致错误的部分蚂蚁检测(左下)，而GeCo (我们的)用新的损失(左上)来解决这个问题。</p>
 <p>CDETR [19] fails in densely populated regions (bottom right), while GeCo addresses this with the new dense query formulation by prototype generalization (top right). Exploiting the SAM backbone, GeCo delivers segmentations as well. Exemplars are denoted in blue.CDETR [ 19 ]在人口稠密区域(右下角)失效，而Ge Co通过原型泛化(右上角)的新的稠密查询形式来解决这一问题。利用SAM骨干网，GeCo也提供了分段。图例用蓝色表示。</p>
 <p><u>这一段、这个图，我都看不懂；GeCo有一个新损失；GeCo，对比了DAVE（他自己的工作）、CDETR（？）</u></p>
@@ -3898,7 +3906,7 @@
 <li>在统一架构中实现目标检测、分割和计数。</li>
 <li>解决了现有方法的局限性，显著提升了性能。</li>
 </ul>
-<p><img alt="image-20250214135157814" src="/docs/images/image-20250214135157814.png" /></p>
+<p><img alt="image-20250214135157814" src="../images/image-20250214135157814.png" /></p>
 <p>Figure 1: DAVE [20] predicts object centers (red dots) biased towards blob-like structures, leading to incorrect partial detections of ants (bottom left), while GeCo(ours) addresses this with the new loss (top left). CDETR [19] fails in densely populated regions (bottom right), while GeCo addresses this with the new dense query formulation by prototype generalization (top right). Exploiting the SAM backbone, GeCo delivers segmentations as well. Exemplars are denoted in blue.（蓝色框是正确的标注框）</p>
 <p>解释：</p>
 <p><strong>DAVE 的局限性：</strong></p>
@@ -3926,10 +3934,10 @@
 <p>3.4  A novel loss for dense detection training</p>
 <blockquote>
 <p>其实我会奇怪，消融实验的部分和提出的东西没有十分对应</p>
-<p><img alt="image-20250215143334808" src="/docs/images/image-20250215143334808.png" /></p>
+<p><img alt="image-20250215143334808" src="../images/image-20250215143334808.png" /></p>
 </blockquote>
 <p>好好读读方法</p>
-<p><img alt="image-20250214140339158" src="/docs/images/image-20250214140339158.png" /></p>
+<p><img alt="image-20250214140339158" src="../images/image-20250214140339158.png" /></p>
 <p>基于框的计数方法</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="n">outputs</span><span class="p">,</span> <span class="n">ref_points</span><span class="p">,</span> <span class="n">centerness</span><span class="p">,</span> <span class="n">outputs_coord</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">img</span><span class="p">,</span> <span class="n">bboxes</span><span class="p">)</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
@@ -3937,23 +3945,23 @@
 </span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    <span class="n">x</span><span class="o">.</span><span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1024</span><span class="p">,</span> <span class="mi">1024</span><span class="p">])</span>
 </span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    <span class="n">bboxes</span><span class="o">.</span><span class="n">shape</span> <span class="n">torch</span><span class="o">.</span><span class="n">Size</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">])</span>
 </span></code></pre></div>
-<p><img alt="image-20250214141319816" src="/docs/images/image-20250214141319816.png" /></p>
+<p><img alt="image-20250214141319816" src="../images/image-20250214141319816.png" /></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="n">src</span><span class="p">,</span> <span class="n">src_hq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">backbone</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># SAM backbone</span>
 </span></code></pre></div>
-<p><img alt="image-20250214141817731" src="/docs/images/image-20250214141817731.png" /></p>
+<p><img alt="image-20250214141817731" src="../images/image-20250214141817731.png" /></p>
 <p>？</p>
-<p><img alt="image-20250214142307889" src="/docs/images/image-20250214142307889.png" /></p>
+<p><img alt="image-20250214142307889" src="../images/image-20250214142307889.png" /></p>
 <p>根据后面的代码，用的 src，所以</p>
-<p><img alt="image-20250214142426190" src="/docs/images/image-20250214142426190.png" /></p>
+<p><img alt="image-20250214142426190" src="../images/image-20250214142426190.png" /></p>
 <p><span class="arithmatex">\(H_0=1024\)</span></p>
-<p><img alt="image-20250214142534634" src="/docs/images/image-20250214142534634.png" /></p>
+<p><img alt="image-20250214142534634" src="../images/image-20250214142534634.png" /></p>
 <p><span class="arithmatex">\(h=64，r=16，d=256\)</span></p>
-<p><img alt="image-20250214143106225" src="/docs/images/image-20250214143106225.png" /></p>
-<p><img alt="image-20250214143742583" src="/docs/images/image-20250214143742583.png" /></p>
+<p><img alt="image-20250214143106225" src="../images/image-20250214143106225.png" /></p>
+<p><img alt="image-20250214143742583" src="../images/image-20250214143742583.png" /></p>
 <p>继续往下读：</p>
-<p><img alt="image-20250214143942675" src="/docs/images/image-20250214143942675.png" /></p>
+<p><img alt="image-20250214143942675" src="../images/image-20250214143942675.png" /></p>
 <p>0-shot 情况下，原型 p 的提取</p>
-<p><img alt="image-20250214144207197" src="/docs/images/image-20250214144207197.png" /></p>
+<p><img alt="image-20250214144207197" src="../images/image-20250214144207197.png" /></p>
 <p>原型 p 提取完以后，要进行后续的处理：</p>
 <p><strong>原型生成</strong></p>
 <ul>
@@ -3972,28 +3980,28 @@
 <li>通过非极大值抑制等后处理算法，对DQD输出的密集检测结果进行筛选和精修，最终输出高质量的检测框。</li>
 </ul>
 <p>该框架通过编码-解码架构实现了从原型泛化到密集检测的端到端处理，结合后处理步骤保证了检测精度与效率的平衡</p>
-<p><img alt="image-20250214144656108" src="/docs/images/image-20250214144656108.png" /></p>
-<p><img alt="image-20250214144825908" src="/docs/images/image-20250214144825908.png" /></p>
+<p><img alt="image-20250214144656108" src="../images/image-20250214144656108.png" /></p>
+<p><img alt="image-20250214144825908" src="../images/image-20250214144825908.png" /></p>
 <p>这一部分对应源码的</p>
-<p><img alt="image-20250214145330169" src="/docs/images/image-20250214145330169.png" /></p>
+<p><img alt="image-20250214145330169" src="../images/image-20250214145330169.png" /></p>
 <p>理由：</p>
-<p><img alt="image-20250214145426852" src="/docs/images/image-20250214145426852.png" /></p>
+<p><img alt="image-20250214145426852" src="../images/image-20250214145426852.png" /></p>
 <p>会有点奇怪，<span class="arithmatex">\(P_i = CA(P_{i-1},p,p)\)</span> 对应源码的什么部分，没找到交叉注意力模块。</p>
-<p><img alt="image-20250214155611211" src="/docs/images/image-20250214155611211.png" /></p>
+<p><img alt="image-20250214155611211" src="../images/image-20250214155611211.png" /></p>
 <p>找到了 3.1 公式 1</p>
-<p><img alt="image-20250214161304064" src="/docs/images/image-20250214161304064.png" /></p>
+<p><img alt="image-20250214161304064" src="../images/image-20250214161304064.png" /></p>
 <p>3.1 公式 2</p>
-<p><img alt="image-20250214165121054" src="/docs/images/image-20250214165121054.png" /></p>
+<p><img alt="image-20250214165121054" src="../images/image-20250214165121054.png" /></p>
 <p><span class="arithmatex">\(f^I = src\)</span></p>
 <p>开始 3.2</p>
-<p><img alt="image-20250214171846350" src="/docs/images/image-20250214171846350.png" /></p>
+<p><img alt="image-20250214171846350" src="../images/image-20250214171846350.png" /></p>
 <p>在第<span class="arithmatex">\(3.1\)</span>节中，密集查询<span class="arithmatex">\(Q\)</span>通过密集对象查询解码器（<span class="arithmatex">\(DQD\)</span>）被解码为对象检测结果。</p>
 <p>需要注意的是，<span class="arithmatex">\(SAM\)</span>主干网络对图像的空间降采样可能导致多个小对象被编码到<span class="arithmatex">\(Q\)</span>中的同一个查询中。</p>
 <p>为了解决这个问题，首先将对象查询在空间上解包为高分辨率的密集对象查询，即<span class="arithmatex">\(Q^{HR} ∈ R^{H×W×d}\)</span>，其中<span class="arithmatex">\(H = H0/2=1024/2=512，W = W0/2\)</span>，<span class="arithmatex">\(d=256\)</span>是特征通道数。</p>
 <p>解包过程包括三个卷积上采样阶段，每个阶段由一个<span class="arithmatex">\(3×3\)</span>卷积、一个<span class="arithmatex">\(Leaky ReLU\)</span>和一个<span class="arithmatex">\(2×双线性上采样\)</span>组成。</p>
-<p><img alt="image-20250214172823485" src="/docs/images/image-20250214172823485.png" /></p>
+<p><img alt="image-20250214172823485" src="../images/image-20250214172823485.png" /></p>
 <p>为了便于小对象的解包，第二阶段后的特征会与<span class="arithmatex">\(SAM-HQ\)</span>特征<span class="arithmatex">\(f^{HQ}\)</span>拼接后输入到最终阶段。</p>
-<p><img alt="image-20250214172934015" src="/docs/images/image-20250214172934015.png" /></p>
+<p><img alt="image-20250214172934015" src="../images/image-20250214172934015.png" /></p>
 <p>最后，通过一个简单的变换计算对象得分<span class="arithmatex">\(y^o ∈ \mathbb{R}^{H×W×1}\)</span>，即<span class="arithmatex">\(y^o = \mathrm{LRelu(W_O · Q^{HR})}\)</span>，其中<span class="arithmatex">\(\mathrm{W_O}\)</span>是学习到的投影矩阵，<span class="arithmatex">\(\mathrm{LReLU(·)}\)</span>是<span class="arithmatex">\(\mathrm{Leaky ReLU}\)</span>。每个查询还通过一个三层<span class="arithmatex">\(MLP\)</span>解码为对象姿态，即<span class="arithmatex">\(y^{BB} = \sigma(MLP(QHR))\)</span>，其中<span class="arithmatex">\(σ(·)\)</span>是sigmoid函数，<span class="arithmatex">\(y^{BB} ∈ R^{H×W×4}\)</span>是<span class="arithmatex">\(tlrb\)</span>格式[26]的边界框参数。</p>
 <ul>
 <li><span class="arithmatex">\(tlrb\)</span>格式 什么格式？</li>
@@ -4007,8 +4015,8 @@
 <p>DQD将密集查询Q解码为对象检测结果，并详细介绍了如何通过空间解包和特征增强来解决小对象编码问题，最终计算出对象得分和边界框参数</p>
 </li>
 </ul>
-<p><img alt="image-20250214194153073" src="/docs/images/image-20250214194153073.png" /></p>
-<p><img alt="image-20250214195516129" src="/docs/images/image-20250214195516129.png" /></p>
+<p><img alt="image-20250214194153073" src="../images/image-20250214194153073.png" /></p>
+<p><img alt="image-20250214195516129" src="../images/image-20250214195516129.png" /></p>
 <p><mark>说明 tlrb 格式</mark></p>
 <p>bounding box（边界框）通常用于标注图像中的目标物体。常见的边界框格式有多种，包括 <code>xyxy</code>、<code>xywh</code> 和 <code>tlrb</code> 等。</p>
 <p><code>tlrb</code> 格式表示的是边界框的四个边的相对位置，具体如下：</p>
@@ -4030,9 +4038,9 @@
 </ul>
 <p>这样，<code>outputs_coord</code> 就包含了每个像素点的边界框参数，格式为 <code>tlrb</code>。</p>
 <h2 id="32-2">3.2节 第 2 段，最后一句<a class="headerlink" href="#32-2" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250214202048286" src="/docs/images/image-20250214202048286.png" /></p>
+<p><img alt="image-20250214202048286" src="../images/image-20250214202048286.png" /></p>
 <h2 id="33">3.3 节<a class="headerlink" href="#33" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250214202744098" src="/docs/images/image-20250214202744098.png" /></p>
+<p><img alt="image-20250214202744098" src="../images/image-20250214202744098.png" /></p>
 <p>最终的检测结果是从 <span class="arithmatex">\(y^O\)</span> 和 <span class="arithmatex">\(y^{BB}\)</span> 中提取的，具体步骤如下：</p>
 <ol>
 <li>在阈值化的 <span class="arithmatex">\(y^O\)</span> 上，使用 <span class="arithmatex">\(3×3\)</span> 的非极大值抑制（NMS）算法，从 <span class="arithmatex">\(y^{BB}\)</span> 中读取局部最大值处的边界框参数。</li>
@@ -4046,10 +4054,10 @@
 <li>读代码的输入、处理、输出</li>
 </ul>
 <p>3.4 A novel loss for dense detection training</p>
-<p><img alt="image-20250216104632477" src="/docs/images/image-20250216104632477.png" /></p>
+<p><img alt="image-20250216104632477" src="../images/image-20250216104632477.png" /></p>
 <p>GeCotraining需要对密集目标性得分yO和边界框参数yBB进行监督。理想情况下，网络应该学会预测那些可以被非极大值抑制（NMS）可靠检测到的目标上的点，同时这些点也可以可靠地预测出边界框参数。因此，我们提出了一种新的密集目标检测损失函数，旨在追求这一特性。</p>
-<p><img alt="image-20250216105206082" src="/docs/images/image-20250216105206082.png" /></p>
-<p><img alt="image-20250216105222627" src="/docs/images/image-20250216105222627.png" /></p>
+<p><img alt="image-20250216105206082" src="../images/image-20250216105206082.png" /></p>
+<p><img alt="image-20250216105222627" src="../images/image-20250216105222627.png" /></p>
 
 
 
@@ -4057,6 +4065,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-20T14:28:38+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-20</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T11:19:11+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4106,6 +4146,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

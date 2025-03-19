@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1801,6 +1809,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -2099,7 +2128,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2394,27 +2423,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -4107,7 +4115,7 @@
 
 <h1 id="docker">Docker<a class="headerlink" href="#docker" title="Permanent link">&para;</a></h1>
 <p>占位：<a href="https://hub.docker.com/_/python">docker hub</a></p>
-<p><img alt="image-20250221141051912" src="/docs/images/image-20250221141051912.png" /> </p>
+<p><img alt="image-20250221141051912" src="../images/image-20250221141051912.png" /> </p>
 <p><a href="https://blog.csdn.net/A24kk42__/article/details/131970979">小白入门：如何在docker中运行python程序</a></p>
 <p><a href="https://www.zhihu.com/question/486938264/answer/2665791940">如何通过 Docker 部署深度学习项目环境？</a></p>
 <h2 id="_1">使用容器跑代码<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
@@ -4130,32 +4138,32 @@
 <p>🟢 第一步：拉取远程镜像，<a href="https://hub.docker.com/r/pytorch/pytorch/tags">docker pull</a></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>docker<span class="w"> </span>pull<span class="w"> </span>pytorch/pytorch:2.6.0-cuda11.8-cudnn9-devel
 </span></code></pre></div>
-<p><img alt="image-20250225201500742" src="/docs/images/image-20250225201500742.png" />  </p>
-<p><img alt="image-20250225221519423" src="/docs/images/image-20250225221519423.png" /></p>
+<p><img alt="image-20250225201500742" src="../images/image-20250225201500742.png" />  </p>
+<p><img alt="image-20250225221519423" src="../images/image-20250225221519423.png" /></p>
 <p>🟢 第二步，标记镜像，为 pull 下来的镜像，打标签，推送到==服务器上的名称:版本号==</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>8d8f916f1de0<span class="w"> </span>geco_image:v1
 </span></code></pre></div>
-<p><img alt="image-20250225221931500" src="/docs/images/image-20250225221931500.png" /></p>
+<p><img alt="image-20250225221931500" src="../images/image-20250225221931500.png" /></p>
 <p>🟢 第三步：将本地的 docker 镜像保存为 tar 文件，就用刚刚 tag 的别名:标签，这样到服务商就是对应的名称和标签</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>docker<span class="w"> </span>save<span class="w"> </span>-o<span class="w"> </span>镜像tar文件名称.tar<span class="w"> </span>geco_image:v1
 </span></code></pre></div>
-<p><img alt="image-20250225223126609" src="/docs/images/image-20250225223126609.png" /></p>
+<p><img alt="image-20250225223126609" src="../images/image-20250225223126609.png" /></p>
 <p>🟢 第四步：传输镜像，将保存的tar文件传输到远程服务上，FileZilla 即可</p>
-<p><img alt="image-20250225223611110" src="/docs/images/image-20250225223611110.png" /></p>
+<p><img alt="image-20250225223611110" src="../images/image-20250225223611110.png" /></p>
 <p>🟢 第五步：在远程服务上加载镜像</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>docker<span class="w"> </span>load<span class="w"> </span>-i<span class="w"> </span>镜像tar文件名称.tar
 </span></code></pre></div>
-<p><img alt="image-20250225202105226" src="/docs/images/image-20250225202105226.png" /></p>
+<p><img alt="image-20250225202105226" src="../images/image-20250225202105226.png" /></p>
 <ul>
 <li>在服务器端启动 docker</li>
 </ul>
 <p><code>docker run -it #####image_id#####</code></p>
-<p><img alt="image-20250225203349984" src="/docs/images/image-20250225203349984.png" /></p>
+<p><img alt="image-20250225203349984" src="../images/image-20250225203349984.png" /></p>
 <p>docker run -it 镜像，run起来就是容器（或者叫应用），是可以修改的。</p>
 <h2 id="docker_1">docker 配置加速<a href="https://cr.console.aliyun.com/cn-hangzhou/instances/mirrors">阿里云镜像</a>源<a class="headerlink" href="#docker_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250225201005904" src="/docs/images/image-20250225201005904.png" /></p>
-<p><img alt="image-20250225201030052" src="/docs/images/image-20250225201030052.png" /></p>
-<p><img alt="image-20250225200841314" src="/docs/images/image-20250225200841314.png" /></p>
+<p><img alt="image-20250225201005904" src="../images/image-20250225201005904.png" /></p>
+<p><img alt="image-20250225201030052" src="../images/image-20250225201030052.png" /></p>
+<p><img alt="image-20250225200841314" src="../images/image-20250225200841314.png" /></p>
 <h2 id="_3">一些命令<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <ul>
 <li>
@@ -4218,11 +4226,11 @@ my-image            v1.0                d1e3f1e4f1e4        2 days ago          
 <li><code>-i</code>：这是 <code>--input</code> 的缩写，指定输入文件。</li>
 <li><code>镜像tar文件名称.tar</code>：这是包含 Docker 镜像的 tar 文件的名称。</li>
 </ul>
-<p><img alt="image-20250225224035189" src="/docs/images/image-20250225224035189.png" /></p>
+<p><img alt="image-20250225224035189" src="../images/image-20250225224035189.png" /></p>
 <h2 id="dockerfile">dockerfile<a class="headerlink" href="#dockerfile" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250224224441779" src="/docs/images/image-20250224224441779.png" /></p>
+<p><img alt="image-20250224224441779" src="../images/image-20250224224441779.png" /></p>
 <p>查看官方源，以<a href="https://hub.docker.com/_/python">python</a>为例</p>
-<p><img alt="image-20250224224521579" src="/docs/images/image-20250224224521579.png" /></p>
+<p><img alt="image-20250224224521579" src="../images/image-20250224224521579.png" /></p>
 <h2 id="docker_2">系统学习docker<a class="headerlink" href="#docker_2" title="Permanent link">&para;</a></h2>
 <h3 id="docker_3">安装docker<a class="headerlink" href="#docker_3" title="Permanent link">&para;</a></h3>
 <ul>
@@ -4230,56 +4238,56 @@ my-image            v1.0                d1e3f1e4f1e4        2 days ago          
 <li><a href="https://docs.docker.com/engine/install/centos/">点击：开发者--&gt;文档--&gt;manuals手册(包含how to install、如何安装)--&gt;docker引擎 docker engine --&gt;  install安装--&gt;选择我们系统的版本（如 CentOS）--&gt; 参照步骤， 直接复制命令</a></li>
 <li>第一步，移除系统里边的旧版本</li>
 </ul>
-<p><img alt="image-20250225134400943" src="/docs/images/image-20250225134400943.png" /></p>
-<p><img alt="image-20250225134508044" src="/docs/images/image-20250225134508044.png" /></p>
+<p><img alt="image-20250225134400943" src="../images/image-20250225134400943.png" /></p>
+<p><img alt="image-20250225134508044" src="../images/image-20250225134508044.png" /></p>
 <ul>
 <li>第二步：配置docker的下载源</li>
 </ul>
 <p>安装 yum-utils 工具类，用这个工具类配置docker的下载地址源
 因为这里的docker下载地址是连接docker官网的，下载起来比较慢</p>
-<p><img alt="image-20250225134911413" src="/docs/images/image-20250225134911413.png" /></p>
+<p><img alt="image-20250225134911413" src="../images/image-20250225134911413.png" /></p>
 <p>参照如下：</p>
-<p><img alt="image-20250225134831604" src="/docs/images/image-20250225134831604.png" /></p>
+<p><img alt="image-20250225134831604" src="../images/image-20250225134831604.png" /></p>
 <p>把docker的下载源配置成阿里云的地址</p>
 <ul>
 <li>第三步，安装docker引擎：</li>
 </ul>
-<p><img alt="image-20250225135147161" src="/docs/images/image-20250225135147161.png" /></p>
+<p><img alt="image-20250225135147161" src="../images/image-20250225135147161.png" /></p>
 <p>包含</p>
 <p>（1）docker-ce：docker引擎</p>
 <p>（2）docker-ce-cli：docker引擎的命令行程序，命令行可以给docker的demon后台进程去发送命令</p>
 <p>（3）container.io：docker的运行时容器环境</p>
 <p>（4）以及docker用来构建镜像的插件工具</p>
 <p>（5）还有docker compose：做批量</p>
-<p><img alt="image-20250225140906758" src="/docs/images/image-20250225140906758.png" /></p>
+<p><img alt="image-20250225140906758" src="../images/image-20250225140906758.png" /></p>
 <p>输入Y确认下载安装</p>
 <ul>
 <li>第四步：启动docker</li>
 </ul>
-<p><img alt="image-20250225141102192" src="/docs/images/image-20250225141102192.png" /></p>
+<p><img alt="image-20250225141102192" src="../images/image-20250225141102192.png" /></p>
 <p>输入system control start docker
 sudo 表示 使用超级管理员权限，使用的是root的话，可以直接粘贴命令回车，完成 docker启动</p>
-<p><img alt="image-20250225141211110" src="/docs/images/image-20250225141211110.png" /></p>
+<p><img alt="image-20250225141211110" src="../images/image-20250225141211110.png" /></p>
 <p>运行docker命令，<code>docker ps</code>，查看正在运行中的应用</p>
 <p>注意：这个命令启动docker只是当前启动，如果关机，下次还得用这个命令启动docker， 所以额外加一个叫system control enable docker</p>
-<p><img alt="image-20250225141444395" src="/docs/images/image-20250225141444395.png" /></p>
+<p><img alt="image-20250225141444395" src="../images/image-20250225141444395.png" /></p>
 <p>让docker开机也启动，至此docker安装完成</p>
 <p><mark>补充配置：</mark> </p>
-<p><img alt="image-20250225141925977" src="/docs/images/image-20250225141925977.png" /></p>
+<p><img alt="image-20250225141925977" src="../images/image-20250225141925977.png" /></p>
 <p>docker已经启动安装完成以后，可以配置docker的加速</p>
 <p>因为docker去下载镜像， 默认从docker hub官网下载，而连接国外比较慢，所以一般配置国内镜像源地址</p>
 <p>命令行示例如下：</p>
-<p><img alt="image-20250225142141205" src="/docs/images/image-20250225142141205.png" /></p>
+<p><img alt="image-20250225142141205" src="../images/image-20250225142141205.png" /></p>
 <p>配置好加速源地址以后，重启docker的后台进程以及重启docker</p>
 <p>注意这里的配置原理，是docker后台进程的配置文件，在etc/docker/demon.json中，给这个json中配置了一个选项：registry - mirrors指向国内镜像源，相当于修改了docker的配置文件</p>
 <p>全部配置成功以后再次验证，如果docker ps 等 docker 命令可以运行证明没有问题</p>
 <h3 id="docker_4">docker 命令<a class="headerlink" href="#docker_4" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20250225142643751" src="/docs/images/image-20250225142643751.png" /></p>
+<p><img alt="image-20250225142643751" src="../images/image-20250225142643751.png" /></p>
 <p><mark>问题描述：</mark> </p>
-<p><img alt="image-20250225142736105" src="/docs/images/image-20250225142736105.png" /></p>
+<p><img alt="image-20250225142736105" src="../images/image-20250225142736105.png" /></p>
 <p>用docker启动一个nginx应用，并且将nginx的默认首页改成自己的页面，这样别人来访问这个nginx，就能看到你自己的页面，并且将改好的应用发布出去，发布到应用市场，让所有人都能从市场里边下载这个应用，直接运行</p>
 <p><mark>步骤如下：</mark></p>
-<p><img alt="image-20250225142944621" src="/docs/images/image-20250225142944621.png" /></p>
+<p><img alt="image-20250225142944621" src="../images/image-20250225142944621.png" /></p>
 <ul>
 <li>第一步去应用市场下载NGINX软件镜像</li>
 <li>然后docker使用这个镜像启动一个应用容器</li>
@@ -4287,14 +4295,14 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <li>最后把修改的整个软件，保存一个新的镜像，把这个镜像发布到应用市场里边，让别人可以下载</li>
 </ul>
 <p>第一步，下载镜像：</p>
-<p><img alt="image-20250225143244238" src="/docs/images/image-20250225143244238.png" /></p>
+<p><img alt="image-20250225143244238" src="../images/image-20250225143244238.png" /></p>
 <p>跟镜像相关的命令
 - 检索，使用docker search先找一下有没有这个镜像
 - 再利用docker pull把这个镜像下载过来
 - 使用docker images，查看已经下载来的所有镜像列表
 - 使用docker rmi，remove image的缩写，删除某一个镜像</p>
 <p>🟢 先来用docker search来搜一下有没有nginx镜像</p>
-<p><img alt="image-20250225143534847" src="/docs/images/image-20250225143534847.png" /></p>
+<p><img alt="image-20250225143534847" src="../images/image-20250225143534847.png" /></p>
 <ul>
 <li>打印一个列表</li>
 <li>name：镜像的名字</li>
@@ -4302,7 +4310,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <li>stars：这个镜像有多少的star</li>
 <li>official：这个镜像是不是官方发布的镜像，如果OK代表这是官方镜像，否则就是第三方制作的镜像</li>
 </ul>
-<p><img alt="image-20250225143744177" src="/docs/images/image-20250225143744177.png" /></p>
+<p><img alt="image-20250225143744177" src="../images/image-20250225143744177.png" /></p>
 <ul>
 <li>
 <p>显示 有一个NGINX，直接进行下载 </p>
@@ -4311,7 +4319,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>使用docker pull命令直接写镜像名回车，镜像进入下载流程，下载完成以后，使用docker images检查一下</p>
 </li>
 </ul>
-<p><img alt="image-20250225143922325" src="/docs/images/image-20250225143922325.png" /></p>
+<p><img alt="image-20250225143922325" src="../images/image-20250225143922325.png" /></p>
 <ul>
 <li>显示 系统里现在有一个镜像</li>
 <li>打印的列表：</li>
@@ -4333,26 +4341,26 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>如果要下载指定版本，那此时就不推荐docker search搜索镜像，而是去<a href="https://hub.docker.com/explore">docker hub网站</a>自己来搜索镜像，在这个网站里有完整的版本列表，看上哪个去下载哪个</p>
 </li>
 </ul>
-<p><img alt="image-20250225145149411" src="/docs/images/image-20250225145149411.png" /></p>
+<p><img alt="image-20250225145149411" src="../images/image-20250225145149411.png" /></p>
 <p>搜索想要的镜像，输入NGINX回车，有NGINX镜像
 注意加了这两个标志的都是官方镜像</p>
-<p><img alt="image-20250225145506282" src="/docs/images/image-20250225145506282.png" /></p>
+<p><img alt="image-20250225145506282" src="../images/image-20250225145506282.png" /></p>
 <p>点进来，每一个镜像都有说明，包括这个镜像如何启动，也提供了docker run命令</p>
-<p><img alt="image-20250225145609207" src="/docs/images/image-20250225145609207.png" /></p>
-<p><img alt="image-20250225145624912" src="/docs/images/image-20250225145624912.png" /></p>
+<p><img alt="image-20250225145609207" src="../images/image-20250225145609207.png" /></p>
+<p><img alt="image-20250225145624912" src="../images/image-20250225145624912.png" /></p>
 <p>参考每一个镜像的说明，如果想要下载其他版本的nginx，点击 TAGS 里</p>
-<p><img alt="image-20250225145813958" src="/docs/images/image-20250225145813958.png" /></p>
+<p><img alt="image-20250225145813958" src="../images/image-20250225145813958.png" /></p>
 <ul>
 <li>每一个tag都是一种版本，比如1.26</li>
 </ul>
-<p><img alt="image-20250225145919696" src="/docs/images/image-20250225145919696.png" /></p>
+<p><img alt="image-20250225145919696" src="../images/image-20250225145919696.png" /></p>
 <p>下载它，直接复制命令到我们的命令行，重新下载docker pull，冒号指定了镜像版本</p>
-<p><img alt="image-20250225150207687" src="/docs/images/image-20250225150207687.png" /></p>
+<p><img alt="image-20250225150207687" src="../images/image-20250225150207687.png" /></p>
 <p>下载完以后，使用<code>docker images</code>，完整写法是image ls，列出所有的镜像列表</p>
-<p><img alt="image-20250225152414867" src="/docs/images/image-20250225152414867.png" /></p>
+<p><img alt="image-20250225152414867" src="../images/image-20250225152414867.png" /></p>
 <p>看到有nginx1.26.0镜像 ，还有nginx lastest 镜像
 🟢 如果想要删除某一个镜像，可以使用docker rmi，就是remove image，写镜像的名加上完整标签</p>
-<p><img alt="image-20250225152705012" src="/docs/images/image-20250225152705012.png" /></p>
+<p><img alt="image-20250225152705012" src="../images/image-20250225152705012.png" /></p>
 <ul>
 <li>
 <p>比如要删latest，就写latest <code>docker rmi nginx：latest</code></p>
@@ -4363,9 +4371,9 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <li>镜像就被删除了</li>
 <li>再来检查docker images，列表里边只有NGINX1.2.6.0</li>
 </ul>
-<p><img alt="image-20250225152926024" src="/docs/images/image-20250225152926024.png" /></p>
+<p><img alt="image-20250225152926024" src="../images/image-20250225152926024.png" /></p>
 <h3 id="_4">启动容器<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20250225152950832" src="/docs/images/image-20250225152950832.png" /></p>
+<p><img alt="image-20250225152950832" src="../images/image-20250225152950832.png" /></p>
 <p>第一步，下载nginx镜像
 第二步，启动容器，每一个容器都代表一个运行中的应用</p>
 <p>🟢 跟容器相关的命令  </p>
@@ -4402,14 +4410,14 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p><mark>首先第一个docker run</mark></p>
 <p>当已经有了一个nginx镜像以后，想要启动这个应用</p>
 <p>第一步是docker run，启动一个应用</p>
-<p><img alt="image-20250225153515100" src="/docs/images/image-20250225153515100.png" /></p>
+<p><img alt="image-20250225153515100" src="../images/image-20250225153515100.png" /></p>
 <ul>
 <li>docker run --help 查看这个命令怎么用</li>
 </ul>
-<p><img alt="image-20250225153806270" src="/docs/images/image-20250225153806270.png" /></p>
+<p><img alt="image-20250225153806270" src="../images/image-20250225153806270.png" /></p>
 <p>用法usage是docker run <code>options</code>，options就是参数项</p>
 <p>启动一个容器能加的参数项：</p>
-<p><img alt="image-20250225153924326" src="/docs/images/image-20250225153924326.png" /></p>
+<p><img alt="image-20250225153924326" src="../images/image-20250225153924326.png" /></p>
 <ul>
 <li>
 <p>image代表镜像</p>
@@ -4424,9 +4432,9 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>2️⃣ 如果要加入一些参数设置，那就给run和image中间加上参数设置项</p>
 <p>现在直接使用<code>docker run nginx</code></p>
 <p>但如果不写镜像的版本号，就会使用最新镜像，如果第一次启动没有这个镜像，会自动下载，启动阻塞了控制台，此时不可以退出控制台，一停，应用跟着也就停了</p>
-<p><img alt="image-20250226172156272" src="/docs/images/image-20250226172156272.png" /></p>
+<p><img alt="image-20250226172156272" src="../images/image-20250226172156272.png" /></p>
 <p>复制一个视图，在这个会话中用第二个命令：docker ps，可以查看运行中的应用</p>
-<p><img alt="image-20250225155319072" src="/docs/images/image-20250225155319072.png" /></p>
+<p><img alt="image-20250225155319072" src="../images/image-20250225155319072.png" /></p>
 <p>看到有一个nginx在运行</p>
 <p>完整打印参数解释：</p>
 <ul>
@@ -4446,12 +4454,12 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <ul>
 <li>再使用docker ps 来检查，就没有运行中的这个应用了</li>
 </ul>
-<p><img alt="image-20250225155545302" src="/docs/images/image-20250225155545302.png" /></p>
+<p><img alt="image-20250225155545302" src="../images/image-20250225155545302.png" /></p>
 <p>注意docker ps  查看所有运行中的容器</p>
 <ul>
 <li>停了的，可以使用<code>docker ps -a</code> 就可以查看所有的容器，包括停止了的</li>
 </ul>
-<p><img alt="image-20250225160047398" src="/docs/images/image-20250225160047398.png" /></p>
+<p><img alt="image-20250225160047398" src="../images/image-20250225160047398.png" /></p>
 <p>可以看到这个容器之前是运行的，现在<code>status</code>状态是<code>exist</code>已经退出了</p>
 <p>▶️ 退出的容器如果再想启动怎么做呢？</p>
 <ul>
@@ -4462,36 +4470,36 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>docker start 写容器的名字、容器的id、id也可以只写三位，能跟其他人区分就行</p>
 </li>
 </ul>
-<p><img alt="image-20250225160217916" src="/docs/images/image-20250225160217916.png" /></p>
+<p><img alt="image-20250225160217916" src="../images/image-20250225160217916.png" /></p>
 <p>以上，代表把它启动起来了</p>
 <p>docker ps 查看，这个应用<code>up</code>，表示启动起来了</p>
 <p>▶️ 启动的应用如果想停掉，可以使用<code>docker stop</code>命令，把这个应用停掉，可以使用它的应用名</p>
-<p><img alt="image-20250225160755915" src="/docs/images/image-20250225160755915.png" /></p>
+<p><img alt="image-20250225160755915" src="../images/image-20250225160755915.png" /></p>
 <p>docker ps查看运行中的应用就没有了</p>
 <p>想要看到它就ps -a</p>
-<p><img alt="image-20250225160935176" src="/docs/images/image-20250225160935176.png" /></p>
+<p><img alt="image-20250225160935176" src="../images/image-20250225160935176.png" /></p>
 <p>看到七秒前退出</p>
 <p>▶️ docker restart</p>
 <p>无论这个容器是运行中还是停止了，都可以使用restart重启一下</p>
-<p><img alt="image-20250225161040369" src="/docs/images/image-20250225161040369.png" /></p>
+<p><img alt="image-20250225161040369" src="../images/image-20250225161040369.png" /></p>
 <p>docker ps ，看一下，又重新<code>up</code>上线了</p>
 <p>▶️ <code>docker states</code> </p>
 <p>查看这个应用CPU内存等占用情况</p>
-<p><img alt="image-20250225161208395" src="/docs/images/image-20250225161208395.png" /></p>
+<p><img alt="image-20250225161208395" src="../images/image-20250225161208395.png" /></p>
 <p>打印592容器，CPU内存包括网络IO整个情况，而且是每秒变化的，这一块没有变化的原因是因为这个容器现在没有处理任何请求，所以整个资源的占用没有变化</p>
 <p>▶️ <code>docker logs 592</code></p>
-<p><img alt="image-20250225161428210" src="/docs/images/image-20250225161428210.png" /></p>
+<p><img alt="image-20250225161428210" src="../images/image-20250225161428210.png" /></p>
 <p>容器在运行过程中会产生大量日志，有时要用日志排错等</p>
 <p>就可以使用docker logs查看容器日志</p>
-<p><img alt="image-20250226172508258" src="/docs/images/image-20250226172508258.png" /></p>
+<p><img alt="image-20250226172508258" src="../images/image-20250226172508258.png" /></p>
 <p>🟢 删除容器</p>
 <p>run 起来的镜像 叫做 容器。想要删除一个容器，必须先stop停了，才能删除；也可以使用false remove强制删除</p>
-<p><img alt="image-20250226195008163" src="/docs/images/image-20250226195008163.png" /></p>
+<p><img alt="image-20250226195008163" src="../images/image-20250226195008163.png" /></p>
 <p>🟢 强制删除的写法：</p>
-<p><img alt="image-20250226195035369" src="/docs/images/image-20250226195035369.png" /></p>
+<p><img alt="image-20250226195035369" src="../images/image-20250226195035369.png" /></p>
 <p>这样运行中的容器也能删除</p>
 <p>🟢检查：docker ps；docker ps -a</p>
-<p><img alt="image-20250226195138222" src="/docs/images/image-20250226195138222.png" /></p>
+<p><img alt="image-20250226195138222" src="../images/image-20250226195138222.png" /></p>
 <p>都没有</p>
 <h2 id="docker-run">docker run 后台启动<a class="headerlink" href="#docker-run" title="Permanent link">&para;</a></h2>
 <blockquote>
@@ -4501,7 +4509,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢docker rmi image:tag 删除镜像</p>
 <p>🟢 最简单的 docker run image（默认启动最新的 image，docker ps 查看该镜像的容器 id）</p>
 <p>🟢docker run -d（后台启动） --name my_image_container(给启动的镜像起一个容器名，如果不给名字，会起一个随机名字)  image</p>
-<p><img alt="image-20250226200007594" src="/docs/images/image-20250226200007594.png" /></p>
+<p><img alt="image-20250226200007594" src="../images/image-20250226200007594.png" /></p>
 <p>（1）这样启动以后，容器状态是 UP，并且名字是指定的名字</p>
 <p>（2）并且启动是后台启动，返回的是容器的完整 id</p>
 <blockquote>
@@ -4513,17 +4521,17 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>具体解释：</p>
 <p>当docker run启动一个容器，首先是本地的主机安装了docker，每一个容器其实在自己的环境内运行，是隔离的；每一个容器它都拥有自己完整的文件系统、名称空间、CPU内存进程等这些操作；如果docker run启动了一个nginx，其实nginx就安装到了这个容器中，也就是小型LINUX系统里边跑的一个软件，而这个nginx占用的是80端口，也就是如果你想要访问nginx，除非是来到这个小LINUX系统里边，访问小系统的80 端口，就可以访问到nginx</p>
 <p>但是现在想要访问的是外部主机的一个端口，就去访问到nginx，比如想要访问外部主机的88 端口，最终访问到nginx，那么就可以来做一个操作叫端口映射</p>
-<p><img alt="image-20250226200929555" src="/docs/images/image-20250226200929555.png" /></p>
+<p><img alt="image-20250226200929555" src="../images/image-20250226200929555.png" /></p>
 <p>使用 <code>-p</code> 这个参数写一个<code>外部端口:内部端口</code>就代表访问主机外部的88端口就等于访问容器内部的<code>80</code> 端口，这个操作叫端口映射，<code>p</code>就是<code>port</code>的简写</p>
 </blockquote>
 <p>🟢 端口映射 </p>
 <p><code>docker run -d 后台启动 --name 容器名 -p 本地 80 端口:容器内 80 端口 镜像名 nginx</code></p>
-<p><img alt="image-20250226201428506" src="/docs/images/image-20250226201428506.png" /></p>
+<p><img alt="image-20250226201428506" src="../images/image-20250226201428506.png" /></p>
 <p>此时，docker ps，查看容器状态</p>
-<p><img alt="image-20250226201623026" src="/docs/images/image-20250226201623026.png" /></p>
+<p><img alt="image-20250226201623026" src="../images/image-20250226201623026.png" /></p>
 <p>跟之前的打印有所区别：在PORTS端口这一块，<code>0.0.0.0:80</code> 代表任何<code>IP</code>访问<code>80</code>端口就是容器内部的<code>80</code>端口</p>
 <p>此时，浏览器上重新刷新</p>
-<p><img alt="image-20250226201928833" src="/docs/images/image-20250226201928833.png" /></p>
+<p><img alt="image-20250226201928833" src="../images/image-20250226201928833.png" /></p>
 <p>nginx的默认页面就展示出来了。
 03:19 所以非常重要的一个点
 03:21 就是如果我们使用docker启动一个容器
@@ -4543,7 +4551,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <h2 id="_5">修改容器<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>问题描述：</p>
-<p><img alt="image-20250226202918260" src="/docs/images/image-20250226202918260.png" /></p>
+<p><img alt="image-20250226202918260" src="../images/image-20250226202918260.png" /></p>
 <p>默认是nginx欢迎页，想要把它改成自己的欢迎页面。怎么修改呢？</p>
 </blockquote>
 <p>🟢 需要用到的命令：dockr exec 命令</p>
@@ -4551,13 +4559,13 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <blockquote>
 <p>问题描述：怎么知道修改的文档在哪里？</p>
 </blockquote>
-<p><img alt="image-20250226204731964" src="/docs/images/image-20250226204731964.png" /></p>
+<p><img alt="image-20250226204731964" src="../images/image-20250226204731964.png" /></p>
 <blockquote>
 <p>怎么知道修改的文档在哪里？</p>
 </blockquote>
 <p>阅读官方文档，docker hub，下载 ngnix 镜像的时候，镜像的介绍页 Overview，会说明 静态页面位置在哪。</p>
-<p><img alt="image-20250226204947941" src="/docs/images/image-20250226204947941.png" /></p>
-<p><img alt="image-20250226205049036" src="/docs/images/image-20250226205049036.png" /></p>
+<p><img alt="image-20250226204947941" src="../images/image-20250226204947941.png" /></p>
+<p><img alt="image-20250226205049036" src="../images/image-20250226205049036.png" /></p>
 <blockquote>
 <p>回到我们的问题：如果我们想要修改ngnix默认页，因为ngnix是装到容器里边的，所以我们需要进入到这个容器里边的ngnix存页面的位置进行修改</p>
 </blockquote>
@@ -4567,38 +4575,38 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </span></code></pre></div>
 <p><code>it</code> 表示以交互模式，相当于进行交互，进行命令的发送，以交互模式进入到哪里呢？就写容器名，容器名叫<code>mynginx</code>（或者写 id 也是可以的）</p>
 <p>后边再加上，因为要进行交互，那么使用哪种方式进行交互？使用控制台交互，所以后面接 <code>/bin/bash</code> </p>
-<p><img alt="image-20250226205545912" src="/docs/images/image-20250226205545912.png" /></p>
+<p><img alt="image-20250226205545912" src="../images/image-20250226205545912.png" /></p>
 <p>🟢（2）观察区别。原来是 <mark>root@VM......</mark> 变成 <mark>root@2d83bd....</mark>  表示现在已经进行到了 ngnix 容器内部</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>ls<span class="w"> </span>/
 </span></code></pre></div>
 <p><code>ls /</code> 列出目录结构</p>
-<p><img alt="image-20250226205939203" src="/docs/images/image-20250226205939203.png" /></p>
+<p><img alt="image-20250226205939203" src="../images/image-20250226205939203.png" /></p>
 <p>控制台输出也是一个 LINUX系统的目录结构，也就是说容器有自己的文件系统，带了nginx完整的运行环境</p>
 <p>而nginx页面的位置在<code>usr/share/nginx/html/</code> ，进入该文件</p>
-<p><img alt="image-20250226210222116" src="/docs/images/image-20250226210222116.png" /> </p>
+<p><img alt="image-20250226210222116" src="../images/image-20250226210222116.png" /> </p>
 <p><code>ls</code> 可以看到有一个index页面，可以修改</p>
-<p><img alt="image-20250226210409374" src="/docs/images/image-20250226210409374.png" /></p>
+<p><img alt="image-20250226210409374" src="../images/image-20250226210409374.png" /></p>
 <p><code>vi index.html</code> 回车</p>
-<p><img alt="image-20250226210519721" src="/docs/images/image-20250226210519721.png" /></p>
+<p><img alt="image-20250226210519721" src="../images/image-20250226210519721.png" /></p>
 <p>容器为了保持轻量级，内部的这个LINUX系统没有 <code>vi</code> 命令，如果想要修改页面使用 <code>echo</code> 方式。如图所示即可。</p>
 <p>再次来访问，刷新浏览器，展示新的页面</p>
-<p><img alt="image-20250226210721372" src="/docs/images/image-20250226210721372.png" /></p>
+<p><img alt="image-20250226210721372" src="../images/image-20250226210721372.png" /></p>
 <blockquote>
 <p>问题描述：每次想要修改容器内部的东西，还要使用docker exec进入到内部再进行修改，有点麻烦，比较简单的方式？</p>
 </blockquote>
 <p>🟢 使用<code>docker</code> 的存储把内部的一个文件夹，直接映射到外部主机的一个位置以后， 在主机位置改，内部也会发生变化（具体方式，蹲一个）</p>
 <p>（3）修改完成以后，exit 退出容器，重新回到本地机器的主控制界面</p>
-<p><img alt="image-20250226211130994" src="/docs/images/image-20250226211130994.png" /></p>
+<p><img alt="image-20250226211130994" src="../images/image-20250226211130994.png" /></p>
 <p>以上整个过程实现了，本地主机访问 80 端口可以访问到已经修改好的页面。</p>
 <h2 id="_6">保存镜像<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h2>
 <blockquote>
 <p>🔴 问题描述 ：把制作好的这个软件，能默认首页返回hello docker的软件，发布到应用市场，让别人下载这个软件，默认访问也能展示hello docker</p>
 </blockquote>
-<p><img alt="image-20250226211451577" src="/docs/images/image-20250226211451577.png" /></p>
+<p><img alt="image-20250226211451577" src="../images/image-20250226211451577.png" /></p>
 <p>第四步，保存镜像。</p>
 <p>之前启动了容器内部的页面，也修改了，现在希望把这个运行中的软件，打包成一个镜像保存起来，最终可以分享到社区</p>
 <p>需要用到的命令如下：</p>
-<p><img alt="image-20250226212610867" src="/docs/images/image-20250226212610867.png" /></p>
+<p><img alt="image-20250226212610867" src="../images/image-20250226212610867.png" /></p>
 <ul>
 <li>提交：docker commit</li>
 <li>保存：docker save</li>
@@ -4609,7 +4617,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-12-1"><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>--help
 </span></code></pre></div>
 <p>查看文档描述：</p>
-<p><img alt="image-20250226212754519" src="/docs/images/image-20250226212754519.png" /></p>
+<p><img alt="image-20250226212754519" src="../images/image-20250226212754519.png" /></p>
 <p>docker commit可以创建一个new image新镜像，从一个容器的改变里边。</p>
 <blockquote>
 <p>也就是利用commit命令，可以把整个容器以及它的所有变化，打包成一个新的镜像</p>
@@ -4636,21 +4644,21 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>演示：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a>docker<span class="w"> </span>commit<span class="w"> </span>-m<span class="s2">&quot;update index.html&quot;</span><span class="w"> </span>mynginx<span class="w"> </span>mynginx:v1.0
 </span></code></pre></div>
-<p><img alt="image-20250226214255243" src="/docs/images/image-20250226214255243.png" /></p>
+<p><img alt="image-20250226214255243" src="../images/image-20250226214255243.png" /></p>
 <p>运行成功，检查docker images，所有镜像列表</p>
-<p><img alt="image-20250226214526893" src="/docs/images/image-20250226214526893.png" /></p>
+<p><img alt="image-20250226214526893" src="../images/image-20250226214526893.png" /></p>
 <h3 id="docker-save">docker save<a class="headerlink" href="#docker-save" title="Permanent link">&para;</a></h3>
 <p>打包文件</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a>docker<span class="w"> </span>save<span class="w"> </span>--help
 </span></code></pre></div>
 <p>查看帮助文档 &amp; 命令功能：</p>
-<p><img alt="image-20250226214751183" src="/docs/images/image-20250226214751183.png" /></p>
+<p><img alt="image-20250226214751183" src="../images/image-20250226214751183.png" /></p>
 <p>具体使用实例：</p>
-<p><img alt="image-20250226214949978" src="/docs/images/image-20250226214949978.png" /></p>
+<p><img alt="image-20250226214949978" src="../images/image-20250226214949978.png" /></p>
 <p>docker save，加上镜像，先来写<code>docker save</code>，要保存的镜像是<code>myngnix</code>，标签 <code>v1.0</code></p>
 <p>镜像中间可以加一些参数，即 <code>save</code>跟<code>image</code>中间加 <code>options</code></p>
 <p><code>option</code>里边可以指定 <code>-o</code> 就是将这个镜像输出成一个 <code>.tar</code> 压缩文件，这个压缩包文件，可以随便起名，这里也叫 <code>myngnix.tar</code></p>
-<p><img alt="image-20250226215521893" src="/docs/images/image-20250226215521893.png" /></p>
+<p><img alt="image-20250226215521893" src="../images/image-20250226215521893.png" /></p>
 <p>这个包，可以放到U盘传输给别人，别人就能使用了</p>
 <p>🔴 问题描述：别人怎么使用？</p>
 <h3 id="docker-load_1">docker load<a class="headerlink" href="#docker-load_1" title="Permanent link">&para;</a></h3>
@@ -4662,24 +4670,24 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </span></code></pre></div>
 <p>🔵 场景描述：别人拷贝了 <code>mynginx.tar</code> ，那么对方怎么启动一模一样的应用呢？（如何把从别人那里拷贝来的镜像，运行出一样的容器（应用）？）</p>
 <p>安装 docker 的机器上，根目录只有  <code>mynginx.tar</code></p>
-<p><img alt="image-20250226220233188" src="/docs/images/image-20250226220233188.png" /></p>
+<p><img alt="image-20250226220233188" src="../images/image-20250226220233188.png" /></p>
 <p>此时使用，docker load，具体怎么使用，先查帮助文档</p>
-<p><img alt="image-20250226220349430" src="/docs/images/image-20250226220349430.png" /></p>
+<p><img alt="image-20250226220349430" src="../images/image-20250226220349430.png" /></p>
 <p>参数解读：</p>
 <ul>
 <li><code>-i</code> 指定压缩包位置，会自动将压缩包读取进来</li>
 </ul>
-<p><img alt="image-20250226220547475" src="/docs/images/image-20250226220547475.png" /></p>
+<p><img alt="image-20250226220547475" src="../images/image-20250226220547475.png" /></p>
 <p><code>docker images</code> 检查</p>
-<p><img alt="image-20250226220715601" src="/docs/images/image-20250226220715601.png" /></p>
+<p><img alt="image-20250226220715601" src="../images/image-20250226220715601.png" /></p>
 <p>🟢 有了镜像（only read）以后，使用docker run命令启动容器（实例化的镜像），</p>
 <p>docker run myngnix:v1.0  (镜像名:版本号)</p>
 <p>中间加可读参数：</p>
 <p><code>-d</code> 后台启动；<code>--name</code> 容器名称；<code>-p 80:80</code> 端口映射</p>
-<p><img alt="image-20250226220927516" src="/docs/images/image-20250226220927516.png" /></p>
+<p><img alt="image-20250226220927516" src="../images/image-20250226220927516.png" /></p>
 <p>返回完整的容器名。</p>
 <p><code>docker ps</code> 查看正在运行的容器；刷新浏览器，访问本地 80 端口，就是改过的页面，运行了一模一样的应用。</p>
-<p><img alt="image-20250226221330973" src="/docs/images/image-20250226221330973.png" /></p>
+<p><img alt="image-20250226221330973" src="../images/image-20250226221330973.png" /></p>
 <p>总结：</p>
 <ul>
 <li>docker commit：容器提交为镜像</li>
@@ -4691,7 +4699,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🔵 场景描述：把镜像保存成一个文件的方式，方便利用文件传输的手段进行传输，另外一种方式，把镜像推送给社区，直接使用docker pull 进行下载</p>
 <h2 id="docker-push">docker push<a class="headerlink" href="#docker-push" title="Permanent link">&para;</a></h2>
 <p>分享社区</p>
-<p><img alt="image-20250226222012601" src="/docs/images/image-20250226222012601.png" /></p>
+<p><img alt="image-20250226222012601" src="../images/image-20250226222012601.png" /></p>
 <p>最后一步，分享社区，把镜像 <code>mynginx:v1.0</code>  分享到官方的docker hub 仓库</p>
 <p>需要用到的 3 个命令：</p>
 <ul>
@@ -4703,11 +4711,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <ul>
 <li>查看用户名</li>
 </ul>
-<p><img alt="image-20250226223048263" src="/docs/images/image-20250226223048263.png" /></p>
+<p><img alt="image-20250226223048263" src="../images/image-20250226223048263.png" /></p>
 <p>🟢 <code>docker login</code>，按照提示 输入<code>用户名</code>和<code>密码</code></p>
-<p><img alt="image-20250226223121382" src="/docs/images/image-20250226223121382.png" /></p>
+<p><img alt="image-20250226223121382" src="../images/image-20250226223121382.png" /></p>
 <p>如果想要推送到网页端，在网页端登录以后，客户端（也就是终端）也需要登录，直接输入 <code>docker login</code>，按照提示输入 <code>用户名</code>和<code>密码</code>即可。</p>
-<p><img alt="image-20250226223516996" src="/docs/images/image-20250226223516996.png" /></p>
+<p><img alt="image-20250226223516996" src="../images/image-20250226223516996.png" /></p>
 <p>🟢 登录成功以后，想要推送 <code>mynginx</code> 镜像，接下来，使用 <code>docker tag</code> 对这个镜像进行改名</p>
 <blockquote>
 <p>理由：因为docker hub为了区分这些镜像，每一个镜像的名字都是它的用户名后边再加镜像，相当于我们本地的这个镜像缺少了用户名</p>
@@ -4719,31 +4727,31 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢 </p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-19-1"><a id="__codelineno-19-1" name="__codelineno-19-1" href="#__codelineno-19-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:v1.0
 </span></code></pre></div>
-<p><img alt="image-20250226223724627" src="/docs/images/image-20250226223724627.png" /></p>
+<p><img alt="image-20250226223724627" src="../images/image-20250226223724627.png" /></p>
 <p>执行完改名操作以后，<code>docker images</code> 检查</p>
-<p><img alt="image-20250226224133245" src="/docs/images/image-20250226224133245.png" /></p>
+<p><img alt="image-20250226224133245" src="../images/image-20250226224133245.png" /></p>
 <p>拥有了一个新镜像 <code>leifengyang/mynginx:v1.0</code> ，虽然镜像名跟标签跟上一个不一样</p>
 <p>但是都是同一个镜像，所以镜像id是一样的，有了这个新镜像以后，使用<code>docker push</code>把它推送上去</p>
 <p>🟢 docker push</p>
 <p>📢 需要注意的是 此时的推送不能使用 image ID，因为这两个镜像id都一样，没法区分，直接写镜像加标签回车，进行镜像推送，连向的是docker hub，会比较慢一点</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:v1.0
 </span></code></pre></div>
-<p><img alt="image-20250226224333673" src="/docs/images/image-20250226224333673.png" /></p>
+<p><img alt="image-20250226224333673" src="../images/image-20250226224333673.png" /></p>
 <p>整个推送完以后，这一块出现打印，来到个人主页，刷新 Repositories，就是个人的镜像仓库，而且是一个public镜像，所有人都可以访问。</p>
-<p><img alt="image-20250226224726009" src="/docs/images/image-20250226224726009.png" /></p>
+<p><img alt="image-20250226224726009" src="../images/image-20250226224726009.png" /></p>
 <p>点进这个镜像，也能看到这个镜像，推了一个标签叫v1.0</p>
-<p><img alt="image-20250226224906416" src="/docs/images/image-20250226224906416.png" /></p>
+<p><img alt="image-20250226224906416" src="../images/image-20250226224906416.png" /></p>
 <p>可以为这个镜像去来编写一个说明书</p>
-<p><img alt="image-20250226224939405" src="/docs/images/image-20250226224939405.png" /></p>
+<p><img alt="image-20250226224939405" src="../images/image-20250226224939405.png" /></p>
 <p>点击 <code>Add overview</code> ，支持markdown语法</p>
-<p><img alt="image-20250226225032193" src="/docs/images/image-20250226225032193.png" /></p>
+<p><img alt="image-20250226225032193" src="../images/image-20250226225032193.png" /></p>
 <p>镜像特性：修改了NGINX默认页，返回hello docker</p>
 <p>启动命令：来告诉别人怎么用这个镜像</p>
 <p>docker run -d 以后台方式启动 -p端口 暴露外部的80访问容器的80 --name mynginx</p>
 <p>然后使用这个镜像，全称+标签 <code>leifengyang/mynginx:v1.0</code></p>
 <p>点击更新，就为这个镜像写了一个说明书</p>
 <p>有了这个说明书以后呢，别人去docker hub去来搜你的这个镜像，然后根据描述启动镜像。</p>
-<p><img alt="image-20250226225452411" src="/docs/images/image-20250226225452411.png" /></p>
+<p><img alt="image-20250226225452411" src="../images/image-20250226225452411.png" /></p>
 <p>📢 推荐将镜像分享到社区时，除了上传指定版本的，还上传一个最新版本的，方便直接 docker pull</p>
 <p>🟢 具体的操作，使用 docker tag 改名即可</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-21-1"><a id="__codelineno-21-1" name="__codelineno-21-1" href="#__codelineno-21-1"></a>docker<span class="w"> </span>tag<span class="w"> </span>mynginx:v1.0<span class="w"> </span>leifengyang/mynginx:latest
@@ -4752,28 +4760,28 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢 使用 docker push 推送最新镜像，这样别人拉取镜像即使不写版本号也不会报错。</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-22-1"><a id="__codelineno-22-1" name="__codelineno-22-1" href="#__codelineno-22-1"></a>docker<span class="w"> </span>push<span class="w"> </span>leifengyang/mynginx:latest
 </span></code></pre></div>
-<p><img alt="image-20250227102717495" src="/docs/images/image-20250227102717495.png" /></p>
-<p><img alt="image-20250227104737604" src="/docs/images/image-20250227104737604.png" /></p>
+<p><img alt="image-20250227102717495" src="../images/image-20250227102717495.png" /></p>
+<p><img alt="image-20250227104737604" src="../images/image-20250227104737604.png" /></p>
 <p>整个推送完成，刷新自己的仓库，有最新发布的版本还有指定的版本</p>
 <h2 id="docker_5">总结 docker 的常用命令<a class="headerlink" href="#docker_5" title="Permanent link">&para;</a></h2>
 <p>尤其是 docker run 运行一个容器</p>
-<p><img alt="image-20250227104855212" src="/docs/images/image-20250227104855212.png" /></p>
+<p><img alt="image-20250227104855212" src="../images/image-20250227104855212.png" /></p>
 <h2 id="_7">补充端口映射<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250227105127653" src="/docs/images/image-20250227105127653.png" /></p>
+<p><img alt="image-20250227105127653" src="../images/image-20250227105127653.png" /></p>
 <p>🔵 情况描述：现在已经有了一个运行中的 docker 容器，占用的 80 端口，现在在启动一个 docker 容器，镜像仍然是 mynginx:v1.0，这次占用外部主机的 88 端口，相当于容器内部的 80 端口</p>
 <p>需要注意的是，docker run -d 后台启动，-p 端口映射本地 88 端口到容器内 80 端口，--name app02此时 容器名绝对不可以跟之前的容器名重复，启动的镜像还是 mynginx:v1.0</p>
 <p>🟢 启动一个容器，-d 后台启动，-p 本地 88 端口映射容器内部 80 端口，名字叫做 app02，从镜像 mynginx 中启动，标签名为 v1.0</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-23-1"><a id="__codelineno-23-1" name="__codelineno-23-1" href="#__codelineno-23-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">88</span>:80<span class="w"> </span>--name<span class="w"> </span>app02<span class="w"> </span>mynginx:v1.0
 </span></code></pre></div>
-<p><img alt="image-20250227105355015" src="/docs/images/image-20250227105355015.png" /></p>
+<p><img alt="image-20250227105355015" src="../images/image-20250227105355015.png" /></p>
 <h2 id="docker_6">docker 存储<a class="headerlink" href="#docker_6" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250227105737753" src="/docs/images/image-20250227105737753.png" /></p>
+<p><img alt="image-20250227105737753" src="../images/image-20250227105737753.png" /></p>
 <p>🔴 问题描述：</p>
 <blockquote>
 <p>（1）如果想要修改nginx的默认页面，需要知道在容器内部/usr/share/nginx/html这个位置下存了 nginx 的默认页，想要修改这个页面，需要使用docker exec，进入到容器内部进行修改</p>
 <p>（2）因为容器有自己的文件系统运行在自己的进程内，那数据自然也存到自己的容器内部，某一天假如这个容器炸了或者误删除，再重新启动一个，就相当于启动了一个新容器，原来容器里边的数据也会丢失</p>
 <p>以上描述了两种情况 ① 修改不容易 ② 容易丢失</p>
-<p><img alt="image-20250227112252417" src="/docs/images/image-20250227112252417.png" /></p>
+<p><img alt="image-20250227112252417" src="../images/image-20250227112252417.png" /></p>
 </blockquote>
 <p>📢  补充批量删除的所有容器的技巧</p>
 <ul>
@@ -4782,11 +4790,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-24-1"><a id="__codelineno-24-1" name="__codelineno-24-1" href="#__codelineno-24-1"></a>docker<span class="w"> </span>ps<span class="w"> </span>-aq
 </span></code></pre></div>
-<p><img alt="image-20250227125847128" src="/docs/images/image-20250227125847128.png" /></p>
+<p><img alt="image-20250227125847128" src="../images/image-20250227125847128.png" /></p>
 <blockquote>
 <p><code>docker ps -a</code> 拿到所有容器</p>
 <p><code>docker ps --help</code> </p>
-<p><img alt="image-20250227125742405" src="/docs/images/image-20250227125742405.png" /></p>
+<p><img alt="image-20250227125742405" src="../images/image-20250227125742405.png" /></p>
 <p>-a  显示所有容器</p>
 <p>-q 显示所有容器 ID</p>
 </blockquote>
@@ -4795,7 +4803,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </ul>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-25-1"><a id="__codelineno-25-1" name="__codelineno-25-1" href="#__codelineno-25-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span><span class="k">$(</span>docker<span class="w"> </span>ps<span class="w"> </span>-aq<span class="k">)</span>
 </span></code></pre></div>
-<p><img alt="image-20250227130114520" src="/docs/images/image-20250227130114520.png" /></p>
+<p><img alt="image-20250227130114520" src="../images/image-20250227130114520.png" /></p>
 <p><mark>现在演示在不挂在目录的情况下怎么修改默认页面</mark> </p>
 <p>🟢 第一步启动容器，如果没有镜像，那么 docker 会自动下载最新的镜像并启动容器：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-26-1"><a id="__codelineno-26-1" name="__codelineno-26-1" href="#__codelineno-26-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
@@ -4815,9 +4823,9 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢 第六步，修改目标文件，刷新页面，完成修改</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-31-1"><a id="__codelineno-31-1" name="__codelineno-31-1" href="#__codelineno-31-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">11111</span><span class="w"> </span>&gt;<span class="w"> </span>index.html
 </span></code></pre></div>
-<p><img alt="image-20250227130918653" src="/docs/images/image-20250227130918653.png" /></p>
+<p><img alt="image-20250227130918653" src="../images/image-20250227130918653.png" /></p>
 <p>这样修改的步骤已经很繁琐了，而且如果想要编辑一个文件，docker 内部都不支持编辑命令 </p>
-<p><img alt="image-20250227131815045" src="/docs/images/image-20250227131815045.png" /></p>
+<p><img alt="image-20250227131815045" src="../images/image-20250227131815045.png" /></p>
 <p>🔴以上情况都说明了容器内部的所有数据管理起来是非常不容易的</p>
 <p>演示另一种情况，不小心误删除容器，如果以相同的命令再次启动容器，此时容器变成了一个新的容器，刚刚的修改也不作数了</p>
 <p>具体操作：</p>
@@ -4828,13 +4836,13 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
 </span></code></pre></div>
 <p>此时，刷新页面，又变回了默认页面</p>
-<p><img alt="image-20250227132705776" src="/docs/images/image-20250227132705776.png" /></p>
+<p><img alt="image-20250227132705776" src="../images/image-20250227132705776.png" /></p>
 <p>说明：容器只要一启动，相当于启动一个自己的空间、文件系统和进程。容器一旦销毁它的所有的文件、系统内容全部销毁，这样就产生了数据丢失问题</p>
 <p>总之目录挂载可以解决的两个问题</p>
 <p>① 容器内部的文件修改不容易</p>
 <p>② 数据丢失问题</p>
 <h3 id="_8">目录挂载<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20250227133114007" src="/docs/images/image-20250227133114007.png" /></p>
+<p><img alt="image-20250227133114007" src="../images/image-20250227133114007.png" /></p>
 <p><mark>什么是目录挂载？</mark></p>
 <blockquote>
 <p>（1）docker允许在自己的机器中专门开辟一个目录，比如上图中演示的 <code>/app/nghtml</code>，然后告诉docker，这个目录对应容器内部的目录 <code>/usr/share/nginx/html</code>  </p>
@@ -4849,21 +4857,21 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>依然是 docker run，加一个 -v 参数 本地目录:容器内目录</p>
 <p>docker run -d后台启动，-p端口映射，本地 80 端口映射容器内 80 端口，-v 本地 /app/nghtml挂载到 /usr/share/nginx/html目录。如果名--name app01，启动的镜像 nginx</p>
 <p>※ docker run </p>
-<p><img alt="image-20250227135508986" src="/docs/images/image-20250227135508986.png" /></p>
+<p><img alt="image-20250227135508986" src="../images/image-20250227135508986.png" /></p>
 <p>关于目录挂载的说明</p>
 <div class="language-bat highlight"><pre><span></span><code><span id="__span-35-1"><a id="__codelineno-35-1" name="__codelineno-35-1" href="#__codelineno-35-1"></a>docker run -d -p 80:80 -v /app/nghtml:/usr/share/nginx/html --name app01 nginx
 </span></code></pre></div>
-<p><img alt="image-20250227142018026" src="/docs/images/image-20250227142018026.png" /></p>
+<p><img alt="image-20250227142018026" src="../images/image-20250227142018026.png" /></p>
 <p>（1）目录挂载启动一个容器以后，docker ps 查看容器状态，启动成功没问题，staus是up的；</p>
 <p>（2）而且外部一开始并没有创建这个目录，docker还会自动创建</p>
 <p>（3）<code>ls</code> 访问LINUX主机的app下边有没有东西，确实有一个 <code>nginx</code> 目录</p>
-<p><img alt="image-20250227142202126" src="/docs/images/image-20250227142202126.png" /></p>
+<p><img alt="image-20250227142202126" src="../images/image-20250227142202126.png" /></p>
 <p>对于宿主机来说，它是新建的一个空目录， 此时再来访问这个nginx，来到浏览器刷新</p>
-<p><img alt="image-20250227142405357" src="/docs/images/image-20250227142405357.png" /></p>
+<p><img alt="image-20250227142405357" src="../images/image-20250227142405357.png" /></p>
 <p>显示，nginx 返回403拒绝访问，因为现在nginx的默认页，要==以外边的文件夹为准==</p>
 <p>而我们宿主机文件夹没有默认页，所以内部也认为没有数据。</p>
 <p>（4）此时如果想要访问内容，就在外部准备一个页面</p>
-<p><img alt="image-20250227142634807" src="/docs/images/image-20250227142634807.png" /></p>
+<p><img alt="image-20250227142634807" src="../images/image-20250227142634807.png" /></p>
 <p>现在在宿主机文件夹内新建一个 index.html，并且添加 2222</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-36-1"><a id="__codelineno-36-1" name="__codelineno-36-1" href="#__codelineno-36-1"></a><span class="nb">echo</span><span class="w"> </span><span class="m">22222</span>&gt;index.html
 </span></code></pre></div>
@@ -4872,17 +4880,17 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <blockquote>
 <p>修改数据会非常容易，不用担心数据丢失，如果 docker ps 误删除了容器，外部的这个文件夹还在，而如果启动的时候用相同的命令，依然访问 80 端口，内容一模一样。</p>
 <p>🟢 误删除了容器</p>
-<p><img alt="image-20250227143046113" src="/docs/images/image-20250227143046113.png" /></p>
+<p><img alt="image-20250227143046113" src="../images/image-20250227143046113.png" /></p>
 <p>🟢 外部的文件夹还在 <code>pwd</code> print working directory 打印当前正在工作的目录</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-37-1"><a id="__codelineno-37-1" name="__codelineno-37-1" href="#__codelineno-37-1"></a><span class="nb">pwd</span>
 </span></code></pre></div>
-<p><img alt="image-20250227143202189" src="/docs/images/image-20250227143202189.png" /></p>
+<p><img alt="image-20250227143202189" src="../images/image-20250227143202189.png" /></p>
 <p>🟢 启动的时候用相同的命令，还是让外部的这个 <code>/app/nghtml</code> 文件夹挂载到内部 <code>/usr/share/nginx/html</code> </p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-38-1"><a id="__codelineno-38-1" name="__codelineno-38-1" href="#__codelineno-38-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">80</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>--name<span class="w"> </span>app01<span class="w"> </span>nginx
 </span></code></pre></div>
-<p><img alt="image-20250227143303904" src="/docs/images/image-20250227143303904.png" /></p>
+<p><img alt="image-20250227143303904" src="../images/image-20250227143303904.png" /></p>
 <p>此时，启动的nginx容器内部的内容就会跟外边保持一致，回车，启动的新容器docker ps 依然访问80端口，刷新内容一模一样</p>
-<p><img alt="image-20250227143708691" src="/docs/images/image-20250227143708691.png" /></p>
+<p><img alt="image-20250227143708691" src="../images/image-20250227143708691.png" /></p>
 <p>如果进到容器内部，在内部进行文件修改，外部也是看得见的</p>
 <p><strong>演示过程：</strong></p>
 <p>🟢 进入到 <code>9d1</code>  <code>bash</code> 控制台</p>
@@ -4905,13 +4913,13 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </span></code></pre></div>
 <p>🟢  退出 容器，控制台输入  <code>exit</code></p>
 <p>🟢 docker ps 查看该容器正在运行，但是我们把容器内容改了，现在看容器外部的内容是不是和容器内部的保持一致</p>
-<p><img alt="image-20250227144054405" src="/docs/images/image-20250227144054405.png" /></p>
+<p><img alt="image-20250227144054405" src="../images/image-20250227144054405.png" /></p>
 <p>现在看容器外部的内容是不是和容器内部的保持一致</p>
 <p>具体操作为</p>
 <p>🟢 打印当前工作目录 <code>pwd</code></p>
 <p>🟢  查看目录中的文件  <code>ls</code></p>
 <p>🟢 查看文件中的内容  <code>cat index.html</code></p>
-<p><img alt="image-20250227145311592" src="/docs/images/image-20250227145311592.png" /></p>
+<p><img alt="image-20250227145311592" src="../images/image-20250227145311592.png" /></p>
 <p>内容和容器内的文件保持一致，外部的目录挂载到容器内部的一个位置</p>
 </blockquote>
 <p>总结，目录挂载，使用 -v 的方式，将外部的文件挂载到容器内的文件</p>
@@ -4920,11 +4928,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>目录挂载会把 容器内相应的文件清空，然后将宿主机or主机or 本机的文件，复制到容器内对应的位置，如果宿主机文件夹内部是空的，那么容器内也是空的</p>
 <p>🔵 如果是容器启动的必要 config 配置文件挂载了，那么容器就会启动失败，因为目录挂载会清空 容器内目录，解决办法就是：</p>
 <p>🟢 卷映射</p>
-<p><img alt="image-20250227145910395" src="/docs/images/image-20250227145910395.png" /></p>
+<p><img alt="image-20250227145910395" src="../images/image-20250227145910395.png" /></p>
 <h2 id="_10">卷映射<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h2>
 <p>🔴 问题描述：</p>
 <p>之前启动的nginx容器，想修改它的配置文件，它的配置文件在容器内部的位置叫<code>etc/nginx/</code> 也就是 <code>nginx.conf</code></p>
-<p><img alt="image-20250227151607088" src="/docs/images/image-20250227151607088.png" /></p>
+<p><img alt="image-20250227151607088" src="../images/image-20250227151607088.png" /></p>
 <p>具体来说，</p>
 <p>（1）首先 docker exec -it 以交互模式启动容器 9d1的 bash 控制台</p>
 <p>（2）在容器内部，进入 etc/nginx文件夹</p>
@@ -4936,11 +4944,11 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 </span></code></pre></div>
 <p>后台启动，端口映射，之前 80 端口已经占用了，所以本机 88 端口映射容器内部 80 端口，先挂则页面目录 <code>-v /app/nghtml:/usr/share/nginx/html</code> ，再挂载配置文件目录  <code>-v /app/ngconf:/etc/nginx</code>  ，名字叫 app02 ，启动的镜像是 nginx</p>
 <p>🟢 docker ps 查看文件状态，发现运行中的容器并没有app02，docker ps -a查看所有容器，显示 app02 是退出状态：</p>
-<p><img alt="image-20250227155239667" src="/docs/images/image-20250227155239667.png" /></p>
+<p><img alt="image-20250227155239667" src="../images/image-20250227155239667.png" /></p>
 <p>那退出的原因是什么呢，检查 app02 的日志：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-46-1"><a id="__codelineno-46-1" name="__codelineno-46-1" href="#__codelineno-46-1"></a>docker<span class="w"> </span>logs<span class="w"> </span>app02
 </span></code></pre></div>
-<p><img alt="image-20250227155418081" src="/docs/images/image-20250227155418081.png" /></p>
+<p><img alt="image-20250227155418081" src="../images/image-20250227155418081.png" /></p>
 <p>最后一行显示，/etc/nginx/nginx.conf 没有这样的文件</p>
 <blockquote>
 <p>解释：因为如果使用目录挂载的话，会默认先在容器外边创建一个空文件夹，叫做 <code>ngconfig</code>，而这个空文件夹里边什么都没有，那再来挂载到容器内部的<code>/etc/nginx/</code>下，相当于容器内部目录内什么都没有，但是容器启动，又要使用默认的 <code>/etc/nginx/</code> 下的配置文件，所以容器报错导致没有启动</p>
@@ -4949,7 +4957,7 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🔴 有没有一种方式能让容器启动的时候，虽然在本机目录来挂载容器内部目录，但是容器内部目录有什么内容，能让本机挂载的目录跟容器内部目录的内容保持一致 ，外部目录初始化就有容器内部的内容？</p>
 <p><mark>解决方式 ： 卷映射</mark></p>
 <p>🔴 怎么使用卷映射？</p>
-<p><img alt="image-20250227160141631" src="/docs/images/image-20250227160141631.png" /></p>
+<p><img alt="image-20250227160141631" src="../images/image-20250227160141631.png" /></p>
 <p>卷映射的写法：-v</p>
 <p>case1：如果是目录挂载，需要写主机要挂载的目录位置</p>
 <p>case2：而如果是卷映射，写的是称为<code>卷名</code> ，所谓的卷其实指的就是一个存储，按照卷形式的写法，只需要起一个卷名</p>
@@ -4959,34 +4967,34 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>🟢 启动第三个容器：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a>docker<span class="w"> </span>run<span class="w"> </span>-d<span class="w"> </span>-p<span class="w"> </span><span class="m">99</span>:80<span class="w"> </span>-v<span class="w"> </span>/app/nghtml:/usr/share/nginx/html<span class="w"> </span>-v<span class="w"> </span>ngconf:/etc/nginx<span class="w"> </span>--name<span class="w"> </span>app03<span class="w"> </span>nginx
 </span></code></pre></div>
-<p><img alt="image-20250227160605847" src="/docs/images/image-20250227160605847.png" /></p>
+<p><img alt="image-20250227160605847" src="../images/image-20250227160605847.png" /></p>
 <p>重新启动一个容器，还是用之前的命令，来稍加修改，容器名 app03，88 端口被 app02 占用了，所以这里端口映射本机端口写 99 ，还有 -v 的时候，直接叫 ngconf 
 （叫做卷名）我启动一个app</p>
-<p><img alt="image-20250227160937628" src="/docs/images/image-20250227160937628.png" /></p>
+<p><img alt="image-20250227160937628" src="../images/image-20250227160937628.png" /></p>
 <p>docker ps 查看状态，app03 成功启动了。 </p>
 <p>这个 docker run 即使用了目录挂载，又使用了卷映射，</p>
 <p>🔴 问题：如果想修改配置文件，那怎么在本机去找文件存储位置？</p>
 <p>🟢 答：卷的位置 ，docker统一放在了这个目录下：</p>
 <p><code>/var/lib/docker/volumes/&lt;volume-nanme&gt;</code></p>
-<p><img alt="image-20250227161206705" src="/docs/images/image-20250227161206705.png" /></p>
+<p><img alt="image-20250227161206705" src="../images/image-20250227161206705.png" /></p>
 <p>实操：</p>
 <p>（1）进入本机 volumes 文件夹下。可以看到 ngconf 卷</p>
-<p><img alt="image-20250227161330171" src="/docs/images/image-20250227161330171.png" /></p>
+<p><img alt="image-20250227161330171" src="../images/image-20250227161330171.png" /></p>
 <p>（2）cd 进入卷 </p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-48-1"><a id="__codelineno-48-1" name="__codelineno-48-1" href="#__codelineno-48-1"></a><span class="nb">cd</span><span class="w"> </span>ngconf/
 </span></code></pre></div>
-<p><img alt="image-20250227161538219" src="/docs/images/image-20250227161538219.png" /></p>
+<p><img alt="image-20250227161538219" src="../images/image-20250227161538219.png" /></p>
 <p>① <code>ls</code> 查看目录内容，只有一个 <code>-data</code> 文件夹</p>
 <p>② <code>cd _data</code></p>
 <p>③ <code>ls</code> 查看 目录内容</p>
-<p><img alt="image-20250227161749780" src="/docs/images/image-20250227161749780.png" /></p>
+<p><img alt="image-20250227161749780" src="../images/image-20250227161749780.png" /></p>
 <p>也就是说明 原来容器内部  <code>/etc/nginx</code> 中的所有内容 都被完全的放到了 <code>卷</code>下面</p>
 <p>（1）本机修改 nginx.conf 文件</p>
 <p>（2）进入容器内部</p>
 <p>（3）cd 进文件夹</p>
 <p>（4）ls 显示目录内容</p>
 <p>（5）cat 显示文件内容，刚刚本机修改的内容，容器内部也被修改了</p>
-<p><img alt="image-20250227162019517" src="/docs/images/image-20250227162019517.png" /></p>
+<p><img alt="image-20250227162019517" src="../images/image-20250227162019517.png" /></p>
 <p>总结：以上演示了卷映射存储的两种方式</p>
 <blockquote>
 <ul>
@@ -5001,22 +5009,22 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 <p>补充 <code>cd ~</code> 表示进入根目录；pwd  <code>print working ddirectory</code></p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-49-1"><a id="__codelineno-49-1" name="__codelineno-49-1" href="#__codelineno-49-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
 </span></code></pre></div>
-<p><img alt="image-20250227162513266" src="/docs/images/image-20250227162513266.png" /></p>
+<p><img alt="image-20250227162513266" src="../images/image-20250227162513266.png" /></p>
 <p>🟢 创建一个新的卷：docker create + 卷名</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a>docker<span class="w"> </span>create<span class="w"> </span>haha
 </span></code></pre></div>
-<p><img alt="image-20250227162815956" src="/docs/images/image-20250227162815956.png" /></p>
+<p><img alt="image-20250227162815956" src="../images/image-20250227162815956.png" /></p>
 <ul>
 <li>最终所有的卷中的内容都会放到 <code>/var/lib/docker/vlolumes/你起的卷名</code>的 <code>_data</code>文件夹下，关于这个路径也可以不用记：</li>
 </ul>
 <p>🟢 查看卷属性：</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-51-1"><a id="__codelineno-51-1" name="__codelineno-51-1" href="#__codelineno-51-1"></a>docker<span class="w"> </span>volume<span class="w"> </span>inspect<span class="w"> </span>ngconf
 </span></code></pre></div>
-<p><img alt="image-20250227163518342" src="/docs/images/image-20250227163518342.png" /></p>
+<p><img alt="image-20250227163518342" src="../images/image-20250227163518342.png" /></p>
 <p>docker会打印这个卷真正所在的位置是在哪，以及它的创建时间等等</p>
 <p>📢  另外注意的一点，如果删除容器，卷和挂载的本地目录不会被删除</p>
 <p>下次再启动容器，使用相同的卷或者相同的目录，它们的数据依然都是在的</p>
-<p><img alt="image-20250227165002739" src="/docs/images/image-20250227165002739.png" /></p>
+<p><img alt="image-20250227165002739" src="../images/image-20250227165002739.png" /></p>
 <p>如图，删除app03，</p>
 <div class="language-bash highlight"><pre><span></span><code><span id="__span-52-1"><a id="__codelineno-52-1" name="__codelineno-52-1" href="#__codelineno-52-1"></a>docker<span class="w"> </span>rm<span class="w"> </span>-f<span class="w"> </span>app03
 </span><span id="__span-52-2"><a id="__codelineno-52-2" name="__codelineno-52-2" href="#__codelineno-52-2"></a>docker<span class="w"> </span>volume<span class="w"> </span>ls
@@ -5031,6 +5039,38 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-04</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-26T08:43:32+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-26</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5080,6 +5120,14 @@ sudo 表示 使用超级管理员权限，使用的是root的话，可以直接�
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

@@ -173,7 +173,21 @@ sh your_shell_path/shell_name.sh
 
 ![image-20250304135719100](images/image-20250304135719100.png)
 
+第一步：新建py文件，文件名
 
+```bash
+custom_repr.py
+```
+
+第二步：文件中的内容，[复制](#第二步复制)：
+
+第三步：在最开始的文件开头：
+
+```python
+import custom_repr
+```
+
+<a name = "第二步复制">复制这里</a> 
 
 ```
 import torch
@@ -348,3 +362,17 @@ launch.json 配置
 }
 ```
 
+
+
+## vscode 调试相关
+
+（1）记录点
+
+- 运行但是不停止
+- `{args.model_name}`  大括号包起来的内容会自动替换为 python 文件中的内容
+
+（2）禁用断点
+
+> case：有时候断点太多了，一点点从头开始一步步看，前面的断点明白了，就不用看了，但又不想删除时
+
+![image-20250319133135399](images/image-20250319133135399.png)

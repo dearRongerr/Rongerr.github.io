@@ -634,16 +634,6 @@ x_enc [B, L, D]        x_mark_enc [B, L, time_features]
 
 ## 模型定义
 
-### 嵌入部分
-
-```mermaid
-
-```
-
-
-
-
-
 
 
 ### 嵌入部分
@@ -691,6 +681,8 @@ classDiagram
 
 
 ### 编码器 解码器部分
+
+
 
 ```mermaid
 classDiagram

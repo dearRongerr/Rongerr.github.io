@@ -11,7 +11,7 @@
         <link rel="canonical" href="https://mydomain.org/mysite/learning/3_ViT/">
       
       
-        <link rel="prev" href="../../Error/docker/">
+        <link rel="prev" href="../0_pdfNotes/">
       
       
         <link rel="next" href="../1_clip/">
@@ -47,6 +47,14 @@
         <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="./" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -2018,7 +2047,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2313,27 +2342,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3944,11 +3952,11 @@
 
 
 <h1 id="vit">ViT<a class="headerlink" href="#vit" title="Permanent link">&para;</a></h1>
-<p><img alt="image-20241221150730303" src="/docs/images/image-20241221150730303.png" /></p>
+<p><img alt="image-20241221150730303" src="../images/image-20241221150730303.png" /></p>
 <p>一句话：纯 Transformer 解决计算机视觉问题</p>
 <p>并且在不同规模的数据集下与 CNN 进行对比，探讨 Transformer 的优势</p>
 <h2 id="vit_1">ViT 的结论<a class="headerlink" href="#vit_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221150830915" src="/docs/images/image-20241221150830915.png" /></p>
+<p><img alt="image-20241221150830915" src="../images/image-20241221150830915.png" /></p>
 <ul>
 <li>ViT 证明了 Transformer 模型的通用性</li>
 </ul>
@@ -3961,7 +3969,7 @@
 <p>对 Transformer 模型不做任何的修改 来完成对图像的分类任务，如果模型不能改变，那就改变图片数据，让图片数据变得像文本，所以 ViT 论文的题目：一张图像=16×16 的词</p>
 </blockquote>
 <h2 id="vit_2"><strong>ViT 是如何将图片转换成文本的呢？</strong><a class="headerlink" href="#vit_2" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221151740717" src="/docs/images/image-20241221151740717.png" /></p>
+<p><img alt="image-20241221151740717" src="../images/image-20241221151740717.png" /></p>
 <blockquote>
 <p>将图片划分成固定大小的 patch，论文中输入图片 224×224，如果 patch 大小为 14×14，则可以分为 16×16 的序列，不按照单个像素划分的原因是会导致序列长度过长，计算复杂度太高</p>
 <blockquote>
@@ -3974,22 +3982,22 @@
 <p>将<code>patch</code>的<code>长×宽×通道数</code>的多维矩阵表示展平，然后通过一个共享的线性层投射到 Transformer 模型里的特征维度，比如 1024，这样就完成了把一个图片转换成一个向量序列的转换，图像切片相当于文本里面的分词，线性投射层相当于 embedding 层，接下来需要考虑位置编码。</p>
 </blockquote>
 <h2 id="vit_3"><strong>ViT 中的位置编码</strong><a class="headerlink" href="#vit_3" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221152550136" src="/docs/images/image-20241221152550136.png" /></p>
+<p><img alt="image-20241221152550136" src="../images/image-20241221152550136.png" /></p>
 <blockquote>
 <p>ViT 中为每个位置加上 1 个可学习的位置编码，比如图中有 9 个不同的可学习的位置编码，因为 ViT 做的任务是要对图片进行分类，参考自然语言处理里的 Bert 模型的做法，在最前面加上一个可学习的用来分类的 token，并且有自己可学习的位置编码，因为后续采用的Transformer 的 Encoder 架构，每个 token 无论是在序列里的什么位置都可以看到所有的其他 token，所以即使把这个 token 固定到第 1 个位置上，也可以汇集所有图像 patch 的信息，网络结构采用的也是 Transformer 中的 Encoder</p>
 </blockquote>
-<p><img alt="image-20241221152608759" src="/docs/images/image-20241221152608759.png" /></p>
+<p><img alt="image-20241221152608759" src="../images/image-20241221152608759.png" /></p>
 <h2 id="vit-transformer-encoder"><strong>ViT 采用的是 Transformer Encoder 架构</strong><a class="headerlink" href="#vit-transformer-encoder" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221152720070" src="/docs/images/image-20241221152720070.png" /></p>
+<p><img alt="image-20241221152720070" src="../images/image-20241221152720070.png" /></p>
 <p>传统的大模型采用的是 decoder，因为大模型一般是做生成任务的</p>
 <p>而图片分类是做信息提取的，所以用类似 Bert 的架构，采用 Encoder 的模块，最后通过第一个位置的分类 token 的信息，加上一个简单的 MLP头进行图片的分类</p>
-<p><img alt="image-20241221154518455" src="/docs/images/image-20241221154518455.png" /></p>
+<p><img alt="image-20241221154518455" src="../images/image-20241221154518455.png" /></p>
 <p>类似于 Bert，ViT 也训练了不同大小的模型，分为 Base、Large、Huge，分别有不同的层数、hidden size、MLP size和注意力头</p>
-<p><img alt="image-20241221154629654" src="/docs/images/image-20241221154629654.png" /></p>
+<p><img alt="image-20241221154629654" src="../images/image-20241221154629654.png" /></p>
 <p>对于 ViT 模型的表示，一般会用类似于 ViT-L /16来进行表示，表示这是一个 ViT Large 模型，其中 patch 的大小为 16×16</p>
 <p>patch越小，一张图片分出来的 patch 就越多，输入到 Transformer 中的序列就越长，计算复杂度就越高，模型效果也越好</p>
 <h2 id="_1"><strong>实验效果</strong><a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221154949097" src="/docs/images/image-20241221154949097.png" /></p>
+<p><img alt="image-20241221154949097" src="../images/image-20241221154949097.png" /></p>
 <p>作者选择了当时在不同数据集上表现最好的分类模型：ResNet 和 EfficientNet 进行比较，可以看到在 JFT 数据集上进行预训练，然后在不同的数据集上进行测试，ViT-H/14 模型几乎都取得了最好的成绩</p>
 <p>特别需要注意的是最后一行，在 <code>GPU V3 的核数×训练天数</code> 表示的计算代价上，ViT 模型具有非常大的优势，所以说在大规模图像数据集上，训练 ViT 模型更有优势</p>
 <h2 id="_2">实现细节<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
@@ -4005,13 +4013,13 @@
 <p><code>#kernel</code> = 1024</p>
 <p>output <span class="arithmatex">\(1024*14*14\)</span></p>
 <p>flatten feature map <span class="arithmatex">\(1024*14*14 → 1024 * 196\)</span> </p>
-<p><img alt="image-20241221155435954" src="/docs/images/image-20241221155435954.png" /></p>
+<p><img alt="image-20241221155435954" src="../images/image-20241221155435954.png" /></p>
 <ul>
 <li>卷积操作相比线性映射省去了 patch 切分的操作</li>
 <li>卷积输出：<code>1024×输出特征图大小</code>  （<code>图 卷 图→ 图 → flatten</code>）</li>
 </ul>
 <h3 id="_3">实现细节：位置编码的选择<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221155702781" src="/docs/images/image-20241221155702781.png" /></p>
+<p><img alt="image-20241221155702781" src="../images/image-20241221155702781.png" /></p>
 <p>作者原文关于位置编码所做的实验：</p>
 <p>（1）不加位置编码</p>
 <p>（2）1 维位置编码</p>
@@ -4024,12 +4032,12 @@
 <p><strong>思考：为什么不加位置编码效果也还可以（0.61382），并没有差太多？</strong></p>
 <p>这是因为图片被切成了 patch，patch 内部是含有位置信息的，就像上面的图片，它的 patch即使被打乱了位置也可以看出来是1 个建筑的图片</p>
 <h3 id="_4"><strong>位置编码的进一步研究</strong><a class="headerlink" href="#_4" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221161733246" src="/docs/images/image-20241221161733246.png" /></p>
+<p><img alt="image-20241221161733246" src="../images/image-20241221161733246.png" /></p>
 <p>在原文中，作者对位置编码进行了进一步的研究</p>
 <p>通过 1 维位置编码也是能够学习到 2 维信息的，比如这里这个位置编码的相关性的图，可以看到和每个 patch位置编码最相关的还是自己附近的以及自己所在行列的 patch</p>
 <p>另外作者研究发现随着 Encoder 层的增加，每个注意力头关注的平均像素距离可以看到不同于卷积神经网络，在网络浅层有的头关注近距离的像素，但是也有很多头已经关注到了远距离的像素，随着模型层数的加深，模型越来越关注远距离的全局信息了</p>
 <h3 id="_5"><strong>对于模型结构的尝试</strong><a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221175812850" src="/docs/images/image-20241221175812850.png" /></p>
+<p><img alt="image-20241221175812850" src="../images/image-20241221175812850.png" /></p>
 <p>关于模型结构的尝试，作者选择了三种结构进行对比</p>
 <p>一种是原始的卷积神经网络，比如 ResNet</p>
 <p>一种是只用 Transformer 的 ViT</p>
@@ -4037,22 +4045,22 @@
 <h3 id="_6"><strong>介绍混合模型的模型架构</strong><a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
 <p>首先由卷积神经网络来提取特征，最后在提取的特征每个空间位置就是一个图像的 patch，然后再做线性映射进入 Transformer Encoder</p>
 <p>图中，圆形表示 ViT，方形表示 ResNet，加号表示混合模型</p>
-<p><img alt="image-20241221180104910" src="/docs/images/image-20241221180104910.png" /></p>
+<p><img alt="image-20241221180104910" src="../images/image-20241221180104910.png" /></p>
 <p>可以看到，在相同的预训练代价下，刚开始混合模型有优势，但是随着计算代价的增大，也就是模型的增大，最终 ViT 模型的效果还是略好于混合模型，所以证明了 Transformer 架构在视觉领域完全可以取代卷积神经网络</p>
 <h3 id="_7"><strong>对于图片分类通常也有两种做法</strong><a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221180315729" src="/docs/images/image-20241221180315729.png" /></p>
+<p><img alt="image-20241221180315729" src="../images/image-20241221180315729.png" /></p>
 <p>一种是 通过在序列第一个位置增加一个分类token 来提取图像的全局信息</p>
 <p>一种 不额外增加 token，就用所有图像 patch 最后一层输出的全局平均池化来做全局信息</p>
 <p>作者做了比较，两个效果是类似的</p>
 <h3 id="_8"><strong>训练数据集大小对模型的影响</strong><a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221180515820" src="/docs/images/image-20241221180515820.png" /></p>
+<p><img alt="image-20241221180515820" src="../images/image-20241221180515820.png" /></p>
 <p>图片中方块表示的是不同大小的 ResNet 在不同规模数据集上的表现，圆形表示的是不同大小的 ViT 在不同规模数据集上的表现，可以看到在小规模数据集上 ResNet 表现好于 ViT</p>
 <p>而随着数据集规模的增大，ViT 的效果 是好于 ResNet 的，所以通过这个图可以知道，在百万级别的数据集上 ResNet 好于 ViT，千万级别的数据上 ResNet 和 ViT 差不多，亿级别的数据上，ResNet 不如 ViT</p>
 <h3 id="vit-resnet"><strong>⭐️为什么在小的数据集上的训练 ViT不如 ResNet？</strong><a class="headerlink" href="#vit-resnet" title="Permanent link">&para;</a></h3>
 <blockquote>
 <p>这是由归纳偏置引起的</p>
 <p>什么是归纳偏置？</p>
-<p><img alt="image-20241221181321164" src="/docs/images/image-20241221181321164.png" /></p>
+<p><img alt="image-20241221181321164" src="../images/image-20241221181321164.png" /></p>
 <blockquote>
 <p>归纳偏置就是在训练模型时人为引入的先验知识给模型，这些知识是人给的，不是模型从数据中学来的，比如卷积操作中，每一层都有两个归纳偏置：（1）局部性（2）平移不变性</p>
 <p><strong>卷积核为什么只作用在一张图片的局部呢？</strong></p>
@@ -4065,7 +4073,7 @@
 <p>但是 ViT 只是在切分 patch 和对 patch 进行编码时引入了归纳偏置，后面的注意力计算是完全没有引入归纳偏置的，所以导致了 ViT 在小规模数据集上学习比 ResNet 要慢一些</p>
 </blockquote>
 <h3 id="_9"><strong>自监督学习</strong><a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241221181814600" src="/docs/images/image-20241221181814600.png" /></p>
+<p><img alt="image-20241221181814600" src="../images/image-20241221181814600.png" /></p>
 <p>最后，ViT 的作者还尝试了让图片进行自监督学习，因为有标记的数据总是少数的，想让模型取得大规模的数据集取得突破性的进展，一定要是自监督学习，就像 Bert 的成功和 GPT 的成功</p>
 <p>作者在尝试自监督学习时，借鉴了 Bert 的做法，具体操作：</p>
 <p>将 50%的图像 patch 进行标记，在这些标记的 patch 中 80%将 embedding 替换成可学习的 mask 标签，10%的 embedding 替换为其他的 patch embedding，10%的 embedding 保持不变，最终让利用标记的这些 patch 的输出预测原始图片的像素值</p>
@@ -4079,6 +4087,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4128,6 +4168,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

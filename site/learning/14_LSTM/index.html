@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -274,7 +282,7 @@
     
     
       <li class="md-tabs__item md-tabs__item--active">
-        <a href="../3_ViT/" class="md-tabs__link">
+        <a href="../0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1521,6 +1529,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../3_ViT/" class="md-nav__link">
         
   
@@ -1819,7 +1848,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2292,27 +2321,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3903,11 +3911,11 @@
 
 <h1 id="lstm">LSTM<a class="headerlink" href="#lstm" title="Permanent link">&para;</a></h1>
 <h2 id="rnncell">RNNCELL<a class="headerlink" href="#rnncell" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241221142624552" src="/docs/images/image-20241221142624552.png" /></p>
+<p><img alt="image-20241221142624552" src="../images/image-20241221142624552.png" /></p>
 <p>RNNCELL，可以理解为 单步 的迭代</p>
 <p>因为所有的循环神经网络 都是有很多步去迭代，最终把每一步的状态 取出来作为输出</p>
 <p>这里的RNNCELL，也就是说 多个，每个时刻的计算 就是一个RNNCELL，然后把 多个RNNCELL 连起来 ，其实就构成了 一个RNN，所以 无论是RNN也好，还是 GRU也好，还是 LSTM也好，它们 都有各自的CELL，然后每个CELL，其实就是一个 单步的运算，可以理解为 单个时刻的运算，下面 有一个例子</p>
-<p><img alt="image-20241221142949694" src="/docs/images/image-20241221142949694.png" /></p>
+<p><img alt="image-20241221142949694" src="../images/image-20241221142949694.png" /></p>
 <p>代码解释：</p>
 <ul>
 <li>首先实例化 RNNCELL</li>
@@ -3922,28 +3930,28 @@
 <li>RNN 就是把多个RNNCELL 连起来 ，所以是多步的</li>
 </ul>
 <h2 id="lstm-api">LSTM 官方 api<a class="headerlink" href="#lstm-api" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20241222103420706" src="/docs/images/image-20241222103420706.png" /></p>
+<p><img alt="image-20241222103420706" src="../images/image-20241222103420706.png" /></p>
 <p>LSTM 原理可见<a href="https://colah.github.io/posts/2015-08-Understanding-LSTMs/">博客</a>：</p>
-<p><img alt="image-20241222103508512" src="/docs/images/image-20241222103508512.png" /></p>
+<p><img alt="image-20241222103508512" src="../images/image-20241222103508512.png" /></p>
 <h3 id="rnn">&amp; RNN<a class="headerlink" href="#rnn" title="Permanent link">&para;</a></h3>
 <ul>
 <li>LSTM比RNN多了几个门</li>
 <li>RNN比较简单 ： 输入 + 隐含状态，只有这两个状态</li>
 </ul>
-<p><img alt="image-20241222103833628" src="/docs/images/image-20241222103833628.png" /></p>
+<p><img alt="image-20241222103833628" src="../images/image-20241222103833628.png" /></p>
 <p>在LSTM中，多了一些门：</p>
 <p>（1）输入门</p>
 <p>（2）输出门</p>
 <p>（3）遗忘门</p>
 <p>（4）记忆单元</p>
 <h3 id="lstm_1">LSTM 图示<a class="headerlink" href="#lstm_1" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20241222103929879" src="/docs/images/image-20241222103929879.png" /></p>
+<p><img alt="image-20241222103929879" src="../images/image-20241222103929879.png" /></p>
 <p>图片理解：</p>
 <p>最上面的横线，长得像传送带的东西，是一个细胞单元，或者说细胞状态</p>
 <p>整个LSTM就是靠这个细胞状态，来不断的 更新 历史信息的</p>
 <h3 id="lstm_2">LSTM 有哪些门？<a class="headerlink" href="#lstm_2" title="Permanent link">&para;</a></h3>
 <p>对照官方 api：</p>
-<p><img alt="image-20241222104047966" src="/docs/images/image-20241222104047966.png" /></p>
+<p><img alt="image-20241222104047966" src="../images/image-20241222104047966.png" /></p>
 <ol>
 <li><code>i</code>就是 输入门</li>
 <li><code>f</code>就是遗忘门</li>
@@ -3954,11 +3962,11 @@
 </ol>
 <h3 id="api"><code>api</code> 对应到图、数学公式<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
 <p>图示：</p>
-<p><img alt="image-20241222104333555" src="/docs/images/image-20241222104333555.png" /></p>
+<p><img alt="image-20241222104333555" src="../images/image-20241222104333555.png" /></p>
 <p>图示 &amp; 符号：</p>
-<p><img alt="image-20241222110332335" src="/docs/images/image-20241222110332335.png" /></p>
+<p><img alt="image-20241222110332335" src="../images/image-20241222110332335.png" /></p>
 <p>（1）遗忘门：<span class="arithmatex">\(f_t \odot c_{t-1}\)</span> </p>
-<p><img alt="image-20241222110553728" src="/docs/images/image-20241222110553728.png" /></p>
+<p><img alt="image-20241222110553728" src="../images/image-20241222110553728.png" /></p>
 <p><code>step1：</code>遗忘门的输出(得到经过遗忘门的筛选信息 ) <span class="arithmatex">\(f_t\)</span> </p>
 <p><strong>遗忘门的输出 <span class="arithmatex">\(f_t\)</span> 怎么计算的？</strong></p>
 <blockquote>
@@ -3967,7 +3975,7 @@
 <p><code>step2：</code>遗忘门的输出跟上一时刻的  <span class="arithmatex">\(c_{t-1}\)</span> 相乘，对应的数学公式：</p>
 <div class="arithmatex">\[f_t \odot c_{t-1}\]</div>
 <p>（2）输入门 <span class="arithmatex">\(i_t\)</span> 、细胞 <span class="arithmatex">\(g_t\)</span></p>
-<p><img alt="image-20241222105344599" src="/docs/images/image-20241222105344599.png" /></p>
+<p><img alt="image-20241222105344599" src="../images/image-20241222105344599.png" /></p>
 <p>如图框：</p>
 <ol>
 <li>同样 <span class="arithmatex">\(x_t\)</span>跟过往的 <span class="arithmatex">\(x_{t-1}\)</span>进行交互，然后经过一个 <span class="arithmatex">\(\sigma\)</span>函数，得到输入门 <span class="arithmatex">\(i_t\)</span></li>
@@ -3982,11 +3990,11 @@
 <p>也就是说该丢掉的信息丢掉了再加上输入门 ，更新细胞状态，这个过程对应的公式表示：</p>
 <div class="arithmatex">\[c_t = f_t \odot c_{t-1} + i_t \odot g_t\]</div>
 <p>（4）输出门 <span class="arithmatex">\(\ o_t\)</span></p>
-<p><img alt="image-20241222114310668" src="/docs/images/image-20241222114310668.png" /></p>
+<p><img alt="image-20241222114310668" src="../images/image-20241222114310668.png" /></p>
 <p>最后一根线叫做 输出门</p>
 <p>同样是 <span class="arithmatex">\(x_t\)</span>跟<span class="arithmatex">\(h_{t-1}\)</span>，进行交互，经过sigmoid函数，得到<span class="arithmatex">\(o_t\)</span>，就是输出门，最终的输出 ： <span class="arithmatex">\(o_t × \tanh (c_t)\)</span>，数学公式表达：</p>
 <div class="arithmatex">\[h_t = o_t \odot \tanh(c_t)\]</div>
-<p><img alt="image-20241222114824264" src="/docs/images/image-20241222114824264.png" /></p>
+<p><img alt="image-20241222114824264" src="../images/image-20241222114824264.png" /></p>
 <p><span class="arithmatex">\(h_t\)</span> 跟每一时刻的输入进行交互的，也就是线性组合</p>
 <p><span class="arithmatex">\(c_t\)</span>不断对 历史信息进行一个 更新</p>
 <p>通过遗忘门、输入门，不断对 <span class="arithmatex">\(c_t\)</span>进行一个 更新</p>
@@ -4001,33 +4009,33 @@
 <p>（1）但从公式来说，<span class="arithmatex">\(i、f、g、o\)</span> 需要的就是 <span class="arithmatex">\(x_t\)</span> 和 <span class="arithmatex">\(h_{t-1}\)</span>当前时刻的输入和历史信息</p>
 <p>（2）对比 RNN 的公式：</p>
 <div class="arithmatex">\[h_t = \tanh(x_tW_{ih}^T+b_{ih}+h_{t-1}W_{hh}^T+b_{hh})\]</div>
-<p><img alt="image-20241222115833715" src="/docs/images/image-20241222115833715.png" /></p>
+<p><img alt="image-20241222115833715" src="../images/image-20241222115833715.png" /></p>
 <p>单从公式来说，RNN 历史信息的保存仅通过 当前时刻的输入 <span class="arithmatex">\(x_t\)</span> 和 上一时刻的历史信息 <span class="arithmatex">\(h_{t-1}\)</span></p>
 <p>（3）再放一遍公式，体会：</p>
-<p><img alt="image-20241222120129870" src="/docs/images/image-20241222120129870.png" /></p>
+<p><img alt="image-20241222120129870" src="../images/image-20241222120129870.png" /></p>
 <p>（4）LSTM 多了一个细胞状态，问题：为什么 LSTM 要设置细胞状态，为什么要这么设计公式更新细胞状态和隐藏状态？</p>
 <p>（5）查阅资料</p>
 <p><a href="https://blog.csdn.net/qq_29053993/article/details/90547382">ref</a>：LSTM</p>
 <blockquote>
 <p>0、核心是 细胞门（对比 RNN 这个是比较好理解的。可是为什么要有细胞门呢？）</p>
-<p><img alt="image-20241222120741375" src="/docs/images/image-20241222120741375.png" /></p>
+<p><img alt="image-20241222120741375" src="../images/image-20241222120741375.png" /></p>
 <p>1、忘记一些信息</p>
 <p>遗忘门的作用是 <strong>决定丢弃什么信息</strong></p>
-<p><img alt="image-20241222120554133" src="/docs/images/image-20241222120554133.png" /></p>
+<p><img alt="image-20241222120554133" src="../images/image-20241222120554133.png" /></p>
 <p>2、新东西加入 细胞状态</p>
 <p>输入门 &amp; 不知道怎么称呼合适的东西（学名：<span class="arithmatex">\(\tilde{C}_t\)</span>）</p>
-<p><img alt="image-20241222120915557" src="/docs/images/image-20241222120915557.png" /></p>
+<p><img alt="image-20241222120915557" src="../images/image-20241222120915557.png" /></p>
 <p><span class="arithmatex">\(\sigma\)</span> 函数 和 <span class="arithmatex">\(\tanh\)</span> 函数有什么区别？为什么 <span class="arithmatex">\(\sigma\)</span>函数就起了那样的作用，<span class="arithmatex">\(\tanh\)</span>函数又起了这样的作用？</p>
 <p>3、</p>
-<p><img alt="image-20241222122153770" src="/docs/images/image-20241222122153770.png" /></p>
+<p><img alt="image-20241222122153770" src="../images/image-20241222122153770.png" /></p>
 </blockquote>
 <p>（6）RNN、LSTM、GRU通用网络框架</p>
-<p><img alt="image-20241222122542650" src="/docs/images/image-20241222122542650.png" /></p>
+<p><img alt="image-20241222122542650" src="../images/image-20241222122542650.png" /></p>
 <p>（7）RNN &amp; LSTM 的应用例子（帮助理解）：</p>
 <p>RNN 就足够：</p>
-<p><img alt="image-20241222122611855" src="/docs/images/image-20241222122611855.png" /></p>
+<p><img alt="image-20241222122611855" src="../images/image-20241222122611855.png" /></p>
 <p>LSTM 才可以（间隔太大）：</p>
-<p><img alt="image-20241222122629295" src="/docs/images/image-20241222122629295.png" /></p>
+<p><img alt="image-20241222122629295" src="../images/image-20241222122629295.png" /></p>
 <p>（9）<a href="https://www.jianshu.com/p/4b4701beba92">LSTM 的理解</a>：</p>
 <p>输入：<span class="arithmatex">\(x_t\)</span> 、<span class="arithmatex">\(h_{t-1}\)</span>、<span class="arithmatex">\(c_{t-1}\)</span></p>
 <p>中间：<span class="arithmatex">\(i、f、g、o\)</span></p>
@@ -4044,7 +4052,7 @@
 <p><u>为什么用 sigmoid 函数，输出代表什么意思？</u></p>
 <p><code>1</code>代表完全保留，而<code>0</code>代表彻底删除，所以用 <code>sigmoid 函数</code></p>
 <p><u>图示</u></p>
-<p><img alt="image-20241222123222077" src="/docs/images/image-20241222123222077.png" /></p>
+<p><img alt="image-20241222123222077" src="../images/image-20241222123222077.png" /></p>
 <p>二、<span class="arithmatex">\(i_t\)</span>、<span class="arithmatex">\(g_t\)</span></p>
 <ul>
 <li>要保留什么信息？</li>
@@ -4054,9 +4062,9 @@
 <p>1、首先，称为"输入门层"的Sigmoid层决定了将更新哪些值</p>
 <p>2、接下来一个tanh层创建候选向量Ct，该向量将会被加到细胞的状态中</p>
 <p>在下一步中，我们将结合这两个向量来创建更新值。</p>
-<p><img alt="image-20241222124500600" src="/docs/images/image-20241222124500600.png" /></p>
+<p><img alt="image-20241222124500600" src="../images/image-20241222124500600.png" /></p>
 <p>图示：</p>
-<p><img alt="image-20241222124625253" src="/docs/images/image-20241222124625253.png" /></p>
+<p><img alt="image-20241222124625253" src="../images/image-20241222124625253.png" /></p>
 <p>这里的 <span class="arithmatex">\(\tilde{C}_t\)</span> 和 <span class="arithmatex">\(g_t\)</span>  是一个东西，学名：候选向量</p>
 <p>问题：<span class="arithmatex">\(\tanh\)</span> 输出的含义是什么？</p>
 <p>类似 sigmoid 的输出 <code>0 表示遗忘，1 表示记住</code></p>
@@ -4075,9 +4083,9 @@
 <li>然后，将单元格状态通过tanh（将值规范化到-1和1之间），并将其乘以Sigmoid门的输出   <span class="arithmatex">\(h_t = o_t \odot \tanh(c_t)\)</span></li>
 </ul>
 <p>至此就输出了决定的那些部分</p>
-<p><img alt="image-20241222133636506" src="/docs/images/image-20241222133636506.png" /></p>
+<p><img alt="image-20241222133636506" src="../images/image-20241222133636506.png" /></p>
 <p>把公式精简一下：</p>
-<p><img alt="image-20241222133918408" src="/docs/images/image-20241222133918408.png" /></p>
+<p><img alt="image-20241222133918408" src="../images/image-20241222133918408.png" /></p>
 <p>输入：<span class="arithmatex">\(x_t\)</span>、<span class="arithmatex">\(h_{t-1}\)</span></p>
 <p>操作：(这里的符号是参照官网 api 的)</p>
 <p><span class="arithmatex">\(f_t = \sigma(f(x_t,h_{t-1})) \iff \sigma(W_f[x_t,h_{t-1}]+b_f)\)</span></p>
@@ -4106,7 +4114,7 @@
 <p>在参数相同的条件下，LSTM的序列建模能力是强于RNN的，所以比较大的序列建模任务都是用 LSTM做</p>
 </blockquote>
 <p>pytorch 的官方 api：<code>torch.nn.LSTM</code></p>
-<p><img alt="image-20241222180446830" src="/docs/images/image-20241222180446830.png" /></p>
+<p><img alt="image-20241222180446830" src="../images/image-20241222180446830.png" /></p>
 <ul>
 <li>这是一个class，是一个类</li>
 <li>要用的话</li>
@@ -4119,7 +4127,7 @@
 <p>一共涉及的东西：<span class="arithmatex">\(f、i、g、o、h、c\)</span></p>
 <p>输入：<span class="arithmatex">\(x_t、h_{t-1}\)</span></p>
 <p>公式：</p>
-<p><img alt="image-20241222181758637" src="/docs/images/image-20241222181758637.png" /></p>
+<p><img alt="image-20241222181758637" src="../images/image-20241222181758637.png" /></p>
 <p><span class="arithmatex">\(f_t=\sigma(w_f[x_t,h_{t-1}]+b_f)\)</span> </p>
 <p><span class="arithmatex">\(i_t = \sigma(w_i[x_t,h_{t-1}]+b_i)\)</span></p>
 <p><span class="arithmatex">\(g_t = \tanh(w_g[x_t,h_{t-1}]+b_g)\)</span></p>
@@ -4138,18 +4146,18 @@
 <p>所以虽然看上去有4个<span class="arithmatex">\(W_i\)</span>，但是可以把 这个 四个 <span class="arithmatex">\(W_i\)</span>叠起来</p>
 <p>比方说 每个<span class="arithmatex">\(W_i\)</span>是<span class="arithmatex">\(2\)</span>行，那么<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(W_i\)</span>，就可以 叠成<span class="arithmatex">\(8\)</span>行</p>
 </blockquote>
-<p><img alt="image-20241222182249464" src="/docs/images/image-20241222182249464.png" /></p>
+<p><img alt="image-20241222182249464" src="../images/image-20241222182249464.png" /></p>
 <p>然后再跟 <span class="arithmatex">\(x_t\)</span> 进行一个相乘，就是把 这个 <span class="arithmatex">\(四个 W乘以x\)</span></p>
 <p><span class="arithmatex">\(W×x\)</span> 组合起来，一起算</p>
 <p>同样这里的<span class="arithmatex">\(W乘以h(W×h)\)</span>也是一样的</p>
 <p>由于都是 乘以 同一个<span class="arithmatex">\(h\)</span></p>
 <p>同样把 四个 <span class="arithmatex">\(W\)</span>堆叠起来，<span class="arithmatex">\(stack\)</span>堆叠来，算完了 再<span class="arithmatex">\(split\)</span></p>
-<p><img alt="image-20241222182908199" src="/docs/images/image-20241222182908199.png" /></p>
+<p><img alt="image-20241222182908199" src="../images/image-20241222182908199.png" /></p>
 <p>如图，还有<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(b_i\)</span>和<span class="arithmatex">\(b_h\)</span>，输入 <span class="arithmatex">\(linear\)</span>的偏置 和上一时刻 隐含状态线性层的偏置</p>
 <p>同样这里 <span class="arithmatex">\(4\)</span>个偏置，<span class="arithmatex">\(4\)</span>个<span class="arithmatex">\(b_i\)</span> 就是直接加，不需要联合算</p>
 <p>同样这里的<span class="arithmatex">\(b_h\)</span>，也是<span class="arithmatex">\(4\)</span>个偏置</p>
 <p>维度都是跟<span class="arithmatex">\(i_t、 f_t\)</span> 维度是一样的，得到的 <span class="arithmatex">\(i、f、g、o\)</span>以后，就可以算出当前时刻细胞的状态 <span class="arithmatex">\(c_t\)</span></p>
-<p><img alt="image-20241222183148665" src="/docs/images/image-20241222183148665.png" /></p>
+<p><img alt="image-20241222183148665" src="../images/image-20241222183148665.png" /></p>
 <p>About <span class="arithmatex">\(c_t\)</span> ：</p>
 <p>（1）<span class="arithmatex">\(c_t= f_t×c_{t-1}\)</span>，中间的乘是逐元素的乘，不是矩阵乘法</p>
 <p>（2）默认<span class="arithmatex">\(f_t\)</span>跟<span class="arithmatex">\(c_{t-1}\)</span>维度是一样的，同一位置上的元素两两相乘</p>
@@ -4159,7 +4167,7 @@
 <details class="question">
 <summary>（作者咋想的，要加条黑线，还有这些门的设计，why？）</summary>
 </details>
-<p><img alt="image-20241222183514356" src="/docs/images/image-20241222183514356.png" /></p>
+<p><img alt="image-20241222183514356" src="../images/image-20241222183514356.png" /></p>
 <p>整个LSTM就是靠黑线，来不断对历史信息 进行筛选和更新，得到<span class="arithmatex">\(c_t\)</span>以后，最终 得到 <span class="arithmatex">\(h_t\)</span></p>
 <p>$c_t=f_t \odot c_{t-1} + i_t \odot g_t $</p>
 <p><span class="arithmatex">\(h_t = o_t \odot \tanh{c_t}\)</span></p>
@@ -4194,7 +4202,7 @@
 <p>LSTM网络，相比于简单的RNN网络，初始状态就多了 <span class="arithmatex">\(c_0\)</span></p>
 </blockquote>
 <p><strong><u>ReCall RNN</u></strong></p>
-<p><img alt="image-20241223123235044" src="/docs/images/image-20241223123235044.png" /></p>
+<p><img alt="image-20241223123235044" src="../images/image-20241223123235044.png" /></p>
 <p><u>(1) RNN的公式更简单，<span class="arithmatex">\(h_t\)</span>是<span class="arithmatex">\(x_t\)</span>跟<span class="arithmatex">\(h_{t-1}\)</span>的线性组合</u></p>
 <p><span class="arithmatex">\(h_t = \tanh{(W_h[x_t,h_{t-1}]+b_h)}\)</span></p>
 <p><u>(2)RNN需要的初始状态只有 <span class="arithmatex">\(h_0\)</span></u> </p>
@@ -4202,7 +4210,7 @@
 <p>从RNN的公式中可以看出来，只有一个符号，就是<span class="arithmatex">\(h\)</span>下标是<span class="arithmatex">\(t-1\)</span>，也就是说 去算RNN的网络的时候，需要提供 <span class="arithmatex">\(h_0\)</span>作为初始状态，因为如果要算<span class="arithmatex">\(h_1\)</span>的话，我们必须要有<span class="arithmatex">\(h_0\)</span>，所以必须要提供<span class="arithmatex">\(h_0\)</span>，当然框架已经默认提供了<span class="arithmatex">\(h_0\)</span>等于一个全0的向量</p>
 </blockquote>
 <p><strong><u>VS LSTM</u></strong></p>
-<p><img alt="image-20241223123917725" src="/docs/images/image-20241223123917725.png" /></p>
+<p><img alt="image-20241223123917725" src="../images/image-20241223123917725.png" /></p>
 <p><span class="arithmatex">\(i_t,f_t,o_t = \sigma(W[x_t,h_{t-1}]+b)\)</span></p>
 <p><span class="arithmatex">\(g_t = \tanh(W[x_t,h_{t-1}]+b)\)</span></p>
 <p><span class="arithmatex">\(c_t = f_t \odot c_{t-1} + i_t \odot g_t\)</span></p>
@@ -4220,7 +4228,7 @@
 </p>
 </blockquote>
 <p><strong>LSTM 初始化需要的参数</strong></p>
-<p><img alt="image-20241223124902475" src="/docs/images/image-20241223124902475.png" /></p>
+<p><img alt="image-20241223124902475" src="../images/image-20241223124902475.png" /></p>
 <p>需要实例化LSTM的参数：</p>
 <ul>
 <li><code>input_size</code>：输入序列特征的大小</li>
@@ -4247,7 +4255,7 @@
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> LSTM output <span class="arithmatex">\(\downarrow\)</span> </li>
 </ul>
 <p><strong><u>LSTM input parameters</u></strong> </p>
-<p><img alt="image-20241223131724301" src="/docs/images/image-20241223131724301.png" /></p>
+<p><img alt="image-20241223131724301" src="../images/image-20241223131724301.png" /></p>
 <p>1️⃣ <code>input</code></p>
 <p>格式：如果是 batch first=true的话： <code>batch size×sequence length×input size</code>。</p>
 <p>2️⃣ <code>(h_0，c_0)</code></p>
@@ -4260,7 +4268,7 @@
 <p>就是所有带 t-1 下标的，这些符号都需要提供一个初始值</p>
 </blockquote>
 <p><strong><u>LSTM output</u></strong></p>
-<p><img alt="image-20241223135213262" src="/docs/images/image-20241223135213262.png" /></p>
+<p><img alt="image-20241223135213262" src="../images/image-20241223135213262.png" /></p>
 <p>虽然是输出 <code>c_n</code>，但是 <code>h_n = o_n × tanh(c_n)</code>，<code>h_n</code> 与 <code>c_n</code> 是由 <code>c_n</code> 计算来的，即使说 <code>c_n</code> 是中间结果也可以，但 <code>c_n</code> 是 LSTM 的核心</p>
 <p><code>Outputs：output,(h_n,c_n)</code></p>
 <ul>
@@ -4375,7 +4383,7 @@
 <p>调用官方 api</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1"># 实现LSTM和LSTMP的源码</span>
 </span></code></pre></div>
-<p><img alt="image-20241223141412807" src="/docs/images/image-20241223141412807.png" /></p>
+<p><img alt="image-20241223141412807" src="../images/image-20241223141412807.png" /></p>
 <p><strong>第 1 步：定义常量</strong> </p>
 <ul>
 <li>batch size</li>
@@ -4415,7 +4423,7 @@
 <div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>h0 = torch.randn(bs,h_size)
 </span></code></pre></div>
 <p>以上，定义好了三个基本的量：输入 <code>input</code> 和初始值<code>(c_0,h_0)</code></p>
-<p><img alt="image-20241223143614510" src="/docs/images/image-20241223143614510.png" /></p>
+<p><img alt="image-20241223143614510" src="../images/image-20241223143614510.png" /></p>
 <p><strong>第 4 步：调用官方LSTM API，实例化</strong></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># 调用官方LSTM API</span>
 </span></code></pre></div>
@@ -4423,7 +4431,7 @@
 <p><div class="language-python highlight"><pre><span></span><code><span id="__span-11-1"><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">()</span>
 </span></code></pre></div>
 实例化需要传入的参数
-<img alt="image-20241223143805568" src="/docs/images/image-20241223143805568.png" /></p>
+<img alt="image-20241223143805568" src="../images/image-20241223143805568.png" /></p>
 <p>传入的参数顺序分别是 input size、hidden size、batch first</p>
 <p>projection size暂时不用</p>
 <ul>
@@ -4438,7 +4446,7 @@
 <p>在定义好LSTM layer以后，把<code>输入</code>和<code>初始状态</code>分别传入到LSTM layer中</p>
 <p><strong>具体怎么传入参数?</strong></p>
 <p>去看api</p>
-<p><img alt="image-20241223144423828" src="/docs/images/image-20241223144423828.png" /></p>
+<p><img alt="image-20241223144423828" src="../images/image-20241223144423828.png" /></p>
 <p>从<code>api</code>可以看到，<code>inputs</code>是 <code>input</code>和<code>一个元组</code></p>
 <p>在元组中，需要传入<code>h0</code>和<code>c0</code></p>
 <p>所以代码写<code>input</code>，然后再写<code>一个元组</code></p>
@@ -4448,7 +4456,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-14-1"><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,(</span><span class="n">h0</span><span class="p">,</span><span class="n">c0</span><span class="p">))</span>
 </span></code></pre></div>
 <p>那维度是多少呢？官方文档：</p>
-<p><img alt="image-20241223144701143" src="/docs/images/image-20241223144701143.png" /></p>
+<p><img alt="image-20241223144701143" src="../images/image-20241223144701143.png" /></p>
 <p><code>h0</code>的维度是<code>D*num_layers×N×H_out</code></p>
 <p><code>c0</code>也是一样的，首先初始化 <code>N×H_out</code></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-15-1"><a id="__codelineno-15-1" name="__codelineno-15-1" href="#__codelineno-15-1"></a><span class="n">output</span><span class="p">,(</span><span class="n">h_finall</span><span class="p">,</span><span class="n">c_finall</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_layer</span><span class="p">(</span><span class="nb">input</span><span class="p">,</span>
@@ -4474,7 +4482,7 @@
 </span><span id="__span-16-13"><a id="__codelineno-16-13" name="__codelineno-16-13" href="#__codelineno-16-13"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span>
 </span></code></pre></div>
 <p><strong>第 6 步：输出 <code>Outputs:output,(h_n,c_n)</code></strong></p>
-<p><img alt="image-20241223150732582" src="/docs/images/image-20241223150732582.png" /></p>
+<p><img alt="image-20241223150732582" src="../images/image-20241223150732582.png" /></p>
 <p>这里写输出：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-17-1"><a id="__codelineno-17-1" name="__codelineno-17-1" href="#__codelineno-17-1"></a><span class="c1"># 调用官方LSTM api</span>
 </span><span id="__span-17-2"><a id="__codelineno-17-2" name="__codelineno-17-2" href="#__codelineno-17-2"></a><span class="n">lstm_layer</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">LSTM</span><span class="p">(</span><span class="n">i_size</span><span class="p">,</span>
@@ -4495,7 +4503,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-20-1"><a id="__codelineno-20-1" name="__codelineno-20-1" href="#__codelineno-20-1"></a><span class="k">for</span> <span class="n">k</span><span class="p">,</span><span class="n">v</span> <span class="ow">in</span> <span class="n">named_parameters</span><span class="p">():</span>
 </span><span id="__span-20-2"><a id="__codelineno-20-2" name="__codelineno-20-2" href="#__codelineno-20-2"></a>    <span class="nb">print</span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
 </span></code></pre></div>
-<p><img alt="image-20241223151244370" src="/docs/images/image-20241223151244370.png" /></p>
+<p><img alt="image-20241223151244370" src="../images/image-20241223151244370.png" /></p>
 <p>可以看到LSTM的参数名以及具体的张量：</p>
 <ul>
 <li><code>weight_ih_l0</code> 对应公式里的 <span class="arithmatex">\(W_{ii}\)</span> <span class="arithmatex">\(W_{if}\)</span>  <span class="arithmatex">\(W_{ig}\)</span> <span class="arithmatex">\(W_{io}\)</span>  四个 <span class="arithmatex">\(W_i\)</span>放到了一个 <code>weight_ih</code>里面</li>
@@ -4504,8 +4512,8 @@
 <li><code>bias_hh_l0</code></li>
 </ul>
 <p>最后两个偏置项，同样是拼起来的，这样直接看张量不清晰，接下来看shape</p>
-<p><img alt="image-20241223155922046" src="/docs/images/image-20241223155922046.png" /></p>
-<p><img alt="image-20241223155937493" src="/docs/images/image-20241223155937493.png" /></p>
+<p><img alt="image-20241223155922046" src="../images/image-20241223155922046.png" /></p>
+<p><img alt="image-20241223155937493" src="../images/image-20241223155937493.png" /></p>
 <p>可以看到这个<code>LSTM layer</code>中一共有4个参数；</p>
 <p><font color="0000FF">第一个参数 </font> 是 <code>weight_ih_l0</code> ： 20×4</p>
 <p><strong>为什么是 20×4呢？</strong> </p>
@@ -4518,7 +4526,7 @@
 <li><code>4</code>是 <code>input_size</code>，因为这个<code>w_ih</code>是跟 <code>input</code> 相乘的，是对<code>input</code>进行线性变换的参数</li>
 </ul>
 </blockquote>
-<p><img alt="image-20241223160404063" src="/docs/images/image-20241223160404063.png" /></p>
+<p><img alt="image-20241223160404063" src="../images/image-20241223160404063.png" /></p>
 <p>解释这里的权重：</p>
 <p><span class="arithmatex">\(T=3，input\_size = 4，hidden\_size = 5\)</span></p>
 <p><span class="arithmatex">\(4(4×1) \stackrel{5×4}{\rightarrow} 5(5×1)\)</span></p>
@@ -4642,7 +4650,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a id="__codelineno-33-1" name="__codelineno-33-1" href="#__codelineno-33-1"></a><span class="n">x</span> <span class="o">=</span> <span class="nb">input</span><span class="p">[:,</span><span class="n">t</span><span class="p">,:]</span>  <span class="c1"># 当前时刻的输入向量</span>
 </span></code></pre></div>
 <p>接下来，根据公式进行计算：</p>
-<p><img alt="image-20241223173629201" src="/docs/images/image-20241223173629201.png" /></p>
+<p><img alt="image-20241223173629201" src="../images/image-20241223173629201.png" /></p>
 <p><span class="arithmatex">\(weight_{ih} = [w_{ii},w_{if},w_{ig},w_{io}]'\)</span></p>
 <ul>
 <li><span class="arithmatex">\(\mathrm{w_{ii}}\)</span> ： 5 × 4 </li>
@@ -4736,10 +4744,10 @@
 </span></code></pre></div>
 <p>以上 把 <code>1</code> 这个维度去掉了，形状是 <code>batch size × 4倍的hidden size</code></p>
 <p>以上是 <code>w times x</code> 的计算过程</p>
-<p><img alt="image-20241223180800659" src="/docs/images/image-20241223180800659.png" /></p>
+<p><img alt="image-20241223180800659" src="../images/image-20241223180800659.png" /></p>
 <p>实现完 <code>w_times_x</code>，具体来说就是 <span class="arithmatex">\(W_{ii}x_t\)</span> 、 <span class="arithmatex">\(W_{if}x_t\)</span> 、 <span class="arithmatex">\(W_{ig}x_t\)</span> 、 <span class="arithmatex">\(W_{io}x_t\)</span></p>
 <p>还有 <code>w_times_h</code>，就是LSTM网络中后四项</p>
-<p><img alt="image-20241223181032820" src="/docs/images/image-20241223181032820.png" /></p>
+<p><img alt="image-20241223181032820" src="../images/image-20241223181032820.png" /></p>
 <p>实现思路是一样的，复制下来改成</p>
 <ul>
 <li>
@@ -4765,7 +4773,7 @@
 </span></code></pre></div>
 <p><strong><u>接下来，分别算出 输入门、遗忘门、cell和输出门</u></strong></p>
 <p>也就是 <code>i、f、g、o</code></p>
-<p><img alt="image-20241223181513560" src="/docs/images/image-20241223181513560.png" /></p>
+<p><img alt="image-20241223181513560" src="../images/image-20241223181513560.png" /></p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-47-1"><a id="__codelineno-47-1" name="__codelineno-47-1" href="#__codelineno-47-1"></a># 分别计算输入门(i)、遗忘门(f)、cell门(g)、输出门(o)
 </span></code></pre></div>
 <p><u>首先计算<span class="arithmatex">\(i_t\)</span>，根据公式：</u></p>
@@ -4787,10 +4795,10 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-50-1"><a id="__codelineno-50-1" name="__codelineno-50-1" href="#__codelineno-50-1"></a><span class="n">i_t</span> <span class="o">=</span> <span class="n">w_times_x</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[:</span><span class="n">h_size</span><span class="p">]</span>
 </span></code></pre></div>
 <p>最后还有非线性激活函数  <span class="arithmatex">\(\sigma\)</span>，在前面加上 <code>torch.sigmoid</code></p>
-<p><img alt="image-20241223193918820" src="/docs/images/image-20241223193918820.png" /></p>
+<p><img alt="image-20241223193918820" src="../images/image-20241223193918820.png" /></p>
 <p>以上是 <span class="arithmatex">\(i_t\)</span></p>
 <p>输入门的计算= <code>w乘以x的前四分之一部分</code>， <code>w乘以h prev也是前四分之一部分</code>，然后<code>两个bias</code>加起来，经过一个 <code>非线性激活函数 sigmoid</code> 就得到 输入门</p>
-<p><img alt="image-20241223194131625" src="/docs/images/image-20241223194131625.png" /></p>
+<p><img alt="image-20241223194131625" src="../images/image-20241223194131625.png" /></p>
 <p><u>接下来 遗忘门</u> </p>
 <p>遗忘门也是类似的，同样也是 sigmoid，直接复制</p>
 <p>但是遗忘门不是前四分之一</p>
@@ -4806,10 +4814,10 @@
 </span></code></pre></div>
 <p><code>hidden  size</code> 到 <code>2倍的hidden size</code></p>
 <p>以上是遗忘门</p>
-<p><img alt="image-20241223194432988" src="/docs/images/image-20241223194432988.png" /></p>
+<p><img alt="image-20241223194432988" src="../images/image-20241223194432988.png" /></p>
 <p><u>接下来，细胞门 $g_t $：</u> </p>
 <p>细胞门<span class="arithmatex">\(g_t\)</span>也是类似的，只不过当前 <code>sigmoid</code> 替换成了<code>tanh函数</code></p>
-<p><img alt="image-20241223194644285" src="/docs/images/image-20241223194644285.png" /></p>
+<p><img alt="image-20241223194644285" src="../images/image-20241223194644285.png" /></p>
 <p>所以继续复制下来 ，再改，就可以计算出细胞状态 <span class="arithmatex">\(g_t\)</span> ：</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-54-1"><a id="__codelineno-54-1" name="__codelineno-54-1" href="#__codelineno-54-1"></a><span class="n">g_t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tanh</span><span class="p">(</span><span class="n">w_times_x</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">w_times_h_prev</span><span class="p">[:,</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_ih</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">]</span><span class="o">+</span><span class="n">b_hh</span><span class="p">[</span><span class="mi">2</span><span class="o">*</span><span class="n">h_size</span><span class="p">:</span><span class="mi">3</span><span class="o">*</span><span class="n">h_size</span><span class="p">])</span>
 </span></code></pre></div>
@@ -4831,8 +4839,8 @@
 <li>或者直接 <code>w_times_x[:,3*h_size:]</code>  ：<code>3</code>倍的 <code>hidden size</code>，<code>4</code>可以省略</li>
 </ul>
 <p>以上是所有的 <code>i、f、g、o</code></p>
-<p><img alt="image-20241223195148713" src="/docs/images/image-20241223195148713.png" /></p>
-<p><img alt="image-20241223195205750" src="/docs/images/image-20241223195205750.png" /></p>
+<p><img alt="image-20241223195148713" src="../images/image-20241223195148713.png" /></p>
+<p><img alt="image-20241223195205750" src="../images/image-20241223195205750.png" /></p>
 <p>写完了 <span class="arithmatex">\(i、f、g、o\)</span>，接下来写细胞状态 <span class="arithmatex">\(c_t、 h_t\)</span></p>
 <p><span class="arithmatex">\(c_t\)</span>怎么写呢？</p>
 <blockquote>
@@ -4845,7 +4853,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-56-1"><a id="__codelineno-56-1" name="__codelineno-56-1" href="#__codelineno-56-1"></a><span class="n">prev_c</span> <span class="o">=</span> <span class="n">f_t</span> <span class="o">*</span> <span class="n">prev_c</span> <span class="o">+</span> <span class="n">i_t</span> <span class="o">*</span> <span class="n">g_t</span>
 </span></code></pre></div>
 <p>有了 <code>prev_c</code>以后就能计算 <code>prev_h</code></p>
-<p><img alt="image-20241223200900790" src="/docs/images/image-20241223200900790.png" /></p>
+<p><img alt="image-20241223200900790" src="../images/image-20241223200900790.png" /></p>
 <ul>
 <li>
 <p><span class="arithmatex">\(prev_h\)</span> 就是当前时刻 LSTM的输出 </p>
@@ -4868,13 +4876,13 @@
 </ul>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-59-1"><a id="__codelineno-59-1" name="__codelineno-59-1" href="#__codelineno-59-1"></a><span class="k">return</span> <span class="n">output</span><span class="p">,(</span><span class="n">prev_h</span><span class="p">,</span><span class="n">prev_c</span><span class="p">)</span>
 </span></code></pre></div>
-<p><img alt="image-20241223201325328" src="/docs/images/image-20241223201325328.png" /></p>
+<p><img alt="image-20241223201325328" src="../images/image-20241223201325328.png" /></p>
 <p>以上是不带 projection的自定义LSTM</p>
 <p>接下来测试</p>
 <p>测试就是把 <code>LSTM layer</code>的<code>4</code>个参数取出来，然后喂入到自定义 LSTM函数中，然后对比结果</p>
 <p>（1）实例化LSTM 算子，传入<code>input parameters</code></p>
 <p>首先把函数签名复制下来：</p>
-<p><img alt="image-20241223201444538" src="/docs/images/image-20241223201444538.png" /></p>
+<p><img alt="image-20241223201444538" src="../images/image-20241223201444538.png" /></p>
 <ul>
 <li><code>input</code>还是<code>input</code></li>
 <li><code>initial state</code>就是<code>h0</code>和<code>c0</code>，就是之前初始化的<code>h0</code>和<code>c0</code></li>
@@ -4884,9 +4892,9 @@
 <ul>
 <li><code>w_ih</code>就用之前pytorch中实例化的<code>lstm layer</code>的参数拿出来</li>
 </ul>
-<p><img alt="image-20241223201802045" src="/docs/images/image-20241223201802045.png" /></p>
+<p><img alt="image-20241223201802045" src="../images/image-20241223201802045.png" /></p>
 <p>就是<code>lstm_layer.参数</code></p>
-<p><img alt="image-20241223201834394" src="/docs/images/image-20241223201834394.png" /></p>
+<p><img alt="image-20241223201834394" src="../images/image-20241223201834394.png" /></p>
 <p>即，</p>
 <div class="language-text highlight"><pre><span></span><code><span id="__span-61-1"><a id="__codelineno-61-1" name="__codelineno-61-1" href="#__codelineno-61-1"></a>lstm_forward(input,(h0,c0),lstm_layer.weight_ih_l0,w_hh,b_ih,b_hh)
 </span></code></pre></div>
@@ -4900,7 +4908,7 @@
 </span></code></pre></div>
 <p>实例化好自定义 LSTM 算子以后，定义变量接收输出</p>
 <p>复制前面的变量名，加后缀 custom</p>
-<p><img alt="image-20241223202302089" src="/docs/images/image-20241223202302089.png" /></p>
+<p><img alt="image-20241223202302089" src="../images/image-20241223202302089.png" /></p>
 <p>加后缀 custom，表示自定义的LSTM</p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-63-1"><a id="__codelineno-63-1" name="__codelineno-63-1" href="#__codelineno-63-1"></a><span class="n">output_custom</span><span class="p">,(</span><span class="n">h_finall_custom</span><span class="p">,</span><span class="n">c_finall_custom</span><span class="p">)</span> <span class="o">=</span> <span class="n">lstm_forward</span><span class="p">(</span>
 </span><span id="__span-63-2"><a id="__codelineno-63-2" name="__codelineno-63-2" href="#__codelineno-63-2"></a>    <span class="nb">input</span><span class="p">,</span>
@@ -5005,11 +5013,11 @@
 <p>注意看参数变化</p>
 <p>调用官方 api 需要加一个量 <code>proj_size</code></p>
 <p><code>proj size</code> 等于多少呢？</p>
-<p><img alt="image-20241223203456104" src="/docs/images/image-20241223203456104.png" /></p>
+<p><img alt="image-20241223203456104" src="../images/image-20241223203456104.png" /></p>
 <p>一般 <code>projection size</code>比<code>hidden size</code>小</p>
 <p>即要对<code>hidden state</code>进行压缩， 压缩肯定是要往小的维度压缩</p>
 <p>如果<code>hidden size</code>等于<code>5</code>的话，那<code>projection size</code>就设置成<code>3</code>，比<code>hidden size</code>小一点就好，以上实现了 <code>projection layer</code></p>
-<p><img alt="image-20241223203946682" src="/docs/images/image-20241223203946682.png" /></p>
+<p><img alt="image-20241223203946682" src="../images/image-20241223203946682.png" /></p>
 <p>现在再来看 <code>lstm layer</code>的参数输出</p>
 <p>传入<code>proj size</code>以后，还要改变<code>h0</code></p>
 <blockquote>
@@ -5017,11 +5025,11 @@
 <p>则<code>h</code>实际上是要压缩的，维度不再是<code>h_size</code>；而是<code>projection_size</code>，所以 <code>h_0</code>也要改一下  </p>
 </blockquote>
 <p><code>projection</code>的作用实际上就是对 <code>h0</code>进行一个压缩，接下来查看模型参数：</p>
-<p><img alt="image-20241223204214687" src="/docs/images/image-20241223204214687.png" /></p>
+<p><img alt="image-20241223204214687" src="../images/image-20241223204214687.png" /></p>
 <p>相比于<code>lstm</code>，<code>lstmp</code>多了一个结果：<code>weight_hr_l0</code> ， 这个参数就是对 <code>hidden state</code> 进行压缩</p>
 <p><code>hidden state</code>的大小实际变成了<code>3</code>，不再是<code>5</code></p>
 <p>接下来，打印<code>output.shape</code>和<code>h_finall.shape</code>、<code>c_finall.shape</code></p>
-<p><img alt="image-20241223211851063" src="/docs/images/image-20241223211851063.png" /></p>
+<p><img alt="image-20241223211851063" src="../images/image-20241223211851063.png" /></p>
 <p>可以看到<code>lstmp</code>的<code>output shape</code>是<code>2×2×3</code>的，不是 <code>2×3×5</code> ，因为对输出进行了压缩</p>
 <p><code>h_finall</code>和<code>c_finall</code>分别是 <code>1×2×3</code> 和 <code>1×2×5</code>的</p>
 <p>可以看到 <code>h_finall</code>的大小也变成了<code>3</code>，但是<code>c</code>的大小仍然是<code>5</code></p>
@@ -5032,7 +5040,7 @@
 <h3 id="lstmp_1">自定义 LSTMP 代码实现<a class="headerlink" href="#lstmp_1" title="Permanent link">&para;</a></h3>
 <p>接下来修改自定义函数：</p>
 <p>多了一个<code>projection</code>参数，所以签名中加入<code>w_hr</code> 并且设置默认为<code>None</code></p>
-<p><img alt="image-20241223212238200" src="/docs/images/image-20241223212238200.png" /></p>
+<p><img alt="image-20241223212238200" src="../images/image-20241223212238200.png" /></p>
 <ul>
 <li>如果是<code>None</code>的话，就是一个普通的<code>lstm</code></li>
 <li>如果不是<code>None</code> 就是带有<code>projection</code>的</li>
@@ -5045,7 +5053,7 @@
 <div class="language-python highlight"><pre><span></span><code><span id="__span-73-1"><a id="__codelineno-73-1" name="__codelineno-73-1" href="#__codelineno-73-1"></a><span class="n">p_size</span><span class="p">,</span><span class="n">_</span> <span class="o">=</span> <span class="n">w_hr</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
 </span></code></pre></div>
 <p>它是<code>w_hr</code>的第<code>0</code>维</p>
-<p><img alt="image-20241223212615227" src="/docs/images/image-20241223212615227.png" /></p>
+<p><img alt="image-20241223212615227" src="../images/image-20241223212615227.png" /></p>
 <p>红框就是<code>projection size</code>，然后 <code>output size</code>等于 <code>p_size</code></p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-74-1"><a id="__codelineno-74-1" name="__codelineno-74-1" href="#__codelineno-74-1"></a><span class="n">output_size</span> <span class="o">=</span> <span class="n">p_size</span>
 </span></code></pre></div>
@@ -5054,12 +5062,12 @@
 </span><span id="__span-75-2"><a id="__codelineno-75-2" name="__codelineno-75-2" href="#__codelineno-75-2"></a>    <span class="n">output_size</span> <span class="o">=</span> <span class="n">h_size</span>
 </span></code></pre></div>
 <p>全部的代码：</p>
-<p><img alt="image-20241223213045775" src="/docs/images/image-20241223213045775.png" /></p>
+<p><img alt="image-20241223213045775" src="../images/image-20241223213045775.png" /></p>
 <p>以上是引入<code>projection</code>以后做的改变</p>
 <p>另外 <code>w_hr</code>，同样要引入<code>batch</code>的维度 </p>
-<p><img alt="image-20241223213136060" src="/docs/images/image-20241223213136060.png" /></p>
+<p><img alt="image-20241223213136060" src="../images/image-20241223213136060.png" /></p>
 <p>同样引入<code>batch</code>的维度，但是这时候，形状就是 <code>bs×p_size ×h_size</code></p>
-<p><img alt="image-20241223213221322" src="/docs/images/image-20241223213221322.png" /></p>
+<p><img alt="image-20241223213221322" src="../images/image-20241223213221322.png" /></p>
 <p>这是对<code>output size</code>做的变更</p>
 <blockquote>
 <p>因为引入了<code>projection</code>，所以<code>output</code>大小是变小了</p>
@@ -5074,7 +5082,7 @@
 <li>它是 <span class="arithmatex">\(batch\_w\_hh\)</span> (<code>bs×4倍的hidden size再乘以p size</code>)，再跟 <span class="arithmatex">\(prev\_h\)</span> <code>(p_size</code>)进行相乘，然后<code>p_size</code>这个维度就消掉了</li>
 <li>最终，得到 <span class="arithmatex">\(\mathrm{batch\_size × 4*hidden\_size}\)</span> </li>
 </ul>
-<p><img alt="image-20241223213609048" src="/docs/images/image-20241223213609048.png" /></p>
+<p><img alt="image-20241223213609048" src="../images/image-20241223213609048.png" /></p>
 <ul>
 <li><code>batch_w_hh.shape = torch.Size([2, 20, 3])</code></li>
 <li><code>prev_h.shape = torch.Size([2, 3])</code></li>
@@ -5088,10 +5096,10 @@
 <li><code>proj_size = 3</code></li>
 </ul>
 <p>如果引入了 <code>projection</code>，需要在得到的<code>prev_h</code>这里，进行压缩</p>
-<p><img alt="image-20241223214445361" src="/docs/images/image-20241223214445361.png" /></p>
+<p><img alt="image-20241223214445361" src="../images/image-20241223214445361.png" /></p>
 <p>现在 <code>prev_h</code>这里，大小是 <code>bs×h_size</code></p>
 <p>但输出的<code>h</code> 要是 <code>p_size</code>的，所以 要进行一个压缩</p>
-<p><img alt="image-20241223215157085" src="/docs/images/image-20241223215157085.png" /></p>
+<p><img alt="image-20241223215157085" src="../images/image-20241223215157085.png" /></p>
 <p>同样，如果 <code>w_hr</code>不是<code>None</code>的话，就要做<code>projection</code>，要对 <code>prev_h</code>进行一个压缩</p>
 <p>压缩原理仍然是用，矩阵相乘的算法</p>
 <p>用压缩矩阵 <code>w_hr</code>跟<code>prev_h</code>相乘，需要对 <code>prev_h</code>进行扩一维，最后一个维度扩一维</p>
@@ -5107,7 +5115,7 @@
 </span></code></pre></div>
 <p>以上实现了<code>projection</code></p>
 <p><code>lstm projection</code>的原理，会对输出状态进行一个压缩，然后整个 <code>output</code>的维度就变小了，另外引入<code>projection</code>，整个计算量都是变小的</p>
-<p><img alt="image-20241223215756507" src="/docs/images/image-20241223215756507.png" /></p>
+<p><img alt="image-20241223215756507" src="../images/image-20241223215756507.png" /></p>
 <ul>
 <li>batch_w_hh：<code>batch size× 4倍的hidden size× hidden size</code></li>
 </ul>
@@ -5229,6 +5237,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-23T14:47:04+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-23</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-12-21T14:57:34+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-12-21</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -5278,6 +5318,14 @@
     
     
       <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

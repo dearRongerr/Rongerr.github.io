@@ -73,6 +73,10 @@
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/learning/0_pdfNotes/</loc>
+         <lastmod>2025-03-19</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/learning/1/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
@@ -130,10 +134,6 @@
     </url>
     <url>
          <loc>https://mydomain.org/mysite/learning/21_FastRCNN/</loc>
-         <lastmod>2025-03-19</lastmod>
-    </url>
-    <url>
-         <loc>https://mydomain.org/mysite/learning/22_DilatedConv/</loc>
          <lastmod>2025-03-19</lastmod>
     </url>
     <url>

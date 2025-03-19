@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3665,47 +3673,47 @@
 <li>融合通道信息、空间信息（CBAM 卷积块block注意力模块module）</li>
 </ul>
 <blockquote>
-<p><img alt="IMG_0291" src="/docs/images/IMG_0291.jpg" /></p>
+<p><img alt="IMG_0291" src="../images/IMG_0291.jpg" /></p>
 </blockquote>
 <ul>
 <li>MLP （H×W×2 → H×W×1）降维，聚合空间特征</li>
 <li>SKNets(selective kernels)</li>
 </ul>
 <blockquote>
-<p><img alt="IMG_31CB733D233B-1" src="/docs/images/IMG_31CB733D233B-1.jpeg" /></p>
+<p><img alt="IMG_31CB733D233B-1" src="../images/IMG_31CB733D233B-1.jpeg" /></p>
 </blockquote>
 <ul>
 <li>坐标注意力，位置信息嵌入到空间信息，两个方向感知特征图，输入特征沿着空间方向的长程依赖</li>
 </ul>
-<p><img alt="image-20250222165833856" src="/docs/images/image-20250222165833856.png" /></p>
-<p><img alt="image-20250222165849679" src="/docs/images/image-20250222165849679.png" /></p>
+<p><img alt="image-20250222165833856" src="../images/image-20250222165833856.png" /></p>
+<p><img alt="image-20250222165849679" src="../images/image-20250222165849679.png" /></p>
 <ul>
 <li>（三分支注意力）模块图、计算流程图、有颜色的模块图，公式，代码</li>
 </ul>
-<p><img alt="image-20250222172458460" src="/docs/images/image-20250222172458460.png" /></p>
-<p><img alt="image-20250222172527415" src="/docs/images/image-20250222172527415.png" /></p>
-<p><img alt="image-20250222172556669" src="/docs/images/image-20250222172556669.png" /></p>
+<p><img alt="image-20250222172458460" src="../images/image-20250222172458460.png" /></p>
+<p><img alt="image-20250222172527415" src="../images/image-20250222172527415.png" /></p>
+<p><img alt="image-20250222172556669" src="../images/image-20250222172556669.png" /></p>
 <h2 id="_2">计算流程图<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250222201134314" src="/docs/images/image-20250222201134314.png" /></p>
+<p><img alt="image-20250222201134314" src="../images/image-20250222201134314.png" /></p>
 <p><strong>SENet</strong></p>
-<p><img alt="image-20250222201226854" src="/docs/images/image-20250222201226854.png" /></p>
+<p><img alt="image-20250222201226854" src="../images/image-20250222201226854.png" /></p>
 <p><strong>CBAM</strong> </p>
-<p><img alt="image-20250222201425307" src="/docs/images/image-20250222201425307.png" /></p>
-<p><img alt="image-20250222201351466" src="/docs/images/image-20250222201351466.png" /></p>
-<p><img alt="image-20250222201401789" src="/docs/images/image-20250222201401789.png" /></p>
+<p><img alt="image-20250222201425307" src="../images/image-20250222201425307.png" /></p>
+<p><img alt="image-20250222201351466" src="../images/image-20250222201351466.png" /></p>
+<p><img alt="image-20250222201401789" src="../images/image-20250222201401789.png" /></p>
 <p><strong>改自 CBAM</strong> </p>
-<p><img alt="image-20250222201741478" src="/docs/images/image-20250222201741478.png" /></p>
+<p><img alt="image-20250222201741478" src="../images/image-20250222201741478.png" /></p>
 <p><strong>SKNet</strong></p>
-<p><img alt="image-20250222201608748" src="/docs/images/image-20250222201608748.png" /></p>
+<p><img alt="image-20250222201608748" src="../images/image-20250222201608748.png" /></p>
 <ul>
 <li>坐标注意力一定要试试</li>
 </ul>
-<p><img alt="IMG_6311E03AB75F-1" src="/docs/images/IMG_6311E03AB75F-1.jpeg" /></p>
+<p><img alt="IMG_6311E03AB75F-1" src="../images/IMG_6311E03AB75F-1.jpeg" /></p>
 <p>双重注意力网络（DANet</p>
-<p><img alt="image-20250222204311429" src="/docs/images/image-20250222204311429.png" /></p>
-<p><img alt="image-20250222205337787" src="/docs/images/image-20250222205337787.png" /></p>
-<p><img alt="IMG_99B2C2F05CF6-1" src="/docs/images/IMG_99B2C2F05CF6-1.jpeg" /></p>
-<p><img alt="image-20250222205740125" src="/docs/images/image-20250222205740125.png" /></p>
+<p><img alt="image-20250222204311429" src="../images/image-20250222204311429.png" /></p>
+<p><img alt="image-20250222205337787" src="../images/image-20250222205337787.png" /></p>
+<p><img alt="IMG_99B2C2F05CF6-1" src="../images/IMG_99B2C2F05CF6-1.jpeg" /></p>
+<p><img alt="image-20250222205740125" src="../images/image-20250222205740125.png" /></p>
 
 
 
@@ -3713,6 +3721,38 @@
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-02-22T14:04:48+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-02-22</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2024-11-15T11:19:11+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2024-11-15</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -3762,6 +3802,14 @@
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       

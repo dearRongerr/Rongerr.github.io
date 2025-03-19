@@ -48,6 +48,14 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../../mkdocs/css/unordered-list-symbols.css">
+    
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -272,7 +280,7 @@
     
     
       <li class="md-tabs__item">
-        <a href="../../../learning/3_ViT/" class="md-tabs__link">
+        <a href="../../../learning/0_pdfNotes/" class="md-tabs__link">
           
   
     
@@ -1518,6 +1526,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../../learning/3_ViT/" class="md-nav__link">
         
   
@@ -1816,7 +1845,7 @@
         
   
   <span class="md-ellipsis">
-    Clip
+    空
   </span>
   
 
@@ -2111,27 +2140,6 @@
   
   <span class="md-ellipsis">
     21 FastRCNN
-  </span>
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../learning/22_DilatedConv/" class="md-nav__link">
-        
-  
-  <span class="md-ellipsis">
-    DialtedConv
   </span>
   
 
@@ -3827,10 +3835,10 @@
 
 
 <h1 id="2021-informer">2021、 Informer<a class="headerlink" href="#2021-informer" title="Permanent link">&para;</a></h1>
-<p><img alt="image-20250317120535689" src="/docs/images/image-20250317120535689.png" /></p>
+<p><img alt="image-20250317120535689" src="../images/image-20250317120535689.png" /></p>
 <p>参看：<a href="https://blog.csdn.net/m0_53881899/article/details/136281557">滑动窗口机制概述</a></p>
 <h2 id="_1">模型接受输入<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250304211029241" src="/docs/images/image-20250304211029241.png" /></p>
+<p><img alt="image-20250304211029241" src="../images/image-20250304211029241.png" /></p>
 <ul>
 <li>
 <p>batch_size：batch中样本的数量，模型训练过程每次以一个batch为输入单位来进行训练。 </p>
@@ -3850,7 +3858,7 @@
 <p>滑动窗口实现原理： </p>
 <p>举个例子，假设我们有一组时间序列数据，这些数据记录了<code>1000h</code>的气温（<code>1000</code>行），设定<code>seq_len=72</code>（窗口长度），<code>label_len=48</code>，<code>pred_len=24</code>，<code>batch_size=12</code>。</p>
 <p>初始：从<code>第1h</code>开始，放置一个<code>72h</code>的滑动窗口，窗口内样本包含<code>第1h—72h</code>气温，这时<code>batch</code>中的一个规范样本就是当前窗口内的<code>72h</code>样本，该规范样本对应的==标签==为25h—72h气温，该规范样本对应的==预测样本==为<code>73h—96h</code>气温。</p>
-<p><img alt="image-20250304195519180" src="/docs/images/image-20250304195519180.png" /></p>
+<p><img alt="image-20250304195519180" src="../images/image-20250304195519180.png" /></p>
 <h2 id="embedding">关于 embedding<a class="headerlink" href="#embedding" title="Permanent link">&para;</a></h2>
 <p>Embedding原理： 
 Embedding对低维数据进行升维时，会把一些特征给放大，或者把笼统的特征给分开。</p>
@@ -3859,7 +3867,7 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <h2 id="25-kprobattn">随机选择 25 个 K、ProbAttn<a class="headerlink" href="#25-kprobattn" title="Permanent link">&para;</a></h2>
 <p>的解释是，类比了解一个人可以通过它的为人处世去了解，但也不可能天天观察它怎么做事，那就随意观察 5 天也可以大概的了解到它这个人，或者随意的观察它做的 5 件事就可以了</p>
 <p>【<a href="https://www.bilibili.com/video/BV1GNNde1ETs?spm_id_from=333.788.videopod.episodes&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e&amp;p=3">参看</a>】</p>
-<p><img alt="image-20250304202833161" src="/docs/images/image-20250304202833161.png" /></p>
+<p><img alt="image-20250304202833161" src="../images/image-20250304202833161.png" /></p>
 <p>解释输出结果：形状是 <code>32*8*96*25</code></p>
 <p><code>32</code>：batch</p>
 <p><code>8</code>：<code>8</code> 头，怎么理解 <code>8</code> 头，首先把特征拆成 <code>8</code> 份，然后分别计算，随后再拼接</p>
@@ -3867,16 +3875,16 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <p><code>25</code>：<code>25</code> 个 key</p>
 <p>也就是这里的注意力矩阵是 <code>96*25</code></p>
 <p>图示：</p>
-<p><img alt="image-20250304204543009" src="/docs/images/image-20250304204543009.png" /></p>
+<p><img alt="image-20250304204543009" src="../images/image-20250304204543009.png" /></p>
 <p>（1）输入序列长度为96，首先在K中进行采样，随机选取25个k。
 （2）计算每个q与25个k的内积，现在一个q一共有25个得分。
 （3）每个q在25个得分中，选取==最高分的与均值==算差异。
 （4）这样我们输入的96个q都有对应的差异得分，我们将差异从大到小排列，选出差异前25大的q。
 （5）其他淘汰掉的q使用V向量的平均来代替。</p>
 <p>以上解决了原文提到的问题：</p>
-<p><img alt="image-20250304204759271" src="/docs/images/image-20250304204759271.png" /></p>
+<p><img alt="image-20250304204759271" src="../images/image-20250304204759271.png" /></p>
 <h3 id="25">说明选出 25 个更新，其余全为均值向量<a class="headerlink" href="#25" title="Permanent link">&para;</a></h3>
-<p><img alt="image-20250304205401531" src="/docs/images/image-20250304205401531.png" /></p>
+<p><img alt="image-20250304205401531" src="../images/image-20250304205401531.png" /></p>
 <p>解释形状：32 个 batch，8 个头，选择出 25 个 query，跟 96 个 key 计算注意力</p>
 <p>例子：选到了 2 号 query，跟 1——96 号 key 计算注意力，也就是只更新 2 号以及选到的 query，那么没选到的怎么办？</p>
 <p>回答：均值填充</p>
@@ -3885,11 +3893,11 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <p><span class="arithmatex">\(\frac{1}{96}V_1+\frac{1}{96}V_2+......+\frac{1}{96}V_{96}\)</span></p>
 <p><strong>理由：</strong></p>
 <p>因为 <span class="arithmatex">\(lazy \ query\)</span> 的注意力分布就是类似均匀分布的，所以填充的时候用 <span class="arithmatex">\(V\)</span>的均值填充是有道理的</p>
-<p><img alt="image-20250304205546856" src="/docs/images/image-20250304205546856.png" /></p>
+<p><img alt="image-20250304205546856" src="../images/image-20250304205546856.png" /></p>
 <p>以上说明了 infomer 中注意力权值的计算</p>
 <p>期刊：AAAI21(best paper)</p>
 <h2 id="distilling">Distilling<a class="headerlink" href="#distilling" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250305105025558" src="/docs/images/image-20250305105025558.png" /></p>
+<p><img alt="image-20250305105025558" src="../images/image-20250305105025558.png" /></p>
 <p>我们处理的单元：是 96 个时间步；一个规范化样本96 个数据点，关于这点<a href="#跳 111">补充见</a></p>
 <p>在相邻的Attention Block之间加入卷积池化操作，来对特征进行降采样。对==输入维度==进行修剪，堆叠n层，每层==输入序列长度减半==，从而将空间复杂度降低到O(nlogn)</p>
 <p>也就是输入序列长度： 96 → 48</p>
@@ -3904,19 +3912,19 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <p>通过一组参数设置，逐层递减</p>
 </blockquote>
 <p>图示：（中间的板子 是 <strong>注意力的头数</strong> ）</p>
-<p><img alt="image-20250305132822125" src="/docs/images/image-20250305132822125.png" /></p>
+<p><img alt="image-20250305132822125" src="../images/image-20250305132822125.png" /></p>
 <p>效果：</p>
-<p><img alt="image-20250305133120142" src="/docs/images/image-20250305133120142.png" /></p>
+<p><img alt="image-20250305133120142" src="../images/image-20250305133120142.png" /></p>
 <p>maxpool会把特征鲜明的选出来，逐层筛选</p>
 <p><mark>传统decoder：</mark></p>
-<p><img alt="image-20250305133347368" src="/docs/images/image-20250305133347368.png" /></p>
+<p><img alt="image-20250305133347368" src="../images/image-20250305133347368.png" /></p>
 <p><strong>decoder 的输入：</strong> </p>
-<p><img alt="image-20250305133620089" src="/docs/images/image-20250305133620089.png" /></p>
+<p><img alt="image-20250305133620089" src="../images/image-20250305133620089.png" /></p>
 <p>encoder 中的做：self attention</p>
 <p>decoder 中做 2 种 <strong>attention</strong>：</p>
 <p>①  与 encoder 的输出的做 attention，表示 encoder 中的特征能提供用于指导decoder 的输入</p>
 <p>② decoder 输入的自注意力，这一部分需要注意的是 mask 操作，当前位置在做自注意力时，不能看到未来的信息</p>
-<p><img alt="image-20250305134615512" src="/docs/images/image-20250305134615512.png" /></p>
+<p><img alt="image-20250305134615512" src="../images/image-20250305134615512.png" /></p>
 <h3 id="informer"><span id="跳 111">模型输入输出角度理解Informer训练和预测过程</span><a class="headerlink" href="#informer" title="Permanent link">&para;</a></h3>
 <p>数据集：BDG2</p>
 <p>(小时维度的数据) 数据规格:17420 * 320</p>
@@ -3974,7 +3982,7 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <p>32 × 72 × 512</p>
 </blockquote>
 <h2 id="_3">位置编码<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250305134714859" src="/docs/images/image-20250305134714859.png" /></p>
+<p><img alt="image-20250305134714859" src="../images/image-20250305134714859.png" /></p>
 <h2 id="_4">实验部分<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.bilibili.com/video/BV127CYYQELB?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">时序预测论文精读：长序列预测模型informer上</a></p>
 <p>本文所用数据集：ETT h1，ETT h2，ETT m1、weather</p>
@@ -3984,7 +3992,7 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 <li>多变量 ~ （q 的稀疏性假设在很多数据集上成立）</li>
 </ul>
 <p><a href="https://arxiv.org/pdf/2012.07436">https://arxiv.org/pdf/2012.07436</a></p>
-<p><img alt="image-20250317121532608" src="/docs/images/image-20250317121532608.png" /></p>
+<p><img alt="image-20250317121532608" src="../images/image-20250317121532608.png" /></p>
 
 
 
@@ -3992,6 +4000,38 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
 
 
 
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-19T02:51:17+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-19</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago"><span class="timeago" datetime="2025-03-04T13:01:00+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date">2025-03-04</span>
+  </span>
+
+    
+    
+    
+  </aside>
 
 
 
@@ -4041,6 +4081,14 @@ Embedding对低维数据进行升维时，会把一些特征给放大，或者�
     
     
       <script src="../../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+        <script src="../../../js/timeago.min.js"></script>
+      
+        <script src="../../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
       
         <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
       
