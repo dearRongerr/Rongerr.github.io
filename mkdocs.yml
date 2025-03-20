@@ -128,6 +128,7 @@ nav:
       - Reproduction/3.md
       - Reproduction/4.md
       - Reproduction/CodeRepo/1_MultiHeadAttention.md
+      - Reproduction/CodeRepo/2_transformer.md
   - 杂:
     - logs/index.md     
     - logs/diary.md 

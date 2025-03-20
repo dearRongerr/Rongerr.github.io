@@ -444,48 +444,6 @@ x_enc [B, L, D]        x_mark_enc [B, L, time_features]
 
 
 
-### 嵌入部分
-
-```mermaid
-classDiagram
-    class DataEmbedding_wo_pos {
-        +TokenEmbedding value_embedding
-        +PositionalEmbedding position_embedding
-        +TemporalEmbedding temporal_embedding
-        +Dropout dropout
-        +forward(x, x_mark)
-    }
-    
-    class TokenEmbedding {
-        +Conv1d tokenConv
-        +forward(x)
-    }
-    
-    class PositionalEmbedding {
-        +Tensor pe
-        +forward(x)
-    }
-    
-    class TemporalEmbedding {
-        +Embedding minute_embed
-        +Embedding hour_embed
-        +Embedding weekday_embed
-        +Embedding day_embed
-        +Embedding month_embed
-        +forward(x)
-    }
-    
-    class TimeFeatureEmbedding {
-        +Linear embed
-        +forward(x)
-    }
-    
-    DataEmbedding_wo_pos --> TokenEmbedding
-    DataEmbedding_wo_pos --> PositionalEmbedding
-    DataEmbedding_wo_pos --> TemporalEmbedding
-    TemporalEmbedding --> TimeFeatureEmbedding
-```
-
 
 
 ### 编码器 解码器部分
@@ -962,11 +920,284 @@ zeros = torch.zeros([x_dec.shape[0], self.pred_len, x_dec.shape[2]], device=x_en
 
 ![image-20250319225341745](images/image-20250319225341745.png)
 
+
+
+
+
 序列分解 over
 
 ---
 
 下面开始 模型的输入，先从论文开始讲解：
 
-![image-20250319225433558](images/image-20250319225433558.png)
+![image-20250319225433558](images/image-20250319225433558.png) 
+
+
+
+模型的输入部分，模型的输入包括编码器的输入和解码器的输入。具体来说，
+
+编码器的输入是过去 $I$ 个时间步，文中给出的符号表示 $\mathcal{X}^{I \times d}$ ，$I$ 表示时间步长，$d$ 表示每个时间步的特征数。
+
+解码器的输入包括了 季节性序列 和 趋势性序列，具体的符号表示分别是 $\mathcal{X}_{des}$  和 $\mathcal{X}_{det}$    形状是一样的：$(\frac{I}{2}+O)$  、$\frac{I}{2}$ 是 label length 的长度，取的是原始输入序列长度的 一半。O 是 预测步长 predict length。d 同样是每个时间步的特征数。接下来，我们来看公式是怎么表示的：
+
+![image-20250320085551155](images/image-20250320085551155.png)
+
+$\mathcal{X}_{ens}、\mathcal{X}_{ent}$  分别表示 从 原始 输入序列 $\mathcal{X}_{en}$ 分解出的季节成分和趋势成分，截取出后半部分 $\frac{I}{2}:I$ 作为 label length，与长度为 predict  length 的时间步进行拼接，用 0 填充的长度为 predict length的向量记作 $\mathcal{X}_0$ ，用输入时间序列时间步均值填充的长度为 predict length 的向量记作 $\mathcal{X}_{mean}$
+
+然后，$\mathcal{X}_{ens}$ 与 $\mathcal{X}_0$ 进行 concat 得到 解码器季节成分的初始值  $\mathcal{X}_{des}$
+
+ 对应着的 $\mathcal{X}_{ent}$ 与 $\mathcal{X}_{mean}$ concat 得到解码器趋势成分的初始值 $\mathcal{X}_{mean}$
+
+**再强调一下，这里所涉及的向量的记号和形状：** 
+
+- 编码器的输入是 过去 $I$ 个时间步，表示 $\mathcal{X}^{I \times d}$ ，$I$ 表示时间步长，$d$ 表示每个时间步的特征数。
+- 解码器季节成分的输入是 $\mathcal{X}_{des} ^{(\frac{I}{2}+O)\times d}$ 、解码器趋势成分的输入是 $\mathcal{X}_{det} ^{(\frac{I}{2}+O)\times d}$ 
+- 涉及到的中间变量，$\mathcal{X}^{\frac{I}{2} \times d}_{ens}$ ，$\mathcal{X}^{\frac{I}{2} \times d}_{ent}$ 可以理解为标签序列的季节成分和趋势成分，就是从输入序列分解的季节成分和趋势成分中截取的后半段。
+- 预测序列季节成分的初始值是 $\mathcal{X}_0 ^{O \times d}$ ，趋势成分初始值是 $\mathcal{X}^{O \times d} _{Mean}$
+
+也就是论文中模型结构图的：
+
+![image-20250320091412914](images/image-20250320091412914.png)
+
+具体到代码，就是 autoformer forward的前 5 行，其中 self.decomp是我们刚刚仔细讲过的 序列分解模块 Series decomposition block：
+
+![image-20250320091921116](images/image-20250320091921116.png)
+
+这部分代码比较好理解，就这样，以上部分完成了对原文 model inputs 部分的讲解，代码，论文，图，公式都讲了。
+
+![image-20250320092158923](images/image-20250320092158923.png)
+
+![image-20250320092214513](images/image-20250320092214513.png)
+
+**接下来进入论文的 Encoder 部分**  
+
+会同样按照，论文、图、公式、代码一一对应的逻辑进行讲解
+
+**首先，Autoformer 遵循原始 Transformer 的结构，** 
+
+![image-20250320092445230](images/image-20250320092445230.png)
+
+编码器，解码器，编码器接收的 input 是 word embedding + positional embedding，然后通过自注意力机制和前馈神经网络。解码器接收的 输入是 output，预测部分，同样是 word embedding+positional embedding，然后分别经过解码器输入的 自注意力机制，以及和编码器输出 的 交叉注意力，最后经过 全连接层，得到最终的输出。
+
+首先强调一下关于Transformer 为什么是注意力机制和全连接层的设计？
+
+> 首先，Transformer 在 NLP中接收的数据格式 是 [B,L,D]，batch size，一个 batch 中有多少个句子，一个句子中有几个词 L，每个词的嵌入D，也就是每个词用长度为多少的向量表示
+>
+> 最直观的讲解，就是 注意力机制进行 L 层面的交互，前馈神经网络进行 D 层面的交互。
+>
+> **L 层面也就是注意到了 词与词之间的交互，D 层面就是词与词之间特征的交互** 
+>
+> > 在L层面（单词层面）进行交互，计算每个单词对其他单词的注意力权重，捕捉词与词之间的关系；
+> >
+> > 在D层面（即单词嵌入的特征层面）进行交互，对每个单词的嵌入向量进行非线性变换，捕捉词与词之间的特征交互 
+>
+> **对应到时间序列中**
+>
+> 1️⃣ 标准 ==输入== 格式也是 BLD，具体的解释： 
+>
+> > B = 32 (批量大小，32个时间序列样本)
+> > L = 36 (每个样本有36个时间步，如过去36天的数据)
+> > D = 7 (每个时间步有7个特征，如对于股票可能包括开盘价、收盘价、最高价、最低价、交易量等)
+>
+> 2️⃣ ==处理==   注意力机制
+>
+> 编码器中，注意力在所有36个时间步之间建立连接
+> 解码器中，注意力既在预测序列内部建立连接，也与编码器输出建立连接
+>
+> 时间步之间的建模 可以 发现股票价格每周五可能下跌，或者每月初可能上涨的模式
+>
+> 3️⃣ ==处理==  前馈全连接层
+>
+> 处理每个时间步内7个特征之间的关系
+>
+> 例如，交易量与价格变动的关系，或开盘价与收盘价的关系
+
+诶，说起这个，关于用现实例子理解这些模型，
+
+**首先，卷积是什么意思？** 
+
+假如我们要认识一个人A，B 是 A 的直接朋友，形成了B 对 A 的第一次认识，B 就相当于卷积核了，那直接认识 A的肯定不止一个人，还有B1，B2，B3...等，每个人对形成了对 A 的第一次认识，父母认识 A更关注生活层面，学校中直接认识的 A 更关于为人处事部分，工作中直接认识的 A 更关于 A 的生产性。这里直接认识 A 的B1，B2，B3...就是每一层中 卷积核的个数。除了直接认识 A 的，还有通过直接认识 A 的人B 认识 A，这波人叫 C，那还有通过 C 认识 A 的，那 C 又认识 D，D 又通过 C 认识 A。除了别人认识 A，A 自己也有对自己的认识。
+
+**Transformer是什么意思？**
+
+除了刚刚说的 注意力机制和前馈全连接层的理解，还有 Encoder 、Decoder 、多头注意力机制的理解。
+
+- [x] Encoder&Decoder 的交互怎么理解？
+
+首先，整体上的这个图：
+
+![image-20250320095403477](images/image-20250320095403477.png)
+
+编码器相当于甲方，解码器相当于乙方，甲方有需求，自己公司内部一级一级沟通，从最开始的想法最终形成方法交给最后一个人，这个人去和乙公司沟通，乙公司又有很多个部分，每个部分分别完成甲公司提出的方案的一部分，这一个过程中需要不断的与甲公司手拿最终方案的人不断沟通，最终乙公司完成方案。
+
+- [x] 多头注意力机制怎么理解
+
+对于 BLD 的序列，首先明白的是，那个维度分多头了，是 D 维度分成 num head维度和 head dim，其中 num head × head dim = embedding dim（D），相当于什么意思，一个人学知识（B =1），L 是要学的几本书，D 是每本书有几个章节，一般是一个老师教我们学一整本书，但多头注意力机制的意思是，一本书的几个章节，分开，比如第一个老师教第一章和第二章，第二个老师教第三章和第四章，最后两张第三个老师教，这样学习的时候，同样是一个学期，一个老师只需要关注两章的内容，对于课程节奏的把握知识理解的更透彻，效果会比一个老师教一整本书的内容要好一些。
+
+B=3，就是班里的 3 个人，每个人这学期都要上这几本课，同样的 LD。
+
+> 最后一个 linear 层，应该是为了还原原始维度的。
+
+**好了，扩展的远了，回到论文中Encoder 部分** 
+
+![image-20250320092249326](images/image-20250320092249326.png)
+
+原文中说，首先编码器更专注季节部分的建模，编码器的输出包含过去的季节性信息，并将作为交叉信息帮助解码器细化预测结果，假设有 N 个编码器，则第 i 层编码器的总体方程可以表示为 $\mathcal{X}_{en}^l = Encoder(\mathcal{X}_{en}^{l-1})$ ，就是说 第 $l$ 层编码器接收 第 $l-1$ 层编码器的输出作为输入，具体的细节是原文的公式(3)
+
+**下面对 公式 3 进行讲解**
+
+首先，等号左边，下划线表示忽略掉季节成分，只关注季节成分。
+
+$\mathcal{X}_{en}^l = \mathcal{S}_{en}^{l,2},l \in {1,...,N}$  表示 第 $l$ 层编码器的输出。
+
+- 初始值，也就是编码器的输入是 $\mathcal{X}_{en}^0$ 是 输入时间序列的 $\mathcal{X}_{en}$ 的 word embedding
+
+- [ ]  $\mathcal{S}_{en}^{l,i},i \in {1,2}$ 表示 第 $l$层中 第 i 个序列分解模块之后的季节性成分，然后公式中的 Auto-correlation 后面再说，这是本文的一个创新点。（ps，后面要重点看这个是什么意思。）
+
+> （我最开始看见这里的疑问，不用讲，忽略掉即可）先看公式等号的左边， $\mathcal{S}_{en}^{l,1}$ 首先，下标 $en$ 就是表示 编码器，$l$ 表示第几个编码器，那这个 $1$是什么意思？
+
+**原文和公式说了，接下来来看代码，Encoder 是怎么实现的。**
+
+==首先，构造 Encoder 的输入== ，编码器嵌入。
+
+![image-20250320143146767](images/image-20250320143146767.png)
+
+具体怎么做的看autoformer 的 init 部分：
+
+![image-20250320143228968](images/image-20250320143228968.png)
+
+看到这边调用的 `DataEmbedding_wo_pos` 这个类，其中具体地 valueEmbedding 和TemporaryEmbedding 又分别在 init 中显示调用了 `TokenEmbedding` 类和 `TemporalEmbedding` 类
+
+![image-20250320143256379](images/image-20250320143256379.png)
+
+嵌入部分的调用关系用流程图来表示：
+
+```mermaid
+classDiagram
+    class DataEmbedding_wo_pos {
+        +TokenEmbedding value_embedding
+        +PositionalEmbedding position_embedding
+        +TemporalEmbedding temporal_embedding
+        +Dropout dropout
+        +forward(x, x_mark)
+    }
+    
+    class TokenEmbedding {
+        +Conv1d tokenConv
+        +forward(x)
+    }
+    
+    class PositionalEmbedding {
+        +Tensor pe
+        +forward(x)
+    }
+    
+    class TemporalEmbedding {
+        +Embedding minute_embed
+        +Embedding hour_embed
+        +Embedding weekday_embed
+        +Embedding day_embed
+        +Embedding month_embed
+        +forward(x)
+    }
+    
+    class TimeFeatureEmbedding {
+        +Linear embed
+        +forward(x)
+    }
+    
+    DataEmbedding_wo_pos --> TokenEmbedding
+    DataEmbedding_wo_pos --> PositionalEmbedding
+    DataEmbedding_wo_pos --> TemporalEmbedding
+    TemporalEmbedding --> TimeFeatureEmbedding
+```
+
+首先，跟大家说这个图怎么画，首先在调试的过程中，看到调用相关的代码，就粘贴给 gpt，然后让 gpt 画。这个图就是 gpt 给我画的，它用的 mermaid ，生成代码，然后我粘贴到我的 markdown 文档中，我用的 markdown 编辑器是 Typora，可以解析 mermaid，用在线mermaid 也可以显示出图。直接搜 在线 mermaid。或者跟 gpt 说，用简单的流程图画，不用 mermaid，都能帮你把自己的代码理清楚。
+
+mermaid 画出的类调用图，一个类用三行表示，第一行 类名、第二行，init 部分的定义、第三行类中方法的定义
+
+**好了，现在开始讲图，** 
+
+可以看到 `DataEmbedding_wo_pos` 类 的 init 分别调用了 `TokenEmbedding`类、`PositionalEmbedding`类和 `TemporalEmbedding`类，同时还定义了一个 dropout 层。
+
+🔵 调用 `tokenEmbedding`类，init 部分是使用一个 `nn.Conv1d` 初始化了一个卷积层，传给 `self.tokenConv` ，后面在 这个类中的 forward 方法中用。
+
+![image-20250320144456851](images/image-20250320144456851.png)
+
+通俗点说，这里的 tokenEmbedding 就是通过一个1D 卷积实现的，具体的形状变化注释中也给出了。
+
+> 怎么生成注释？
+>
+> 首先把代码粘给 gpt，然后，跟它说：`为每行代码 添加 两行注释，一行说明这行代码的目的，一行说明 形状的变化和操作 形状->操作->形状的格式，操作的格式类似 DecoderLayer.forward 显示出调用的什么类名.方法`
+
+🔵 接下来看 位置编码 Positional Embedding，由于这里没有用，就不说了。
+
+🔵 最后，时间戳编码，
+
+![image-20250320145727249](images/image-20250320145727249.png)
+
+注意这里的时间戳编码是有一个判断的，经过调试，我们这里调用的是 `TimeFeatureEmbedding` 类。
+
+也就是说什么意思，这个图画的有问题，不过意思也是对的，就不深究了。
+
+接下来，我们跳到 `TimeFeatureEmbedding` 这个类的定义。
+
+![image-20250320150012753](images/image-20250320150012753.png) 
+
+就是通过一个线性层，将 时间戳特征嵌入到指定维度。
+
+首先，嵌入到指定维度是因为高维向量表示特征更精细。
+
+其次，我们这里使用的是疾病数据集，是小时的，所以维度 4，表示的的是，小时-天，天-周，天-月，天-年。这一部分也说过很多次了，再说一次，加深印象。
+
+具体来说输入的 `x_mark.shape=32,36,4 → nn.Linear → 32,36,512`
+
+接下来，总结一下这里的嵌入。首先 本文用到的所有嵌入都定义在了  `Embed.py`文件中
+
+![image-20250320150552474](images/image-20250320150552474.png)
+
+而这个文件中，又定义了所有的嵌入类，又有 8 个。
+
+> 题外话，这个怎么看，是 vscode 的大纲视图，找出来，就能看到了
+>
+> ![image-20250320150811010](images/image-20250320150811010.png)
+>
+> 大纲视图中，立方体表示定义的函数，小树杈的东西是类，类中有小立方体，是类中定义的函数，类中定义的函数，也就是小立方体中，折叠的部分是 使用这个函数或者类所需要的初始化参数。方括号+小立方体包括的部分是 类中调用的类的对象名，比如这里：
+>
+> ![image-20250320151133019](images/image-20250320151133019.png)
+>
+> 以这个 TemporalEmbedding 类为例， 这个TemporalEmbedding 类中有两个方法方法，分别是 init 和 forward。
+>
+> init 折叠的部分是 初始化这个类所需要的参数， forward 折叠的部分是调用这个时所需要的参数，其中 init 部分还实例化了 5 个对象，对象名分别是 mintue_embed、hour_embed、weekday_embed、day_embed、month_embed，但是这里具体实例化的哪个类。这里是没有显示的，得点进去自己看，可以看到这个对象其实都是实例化的Embed 这个类，很明显是一个自定义的，想看还得步进看具体实例化的哪个类。
+
+以上完成了 Encoder Input 的 Embedding 部分，分别进行了 token Embedding 和 TemporaryEmbedding来对历史时间步特征进行嵌入和时间特征进行嵌入。
+
+汇总这里的维度形状变化：
+
+```python
+# x [B, L, D] → permute → [B, D, L] → 卷积 → [B, d_model, L] → transpose → [B, L, d_model]
+# x_mark [B, L, d_inp] → 线性层变换(时间特征整体映射) → [B, L, d_model]
+# [B, L, d_model] + [B, L, d_model] → [B, L, d_model]
+```
+
+**接下来想给大家说的是， 1D 卷积怎么进行的 tokenEmbedding：** 
+
+小小的点，小小的注意。
+
+接收的标准输入是 BLD
+
+- 首先进行的是 permute，将想要嵌入的维度`D` 移到中间，然后进行 1D 卷积，嵌入到 `d_model`  （ `Embedding dim`），对应到 1D 卷积中，就是输入通道是 D，输出通道是 `d_model`
+
+![image-20250320152707837](images/image-20250320152707837.png)
+
+- 为什么这么做？因为卷积最开始主要用于图像，图像的标准格式是 BCHW，图像中的 HW 就表示图像的特征，只不过是用 2D的矩阵 表示的，而且这个 2D 矩阵保存了位置信息，不能随意展平。那此时，C 也就可以理解为每个像素的特征数。比如每个像素用彩色的 RGB 三个元素表示。
+- 所以我们这里的时间序列中的 1D 卷积，也仿照图像中卷积的定义，每个时间步的特征数放到中间，表示输入通道数，然后将每个时间步的特征，映射到输出维度大小，这里表示为 `Embedding dim`，也就是 `d_model`。
+
+用一张图来表示，(这里其实很像 SegRNN 的视角转换)：
+
+![image-20250320154515642](images/image-20250320154515642.png)
+
+而 时间戳特征的 nn.Linear就是直接对最后一个维度进行嵌入了
+
+
 
