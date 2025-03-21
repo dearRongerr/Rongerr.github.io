@@ -14,4 +14,4 @@ y = self.revinLayer(y.permute(0, 2, 1), 'denorm')
 
 - [x] vscode 禁用断点的方法
 
-![image-20250315163423821](images/image-20250315163423821.png)
+![image-20250315163423821](images/image-20250315163423821.png) 

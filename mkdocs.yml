@@ -120,6 +120,7 @@ nav:
     - Reproduction/5_SegRNN_index.md
     - Reproduction/5_SegRNN_v1.md
     - Reproduction/5_SegRNN_v2.md
+    - Reproduction/5_SegRNN_v3.md
     - Reproduction/6_AutoFormer.md
     - 一些代码:
       - Reproduction/CodeRepo/index.md
@@ -131,7 +132,8 @@ nav:
       - Reproduction/CodeRepo/2_transformer.md
   - 杂:
     - logs/index.md     
-    - logs/diary.md 
+    - logs/diary.md
+    - logs/1_date.md 
 
 theme:
   name: material
