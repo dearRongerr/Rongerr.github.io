@@ -6,7 +6,7 @@
 <meta charset="utf-8"/>
 <meta content="width=device-width,initial-scale=1" name="viewport"/>
 <link href="https://mydomain.org/mysite/Reproduction/6_AutoFormer/" rel="canonical"/>
-<link href="../5_SegRNN_v2/" rel="prev"/>
+<link href="../5_SegRNN_v3/" rel="prev"/>
 <link href="../CodeRepo/" rel="next"/>
 <link href="../../assets/images/favicon.png" rel="icon"/>
 <meta content="mkdocs-1.6.1, mkdocs-material-9.6.9" name="generator"/>
@@ -1203,7 +1203,15 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../5_SegRNN_v2/">
 <span class="md-ellipsis">
-    复现 SegRNN_v2
+    （补充）复现 SegRNN
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../5_SegRNN_v3/">
+<span class="md-ellipsis">
+    (手写笔记)SegRNN
     
   </span>
 </a>
@@ -1311,13 +1319,6 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_6">
 <span class="md-ellipsis">
-      嵌入部分
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
       编码器 解码器部分
     </span>
 </a>
@@ -1326,17 +1327,49 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
 <span class="md-ellipsis">
       训练过程，形状变换
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      附录
+    </span>
+</a>
+<nav aria-label="附录" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conv2">
+<span class="md-ellipsis">
+      疑问一 为什么Conv2之后没有进行激活函数的应用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-conv1d-nnlinear">
+<span class="md-ellipsis">
+      疑问 2 为什么是 conv1d，而不是 nn.Linear
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#encoder">
+<span class="md-ellipsis">
+      Encoder 部分的设计亮点
     </span>
 </a>
 </li>
 </ul>
 </nav>
 </li>
+</ul>
+</nav>
+</li>
 <li class="md-nav__item md-nav__item--section md-nav__item--nested">
-<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6_7" type="checkbox"/>
+<input class="md-nav__toggle md-toggle md-toggle--indeterminate" id="__nav_6_8" type="checkbox"/>
 <div class="md-nav__link md-nav__container">
 <a class="md-nav__link" href="../CodeRepo/">
 <span class="md-ellipsis">
@@ -1344,12 +1377,12 @@
     
   </span>
 </a>
-<label class="md-nav__link" for="__nav_6_7" id="__nav_6_7_label" tabindex="">
+<label class="md-nav__link" for="__nav_6_8" id="__nav_6_8_label" tabindex="">
 <span class="md-nav__icon md-icon"></span>
 </label>
 </div>
-<nav aria-expanded="false" aria-labelledby="__nav_6_7_label" class="md-nav" data-md-level="2">
-<label class="md-nav__title" for="__nav_6_7">
+<nav aria-expanded="false" aria-labelledby="__nav_6_8_label" class="md-nav" data-md-level="2">
+<label class="md-nav__title" for="__nav_6_8">
 <span class="md-nav__icon md-icon"></span>
             一些代码
           </label>
@@ -1394,6 +1427,14 @@
   </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../CodeRepo/2_transformer/">
+<span class="md-ellipsis">
+    从现实生活的角度看 Transformer
+    
+  </span>
+</a>
+</li>
 </ul>
 </nav>
 </li>
@@ -1423,6 +1464,14 @@
 <a class="md-nav__link" href="../../logs/diary/">
 <span class="md-ellipsis">
     乐观 &amp; 坚强
+    
+  </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="../../logs/1_date/">
+<span class="md-ellipsis">
+    一些日期
     
   </span>
 </a>
@@ -1526,13 +1575,6 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="#_6">
 <span class="md-ellipsis">
-      嵌入部分
-    </span>
-</a>
-</li>
-<li class="md-nav__item">
-<a class="md-nav__link" href="#_7">
-<span class="md-ellipsis">
       编码器 解码器部分
     </span>
 </a>
@@ -1541,11 +1583,43 @@
 </nav>
 </li>
 <li class="md-nav__item">
-<a class="md-nav__link" href="#_8">
+<a class="md-nav__link" href="#_7">
 <span class="md-ellipsis">
       训练过程，形状变换
     </span>
 </a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      附录
+    </span>
+</a>
+<nav aria-label="附录" class="md-nav">
+<ul class="md-nav__list">
+<li class="md-nav__item">
+<a class="md-nav__link" href="#conv2">
+<span class="md-ellipsis">
+      疑问一 为什么Conv2之后没有进行激活函数的应用
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#2-conv1d-nnlinear">
+<span class="md-ellipsis">
+      疑问 2 为什么是 conv1d，而不是 nn.Linear
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#encoder">
+<span class="md-ellipsis">
+      Encoder 部分的设计亮点
+    </span>
+</a>
+</li>
+</ul>
+</nav>
 </li>
 </ul>
 </nav>
@@ -1876,46 +1950,7 @@ Autoformer：用于长期序列预测的具有自相关的分解变压器</p>
 </ol>
 <p>这种多重嵌入方式使模型能同时利用时间序列的值信息和时间特征信息，为后续的注意力机制和时间序列建模提供丰富的上下文。</p>
 <h2 id="_5">模型定义<a class="headerlink" href="#_5" title="Permanent link">¶</a></h2>
-<h3 id="_6">嵌入部分<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
-<pre class="mermaid"><code>classDiagram
-    class DataEmbedding_wo_pos {
-        +TokenEmbedding value_embedding
-        +PositionalEmbedding position_embedding
-        +TemporalEmbedding temporal_embedding
-        +Dropout dropout
-        +forward(x, x_mark)
-    }
-
-    class TokenEmbedding {
-        +Conv1d tokenConv
-        +forward(x)
-    }
-
-    class PositionalEmbedding {
-        +Tensor pe
-        +forward(x)
-    }
-
-    class TemporalEmbedding {
-        +Embedding minute_embed
-        +Embedding hour_embed
-        +Embedding weekday_embed
-        +Embedding day_embed
-        +Embedding month_embed
-        +forward(x)
-    }
-
-    class TimeFeatureEmbedding {
-        +Linear embed
-        +forward(x)
-    }
-
-    DataEmbedding_wo_pos --&gt; TokenEmbedding
-    DataEmbedding_wo_pos --&gt; PositionalEmbedding
-    DataEmbedding_wo_pos --&gt; TemporalEmbedding
-    TemporalEmbedding --&gt; TimeFeatureEmbedding
-</code></pre>
-<h3 id="_7">编码器 解码器部分<a class="headerlink" href="#_7" title="Permanent link">¶</a></h3>
+<h3 id="_6">编码器 解码器部分<a class="headerlink" href="#_6" title="Permanent link">¶</a></h3>
 <pre class="mermaid"><code>classDiagram
     class Model {
         +DataEmbedding_wo_pos enc_embedding
@@ -1994,7 +2029,7 @@ Autoformer：用于长期序列预测的具有自相关的分解变压器</p>
     DecoderLayer --&gt; Conv1d
     DecoderLayer --&gt; series_decomp
 </code></pre>
-<h2 id="_8">训练过程，形状变换<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<h2 id="_7">训练过程，形状变换<a class="headerlink" href="#_7" title="Permanent link">¶</a></h2>
 <p>（1）</p>
 <p>代码：</p>
 <p><img alt="image-20250319202142537" src="../images/image-20250319202142537.png"/> </p>
@@ -2280,13 +2315,706 @@ Autoformer：用于长期序列预测的具有自相关的分解变压器</p>
 <p>序列分解 over</p>
 <hr/>
 <p>下面开始 模型的输入，先从论文开始讲解：</p>
-<p><img alt="image-20250319225433558" src="../images/image-20250319225433558.png"/></p>
+<p><img alt="image-20250319225433558" src="../images/image-20250319225433558.png"/> </p>
+<p>模型的输入部分，模型的输入包括编码器的输入和解码器的输入。具体来说，</p>
+<p>编码器的输入是过去 <span class="arithmatex">\(I\)</span> 个时间步，文中给出的符号表示 <span class="arithmatex">\(\mathcal{X}^{I \times d}\)</span> ，<span class="arithmatex">\(I\)</span> 表示时间步长，<span class="arithmatex">\(d\)</span> 表示每个时间步的特征数。</p>
+<p>解码器的输入包括了 季节性序列 和 趋势性序列，具体的符号表示分别是 <span class="arithmatex">\(\mathcal{X}_{des}\)</span>  和 <span class="arithmatex">\(\mathcal{X}_{det}\)</span>    形状是一样的：<span class="arithmatex">\((\frac{I}{2}+O)\)</span>  、<span class="arithmatex">\(\frac{I}{2}\)</span> 是 label length 的长度，取的是原始输入序列长度的 一半。O 是 预测步长 predict length。d 同样是每个时间步的特征数。接下来，我们来看公式是怎么表示的：</p>
+<p><img alt="image-20250320085551155" src="../images/image-20250320085551155.png"/></p>
+<p><span class="arithmatex">\(\mathcal{X}_{ens}、\mathcal{X}_{ent}\)</span>  分别表示 从 原始 输入序列 <span class="arithmatex">\(\mathcal{X}_{en}\)</span> 分解出的季节成分和趋势成分，截取出后半部分 <span class="arithmatex">\(\frac{I}{2}:I\)</span> 作为 label length，与长度为 predict  length 的时间步进行拼接，用 0 填充的长度为 predict length的向量记作 <span class="arithmatex">\(\mathcal{X}_0\)</span> ，用输入时间序列时间步均值填充的长度为 predict length 的向量记作 <span class="arithmatex">\(\mathcal{X}_{mean}\)</span></p>
+<p>然后，<span class="arithmatex">\(\mathcal{X}_{ens}\)</span> 与 <span class="arithmatex">\(\mathcal{X}_0\)</span> 进行 concat 得到 解码器季节成分的初始值  <span class="arithmatex">\(\mathcal{X}_{des}\)</span></p>
+<p>对应着的 <span class="arithmatex">\(\mathcal{X}_{ent}\)</span> 与 <span class="arithmatex">\(\mathcal{X}_{mean}\)</span> concat 得到解码器趋势成分的初始值 <span class="arithmatex">\(\mathcal{X}_{mean}\)</span></p>
+<p><strong>再强调一下，这里所涉及的向量的记号和形状：</strong> </p>
+<ul>
+<li>编码器的输入是 过去 <span class="arithmatex">\(I\)</span> 个时间步，表示 <span class="arithmatex">\(\mathcal{X}^{I \times d}\)</span> ，<span class="arithmatex">\(I\)</span> 表示时间步长，<span class="arithmatex">\(d\)</span> 表示每个时间步的特征数。</li>
+<li>解码器季节成分的输入是 <span class="arithmatex">\(\mathcal{X}_{des} ^{(\frac{I}{2}+O)\times d}\)</span> 、解码器趋势成分的输入是 <span class="arithmatex">\(\mathcal{X}_{det} ^{(\frac{I}{2}+O)\times d}\)</span> </li>
+<li>涉及到的中间变量，<span class="arithmatex">\(\mathcal{X}^{\frac{I}{2} \times d}_{ens}\)</span> ，<span class="arithmatex">\(\mathcal{X}^{\frac{I}{2} \times d}_{ent}\)</span> 可以理解为标签序列的季节成分和趋势成分，就是从输入序列分解的季节成分和趋势成分中截取的后半段。</li>
+<li>预测序列季节成分的初始值是 <span class="arithmatex">\(\mathcal{X}_0 ^{O \times d}\)</span> ，趋势成分初始值是 <span class="arithmatex">\(\mathcal{X}^{O \times d} _{Mean}\)</span></li>
+</ul>
+<p>也就是论文中模型结构图的：</p>
+<p><img alt="image-20250320091412914" src="../images/image-20250320091412914.png"/></p>
+<p>具体到代码，就是 autoformer forward的前 5 行，其中 self.decomp是我们刚刚仔细讲过的 序列分解模块 Series decomposition block：</p>
+<p><img alt="image-20250320091921116" src="../images/image-20250320091921116.png"/></p>
+<p>这部分代码比较好理解，就这样，以上部分完成了对原文 model inputs 部分的讲解，代码，论文，图，公式都讲了。</p>
+<p><img alt="image-20250320092158923" src="../images/image-20250320092158923.png"/></p>
+<p><img alt="image-20250320092214513" src="../images/image-20250320092214513.png"/></p>
+<p><strong>接下来进入论文的 Encoder 部分</strong> </p>
+<p>会同样按照，论文、图、公式、代码一一对应的逻辑进行讲解</p>
+<p><strong>首先，Autoformer 遵循原始 Transformer 的结构，</strong> </p>
+<p><img alt="image-20250320092445230" src="../images/image-20250320092445230.png"/></p>
+<p>编码器，解码器，编码器接收的 input 是 word embedding + positional embedding，然后通过自注意力机制和前馈神经网络。解码器接收的 输入是 output，预测部分，同样是 word embedding+positional embedding，然后分别经过解码器输入的 自注意力机制，以及和编码器输出 的 交叉注意力，最后经过 全连接层，得到最终的输出。</p>
+<p>首先强调一下关于Transformer 为什么是注意力机制和全连接层的设计？</p>
+<blockquote>
+<p>首先，Transformer 在 NLP中接收的数据格式 是 [B,L,D]，batch size，一个 batch 中有多少个句子，一个句子中有几个词 L，每个词的嵌入D，也就是每个词用长度为多少的向量表示</p>
+<p>最直观的讲解，就是 注意力机制进行 L 层面的交互，前馈神经网络进行 D 层面的交互。</p>
+<p><strong>L 层面也就是注意到了 词与词之间的交互，D 层面就是词与词之间特征的交互</strong> </p>
+<blockquote>
+<p>在L层面（单词层面）进行交互，计算每个单词对其他单词的注意力权重，捕捉词与词之间的关系；</p>
+<p>在D层面（即单词嵌入的特征层面）进行交互，对每个单词的嵌入向量进行非线性变换，捕捉词与词之间的特征交互 </p>
+</blockquote>
+<p><strong>对应到时间序列中</strong></p>
+<p>1️⃣ 标准 <mark>输入</mark> 格式也是 BLD，具体的解释： </p>
+<blockquote>
+<p>B = 32 (批量大小，32个时间序列样本)
+L = 36 (每个样本有36个时间步，如过去36天的数据)
+D = 7 (每个时间步有7个特征，如对于股票可能包括开盘价、收盘价、最高价、最低价、交易量等)</p>
+</blockquote>
+<p>2️⃣ <mark>处理</mark>   注意力机制</p>
+<p>编码器中，注意力在所有36个时间步之间建立连接
+解码器中，注意力既在预测序列内部建立连接，也与编码器输出建立连接</p>
+<p>时间步之间的建模 可以 发现股票价格每周五可能下跌，或者每月初可能上涨的模式</p>
+<p>3️⃣ <mark>处理</mark>  前馈全连接层</p>
+<p>处理每个时间步内7个特征之间的关系</p>
+<p>例如，交易量与价格变动的关系，或开盘价与收盘价的关系</p>
+</blockquote>
+<p>诶，说起这个，关于用现实例子理解这些模型，</p>
+<p><strong>首先，卷积是什么意思？</strong> </p>
+<p>假如我们要认识一个人A，B 是 A 的直接朋友，形成了B 对 A 的第一次认识，B 就相当于卷积核了，那直接认识 A的肯定不止一个人，还有B1，B2，B3...等，每个人对形成了对 A 的第一次认识，父母认识 A更关注生活层面，学校中直接认识的 A 更关于为人处事部分，工作中直接认识的 A 更关于 A 的生产性。这里直接认识 A 的B1，B2，B3...就是每一层中 卷积核的个数。除了直接认识 A 的，还有通过直接认识 A 的人B 认识 A，这波人叫 C，那还有通过 C 认识 A 的，那 C 又认识 D，D 又通过 C 认识 A。除了别人认识 A，A 自己也有对自己的认识。</p>
+<p><strong>Transformer是什么意思？</strong></p>
+<p>除了刚刚说的 注意力机制和前馈全连接层的理解，还有 Encoder 、Decoder 、多头注意力机制的理解。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> Encoder&amp;Decoder 的交互怎么理解？</li>
+</ul>
+<p>首先，整体上的这个图：</p>
+<p><img alt="image-20250320095403477" src="../images/image-20250320095403477.png"/></p>
+<p>编码器相当于甲方，解码器相当于乙方，甲方有需求，自己公司内部一级一级沟通，从最开始的想法最终形成方法交给最后一个人，这个人去和乙公司沟通，乙公司又有很多个部分，每个部分分别完成甲公司提出的方案的一部分，这一个过程中需要不断的与甲公司手拿最终方案的人不断沟通，最终乙公司完成方案。</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 多头注意力机制怎么理解</li>
+</ul>
+<p>对于 BLD 的序列，首先明白的是，那个维度分多头了，是 D 维度分成 num head维度和 head dim，其中 num head × head dim = embedding dim（D），相当于什么意思，一个人学知识（B =1），L 是要学的几本书，D 是每本书有几个章节，一般是一个老师教我们学一整本书，但多头注意力机制的意思是，一本书的几个章节，分开，比如第一个老师教第一章和第二章，第二个老师教第三章和第四章，最后两张第三个老师教，这样学习的时候，同样是一个学期，一个老师只需要关注两章的内容，对于课程节奏的把握知识理解的更透彻，效果会比一个老师教一整本书的内容要好一些。</p>
+<p>B=3，就是班里的 3 个人，每个人这学期都要上这几本课，同样的 LD。</p>
+<blockquote>
+<p>最后一个 linear 层，应该是为了还原原始维度的。</p>
+</blockquote>
+<p><strong>好了，扩展的远了，回到论文中Encoder 部分</strong> </p>
+<p><img alt="image-20250320092249326" src="../images/image-20250320092249326.png"/></p>
+<p>原文中说，首先编码器更专注季节部分的建模，编码器的输出包含过去的季节性信息，并将作为交叉信息帮助解码器细化预测结果，假设有 N 个编码器，则第 i 层编码器的总体方程可以表示为 <span class="arithmatex">\(\mathcal{X}_{en}^l = Encoder(\mathcal{X}_{en}^{l-1})\)</span> ，就是说 第 <span class="arithmatex">\(l\)</span> 层编码器接收 第 <span class="arithmatex">\(l-1\)</span> 层编码器的输出作为输入，具体的细节是原文的公式(3)</p>
+<p><strong>下面对 公式 3 进行讲解</strong></p>
+<p>首先，等号左边，下划线表示忽略掉季节成分，只关注季节成分。</p>
+<p><span class="arithmatex">\(\mathcal{X}_{en}^l = \mathcal{S}_{en}^{l,2},l \in {1,...,N}\)</span>  表示 第 <span class="arithmatex">\(l\)</span> 层编码器的输出。</p>
+<ul class="task-list">
+<li>
+<p>初始值，也就是编码器的输入是 <span class="arithmatex">\(\mathcal{X}_{en}^0\)</span> 是 输入时间序列的 <span class="arithmatex">\(\mathcal{X}_{en}\)</span> 的 word embedding</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <span class="arithmatex">\(\mathcal{S}_{en}^{l,i},i \in {1,2}\)</span> 表示 第 <span class="arithmatex">\(l\)</span>层中 第 i 个序列分解模块之后的季节性成分，然后公式中的 Auto-correlation 后面再说，这是本文的一个创新点。（ps，后面要重点看这个是什么意思。）</p>
+</li>
+</ul>
+<blockquote>
+<p>（我最开始看见这里的疑问，不用讲，忽略掉即可）先看公式等号的左边， <span class="arithmatex">\(\mathcal{S}_{en}^{l,1}\)</span> 首先，下标 <span class="arithmatex">\(en\)</span> 就是表示 编码器，<span class="arithmatex">\(l\)</span> 表示第几个编码器，那这个 <span class="arithmatex">\(1\)</span>是什么意思？</p>
+</blockquote>
+<p><strong>原文和公式说了，接下来来看代码，Encoder 是怎么实现的。</strong></p>
+<p><mark>首先，构造 Encoder 的输入</mark> ，编码器嵌入。</p>
+<p><img alt="image-20250320143146767" src="../images/image-20250320143146767.png"/></p>
+<p>具体怎么做的看autoformer 的 init 部分：</p>
+<p><img alt="image-20250320143228968" src="../images/image-20250320143228968.png"/></p>
+<p>看到这边调用的 <code>DataEmbedding_wo_pos</code> 这个类，其中具体地 valueEmbedding 和TemporaryEmbedding 又分别在 init 中显示调用了 <code>TokenEmbedding</code> 类和 <code>TemporalEmbedding</code> 类</p>
+<p><img alt="image-20250320143256379" src="../images/image-20250320143256379.png"/></p>
+<p>嵌入部分的调用关系用流程图来表示：</p>
+<pre class="mermaid"><code>classDiagram
+    class DataEmbedding_wo_pos {
+        +TokenEmbedding value_embedding
+        +PositionalEmbedding position_embedding
+        +TemporalEmbedding temporal_embedding
+        +Dropout dropout
+        +forward(x, x_mark)
+    }
+
+    class TokenEmbedding {
+        +Conv1d tokenConv
+        +forward(x)
+    }
+
+    class PositionalEmbedding {
+        +Tensor pe
+        +forward(x)
+    }
+
+    class TemporalEmbedding {
+        +Embedding minute_embed
+        +Embedding hour_embed
+        +Embedding weekday_embed
+        +Embedding day_embed
+        +Embedding month_embed
+        +forward(x)
+    }
+
+    class TimeFeatureEmbedding {
+        +Linear embed
+        +forward(x)
+    }
+
+    DataEmbedding_wo_pos --&gt; TokenEmbedding
+    DataEmbedding_wo_pos --&gt; PositionalEmbedding
+    DataEmbedding_wo_pos --&gt; TemporalEmbedding
+    TemporalEmbedding --&gt; TimeFeatureEmbedding
+</code></pre>
+<p>首先，跟大家说这个图怎么画，首先在调试的过程中，看到调用相关的代码，就粘贴给 gpt，然后让 gpt 画。这个图就是 gpt 给我画的，它用的 mermaid ，生成代码，然后我粘贴到我的 markdown 文档中，我用的 markdown 编辑器是 Typora，可以解析 mermaid，用在线mermaid 也可以显示出图。直接搜 在线 mermaid。或者跟 gpt 说，用简单的流程图画，不用 mermaid，都能帮你把自己的代码理清楚。</p>
+<p>mermaid 画出的类调用图，一个类用三行表示，第一行 类名、第二行，init 部分的定义、第三行类中方法的定义</p>
+<p><strong>好了，现在开始讲图，</strong> </p>
+<p>可以看到 <code>DataEmbedding_wo_pos</code> 类 的 init 分别调用了 <code>TokenEmbedding</code>类、<code>PositionalEmbedding</code>类和 <code>TemporalEmbedding</code>类，同时还定义了一个 dropout 层。</p>
+<p>🔵 调用 <code>tokenEmbedding</code>类，init 部分是使用一个 <code>nn.Conv1d</code> 初始化了一个卷积层，传给 <code>self.tokenConv</code> ，后面在 这个类中的 forward 方法中用。</p>
+<p><img alt="image-20250320144456851" src="../images/image-20250320144456851.png"/></p>
+<p>通俗点说，这里的 tokenEmbedding 就是通过一个1D 卷积实现的，具体的形状变化注释中也给出了。</p>
+<blockquote>
+<p>怎么生成注释？</p>
+<p>首先把代码粘给 gpt，然后，跟它说：<code>为每行代码 添加 两行注释，一行说明这行代码的目的，一行说明 形状的变化和操作 形状-&gt;操作-&gt;形状的格式，操作的格式类似 DecoderLayer.forward 显示出调用的什么类名.方法</code></p>
+</blockquote>
+<p>🔵 接下来看 位置编码 Positional Embedding，由于这里没有用，就不说了。</p>
+<p>🔵 最后，时间戳编码，</p>
+<p><img alt="image-20250320145727249" src="../images/image-20250320145727249.png"/></p>
+<p>注意这里的时间戳编码是有一个判断的，经过调试，我们这里调用的是 <code>TimeFeatureEmbedding</code> 类。</p>
+<p>也就是说什么意思，这个图画的有问题，不过意思也是对的，就不深究了。</p>
+<p>接下来，我们跳到 <code>TimeFeatureEmbedding</code> 这个类的定义。</p>
+<p><img alt="image-20250320150012753" src="../images/image-20250320150012753.png"/> </p>
+<p>就是通过一个线性层，将 时间戳特征嵌入到指定维度。</p>
+<p>首先，嵌入到指定维度是因为高维向量表示特征更精细。</p>
+<p>其次，我们这里使用的是疾病数据集，是小时的，所以维度 4，表示的的是，小时-天，天-周，天-月，天-年。这一部分也说过很多次了，再说一次，加深印象。</p>
+<p>具体来说输入的 <code>x_mark.shape=32,36,4 → nn.Linear → 32,36,512</code></p>
+<p>接下来，总结一下这里的嵌入。首先 本文用到的所有嵌入都定义在了  <code>Embed.py</code>文件中</p>
+<p><img alt="image-20250320150552474" src="../images/image-20250320150552474.png"/></p>
+<p>而这个文件中，又定义了所有的嵌入类，又有 8 个。</p>
+<blockquote>
+<p>题外话，这个怎么看，是 vscode 的大纲视图，找出来，就能看到了</p>
+<p><img alt="image-20250320150811010" src="../images/image-20250320150811010.png"/></p>
+<p>大纲视图中，立方体表示定义的函数，小树杈的东西是类，类中有小立方体，是类中定义的函数，类中定义的函数，也就是小立方体中，折叠的部分是 使用这个函数或者类所需要的初始化参数。方括号+小立方体包括的部分是 类中调用的类的对象名，比如这里：</p>
+<p><img alt="image-20250320151133019" src="../images/image-20250320151133019.png"/></p>
+<p>以这个 TemporalEmbedding 类为例， 这个TemporalEmbedding 类中有两个方法方法，分别是 init 和 forward。</p>
+<p>init 折叠的部分是 初始化这个类所需要的参数， forward 折叠的部分是调用这个时所需要的参数，其中 init 部分还实例化了 5 个对象，对象名分别是 mintue_embed、hour_embed、weekday_embed、day_embed、month_embed，但是这里具体实例化的哪个类。这里是没有显示的，得点进去自己看，可以看到这个对象其实都是实例化的Embed 这个类，很明显是一个自定义的，想看还得步进看具体实例化的哪个类。</p>
+</blockquote>
+<p>以上完成了 Encoder Input 的 Embedding 部分，分别进行了 token Embedding 和 TemporaryEmbedding来对历史时间步特征进行嵌入和时间特征进行嵌入。</p>
+<p>汇总这里的维度形状变化：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-33-1"><a href="#__codelineno-33-1" id="__codelineno-33-1" name="__codelineno-33-1"></a><span class="c1"># x [B, L, D] → permute → [B, D, L] → 卷积 → [B, d_model, L] → transpose → [B, L, d_model]</span>
+</span><span id="__span-33-2"><a href="#__codelineno-33-2" id="__codelineno-33-2" name="__codelineno-33-2"></a><span class="c1"># x_mark [B, L, d_inp] → 线性层变换(时间特征整体映射) → [B, L, d_model]</span>
+</span><span id="__span-33-3"><a href="#__codelineno-33-3" id="__codelineno-33-3" name="__codelineno-33-3"></a><span class="c1"># [B, L, d_model] + [B, L, d_model] → [B, L, d_model]</span>
+</span></code></pre></div>
+<p><strong>接下来想给大家说的是， 1D 卷积怎么进行的 tokenEmbedding：</strong> </p>
+<p>小小的点，小小的注意。</p>
+<p>接收的标准输入是 BLD</p>
+<ul>
+<li>首先进行的是 permute，将想要嵌入的维度<code>D</code> 移到中间，然后进行 1D 卷积，嵌入到 <code>d_model</code>  （ <code>Embedding dim</code>），对应到 1D 卷积中，就是输入通道是 D，输出通道是 <code>d_model</code></li>
+</ul>
+<p><img alt="image-20250320152707837" src="../images/image-20250320152707837.png"/></p>
+<ul>
+<li>为什么这么做？因为卷积最开始主要用于图像，图像的标准格式是 BCHW，图像中的 HW 就表示图像的特征，只不过是用 2D的矩阵 表示的，而且这个 2D 矩阵保存了位置信息，不能随意展平。那此时，C 也就可以理解为每个像素的特征数。比如每个像素用彩色的 RGB 三个元素表示。</li>
+<li>所以我们这里的时间序列中的 1D 卷积，也仿照图像中卷积的定义，每个时间步的特征数放到中间，表示输入通道数，然后将每个时间步的特征，映射到输出维度大小，这里表示为 <code>Embedding dim</code>，也就是 <code>d_model</code>。</li>
+</ul>
+<p>用一张图来表示，(这里其实很像 SegRNN 的视角转换)：</p>
+<p><img alt="image-20250320154515642" src="../images/image-20250320154515642.png"/></p>
+<p>而 时间戳特征的 nn.Linear就是直接对最后一个维度进行嵌入了</p>
+<p><code>x_mark [B, L, d_inp] → 线性层变换(时间特征整体映射) → [B, L, d_model]</code></p>
+<p>pytorch中常用的是维度变换函数 permute、transpose、view 都是直接写维度变换。</p>
+<p>带着走一遍代码。</p>
+<p><strong>行了，嵌入讲完了，接下来，进入正式的 Encoder 的部分的数据流动。</strong></p>
+<p>（终于）</p>
+<p><img alt="image-20250320160444391" src="../images/image-20250320160444391.png"/></p>
+<p>从 Autoformer forward 的 self.encoder 进入。</p>
+<p>在步进之前看一眼怎么初始化的。非常复杂：</p>
+<p><img alt="image-20250320160615516" src="../images/image-20250320160615516.png"/></p>
+<p>来直接看图吧，具体怎么复杂。</p>
+<pre class="mermaid"><code>classDiagram
+    class Model {
+        +Encoder encoder
+    }
+
+    class Encoder {
+        +List~EncoderLayer~ layers
+        +my_Layernorm norm_layer
+        +forward(x, attn_mask)
+    }
+
+    class EncoderLayer {
+        +AutoCorrelationLayer attention
+        +Conv1d conv1
+        +Conv1d conv2
+        +series_decomp decomp1
+        +series_decomp decomp2
+        +Dropout dropout
+        +activation
+        +forward(x, attn_mask)
+    }
+
+    class AutoCorrelationLayer {
+        +AutoCorrelation attention
+        +Linear query_projection
+        +Linear key_projection
+        +Linear value_projection
+        +Linear out_projection
+        +forward(queries, keys, values, attn_mask)
+    }
+
+    class AutoCorrelation {
+        +bool mask_flag
+        +int factor
+        +float scale
+        +Dropout dropout
+        +bool output_attention
+        +time_delay_agg_training(values, corr)
+        +time_delay_agg_inference(values, corr)
+        +forward(queries, keys, values, attn_mask)
+    }
+
+    Model --&gt; Encoder
+    Encoder --&gt; EncoderLayer
+    EncoderLayer --&gt; AutoCorrelationLayer
+    EncoderLayer --&gt; Conv1d
+    EncoderLayer --&gt; series_decomp
+    AutoCorrelationLayer --&gt; AutoCorrelation
+</code></pre>
+<p>首先图中清楚的展示了，就图来说：</p>
+<p><img alt="image-20250320161544932" src="../images/image-20250320161544932.png"/> </p>
+<p>通过 Autoformer 定义的 model 中，定义了这个 Encoder 类，传给了 self.encoder 。</p>
+<p>接着看这个 Encoder 类的定义，这个 Encoder 的初始化调用了EncoderLayer类，传给了 layers（就是EncoderLayer类的实例化对象）。</p>
+<p>对应到代码：</p>
+<p><img alt="image-20250320161505407" src="../images/image-20250320161505407.png"/></p>
+<p>接着，Encoder 类调用了 EncoderLayer 类，那接下来就看 EncoderLayer 的定义：</p>
+<p><img alt="image-20250320161704846" src="../images/image-20250320161704846.png"/></p>
+<p>看图以及代码：</p>
+<p><img alt="image-20250320162010963" src="../images/image-20250320162010963.png"/></p>
+<p>（看代码）：红框是上面讲的，<code>Encoder</code> 的初始化需要调用 <code>EncoderLayer</code> 类</p>
+<p>第一个红框表示，<code>EncoderLayer</code> 中的 <code>init</code> 初始化中又调用了 <code>AutoCorrelationLayer</code> 类，并且传入了  <code>EncoderLayer</code> 初始化过程中所需要的参数 ，去 <code>EncoderLayer</code> 这个类。</p>
+<p><img alt="image-20250320162631428" src="../images/image-20250320162631428.png"/></p>
+<p>结合 图 和 代码，这部分就可以理解了。</p>
+<p><img alt="image-20250320163036643" src="../images/image-20250320163036643.png"/> </p>
+<p>主要的复杂点就是初始化一个类的同时又需要初始化另一个类，初始化另一个类又需要初始化类。好好看看是可以理解的。</p>
+<p>后面还有 AutoCorrelationLayer 的初始化，又要调用 AutoCorrelation 类</p>
+<p><img alt="image-20250320163322154" src="../images/image-20250320163322154.png"/></p>
+<p>理解的逻辑是一样的。</p>
+<p>首先代码 Autoformer forward Encoder的初始化过程中，给出了每个类初始化所需要的传入参数</p>
+<p><img alt="image-20250320163438704" src="../images/image-20250320163438704.png"/></p>
+<p>而上面 mermaid 画的图，展示了每个类中 init 中具体调用的类和实例化的对象名。以及除了 init 方法外，还有类中可以调用的方法，比如 AutoCorrelation中，除了 init、forward 以外，还有 <code>time_delay_agg_training</code>  和 <code>time_delay_agg_inference</code> </p>
+<p><img alt="image-20250320163849697" src="../images/image-20250320163849697.png"/></p>
+<p>这部分调用关系希望我讲明白了，再用一张图说明一下：</p>
+<p><img alt="img" src="https://i-blog.csdnimg.cn/direct/f98d7865ca134201a76ece97f66b7e51.png"/></p>
+<p>就是说在我们在 Encoder forward 中传入到的x，会传入到 EncoderLayer 中的 forward 中进行处理，而   EncoderLayer forward 中又调用了 AutoCorrelation Layer 中的 forward，然后呢，AutoCorrelation Layer 中的 forward又调用了 AutoCorrelation的 forward，最后AutoCorrelation又调用了自己 AutoCorrelation time delay agg tranning 或者 inference。</p>
+<p>（谁懂啊。当初逐步调试的时候，步进一个又步进一个，都找不到头 T_T），为什么说这部分调用不好理解，是因为按理说，forward 中有调用，去 init 中找。</p>
+<p>具体来说，Autoformer 的 forward 中调用了 <code>self.encoder</code> ，在 init 中找到了</p>
+<p><img alt="image-20250320164728075" src="../images/image-20250320164728075.png"/></p>
+<p>那按住 command，跳进Encoder 的定义，不管是 init 还是 forward 中都没有显示的说明 attn_layer是调用的什么。</p>
+<p><img alt="image-20250320164939255" src="../images/image-20250320164939255.png"/></p>
+<p>所以最开始步进这里的时候，就很晕。其实这里所有的初始化以及调用都在最最开始的  Autoformer 的 self.encoder的初始化中给了。在后面定义的类中，按住 command 不能跳到类的定义。得从头开始。当然了，步进就不用管这些了。自己就跳来跳去了。</p>
+<p><strong>好了 以上完成了 self.encoder的初始化，刚刚是对 编码器所接收的输入进行嵌入，这里是模型的定义</strong></p>
+<p>基于以上的认识，接下来进入 forward 中，看数据的流动过程。</p>
+<p>首先，从 ⬇️ 开始步进。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-34-1"><a href="#__codelineno-34-1" id="__codelineno-34-1" name="__codelineno-34-1"></a> <span class="n">enc_out</span><span class="p">,</span> <span class="n">attns</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">encoder</span><span class="p">(</span><span class="n">enc_out</span><span class="p">,</span> <span class="n">attn_mask</span><span class="o">=</span><span class="n">enc_self_mask</span><span class="p">)</span>
+</span></code></pre></div>
+<p>如我们所料，步进到了 Encoder 类的 forward：</p>
+<p><img alt="image-20250320165637015" src="../images/image-20250320165637015.png"/></p>
+<p>继续步进，一步步执行：</p>
+<p><img alt="image-20250320165724095" src="../images/image-20250320165724095.png"/></p>
+<p>条件判断执行 else，跳到</p>
+<blockquote>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 每一步的现实意义在做什么</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 形状变化、调用关系</li>
+</ul>
+</blockquote>
+<p><img alt="image-20250320211248706" src="../images/image-20250320211248706.png"/></p>
+<p>EncoderLayer 的 forward 中调用了自相关机制（自相关机制=AutoCorrelation Layer + AutoCorrelation），这是本文的创新点，后面再说。论文中也是说了后面再说，作者设计了这个模块就就是代替了原始 Transformer 的 self attention 的计算，你看这个命名，虽然调用的是AutoCorrelation Layer，但是变量命名时，仍然是 self.attention 也就可以理解为作者是改进了原始 Transformer 中的自注意力机制。</p>
+<p>因此我们这里在调试 Encoder 的具体过程时，暂时不步进到 self.attention的具体的执行过程中。</p>
+<p>单个 Encoder 的执行就是 执行一次 EncoderLayer，有几个 Encoder就执行几次 EncoderLayer。</p>
+<p>现在说明这个 EncoderLayer 的执行过程：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-35-1"><a href="#__codelineno-35-1" id="__codelineno-35-1" name="__codelineno-35-1"></a>def forward(self, x, attn_mask=None)
+</span></code></pre></div>
+<p>首先 EncoderLayer 接收的输入是 x，mask 是可选参数。</p>
+<p>输入<code>x</code>形状为[B, L, d_model]</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-36-1"><a href="#__codelineno-36-1" id="__codelineno-36-1" name="__codelineno-36-1"></a>       new_x, attn = self.attention(
+</span><span id="__span-36-2"><a href="#__codelineno-36-2" id="__codelineno-36-2" name="__codelineno-36-2"></a>            x, x, x,
+</span><span id="__span-36-3"><a href="#__codelineno-36-3" id="__codelineno-36-3" name="__codelineno-36-3"></a>            attn_mask=attn_mask
+</span><span id="__span-36-4"><a href="#__codelineno-36-4" id="__codelineno-36-4" name="__codelineno-36-4"></a>        )
+</span></code></pre></div>
+<p>接下来进行 Encoder 部分的自注意力机制的计算，这里实际调用的是作者的创新模块，自相关层。后面不再区分叫法。</p>
+<p>自注意力机制==接收==的参数 qkv都等于 x，因为是自注意力机制，形状是一样的 [B, L, d_model]。</p>
+<p>这里的 <code>attn_mask=None</code></p>
+<p>自注意力机制返回的 变量有 <code>new_x</code>, <code>attn</code>，形状分别是</p>
+<p>new_x<code>[B, L, d_model]</code>和注意力权重attn<code>[B, n_heads, L, L]</code></p>
+<p>这里的 new_x 意思是 有了对其他时间步权重的 x，attn 存的是两两时间步之间的注意力得分。（当然了，这是原始 自注意力机制 <span class="arithmatex">\(softmax(\frac{QK^T}{\sqrt{d_k}})V\)</span> 的计算，论文实现的这里面是啥再说）</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-37-1"><a href="#__codelineno-37-1" id="__codelineno-37-1" name="__codelineno-37-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">new_x</span><span class="p">)</span>
+</span></code></pre></div>
+<p>接下来，单个 Encoder 的输出 是 <code>dropout(new_x)</code> ，再经过残差连接。这里就是<span id="原始 Transformer 架构">原始 Transformer 架构</span>【见<a href="#附录">附录</a>】中的东西，也就是经过自注意力机制以后进行 残差连接和归一化。</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-38-1"><a href="#__codelineno-38-1" id="__codelineno-38-1" name="__codelineno-38-1"></a><span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></code></pre></div>
+<p>接下来，是序列分解</p>
+<p><img alt="image-20250320214539531" src="../images/image-20250320214539531.png"/></p>
+<p>序列分解的第一个返回值是季节成分，第二个返回值是使用移动平均得到趋势性成分</p>
+<p>在 Encoder 中使用的序列分解时，不要趋势成分，只留下季节成分</p>
+<p>接收的参数 x 是要分解的原始序列，形状是 [B, L, d_model]</p>
+<p>返回的参数 x 是分解以后的季节成分，形状依然是 [B, L, d_model]</p>
+<p><img alt="image-20250320215159566" src="../images/image-20250320215159566.png"/> </p>
+<p>这部分代码就是原文公式 3 的第一行公式。</p>
+<p>把代码贴到这里再体会一下：</p>
+<p><img alt="image-20250320215324397" src="../images/image-20250320215324397.png"/></p>
+<p>对第 <code>l-1</code> 层 Encoder 的输出进行自相关机制的计算，得到的输出与原始的 x 进行残差连接，最后对残差连接以后的输出进行趋势分解，同时只保留 季节成分，忽略掉趋势成分。</p>
+<p><strong>接下来，进行公式 3 的第二行公式所对应的代码讲解：</strong> </p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-39-1"><a href="#__codelineno-39-1" id="__codelineno-39-1" name="__codelineno-39-1"></a><span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+</span></code></pre></div>
+<p>下一句，新建 x 的副本，保存成 y，后面都对 x 的副本 也就是这个 y 操作，x 先放着不用，后面用于 FFN 以后的 残差连接。</p>
+<p>那具体这里的 FFN 是怎么做的呢？</p>
+<p>看到代码</p>
+<p><img alt="image-20250320215804289" src="../images/image-20250320215804289.png"/></p>
+<p>不看dropout 和激活层，因为这两个操作并不会改变输入张量的形状，接下来看到FFN 是由两个 1d 卷积也就是conv1d 实现的。</p>
+<p><img alt="image-20250320215914272" src="../images/image-20250320215914272.png"/></p>
+<p>接下来，再看 Encoder 的 init 部分，这两个 1d 卷积是怎么定义的，诶，就是一个先升维后降维的操作，就完成了 FFN。</p>
+<p>就是说 self.conv1是将单个时间步嵌入维度 <code>d_model</code>升维到 <code>d_ff</code>；接下来 self.conv2就是将 <code>d_ff</code> 又恢复成原始形状 <code>d_model</code>。多说一句，好像没意义，其实有意义，第二次恢复的 <code>d_model</code> 其实是精细化的学习了 特征与特征之间的相关关系，并返回给了 <code>d_model</code> 中进行保存。</p>
+<p>看到代码：</p>
+<p><img alt="image-20250320220835532" src="../images/image-20250320220835532.png"/></p>
+<p>关于这里，我有以下几点想说：</p>
+<p>第一点，升维的操作，经过 conv1d 以后，相当于进行了全连接，也就是相当于nn.Linear的作用，那写过代码的都是到，nn.Linear以后进行激活，目的是为了增加模型的非线性表达能力，这点李沐的书上也提到过。这里就仿照着 conv1d 的输出也加上了激活函数。加的所有 dropout 都是为了防止过拟合，随机失活一些节点。</p>
+<blockquote>
+<p>标准前馈神经网络的设计模式：线性变换→非线性激活→线性变换；</p>
+<p>在Transformer原始设计中，FFN部分表示为：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-40-1"><a href="#__codelineno-40-1" id="__codelineno-40-1" name="__codelineno-40-1"></a>FFN(x) = max(0, xW₁ + b₁)W₂ + b₂
+</span></code></pre></div>
+<p>ReLU 激活函数和两个 nn.Linear</p>
+</blockquote>
+<p>第二点，前面已经说过，1d 卷积升维降维指的是通道维度，也就是 dim=1，所以这里进行 1d 卷积之前也是进行了 transpose。</p>
+<p><del>第三点，为什么这里是 conv1d，而不是 nn.Linear，因为时间序列要保持时间步的前后关系，所以用 conv1d，类似滑动窗口，沿着时间步的前后顺序逐步滑动，每次移动 stride 个步长。</del> （我理解的不对）功能上就是一样的，只是数据的组织形式不同，不用刻意的区分。</p>
+<p>第四点，这里的 d_ff 前馈神经网络的嵌入是 2048。</p>
+<blockquote>
+<p>d_ff通常设置为d_model的4倍，对于d_model=512的情况，d_ff就是2048。这也是Transformer原始论文中的设置。增大中间层维度可以提高模型的表达能力。</p>
+</blockquote>
+<p>第五点，self.conv2d的输出，在进行形状变换<code>transpose</code>的目的是为了恢复成时间序列的标准数据格式。</p>
+<blockquote>
+<p>将数据格式从卷积友好的<code>[B, C, L]</code>转回到Transformer架构通用的<code>[B, L, D]</code>格式</p>
+</blockquote>
+<p>再次直观地说明这一部分就是这样的：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-41-1"><a href="#__codelineno-41-1" id="__codelineno-41-1" name="__codelineno-41-1"></a># 第一步：转置使特征维度成为通道维度
+</span><span id="__span-41-2"><a href="#__codelineno-41-2" id="__codelineno-41-2" name="__codelineno-41-2"></a>y.transpose(-1, 1)  # [B, L, d_model] -&gt; [B, d_model, L]
+</span><span id="__span-41-3"><a href="#__codelineno-41-3" id="__codelineno-41-3" name="__codelineno-41-3"></a>
+</span><span id="__span-41-4"><a href="#__codelineno-41-4" id="__codelineno-41-4" name="__codelineno-41-4"></a># 第二步：应用第一个卷积扩展通道维度
+</span><span id="__span-41-5"><a href="#__codelineno-41-5" id="__codelineno-41-5" name="__codelineno-41-5"></a>self.conv1(...)  # [B, d_model, L] -&gt; [B, d_ff, L]
+</span><span id="__span-41-6"><a href="#__codelineno-41-6" id="__codelineno-41-6" name="__codelineno-41-6"></a>
+</span><span id="__span-41-7"><a href="#__codelineno-41-7" id="__codelineno-41-7" name="__codelineno-41-7"></a># 第三步：应用第二个卷积恢复原始通道维度
+</span><span id="__span-41-8"><a href="#__codelineno-41-8" id="__codelineno-41-8" name="__codelineno-41-8"></a>self.conv2(...)  # [B, d_ff, L] -&gt; [B, d_model, L]
+</span><span id="__span-41-9"><a href="#__codelineno-41-9" id="__codelineno-41-9" name="__codelineno-41-9"></a>
+</span><span id="__span-41-10"><a href="#__codelineno-41-10" id="__codelineno-41-10" name="__codelineno-41-10"></a># 第四步：转置回原始序列格式
+</span><span id="__span-41-11"><a href="#__codelineno-41-11" id="__codelineno-41-11" name="__codelineno-41-11"></a>(...).transpose(-1, 1)  # [B, d_model, L] -&gt; [B, L, d_model]
+</span></code></pre></div>
+<p><strong>后记：</strong> </p>
+<blockquote>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> <span id="为什么Conv2之后没有进行激活函数的应用">产生的疑问</span>：<a href="#附录">为什么Conv2之后没有进行激活函数的应用</a> </li>
+</ul>
+<p>直观的理解我的疑问：</p>
+<p><strong>现有设计 (第二层无激活)：</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-42-1"><a href="#__codelineno-42-1" id="__codelineno-42-1" name="__codelineno-42-1"></a>y = Conv1 -&gt; ReLU -&gt; Dropout -&gt; Conv2 -&gt; Dropout
+</span></code></pre></div>
+<p><strong>替代设计 (两层都有激活)</strong> </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-43-1"><a href="#__codelineno-43-1" id="__codelineno-43-1" name="__codelineno-43-1"></a>y = Conv1 -&gt; ReLU -&gt; Dropout -&gt; Conv2 -&gt; ReLU -&gt; Dropout
+</span></code></pre></div>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 为什么是 conv1d，而不是 nn.Linear</li>
+</ul>
+<p>没啥必要了，主要是在数据组织和计算效率方面有差异，Autoformer选择Conv1D而非Linear，是基于架构一致性、计算效率和未来扩展性（设置 kernel size 以后可以捕捉时间步之间的局部相关性）的考虑，功能上是完全一样的。</p>
+</blockquote>
+<p>最后还有一句，将原始特征x与变换后的特征y相加，再次应用序列分解提取季节性部分</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-44-1"><a href="#__codelineno-44-1" id="__codelineno-44-1" name="__codelineno-44-1"></a><span class="c1"># 将原始特征x与变换后的特征y相加，再次应用序列分解提取季节性部分</span>
+</span><span id="__span-44-2"><a href="#__codelineno-44-2" id="__codelineno-44-2" name="__codelineno-44-2"></a><span class="c1"># (x + y)[B, L, d_model] -&gt; 序列分解 -&gt; 输出res[B, L, d_model]和未使用的趋势分量_[B, L, d_model]</span>
+</span><span id="__span-44-3"><a href="#__codelineno-44-3" id="__codelineno-44-3" name="__codelineno-44-3"></a><span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span></code></pre></div>
+<p><strong>到了这一步，其实代码该讲的也讲完了，更重要的在于开始思考，为什么这样设计？</strong></p>
+<ul>
+<li>粘贴自 gpt 的答案贴在附录中了，解释得挺好的，还有和传统 Transformer 的对比</li>
+<li>（我理解的部分自己复述）使得编码器在逐层编码的过程中，更关注高频的季节成分，所以每次传进编码器的是，抛弃了趋势成分的季节成分。</li>
+</ul>
+<p>编码器中关于季节成分、趋势成分的理解：</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-45-1"><a href="#__codelineno-45-1" id="__codelineno-45-1" name="__codelineno-45-1"></a>输入 x [B,L,D] (混合季节性和趋势)
+</span><span id="__span-45-2"><a href="#__codelineno-45-2" id="__codelineno-45-2" name="__codelineno-45-2"></a>  ↓
+</span><span id="__span-45-3"><a href="#__codelineno-45-3" id="__codelineno-45-3" name="__codelineno-45-3"></a>自注意力处理
+</span><span id="__span-45-4"><a href="#__codelineno-45-4" id="__codelineno-45-4" name="__codelineno-45-4"></a>  ↓
+</span><span id="__span-45-5"><a href="#__codelineno-45-5" id="__codelineno-45-5" name="__codelineno-45-5"></a>残差连接 x + dropout(new_x) (仍含混合成分)
+</span><span id="__span-45-6"><a href="#__codelineno-45-6" id="__codelineno-45-6" name="__codelineno-45-6"></a>  ↓
+</span><span id="__span-45-7"><a href="#__codelineno-45-7" id="__codelineno-45-7" name="__codelineno-45-7"></a>序列分解1 
+</span><span id="__span-45-8"><a href="#__codelineno-45-8" id="__codelineno-45-8" name="__codelineno-45-8"></a>  ↓          ↘
+</span><span id="__span-45-9"><a href="#__codelineno-45-9" id="__codelineno-45-9" name="__codelineno-45-9"></a>季节性分量x    趋势分量 (丢弃)
+</span><span id="__span-45-10"><a href="#__codelineno-45-10" id="__codelineno-45-10" name="__codelineno-45-10"></a>  ↓
+</span><span id="__span-45-11"><a href="#__codelineno-45-11" id="__codelineno-45-11" name="__codelineno-45-11"></a>前馈网络处理 (Conv1D → ReLU → Conv1D)
+</span><span id="__span-45-12"><a href="#__codelineno-45-12" id="__codelineno-45-12" name="__codelineno-45-12"></a>  ↓
+</span><span id="__span-45-13"><a href="#__codelineno-45-13" id="__codelineno-45-13" name="__codelineno-45-13"></a>前馈输出 y (季节性特征)
+</span><span id="__span-45-14"><a href="#__codelineno-45-14" id="__codelineno-45-14" name="__codelineno-45-14"></a>  ↓
+</span><span id="__span-45-15"><a href="#__codelineno-45-15" id="__codelineno-45-15" name="__codelineno-45-15"></a>季节性分量x + 前馈输出y (混合季节性)
+</span><span id="__span-45-16"><a href="#__codelineno-45-16" id="__codelineno-45-16" name="__codelineno-45-16"></a>  ↓
+</span><span id="__span-45-17"><a href="#__codelineno-45-17" id="__codelineno-45-17" name="__codelineno-45-17"></a>序列分解2
+</span><span id="__span-45-18"><a href="#__codelineno-45-18" id="__codelineno-45-18" name="__codelineno-45-18"></a>  ↓          ↘
+</span><span id="__span-45-19"><a href="#__codelineno-45-19" id="__codelineno-45-19" name="__codelineno-45-19"></a>季节性分量res  趋势分量 (丢弃)
+</span><span id="__span-45-20"><a href="#__codelineno-45-20" id="__codelineno-45-20" name="__codelineno-45-20"></a>  ↓
+</span><span id="__span-45-21"><a href="#__codelineno-45-21" id="__codelineno-45-21" name="__codelineno-45-21"></a>输出到下一层 res (纯季节性)
+</span></code></pre></div>
+<p>最后记下两句话把：</p>
+<ul>
+<li>频率域分析：从频率角度看，趋势对应低频成分，季节性对应高频成分，分开处理有助于提取各自的特点。</li>
+<li>编码器：专注于捕获周期性和季节性模式（高频成分）</li>
+<li>虽然在编码器层内部丢弃了趋势信息，但Autoformer并没有完全忽略趋势。</li>
+<li>通过在每一层都丢弃趋势成分，模型能够在多层堆叠过程中持续关注季节性变化，而不被趋势变化干扰。</li>
+<li>解码器中单独累积趋势，避免趋势预测对季节性预测的干扰</li>
+<li>渐进式分解架构</li>
+<li>每层都应用序列分解，逐步提炼季节性特征，多层堆叠可以捕获不同尺度的季节性模式</li>
+</ul>
+<p>行了，上面关于编码器的部分讲的差不多了</p>
+<p><strong>公式</strong> </p>
+<p><img alt="image-20250321103256921" src="../images/image-20250321103256921.png"/></p>
+<p>最开始上标的 1 和 2 不明白，现在也明白了，可以理解为 1 是自注意力机制的输出，只保留的季节成分；2 是经过前馈网的输出，只保留了季节成分。</p>
+<p>这些自注意力机制 和 前馈网 后面都有残差连接。这中间还有 dropout、激活等。</p>
+<p><strong>代码</strong></p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-46-1"><a href="#__codelineno-46-1" id="__codelineno-46-1" name="__codelineno-46-1"></a><span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">attn_mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+</span><span id="__span-46-2"><a href="#__codelineno-46-2" id="__codelineno-46-2" name="__codelineno-46-2"></a>
+</span><span id="__span-46-3"><a href="#__codelineno-46-3" id="__codelineno-46-3" name="__codelineno-46-3"></a>    <span class="n">new_x</span><span class="p">,</span> <span class="n">attn</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span>
+</span><span id="__span-46-4"><a href="#__codelineno-46-4" id="__codelineno-46-4" name="__codelineno-46-4"></a>        <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span>
+</span><span id="__span-46-5"><a href="#__codelineno-46-5" id="__codelineno-46-5" name="__codelineno-46-5"></a>        <span class="n">attn_mask</span><span class="o">=</span><span class="n">attn_mask</span>
+</span><span id="__span-46-6"><a href="#__codelineno-46-6" id="__codelineno-46-6" name="__codelineno-46-6"></a>    <span class="p">)</span>
+</span><span id="__span-46-7"><a href="#__codelineno-46-7" id="__codelineno-46-7" name="__codelineno-46-7"></a>    <span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">new_x</span><span class="p">)</span>
+</span><span id="__span-46-8"><a href="#__codelineno-46-8" id="__codelineno-46-8" name="__codelineno-46-8"></a>    <span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-46-9"><a href="#__codelineno-46-9" id="__codelineno-46-9" name="__codelineno-46-9"></a>    <span class="n">y</span> <span class="o">=</span> <span class="n">x</span>
+</span><span id="__span-46-10"><a href="#__codelineno-46-10" id="__codelineno-46-10" name="__codelineno-46-10"></a>
+</span><span id="__span-46-11"><a href="#__codelineno-46-11" id="__codelineno-46-11" name="__codelineno-46-11"></a>
+</span><span id="__span-46-12"><a href="#__codelineno-46-12" id="__codelineno-46-12" name="__codelineno-46-12"></a>    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">activation</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))))</span>
+</span><span id="__span-46-13"><a href="#__codelineno-46-13" id="__codelineno-46-13" name="__codelineno-46-13"></a>    <span class="n">y</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="o">.</span><span class="n">transpose</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+</span><span id="__span-46-14"><a href="#__codelineno-46-14" id="__codelineno-46-14" name="__codelineno-46-14"></a>    <span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span><span id="__span-46-15"><a href="#__codelineno-46-15" id="__codelineno-46-15" name="__codelineno-46-15"></a>
+</span><span id="__span-46-16"><a href="#__codelineno-46-16" id="__codelineno-46-16" name="__codelineno-46-16"></a>    <span class="k">return</span> <span class="n">res</span><span class="p">,</span> <span class="n">attn</span>
+</span></code></pre></div>
+<p>再来看一眼**文中模型结构图**：</p>
+<p><img alt="image-20250321103610423" src="../images/image-20250321103610423.png"/> </p>
+<p>可以看到 都是一一对应的。</p>
+<p>对，还是有一个，原文堆叠 Encoder 的层数=2。</p>
+<p><strong>下面进入解码器部分，禁用所有断点，只保留调用解码的部分：</strong> </p>
+<p><img alt="image-20250321104519139" src="../images/image-20250321104519139.png"/></p>
+<p>启动命令：</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-47-1"><a href="#__codelineno-47-1" id="__codelineno-47-1" name="__codelineno-47-1"></a><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>conda<span class="w"> </span>env<span class="w"> </span>list
+</span><span id="__span-47-2"><a href="#__codelineno-47-2" id="__codelineno-47-2" name="__codelineno-47-2"></a>
+</span><span id="__span-47-3"><a href="#__codelineno-47-3" id="__codelineno-47-3" name="__codelineno-47-3"></a><span class="c1"># conda environments:</span>
+</span><span id="__span-47-4"><a href="#__codelineno-47-4" id="__codelineno-47-4" name="__codelineno-47-4"></a><span class="c1">#</span>
+</span><span id="__span-47-5"><a href="#__codelineno-47-5" id="__codelineno-47-5" name="__codelineno-47-5"></a>base<span class="w">                 </span>*<span class="w"> </span>/home/student2023/xiehr2023/miniconda3
+</span><span id="__span-47-6"><a href="#__codelineno-47-6" id="__codelineno-47-6" name="__codelineno-47-6"></a>Autoformer<span class="w">             </span>/home/student2023/xiehr2023/miniconda3/envs/Autoformer
+</span><span id="__span-47-7"><a href="#__codelineno-47-7" id="__codelineno-47-7" name="__codelineno-47-7"></a>SegRNN<span class="w">                 </span>/home/student2023/xiehr2023/miniconda3/envs/SegRNN
+</span><span id="__span-47-8"><a href="#__codelineno-47-8" id="__codelineno-47-8" name="__codelineno-47-8"></a>timesNet<span class="w">               </span>/home/student2023/xiehr2023/miniconda3/envs/timesNet
+</span><span id="__span-47-9"><a href="#__codelineno-47-9" id="__codelineno-47-9" name="__codelineno-47-9"></a>
+</span><span id="__span-47-10"><a href="#__codelineno-47-10" id="__codelineno-47-10" name="__codelineno-47-10"></a><span class="o">(</span>base<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>conda<span class="w"> </span>activate<span class="w"> </span>Autoformer
+</span><span id="__span-47-11"><a href="#__codelineno-47-11" id="__codelineno-47-11" name="__codelineno-47-11"></a><span class="o">(</span>Autoformer<span class="o">)</span><span class="w"> </span>$<span class="w"> </span>sh<span class="w"> </span>scripts/ILI_script/Autoformer.sh
+</span></code></pre></div>
+<p>在步进代码之前，先看类调用图，看清解码器的调用流程：</p>
+<pre class="mermaid"><code>classDiagram
+    class Model {
+        +int seq_len
+        +int label_len
+        +int pred_len
+        +bool output_attention
+        +series_decomp decomp
+        +DataEmbedding_wo_pos enc_embedding
+        +DataEmbedding_wo_pos dec_embedding
+        +Encoder encoder
+        +Decoder decoder
+        +forward(x_enc, x_mark_enc, x_dec, x_mark_dec, enc_self_mask, dec_self_mask, dec_enc_mask)
+    }
+
+    class Encoder {
+        +List~EncoderLayer~ layers
+        +my_Layernorm norm_layer
+        +forward(x, attn_mask)
+    }
+
+    class EncoderLayer {
+        +AutoCorrelationLayer attention
+        +Conv1d conv1
+        +Conv1d conv2
+        +series_decomp decomp1
+        +series_decomp decomp2
+        +Dropout dropout
+        +activation
+        +forward(x, attn_mask)
+    }
+
+    class AutoCorrelationLayer {
+        +AutoCorrelation attention
+        +Linear query_projection
+        +Linear key_projection
+        +Linear value_projection
+        +Linear out_projection
+        +forward(queries, keys, values, attn_mask)
+    }
+
+    class AutoCorrelation {
+        +bool mask_flag
+        +int factor
+        +float scale
+        +Dropout dropout
+        +bool output_attention
+        +time_delay_agg_training(values, corr)
+        +time_delay_agg_inference(values, corr)
+        +forward(queries, keys, values, attn_mask)
+    }
+
+    class Decoder {
+        +List~DecoderLayer~ layers
+        +my_Layernorm norm_layer
+        +Linear projection
+        +forward(x, enc_out, x_mask, cross_mask, trend)
+    }
+
+    class DecoderLayer {
+        +AutoCorrelationLayer self_attention
+        +AutoCorrelationLayer cross_attention
+        +Conv1d conv1
+        +Conv1d conv2
+        +series_decomp decomp1
+        +series_decomp decomp2
+        +Dropout dropout
+        +activation
+        +forward(x, enc_out, x_mask, cross_mask, trend)
+    }
+
+    Model --&gt; Encoder
+    Model --&gt; Decoder
+    Encoder --&gt; EncoderLayer
+    EncoderLayer --&gt; AutoCorrelationLayer
+    EncoderLayer --&gt; Conv1d
+    EncoderLayer --&gt; series_decomp
+    AutoCorrelationLayer --&gt; AutoCorrelation
+    Decoder --&gt; DecoderLayer
+    DecoderLayer --&gt; AutoCorrelationLayer
+    DecoderLayer --&gt; Conv1d
+    DecoderLayer --&gt; series_decomp
+</code></pre>
+<p>下面开始讲图。</p>
+<p><strong>Mode init</strong> </p>
+<p>首先，第一框，model 就是指的 Autoformer，首先 Autoformer 的 init 部分有 输入序列长度，sequence length；标签序列的长度 label length，标签序列用于指导预测，本文截取输入序列长度的一半；预测序列长度 predict length，因为本文设置的标签序列，所以解码器实际的输出时间步是 label length+predict length，所以预测的部分，还要把 label length 截掉。attention 暂时不看，我也不明白有啥用，大概就是一个初始化吧。</p>
+<p>然后就是序列分解函数，分解季节成分和趋势成分。趋势成分是低频成分，表示时间序列长期稳定的趋势，用的是移动平均，在代码实现中，具体用的是 1D 平均池化。季节成分是高频成分，表示周期性信息，分解中的做法是 原始序列减去季节成分。res = 原始序列 <code>x</code> - 趋势成分 <code>move_average</code></p>
+<p>下面是两个嵌入层，目的是进行 token Embedding 和 temporal Embedding，将原始时间步特征嵌入到指定维度，更精细的表示特征。举个例子：时间步特征[32,36,7] → [32,36,512]   [32,42,7] →[32,42,512] ；（时间步）时间特征[32,36,4] → [32,36,512]   [32,42,4] →[32,42,512] </p>
+<h2 id="_8"><span id="附录">附录</span><a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>原始 Transformer 架构</p>
+<p><a href="#原始 Transformer 架构">返回 正文位置：原始 Transformer 架构</a> </p>
+<p><img alt="image-20250320213456149" src="../images/image-20250320213456149.png"/></p>
+<ul>
+<li><code>d_model</code> 是嵌入维度，也就是 Embedding dim，D 是单个时间步观察的特征数。</li>
+<li>得到 Embeddingdim 的操作，NLP 中一般叫 word embedding，这里叫 tokenEmbedding也还挺合理的，单个时间步就是单个 token。</li>
+</ul>
+<h3 id="conv2">疑问一 <a href="#为什么Conv2之后没有进行激活函数的应用">为什么Conv2之后没有进行激活函数的应用</a><a class="headerlink" href="#conv2" title="Permanent link">¶</a></h3>
+<p>（1）遵循原始Transformer的设计模式，在原始Transformer设计中，FFN的结构为：<code>FFN(x) = max(0, xW₁ + b₁)W₂ + b₂</code>，这相当于两个线性变换，中间有一个ReLU激活函数。第一个线性变换后应用激活函数，而第二个线性变换后不应用激活函数。Autoformer使用1D卷积替代线性变换，但保持了相同的激活函数模式。</p>
+<p>（2）保持输出的线性特性，最后一层不使用激活函数可以保持输出的线性特性，这对于时间序列预测尤其重要。如果在第二个卷积层后应用激活函数：</p>
+<ul>
+<li>对于ReLU：会导致负值被截断为零，限制模型表达负向趋势的能力</li>
+<li>对于其他激活函数：会引入非线性变换，可能限制模型对线性趋势的建模能力</li>
+<li>在时间序列建模中，保持一定的线性特性很重要，因为许多时间序列包含强线性趋势。最后一层不使用激活函数，可以使模型更好地捕捉这些线性趋势。</li>
+</ul>
+<p>（3）总之，<strong>第一个卷积层和激活函数**负责捕捉非线性特征，**第二个卷积层没有激活函数</strong>，保持了一定的线性映射能力，这种设计在非线性表达能力和保持线性特性之间取得了平衡</p>
+<h3 id="2-conv1d-nnlinear">疑问 2 为什么是 conv1d，而不是 nn.Linear<a class="headerlink" href="#2-conv1d-nnlinear" title="Permanent link">¶</a></h3>
+<ul>
+<li>首先，必须明确的是，使用nn.Linear <strong>不是</strong> 为每个时间步创建单独的全连接层，而是对所有时间步应用相同的权重（权重共享）。</li>
+</ul>
+<p><mark>例子：</mark> </p>
+<p><u>方式1：应用于整个序列（批量处理所有时间步）</u> </p>
+<p>假设输入x形状为[B, L, D]</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-48-1"><a href="#__codelineno-48-1" id="__codelineno-48-1" name="__codelineno-48-1"></a>linear_layer = nn.Linear(D, D_out)
+</span><span id="__span-48-2"><a href="#__codelineno-48-2" id="__codelineno-48-2" name="__codelineno-48-2"></a>output = linear_layer(x)  # 输出形状为[B, L, D_out]
+</span></code></pre></div>
+<p><strong>同一个线性层会应用到所有时间步，权重是共享的。这与kernel_size=1的Conv1D非常相似</strong> </p>
+<ul>
+<li>kernel_size=1的Conv1D在功能上类似于独立应用于每个时间步的全连接层，但它有一个关键区别：权重共享。使用卷积意味着同一组权重应用于所有时间步</li>
+</ul>
+<p><u>方式2：循环应用于每个时间步</u> </p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-49-1"><a href="#__codelineno-49-1" id="__codelineno-49-1" name="__codelineno-49-1"></a># 假设输入x形状为[B, L, D]
+</span><span id="__span-49-2"><a href="#__codelineno-49-2" id="__codelineno-49-2" name="__codelineno-49-2"></a>linear_layer = nn.Linear(D, D_out)
+</span><span id="__span-49-3"><a href="#__codelineno-49-3" id="__codelineno-49-3" name="__codelineno-49-3"></a>outputs = []
+</span><span id="__span-49-4"><a href="#__codelineno-49-4" id="__codelineno-49-4" name="__codelineno-49-4"></a>for i in range(L):
+</span><span id="__span-49-5"><a href="#__codelineno-49-5" id="__codelineno-49-5" name="__codelineno-49-5"></a>    output_step = linear_layer(x[:, i, :])  # 输出形状为[B, D_out]
+</span><span id="__span-49-6"><a href="#__codelineno-49-6" id="__codelineno-49-6" name="__codelineno-49-6"></a>    outputs.append(output_step)
+</span><span id="__span-49-7"><a href="#__codelineno-49-7" id="__codelineno-49-7" name="__codelineno-49-7"></a>output = torch.stack(outputs, dim=1)  # 输出形状为[B, L, D_out]
+</span></code></pre></div>
+<p>这种方式也是使用同一个线性层，权重仍然是共享的。</p>
+<p>其实这个疑问看回答其实也是大可不必的。看看就行了，想着看明白不大可能。</p>
+<p><strong>在Autoformer中使用kernel_size=1的Conv1D时，它在功能上与方式1中的nn.Linear非常相似，主要区别在于：</strong> </p>
+<ol>
+<li><strong>维度顺序</strong>：</li>
+<li>Conv1D期望输入形状为<code>[B, C, L]</code>（批次大小、通道数、序列长度）</li>
+<li>Linear期望输入形状为<code>[B, L, D]</code>（批次大小、序列长度、特征维度）</li>
+<li><strong>实现效率</strong>：</li>
+<li>Conv1D在GPU上对于序列数据有更优化的实现</li>
+<li>使用Conv1D可以避免reshape操作或循环处理时间步</li>
+<li><strong>框架设计</strong>：</li>
+<li>使用Conv1D与Autoformer的整体架构设计更一致</li>
+<li>Conv1D提供了扩展到更大kernel_size的可能性</li>
+</ol>
+<p><img alt="image-20250320225707561" src="../images/image-20250320225707561.png"/> </p>
+<p><img alt="image-20250320225721285" src="../images/image-20250320225721285.png"/></p>
+<p><img alt="image-20250320225730620" src="../images/image-20250320225730620.png"/> </p>
+<h3 id="encoder">Encoder 部分的设计亮点<a class="headerlink" href="#encoder" title="Permanent link">¶</a></h3>
+<p><strong>Autoformer中序列分解的特殊性与意义</strong> </p>
+<p>Autoformer中的序列分解（series_decomp）是该模型最具创新性的特点之一，它深刻体现了时间序列数据处理的特殊需求。让我详细解析这一设计的意义：</p>
+<p>🟢 <strong><u>时间序列的基本组成部分</u></strong> </p>
+<p>首先，时间序列数据通常可以分解为三个基本组成部分：
+- <strong>趋势（Trend）</strong>：长期的变化方向，如经济增长的总体趋势
+- <strong>季节性（Seasonality）</strong>：周期性的变化模式，如每年的季节性销售变化
+- <strong>残差（Residual）</strong>：随机波动或噪声</p>
+<p>传统时间序列分析方法（如ARIMA、指数平滑法）通常会先分解时间序列，再分别建模。</p>
+<p><strong><u>🟢 Autoformer的序列分解机制</u></strong></p>
+<p>Autoformer通过<code>series_decomp</code>将输入序列分解为季节性和趋势两个部分：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-50-1"><a href="#__codelineno-50-1" id="__codelineno-50-1" name="__codelineno-50-1"></a><span class="n">res</span><span class="p">,</span> <span class="n">moving_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span></code></pre></div>
+<p>这里：
+- <code>res</code> 是季节性部分（短期周期性变化）
+- <code>moving_mean</code> 是趋势部分（长期方向性变化）</p>
+<p>关键点是，<strong>Autoformer在多个位置使用序列分解，并有选择地丢弃趋势部分</strong>。例如：</p>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-51-1"><a href="#__codelineno-51-1" id="__codelineno-51-1" name="__codelineno-51-1"></a><span class="c1"># 将残差连接结果分解，仅保留季节性部分</span>
+</span><span id="__span-51-2"><a href="#__codelineno-51-2" id="__codelineno-51-2" name="__codelineno-51-2"></a><span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>
+</span></code></pre></div>
+<p><u>🟢  <strong>这种设计的深层意义</strong></u> </p>
+<p>（1）分离不同时间尺度的模式</p>
+<p>趋势和季节性代表不同时间尺度的变化模式：
+- 趋势反映长期变化（低频信号）
+- 季节性反映短期周期变化（高频信号）</p>
+<p>通过分离这两种模式，Autoformer可以：
+- 让自注意力机制专注于捕获季节性模式，这更适合其擅长捕获的局部依赖关系
+- 单独处理趋势部分，避免混合不同频率的信号导致的建模困难</p>
+<p><strong>（2）渐进式分解架构</strong> </p>
+<p>Autoformer采用"渐进式分解"（Progressive Decomposition）架构：
+- 每一层都进行序列分解，逐步提取季节性特征
+- 通过丢弃中间层的趋势信息，强制模型关注季节性模式
+- 在解码器中，分别累积各层的趋势信息，形成最终趋势预测</p>
+<p>这种架构解决了传统Transformer在长序列预测中的瓶颈：
+- 传统Transformer在长期预测中往往存在"长期预测偏差积累"问题
+- 分离趋势和季节性可以减轻这种偏差积累</p>
+<p><strong>（3）增强季节性和周期性模式的学习</strong> </p>
+<p>时间序列中的季节性模式（如每日、每周、每月或每年的周期性）是预测的重要依据。通过保留季节性部分：
+- 模型可以更好地捕捉这些重复出现的模式
+- 增强了对周期性行为的识别能力
+- 降低了趋势变化对季节性模式识别的干扰</p>
+<p>🟢 <u><strong>工程实现的巧妙之处</strong></u> </p>
+<p>从代码实现看，Autoformer的序列分解采用简单而有效的移动平均方法：
+<div class="language-python highlight"><pre><span></span><code><span id="__span-52-1"><a href="#__codelineno-52-1" id="__codelineno-52-1" name="__codelineno-52-1"></a><span class="c1"># 计算移动平均，提取序列趋势分量</span>
+</span><span id="__span-52-2"><a href="#__codelineno-52-2" id="__codelineno-52-2" name="__codelineno-52-2"></a><span class="n">moving_mean</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">moving_avg</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</span><span id="__span-52-3"><a href="#__codelineno-52-3" id="__codelineno-52-3" name="__codelineno-52-3"></a><span class="c1"># 通过原始序列减去趋势分量，得到残差(季节性分量)</span>
+</span><span id="__span-52-4"><a href="#__codelineno-52-4" id="__codelineno-52-4" name="__codelineno-52-4"></a><span class="n">res</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">moving_mean</span>
+</span></code></pre></div></p>
+<p>这一简单操作在计算效率与效果之间取得了很好的平衡：
+- 计算开销低，适合处理长序列
+- 效果显著，能有效分离不同频率的信号</p>
+<p><u><strong>🟢 与传统Transformer的关键区别</strong></u> </p>
+<p>在传统Transformer中，残差连接直接将原始输入和处理后的输出相加：
+<div class="language-python highlight"><pre><span></span><code><span id="__span-53-1"><a href="#__codelineno-53-1" id="__codelineno-53-1" name="__codelineno-53-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">new_x</span><span class="p">)</span>  <span class="c1"># 传统Transformer</span>
+</span></code></pre></div></p>
+<p>而Autoformer在相加后还进行了序列分解：
+<div class="language-python highlight"><pre><span></span><code><span id="__span-54-1"><a href="#__codelineno-54-1" id="__codelineno-54-1" name="__codelineno-54-1"></a><span class="n">x</span> <span class="o">=</span> <span class="n">x</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">dropout</span><span class="p">(</span><span class="n">new_x</span><span class="p">)</span>
+</span><span id="__span-54-2"><a href="#__codelineno-54-2" id="__codelineno-54-2" name="__codelineno-54-2"></a><span class="n">x</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>  <span class="c1"># Autoformer的特殊处理</span>
+</span></code></pre></div></p>
+<p>以及在前馈网络后：
+<div class="language-python highlight"><pre><span></span><code><span id="__span-55-1"><a href="#__codelineno-55-1" id="__codelineno-55-1" name="__codelineno-55-1"></a><span class="n">res</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">decomp2</span><span class="p">(</span><span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">)</span>  <span class="c1"># 传统Transformer只有 x = x + y</span>
+</span></code></pre></div></p>
+<p>这一创新设计从根本上改变了信息在网络中的流动方式，使模型更适合时间序列预测任务。</p>
+<p><strong>🟢 实际应用意义</strong> </p>
+<p>在实际应用中，这种序列分解机制带来的好处包括：</p>
+<ol>
+<li><strong>提高长期预测准确性</strong>：通过分离趋势和季节性，减少长期预测中的误差积累</li>
+<li><strong>增强可解释性</strong>：分解后的趋势和季节性组件更容易理解和解释</li>
+<li><strong>更好的泛化能力</strong>：学习到的季节性模式可以更好地泛化到新的时间段</li>
+<li><strong>减轻数据预处理负担</strong>：模型内置的分解机制减少了数据预处理的需求</li>
+</ol>
+<p><strong>🟢 结论</strong> </p>
+<p>Autoformer中的序列分解不仅是一个技术细节，而是一个体现时间序列数据本质特性的关键设计。它使Autoformer能够有效区分和处理不同频率的信号，提高长期预测能力，并增强模型的可解释性。这一设计充分展示了如何将领域知识（时间序列分析）与深度学习架构（Transformer）有机结合，创造出更适合特定任务的模型架构。</p>
 <aside class="md-source-file">
 <span class="md-source-file__fact">
 <span class="md-icon" title="Last update">
 <svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"></path></svg>
 </span>
-<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月19日 15:00:19"><span class="timeago" datetime="2025-03-19T15:00:19+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月19日 15:00:19">2025-03-19</span>
+<span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月21日 06:12:10"><span class="timeago" datetime="2025-03-21T06:12:10+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月21日 06:12:10">2025-03-21</span>
 </span>
 <span class="md-source-file__fact">
 <span class="md-icon" title="Created">
