@@ -132,6 +132,10 @@ nav:
       - Reproduction/4.md
       - Reproduction/CodeRepo/1_MultiHeadAttention.md
       - Reproduction/CodeRepo/2_transformer.md
+  - 统计学:
+    - Statistics/index.md
+    - Statistics/1_FFT.md
+
   - 杂:
     - logs/index.md     
     - logs/diary.md
