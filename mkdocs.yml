@@ -135,6 +135,7 @@ nav:
   - 统计学:
     - Statistics/index.md
     - Statistics/1_FFT.md
+    - Statistics/2_FFT.md
 
   - 杂:
     - logs/index.md     
