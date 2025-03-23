@@ -116,6 +116,7 @@ nav:
       - literature/MultiModal/1.md
   - 复现&代码: 
     - Reproduction/index.md
+    - Reproduction/7_summary.md
     - Reproduction/DAVE.md               
     - Reproduction/5_SegRNN_index.md
     - Reproduction/5_SegRNN_v1.md
