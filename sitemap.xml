@@ -89,6 +89,18 @@
          <lastmod>2025-03-23</lastmod>
     </url>
     <url>
+         <loc>https://mydomain.org/mysite/Statistics/</loc>
+         <lastmod>2025-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Statistics/1_FFT/</loc>
+         <lastmod>2025-03-23</lastmod>
+    </url>
+    <url>
+         <loc>https://mydomain.org/mysite/Statistics/2_FFT/</loc>
+         <lastmod>2025-03-23</lastmod>
+    </url>
+    <url>
          <loc>https://mydomain.org/mysite/bagu/deeplearning/</loc>
          <lastmod>2025-03-23</lastmod>
     </url>
