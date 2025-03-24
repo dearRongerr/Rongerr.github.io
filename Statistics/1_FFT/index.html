@@ -22,7 +22,7 @@
     
     
       
-        <title>FFT - 溶err</title>
+        <title>Fourier级数 - 溶err</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fft" class="md-skip">
+        <a href="#fourier" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FFT
+              Fourier级数
             
           </span>
         </div>
@@ -3877,16 +3877,107 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Fourier级数
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
-    FFT
+    Fourier级数
     
   </span>
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      三角函数形式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      指数形式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      物理意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      从傅里叶级数 →傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      傅里叶级数推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -3904,7 +3995,7 @@
         
   
   <span class="md-ellipsis">
-    FFT 基础知识
+    Fourier基础知识
     
   </span>
   
@@ -4056,6 +4147,74 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      三角函数形式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      指数形式
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      物理意义
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      从傅里叶级数 →傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#add" class="md-nav__link">
+    <span class="md-ellipsis">
+      Add
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Add">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      傅里叶级数推导
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -4073,28 +4232,148 @@
   
 
 
-<h1 id="fft">FFT<a class="headerlink" href="#fft" title="Permanent link">&para;</a></h1>
+<h1 id="fourier">Fourier级数<a class="headerlink" href="#fourier" title="Permanent link">&para;</a></h1>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 傅里叶级数</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 傅里叶变换</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 离散傅里叶变换</p>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 快速傅里叶变换</li>
+</ul>
+<h2 id="_1">三角函数形式<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>🟢  case1：周期= <span class="arithmatex">\(2 \pi\)</span></p>
 <blockquote>
 <p>周期为 <span class="arithmatex">\(2\pi\)</span>的函数展开式</p>
 </blockquote>
-<p><span class="arithmatex">\(f(t) = \frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cosnt + b_nsinnt\)</span></p>
+<div class="arithmatex">\[f(t) = \frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cosnt + b_nsinnt\]</div>
 <div class="arithmatex">\[\left\{
 \begin{aligned}
-a_0 &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\mathrm{d}x, \\
-a_n &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\cos\mathrm{n}x\mathrm{d}x, \\
-b_n &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin\mathrm{n}x\mathrm{d}x
+a_0 &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(t)\mathrm{d}t, \\
+a_n &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(t)\cos\mathrm{n}t\mathrm{d}t, \\
+b_n &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(t)\sin\mathrm{n}t\mathrm{d}t
 \end{aligned}\right.\]</div>
 <p>🟢 case2：周期=2T</p>
 <p><span class="arithmatex">\(t=?x = 2\pi \frac{x}{2T} = \pi \frac{x}{T}\)</span></p>
-<p><span class="arithmatex">\(f(x)=\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cosn\pi\frac{x}{T} + b_nsinn\pi\frac{x}{T}\)</span></p>
+<div class="arithmatex">\[f(x)=\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cosn\pi\frac{x}{T} + b_nsinn\pi\frac{x}{T}\]</div>
+<blockquote>
+<p><span class="arithmatex">\(dt = \frac{\pi}{T}dx\)</span></p>
+<p><span class="arithmatex">\(t \in (-\pi,\pi)  → x \in (-T,T)\)</span></p>
+</blockquote>
+<div class="arithmatex">\[\left\{
+\begin{aligned}
+a_0 &amp; =\frac{1}{T}\int_{-T}^{T}f(x)\mathrm{d}x, \\
+a_n &amp; =\frac{1}{T}\int_{-T}^{T}f(x)\cos\mathrm{n}\pi \frac{x}{T}\mathrm{d}x, \\
+b_n &amp; =\frac{1}{T}\int_{-T}^{T}f(x)\sin\mathrm{n}\pi \frac{x}{T}\mathrm{d}x
+\end{aligned}\right.\]</div>
 <p>🟢 case3：周期=T</p>
-<p>$t=?x = 2\pi \frac{x}{T} $</p>
+<p><span class="arithmatex">\(t=?x = 2\pi \frac{x}{T} =\omega x\)</span>    (令 $\omega = \frac{2\pi}{T} $)</p>
+<blockquote>
+<p><span class="arithmatex">\(dt = \frac{2\pi}{T}dx\)</span></p>
+<p><span class="arithmatex">\(t \in (-\pi,\pi)  → x \in (-\frac{T}{2},\frac{T}{2})\)</span></p>
+</blockquote>
 <p><span class="arithmatex">\(f(x)=\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cos n2\pi\frac{x}{T} + b_nsin n2\pi\frac{x}{T}\)</span> </p>
-<p>令 $\omega = \frac{2\pi}{T} $</p>
+<p><mark>更常用的形式：</mark></p>
+<div class="arithmatex">\[f(x)=\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cos n \omega x + b_nsin n \omega x\]</div>
+<div class="arithmatex">\[\left\{
+\begin{aligned}
+a_0 &amp; =\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\mathrm{d}x, \\
+a_n &amp; =\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\cos\mathrm{n}\omega x\mathrm{d}x, \\
+b_n &amp; =\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\sin\mathrm{n}\omega x\mathrm{d}x
+\end{aligned}\right.\]</div>
+<p>特别的，<span class="arithmatex">\(\omega_0=\frac{2\pi}{T}\)</span> 记作基频，周期最长，最低频</p>
+<h2 id="_2">指数形式<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+e^{ix}=cosx+isinx, \\
+e^{-ix}=cosx-isinx, \\
+\end{aligned}\right.
+\]</div>
+<div class="arithmatex">\[
+\left\{
+\begin{aligned}
+cosn\omega x = \frac{e^{in\omega x}+e^{-in\omega x}}{2}, \\
+i sin n\omega x = \frac{e^{in\omega x}-e^{-in\omega x}}{2}, \\
+\end{aligned}\right.
+\]</div>
 <p><span class="arithmatex">\(f(x)=\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n cos n \omega x + b_nsin n \omega x\)</span></p>
+<p><span class="arithmatex">\(\quad =\frac{a_0}{2} + \sum_{n=1}^{+ \infty} a_n \frac{e^{in\omega x}+e^{-in\omega x}}{2} - i b_n\frac{e^{in\omega x}-e^{-in\omega x}}{2}\)</span></p>
+<p><span class="arithmatex">\(\quad =\frac{a_0}{2} + \sum_{n=1}^{+ \infty} \frac{a_n - i b_n}{2} e^{in\omega x}+ \frac{a_n + i b_n}{2} e^{-in\omega x}\)</span></p>
+<p>记系数分别为：</p>
+<p><span class="arithmatex">\(c_0 = \frac{a_0}{2} = \frac{1}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\mathrm{d}x \quad (n=0)\)</span>  </p>
+<p><span class="arithmatex">\(c_n = \frac{a_n - i b_n}{2} = \frac{\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\cos\mathrm{n}\omega x\mathrm{d}x-i\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\sin\mathrm{n}\omega x\mathrm{d}x}{2}\)</span></p>
+<p>$ \quad = \frac{\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\cos\mathrm{n}\omega x\mathrm{d}x-if(x)\sin\mathrm{n}\omega x\mathrm{d}x}{T}$</p>
+<p>$ \quad = \frac{\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)(\cos\mathrm{n}\omega x-i\sin\mathrm{n}\omega x)\mathrm{d}x}{T}$</p>
+<p>$ \quad = \frac{\int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^ {- \mathrm{n}\omega x} \mathrm{d}x}{T}$</p>
+<p>$ \quad = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{- \mathrm{n}\omega x }\mathrm{d} x \quad (n=1,2,3,4... ...)$</p>
+<p><span class="arithmatex">\(c_{-n} = \frac{a_n + i b_n}{2} = \frac{\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\cos\mathrm{n}\omega x\mathrm{d}x + i\frac{2}{T}\int_{-\frac{T}{2}}^{\frac{T}{2}}f(x)\sin\mathrm{n}\omega x\mathrm{d}x}{2}\)</span></p>
+<p>$ \quad = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{\mathrm{n}\omega x }\mathrm{d} x \quad (n=1,2,3,4... ...)$</p>
+<p>汇总 <span class="arithmatex">\(c_0,c_n,c_{-n}\)</span> </p>
+<p>可得：</p>
+<p><span class="arithmatex">\(c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{- \mathrm{n}\omega x }\mathrm{d} x \quad (n=0,\pm 1,\pm 2,\pm 3,\pm 4... ...)\)</span></p>
+<p>最终得到，傅里叶级数的指数形式：</p>
+<div class="arithmatex">\[f(x)=\sum_{n= - \infty}^{\infty} c_n e^{i n \omega x }\]</div>
+<div class="arithmatex">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{- \mathrm{n}\omega x }\mathrm{d} x \quad (n=0,\pm 1,\pm 2,\pm 3,\pm 4... ...)\]</div>
+<h2 id="_3">物理意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>基于以上理解，扩充一些更细致的理解</p>
+<p><img alt="image-20250324210344659" src="../images/image-20250324210344659.png" /></p>
+<p><mark>cos 形式</mark> 可以只用 正弦函数 或者余弦函数</p>
+<p><img alt="image-20250324210440924" src="../images/image-20250324210440924.png" />    </p>
+<p><img alt="image-20250324210414287" src="../images/image-20250324210414287.png" /> </p>
+<p><mark>指数形式</mark></p>
+<p><mark>指数形式</mark>  指数形式也证明过了</p>
+<p><img alt="image-20250324210541603" src="../images/image-20250324210541603.png" /></p>
+<p><mark>系数之间的关系：</mark> </p>
+<p><img alt="image-20250324210750659" src="../images/image-20250324210750659.png" /></p>
+<p><img alt="image-20250324210800957" src="../images/image-20250324210800957.png" /></p>
+<p>代入来代入去可得，（以 $a_n $ 和 <span class="arithmatex">\(b_n\)</span> 为基准）：</p>
+<p><img alt="image-20250324210658880" src="../images/image-20250324210658880.png" /></p>
+<h2 id="_4">从傅里叶级数 →傅里叶变换<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<ul>
+<li>傅里叶级数是对周期为T的确定性信号做展开，而傅里叶变换将周期推广到无穷，能对具有任意长度的信号做展开</li>
+<li><strong>连续周期信号 ---&gt; 傅里叶级数</strong>；<strong>连续非周期信号 ---&gt; 傅里叶变换。</strong></li>
+</ul>
+<p><img alt="image-20250324220709461" src="../images/image-20250324220709461.png" /> </p>
+<p><img alt="image-20250324220737749" src="../images/image-20250324220737749.png" /></p>
+<p><mark>最最核心的：</mark>   </p>
+<p><img alt="image-20250324220853682" src="../images/image-20250324220853682.png" /></p>
+<h2 id="add">Add<a class="headerlink" href="#add" title="Permanent link">&para;</a></h2>
+<p>最常用的傅里叶级数形式：</p>
+<p><img alt="image-20250324211918264" src="../images/image-20250324211918264.png" /></p>
+<p><img alt="image-20250324212207779" src="../images/image-20250324212207779.png" /> </p>
+<p><img alt="image-20250324211939821" src="../images/image-20250324211939821.png" />  </p>
+<p><img alt="image-20250324211949485" src="../images/image-20250324211949485.png" />  </p>
+<p><img alt="image-20250324211959224" src="../images/image-20250324211959224.png" /></p>
+<h3 id="_5">傅里叶级数推导<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p>从无到有</p>
+<p><img alt="image-20250324212434771" src="../images/image-20250324212434771.png" /> </p>
+<p><img alt="image-20250324212502291" src="../images/image-20250324212502291.png" /></p>
+<p><mark>基频&amp;谐波</mark> </p>
+<p><img alt="image-20250324212520580" src="../images/image-20250324212520580.png" /></p>
+<p><img alt="image-20250324212535221" src="../images/image-20250324212535221.png" /> </p>
+<p><img alt="image-20250324212618891" src="../images/image-20250324212618891.png" /> </p>
+<p><img alt="image-20250324212631970" src="../images/image-20250324212631970.png" /> </p>
+<p><mark>由三角函数推导指数形式：</mark></p>
+<p>再看一遍三角函数：</p>
+<p><img alt="image-20250324212908554" src="../images/image-20250324212908554.png" /> </p>
+<p><mark>欧拉公式</mark></p>
+<p><img alt="image-20250324212926614" src="../images/image-20250324212926614.png" /> </p>
+<p><img alt="image-20250324212938428" src="../images/image-20250324212938428.png" /> </p>
+<p><img alt="image-20250324212948994" src="../images/image-20250324212948994.png" /></p>
+<p><img alt="image-20250324213236544" src="../images/image-20250324213236544.png" /></p>
+<p><mark>全部散开的 指数型 傅里叶级数</mark>   </p>
+<p><img alt="image-20250324213154236" src="../images/image-20250324213154236.png" /> </p>
 <hr />
-<p>case1 的系数：</p>
+<p>reference</p>
+<p><a href="https://zhuanlan.zhihu.com/p/5721100917">傅里叶级数公式推导</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/5721100917">数值分析-最佳三角逼近&amp;Fourier变换&amp;三角插值</a></p>
+<p><a href="https://www.zhihu.com/question/19714540/answer/334686351">(很多漂亮的图)如何理解傅立叶级数公式？</a></p>
+<p><a href="https://zhuanlan.zhihu.com/p/5721100917">傅里叶系列（一）傅里叶级数的推导</a></p>
+<p><a href="https://www.tup.com.cn/upload/books/yz/079859-01.pdf">https://www.tup.com.cn/upload/books/yz/079859-01.pdf</a></p>
+<p><a href="https://www.bilibili.com/video/BV1jt411U7Bp?spm_id_from=333.788.videopod.sections&amp;vd_source=99384b2db3076f120ee34966bff31479">纯干货数学推导 傅里叶级数与傅里叶变换 Part5_从傅里叶级数推导傅里叶变换</a></p>
 
 
 
@@ -4117,7 +4396,7 @@ b_n &amp; =\frac{1}{\pi}\int_{-\pi}^{\pi}f(x)\sin\mathrm{n}x\mathrm{d}x
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月23日 14:58:12"><span class="timeago" datetime="2025-03-23T14:58:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月23日 14:58:12">2025-03-23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月24日 14:14:22"><span class="timeago" datetime="2025-03-24T14:14:22+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月24日 14:14:22">2025-03-24</span>
   </span>
 
     

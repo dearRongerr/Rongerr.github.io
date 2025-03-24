@@ -22,7 +22,7 @@
     
     
       
-        <title>FFT 基础知识 - 溶err</title>
+        <title>Fourier基础知识 - 溶err</title>
       
     
     
@@ -82,7 +82,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#fft" class="md-skip">
+        <a href="#fourier" class="md-skip">
           Skip to content
         </a>
       
@@ -118,7 +118,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              FFT 基础知识
+              Fourier基础知识
             
           </span>
         </div>
@@ -3872,7 +3872,7 @@
         
   
   <span class="md-ellipsis">
-    FFT
+    Fourier级数
     
   </span>
   
@@ -3903,7 +3903,7 @@
           
   
   <span class="md-ellipsis">
-    FFT 基础知识
+    Fourier基础知识
     
   </span>
   
@@ -3915,7 +3915,7 @@
         
   
   <span class="md-ellipsis">
-    FFT 基础知识
+    Fourier基础知识
     
   </span>
   
@@ -4001,9 +4001,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#k" class="md-nav__link">
+  <a href="#k4" class="md-nav__link">
     <span class="md-ellipsis">
-      K 复数的模和相角 、复平面、极坐标系
+      K4 复数
     </span>
   </a>
   
@@ -4256,9 +4256,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#k" class="md-nav__link">
+  <a href="#k4" class="md-nav__link">
     <span class="md-ellipsis">
-      K 复数的模和相角 、复平面、极坐标系
+      K4 复数
     </span>
   </a>
   
@@ -4310,10 +4310,10 @@
   
 
 
-<h1 id="fft">FFT 基础知识<a class="headerlink" href="#fft" title="Permanent link">&para;</a></h1>
+<h1 id="fourier">Fourier基础知识<a class="headerlink" href="#fourier" title="Permanent link">&para;</a></h1>
 <div class="toc">
 <ul>
-<li><a href="#fft">FFT 基础知识</a><ul>
+<li><a href="#fourier">Fourier基础知识</a><ul>
 <li><a href="#k1">K1：基频和谐波</a></li>
 <li><a href="#k2">K2：正交基</a></li>
 <li><a href="#q-2pi">Q 周期为什么是 \(2\pi\)</a></li>
@@ -4321,7 +4321,7 @@
 <li><a href="#q_1">Q 三角函数基础</a></li>
 <li><a href="#k3">K3 傅里叶级数 &amp; 傅里叶变换</a></li>
 <li><a href="#q-re-im">Q Re &amp; Im</a></li>
-<li><a href="#k">K 复数的模和相角 、复平面、极坐标系</a></li>
+<li><a href="#k4">K4 复数</a></li>
 <li><a href="#k5">K5 直角坐标系、复平面、极坐标</a></li>
 <li><a href="#k6">K6欧拉公式</a></li>
 <li><a href="#k7">K7 三角函数与复指数</a></li>
@@ -4485,8 +4485,17 @@
 <p>🌺 <strong>复指数形式的傅里叶级数</strong>： 
 <span class="arithmatex">\(<span class="arithmatex">\(f(t) = \sum_{n=-\infty}^{\infty} c_n e^{i\omega_0 nt}\)</span>\)</span></p>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 等价性的证明。</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 等价性的证明。</li>
 </ul>
+<p><strong>🟦 三角形式的傅里叶级数</strong>： </p>
+<div class="arithmatex">\[f(x) = a_0 + \sum_{n=1}^{\infty} [a_n \cos(nx) + b_n \sin(nx)]\]</div>
+<p><strong>🟦 复指数形式的傅里叶级数</strong>：</p>
+<p>对于周期为 <span class="arithmatex">\(T\)</span> 的函数 <span class="arithmatex">\(f(t)\)</span>，其傅里叶级数表示为：</p>
+<div class="arithmatex">\[f(t) = \sum_{n=-\infty}^{\infty} c_n e^{i\omega_0 nt}\]</div>
+<p>其中 <span class="arithmatex">\(\omega_0 = \frac{2\pi}{T}\)</span> 是基频，系数 <span class="arithmatex">\(c_n\)</span> 由以下公式给出：</p>
+<div class="arithmatex">\[c_n = \frac{1}{T} \int_{-T/2}^{T/2} f(t) e^{-i\omega_0 nt} dt\]</div>
+<p>这里每个频率分量是 <span class="arithmatex">\(\omega_n = n\omega_0\)</span>，是基频 <span class="arithmatex">\(\omega_0\)</span> 的整数倍，所以是离散的频率值。</p>
+<p>🟪 要证明等价，欧拉公式牢记于心：<span class="arithmatex">\(e^{i\theta} = \cos(\theta) + i\sin(\theta)\)</span></p>
 </blockquote>
 <h2 id="q-re-im">Q  Re &amp; Im<a class="headerlink" href="#q-re-im" title="Permanent link">&para;</a></h2>
 <ul>
@@ -4520,7 +4529,8 @@
 </ul>
 <p>（1）表示"垂直"分量</p>
 <p>（2）与正弦函数相关联（正弦在0处取值为0）</p>
-<h2 id="k">K <strong>复数的模和相角</strong> 、复平面、极坐标系<a class="headerlink" href="#k" title="Permanent link">&para;</a></h2>
+<h2 id="k4">K4 复数<a class="headerlink" href="#k4" title="Permanent link">&para;</a></h2>
+<p>复数的模和相角 、复平面、极坐标系</p>
 <ul class="task-list">
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 对于任意复数 <span class="arithmatex">\(c = a + bi\)</span>：</p>
@@ -4531,6 +4541,16 @@
 <li>
 <p><strong>相角</strong> <span class="arithmatex">\(\theta = \tan^{-1}(b/a)\)</span>：表示复数在复平面上与正实轴的夹角</p>
 </li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> （完整表达信息）复数能同时编码两类信息：</p>
+</li>
+<li>
+<p><strong>幅度信息</strong>：通过 <span class="arithmatex">\(|c_n|\)</span>（复数的模）</p>
+</li>
+<li><strong>相位信息</strong>：通过 <span class="arithmatex">\(\arg(c_n)\)</span>（复数的辐角）</li>
+</ul>
+<p>这使得一个复数 <span class="arithmatex">\(c_n\)</span> 可以完整描述信号中频率为 <span class="arithmatex">\(n\omega_0\)</span> 的分量的幅度和相位。</p>
+<ul class="task-list">
 <li class="task-list-item">
 <p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 复数可以用极坐标形式表示：<span class="arithmatex">\(c = |c|e^{i\theta}\)</span> （转了多少度，多长。）</p>
 </li>
@@ -4591,7 +4611,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月23日 14:58:12"><span class="timeago" datetime="2025-03-23T14:58:12+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月23日 14:58:12">2025-03-23</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月24日 14:14:22"><span class="timeago" datetime="2025-03-24T14:14:22+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月24日 14:14:22">2025-03-24</span>
   </span>
 
     
