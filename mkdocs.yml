@@ -136,6 +136,7 @@ nav:
     - Statistics/index.md
     - Statistics/1_FFT.md
     - Statistics/2_FFT.md
+    - Statistics/1_0_fourier.md 
 
   - 杂:
     - logs/index.md     
