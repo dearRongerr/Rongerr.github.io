@@ -1,0 +1,4816 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://mydomain.org/mysite/Statistics/1_0_fourier/">
+      
+      
+        <link rel="prev" href="../2_FFT/">
+      
+      
+        <link rel="next" href="../1_1_fourier/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.9">
+    
+    
+      
+        <title>复平面旋转&DFT - 溶err</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../css/timeago.css">
+    
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
+    
+      <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#dft" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="溶err" class="md-header__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            溶err
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              复平面旋转&amp;DFT
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="light-blue" data-md-color-accent="light-blue"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../sticks/mkdocs_learn/" class="md-tabs__link">
+          
+  
+    
+  
+  便签
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../bagu/questions/1_questions/" class="md-tabs__link">
+          
+  
+    
+  
+  面试
+
+        </a>
+      </li>
+    
+  
+
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Error/github/" class="md-tabs__link">
+          
+  
+    
+  
+  捉个虫
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../learning/0_pdfNotes/" class="md-tabs__link">
+          
+  
+    
+  
+  笔记
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../literature/" class="md-tabs__link">
+          
+  
+    
+  
+  文献
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../Reproduction/" class="md-tabs__link">
+          
+  
+    
+  
+  复现&代码
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+    
+  
+  统计学
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../logs/" class="md-tabs__link">
+          
+  
+    
+  
+  杂
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="溶err" class="md-nav__button md-logo" aria-label="溶err" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    溶err
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    便签
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_1">
+            <span class="md-nav__icon md-icon"></span>
+            便签
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/mkdocs_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MkDocs
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/markdwon_learn/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    markdown
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LaTex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/GitHub/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GitHub
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/MacOS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MacOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/shell/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Shell
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/linux/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    linux
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/screen/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    screen
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/writting/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    写作
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/1_github_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github v1.0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/2_python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../sticks/3_vscode/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VSCode
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    面试
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            面试
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_1" id="__nav_2_1_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    题目
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            题目
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/questions/1_questions/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    面试问题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/leetcode/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    力扣
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_2" id="__nav_2_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            力扣
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1 两数之和
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/leetcode/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2 两数相加
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../bagu/deeplearning/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    深度学习
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            深度学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕Transformer代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/former2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/pytorch_shape_function/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    pytorch的维度变换函数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/deeplearning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    visionTransformer代码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    机器学习
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            机器学习
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/kmeans/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕kmeans
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../bagu/machinelearning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    手撕反向传播
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    捉个虫
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            捉个虫
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/github/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    github
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/latex/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Latex
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/macos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    macOS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Error/docker/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    docker
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    笔记
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            笔记
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/0_pdfNotes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    📒
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/3_ViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ViT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/1_clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CLIP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/2_MOCO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    MOCO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    图解LayerNorm &amp; BatchNorm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    5种归一化方法
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/vit/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    vision Transformer的原理与难点源码实现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/swintransformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SwinTransformer 学习笔记
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/pe/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4种位置编码
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/convs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    卷积
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    李沐 目标检测部分
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/4_GAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/5_Bert/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    BERT从零详细解读
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/6_Diffusion/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DDPM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/6_Diffusion1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    VDM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/7_Clip/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    空
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/8_WeightNorm/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    WeightNorm
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/9_cGAN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GAN 变体
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/10_ResNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    项目实战：ResNet果蔬分类
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/11_excelcsvtensor/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    基础：excel\csv文件→tensor
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/12_KLdivergence/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    KL divergence
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/13_RNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    RNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/14_LSTM/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    LSTM
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/15_ContrastiveLearning/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    对比学习
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/16_YOLO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    YOLO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/17_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/18_DINO/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DINO
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/19_GPT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GPT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/20_distill/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    知识蒸馏
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../learning/21_FastRCNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    21 FastRCNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    文献
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            文献
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/TSP/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    时间序列预测
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            时间序列预测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/0_note/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    NOTE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/1_SegRNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/2_DLinear/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2022、DLinear
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/3_TimesNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2023、TimesNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/4_Informer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、 Informer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/TSP/5_Autoformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    2021、Autoformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_3" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObejectCounting/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标计数
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            目标计数
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank1%20CountGD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank1 CountGD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank2%20GeCo/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank2 GeCo
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank3%20DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank3 DAVE
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank4%20CACViT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank4 CACViT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank5%20SSD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank5 SSD
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank6%20LOCA/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank6 LOCA
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank7%20SemAug_CountTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank7 SemAug CountTR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank8%20CounTR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank8 CounTR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank9%20SemAug_SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank9 SemAug SAFECount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank10%20SPDCN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank10 SPDCN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank11%20GCA_SUN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank11 GCA SUN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank12%20SAFECount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank12 SAFECount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank13%20BMNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank13 BMNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank14%20LaoNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank14 LaoNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank15%20CounTX/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank15 CounTX
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank16%20Counting_DETR/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank16 Counting DETR
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank17%20RCC/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank17 RCC
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank18%20Omnicount/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank18 Omnicount
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObejectCounting/rank19%20FamNet/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    rank19 FamNet
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_4" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/ObjectDetection/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    目标检测
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_4" id="__nav_5_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_4">
+            <span class="md-nav__icon md-icon"></span>
+            目标检测
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    目标检测基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DETR论文系列
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （DETR）End-to-End Object Detection with Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/ObjectDetection/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_5_5" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../literature/MultiModal/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    多模态
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5_5" id="__nav_5_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_5">
+            <span class="md-nav__icon md-icon"></span>
+            多模态
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../literature/MultiModal/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Reproduction/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    复现&代码
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            复现&代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/7_summary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    汇总复现调用图
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/DAVE/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DAVE复现
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_index/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复现SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    （补充）复现 SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/5_SegRNN_v3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (手写笔记)SegRNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Autoformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer_v1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    (续) Autoformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../Reproduction/CodeRepo/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    一些代码
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_10">
+            <span class="md-nav__icon md-icon"></span>
+            一些代码
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些模块
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    特征融合方式
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/3/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些感悟
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/4/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    预训练权重
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/CodeRepo/1_MultiHeadAttention/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    多头注意力机制形状变化
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Reproduction/CodeRepo/2_transformer/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    从现实生活的角度看 Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" checked>
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    统计学
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            统计学
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_FFT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fourier级数
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../2_FFT/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Fourier基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    复平面旋转&amp;DFT
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    复平面旋转&amp;DFT
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      离散傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      离散傅里叶变换中的序列周期规律
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      手搓 DFT 例题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      数学 &amp; DFT
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_1_fourier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    直观理解傅里叶变换
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_2_signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号的合成与分解
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_8" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../logs/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    杂
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            杂
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/diary/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    乐观 &amp; 坚强
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/1_date/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    一些日期
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      离散傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      离散傅里叶变换中的序列周期规律
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      快速傅里叶变换
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      手搓 DFT 例题
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dft_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      数学 &amp; DFT
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="dft">复平面旋转&amp;DFT<a class="headerlink" href="#dft" title="Permanent link">&para;</a></h1>
+<h2 id="_1">离散傅里叶变换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.bilibili.com/video/BV11R18Y2Ewb/?spm_id_from=333.999.0.0&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">动画讲解离散傅里叶变换</a></p>
+<p>离散傅里叶变换公式：</p>
+<p><img alt="image-20250325131234976" src="../images/image-20250325131234976.png" /></p>
+<ul>
+<li><span class="arithmatex">\(x_n\)</span> 原始离散时间序列</li>
+<li><span class="arithmatex">\(\frac{2\pi}{N} \cdot k\)</span>  ：每次旋转的角度 = <span class="arithmatex">\(k\)</span> 个 <span class="arithmatex">\(\frac{2\pi}{N}\)</span></li>
+<li><span class="arithmatex">\(n\)</span>：每个时间点（从前往后）都要旋转</li>
+</ul>
+<p><mark>复平面：</mark> </p>
+<p><img alt="image-20250325131628175" src="../images/image-20250325131628175.png" /></p>
+<p>演示，将 原始序列[4,3,2,1]进行离散傅里叶变换：
+$$
+X_k= \sum_{n=0}^{N-1} x_n \cdot e^{-i\cdot(\frac{2\pi k}{N})n}
+$$</p>
+<ul>
+<li>N=4 原始序列 4 个时间点，n 从 0 开始按时间点先后依次旋转</li>
+<li>每个时间点旋转 <span class="arithmatex">\(\frac{2\pi k}{N}\)</span> 个角度，k=0,1,2,3</li>
+<li>k=0时，每个时间点，对应时间序列对应的线段，不旋转</li>
+<li>k=1时，旋转 90°</li>
+<li>k=2时，旋转 180°</li>
+<li>k=3时，旋转 270°</li>
+</ul>
+<blockquote>
+<ul>
+<li>1 个周期 = 时间序列长度</li>
+<li>2 个周期 = 时间序列长度</li>
+<li>3 个周期 = 时间序列长度</li>
+<li>4 个周期 = 时间序列长度 《===》一个周期一个点</li>
+</ul>
+</blockquote>
+<ul>
+<li>旋转：顺时针旋转</li>
+</ul>
+<p><img alt="image-20250325132514444" src="../images/image-20250325132514444.png" /></p>
+<p>顺时针旋转 90 度：</p>
+<p><img alt="image-20250325132603860" src="../images/image-20250325132603860.png" /></p>
+<p>相对于初始位置，顺时针旋转 180 度</p>
+<p><img alt="image-20250325132629747" src="../images/image-20250325132629747.png" /> </p>
+<p>相对于初始位置，顺时针旋转 270 度</p>
+<p><img alt="image-20250325132705792" src="../images/image-20250325132705792.png" /></p>
+<p>得到傅里叶变换：</p>
+<p><img alt="image-20250325132750773" src="../images/image-20250325132750773.png" /> </p>
+<p><img alt="image-20250325132807662" src="../images/image-20250325132807662.png" /></p>
+<p>以上是 4 个点的例子，现在举一个 6 个点的例子</p>
+<p>公式，依然是 DFT
+$$
+X_k= \sum_{n=0}^{N-1} x_n \cdot e^{-i\cdot(\frac{2\pi k}{N})n}
+$$</p>
+<ul>
+<li>时间序列中有 6 个时间点</li>
+<li>每次旋转  <span class="arithmatex">\(\frac{2\pi k}{N}\)</span> 个角度，其中，<span class="arithmatex">\(\frac{2\pi }{N} = \frac{ 360° }{60°}= 60°\)</span></li>
+<li>k=0，表示，<mark>第一次遍历 时间序列中的所有时间点时，加和即可</mark>。不转。</li>
+<li>k=1，第二次遍历时间序列中的时间点时，每个点依次，从前往后，顺时针旋转 <span class="arithmatex">\(60°\)</span>  <span class="arithmatex">\(《====》\)</span> 周期长度=序列长度  <span class="arithmatex">\(《====》\)</span>  因为 6 个点，每个点转 60 度，遍历完所有时间点，刚好转完一圈。</li>
+<li>k=2，第三次遍历时间序列中的所有时间点时，每个点依次再次旋转 <span class="arithmatex">\(60 °\)</span>，相对于初始位置，旋转了 <span class="arithmatex">\(120°\)</span>  <span class="arithmatex">\(《===》\)</span>🔴序列长度 = 3 个周期长度  <span class="arithmatex">\(《====》\)</span> 6 个点，每个点转 120 度，遍历完所有时间点，🔴转完 3圈。</li>
+<li>k=3，第四次遍历时间序列中的所有时间点时，每个点依次再次旋转 <span class="arithmatex">\(60 °\)</span>，相对于初始位置，旋转了 <span class="arithmatex">\(180°\)</span>  <span class="arithmatex">\(《===》\)</span>🔴序列长度 = 2个周期长度  <span class="arithmatex">\(《====》\)</span> 6 个点，每个点转 180 度，遍历完所有时间点，🔴转完 2 圈。</li>
+<li>k=4，第五次遍历时间序列中的所有时间点时，每个点依次再次旋转 <span class="arithmatex">\(60 °\)</span>，相对于初始位置，旋转了 <span class="arithmatex">\(240°\)</span>  <span class="arithmatex">\(《===》\)</span> 🔴序列长度 = 3个周期长度  <span class="arithmatex">\(《====》\)</span> 6 个点，每个点转 180 度，遍历完所有时间点，🔴转完 2 圈。</li>
+<li>k=5，第六次遍历时间序列中的所有时间点时，每个点依次再次旋转 <span class="arithmatex">\(60 °\)</span>，相对于初始位置，旋转了 <span class="arithmatex">\(300°\)</span>  <span class="arithmatex">\(《===》\)</span> 🔴序列长度 = 3个周期长度  <span class="arithmatex">\(《====》\)</span> 6 个点，每个点转 180 度，遍历完所有时间点，🔴转完 2 圈。</li>
+<li>也就是说，<span class="arithmatex">\(k\)</span> 遍历在 <span class="arithmatex">\(2 \pi\)</span> 上，<span class="arithmatex">\(n\)</span> 遍历原始序列。<span class="arithmatex">\(k\)</span> 只是每个时间点旋转的角度。表示所有时间点在该频率上==的相关性？（响应值？）==</li>
+</ul>
+<p>k=0，DFT 的第 1 个值，直接对所有元素加和</p>
+<p>k=1，每个点转 60 度：</p>
+<p><img alt="image-20250325134709514" src="../images/image-20250325134709514.png" /> </p>
+<p>k=2，每个点顺时针旋转 120 度</p>
+<p><img alt="image-20250325134741940" src="../images/image-20250325134741940.png" /> </p>
+<p>每个点顺时针旋转 180 度</p>
+<p><img alt="image-20250325134805087" src="../images/image-20250325134805087.png" /> </p>
+<p>每个点旋转顺时针旋转 240 度</p>
+<p><img alt="image-20250325134846093" src="../images/image-20250325134846093.png" /></p>
+<p>每个点旋转300 度</p>
+<p><img alt="image-20250325134930311" src="../images/image-20250325134930311.png" /></p>
+<p>顺时针旋转 300 度，和旋转 60 度，十分相似，只是颠倒了，具体来说，实部是完全一样的，虚部是取反的。因为 <span class="arithmatex">\(e^x = cosx+isinx\)</span>  ；第 0 个值是原始时间点加和的。</p>
+<p><img alt="image-20250325135238720" src="../images/image-20250325135238720.png" /></p>
+<p><img alt="image-20250325134943324" src="../images/image-20250325134943324.png" /> </p>
+<p>借助工具计算 DFT</p>
+<p><img alt="image-20250325135405627" src="../images/image-20250325135405627.png" /></p>
+<ul>
+<li>k=0，原始序列元素加和</li>
+<li>k=1，转 60 度，转一圈</li>
+<li>k=2，转 120 度，6 个点，转 3 圈</li>
+<li>k=3，转 180 度，在实数轴上移动，6 个点转2 圈</li>
+<li>k=4，转 240 度，相对于 120 度旋转来说，实数轴不变，虚数轴互为相反数</li>
+<li>k=5，转 300 度，相对于 60 度旋转来说，实数轴不变，虚部互为相反数</li>
+</ul>
+<p>由，时域得到了频域 <span class="arithmatex">\(===》[4,3,2,1]→[10,2-2i,2,2+2i]\)</span></p>
+<ul>
+<li>k=0，元素加和</li>
+<li>k=1，转 90 度</li>
+<li>k=2，实数轴上，180 度</li>
+<li>k=3，转 270 度，相对于 k=1，实数部分不变，虚数部分互为相反数</li>
+</ul>
+<p>那么，如果有频域，$[10,2-2i,2,2+2i] $ 怎么得到 时域？ <span class="arithmatex">\([4,3,2,1]\)</span></p>
+<ul>
+<li>DFT 顺时针旋转，逆离散傅里叶变换，那就逆时针旋转</li>
+</ul>
+<p><img alt="image-20250325141249222" src="../images/image-20250325141249222.png" /></p>
+<p>在复平面表示：</p>
+<p><img alt="image-20250325141405184" src="../images/image-20250325141405184.png" /> </p>
+<ul>
+<li>首先，第 0 个值，频域元素加和</li>
+</ul>
+<p><img alt="image-20250325141459365" src="../images/image-20250325141459365.png" />  </p>
+<ul>
+<li>顺时针旋转 90 度，依然是按照频域元素顺序，依次旋转</li>
+</ul>
+<p><img alt="image-20250325141626295" src="../images/image-20250325141626295.png" /></p>
+<ul>
+<li>再次，每个点依次旋转 180 度</li>
+</ul>
+<p><img alt="image-20250325141705533" src="../images/image-20250325141705533.png" /> </p>
+<p>顺时针，每个点，相对于初始位置，旋转 270 度，都是从初始位置开始旋转，一次旋转完角度</p>
+<p><img alt="image-20250325141747865" src="../images/image-20250325141747865.png" /> </p>
+<p>问题，为什么，是 [16,12,8,4] 不是 [4,3,2,1] ？</p>
+<p><img alt="image-20250325141907414" src="../images/image-20250325141907414.png" /> </p>
+<p>答案：除以 序列长度 ，这里是 4.</p>
+<p><img alt="image-20250325141921986" src="../images/image-20250325141921986.png" /></p>
+<p>傅里叶变换，顺时针旋转， <span class="arithmatex">\(\frac{2\pi}{N}\)</span></p>
+<p>逆傅里叶变换，逆时针旋转，也是<span class="arithmatex">\(\frac{2\pi}{N}\)</span>，最后还要除以序列长度 <span class="arithmatex">\(N\)</span></p>
+<p><img alt="image-20250325143415890" src="../images/image-20250325143415890.png" /></p>
+<p>复平面与 <span class="arithmatex">\(e^x\)</span> ，这一步的转换，其实是从 <span class="arithmatex">\((cos\theta,sin\theta)\)</span> 直接用了 <span class="arithmatex">\(e^{i\theta}\)</span> 表示</p>
+<p><img alt="image-20250325143635619" src="../images/image-20250325143635619.png" /></p>
+<p>类似的，复平面坐标点，全部用指数表示</p>
+<p><img alt="image-20250325143832710" src="../images/image-20250325143832710.png" /> 
+$$
+e^{i\theta} = cos\theta + isin\theta
+$$
+具体来说：</p>
+<ul>
+<li><span class="arithmatex">\(1 = e^{i2\pi} = cos2\pi + isin2\pi = 1\)</span></li>
+<li><span class="arithmatex">\(i = e^{i\frac{\pi}{2}} = cos\frac{\pi}{2} + isin\frac{\pi}{2} = i\)</span></li>
+<li><span class="arithmatex">\(-1 = e^{i\pi} = cos\pi + isin \pi = -1\)</span></li>
+<li><span class="arithmatex">\(-i = e^{i\frac{3\pi}{2}} = cos\frac{3\pi}{2} + isin\frac{3\pi}{2} = -i\)</span></li>
+</ul>
+<p>接下来，对 1 进行分解，具体来说：</p>
+<ul>
+<li><span class="arithmatex">\(x^2=1\)</span></li>
+<li><span class="arithmatex">\(x^3=1\)</span></li>
+<li><span class="arithmatex">\(x^4=1\)</span></li>
+<li><span class="arithmatex">\(x^5=1\)</span></li>
+</ul>
+<p>因为讨论的是三角函数，所以用 <span class="arithmatex">\(\omega\)</span> </p>
+<p>这里其实，我觉得应该这么解释</p>
+<ul>
+<li><span class="arithmatex">\(\omega^2 = 1 ===&gt;\)</span>   转1个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^3 = 1 ===&gt;\)</span> 转3个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1 ===&gt;\)</span>  得到对应的角，进行相应的复数表示，比如这里 <span class="arithmatex">\(\omega=120°\)</span> ，<span class="arithmatex">\(x\)</span> 轴正方向开始找点，120°标一个，再一个120°，再标一个。（模长=1，角度＝120°）</li>
+<li><span class="arithmatex">\(\omega^4 = 1 ===&gt;\)</span> 转4个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^5 = 1 ===&gt;\)</span> 转5个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^6 = 1 ===&gt;\)</span> 转6个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li>......</li>
+<li><span class="arithmatex">\(\omega^n = 1 ===&gt;\)</span> 转n个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span> </li>
+</ul>
+<p><mark>单位根</mark> </p>
+<p><img alt="image-20250325144423422" src="../images/image-20250325144423422.png" /></p>
+<ul>
+<li><span class="arithmatex">\(\omega = 120°\)</span> 是角，也是复数表示，也是 指数</li>
+<li>复数： <span class="arithmatex">\(\omega = -\frac{1}{2} + i \sqrt{\frac{3}{2}}\)</span></li>
+<li>※ 指数：<span class="arithmatex">\(\omega = e^{i\frac{2\pi k}{N}}\)</span> 这里划分成 3 个，也就是 3 个样本点，所以 <span class="arithmatex">\(N=3\)</span>，这是第一次旋转，所以，<span class="arithmatex">\(k=1\)</span> 所以指数表示 <span class="arithmatex">\(\omega = e^{i \frac{2 \pi}{3}}\)</span></li>
+</ul>
+<p>基于以上认识，重新看 DFT</p>
+<p><img alt="image-20250325145741178" src="../images/image-20250325145741178.png" /></p>
+<p>符号说明</p>
+<ul>
+<li>DFT 的结果 <span class="arithmatex">\(X_k\)</span></li>
+<li><span class="arithmatex">\(x_n\)</span> ： 我们正在旋转的杆的长度</li>
+<li><span class="arithmatex">\(e^{-i(2\pi\frac{k}{N}n)}\)</span> ： 这个指数，就表示了旋转角度，表示的是单位根的旋转角度，因为乘以了 <span class="arithmatex">\(x_n\)</span> 所以有长度</li>
+<li><span class="arithmatex">\(\sum_{n=0}^{N-1}\)</span> : 求和表示 所有杆的串联</li>
+</ul>
+<p><img alt="image-20250325145756117" src="../images/image-20250325145756117.png" /> </p>
+<p><span class="arithmatex">\(e^{-i(2\pi\frac{k}{N}n)}\)</span> 的更具体一点</p>
+<ul>
+<li><span class="arithmatex">\((2\pi\frac{k}{N}n)\)</span> ： 表示，旋转的角度。并且主要是 <span class="arithmatex">\(2\pi\frac{k}{N}\)</span> ，<span class="arithmatex">\(n\)</span> 的意思是，表示对所有杆旋转</li>
+</ul>
+<p>原始序列中的点，旋转 <span class="arithmatex">\(e^{-i(2\pi\frac{k}{N}n)}\)</span> ，得到  <span class="arithmatex">\(X_k\)</span> 的图形化过程：</p>
+<p>对于遍历一次序列，所有时间点，旋转的角度是不变的。</p>
+<p><img alt="image-20250325150426391" src="../images/image-20250325150426391.png" /></p>
+<p><img alt="image-20250325150536967" src="../images/image-20250325150536967.png" /> </p>
+<p>离散傅里叶变化和离散傅里叶逆变换：</p>
+<p><img alt="image-20250325150816524" src="../images/image-20250325150816524.png" /> </p>
+<p><span class="arithmatex">\(e^{-i}\)</span> 表示 顺时针旋转，<span class="arithmatex">\(e^i\)</span> 表示逆时针旋转 </p>
+<p>旋转角度 <span class="arithmatex">\(\frac{2 \pi k}{N}\)</span> </p>
+<p><img alt="image-20250325150830085" src="../images/image-20250325150830085.png" /></p>
+<p>最后，特别注意一下，逆傅里叶变换需要除以 序列长度 <span class="arithmatex">\(N\)</span></p>
+<p><img alt="image-20250325151021337" src="../images/image-20250325151021337.png" /></p>
+<p>当然了，也有表示 <span class="arithmatex">\(\frac{1}{\sqrt{N}}\)</span></p>
+<p><img alt="image-20250325151154162" src="../images/image-20250325151154162.png" /> </p>
+<p><mark>傅里叶变换的矩阵表示：</mark></p>
+<p>还是从 [4,3,2,1]开始：</p>
+<p><img alt="image-20250325151256547" src="../images/image-20250325151256547.png" /> </p>
+<p>用单位根矩阵表示，DFT</p>
+<p><img alt="image-20250325151400685" src="../images/image-20250325151400685.png" /> </p>
+<p>关于矩阵详细展开：</p>
+<p><img alt="image-20250325165614646" src="../images/image-20250325165614646.png" /></p>
+<ul>
+<li>行表示 <span class="arithmatex">\(\frac{2\pi k}{N}\)</span> 频率，分别与 原始序列 <span class="arithmatex">\(x_0，x_1，x_2，......,x_{N-1}\)</span> 的相关性</li>
+</ul>
+<p>逆傅里叶变换的矩阵形式：</p>
+<p><img alt="image-20250325165744787" src="../images/image-20250325165744787.png" /></p>
+<h2 id="_2">离散傅里叶变换中的序列周期规律<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.bilibili.com/video/BV12aypYxEAB/?vd_source=ddd7d236ab3e9b123c4086c415f4939e">离散傅里叶变换中的序列周期规律</a></p>
+<p>首先，回忆<span class="arithmatex">\([4,3,2,1]\)</span>离散傅里叶变换的过程</p>
+<p><img alt="image-20250325170244141" src="../images/image-20250325170244141.png" /></p>
+<p>在复平面中讨论，依次画出 4,3,2,1 的线段，标出第一个点，也就是 <code>10</code></p>
+<p>然后，顺时针，依次旋转 90 度，先转第一条线段 <code>4</code> ，转动 4 的时候，会带着转 3,2,1，但是转的是 4 的右端点</p>
+<p><img alt="image-20250325170521215" src="../images/image-20250325170521215.png" /> </p>
+<p>接着转，第二条边的右端点</p>
+<p><img alt="image-20250325170611891" src="../images/image-20250325170611891.png" />  </p>
+<p>然后转第三条边的右端点，转动 90 度，最终转第四条边</p>
+<p><img alt="image-20250325170715692" src="../images/image-20250325170715692.png" /> </p>
+<p>记录得到最终的位置。</p>
+<p>离散傅里叶变换和逆离散傅里叶变换</p>
+<p><img alt="image-20250325170844711" src="../images/image-20250325170844711.png" /> </p>
+<hr />
+<p>接下来，讨论周期序列：</p>
+<p><img alt="image-20250325170935444" src="../images/image-20250325170935444.png" /></p>
+<p><mark>对这个序列进行离散傅里叶变换：</mark>  </p>
+<p><img alt="image-20250325170950707" src="../images/image-20250325170950707.png" /> </p>
+<p><mark>仅观察 0 值和非 0 值</mark>  </p>
+<p><img alt="image-20250325171023198" src="../images/image-20250325171023198.png" /></p>
+<p><img alt="image-20250325171056775" src="../images/image-20250325171056775.png" /> </p>
+<p>接下来的问题：</p>
+<p><mark>周期=4 的时间序列 重复 3 次</mark> </p>
+<p><img alt="image-20250325171154696" src="../images/image-20250325171154696.png" /> </p>
+<p>首先观察第一个周期为 4 序列的离散傅里叶变换：</p>
+<p><img alt="image-20250325171313341" src="../images/image-20250325171313341.png" /> </p>
+<ul>
+<li>270°+90°=360°，所以转动270°时，与90°的实部相同，虚部互为相反数</li>
+</ul>
+<p><mark>那么此时3 个 周期为 4 的离散傅里叶变换呢？</mark> </p>
+<p><img alt="image-20250325171510498" src="../images/image-20250325171510498.png" /> </p>
+<p>直观上说，是 上面得到的，一个周期为 4 的离散傅里叶变换，但其实不是的，而是<code>×3</code>，3 个时间序列的重复模式。而其他部分填充 0，得到重复 3 次的离散傅里叶变换</p>
+<p><img alt="image-20250325171650445" src="../images/image-20250325171650445.png" /> </p>
+<p>再次看一下，这里有区别</p>
+<p><img alt="image-20250325171801889" src="../images/image-20250325171801889.png" /> </p>
+<p>这里是重复 3 次，周期 为 4 的原始时间序列</p>
+<p>得到的离散傅里叶变换是，分成 4 块，（每块内第一个元素不为 0，其余两个元素=0）</p>
+<ul>
+<li>每次旋转的角度变了：<span class="arithmatex">\(\frac{2 \pi k}{N}\)</span></li>
+</ul>
+<p><mark>分析为什么是这样的？</mark></p>
+<blockquote>
+<p>直观上说，是 上面得到的，一个周期为 4 的离散傅里叶变换，但其实不是的，而是<code>×3</code>，3 个时间序列的重复模式。而其他部分填充 0，得到重复 3 次的离散傅里叶变换</p>
+</blockquote>
+<ul>
+<li>原始时间序列，在对应频率上的分量，包含角度（ <span class="arithmatex">\(e^{-i\frac{2 \pi k n}{N} }\)</span> ）和模长 <span class="arithmatex">\(x_n\)</span>  。</li>
+<li>
+<p><span class="arithmatex">\(e^{-i}\)</span> 表示 顺时针旋转</p>
+</li>
+<li>
+<p>其实不是很懂这个 n的含义，第 0个，第 1 个，...，每个线段转角就是转角，乘 n 干啥。</p>
+</li>
+</ul>
+<blockquote>
+<p>我懂这个 n 了，首先，分析，这几条线段是依次旋转的。</p>
+<p>具体来说，假如基本旋转单元是 60°，一共 6 条线段（一定要满足 <span class="arithmatex">\(\frac{2 \pi }{N}\)</span> ），</p>
+<p>现在复述原始时间序列在旋转 60 度时，每条线段的旋转情况。</p>
+<p>第一条线段转 60 度，第一条线段转的时候，带着第二条、第三条、第四条...线段也转了 60 度</p>
+<p>接下来转第二条线段，第二条线段在第一条线段的基础上转，开始转，第二条线段转 60 度，相对于起始位置转了 120 度，同时带动了第三条和第四条等其余几条线段转 60 度，接下来，第三条线段在第二条线段的基础上再转 60 度，相对于其实转了 180 度....</p>
+<p>所以，对于特定频率 <span class="arithmatex">\(k\)</span> 来说，每条线段都会转 <span class="arithmatex">\(\frac{2 \pi k}{N} n\)</span></p>
+<p>具体地，<span class="arithmatex">\(x_0\)</span> 转 <span class="arithmatex">\(e^{-\frac{2 \pi k}{N} \cdot 0}\)</span></p>
+<p><span class="arithmatex">\(x_1\)</span> 转  <span class="arithmatex">\(e^{-\frac{2 \pi k}{N} \cdot 1}\)</span>  ，一个  <span class="arithmatex">\(\frac{2 \pi k}{N}\)</span> </p>
+<p><span class="arithmatex">\(x_2\)</span> 转  <span class="arithmatex">\(e^{-\frac{2 \pi k}{N} \cdot 2}\)</span> ，2 个 <span class="arithmatex">\(\frac{2 \pi k}{N}\)</span></p>
+<p><span class="arithmatex">\(x_3\)</span> 转 <span class="arithmatex">\(e^{-\frac{2 \pi k}{N} \cdot 3}\)</span> ，3 个 <span class="arithmatex">\(\frac{2 \pi k}{N}\)</span></p>
+</blockquote>
+<p>接下来，一个个计算，这个具有周期性质的时间序列的傅里叶变换：</p>
+<p><img alt="image-20250325194120058" src="../images/image-20250325194120058.png" /></p>
+<p>第一个元素：</p>
+<blockquote>
+<p>同样在实数轴上画出线段，然后元素加和放到 DFT 的第一个位置</p>
+</blockquote>
+<p><img alt="image-20250325194202551" src="../images/image-20250325194202551.png" /></p>
+<p>接下来，讨论DFT 中的第二个元素，也就是每天线段旋转 <span class="arithmatex">\(\frac{2 \pi}{N}\)</span> ，<span class="arithmatex">\(N=12\)</span> ，也就是每条线段依次旋转 60 度。</p>
+<p><img alt="image-20250325194351772" src="../images/image-20250325194351772.png" /> </p>
+<p><img alt="image-20250325194559360" src="../images/image-20250325194559360.png" /> </p>
+<p><img alt="image-20250325194620769" src="../images/image-20250325194620769.png" /> </p>
+<p>第三个周期同理，每条线段，时间点对应的长度依次转 60°，同时在第二次旋转的基础上，旋转，也就是相对于第一次旋转</p>
+<ul>
+<li>第一个周期旋转 30 度，4 个时间点，4 条线段，所以 4 条线段中的最后一条线段转了 <span class="arithmatex">\(30×4=120°\)</span></li>
+<li>第二个周期在第一个周期的基础上旋转，也就是把第一个周期的所有转过的，已经完成的形状，再转 120°，然后拼到第一个周期旋转的后面。</li>
+<li>同理，第三个周期也是，对于第二个周期旋转好的图形转 120 度，相对于第一个周期转好的形状，旋转 240 度。</li>
+</ul>
+<p>得到：</p>
+<p><img alt="image-20250325195013466" src="../images/image-20250325195013466.png" /></p>
+<p>所以 DFT 的第二个数=0</p>
+<p>第三个数，同理。第一条线段转 <span class="arithmatex">\(\frac{2 \pi}{N}k\)</span>，这里 <span class="arithmatex">\(k=2\)</span>，对应的每条线段，转 从编号 0 开始，转 <span class="arithmatex">\(\frac{2 \pi}{N}k n\)</span> 记的是每条线段的累积旋转角度</p>
+<p><img alt="image-20250325195315384" src="../images/image-20250325195315384.png" /> </p>
+<p>现在讨论下一个点为什么不是 0</p>
+<p><img alt="image-20250325195444128" src="../images/image-20250325195444128.png" /> </p>
+<p>这里 <span class="arithmatex">\(k=3\)</span>， 也就是说 第一条线段 旋转 <span class="arithmatex">\(\frac{2 \pi k }{N} = 30°×3=90°\)</span> ，所以下一个元素 <span class="arithmatex">\(\neq 0\)</span> </p>
+<p><img alt="image-20250325200024118" src="../images/image-20250325200024118.png" /> </p>
+<p>这里 <span class="arithmatex">\(\frac{2 \pi}{N}=30°\)</span></p>
+<ul>
+<li><span class="arithmatex">\(k=0\)</span> 不转，所有元素相加</li>
+<li><span class="arithmatex">\(k=1\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = \frac{2\pi }{N}n\)</span> </li>
+</ul>
+<blockquote>
+<ul>
+<li>第一条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 0\)</span> </li>
+<li>第二条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 1 = 30°\)</span> </li>
+<li>第三条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 2 = 60°\)</span></li>
+<li>第四条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 3 = 90°\)</span></li>
+<li>第五条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 4 = 120°\)</span></li>
+<li>第六条，转 <span class="arithmatex">\(\frac{2\pi }{N}\cdot 5 = 150°\)</span></li>
+</ul>
+</blockquote>
+<ul>
+<li><span class="arithmatex">\(k=2\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 60° n\)</span>  </li>
+</ul>
+<blockquote>
+<ul>
+<li>第一条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 0\)</span> </li>
+<li>第二条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 1 = 60°\)</span>  </li>
+<li>第三条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 2 = 120°\)</span> </li>
+<li>第四条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 3 = 180°\)</span></li>
+<li>第五条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 4 = 240°\)</span></li>
+<li>第六条，转 <span class="arithmatex">\(\frac{2\pi }{N} \cdot (k=2)\cdot 5 = 300°\)</span></li>
+</ul>
+</blockquote>
+<ul>
+<li>
+<p><span class="arithmatex">\(k=3\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 90° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=4\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 120° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=5\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 150° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=6\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 180° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=7\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 210° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=8\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 240° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=9\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 270° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=10\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 300° n\)</span>  </p>
+</li>
+<li>
+<p><span class="arithmatex">\(k=11\)</span>，转 <span class="arithmatex">\(\frac{2\pi k}{N}n = 330° n\)</span>   </p>
+</li>
+</ul>
+<p><img alt="image-20250325201104583" src="../images/image-20250325201104583.png" /> </p>
+<p>对比结果：</p>
+<p><img alt="image-20250325201331071" src="../images/image-20250325201331071.png" /></p>
+<p>直方图表示： </p>
+<p><img alt="image-20250325201414175" src="../images/image-20250325201414175.png" /></p>
+<p>离散傅里叶变换&amp;逆离散傅里叶变换：</p>
+<p>k = 0，依然是原始序列加和</p>
+<p>k=1，每个时间点上面标了，每个时间旋转的度数，旋转得到逆傅里叶变换的第二个值</p>
+<p>逆傅里叶变换需要注意的点：</p>
+<ul>
+<li>除以序列长度 <span class="arithmatex">\(N\)</span></li>
+<li>旋转方向：逆时针</li>
+</ul>
+<p><img alt="image-20250325201611332" src="../images/image-20250325201611332.png" /> </p>
+<p>k=2 时，每个旋转 2 个 30 度</p>
+<p><img alt="image-20250325201929677" src="../images/image-20250325201929677.png" /></p>
+<p><img alt="image-20250325202138793" src="../images/image-20250325202138793.png" /> </p>
+<h2 id="_3">快速傅里叶变换<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <a href="https://www.bilibili.com/video/BV11YypYREnN/?spm_id_from=333.999.0.0&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">快速傅里叶变换</a></li>
+</ul>
+<h2 id="dft_1">手搓 DFT 例题<a class="headerlink" href="#dft_1" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250325221854260" src="../images/image-20250325221854260.png" /></p>
+<p><a href="https://www.bilibili.com/video/BV1Bh4y1r7n6/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">数字信号处理13-1_离散傅里叶变换（DFT）</a> </p>
+<p>这里具体用的时候是共轭复数，表示顺时针旋转，上面写的没写成 <span class="arithmatex">\(e^{-j0\Omega n}\)</span> 没加负号，表示的问题，加了是更严谨。</p>
+<p><img alt="image-20250325221938116" src="../images/image-20250325221938116.png" /> </p>
+<p>※ 重点：</p>
+<p><img alt="image-20250325222029671" src="../images/image-20250325222029671.png" /></p>
+<p>复平面与指数，与 二维坐标 ：</p>
+<p><img alt="image-20250325222312087" src="../images/image-20250325222312087.png" /> </p>
+<ul>
+<li>注意看，上面左图，逆时针旋转是 <span class="arithmatex">\(e^{j \phi}\)</span> ，指数部分是正的。</li>
+</ul>
+<p>这里计算复杂度，太高了，4 个点，进行了 16 次的计算，<span class="arithmatex">\(n^2\)</span>的计算复杂度，所以后面有 FFT</p>
+<p>继续看题目，这里进行了归一化：</p>
+<p><img alt="image-20250325222856398" src="../images/image-20250325222856398.png" /> </p>
+<ul>
+<li>上面的周期性，需要好好的理解。</li>
+</ul>
+<p>这里，有 复指数与幅度谱、相位谱的关系。因为分解到频域，还是要进行频谱分析，要有实际意义来的。</p>
+<p><img alt="image-20250325223029398" src="../images/image-20250325223029398.png" /></p>
+<p>再来看：</p>
+<p><img alt="image-20250325223318678" src="../images/image-20250325223318678.png" /></p>
+<p>最终分解出来的频域表示：<span class="arithmatex">\(sin(\frac{\pi}{2}n)\)</span></p>
+<p>验证：原始时间序列 4 个点。</p>
+<p><span class="arithmatex">\(n=0\)</span> 时，<span class="arithmatex">\(sin(\frac{\pi}{2}n) = 0\)</span></p>
+<p><span class="arithmatex">\(n=1\)</span> 时，<span class="arithmatex">\(sin(\frac{\pi}{2}1) = 1\)</span></p>
+<p><span class="arithmatex">\(n=2\)</span> 时，<span class="arithmatex">\(sin(\frac{\pi}{2}2) = 0\)</span></p>
+<p><span class="arithmatex">\(n=3\)</span> 时，<span class="arithmatex">\(sin(\frac{\pi}{2}3) = -1\)</span></p>
+<p>刚好由频域还原为时域。<span class="arithmatex">\([0,1,0,-1]\)</span></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 不懂，怎么由双边谱转换为单边谱</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 不懂，太神奇了，为什么就由这个DFT 出来的东西，就还原为了原始时间序列</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 神奇，属实神奇。<span class="arithmatex">\([0,1,0,-1]\)</span> 就对应的三角函数是 <span class="arithmatex">\(sin(\frac{\pi}{2}n)\quad n=0,1,2,3\)</span> </li>
+</ul>
+<p>太神奇了。因为把，明明是原始时间序列与  <span class="arithmatex">\(e^{-j0\Omega n}、e^{-j1\Omega n}、e^{-j2\Omega n}、e^{-j3\Omega n}\)</span> 进行投影运算。</p>
+<p><img alt="image-20250325224106307" src="../images/image-20250325224106307.png" /></p>
+<ul>
+<li>最开始就是把长度为 <span class="arithmatex">\(N_0\)</span> 的信号看成是周期为 <span class="arithmatex">\(N_0\)</span> 的信号</li>
+<li>物理含义：把序列分解成一系列的单位圆上的复指数序列的线性组合</li>
+</ul>
+<hr />
+<p>重新看这个题</p>
+<p><img alt="image-20250325224931487" src="../images/image-20250325224931487.png" /></p>
+<p><img alt="image-20250325143832710" src="../images/image-20250325143832710.png" /> </p>
+<p><img alt="image-20250325224941209" src="../images/image-20250325224941209.png" /></p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 详细一下步骤，纸上写了</li>
+</ul>
+<h2 id="dft_2">数学 &amp; DFT<a class="headerlink" href="#dft_2" title="Permanent link">&para;</a></h2>
+<p><a href="https://www.bilibili.com/video/BV1fg411t73w?spm_id_from=333.788.videopod.sections&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">数字信号处理_引言</a> </p>
+<p><mark>符号表示：</mark>     </p>
+<p><img alt="image-20250325231118304" src="../images/image-20250325231118304.png" /></p>
+<p>采样定理：</p>
+<p><img alt="image-20250325231532791" src="../images/image-20250325231532791.png" /></p>
+<ul>
+<li>这里的采样周期=0.01s，也就是说采样频率=100Hz</li>
+<li>对应的采样以后，200Hz 的采不到了，也就是说过滤掉了 200Hz 的噪声信号</li>
+<li>这里需要注意，假设要采到 500Hz 的信号，那么采样频率设置成多少？答：2 倍的 500Hz，也就是说需要设置为 1000Hz 的采样频率，也就是0.001s 采样一个点。</li>
+</ul>
+<p><img alt="image-20250325231852948" src="../images/image-20250325231852948.png" /></p>
+<ul>
+<li>太神奇了</li>
+<li>利用matlab 自带的 fft 变换，发现 10Hz，40Hz 附近确实响应值比较高</li>
+<li>微弱信号是采样过程导致的频谱泄露问题</li>
+<li>那我们想要的是 10Hz，后面设计（低通）滤波器，去掉 40Hz 的即可</li>
+</ul>
+<p><img alt="image-20250325232139329" src="../images/image-20250325232139329.png" /> </p>
+<ul>
+<li>就是 MATLAB 演示低通滤波器</li>
+</ul>
+
+
+
+
+
+
+
+  
+    
+  
+  
+    
+  
+
+
+  <aside class="md-source-file">
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Last update">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月25日 15:35:09"><span class="timeago" datetime="2025-03-25T15:35:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月25日 15:35:09">2025-03-25</span>
+  </span>
+
+    
+    
+      
+  <span class="md-source-file__fact">
+    <span class="md-icon" title="Created">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
+    </span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月25日 11:58:08"><span class="timeago" datetime="2025-03-25T11:58:08+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月25日 11:58:08">2025-03-25</span>
+  </span>
+
+    
+    
+    
+  </aside>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["toc.follow", "navigation.top", "search.suggest", "search.highlight", "content.code.copy", "navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.expand", "navigation.indexes"], "search": "../../assets/javascripts/workers/search.f8cc74c7.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../js/timeago.min.js"></script>
+      
+        <script src="../../js/timeago_mkdocs_material.js"></script>
+      
+        <script src="../../mkdocs/javascripts/katex.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js"></script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js"></script>
+      
+    
+  </body>
+</html>

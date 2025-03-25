@@ -3814,6 +3814,12 @@
       
         
       
+        
+      
+        
+      
+        
+      
     
     
       
@@ -3996,6 +4002,72 @@
   
   <span class="md-ellipsis">
     Fourier基础知识
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_0_fourier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    复平面旋转&amp;DFT
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_1_fourier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    直观理解傅里叶变换
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_2_signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    信号的合成与分解
     
   </span>
   
@@ -4317,6 +4389,85 @@ i sin n\omega x = \frac{e^{in\omega x}-e^{-in\omega x}}{2}, \\
 <p>最终得到，傅里叶级数的指数形式：</p>
 <div class="arithmatex">\[f(x)=\sum_{n= - \infty}^{\infty} c_n e^{i n \omega x }\]</div>
 <div class="arithmatex">\[c_n = \frac{1}{T} \int_{-\frac{T}{2}}^{\frac{T}{2}} f(x) e^{- \mathrm{n}\omega x }\mathrm{d} x \quad (n=0,\pm 1,\pm 2,\pm 3,\pm 4... ...)\]</div>
+<p>傅里叶级数的指数形式，可以清楚地展示出幅角和模长，这是三角函数形式展示不直观的。</p>
+<hr />
+<p><mark>中间的补充：</mark> </p>
+<blockquote>
+<p>关于「傅里叶级数的指数形式，可以清楚地展示出幅角和模长 」的解释：</p>
+</blockquote>
+<p>这里用的是离散傅里叶变换了。</p>
+<blockquote>
+<p>📢 注意区别：</p>
+<ul>
+<li>傅里叶级数是展开周期函数</li>
+<li>傅里叶变换是对于非周期函数</li>
+</ul>
+</blockquote>
+<p>复平面与 <span class="arithmatex">\(e^x\)</span> ，这一步的转换，其实是从 <span class="arithmatex">\((cos\theta,sin\theta)\)</span> 直接用了 <span class="arithmatex">\(e^{i\theta}\)</span> 表示</p>
+<p><img alt="image-20250325143635619" src="../images/image-20250325143635619.png" /></p>
+<p>类似的，复平面坐标点，全部用指数表示</p>
+<p><img alt="image-20250325143832710" src="../images/image-20250325143832710.png" /> 
+$$
+e^{i\theta} = cos\theta + isin\theta
+$$
+具体来说：</p>
+<ul>
+<li><span class="arithmatex">\(1 = e^{i2\pi} = cos2\pi + isin2\pi = 1\)</span></li>
+<li><span class="arithmatex">\(i = e^{i\frac{\pi}{2}} = cos\frac{\pi}{2} + isin\frac{\pi}{2} = i\)</span></li>
+<li><span class="arithmatex">\(-1 = e^{i\pi} = cos\pi + isin \pi = -1\)</span></li>
+<li><span class="arithmatex">\(-i = e^{i\frac{3\pi}{2}} = cos\frac{3\pi}{2} + isin\frac{3\pi}{2} = -i\)</span></li>
+</ul>
+<p>接下来，对 1 进行分解，具体来说：</p>
+<ul>
+<li><span class="arithmatex">\(x^2=1\)</span></li>
+<li><span class="arithmatex">\(x^3=1\)</span></li>
+<li><span class="arithmatex">\(x^4=1\)</span></li>
+<li><span class="arithmatex">\(x^5=1\)</span></li>
+</ul>
+<p>因为讨论的是三角函数，所以用 <span class="arithmatex">\(\omega\)</span> </p>
+<p>这里其实，我觉得应该这么解释</p>
+<ul>
+<li><span class="arithmatex">\(\omega^2 = 1 ===&gt;\)</span>   转1个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^3 = 1 ===&gt;\)</span> 转3个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1 ===&gt;\)</span>  得到对应的角，进行相应的复数表示，比如这里 <span class="arithmatex">\(\omega=120°\)</span> ，<span class="arithmatex">\(x\)</span> 轴正方向开始找点，120°标一个，再一个120°，再标一个。（模长=1，角度＝120°）</li>
+<li><span class="arithmatex">\(\omega^4 = 1 ===&gt;\)</span> 转4个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^5 = 1 ===&gt;\)</span> 转5个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li><span class="arithmatex">\(\omega^6 = 1 ===&gt;\)</span> 转6个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span></li>
+<li>......</li>
+<li><span class="arithmatex">\(\omega^n = 1 ===&gt;\)</span> 转n个 <span class="arithmatex">\(\omega\)</span> 转一圈 <span class="arithmatex">\(=1\)</span> </li>
+</ul>
+<p><mark>单位根</mark> </p>
+<p><img alt="image-20250325144423422" src="../images/image-20250325144423422.png" /></p>
+<ul>
+<li><span class="arithmatex">\(\omega = 120°\)</span> 是角，也是复数表示，也是 指数</li>
+<li>复数： <span class="arithmatex">\(\omega = -\frac{1}{2} + i \sqrt{\frac{3}{2}}\)</span></li>
+<li>※ 指数：<span class="arithmatex">\(\omega = e^{i\frac{2\pi k}{N}}\)</span> 这里划分成 3 个，也就是 3 个样本点，所以 <span class="arithmatex">\(N=3\)</span>，这是第一次旋转，所以，<span class="arithmatex">\(k=1\)</span> 所以指数表示 <span class="arithmatex">\(\omega = e^{i \frac{2 \pi}{3}}\)</span></li>
+</ul>
+<p>基于以上认识，重新看 DFT</p>
+<p><img alt="image-20250325145741178" src="../images/image-20250325145741178.png" /></p>
+<p>符号说明</p>
+<ul>
+<li>
+<p>DFT 的结果 <span class="arithmatex">\(X_k\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(x_n\)</span> ： 我们正在旋转的杆的长度</p>
+</li>
+<li>
+<p><span class="arithmatex">\(e^{-i(2\pi\frac{k}{N}n)}\)</span> ： 这个指数，就表示了旋转角度，表示的是单位根的旋转角度，因为乘以了 <span class="arithmatex">\(x_n\)</span> 所以有长度</p>
+</li>
+</ul>
+<blockquote>
+<p>其中，<span class="arithmatex">\(e^{-i}\)</span> 表示顺时针旋转</p>
+<p><span class="arithmatex">\(2\pi \frac{k}{N}n\)</span> 表示时间序列的 <span class="arithmatex">\(n\)</span> 点与频率 <span class="arithmatex">\(\frac{k}{N}\)</span> 的相关性</p>
+<p>复指数项，被称为 旋转因子或单位旋转矢量</p>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 忽然很好奇，角频率 <span class="arithmatex">\(\omega\)</span> 到底是什么。</li>
+</ul>
+</blockquote>
+<ul>
+<li><span class="arithmatex">\(\sum_{n=0}^{N-1}\)</span> : 求和表示 所有杆的串联</li>
+</ul>
+<p><img alt="image-20250325145756117" src="../images/image-20250325145756117.png" /></p>
 <h2 id="_3">物理意义<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
 <p>基于以上理解，扩充一些更细致的理解</p>
 <p><img alt="image-20250324210344659" src="../images/image-20250324210344659.png" /></p>
@@ -4396,7 +4547,7 @@ i sin n\omega x = \frac{e^{in\omega x}-e^{-in\omega x}}{2}, \\
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月24日 14:14:22"><span class="timeago" datetime="2025-03-24T14:14:22+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月24日 14:14:22">2025-03-24</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月25日 15:35:09"><span class="timeago" datetime="2025-03-25T15:35:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月25日 15:35:09">2025-03-25</span>
   </span>
 
     
