@@ -227,7 +227,7 @@ extra_css:
 plugins:
   - search
   - mermaid2
-  - mknotebooks
+  - mkdocs-jupyter
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   - git-revision-date-localized:

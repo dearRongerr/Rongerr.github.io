@@ -576,9 +576,9 @@ $n=3$ 时，$sin(\frac{\pi}{2}3) = -1$
 
 $ \Omega = \frac{2\pi}{N}=\frac{2\pi}{4} = \frac{\pi}{2}$ (这东西叫啥？基频、基波，还是角频率，总之是$T=N$)
 
-也就是 $\omega_0 = e^{\frac{\pi}{2}i}$    更进一步，$\omega_0 = e^{\frac{\pi}{2}i} = i$  物理含义：沿着单位圆正方向旋转 $\frac{\pi}{2}$
+也就是 $\omega_0 = e^{-\frac{\pi}{2}i}$    更进一步，$\omega_0 = e^{-\frac{\pi}{2}i} = -i$  物理含义：沿着单位圆反方向旋转 $\frac{\pi}{2}$
 
-![image-20250326121429787](images/image-20250326121429787.png)
+![image-20250326173643745](images/image-20250326173643745.png) 
 
 
 

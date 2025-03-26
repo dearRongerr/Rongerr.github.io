@@ -7,6 +7,8 @@
 
 ![image-20250326163255519](images/image-20250326163255519.png)
 
+- [ ] （后面再说）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
+
 ## begin
 
 ![image-20241115100605111](mkdocs_learn/image-20241115100605111-1636372-1636377.png)
@@ -350,7 +352,11 @@ graph TD
 
 ## mkdocs &jupyter notebook
 
+==(1)== 
+
 [mknotebooks](https://github.com/greenape/mknotebooks?tab=readme-ov-file)
+
+[mknotebooks 项目常见问题解决方案](https://blog.csdn.net/gitblog_00395/article/details/144578305?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-144578305-blog-144739864.235^v43^pc_blog_bottom_relevance_base4&spm=1001.2101.3001.4242.1&utm_relevant_index=3)
 
 第一步：
 
@@ -375,3 +381,27 @@ plugins:
 
 ![image-20250326163031761](images/image-20250326163031761.png)
 
+(2) mkdocs-jupyter
+
+[mkdocs-jupyter](https://github.com/danielfrg/mkdocs-jupyter?tab=readme-ov-file)
+
+第一步：
+
+```bash
+pip install mkdocs-jupyter
+```
+
+第二步：修改导航栏和配置文件
+
+```python
+nav:
+    - Home: index.md
+    - Notebook page: notebook.ipynb
+    - Python file: python_script.py
+plugins:
+    - mkdocs-jupyter
+```
+
+换了，很好看
+
+![image-20250326171616392](images/image-20250326171616392.png) 
