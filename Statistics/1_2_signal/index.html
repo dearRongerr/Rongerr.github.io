@@ -3355,6 +3355,8 @@
       
         
       
+        
+      
     
     
       
@@ -3583,6 +3585,28 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer_v2_eg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutoFormer 可视化结果
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -3618,7 +3642,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
         
           
           
@@ -3635,14 +3659,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
             <span class="md-nav__icon md-icon"></span>
             一些代码
           </label>
@@ -4146,6 +4170,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#i2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      从几何的角度理解 \(i^2 = -1\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinomega-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\sin(\omega t)\)的双边谱
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      方波信号的合成与分解实例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      欧拉公式的图像化解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型信号
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4435,6 +4504,51 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#i2-1" class="md-nav__link">
+    <span class="md-ellipsis">
+      从几何的角度理解 \(i^2 = -1\)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sinomega-t" class="md-nav__link">
+    <span class="md-ellipsis">
+      \(\sin(\omega t)\)的双边谱
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      方波信号的合成与分解实例
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      欧拉公式的图像化解释
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      典型信号
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4469,6 +4583,9 @@
 <p><span class="arithmatex">\(cos\theta = \frac{a}{\sqrt{a^2+b^2}}\)</span>  </p>
 <p>$sin\theta = \frac{ b }{ \sqrt{a^2 + b^2} } $  </p>
 <p><img alt="image-20250325233155639" src="../images/image-20250325233155639.png" /></p>
+<ul>
+<li>尤其注意这里内积的 <mark>负号</mark> </li>
+</ul>
 <p><img alt="image-20250326134244641" src="../images/image-20250326134244641.png" /> </p>
 <h2 id="_2"><strong>向量的合成与分解</strong><a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
 <p><img alt="image-20250326134459682" src="../images/image-20250326134459682.png" /></p>
@@ -4669,6 +4786,188 @@
 <h3 id="_12">为什么在计算内积的时候用负号？<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
 <p><mark>与复数相关：</mark></p>
 <p><img alt="image-20250326154204192" src="../images/image-20250326154204192.png" /> </p>
+<ul>
+<li>
+<p>复数模长的计算= 复数 × 它的共轭复数，也就是是说，复数内积的计算是复数与其共轭复数相乘。</p>
+</li>
+<li>
+<p>实部不变，虚部部分相反。</p>
+</li>
+</ul>
+<p><mark>更详细的说明，为什么是负号：</mark> </p>
+<p><img alt="image-20250326194456653" src="../images/image-20250326194456653.png" /></p>
+<h2 id="i2-1">从几何的角度理解 <span class="arithmatex">\(i^2 = -1\)</span><a class="headerlink" href="#i2-1" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326194655336" src="../images/image-20250326194655336.png" /></p>
+<h2 id="sinomega-t"><span class="arithmatex">\(\sin(\omega t)\)</span>的双边谱<a class="headerlink" href="#sinomega-t" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326195004524" src="../images/image-20250326195004524.png" /></p>
+<p>一定要牢记，可以从几何旋转的角度理解虚数单位 j</p>
+<p>具体的 <span class="arithmatex">\(j\)</span> 写成幅角-模长形式：<span class="arithmatex">\(j = 1 \cdot e^{j \frac{\pi}{2}}\)</span>  </p>
+<ul>
+<li><span class="arithmatex">\(1\)</span> 表示模长</li>
+<li><span class="arithmatex">\(j\)</span> 表示逆时针、正方向旋转</li>
+<li><span class="arithmatex">\(\frac{\pi}{2}\)</span> 表示旋转角度</li>
+<li>几何解释：旋转 90°的单位矢量</li>
+</ul>
+<p>同理</p>
+<p><span class="arithmatex">\(-j\)</span> 写成幅角-模长形式：<span class="arithmatex">\(j = 1 \cdot e^{-j \frac{\pi}{2}}\)</span>  </p>
+<ul>
+<li><span class="arithmatex">\(1\)</span> 表示模长</li>
+<li><mark><span class="arithmatex">\(-j\)</span> 表示顺时针、反方向旋转</mark>，DFT 用的方向</li>
+<li><span class="arithmatex">\(\frac{\pi}{2}\)</span> 表示旋转角度</li>
+<li>几何解释：旋转 -90°的单位矢量</li>
+</ul>
+<p>🔵 代入虚数单位的复指数形式：</p>
+<p><img alt="image-20250326195316514" src="../images/image-20250326195316514.png" /></p>
+<p>结果解读：</p>
+<ul>
+<li>幅度值都等于 <span class="arithmatex">\(\frac{1}{2}\)</span> → 在一次谐波上的分量都是 <span class="arithmatex">\(\frac{1}{2}\)</span></li>
+<li>同时在 $k\Omega t = 1\Omega t $ 的频率上 有 <span class="arithmatex">\(-\frac{\pi}{2}\)</span> 的相位滞后</li>
+<li>在 $-k\Omega t = -1\Omega t $ 的频率上 有 <span class="arithmatex">\(\frac{\pi}{2}\)</span> 的相位超前</li>
+</ul>
+<p>由此绘制出幅度谱和相位谱：</p>
+<p><img alt="image-20250326195820091" src="../images/image-20250326195820091.png" /> </p>
+<ul>
+<li>（幅度谱）在 <span class="arithmatex">\(1 \Omega t\)</span> 和 <span class="arithmatex">\(- 1 \Omega t\)</span> 分别有 <span class="arithmatex">\(\frac{1}{2}\)</span>  的幅度值</li>
+<li>（相位谱）在  <span class="arithmatex">\(- 1 \Omega t\)</span> 上有一个 <span class="arithmatex">\(\frac{\pi}{2}\)</span> 的超前</li>
+<li>（相位谱）在  <span class="arithmatex">\(1 \Omega t\)</span> 上有一个 <span class="arithmatex">\(- \frac{\pi}{2}\)</span> 的滞后</li>
+</ul>
+<h2 id="_13">方波信号的合成与分解实例<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326200427858" src="../images/image-20250326200427858.png" /> </p>
+<p>首先数学上的推导：</p>
+<p><img alt="image-20250326200505023" src="../images/image-20250326200505023.png" /> </p>
+<ul>
+<li>采用复指数分解</li>
+<li>将周期信号 <span class="arithmatex">\(x_t\)</span> 分解到正交基函数上，表示为正交基函数的线性组合</li>
+<li>原始周期信号在正交基函数上的投影用，内积计算</li>
+<li>标红色的：表示复数的内积，涉及到共轭复数。</li>
+<li>其中，相同正交基的内积=T，<span class="arithmatex">\(\int_{-\frac{T}{2}}^{\frac{T}{2}} dt = T\)</span> 是必然的。对常数积分，结果=区间长度</li>
+</ul>
+<p>接下来，求直流分量：</p>
+<p><img alt="image-20250326200907610" src="../images/image-20250326200907610.png" /> </p>
+<p>接下来，<span class="arithmatex">\(k \neq 0\)</span></p>
+<p><img alt="image-20250326200941507" src="../images/image-20250326200941507.png" /></p>
+<p>积分出来的结果，代入欧拉公式，变成只有正弦函数的。但是画图的时候用的是余弦函数画图，所以还是要转化成余弦函数，变成单边谱。具体的就是 <span class="arithmatex">\(系数×2\)</span> 变成单边谱</p>
+<p><img alt="image-20250326201055910" src="../images/image-20250326201055910.png" /></p>
+<p>这句</p>
+<p><img alt="image-20250326201355661" src="../images/image-20250326201355661.png" /> </p>
+<p>得注意一下。原始信号的周期有了，那么基波频率 <span class="arithmatex">\(\Omega\)</span> 就有了 → <span class="arithmatex">\(k\Omega n\)</span>  投影的谐波频率也有了</p>
+<p>这里是傅里叶级数的具体步骤：（其中拟合的谐波分量个数可以自己设定） </p>
+<p><img alt="image-20250326202020705" src="../images/image-20250326202020705.png" /></p>
+<p>因为公式中拟合的谐波理论上来说是无穷多个。这里需要与后面的DFT 的变换拟合谐波数量需要作区分。</p>
+<blockquote>
+<p>目前的理解：</p>
+<ul>
+<li>周期信号，用的是级数，可以分解出无穷多个谐波</li>
+<li>非周期信号，用的是变换，分解出的谐波是  <span class="arithmatex">\(\frac{采样频率}{2}\)</span></li>
+</ul>
+</blockquote>
+<p><img alt="image-20250326201922754" src="../images/image-20250326201922754.png" /></p>
+<p>得到系数以后，可以绘制单边谱了</p>
+<p><img alt="image-20250326202321807" src="../images/image-20250326202321807.png" /></p>
+<p>这里需要注意，双边谱转换为单边谱</p>
+<p><mark>双边谱的 谐波模长需要 × 2，直流分量不需要 ×2</mark></p>
+<p><span class="arithmatex">\(ak\_cos\)</span> ： 也只是 单边谱 <span class="arithmatex">\(\cos\)</span> 对应的 幅值</p>
+<p><img alt="image-20250326202722553" src="../images/image-20250326202722553.png" /> </p>
+<p>图中得到了单边谱的幅度值，解读幅度谱：</p>
+<ul>
+<li>直流分量 = 0.5</li>
+</ul>
+<p><img alt="image-20250326202926974" src="../images/image-20250326202926974.png" /> </p>
+<ul>
+<li><span class="arithmatex">\(ak\_cos\)</span> 的值与单边谱一一对应</li>
+<li><span class="arithmatex">\(k\Omega n\)</span>  第 0 个原始是直流分量</li>
+<li><span class="arithmatex">\(1\Omega n\)</span>  1 次谐波分量是 0.6366</li>
+<li><span class="arithmatex">\(2\Omega n\)</span>   偶次谐波是没有的</li>
+<li><span class="arithmatex">\(3\Omega n\)</span>  </li>
+<li><span class="arithmatex">\(4\Omega n\)</span></li>
+<li><span class="arithmatex">\(5\Omega n\)</span></li>
+<li><span class="arithmatex">\(6\Omega n\)</span></li>
+<li><span class="arithmatex">\(7\Omega n\)</span>  7 次谐波分量是 <span class="arithmatex">\(-0.0909\)</span></li>
+</ul>
+<p><strong>演示分解出来的信号</strong> </p>
+<p>首先 直流分量的绘制，<span class="arithmatex">\(c_0\)</span> × 序列长度：</p>
+<p><img alt="image-20250326203413919" src="../images/image-20250326203413919.png" /></p>
+<p>然后就是绘制谐波分量：</p>
+<p><img alt="image-20250326204139427" src="../images/image-20250326204139427.png" /> </p>
+<ul class="task-list">
+<li>1 次谐波分量</li>
+<li>2 次谐波分量</li>
+<li>...</li>
+<li>
+<p>这是分解谐波个数=7，所以一共 7 次谐波分量</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> （why？）这里我的问题是，为什么啊？为什么想分解几条谐波分量就能分解几条谐波分量</p>
+</li>
+</ul>
+<p>分解为 13 条谐波分量</p>
+<p><img alt="image-20250326204330173" src="../images/image-20250326204330173.png" /> </p>
+<p>分解完谐波分量以后，再合成：</p>
+<p><img alt="image-20250326204430751" src="../images/image-20250326204430751.png" /> </p>
+<p>100 次谐波分量及合成：</p>
+<p><img alt="image-20250326204502719" src="../images/image-20250326204502719.png" /> </p>
+<p>中间发白的是因为没有偶数次谐波分量 <span class="arithmatex">\(\cos k \Omega n\)</span> ，<span class="arithmatex">\(k\)</span>等于偶数时，全部等于<span class="arithmatex">\(0\)</span>，这个从单边幅度谱中也可以看出来。</p>
+<h2 id="_14">欧拉公式的图像化解释<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326210229683" src="../images/image-20250326210229683.png" /></p>
+<p>其实我不懂，为什么这里的 <span class="arithmatex">\(T=6\)</span> </p>
+<p>复指数信号的周期，在几何图形中对应这什么？</p>
+<p>n=2，表示绘制 2 个周期</p>
+<p>但确实，有了时间序列周期，就有了基波频率，基波频率对应到几何图形上又是什么？</p>
+<p><span class="arithmatex">\(t = 0:0.1:(n*T)\)</span>  确实就是总的时间序列长度</p>
+<p>这里的三维坐标，分别表示：<span class="arithmatex">\(f = e^{i\Omega k t} = e^{i\Omega  t}\)</span>  也就是说画的是基波频率的欧拉公式（k=1）</p>
+<blockquote>
+<p>猜想，如果绘制的是 k=2，2 次谐波的欧拉公式，其余都不变，会发生什么？</p>
+<p>那其实，基频，也可以叫 1 次谐波</p>
+</blockquote>
+<ul class="task-list">
+<li>x 轴 绘制的是 时间 <span class="arithmatex">\(t\)</span></li>
+<li>y 轴绘制的是 <span class="arithmatex">\(img(f)\)</span> 虚部部分</li>
+<li>
+<p>z 轴绘制的是 <span class="arithmatex">\(real(f)\)</span> 实部部分</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 应该自己用 python 实现一下。</p>
+</li>
+</ul>
+<p>画的一个买家秀：</p>
+<p><img alt="image-20250326214855449" src="../images/image-20250326214855449.png" /> </p>
+<p><img alt="image-20250326214914949" src="../images/image-20250326214914949.png" /></p>
+<p><img alt="image-20250326214620315" src="../images/image-20250326214620315.png" /></p>
+<p><img alt="image-20250326214931984" src="../images/image-20250326214931984.png" /></p>
+<ul>
+<li>是把，看出来了吧，</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="c1"># 参数设置</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="n">T</span> <span class="o">=</span> <span class="mi">6</span>  <span class="c1"># 周期</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="n">omega</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">/</span> <span class="n">T</span>  <span class="c1"># 角频率</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="n">n</span> <span class="o">=</span> <span class="mi">2</span>  <span class="c1"># 周期个数</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">n</span> <span class="o">*</span> <span class="n">T</span> <span class="o">+</span> <span class="mf">0.1</span><span class="p">,</span> <span class="mf">0.1</span><span class="p">)</span>  <span class="c1"># 时间序列，从0到n*T，步长为0.1</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="c1"># 计算复指数信号</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 注意这里使用2j</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="n">real_part</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">real</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># 实部</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="n">imag_part</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">imag</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>  <span class="c1"># 虚部</span>
+</span></code></pre></div>
+<ul>
+<li>这里的基础参数不变，只改这里，<code>f = np.exp(2j * omega * t)  # 注意这里使用2j</code> 一个用 <code>1j * omega * t</code>  一个用 <code>2j * omega * t</code></li>
+<li>
+<p>上面的特殊点 <span class="arithmatex">\(\frac{T}{4}\)</span>、<span class="arithmatex">\(\frac{T}{2}\)</span>、<span class="arithmatex">\(\frac{3T}{4}\)</span>、<span class="arithmatex">\(T\)</span> 也很好看。都反映了 原始周期与 1 次谐波、2 次谐波完成周期的关系</p>
+</li>
+<li>
+<p>区别就在于，本来是 一个周期 T=6 内完成一个周期，改成 2 次谐波 <code>2j * omega * t</code> ，就是  原始周期 T=6 内完成2个周期，那如果这样的话，也是可以理解，为什么周期的傅里叶 级数，可以分解 <span class="arithmatex">\(\infty\)</span> 次的谐波。下面这里画 50 次谐波分量，意思就是 <code>50j * omega * t</code> ，也就是原始 T=6 内，完成 50 个周期。</p>
+</li>
+</ul>
+<div class="language-python highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1"># 计算复指数信号</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">50</span><span class="n">j</span> <span class="o">*</span> <span class="n">omega</span> <span class="o">*</span> <span class="n">t</span><span class="p">)</span>  <span class="c1"># 注意这里使用的谐波频率</span>
+</span></code></pre></div>
+<p>还有一点 j 前面加 1</p>
+<ul>
+<li>既可以表示为 1 次谐波也可以叫基波频率（理解错了再改，先这么理解）</li>
+<li>必须要加 1，1 不可以省略，要不然 python 不认识 j 是虚数单位。</li>
+</ul>
+<p><img alt="image-20250326215518347" src="../images/image-20250326215518347.png" /> </p>
+<h2 id="_15">典型信号<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326211118400" src="../images/image-20250326211118400.png" /> </p>
 
 
 
@@ -4691,7 +4990,7 @@
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月26日 08:46:09"><span class="timeago" datetime="2025-03-26T08:46:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月26日 08:46:09">2025-03-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月26日 14:08:09"><span class="timeago" datetime="2025-03-26T14:08:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月26日 14:08:09">2025-03-26</span>
   </span>
 
     

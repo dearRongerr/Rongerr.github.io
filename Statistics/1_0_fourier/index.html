@@ -3355,6 +3355,8 @@
       
         
       
+        
+      
     
     
       
@@ -3583,6 +3585,28 @@
   
   
   
+    <li class="md-nav__item">
+      <a href="../../Reproduction/6_AutoFormer_v2_eg/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    AutoFormer 可视化结果
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
     
     
       
@@ -3618,7 +3642,7 @@
         
           
         
-        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_10" >
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_6_11" >
         
           
           
@@ -3635,14 +3659,14 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_6_10" id="__nav_6_10_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_6_11" id="__nav_6_11_label" tabindex="0">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
           </div>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_6_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_11">
             <span class="md-nav__icon md-icon"></span>
             一些代码
           </label>
@@ -4045,6 +4069,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      (续)例题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4321,6 +4354,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      (续)例题
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4343,7 +4385,7 @@
 <h1 id="dft">复平面旋转&amp;DFT<a class="headerlink" href="#dft" title="Permanent link">&para;</a></h1>
 <h2 id="_1">离散傅里叶变换<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p><a href="https://www.bilibili.com/video/BV11R18Y2Ewb/?spm_id_from=333.999.0.0&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">动画讲解离散傅里叶变换</a></p>
-<p>离散傅里叶变换公式：</p>
+<p>离散傅里叶变换公式：(幅角-模型形式)</p>
 <p><img alt="image-20250325131234976" src="../images/image-20250325131234976.png" /></p>
 <ul>
 <li><span class="arithmatex">\(x_n\)</span> 原始离散时间序列</li>
@@ -4848,6 +4890,31 @@ $$
 <ul>
 <li>就是 MATLAB 演示低通滤波器</li>
 </ul>
+<h2 id="_5">(续)例题<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p><img alt="image-20250326191834877" src="../images/image-20250326191834877.png" /> </p>
+<p>DFT 没有遗漏了归一化过程</p>
+<p><span class="arithmatex">\(j \Omega k t\)</span></p>
+<p>重点需要理解，FFT 分解出来的复数的结果是什么意思</p>
+<p><img alt="image-20250326192227295" src="../images/image-20250326192227295.png" /> </p>
+<p>更实际的例子：</p>
+<p>利用计算机计算 DFT，得到相位角和幅值</p>
+<p><img alt="image-20250326192425964" src="../images/image-20250326192425964.png" /> </p>
+<ul>
+<li>（已解决：采样定理）为什么频率是 25Hz</li>
+<li><span class="arithmatex">\(\Omega kn\)</span>   这里 <span class="arithmatex">\(k=5，k=10\)</span> 有响应 ，<span class="arithmatex">\(\Omega = \frac{2\pi}{N}\)</span> ，至于 图片中的 <span class="arithmatex">\(2 \pi\)</span> 应该是进行了归一化。否则的话，应该是  <span class="arithmatex">\(1\Omega n、2 \Omega n、3 \Omega n、4 \Omega n,......\)</span> </li>
+<li>50Hz的采样率表示什么？1s 采样 50 个样本点，根据采样定理，确实只能最大观察到的频率是 25Hz，别的都被过滤掉了。</li>
+</ul>
+<blockquote>
+<p>采样定理：</p>
+<p><img alt="image-20250325231532791" src="../images/image-20250325231532791.png" /></p>
+<ul>
+<li>这里的采样周期=0.01s，也就是说采样频率=100Hz</li>
+<li>对应的采样以后，200Hz 的采不到了，也就是说过滤掉了 200Hz 的噪声信号</li>
+<li>这里需要注意，假设要采到 500Hz 的信号，那么采样频率设置成多少？答：2 倍的 500Hz，也就是说需要设置为 1000Hz 的采样频率，也就是0.001s 采样一个点。</li>
+</ul>
+<p><img alt="image-20250325231852948" src="../images/image-20250325231852948.png" /> </p>
+</blockquote>
+<p>DFT 的思想是，如果采集到的数据长度是 <span class="arithmatex">\(N_0\)</span> 那么就认为数据的周期<span class="arithmatex">\(=N_0\)</span> ，然后进行 DFT，看里面有多少个分量。</p>
 
 
 
@@ -4870,7 +4937,7 @@ $$
     <span class="md-icon" title="Last update">
       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
     </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月26日 09:57:31"><span class="timeago" datetime="2025-03-26T09:57:31+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月26日 09:57:31">2025-03-26</span>
+    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月26日 14:08:09"><span class="timeago" datetime="2025-03-26T14:08:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月26日 14:08:09">2025-03-26</span>
   </span>
 
     
