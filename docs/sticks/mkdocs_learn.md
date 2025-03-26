@@ -1,5 +1,14 @@
 # MkDocs
 
+## TODO
+
+- [ ] 归档功能
+- [ ] 折叠导航、目录，文档内容占最多篇幅
+
+![image-20250326163255519](images/image-20250326163255519.png)
+
+## begin
+
 ![image-20241115100605111](mkdocs_learn/image-20241115100605111-1636372-1636377.png)
 
 主题配置：[**Material for MkDocs**](https://squidfunk.github.io/mkdocs-material/getting-started/)
@@ -336,4 +345,33 @@ graph TD
 解决：修改工作流文件，安装 mermaid。
 
 ![image-20250319175536189](images/image-20250319175536189.png)
+
+
+
+## mkdocs &jupyter notebook
+
+[mknotebooks](https://github.com/greenape/mknotebooks?tab=readme-ov-file)
+
+第一步：
+
+```bash
+pip3 install mknotebooks
+```
+
+第二步，修改配置文件
+
+```yaml
+# mkdocs.yml
+nav:
+  - your_notebook.ipynb
+
+plugins:
+  - mknotebooks
+```
+
+即可成功，实现 jupyter notebook 嵌入到 mkdocs 的网页中
+
+不咋好看也是尊嘟
+
+![image-20250326163031761](images/image-20250326163031761.png)
 

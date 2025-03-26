@@ -183,7 +183,7 @@ X \stackrel{F}{\rightarrow} Y
 
 $X \stackrel{F}{\rightarrow} Y$
 
-## 箭头上架字符
+## 箭头上加字符
 
 ```markdown
 $\vec{a}$  向量
@@ -343,3 +343,42 @@ x = \pm 5
 
 
 
+## 希腊字母
+
+- 阿尔法（$\alpha$ ）：`$\alpha$`
+- 贝塔（$\beta$）：`$\beta$`
+- 伽玛（$\gamma$）：`$\gamma$`
+- 德尔塔（$\delta$）：`$\delta$`
+- 艾普西隆（$\epsilon$）：`$\epsilon$`
+- 泽塔（$\zeta$）：`$\zeta$`
+- 伊塔（$\eta$）：`$\eta$`
+- 西塔（$\theta$）：`$\theta$`
+- 艾欧塔（$\iota$）：`$\iota$`
+- 卡帕（$\kappa$）：`$\kappa$`
+- 拉姆达（$\lambda$）：`$\lambda$`
+- 缪（$\mu$）：`$\mu$`
+- 纽（$\nu$）：`$\nu$`
+- 克西（$\xi$）：`$\xi$`
+- 派（$\pi$）：`$\pi$`
+- 柔（$\rho$）：`$\rho$`
+- 西格玛（$\sigma$）：`$\sigma$`
+- 陶（$\tau$）：`$\tau$`
+- 宇普西隆（$\upsilon$）：`$\upsilon$`
+- 斐（$\phi$）：`$\phi$`
+- 凯（$\chi$）：`$\chi$`
+- 普赛（$\psi$）：`$\psi$`
+- 欧米伽（$\omega$）：`$\omega$`
+
+大写希腊字母：
+
+- 大伽玛（$\Gamma$）：`$\Gamma$`
+- 大德尔塔（$\Delta$）：`$\Delta$`
+- 大西塔（$\Theta$）：`$\Theta$`
+- 大拉姆达（$\Lambda$）：`$\Lambda$`
+- 大克西（$\Xi$）：`$\Xi$`
+- 大派（$\Pi$）：`$\Pi$`
+- 大西格玛（$\Sigma$）：`$\Sigma$`
+- 大宇普西隆（$\Upsilon$）：`$\Upsilon$`
+- 大斐（$\Phi$）：`$\Phi$`
+- 大普赛（$\Psi$）：`$\Psi$`
+- 大欧米伽（$\Omega$）：`$\Omega$`

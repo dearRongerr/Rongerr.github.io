@@ -132,6 +132,7 @@ nav:
       - Reproduction/4.md
       - Reproduction/CodeRepo/1_MultiHeadAttention.md
       - Reproduction/CodeRepo/2_transformer.md
+      - Reproduction/CodeRepo/1_0_Autoformer.ipynb
   - 统计学:
     - Statistics/index.md
     - Statistics/1_FFT.md
@@ -226,6 +227,7 @@ extra_css:
 plugins:
   - search
   - mermaid2
+  - mknotebooks
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   - git-revision-date-localized:
