@@ -333,9 +333,13 @@ $\circ$
 
 $\odot$
 
+## 正负号
 
+```markdown
+x = \pm 5
+```
 
-
+ $x = \pm 5$ 
 
 
 
