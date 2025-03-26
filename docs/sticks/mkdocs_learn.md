@@ -405,3 +405,11 @@ plugins:
 换了，很好看
 
 ![image-20250326171616392](images/image-20250326171616392.png) 
+
+第三步：部署到远程，还需要修改工作流文件：
+
+```yaml
+- run: pip install mkdocs-jupyter
+```
+
+![image-20250326180125617](images/image-20250326180125617.png) 
