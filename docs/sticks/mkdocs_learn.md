@@ -3,11 +3,11 @@
 ## TODO
 
 - [ ] 归档功能
-- [ ] 折叠导航、目录，文档内容占最多篇幅
+- [ ] 折叠导航、目录，文档内容占最多篇幅： [花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
 
 ![image-20250326163255519](images/image-20250326163255519.png)
 
-- [ ] （后面再说）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
+- [x] （solved：`mkdocs-jupyter`）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
 
 ## begin
 
