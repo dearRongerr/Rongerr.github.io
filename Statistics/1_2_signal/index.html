@@ -14,7 +14,7 @@
         <link rel="prev" href="../1_1_fourier/">
       
       
-        <link rel="next" href="../1_3_complexExp/">
+        <link rel="next" href="../1_4_signal/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -48,13 +48,15 @@
       
     
     
-      <link rel="stylesheet" href="../../css/timeago.css">
-    
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
       <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
     
       <link rel="stylesheet" href="../../mkdocs/css/unordered-list-symbols.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    
+      <link rel="stylesheet" href="../../assets/document_dates.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -3628,6 +3630,8 @@
       
         
       
+        
+      
     
     
       
@@ -3813,6 +3817,28 @@
   
   
     <li class="md-nav__item">
+      <a href="../../Reproduction/CodeRepo/3_fourier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    DFT例题
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../../Reproduction/CodeRepo/1_0_Autoformer/" class="md-nav__link">
         
   
@@ -3856,6 +3882,8 @@
       
         
           
+        
+      
         
       
         
@@ -4209,9 +4237,33 @@
         <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
-      典型信号
+      单位圆上的复指数信号
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="单位圆上的复指数信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      单位圆上的复指数信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      一般的复指数信号
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4219,6 +4271,28 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../1_4_signal/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    FS、FT、DTFS、DTFT
+    
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -4543,9 +4617,33 @@
         <li class="md-nav__item">
   <a href="#_15" class="md-nav__link">
     <span class="md-ellipsis">
-      典型信号
+      单位圆上的复指数信号
     </span>
   </a>
+  
+    <nav class="md-nav" aria-label="单位圆上的复指数信号">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      单位圆上的复指数信号
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      一般的复指数信号
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -4742,7 +4840,7 @@
 <li>相位大小不变，频率进行奇对称</li>
 </ul>
 <p>举例子：</p>
-<p><img alt="image-20250326152757509" src="../images/image-20250326152757509.png" /> </p>
+<p><img alt="image-20250326152757509" src="../images/image-20250326152757509.png" />  </p>
 <ul>
 <li>单边谱和双边谱 本质是一样的，但是表达形式是不同的</li>
 </ul>
@@ -4966,8 +5064,94 @@
 <li>必须要加 1，1 不可以省略，要不然 python 不认识 j 是虚数单位。</li>
 </ul>
 <p><img alt="image-20250326215518347" src="../images/image-20250326215518347.png" /> </p>
-<h2 id="_15">典型信号<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
-<p><img alt="image-20250326211118400" src="../images/image-20250326211118400.png" /> </p>
+<h2 id="_15">单位圆上的复指数信号<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h2>
+<p>课件：<a href="../../pdf_files/5_0_signal.pdf">数字信号处理：典型信号</a></p>
+<p>重点强调几处：</p>
+<h3 id="_16">单位圆上的复指数信号<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<p><mark>连续时间形式</mark></p>
+<p>一般形式：</p>
+<div class="arithmatex">\[e^{j(\omega t+\phi)}\]</div>
+<p>复指数形式 其实应该是模长-幅角形式，这里讨论的是单位圆上的复指数，∴ 模长为 1</p>
+<p><img alt="image-20250327142403835" src="../images/image-20250327142403835.png" /></p>
+<blockquote>
+<p>这里比较容易混淆的是：$\omega $ 的理解，单位是 rad/s，描述每秒转几度。（跟后面离散的进行对比）</p>
+</blockquote>
+<ul>
+<li>连续时间单位圆上的复指数信号一定是周期的模长一定是 1</li>
+</ul>
+<p><mark>性质 1：周期性</mark></p>
+<ul>
+<li>描述一个三角函数：幅值、初相位、频率（or 周期）</li>
+</ul>
+<p><img alt="image-20250327142558848" src="../images/image-20250327142558848.png" /></p>
+<p><mark>性质 2：<span class="arithmatex">\(\omega\)</span> 、T 与振荡的关系</mark> </p>
+<p><img alt="image-20250327142824858" src="../images/image-20250327142824858.png" /> </p>
+<p><mark>离散时间与单位圆上的复指数</mark> </p>
+<p><img alt="image-20250327145425866" src="../images/image-20250327145425866.png" /> </p>
+<ul>
+<li>
+<p>这里的 <span class="arithmatex">\(\Omega\)</span>  数字角频率可以理解为 采样 <span class="arithmatex">\(nT_s\)</span> 个时间点，平均分单位圆，每份的弧度（我先这么理解，错了再改）</p>
+</li>
+<li>
+<p>$\omega $ 模拟角频率，rad/s，每 s 走过的弧度</p>
+</li>
+<li>$\omega_s $ 采样角频率，每秒采样多少弧度？</li>
+</ul>
+<p><mark>性质 1：周期性</mark> </p>
+<p><img alt="image-20250327150253672" src="../images/image-20250327150253672.png" /> </p>
+<ul>
+<li>节拍是什么意思？</li>
+</ul>
+<p><mark>性质 2：<span class="arithmatex">\(\Omega , T\)</span> 与振荡</mark> </p>
+<p><img alt="image-20250327150347724" src="../images/image-20250327150347724.png" /> </p>
+<ul>
+<li>采样定理：为了捕捉系统中最高频分量，采样频率=最高频率×2，才能保证最高频率分量不会被过滤掉</li>
+<li>系统可以分解出的最高分量 = <span class="arithmatex">\(\frac{1}{2}\)</span> 采样频率</li>
+<li><span class="arithmatex">\(\Omega = \pi\)</span> 时，对应系统可分解出最高频分量</li>
+<li>上面三张图：画的是 <span class="arithmatex">\(e^{i\Omega n}\)</span> 的实部部分 <span class="arithmatex">\(\cos \Omega\)</span>   （<span class="arithmatex">\(e^{i\Omega n} = \cos \Omega + i \sin \Omega\)</span>） </li>
+<li>归一化后的节拍 <span class="arithmatex">\(n=0,1,2,......N_0-1\)</span> 节拍也许就可以理解为时间点，每个节拍采样一个点</li>
+<li><span class="arithmatex">\(n=0\)</span>，对应 <span class="arithmatex">\(\Omega = 0\)</span> （这种理解是错误的，是在 $fixed \quad \Omega $ 讨论每个时间点 或者 节拍的到 <span class="arithmatex">\(k \Omega\)</span> 上的投影 ） </li>
+<li><span class="arithmatex">\(\Omega = \pi\)</span> 实部波形反复横跳</li>
+</ul>
+<blockquote>
+<p>疑问（含义是什么？<span class="arithmatex">\(\Omega ?= \frac{2\pi}{N}\)</span>），也许这里只是数学意义上的讨论。</p>
+</blockquote>
+<h3 id="_17">一般的复指数信号<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h3>
+<p><mark>连续的情况</mark></p>
+<p><img alt="image-20250327151853598" src="../images/image-20250327151853598.png" /></p>
+<p>所以，单位圆上的复指数信号，特殊在哪里？</p>
+<p>最一般的复指数信号?  <span class="arithmatex">\(x(t)=(c(t)+{d(t)}i) e^{ib(t)+a(t)}\)</span></p>
+<ul>
+<li>按照 ppt 来说，是常数。  <span class="arithmatex">\(x(t)=(c+{d}i) e^{a(t)+b(t)i}\)</span></li>
+</ul>
+<blockquote>
+<p><mark>由复数、复指数、三角函数对应关系</mark> </p>
+<p><span class="arithmatex">\(a+bi\)</span></p>
+<p>= <span class="arithmatex">\(\sqrt{a^2 + b^2} e^{i {arctan\frac{b}{a}}} = |模长|e^{i 幅角}\)</span> </p>
+<p>= <span class="arithmatex">\(\sqrt{a^2 + b^2}(\cos {(\arctan\frac{b}{a})}+ i \sin {(\arctan\frac{b}{a})} )\)</span></p>
+<p><span class="arithmatex">\(=|模长|(\cos幅角+ \sin幅角)\)</span>   </p>
+<p>$\cos {(\arctan\frac{b}{a})} = \frac{a}{\sqrt{a^2 + b^2}} $   </p>
+<p><span class="arithmatex">\(余弦值 =  \frac{实部}{|模长|}\)</span></p>
+<p><span class="arithmatex">\(\sin {(\arctan\frac{b}{a})} = \frac{b}{\sqrt{a^2 + b^2}}\)</span> </p>
+<p><span class="arithmatex">\(正弦值 = \frac{虚部}{|模长|}\)</span></p>
+<p><span class="arithmatex">\(幅角 = \arctan \frac{虚部}{实部}\)</span> </p>
+</blockquote>
+<ul>
+<li>并且，</li>
+</ul>
+<div class="arithmatex">\[x(t)=(c+{d}i) e^{a(t)+b(t)i} \]</div>
+<div class="arithmatex">\[\stackrel{注意看指数变化}{\rightarrow} x(t)=(c+{d}i) e^{(a+bi)t}\]</div>
+<div class="arithmatex">\[\stackrel{复数→复指数}{\rightarrow}x(t)=|模长|e^{i幅角} e^{(a+bi)t} \]</div>
+<p>再看这一堆东西，工整多了：</p>
+<p><img alt="image-20250327160632650" src="../images/image-20250327160632650.png" /></p>
+<p>分解：<span class="arithmatex">\(|模长|e^{i幅角}\)</span>  是 包络线部分；<span class="arithmatex">\(e^{(a+bi)t}\)</span>   是振荡部分。</p>
+<p><img alt="image-20250327161512816" src="../images/image-20250327161512816.png" /></p>
+<p>这里是一般的离散时间的复指数信号：</p>
+<p><img alt="image-20250327173246084" src="../images/image-20250327173246084.png" /> </p>
+<p>这里主要是单位圆上的复指数信号，区分 <span class="arithmatex">\(\omega\)</span>  &amp;  <span class="arithmatex">\(\Omega\)</span></p>
+<p>这里注意信号变换都是针对t 的，而不是括号中的所有东西：</p>
+<p><img alt="image-20250327173419261" src="../images/image-20250327173419261.png" /> </p>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='Created Time: 2025-03-25'><span class='material-icons'>add_circle</span>2025-03-25</span><span title='Last Update: 2025-03-27'><span class='material-icons'>update</span>2025-03-27</span></div></div>
 
 
 
@@ -4975,38 +5159,6 @@
 
 
 
-  
-    
-  
-  
-    
-  
-
-
-  <aside class="md-source-file">
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Last update">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M21 13.1c-.1 0-.3.1-.4.2l-1 1 2.1 2.1 1-1c.2-.2.2-.6 0-.8l-1.3-1.3c-.1-.1-.2-.2-.4-.2m-1.9 1.8-6.1 6V23h2.1l6.1-6.1zM12.5 7v5.2l4 2.4-1 1L11 13V7zM11 21.9c-5.1-.5-9-4.8-9-9.9C2 6.5 6.5 2 12 2c5.3 0 9.6 4.1 10 9.3-.3-.1-.6-.2-1-.2s-.7.1-1 .2C19.6 7.2 16.2 4 12 4c-4.4 0-8 3.6-8 8 0 4.1 3.1 7.5 7.1 7.9l-.1.2z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月26日 14:08:09"><span class="timeago" datetime="2025-03-26T14:08:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月26日 14:08:09">2025-03-26</span>
-  </span>
-
-    
-    
-      
-  <span class="md-source-file__fact">
-    <span class="md-icon" title="Created">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14.47 15.08 11 13V7h1.5v5.25l3.08 1.83c-.41.28-.79.62-1.11 1m-1.39 4.84c-.36.05-.71.08-1.08.08-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8c0 .37-.03.72-.08 1.08.69.1 1.33.32 1.92.64.1-.56.16-1.13.16-1.72 0-5.5-4.5-10-10-10S2 6.5 2 12s4.47 10 10 10c.59 0 1.16-.06 1.72-.16-.32-.59-.54-1.23-.64-1.92M18 15v3h-3v2h3v3h2v-3h3v-2h-3v-3z"/></svg>
-    </span>
-    <span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-timeago" title="2025年3月25日 15:35:09"><span class="timeago" datetime="2025-03-25T15:35:09+00:00" locale="zh"></span></span><span class="git-revision-date-localized-plugin git-revision-date-localized-plugin-iso_date" title="2025年3月25日 15:35:09">2025-03-25</span>
-  </span>
-
-    
-    
-    
-  </aside>
 
 
 
@@ -5035,11 +5187,6 @@
       <div class="md-copyright">
   
   
-    Made with
-    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
-      Material for MkDocs
-    </a>
-  
 </div>
       
     </div>
@@ -5056,10 +5203,6 @@
     
     
       <script src="../../assets/javascripts/bundle.c8b220af.min.js"></script>
-      
-        <script src="../../js/timeago.min.js"></script>
-      
-        <script src="../../js/timeago_mkdocs_material.js"></script>
       
         <script src="../../mkdocs/javascripts/katex.js"></script>
       
