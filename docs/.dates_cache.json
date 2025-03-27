@@ -1,0 +1,502 @@
+{
+  "index.md": {
+    "created": "2024-11-14T16:25:48.889535",
+    "modified": "2025-03-26T16:33:06.898538"
+  },
+  "Statistics/1_1_fourier.md": {
+    "created": "2025-03-25T20:28:13.938130",
+    "modified": "2025-03-25T21:58:08.074615"
+  },
+  "Statistics/1_FFT.md": {
+    "created": "2025-03-23T22:03:00.960778",
+    "modified": "2025-03-25T22:17:56.505557"
+  },
+  "Statistics/1_0_fourier.md": {
+    "created": "2025-03-25T08:42:00.994510",
+    "modified": "2025-03-26T19:41:54.527401"
+  },
+  "Statistics/index.md": {
+    "created": "2025-03-23T22:02:55.852558",
+    "modified": "2025-03-23T22:03:53.857782"
+  },
+  "Statistics/1_3_complexExp.md": {
+    "created": "2025-03-26T12:33:03.964000",
+    "modified": "2025-03-27T17:31:50.491666"
+  },
+  "Statistics/1_2_signal.md": {
+    "created": "2025-03-25T23:29:36.461690",
+    "modified": "2025-03-27T17:45:12.731745"
+  },
+  "Statistics/1_4_signal.md": {
+    "created": "2025-03-27T17:35:11.751734",
+    "modified": "2025-03-27T18:45:02.780122"
+  },
+  "Statistics/2_FFT.md": {
+    "created": "2025-03-23T22:18:23.837979",
+    "modified": "2025-03-24T22:13:19.172959"
+  },
+  "literature/index.md": {
+    "created": "2024-12-11T15:17:35.721218",
+    "modified": "2025-02-27T17:01:38.116688"
+  },
+  "learning/21_FastRCNN.md": {
+    "created": "2024-12-22T20:26:07.692500",
+    "modified": "2024-12-22T20:26:17.113892"
+  },
+  "learning/1.md": {
+    "created": "2024-11-25T21:24:58.548758",
+    "modified": "2024-12-04T09:17:02.117516"
+  },
+  "learning/2_MOCO.md": {
+    "created": "2024-12-21T14:54:55.967669",
+    "modified": "2024-12-22T23:17:48.854107"
+  },
+  "learning/vit.md": {
+    "created": "2024-11-15T18:55:41.259187",
+    "modified": "2024-12-04T22:05:58.646874"
+  },
+  "learning/9_cGAN.md": {
+    "created": "2024-12-08T19:59:29.041515",
+    "modified": "2024-12-10T09:46:54.444077"
+  },
+  "learning/18_DINO.md": {
+    "created": "2024-12-21T19:01:12.029263",
+    "modified": "2024-12-21T19:03:53.376269"
+  },
+  "learning/3_ViT.md": {
+    "created": "2024-12-21T15:04:33.913233",
+    "modified": "2024-12-21T18:24:20.142825"
+  },
+  "learning/swintransformer.md": {
+    "created": "2024-11-15T18:56:02.844370",
+    "modified": "2024-12-04T14:55:58.151279"
+  },
+  "learning/17_DETR.md": {
+    "created": "2024-12-21T19:01:27.997194",
+    "modified": "2024-12-21T19:03:51.469543"
+  },
+  "learning/11_excelcsvtensor.md": {
+    "created": "2024-12-09T16:29:35.032375",
+    "modified": "2024-12-09T16:31:51.237449"
+  },
+  "learning/pe.md": {
+    "created": "2024-11-15T18:07:34.756381",
+    "modified": "2024-11-26T09:10:49.740118"
+  },
+  "learning/6_Diffusion.md": {
+    "created": "2024-12-02T21:47:51.835052",
+    "modified": "2024-12-20T22:41:50.071081"
+  },
+  "learning/12_KLdivergence.md": {
+    "created": "2024-12-10T14:08:25.107361",
+    "modified": "2024-12-10T18:08:19.197617"
+  },
+  "learning/1_clip.md": {
+    "created": "2024-12-21T14:54:35.717912",
+    "modified": "2024-12-22T20:24:06.405273"
+  },
+  "learning/4_GAN.md": {
+    "created": "2024-12-02T12:42:35.950148",
+    "modified": "2024-12-10T18:18:27.457659"
+  },
+  "learning/convs.md": {
+    "created": "2024-11-25T09:18:20.516840",
+    "modified": "2025-02-23T10:51:28.479059"
+  },
+  "learning/6_Diffusion1.md": {
+    "created": "2024-12-19T18:35:41.539239",
+    "modified": "2024-12-20T21:29:59.236620"
+  },
+  "learning/20_distill.md": {
+    "created": "2024-12-22T20:10:12.012694",
+    "modified": "2024-12-22T20:10:49.086242"
+  },
+  "learning/10_ResNet.md": {
+    "created": "2024-12-09T16:02:03.411274",
+    "modified": "2024-12-09T16:16:12.787915"
+  },
+  "learning/5_Bert.md": {
+    "created": "2024-12-02T21:47:44.892042",
+    "modified": "2024-12-04T20:17:53.374746"
+  },
+  "learning/13_RNN.md": {
+    "created": "2024-12-20T11:38:04.935443",
+    "modified": "2024-12-21T21:39:43.181202"
+  },
+  "learning/0_pdfNotes.md": {
+    "created": "2025-03-18T10:18:47.231945",
+    "modified": "2025-03-19T12:14:59.714985"
+  },
+  "learning/3.md": {
+    "created": "2024-11-26T16:02:26.592465",
+    "modified": "2024-11-27T11:46:17.261728"
+  },
+  "learning/16_YOLO.md": {
+    "created": "2024-12-21T19:00:54.649693",
+    "modified": "2024-12-21T19:03:45.844232"
+  },
+  "learning/7_Clip.md": {
+    "created": "2024-12-04T22:12:14.028623",
+    "modified": "2025-03-19T12:33:41.689335"
+  },
+  "learning/14_LSTM.md": {
+    "created": "2024-12-21T14:24:29.902149",
+    "modified": "2024-12-23T22:08:56.492232"
+  },
+  "learning/8_WeightNorm.md": {
+    "created": "2024-12-05T08:31:15.646326",
+    "modified": "2024-12-08T20:02:07.368650"
+  },
+  "learning/15_ContrastiveLearning.md": {
+    "created": "2024-12-21T14:47:42.576591",
+    "modified": "2024-12-21T14:50:26.264930"
+  },
+  "learning/19_GPT.md": {
+    "created": "2024-12-21T22:05:51.016375",
+    "modified": "2024-12-21T22:06:08.171375"
+  },
+  "learning/2.md": {
+    "created": "2024-11-25T22:25:07.901730",
+    "modified": "2024-12-04T14:56:27.570432"
+  },
+  "logs/1_date.md": {
+    "created": "2025-03-21T11:06:47.848173",
+    "modified": "2025-03-21T11:18:51.335105"
+  },
+  "logs/index.md": {
+    "created": "2024-11-17T08:41:17.071640",
+    "modified": "2025-03-21T11:07:09.216475"
+  },
+  "logs/diary.md": {
+    "created": "2024-11-17T08:34:17.185205",
+    "modified": "2025-03-27T17:42:27.951464"
+  },
+  "Reproduction/1.md": {
+    "created": "2025-02-16T19:47:12.793957",
+    "modified": "2025-02-23T22:39:30.275577"
+  },
+  "Reproduction/4.md": {
+    "created": "2025-02-21T10:44:15.226661",
+    "modified": "2025-02-21T14:26:23.381662"
+  },
+  "Reproduction/6_AutoFormer_v1.md": {
+    "created": "2025-03-22T15:34:06.769268",
+    "modified": "2025-03-26T22:12:47.984617"
+  },
+  "Reproduction/5_SegRNN_index.md": {
+    "created": "2025-03-15T16:27:07.496473",
+    "modified": "2025-03-20T21:13:17.504064"
+  },
+  "Reproduction/5_SegRNN_v2.md": {
+    "created": "2025-03-15T10:38:40.626049",
+    "modified": "2025-03-20T21:15:05.348281"
+  },
+  "Reproduction/6_AutoFormer.md": {
+    "created": "2025-03-17T14:44:43.941409",
+    "modified": "2025-03-22T15:47:58.634432"
+  },
+  "Reproduction/DAVE.md": {
+    "created": "2025-02-14T22:22:00.132890",
+    "modified": "2025-02-14T22:25:08.407167"
+  },
+  "Reproduction/7_summary.md": {
+    "created": "2025-03-21T16:18:42.215806",
+    "modified": "2025-03-21T16:29:25.302231"
+  },
+  "Reproduction/5_SegRNN_v3.md": {
+    "created": "2025-03-21T14:07:21.973345",
+    "modified": "2025-03-21T15:57:44.862637"
+  },
+  "Reproduction/index.md": {
+    "created": "2025-02-23T13:48:52.701657",
+    "modified": "2025-03-05T22:21:34.047867"
+  },
+  "Reproduction/5_SegRNN_v1.md": {
+    "created": "2025-03-05T22:18:18.130280",
+    "modified": "2025-03-15T16:27:40.693700"
+  },
+  "Reproduction/6_AutoFormer_v2_eg.md": {
+    "created": "2025-03-26T22:12:31.922472",
+    "modified": "2025-03-27T08:50:01.417862"
+  },
+  "Reproduction/3.md": {
+    "created": "2025-02-20T16:49:11.150227",
+    "modified": "2025-02-22T21:46:07.156707"
+  },
+  "Reproduction/2.md": {
+    "created": "2025-02-16T19:52:14.835552",
+    "modified": "2025-02-22T17:04:27.222395"
+  },
+  "sticks/writting.md": {
+    "created": "2024-11-14T16:25:48.900293",
+    "modified": "2025-02-27T17:03:45.855081"
+  },
+  "sticks/3_vscode.md": {
+    "created": "2025-02-28T18:08:34.091459",
+    "modified": "2025-03-19T13:42:42.983339"
+  },
+  "sticks/GitHub.md": {
+    "created": "2024-12-13T14:41:21.070129",
+    "modified": "2025-02-27T20:54:52.453390"
+  },
+  "sticks/mkdocs_learn.md": {
+    "created": "2024-11-14T16:25:48.882288",
+    "modified": "2025-03-27T19:03:49.326525"
+  },
+  "sticks/latex.md": {
+    "created": "2024-12-13T14:38:19.021003",
+    "modified": "2024-12-13T14:39:59.666042"
+  },
+  "sticks/linux.md": {
+    "created": "2025-02-09T16:21:43.022904",
+    "modified": "2025-02-28T16:18:39.767038"
+  },
+  "sticks/2_python.md": {
+    "created": "2025-02-27T21:19:28.583269",
+    "modified": "2025-03-19T13:49:13.645767"
+  },
+  "sticks/MacOS.md": {
+    "created": "2024-12-19T18:25:54.892923",
+    "modified": "2025-02-26T21:23:30.696959"
+  },
+  "sticks/screen.md": {
+    "created": "2025-02-20T22:03:23.897544",
+    "modified": "2025-02-27T17:01:20.878360"
+  },
+  "sticks/markdwon_learn.md": {
+    "created": "2024-11-18T09:58:09.859336",
+    "modified": "2025-03-26T14:31:24.735716"
+  },
+  "sticks/docker.md": {
+    "created": "2024-11-14T16:25:48.899536",
+    "modified": "2025-02-28T10:48:31.247404"
+  },
+  "sticks/shell.md": {
+    "created": "2024-11-15T10:25:41.862019",
+    "modified": "2025-02-28T16:36:25.777968"
+  },
+  "sticks/1_github_v1.md": {
+    "created": "2025-02-27T20:56:07.505601",
+    "modified": "2025-03-04T21:20:58.451171"
+  },
+  "Error/python.md": {
+    "created": "2025-02-21T13:33:13.903159",
+    "modified": "2025-03-07T18:51:21.610223"
+  },
+  "Error/github.md": {
+    "created": "2024-11-14T16:25:48.900489",
+    "modified": "2025-03-07T19:06:32.279893"
+  },
+  "Error/latex.md": {
+    "created": "2024-12-13T09:57:18.090515",
+    "modified": "2024-12-13T14:54:55.038139"
+  },
+  "Error/macos.md": {
+    "created": "2025-02-21T13:33:21.633534",
+    "modified": "2025-03-19T16:57:44.378451"
+  },
+  "Error/docker.md": {
+    "created": "2025-02-24T18:55:52.277954",
+    "modified": "2025-02-27T16:59:06.150384"
+  },
+  "bagu/deeplearning/former1.md": {
+    "created": "2024-11-17T16:48:03.073138",
+    "modified": "2024-11-25T21:24:03.719529"
+  },
+  "bagu/deeplearning/transformer.md": {
+    "created": "2024-11-15T18:05:15.689054",
+    "modified": "2025-03-19T20:56:19.535651"
+  },
+  "bagu/deeplearning/1.md": {
+    "created": "2024-11-25T21:21:30.650206",
+    "modified": "2024-12-04T22:03:23.312863"
+  },
+  "bagu/deeplearning/pytorch_shape_function.md": {
+    "created": "2024-11-15T17:55:43.517034",
+    "modified": "2024-12-19T22:38:58.323478"
+  },
+  "bagu/deeplearning/index.md": {
+    "created": "2024-11-15T18:02:15.575310",
+    "modified": "2024-11-15T19:59:48.352079"
+  },
+  "bagu/deeplearning/former2.md": {
+    "created": "2024-11-17T16:48:25.625282",
+    "modified": "2024-11-25T21:23:57.921774"
+  },
+  "bagu/leetcode/1.md": {
+    "created": "2024-11-14T16:25:48.900027",
+    "modified": "2024-11-25T10:45:52.789968"
+  },
+  "bagu/leetcode/index.md": {
+    "created": "2024-11-15T18:31:45.702616",
+    "modified": "2024-11-15T18:32:13.413699"
+  },
+  "bagu/leetcode/2.md": {
+    "created": "2024-11-15T18:29:57.438607",
+    "modified": "2024-11-25T10:45:56.454151"
+  },
+  "bagu/machinelearning/kmeans.md": {
+    "created": "2024-11-15T18:52:35.875319",
+    "modified": "2024-11-25T21:12:06.532991"
+  },
+  "bagu/machinelearning/2.md": {
+    "created": "2024-11-25T21:14:08.335975",
+    "modified": "2024-11-25T21:19:08.683006"
+  },
+  "bagu/questions/1_questions.md": {
+    "created": "2024-12-19T22:41:05.743240",
+    "modified": "2024-12-22T23:17:59.028055"
+  },
+  "Reproduction/CodeRepo/2_transformer.md": {
+    "created": "2025-03-20T15:49:23.377311",
+    "modified": "2025-03-20T15:50:47.093481"
+  },
+  "Reproduction/CodeRepo/index.md": {
+    "created": "2025-03-19T20:47:41.454390",
+    "modified": "2025-03-19T21:01:32.617574"
+  },
+  "Reproduction/CodeRepo/3_fourier.md": {
+    "created": "2025-03-27T08:50:24.943777",
+    "modified": "2025-03-27T14:51:33.601962"
+  },
+  "Reproduction/CodeRepo/1_MultiHeadAttention.md": {
+    "created": "2025-03-19T17:24:12.130022",
+    "modified": "2025-03-19T21:01:48.917597"
+  },
+  "literature/TSP/1_SegRNN.md": {
+    "created": "2024-11-15T20:48:05.857809",
+    "modified": "2025-03-18T11:53:21.484145"
+  },
+  "literature/TSP/0_note.md": {
+    "created": "2025-03-02T19:58:33.698155",
+    "modified": "2025-03-17T12:01:38.871120"
+  },
+  "literature/TSP/5_Autoformer.md": {
+    "created": "2025-03-17T12:04:36.473204",
+    "modified": "2025-03-19T13:11:32.750542"
+  },
+  "literature/TSP/4_Informer.md": {
+    "created": "2025-03-04T19:49:58.903572",
+    "modified": "2025-03-18T11:52:57.033857"
+  },
+  "literature/TSP/index.md": {
+    "created": "2025-03-02T16:39:45.783778",
+    "modified": "2025-03-17T11:49:30.329171"
+  },
+  "literature/TSP/3_TimesNet.md": {
+    "created": "2025-03-03T09:12:05.012348",
+    "modified": "2025-03-18T11:53:05.099852"
+  },
+  "literature/TSP/2_DLinear.md": {
+    "created": "2025-03-01T21:43:55.473290",
+    "modified": "2025-03-18T11:53:12.816486"
+  },
+  "literature/ObjectDetection/1.md": {
+    "created": "2024-11-26T09:20:00.354625",
+    "modified": "2024-11-26T11:25:47.502449"
+  },
+  "literature/ObjectDetection/4.md": {
+    "created": "2025-02-19T16:40:36.472247",
+    "modified": "2025-02-19T20:13:04.843168"
+  },
+  "literature/ObjectDetection/index.md": {
+    "created": "2024-11-26T09:20:09.588439",
+    "modified": "2025-02-23T13:48:56.022821"
+  },
+  "literature/ObjectDetection/3.md": {
+    "created": "2024-11-26T14:47:43.598288",
+    "modified": "2024-11-27T17:58:16.873291"
+  },
+  "literature/ObjectDetection/2.md": {
+    "created": "2024-11-26T11:27:57.406547",
+    "modified": "2025-02-17T14:13:34.758601"
+  },
+  "literature/MultiModal/1.md": {
+    "created": "2024-11-26T11:11:03.955851",
+    "modified": "2024-11-26T11:11:08.728221"
+  },
+  "literature/MultiModal/index.md": {
+    "created": "2024-11-26T11:12:59.063241",
+    "modified": "2024-11-26T11:13:07.600589"
+  },
+  "literature/ObejectCounting/rank10 SPDCN.md": {
+    "created": "2024-11-15T22:13:38.491049",
+    "modified": "2024-11-18T20:22:02.387821"
+  },
+  "literature/ObejectCounting/rank1 CountGD.md": {
+    "created": "2024-11-15T20:53:54.227790",
+    "modified": "2024-12-02T16:30:17.813288"
+  },
+  "literature/ObejectCounting/rank3 DAVE.md": {
+    "created": "2024-11-15T22:11:57.673063",
+    "modified": "2024-11-17T14:10:12.321424"
+  },
+  "literature/ObejectCounting/rank9 SemAug_SAFECount.md": {
+    "created": "2024-11-15T22:13:26.290653",
+    "modified": "2024-11-18T17:31:47.972110"
+  },
+  "literature/ObejectCounting/rank16 Counting_DETR.md": {
+    "created": "2024-11-15T22:14:54.912354",
+    "modified": "2024-11-15T22:20:49.289340"
+  },
+  "literature/ObejectCounting/rank4 CACViT.md": {
+    "created": "2024-11-15T22:12:05.854247",
+    "modified": "2024-11-17T15:33:29.867150"
+  },
+  "literature/ObejectCounting/rank17 RCC.md": {
+    "created": "2024-11-15T22:15:27.632616",
+    "modified": "2024-11-15T22:20:30.021320"
+  },
+  "literature/ObejectCounting/rank2 GeCo.md": {
+    "created": "2024-11-15T22:11:49.181403",
+    "modified": "2025-02-16T10:52:25.698707"
+  },
+  "literature/ObejectCounting/rank14 LaoNet.md": {
+    "created": "2024-11-15T22:14:29.283222",
+    "modified": "2024-11-15T22:14:44.038581"
+  },
+  "literature/ObejectCounting/rank18 Omnicount.md": {
+    "created": "2024-11-15T22:15:33.414361",
+    "modified": "2024-11-15T22:20:02.319246"
+  },
+  "literature/ObejectCounting/rank8 CounTR.md": {
+    "created": "2024-11-15T22:12:53.154682",
+    "modified": "2024-12-02T21:07:40.052967"
+  },
+  "literature/ObejectCounting/index.md": {
+    "created": "2024-11-15T20:48:43.748919",
+    "modified": "2024-11-26T09:26:03.676694"
+  },
+  "literature/ObejectCounting/rank12 SAFECount.md": {
+    "created": "2024-11-15T22:14:05.667936",
+    "modified": "2024-11-19T14:08:23.982134"
+  },
+  "literature/ObejectCounting/rank15 CounTX.md": {
+    "created": "2024-11-15T22:14:45.313245",
+    "modified": "2024-11-15T22:14:54.902074"
+  },
+  "literature/ObejectCounting/rank19 FamNet.md": {
+    "created": "2024-11-15T22:15:49.404609",
+    "modified": "2024-11-15T22:19:17.305166"
+  },
+  "literature/ObejectCounting/rank6 LOCA.md": {
+    "created": "2024-11-15T22:12:30.775991",
+    "modified": "2024-11-18T11:15:02.181913"
+  },
+  "literature/ObejectCounting/rank11 GCA_SUN.md": {
+    "created": "2024-11-15T22:13:46.802730",
+    "modified": "2024-11-19T11:48:32.616595"
+  },
+  "literature/ObejectCounting/rank5 SSD.md": {
+    "created": "2024-11-15T22:12:19.770495",
+    "modified": "2024-11-17T15:50:03.956547"
+  },
+  "literature/ObejectCounting/rank7 SemAug_CountTR.md": {
+    "created": "2024-11-15T22:12:36.354727",
+    "modified": "2024-11-18T14:55:13.342597"
+  },
+  "literature/ObejectCounting/rank13 BMNet.md": {
+    "created": "2024-11-15T22:14:18.200693",
+    "modified": "2024-11-15T22:14:29.268847"
+  }
+}

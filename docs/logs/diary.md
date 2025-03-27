@@ -1,5 +1,21 @@
 # 乐观 & 坚强
 
+## 2025年 3 月 27 日
+
+好奇，无敌好奇，是怎么做到渲染这么快的，7 秒渲染不出来，黄花菜都凉了。以后再看吧，干活。是太好看了
+
+[https://wcowin.work/about/geren/](https://wcowin.work/about/geren/)
+
+[https://wcowin.work/Mkdocs-Wcowin/](https://wcowin.work/Mkdocs-Wcowin/)
+
+忽然在想，可以 down 下来源码一点点学。
+
+没时间了，这个时间戳网页渲染是真慢啊
+
+![image-20250327174216075](images/image-20250327174216075.png)
+
+
+
 ## 2025 年 3 月 26 日
 
 一些碎碎念

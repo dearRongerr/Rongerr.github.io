@@ -1,5 +1,11 @@
 # MkDocs
 
+## 学习链接
+
+[MKdocs博客中文系列教程](https://www.zhihu.com/column/c_1754218140098387968)
+
+好看、简洁：[Mkdocs-Wcowin中文主题](https://wcowin.work/)
+
 ## TODO
 
 - [ ] 归档功能
@@ -88,6 +94,32 @@ Commands:
 [官方文档链接](https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions)
 
 ![image-20241115101535524](mkdocs_learn/image-20241115101535524.png)
+
+更换时间戳显示工具[mkdocs-document-dates](https://github.com/jaywhj/mkdocs-document-dates/blob/main/README_zh.md)
+
+第一步：安装 python 依赖库
+
+```python
+pip install mkdocs-document-dates
+```
+
+第二步：修改配置文件`.yml`
+
+```yaml
+plugins:
+  - document-dates
+```
+
+第三步：修改工作流文件
+
+```yaml
+...
+
+    - run: pip install mkdocs-document-dates
+    - run: mkdocs gh-deploy --force
+```
+
+
 
 
 ## 写作

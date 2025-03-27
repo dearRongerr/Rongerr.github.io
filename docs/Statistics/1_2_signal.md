@@ -604,7 +604,11 @@ $$e^{j(\omega t+\phi)}$$
 
 - 并且，
 
-  $$x(t)=(c+{d}i) e^{a(t)+b(t)i} \\ \stackrel{注意看指数变化}{\rightarrow} x(t)=(c+{d}i) e^{(a+bi)t} \\ \stackrel{复数→复指数}{\rightarrow}x(t)=|模长|e^{i幅角} e^{(a+bi)t} $$   
+$$x(t)=(c+{d}i) e^{a(t)+b(t)i} $$   
+
+$$\stackrel{注意看指数变化}{\rightarrow} x(t)=(c+{d}i) e^{(a+bi)t}$$
+
+$$\stackrel{复数→复指数}{\rightarrow}x(t)=|模长|e^{i幅角} e^{(a+bi)t} $$
 
 再看这一堆东西，工整多了：
 
@@ -613,3 +617,14 @@ $$e^{j(\omega t+\phi)}$$
 分解：$|模长|e^{i幅角}$  是 包络线部分；$e^{(a+bi)t}$   是振荡部分。
 
 ![image-20250327161512816](images/image-20250327161512816.png)
+
+这里是一般的离散时间的复指数信号：
+
+![image-20250327173246084](images/image-20250327173246084.png) 
+
+这里主要是单位圆上的复指数信号，区分 $\omega$  &  $\Omega$
+
+这里注意信号变换都是针对t 的，而不是括号中的所有东西：
+
+![image-20250327173419261](images/image-20250327173419261.png) 
+
