@@ -2,19 +2,25 @@
 
 ## 学习链接
 
-[MKdocs博客中文系列教程](https://www.zhihu.com/column/c_1754218140098387968)
+好看的页面设计：
 
-好看、简洁：[Mkdocs-Wcowin中文主题](https://wcowin.work/)
-
-[https://squidfunk.github.io/mkdocs-material/](https://squidfunk.github.io/mkdocs-material/)
-
-好看啊：[https://note.tonycrane.cc/web/](https://note.tonycrane.cc/web/)
+- [https://note.tonycrane.cc/web/](https://note.tonycrane.cc/web/)
+- [https://note.hobbitqia.cc/changelog/](https://note.hobbitqia.cc/changelog/)
+- [官方 Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
+- [Mkdocs-Wcowin中文主题](https://wcowin.work/)
+- [MKdocs博客中文系列教程](https://www.zhihu.com/column/c_1754218140098387968)
 
 - [ ] 文章标题下显示统计
 
 ![image-20250327195051004](images/image-20250327195051004.png)
 
-- [ ] 内嵌 pdf并显示
+- [ ] 卡片显示查看 pdf
+- [ ] 折叠框
+- [ ] 归档功能
+- [ ] 优化渲染速度
+- [x] 内嵌 pdf并显示
+
+
 
 ## TODO
 
@@ -25,6 +31,10 @@
 
 - [x] （solved：`mkdocs-jupyter`）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
 - [ ] 网页渲染速度太慢了
+
+## 组件测试
+
+
 
 ## begin
 
@@ -478,4 +488,39 @@ plugins:
 终于显示成功了，这个 mkdocs 的找路径的逻辑我属实不理解
 
 ![image-20250327201502225](images/image-20250327201502225.png)
+
+我的处理：
+
+文件结构：
+
+```bash
+.
+├── 1_0_fourier.md
+├── 1_1_fourier.md
+├── 1_2_signal.md
+├── 1_3_complexExp.md
+├── 1_4_signal.md
+├── 1_FFT.md
+├── 2_FFT.md
+├── 5_3_DTFS.pdf
+├── 5_4_DTFT.pdf
+```
+
+需求：
+
+> 在 `1_4_signal.md` 中嵌入 `5_3_DTFS.pdf`
+
+方法：
+
+```html
+<iframe src="../pdf_files/5_3_DTFS.pdf" width="100%" height="800px" style="border: 1px solid #ccc; overflow: auto;"> </iframe>
+```
+
+是在不明白，这里找地址的路径，那就复制两份 `5_3_DTFS.pdf` 吧。
+
+## 归档
+
+
+
+
 

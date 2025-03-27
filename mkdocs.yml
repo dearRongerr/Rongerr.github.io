@@ -144,12 +144,14 @@ nav:
     - Statistics/1_1_fourier.md
     - Statistics/1_2_signal.md
     - Statistics/1_4_signal.md
-    - Statistics/1_3_complexExp.md 
+    - Statistics/1_3_complexExp.md
 
   - 杂:
     - logs/index.md     
+    - logs/1_date.md
     - logs/diary.md
-    - logs/1_date.md 
+  - Blog:
+    - blog/index.md
 
 theme:
   name: material
@@ -234,6 +236,18 @@ plugins:
   - search
   - mermaid2
   - mkdocs-jupyter
+  - blog:
+      post_dir: blog/posts
+      post_date_format: full #时间
+      draft: true
+      draft_if_future_date: true #自动将具有未来日期的帖子标记为草稿
+      post_readtime: true
+      post_readtime_words_per_minute: 265  #计算帖子的阅读时间时读者每分钟预计阅读的字数
+      # post_url_format: "blog/{date}/{slug}"
+      # post_url_format: "{date}/{slug}"
+      # pagination_url_format: "page/{page}"
+
+  - tags
   - document-dates:
       type: timeago
       locale: zh
