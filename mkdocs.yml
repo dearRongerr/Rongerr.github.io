@@ -234,11 +234,13 @@ plugins:
   - search
   - mermaid2
   - mkdocs-jupyter
-  - document-dates
+  - document-dates:
+      type: timeago
+      locale: zh
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   # - git-revision-date-localized:
-  #     enable_creation_date: true
+      # enable_creation_date: true
   #     type: timeago #时间类型
   #     # type: date #日期类型
   #     custom_format: "%d. %B %Y"  # 时间格式

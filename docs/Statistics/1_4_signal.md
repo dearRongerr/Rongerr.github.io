@@ -92,3 +92,13 @@ $F(\Omega) = \sum_{n=-\infty}^{\infty}x[n]e^{-j\Omega n}$
 
 
 
+```
+<iframe src="../pdf_files/5_3_DTFS.pdf" width="100%" height="800px" style="border: 1px solid #ccc; overflow: auto;"> </iframe>
+
+/docs/pdf_files/5_3_DTFS.pdf
+
+/Users/dearr/Downloads/dearRongerr/mkdocs-site/docs/pdf_files/5_3_DTFS.pdf
+```
+
+<iframe src="../5_3_DTFS.pdf" width="100%" height="800px" style="border: 1px solid #ccc; overflow: auto;"> </iframe>
+

@@ -6,6 +6,16 @@
 
 好看、简洁：[Mkdocs-Wcowin中文主题](https://wcowin.work/)
 
+[https://squidfunk.github.io/mkdocs-material/](https://squidfunk.github.io/mkdocs-material/)
+
+好看啊：[https://note.tonycrane.cc/web/](https://note.tonycrane.cc/web/)
+
+- [ ] 文章标题下显示统计
+
+![image-20250327195051004](images/image-20250327195051004.png)
+
+- [ ] 内嵌 pdf并显示
+
 ## TODO
 
 - [ ] 归档功能
@@ -14,6 +24,7 @@
 ![image-20250326163255519](images/image-20250326163255519.png)
 
 - [x] （solved：`mkdocs-jupyter`）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
+- [ ] 网页渲染速度太慢了
 
 ## begin
 
@@ -108,6 +119,22 @@ pip install mkdocs-document-dates
 ```yaml
 plugins:
   - document-dates
+```
+
+自定义配置：
+
+```yaml
+plugins:
+  - document-dates:
+      type: date               # 日期类型： date | datetime | timeago，默认 date
+      locale: zh               # 本地化语言： zh zh_tw en es fr de ar ja ko ru ，默认：en
+      date_format: '%Y-%m-%d'  # 日期格式
+      time_format: '%H:%M:%S'  # 时间格式（仅在 type=datetime 时有效）
+      position: bottom         # 显示位置：top（标题后） | bottom（文档末尾），默认 bottom
+      exclude:                 # 排除的文件模式列表
+        - temp.md              # 排除特定文件
+        - private/*            # 排除 private 目录下的所有文件，包括子目录
+        - drafts/*.md          # 排除当前目录 drafts 下的所有 markdown 文件，不包括子目录
 ```
 
 第三步：修改工作流文件
@@ -445,3 +472,10 @@ plugins:
 ```
 
 ![image-20250326180125617](images/image-20250326180125617.png) 
+
+## 嵌入 pdf 直接显示
+
+终于显示成功了，这个 mkdocs 的找路径的逻辑我属实不理解
+
+![image-20250327201502225](images/image-20250327201502225.png)
+
