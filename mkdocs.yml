@@ -133,7 +133,9 @@ nav:
       - Reproduction/4.md
       - Reproduction/CodeRepo/1_MultiHeadAttention.md
       - Reproduction/CodeRepo/2_transformer.md
+      - Reproduction/CodeRepo/3_fourier.md
       - Reproduction/CodeRepo/1_0_Autoformer.ipynb
+      
   - 统计学:
     - Statistics/index.md
     - Statistics/1_FFT.md
