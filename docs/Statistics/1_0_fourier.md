@@ -1,3 +1,8 @@
+---
+counter: True
+comment: True
+---
+
 # 复平面旋转&DFT
 
 ## 离散傅里叶变换

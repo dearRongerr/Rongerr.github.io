@@ -116,7 +116,7 @@ Commands:
 
 ![image-20241115101535524](mkdocs_learn/image-20241115101535524.png)
 
-更换时间戳显示工具[mkdocs-document-dates](https://github.com/jaywhj/mkdocs-document-dates/blob/main/README_zh.md)
+方法 2：更换时间戳显示工具[mkdocs-document-dates](https://github.com/jaywhj/mkdocs-document-dates/blob/main/README_zh.md)
 
 第一步：安装 python 依赖库
 
@@ -522,5 +522,10 @@ plugins:
 
 
 
+## mkdocs-statistics
 
+```python
+pip install mkdocs-statistics-plugin
+```
 
+配置链接参照：[https://github.com/TonyCrane/mkdocs-statistics-plugin](https://github.com/TonyCrane/mkdocs-statistics-plugin)
