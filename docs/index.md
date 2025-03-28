@@ -1,23 +1,12 @@
 ---
+hide:
+    - date
 statistics: true
 ---
 # 首页
 
-<center>
-<div id="rcorners">
-  <script src="https://sdk.jinrishici.com/v2/browser/jinrishici.js" charset="utf-8"></script>
-  <div id="poem_sentence"></div>
-  <div id="poem_info"></div>
-  <script type="text/javascript">
-  jinrishici.load(function(result) {
-      var sentence = document.querySelector("#poem_sentence")
-      var info = document.querySelector("#poem_info")
-      sentence.innerHTML = result.data.content
-      info.innerHTML =  '《' + result.data.origin.title + '》' + result.data.origin.author + '【' + result.data.origin.dynasty + '】'
-  });
-  </script>
-</div> 
-</center>
+<center><font class="custom-font ml3">生如逆旅，一苇以航</font></center>
+
 
 <center>
   <!-- 引入 Google Fonts 中的 "Long Cang" 字体 -->
@@ -74,5 +63,5 @@ statistics: true
 - [deep_thoughts](https://www.bilibili.com/video/BV1sG411s7vV/?spm_id_from=333.337.search-card.all.click&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
 - [RethinkFun](https://www.bilibili.com/video/BV1dtSuY7Evj?spm_id_from=333.788.player.switch&vd_source=ddd7d236ab3e9b123c4086c415f4939e)
 - [Walker_V's Notebook](https://victorwang712.github.io/Note/)
-- 
+- [wcowin](https://wcowin.work/)
 

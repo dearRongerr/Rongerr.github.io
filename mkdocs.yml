@@ -87,6 +87,11 @@ extra_css:
   # 无序列表符号自定义
   - mkdocs/css/unordered-list-symbols.css
   # 标题自动编号
+  # 卡片样式
+  - assets/stylesheets/cards.css
+  - assets/stylesheets/flink.css
+  - assets/stylesheets/rounded_corner.css
+
 extra:
   generator: false
 plugins:
@@ -125,9 +130,6 @@ plugins:
   #     # strict: true      
 
 nav:
-# 为了将页面链接到某个部分，
-# 请在相应的文件夹中创建一个名为 index.md 的新文档，
-# 并将其添加到导航部分的开头
   - 便签:   
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md

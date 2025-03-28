@@ -10,17 +10,25 @@
 - [Mkdocs-Wcowin中文主题](https://wcowin.work/)
 - [MKdocs博客中文系列教程](https://www.zhihu.com/column/c_1754218140098387968)
 
-- [ ] 文章标题下显示统计
+- [x] 文章标题下显示统计
 
-![image-20250327195051004](images/image-20250327195051004.png)
-
-- [ ] 卡片显示查看 pdf
-- [ ] 折叠框
-- [ ] 归档功能
+- [x] 卡片显示查看 pdf
+- [x] 折叠框
+- [x] 归档功能（插件：`changelog`）
 - [ ] 优化渲染速度
+- [ ] 圆角设计
 - [x] 内嵌 pdf并显示
+- [ ] 本站访问量、本站运行时间
 
 
+- 友情链接，显示卡片样式
+- 日期树
+- 查看网页源代码可以有
+- 首页要改
+- 图床图床
+- 更新日志
+- 网页肤色
+- 标签怎么玩？
 
 ## TODO
 
@@ -529,3 +537,104 @@ pip install mkdocs-statistics-plugin
 ```
 
 配置链接参照：[https://github.com/TonyCrane/mkdocs-statistics-plugin](https://github.com/TonyCrane/mkdocs-statistics-plugin)
+
+
+## 配置引用路径
+
+本地 vscode 中：docs/pdf_files/1_0_dilatedConv.pdf
+
+mkdocs serve：127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf
+
+远程仓库的路径：https://dearrongerr.github.io/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf
+
+html 中 a 标签找的地址：设置是 `<a class="down-button" target="_blank" href="/pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-download: 下载</a>`，实际找到的是 ：127.0.0.1.8000/pdf_files/1_0_dilatedConv.pdf
+
+html 中 a 标签设置的路径路径：`<a class="down-button" target="_blank" href="../pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-download: 下载</a>`，实际找到的是：127.0.0.1.8000/Rongerr.github.io/logs/pdf_files/1_0_dilatedConv.pdf
+
+解决方法：
+
+> 场景描述：
+>
+> pwd：`docs/logs/3_test.md`
+>
+> 要引用的文件路径：`docs/pdf_files/1_0_dilatedConv.pdf`
+
+==（正确设置引用路径）== 使用`[]()` 找路径设置链接时，测试正确跳转 [点击跳转](../pdf_files/1_0_dilatedConv.pdf)  ，路径设置
+
+>  `[点击跳转](../pdf_files/1_0_dilatedConv.pdf)`  
+
+🟢 mkdocs serve 中解析的路径为：👇 ，并且可以正常打开
+
+> `127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf`
+
+因为在配置文件中设置的路径 `site_url` ：
+
+```yaml
+site_url: https://dearrongerr.github.io/Rongerr.github.io
+```
+
+🟢 部署到远程仓库，上传 gitpages，这路径被解析为：
+
+> `https://dearrongerr.github.io/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf`
+
+==（`a`标签中正确设置引用路径）== 但是 a 标签中，如果想正确的引用，路径要被设置为 <a href=" /Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf ">测试点击正确跳转</a>：
+
+```html
+href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" 
+```
+
+==（`iframe` 标签中 src 设置路径同理）== 
+
+```html
+<iframe src="/Rongerr.github.io/pdf_files/5_3_DTFS.pdf" width="100%" height="800px" style="border: 1px solid #ccc; overflow: auto;"> </iframe>
+```
+
+
+
+<iframe src="/Rongerr.github.io/pdf_files/5_3_DTFS.pdf" width="100%" height="800px" style="border: 1px solid #ccc; overflow: auto;"> </iframe>
+
+都能在本地和远程正确引用到文件。
+
+==总结：== 
+
+- html 解析路径：加`/Rongerr.github.io/pdf_files/`
+- 本地引用路径直接：`../pdf_files/`
+
+## 暂存
+
+````
+docs/assets/images/icons/pdf.svg
+
+```html 
+
+  <a class="view-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-eye: 查看</a>
+
+```
+````
+
+
+
+## 可折叠的框、卡片展示嵌入的pdf文件
+
+- [x] 可折叠的下拉框
+
+- [x] 卡片展示嵌入的pdf文件
+
+???+ info
+
+    - Author: Miao Xiong, Zhiyuan Hu, Xinyang Lu, Yifei Li, Jie Fu, Junxian He, Bryan Hooi
+        - Conference: ICLR 2024
+        - arXiv: [2306.13063](https://arxiv.org/abs/2306.13063)
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">论文</div>
+      <div class="file-meta">1.15 MB / 29 P / 2025-02-25</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1">查看</a>
+</div>

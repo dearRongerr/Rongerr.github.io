@@ -1,67 +1,134 @@
-# 功能开发测试页面
-- 可折叠的下拉框
+---
+comment: True
+glightbox: False
+nostatistics: True
+---
 
-- 卡片展示嵌入的pdf、压缩包等文件
-  
+# 友链
 
-???+ info
+!!! abstract
+    一些朋友们的笔记本！
 
-    - Author: Miao Xiong, Zhiyuan Hu, Xinyang Lu, Yifei Li, Jie Fu, Junxian He, Bryan Hooi
-    - Conference: ICLR 2024
-    - arXiv: [2306.13063](https://arxiv.org/abs/2306.13063)
+<div class="flink-list">
 
-docs/assets/images/icons/pdf.svg
-
-<div class="card file-block" markdown="1">
-<div class="file-icon"><img src="/Rongerr.github.io/assets/images/icons/pdf.svg" style="height: 3em;"></div>
-<div class="file-body">
-<div class="file-title">论文</div>
-<div class="file-meta">1.15 MB / 29 P / 2025-02-25</div>
+<div class="flink-list-item">
+    <a href="https://note.isshikih.top/" title="Isshiki修's Notebook" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/isshiki.png" alt="Isshiki修">
+        </div>
+        <div class="flink-item-name heti-skip">Isshiki修's Notebook</div>
+        <div class="flink-item-desc">修佬 tql！</div>
+    </a>
 </div>
-<a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-download: 下载</a>
+
+<div class="flink-list-item">
+    <a href="https://xuan-insr.github.io/" title="咸鱼暄的代码空间" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/xyx.ico" alt="咸鱼暄">
+        </div>
+        <div class="flink-item-name">咸鱼暄的代码空间</div>
+        <div class="flink-item-desc">一个好怪的学长（划掉</div>
+    </a>
 </div>
 
-路径：
+<div class="flink-list-item">
+    <a href="https://notes.widcard.win/" title="widcardw 的笔记" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/wid.png" alt="widcardw">
+        </div>
+        <div class="flink-item-name">widcardw 的笔记</div>
+        <div class="flink-item-desc">wid 好强，笔记好好看</div>
+    </a>
+</div>
 
-本地 vscode 中：docs/pdf_files/1_0_dilatedConv.pdf
+<div class="flink-list-item">
+    <a href="https://blog.chenyuan.me/" title="chenyuan 的技术笔记本" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/cy.jpeg" alt="zjuchenyuan">
+        </div>
+        <div class="flink-item-name">chenyuan 的技术笔记本</div>
+        <div class="flink-item-desc">\cydl/\cydl/\cydl/</div>
+    </a>
+</div>
 
-mkdocs serve：127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf
+<div class="flink-list-item">
+    <a href="https://yhwu-is.github.io/Notes/" title="yhwu_is's Notes" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/wyy.jpg" alt="yhwu_is's Notes">
+        </div>
+        <div class="flink-item-name">yhwu_is's Notes</div>
+        <div class="flink-item-desc">wyy! 我滴超人</div>
+    </a>
+</div>
 
-远程仓库的路径：https://dearrongerr.github.io/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf
+<div class="flink-list-item">
+    <a href="https://frightenedfoxcn.github.io/notes/" title="FFox's Notes" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/ffox.jpg" alt="FFox's Notes">
+        </div>
+        <div class="flink-item-name">FFox's Notes</div>
+        <div class="flink-item-desc">kami❗️</div>
+    </a>
+</div>
 
-html 中 a 标签找的地址：设置是 `<a class="down-button" target="_blank" href="/pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-download: 下载</a>`，实际找到的是 ：127.0.0.1.8000/pdf_files/1_0_dilatedConv.pdf
+<div class="flink-list-item">
+    <a href="https://note.hobbitqia.cc" title="HobbitQia 的笔记本" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/q.ico" alt="HobbitQia 的笔记本">
+        </div>
+        <div class="flink-item-name">HobbitQia 的笔记本</div>
+        <div class="flink-item-desc">你是❓ 您❗️</div>
+    </a>
+</div>
 
-html 中 a 标签设置的路径路径：`<a class="down-button" target="_blank" href="../pdf_files/1_0_dilatedConv.pdf" markdown="1">:fontawesome-solid-download: 下载</a>`，实际找到的是：127.0.0.1.8000/Rongerr.github.io/logs/pdf_files/1_0_dilatedConv.pdf
+<div class="flink-list-item">
+    <a href="https://note.bowling233.top/" title="Bowling's TechStack" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/bowling.jpeg" alt="Bowling">
+        </div>
+        <div class="flink-item-name">Bowling's TechStack</div>
+        <div class="flink-item-desc">强得恐怖的学弟</div>
+    </a>
+</div>
 
-解决方法：
+<div class="flink-list-item">
+    <a href="https://notes.zerokei.top/" title="克瑞奇的笔记本" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/zerokei.png" alt="克瑞奇">
+        </div>
+        <div class="flink-item-name">克瑞奇的笔记本</div>
+        <div class="flink-item-desc">也是一个好强的学长/拜谢</div>
+    </a>
+</div>
 
-> 场景描述：
->
-> pwd：`docs/logs/3_test.md`
->
-> 要引用的文件路径：`docs/pdf_files/1_0_dilatedConv.pdf`
+<div class="flink-list-item">
+    <a href="https://matheart.github.io/matheart-note/" title="Matheart's Note" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/mh.jpeg" alt="Matheart">
+        </div>
+        <div class="flink-item-name">Matheart's Note</div>
+        <div class="flink-item-desc">是数心耶（大肥鸽子好久没更新了</div>
+    </a>
+</div>
 
-==（正确设置引用路径）== 使用`[]()` 找路径设置链接时，测试正确跳转 [点击跳转](../pdf_files/1_0_dilatedConv.pdf)  ，路径设置
+<div class="flink-list-item">
+    <a href="https://blog.gztime.cc/" title="GZTime's Blog" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://cdn.tonycrane.cc/note/friends/GZTime_2021.png" alt="GZTime's Blog">
+        </div>
+        <div class="flink-item-name">GZTime's Blog</div>
+        <div class="flink-item-desc">这个懒蛋还没搞 note</div>
+    </a>
+</div>
 
->  `[点击跳转](../pdf_files/1_0_dilatedConv.pdf)`  
+<div class="flink-list-item">
+    <a href="https://shao.fun/" title="烧风的博客" target="_blank">
+        <div class="flink-item-icon">
+            <img src="https://shao.fun/images/logo.svg" alt="烧风">
+        </div>
+        <div class="flink-item-name">烧风的博客</div>
+        <div class="flink-item-desc">一个很强的 up 主@烧风</div>
+    </a>
+</div>
 
-🟢 mkdocs serve 中解析的路径为：👇 ，并且可以正常打开
-
-> `127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf`
-
-因为在配置文件中设置的路径 `site_url` ：
-
-```yaml
-site_url: https://dearrongerr.github.io/Rongerr.github.io
-```
-
-🟢 部署到远程仓库，上传 gitpages，这路径被解析为：
-
-
-
-==（a标签中正确设置引用路径）== 但是 a 标签中，如果想正确的引用，路径要被设置为 <a href=" /Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf ">测试点击正确跳转</a>：
-
-```html
-href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" 
-```
-
+</div>
