@@ -1,7 +1,9 @@
 site_name: My Docs
 site_name: 溶err
 # site_url: https://mydomain.org/mysite
-site_url: https://mydomain.org
+# site_url: https://mydomain.org
+site_url: https://dearrongerr.github.io/Rongerr.github.io
+use_directory_urls: true
 edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
 
 
