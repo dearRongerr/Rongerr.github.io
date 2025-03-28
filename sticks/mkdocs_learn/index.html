@@ -19,6 +19,9 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css" rel="stylesheet"/>
 <link href="../../mkdocs/css/no-footer.css" rel="stylesheet"/>
 <link href="../../mkdocs/css/unordered-list-symbols.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/cards.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/flink.css" rel="stylesheet"/>
+<link href="../../assets/stylesheets/rounded_corner.css" rel="stylesheet"/>
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
 <link href="../../assets/document_dates.css" rel="stylesheet"/>
 <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
@@ -347,6 +350,27 @@
 <a class="md-nav__link" href="#mkdocs-statistics">
 <span class="md-ellipsis">
       mkdocs-statistics
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      配置引用路径
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      暂存
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pdf_2">
+<span class="md-ellipsis">
+      可折叠的框、卡片展示嵌入的pdf文件
     </span>
 </a>
 </li>
@@ -1600,7 +1624,7 @@
 <li class="md-nav__item">
 <a class="md-nav__link" href="../../logs/3_test/">
 <span class="md-ellipsis">
-    功能开发测试页面
+    友链
     
   </span>
 </a>
@@ -1734,6 +1758,27 @@
     </span>
 </a>
 </li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_8">
+<span class="md-ellipsis">
+      配置引用路径
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#_9">
+<span class="md-ellipsis">
+      暂存
+    </span>
+</a>
+</li>
+<li class="md-nav__item">
+<a class="md-nav__link" href="#pdf_2">
+<span class="md-ellipsis">
+      可折叠的框、卡片展示嵌入的pdf文件
+    </span>
+</a>
+</li>
 </ul>
 </nav>
 </div>
@@ -1743,7 +1788,7 @@
 <article class="md-content__inner md-typeset">
 <h1 id="mkdocs">MkDocs<a class="headerlink" href="#mkdocs" title="Permanent link">¶</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约 1332 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> 92 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> 14 张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间 6 分钟</p>
+<p><span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"></path></svg></span> 约 1752 个字 <span class="twemoji"><svg viewbox="0 0 640 512" xmlns="http://www.w3.org/2000/svg"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M392.8 1.2c-17-4.9-34.7 5-39.6 22l-128 448c-4.9 17 5 34.7 22 39.6s34.7-5 39.6-22l128-448c4.9-17-5-34.7-22-39.6m80.6 120.1c-12.5 12.5-12.5 32.8 0 45.3l89.3 89.4-89.4 89.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l112-112c12.5-12.5 12.5-32.8 0-45.3l-112-112c-12.5-12.5-32.8-12.5-45.3 0zm-306.7 0c-12.5-12.5-32.8-12.5-45.3 0l-112 112c-12.5 12.5-12.5 32.8 0 45.3l112 112c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L77.3 256l89.4-89.4c12.5-12.5 12.5-32.8 0-45.3"></path></svg></span> 97 行代码 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M21 17H7V3h14m0-2H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2M3 5H1v16a2 2 0 0 0 2 2h16v-2H3m12.96-10.71-2.75 3.54-1.96-2.36L8.5 15h11z"></path></svg></span> 14 张图片 <span class="twemoji"><svg viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"></path></svg></span> 预计阅读时间 7 分钟</p>
 </div>
 <h2 id="_1">学习链接<a class="headerlink" href="#_1" title="Permanent link">¶</a></h2>
 <p>好看的页面设计：</p>
@@ -1756,16 +1801,29 @@
 <p><a href="https://www.zhihu.com/column/c_1754218140098387968">MKdocs博客中文系列教程</a></p>
 </li>
 <li class="task-list-item">
-<p><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 文章标题下显示统计</p>
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 文章标题下显示统计</p>
 </li>
-</ul>
-<p><img alt="image-20250327195051004" src="../images/image-20250327195051004.png"/></p>
-<ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 卡片显示查看 pdf</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 折叠框</li>
-<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 归档功能</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 卡片显示查看 pdf</p>
+</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 折叠框</li>
+<li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 归档功能（插件：<code>changelog</code>）</li>
 <li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 优化渲染速度</li>
+<li class="task-list-item"><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 圆角设计</li>
 <li class="task-list-item"><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 内嵌 pdf并显示</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 本站访问量、本站运行时间</p>
+</li>
+<li>
+<p>友情链接，显示卡片样式</p>
+</li>
+<li>日期树</li>
+<li>查看网页源代码可以有</li>
+<li>首页要改</li>
+<li>图床图床</li>
+<li>更新日志</li>
+<li>网页肤色</li>
+<li>标签怎么玩？</li>
 </ul>
 <h2 id="todo">TODO<a class="headerlink" href="#todo" title="Permanent link">¶</a></h2>
 <ul class="task-list">
@@ -2126,6 +2184,86 @@ docs/
 <div class="language-python highlight"><pre><span></span><code><span id="__span-27-1"><a href="#__codelineno-27-1" id="__codelineno-27-1" name="__codelineno-27-1"></a><span class="n">pip</span> <span class="n">install</span> <span class="n">mkdocs</span><span class="o">-</span><span class="n">statistics</span><span class="o">-</span><span class="n">plugin</span>
 </span></code></pre></div>
 <p>配置链接参照：<a href="https://github.com/TonyCrane/mkdocs-statistics-plugin">https://github.com/TonyCrane/mkdocs-statistics-plugin</a></p>
+<h2 id="_8">配置引用路径<a class="headerlink" href="#_8" title="Permanent link">¶</a></h2>
+<p>本地 vscode 中：docs/pdf_files/1_0_dilatedConv.pdf</p>
+<p>mkdocs serve：127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf</p>
+<p>远程仓库的路径：https://dearrongerr.github.io/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf</p>
+<p>html 中 a 标签找的地址：设置是 <code>&lt;a class="down-button" target="_blank" href="/pdf_files/1_0_dilatedConv.pdf" markdown="1"&gt;:fontawesome-solid-download: 下载&lt;/a&gt;</code>，实际找到的是 ：127.0.0.1.8000/pdf_files/1_0_dilatedConv.pdf</p>
+<p>html 中 a 标签设置的路径路径：<code>&lt;a class="down-button" target="_blank" href="../pdf_files/1_0_dilatedConv.pdf" markdown="1"&gt;:fontawesome-solid-download: 下载&lt;/a&gt;</code>，实际找到的是：127.0.0.1.8000/Rongerr.github.io/logs/pdf_files/1_0_dilatedConv.pdf</p>
+<p>解决方法：</p>
+<blockquote>
+<p>场景描述：</p>
+<p>pwd：<code>docs/logs/3_test.md</code></p>
+<p>要引用的文件路径：<code>docs/pdf_files/1_0_dilatedConv.pdf</code></p>
+</blockquote>
+<p><mark>（正确设置引用路径）</mark> 使用<code>[]()</code> 找路径设置链接时，测试正确跳转 <a href="../../pdf_files/1_0_dilatedConv.pdf">点击跳转</a>  ，路径设置</p>
+<blockquote>
+<p><code>[点击跳转](../pdf_files/1_0_dilatedConv.pdf)</code> </p>
+</blockquote>
+<p>🟢 mkdocs serve 中解析的路径为：👇 ，并且可以正常打开</p>
+<blockquote>
+<p><code>127.0.0.1.8000/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf</code></p>
+</blockquote>
+<p>因为在配置文件中设置的路径 <code>site_url</code> ：</p>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-28-1"><a href="#__codelineno-28-1" id="__codelineno-28-1" name="__codelineno-28-1"></a><span class="nt">site_url</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://dearrongerr.github.io/Rongerr.github.io</span>
+</span></code></pre></div>
+<p>🟢 部署到远程仓库，上传 gitpages，这路径被解析为：</p>
+<blockquote>
+<p><code>https://dearrongerr.github.io/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf</code></p>
+</blockquote>
+<p><mark>（<code>a</code>标签中正确设置引用路径）</mark> 但是 a 标签中，如果想正确的引用，路径要被设置为 <a href=" /Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf ">测试点击正确跳转</a>：</p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-29-1"><a href="#__codelineno-29-1" id="__codelineno-29-1" name="__codelineno-29-1"></a>href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" 
+</span></code></pre></div>
+<p><mark>（<code>iframe</code> 标签中 src 设置路径同理）</mark> </p>
+<div class="language-html highlight"><pre><span></span><code><span id="__span-30-1"><a href="#__codelineno-30-1" id="__codelineno-30-1" name="__codelineno-30-1"></a><span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">src</span><span class="o">=</span><span class="s">"/Rongerr.github.io/pdf_files/5_3_DTFS.pdf"</span> <span class="na">width</span><span class="o">=</span><span class="s">"100%"</span> <span class="na">height</span><span class="o">=</span><span class="s">"800px"</span> <span class="na">style</span><span class="o">=</span><span class="s">"border: 1px solid #ccc; overflow: auto;"</span><span class="p">&gt;</span> <span class="p">&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</span></code></pre></div>
+<iframe height="800px" src="/Rongerr.github.io/pdf_files/5_3_DTFS.pdf" style="border: 1px solid #ccc; overflow: auto;" width="100%"> </iframe>
+<p>都能在本地和远程正确引用到文件。</p>
+<p><mark>总结：</mark> </p>
+<ul>
+<li>html 解析路径：加<code>/Rongerr.github.io/pdf_files/</code></li>
+<li>本地引用路径直接：<code>../pdf_files/</code></li>
+</ul>
+<h2 id="_9">暂存<a class="headerlink" href="#_9" title="Permanent link">¶</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-31-1"><a href="#__codelineno-31-1" id="__codelineno-31-1" name="__codelineno-31-1"></a>docs/assets/images/icons/pdf.svg
+</span><span id="__span-31-2"><a href="#__codelineno-31-2" id="__codelineno-31-2" name="__codelineno-31-2"></a>
+</span><span id="__span-31-3"><a href="#__codelineno-31-3" id="__codelineno-31-3" name="__codelineno-31-3"></a>```html 
+</span><span id="__span-31-4"><a href="#__codelineno-31-4" id="__codelineno-31-4" name="__codelineno-31-4"></a>
+</span><span id="__span-31-5"><a href="#__codelineno-31-5" id="__codelineno-31-5" name="__codelineno-31-5"></a>  &lt;a class="view-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1"&gt;:fontawesome-solid-eye: 查看&lt;/a&gt;
+</span><span id="__span-31-6"><a href="#__codelineno-31-6" id="__codelineno-31-6" name="__codelineno-31-6"></a>
+</span><span id="__span-31-7"><a href="#__codelineno-31-7" id="__codelineno-31-7" name="__codelineno-31-7"></a>```
+</span></code></pre></div>
+<h2 id="pdf_2">可折叠的框、卡片展示嵌入的pdf文件<a class="headerlink" href="#pdf_2" title="Permanent link">¶</a></h2>
+<ul class="task-list">
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 可折叠的下拉框</p>
+</li>
+<li class="task-list-item">
+<p><label class="task-list-control"><input checked="" disabled="" type="checkbox"><span class="task-list-indicator"></span></input></label> 卡片展示嵌入的pdf文件</p>
+</li>
+</ul>
+<details class="info" open="open">
+<summary>Info</summary>
+<ul>
+<li>Author: Miao Xiong, Zhiyuan Hu, Xinyang Lu, Yifei Li, Jie Fu, Junxian He, Bryan Hooi<ul>
+<li>Conference: ICLR 2024</li>
+<li>arXiv: <a href="https://arxiv.org/abs/2306.13063">2306.13063</a></li>
+</ul>
+</li>
+</ul>
+</details>
+<div class="card">
+<div class="file-block">
+<div class="file-icon">
+<img alt="PDF Icon" src="/Rongerr.github.io/assets/images/icons/pdf.svg"/>
+</div>
+<div class="file-body">
+<div class="file-title">论文</div>
+<div class="file-meta">1.15 MB / 29 P / 2025-02-25</div>
+</div>
+</div>
+<a class="down-button" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1" target="_blank">查看</a>
+</div>
 <div class="document-dates-plugin-wrapper"><div class="document-dates-plugin"><span title="创建时间: 2024-11-14"><span class="material-icons">add_circle</span>4 个月前</span><span title="最后更新: 2025-03-28"><span class="material-icons">update</span>刚刚</span></div></div>
 </article>
 </div>
