@@ -1,75 +1,69 @@
-.flink-list {
-  overflow: auto;
-  padding: 10px 10px 0;
-  text-align: center;
-}
-.flink-list a {
-  color: #4a4a4a;
-}
-[data-md-color-scheme="slate"] .flink-list a {
-  color: rgba(255,255,255,0.7);
-}
-.flink-list-item {
-  position: relative;
-  float: left;
-  overflow: hidden;
-  margin: 15px 7px;
-  width: calc(100% / 2 - 15px);
-  height: 90px;
-  border-radius: 8px;
-  line-height: 17px;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  transition: 0.25s;
-}
-.flink-item-icon {
-  float: left;
-  overflow: hidden;
-  margin: 15px 10px;
-  width: 60px;
-  height: 60px;
-  border-radius: 35px;
-}
-.flink-item-name {
-  padding: 19px 10px 0 0;
-  height: 40px;
-  font-weight: bold;
-  font-size: 1.3em;
-}
-.flink-item-desc {
-  padding: 13px 10px 16px 0;
-  height: 50px;
-  font-size: 0.93em;
-}
-.flink-list-item:hover {
-  background-color: rgba(68,138,255,.1);
-}
-.flink-list-item {
-  width: calc(50% - 15px) !important;
+
+/* 深色模式下的卡片样式 */
+[data-md-color-scheme="slate"] .flink-list-item {
+  background-color: #2b2b2b; /* 深色背景 */
+  color: rgba(255, 255, 255, 0.85); /* 浅色文字 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* 深色阴影 */
 }
 
-@media screen and (max-width: 1310px) {
-  .flink-list-item {
-    width: calc(100% - 15px) !important;
-  }
+[data-md-color-scheme="slate"] .flink-item-name {
+  color: #4dabf7; /* 标题颜色为浅蓝色 */
 }
-@media screen and (max-width: 1219px) {
-  .flink-list-item {
-    width: calc(50% - 15px) !important;
-  }
+
+[data-md-color-scheme="slate"] .flink-item-desc {
+  color: rgba(255, 255, 255, 0.7); /* 描述文字颜色 */
 }
-@media screen and (max-width: 1027px) {
-  .flink-list-item {
-    width: calc(100% - 15px) !important;
-  }
+
+.flink-list {
+  display: flex; /* 使用 Flexbox 布局 */
+  flex-wrap: wrap; /* 允许换行 */
+  justify-content: space-between; /* 卡片之间的间距 */
+  gap: 15px; /* 卡片之间的间距 */
+  padding: 10px 10px 0;
 }
+
+.flink-list-item {
+  flex: 0 0 calc(50% - 15px); /* 每行 2 个卡片，减去间距 */
+  box-sizing: border-box; /* 包括内边距和边框 */
+  position: relative;
+  overflow: hidden;
+  padding: 15px;
+  border-radius: 12px; /* 圆角矩形 */
+  background-color: #ffffff; /* 卡片背景颜色 */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 添加阴影 */
+  line-height: 1.5;
+  transition: 0.25s;
+  display: flex;
+  flex-direction: column; /* 垂直排列内容 */
+  align-items: center; /* 水平居中 */
+  justify-content: center; /* 垂直居中 */
+  text-align: center; /* 文本居中 */
+  padding: 20px;
+}
+
+.flink-list-item:hover {
+  background-color: rgba(68, 138, 255, 0.1); /* 鼠标悬停时背景颜色 */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影效果 */
+}
+
+.flink-item-name {
+  font-weight: bold;
+  font-size: 1.3em;
+  margin-bottom: 5px;
+  color: #007bff; /* 标题颜色 */
+}
+
+.flink-item-name:hover {
+  text-decoration: underline; /* 鼠标悬停时标题下划线 */
+}
+
+.flink-item-desc {
+  font-size: 0.93em;
+  color: #666666; /* 描述文字颜色 */
+}
+
 @media screen and (max-width: 959px) {
   .flink-list-item {
-    width: calc(50% - 15px) !important;
-  }
-}
-@media screen and (max-width: 692px) {
-  .flink-list-item {
-    width: calc(100% - 15px) !important;
+    flex: 0 0 calc(100% - 15px); /* 小屏幕下每行 1 个卡片 */
   }
 }

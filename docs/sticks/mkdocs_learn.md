@@ -4,11 +4,38 @@
 
 好看的页面设计：
 
-- [https://note.tonycrane.cc/web/](https://note.tonycrane.cc/web/)
-- [https://note.hobbitqia.cc/changelog/](https://note.hobbitqia.cc/changelog/)
-- [官方 Material for MkDocs](https://squidfunk.github.io/mkdocs-material/)
-- [Mkdocs-Wcowin中文主题](https://wcowin.work/)
-- [MKdocs博客中文系列教程](https://www.zhihu.com/column/c_1754218140098387968)
+<div class="flink-list">
+
+  <div class="flink-list-item">
+    <a href="https://wcowin.work/" title="Mkdocs-Wcowin中文主题" target="_blank">
+      <div class="flink-item-name">Mkdocs-Wcowin中文主题</div>
+      <div class="flink-item-desc">Wcowin，经常去翻的页面😂 </div>
+    </a>
+  </div>
+
+  <div class="flink-list-item">
+    <a href="https://note.hobbitqia.cc/changelog/" title="mkdocs-changelog-plugin" target="_blank">
+      <div class="flink-item-name">mkdocs-changelog-plugin</div>
+      <div class="flink-item-desc"> 馋了好久，终于设置啦</div>
+    </a>
+  </div>
+
+  <div class="flink-list-item">
+    <a href="https://note.tonycrane.cc/web/" title="鹤翔万里的笔记本" target="_blank">
+      <div class="flink-item-name">鹤翔万里的笔记本</div>
+      <div class="flink-item-desc"> 带佬，会写插件，css </div>
+    </a>
+  </div>
+
+  <div class="flink-list-item">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="官方 Material for MkDocs" target="_blank">
+      <div class="flink-item-name">官方 Material for MkDocs</div>
+      <div class="flink-item-desc"> 官方文档 </div>
+    </a>
+  </div>
+
+</div>
+
 
 - [x] 文章标题下显示统计
 
@@ -16,18 +43,29 @@
 - [x] 折叠框
 - [x] 归档功能（插件：`changelog`）
 - [ ] 优化渲染速度
-- [ ] 圆角设计
+- [x] 圆角设计（搜索框确实变圆角了）
 - [x] 内嵌 pdf并显示
-- [ ] 本站访问量、本站运行时间
+- [x] 本站访问量、本站运行时间
+
+- [x] 友情链接，显示卡片样式
 
 
-- 友情链接，显示卡片样式
 - 日期树
-- 查看网页源代码可以有
-- 首页要改
+
+- [x] 查看网页源代码可以有（自己去 github 翻把）
+
+- [x] 首页要改，暂时先这样的首页吧。没有让我觉得必须改的必要。
+
+
 - 图床图床
 - 更新日志
-- 网页肤色
+- 网页背景
+- 图标变成芦苇
+- index tab
+
+- [x] 网页肤色
+
+
 - 标签怎么玩？
 
 ## TODO

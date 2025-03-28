@@ -1,12 +1,3 @@
----
-title: "一些日期
-date: 2025-03-27
-author: "dearRongerr"
-description: " 1_date"
-tags:
-  - logs
----
-
 # 一些日期
 
 ## 毕业相关
