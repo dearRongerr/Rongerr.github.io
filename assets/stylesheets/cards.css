@@ -41,7 +41,7 @@
 .file-title a {
     font-size: 1.2em;
     font-weight: bold;
-    color: #007bff;
+    color: #4CAF50;
     text-decoration: none;
 }
 
@@ -78,9 +78,9 @@
     padding: 0.5em 1em;
     font-size: 0.9em;
     font-weight: bold;
-    color: #007bff;
+    color: #4CAF50;
     background-color: transparent;
-    border: 1px solid #007bff;
+    border: 1px solid #4CAF50;
     border-radius: 4px;
     text-decoration: none;
     text-align: center;
@@ -89,7 +89,7 @@
 }
 
 .down-button:hover, .view-button:hover {
-    background-color: #007bff; /* 更深的蓝色 */
+    background-color: #4CAF50; /* 更深的蓝色 */
     color: #ffffff !important;; /* 白色字体 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 }
