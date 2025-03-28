@@ -15,7 +15,14 @@ p人不支持中规中矩，看了一些 mkdocs 的优秀设计，忽然觉得�
 
 `blog`功能的逻辑实在捋不通，不是我习惯的方式。`换了changelog`的插件，舒适多了。
 
-mkdocs 的寻址逻辑和 vscode 的找地址逻辑，不一样，现在就是 vscode 或者本地能找到的地址到了 mkdocs 或者部署到远程就找不到了。
+- [x] mkdocs 的寻址逻辑和 vscode 的找地址逻辑，不一样，现在就是 vscode 或者本地能找到的地址到了 mkdocs 或者部署到远程就找不到了。
+
+```yaml
+# （修改前）
+site_url: https://mydomain.org/mysite
+# （修改后）
+site_url: https://mydomain.org
+```
 
 mkdocs 的好处就是可以直接扒别人的源码，自己入门或者设计起来会方便。
 
