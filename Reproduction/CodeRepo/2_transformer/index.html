@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
       <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
@@ -370,6 +372,26 @@
     
   
   杂
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -4136,6 +4158,8 @@
       
         
       
+        
+      
     
     
       
@@ -4189,11 +4213,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/diary/" class="md-nav__link">
+      <a href="../../../logs/1_date/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    乐观 &amp; 坚强
+    1 date
     
   </span>
   
@@ -4211,11 +4235,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/1_date/" class="md-nav__link">
+      <a href="../../../logs/diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    一些日期
+    diary
     
   </span>
   
@@ -4224,6 +4248,89 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/2_updatelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
             
           </ul>
@@ -4271,6 +4378,9 @@
 
 
 <h1 id="transformer">从现实生活的角度看 Transformer<a class="headerlink" href="#transformer" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p>:material-circle-edit-outline: 约 1301 个字 :material-image-multiple-outline: 2 张图片 :material-clock-time-two-outline: 预计阅读时间 4 分钟</p>
+</div>
 <p>原始 Transformer 的结构</p>
 <p><img alt="image-20250320092445230" src="../../images/image-20250320092445230.png" /></p>
 <p>编码器，解码器，编码器接收的 input 是 word embedding + positional embedding，然后通过自注意力机制和前馈神经网络。解码器接收的 输入是 output，预测部分，同样是 word embedding+positional embedding，然后分别经过解码器输入的 自注意力机制，以及和编码器输出 的 交叉注意力，最后经过 全连接层，得到最终的输出。</p>
@@ -4317,13 +4427,16 @@ D = 7 (每个时间步有7个特征，如对于股票可能包括开盘价、收
 <blockquote>
 <p>最后一个 linear 层，应该是为了还原原始维度的。</p>
 </blockquote>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='Created Time: 2025-03-20'><span class='material-icons'>add_circle</span>2025-03-20</span><span title='Last Update: 2025-03-20'><span class='material-icons'>update</span>2025-03-20</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-03-20'><span class='material-icons'>add_circle</span>1 周前</span><span title='最后更新: 2025-03-20'><span class='material-icons'>update</span>1 周前</span></div></div>
 
 
 
 
 
 
+
+  
+  
 
 
 

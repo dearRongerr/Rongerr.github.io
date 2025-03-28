@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
       <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
@@ -370,6 +372,26 @@
     
   
   杂
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -4301,6 +4323,8 @@
       
         
       
+        
+      
     
     
       
@@ -4354,11 +4378,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/diary/" class="md-nav__link">
+      <a href="../../../logs/1_date/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    乐观 &amp; 坚强
+    1 date
     
   </span>
   
@@ -4376,11 +4400,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/1_date/" class="md-nav__link">
+      <a href="../../../logs/diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    一些日期
+    diary
     
   </span>
   
@@ -4389,6 +4413,89 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/2_updatelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
             
           </ul>
@@ -4572,6 +4679,9 @@
 
   <h1>rank1 CountGD</h1>
 
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p>:material-circle-edit-outline: 约 5789 个字 :material-image-multiple-outline: 16 张图片 :material-clock-time-two-outline: 预计阅读时间 19 分钟</p>
+</div>
 <h2 id="_1">多模态特征开放世界目标计数<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
 <p>2024年7月5日 发表</p>
 <p>5 Jul 2024 · Niki Amini-Naieni, Tengda Han, Andrew Zisserman · </p>
@@ -4884,13 +4994,16 @@ clip   bert</p>
 <p>我们选择GroundingDINO[30]而不是其他视觉语言模型（VLMs），是因为其在视觉定位数据上的预训练，使其与其他VLMs（如CLIP[17]）相比具有更细粒度的特征。</p>
 <p>为了扩展GroundingDINO以接受视觉示例，我们将其视为文本标记。因为视觉示例和文本都指定了对象，我们认为视觉示例可以被GroundingDINO像文本标记一样对待，并将其整合到训练和推理过程中。在将视觉示例视为短语中的附加文本标记时，我们在对应于视觉示例的短语和视觉示例之间添加自注意力，而不是将它们分开。这使得COUNTGD能够学习融合视觉示例和文本标记，以形成对要计数对象的更具信息性的规范。同样，GroundingDINO的特征增强器和跨模态解码器中图像和文本特征之间的交叉注意力在COUNTGD中变为图像与融合后的视觉示例和文本特征之间的交叉注意力。在GroundingDINO中的语言引导查询选择在COUNTGD中变为语言和视觉示例引导的查询选择。通过这种方式，COUNTGD自然地扩展了GroundingDINO，使其能够输入文本和视觉示例来描述对象。</p>
 <p>在GroundingDINO中，图像编码器 <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 与文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 一起在丰富的检测和短语定位数据上进行了预训练，为其提供了丰富的区域和文本感知特征。由于我们希望建立在这个预训练的联合视觉-语言嵌入之上，我们保持图像编码器  <span class="arithmatex">\(f_{\theta_{\text{SwinT}}}\)</span> 和文本编码器 <span class="arithmatex">\(f_{\theta_{\text{TT}}}\)</span> 不变。</p>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='Created Time: 2024-11-15'><span class='material-icons'>add_circle</span>2024-11-15</span><span title='Last Update: 2024-12-02'><span class='material-icons'>update</span>2024-12-02</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2024-11-15'><span class='material-icons'>add_circle</span>4 个月前</span><span title='最后更新: 2024-12-02'><span class='material-icons'>update</span>3 个月前</span></div></div>
 
 
 
 
 
 
+
+  
+  
 
 
 

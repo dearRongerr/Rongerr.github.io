@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../../css/timeline.css">
+    
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
       <link rel="stylesheet" href="../../../mkdocs/css/no-footer.css">
@@ -372,6 +374,26 @@
     
   
   杂
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -4147,6 +4169,8 @@
       
         
       
+        
+      
     
     
       
@@ -4200,11 +4224,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/diary/" class="md-nav__link">
+      <a href="../../../logs/1_date/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    乐观 &amp; 坚强
+    1 date
     
   </span>
   
@@ -4222,11 +4246,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../../logs/1_date/" class="md-nav__link">
+      <a href="../../../logs/diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    一些日期
+    diary
     
   </span>
   
@@ -4235,6 +4259,89 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../logs/2_updatelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
             
           </ul>
@@ -4282,6 +4389,9 @@
 
 
 <h1 id="1">1 两数之和<a class="headerlink" href="#1" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p>:material-circle-edit-outline: 约 356 个字 :fontawesome-solid-code: 15 行代码 :material-clock-time-two-outline: 预计阅读时间 1 分钟</p>
+</div>
 <p>力扣1 两数之和 </p>
 <div class="language-python highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">class</span><span class="w"> </span><span class="nc">Solution</span><span class="p">:</span>
 </span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    <span class="k">def</span><span class="w"> </span><span class="nf">twoSum</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">nums</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">],</span> <span class="n">target</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">List</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
@@ -4305,13 +4415,16 @@
 <p>再来：首先定义空字典，用来存储已经遍历过的数字及其对应的索引；接下来 for loop遍历数组nums,其中i是当前遍历到的数字的索引；如果不在字典中，说明之前没有遇到过与当前数字相加等于target的数字，因此将当前数字及其索引存入字典中。如果在字典中，说明已经找到了一对数字，和等于target，于是返回这两个数字的索引。这两个索引分别是dict[target-nums[i]]（存储差值 对应的索引）和 i（当前数字的索引）</p>
 <p>分析时间复杂度为O(n)，其中n为数组的长度，因为每个元素只被访问一次，空间复杂度为O(n)，最坏的情况是可能需要存储所有元素的索引</p>
 <p>这个方法使用了哈希表（通过字典）快速查找目标数字，是一种典型的哈希表应用场景，提高查找效率</p>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='Created Time: 2024-11-14'><span class='material-icons'>add_circle</span>2024-11-14</span><span title='Last Update: 2024-11-25'><span class='material-icons'>update</span>2024-11-25</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2024-11-14'><span class='material-icons'>add_circle</span>4 个月前</span><span title='最后更新: 2024-11-25'><span class='material-icons'>update</span>4 个月前</span></div></div>
 
 
 
 
 
 
+
+  
+  
 
 
 

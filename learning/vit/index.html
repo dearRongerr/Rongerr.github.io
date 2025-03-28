@@ -48,6 +48,8 @@
       
     
     
+      <link rel="stylesheet" href="../../css/timeline.css">
+    
       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.css">
     
       <link rel="stylesheet" href="../../mkdocs/css/no-footer.css">
@@ -370,6 +372,26 @@
     
   
   杂
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../blog/" class="md-tabs__link">
+          
+  
+    
+  
+  Blog
 
         </a>
       </li>
@@ -4449,6 +4471,8 @@
       
         
       
+        
+      
     
     
       
@@ -4502,11 +4526,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../logs/diary/" class="md-nav__link">
+      <a href="../../logs/1_date/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    乐观 &amp; 坚强
+    1 date
     
   </span>
   
@@ -4524,11 +4548,11 @@
   
   
     <li class="md-nav__item">
-      <a href="../../logs/1_date/" class="md-nav__link">
+      <a href="../../logs/diary/" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    一些日期
+    diary
     
   </span>
   
@@ -4537,6 +4561,89 @@
     </li>
   
 
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../logs/2_updatelog/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    更新日志
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_9" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../blog/" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Blog
+    
+  </span>
+  
+
+            </a>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            Blog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
               
             
           </ul>
@@ -4877,6 +4984,9 @@
 
 
 <h1 id="vision-transformer">vision Transformer的原理与难点源码实现<a class="headerlink" href="#vision-transformer" title="Permanent link">&para;</a></h1>
+<div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
+<p>:material-circle-edit-outline: 约 8101 个字 :fontawesome-solid-code: 419 行代码 :material-image-multiple-outline: 42 张图片 :material-clock-time-two-outline: 预计阅读时间 32 分钟</p>
+</div>
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 霹雳吧啦z</li>
 </ul>
@@ -5606,13 +5716,16 @@
 <p>第四步 将 embedding传入到encoder中</p>
 <p>第五步 就是class token 那个位置上的output，做一个变换，得到 要分类的概率分布，最后通过 交叉熵，来算出 分类 loss；</p>
 <p>总体上就是 这样的过程；所以vit模型 不管是 模型上 还是 代码实现 上 都比较简单；想法也很简单 但是，训练成本很高，需要很多 图片数据 进行预训练，才能取得 跟CNN一样的效果；之后也有很多工作 将 transformer应用到 检测、分割领域 ；现在 只是 讲了 识别的领域；vit作者也提到了 目前只是用到了 识别领域，后面比较火的 swintransformer，一方面降低vit模型的计算量，另一方面 vit更加模仿了CNN的结构，来去 不断对 patch 这个维度 进行降维，然后也会对patch 的 weight 进行变动，swintransformer不仅在 图像识别上，在检测上 在 分割上 都取得了 比较好的效果。</p>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='Created Time: 2024-11-15'><span class='material-icons'>add_circle</span>2024-11-15</span><span title='Last Update: 2024-12-04'><span class='material-icons'>update</span>2024-12-04</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2024-11-15'><span class='material-icons'>add_circle</span>4 个月前</span><span title='最后更新: 2024-12-04'><span class='material-icons'>update</span>3 个月前</span></div></div>
 
 
 
 
 
 
+
+  
+  
 
 
 
