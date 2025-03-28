@@ -5,11 +5,12 @@
   - "2025-03-28":
     - newpage:
         text: 更新日志
-        href: /logs/2_updatelog
+        href: /logs/2_updatelog/
+    - function: 日期的显示更换插件、显示站点统计、更换外观、设计首页
   - "2025-03-27":
     - newpage:
         text: 复平面与复指数旋转
-        href: /Statistics/1_0_fourier
+        href: /Statistics/1_0_fourier/
 - "2024":
   - "time2":
     - "type":

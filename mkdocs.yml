@@ -1,6 +1,7 @@
 site_name: My Docs
 site_name: 溶err
-site_url: https://mydomain.org/mysite
+# site_url: https://mydomain.org/mysite
+site_url: https://mydomain.org
 edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
 
 
@@ -30,6 +31,9 @@ theme:
         name: Switch to light mode
 
 markdown_extensions:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
   - pymdownx.pathconverter:
       base_path: 'docs/pdf_files' # 设置基础路径为你的 PDF 文件所在目录
       absolute: false # 将路径转换为绝对路径
@@ -267,5 +271,6 @@ nav:
     - logs/1_date.md
     - logs/diary.md
     - logs/2_updatelog.md
-  - Blog:
-    - blog/index.md
+    - logs/3_test.md
+  # - Blog:
+  #   - blog/index.md
