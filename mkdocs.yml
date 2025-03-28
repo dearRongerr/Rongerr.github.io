@@ -5,7 +5,8 @@ site_name: 溶err
 site_url: https://dearrongerr.github.io/Rongerr.github.io
 use_directory_urls: true
 edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
-
+repo_url: https://github.com/dearRongerr/Rongerr.github.io # 右上角点击跳转的链接
+repo_name: Rongerr.github.io # 右上角的名字
 
 theme:
   name: material
@@ -20,10 +21,15 @@ theme:
     - navigation.sections
     - navigation.expand
     - navigation.indexes
+  icon:
+    repo: fontawesome/brands/github #右上角图标
+    previous: fontawesome/solid/angle-left
+    # top: fontawesome/solid/angles-up
+    alternate: fontawesome/solid/language
   palette:
     - scheme: default
-      primary: light blue
-      accent: light blue
+      primary: green
+      accent: light-green
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
@@ -31,6 +37,10 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  custom_colors:
+    primary: "#A5D6A7"  # 自定义淡绿色
+    accent: "#C8E6C9"   # 自定义更浅的绿色
+
 
 markdown_extensions:
   - pymdownx.emoji:
@@ -77,6 +87,7 @@ extra_javascript:
   - mkdocs/javascripts/katex.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/katex.min.js
   - https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.7/contrib/auto-render.min.js
+  - assets/javascripts/web-time.js
 extra_css:
   # [数学公式支持]
   # https://squidfunk.github.io/mkdocs-material/reference/math/#katex
@@ -91,6 +102,7 @@ extra_css:
   - assets/stylesheets/cards.css
   - assets/stylesheets/flink.css
   - assets/stylesheets/rounded_corner.css
+  
 
 extra:
   generator: false
@@ -115,6 +127,8 @@ plugins:
   - document-dates:
       type: timeago
       locale: zh
+      exclude:
+        - index.md
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   # - git-revision-date-localized:
@@ -270,11 +284,10 @@ nav:
     - Statistics/1_4_signal.md
     - Statistics/1_3_complexExp.md
 
-  - 杂:
+  - 📮收纳箱:
     - logs/index.md     
     - logs/1_date.md
     - logs/diary.md
     - logs/2_updatelog.md
+    - logs/4_flink.md
     - logs/3_test.md
-  # - Blog:
-  #   - blog/index.md
