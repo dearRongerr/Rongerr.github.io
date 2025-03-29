@@ -1,33 +1,16 @@
 - "2025":
-  - "time1":
-    - "type": text
-    - "type": text
+  - "2025-03-29":
+    - refactor: 修改首页样式，网站字体，changelog 类型修改
   - "2025-03-28":
-    - newpage:
-        text: 更新日志
+    - newpage: 
+        text: 新增更新日志功能
         href: /logs/2_updatelog/
-    - function: 日期的显示更换插件、显示站点统计、更换外观、设计首页
+    - function: 显示站点统计、更换外观、设计首页
+    - refactor: 日期的显示更换插件
   - "2025-03-27":
-    - newpage:
-        text: 复平面与复指数旋转
-        href: /Statistics/1_0_fourier/
-- "2024":
-  - "time2":
-    - "type":
-        text: text
-        href: /link/to/page/
-    - "type":
-        text: text
-        href: /link/to/page/
-  - "time3":
-    - "type": text
-  - "2024-12-01":
-    - newpage:
-        text: Web > 网络运维 > 基本配置与工具
-        href: /web/devops/basic/
     - pageupdate:
-        text: CS > 命令行工具 > Git 命令备忘（添加了 gpg/gh）
-        href: /cs/tools/git/
-  - "2024-09-27":
-    - function: 中文和公式混排的空格也可以处理了！
-    - refactor: 删除 ADS，重构 HPC 部分目录结构，TOC 添加课程笔记/实验报告标签
+        text: 复平面与复指数旋转
+        href: /Rongerr.github.io/Statistics/1_0_fourier/
+- "2024":
+  - "2024-11-14":
+    - function: hello world
