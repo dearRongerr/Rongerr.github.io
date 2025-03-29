@@ -106,6 +106,19 @@ nostatistics: True
   </div>
 </div>
 
+## 工具链
+
+<div class="flink-list">
+
+  <div class="flink-list-item">
+    <a href="https://ibruce.info/2015/04/04/busuanzi/" title="不蒜子" target="_blank">
+      <div class="flink-item-name">不蒜子</div>
+      <div class="flink-item-desc">统计 pv、uv</div>
+    </a>
+  </div>
+
+</div>
+
 
 ## 朋友
 <div class="flink-list">

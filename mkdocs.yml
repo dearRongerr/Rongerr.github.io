@@ -1,7 +1,4 @@
-site_name: My Docs
 site_name: 溶err
-# site_url: https://mydomain.org/mysite
-# site_url: https://mydomain.org
 site_url: https://dearrongerr.github.io/Rongerr.github.io
 use_directory_urls: true
 edit_uri: https://github.com/dearRongerr/Rongerr.github.io/edit/main/docs
@@ -9,8 +6,8 @@ repo_url: https://github.com/dearRongerr/Rongerr.github.io # 右上角点击跳�
 repo_name: Rongerr.github.io # 右上角的名字
 
 theme:
-  name: material
   custom_dir: overrides
+  name: material
   features:
     - toc.follow
     
@@ -375,3 +372,7 @@ nav:
     - logs/2_updatelog.md
     - logs/4_flink.md
     - logs/3_test.md
+    - 周记:
+      - logs/1_0_diary/index.md
+      - 成长轨迹:
+        - 第 13 周: logs/1_0_diary/2025/13.md
