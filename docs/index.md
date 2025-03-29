@@ -7,14 +7,14 @@ home: true
 statistics: true
 comments: false
 ---
+# 🍃 Welcome
 
-
-<center><font class="custom-font ml3">梅啮寒岁 舟逆湍川</font></center>
+<center><font class="custom-font ml3">生如逆旅 一苇以航</font></center>
 <script src="https://cdn.statically.io/libs/animejs/2.0.2/anime.min.js"></script>
 <style>
     .custom-font {
-    font-size: 38px; /* 默认字体大小为8px */
-    color: #757575;
+    font-size: 58px; /* 默认字体大小为8px */
+    color: #9CCC65;
 }
 @media (max-width: 768px) { /* 假设768px及以下为移动端 */
     .custom-font {
@@ -25,13 +25,21 @@ comments: false
 
 <div class="grid cards" markdown>
 
--   :material-notebook-edit-outline:{ .lg .middle } __[本站介绍](introduction.md)__
+-   :material-notebook-edit-outline:{ .lg .middle } __Rongerr's notebook__
 
     ---
-    ![image](https://cdn.jsdelivr.net/gh/Auzers/drawingbed/school-work-851328_1920-modified.jpg){: style="display: block; margin: 0 auto; width: 600px; height: 350px; border-radius: 25px;" }
+    记录了研究生以来各方面的学习内容，供自己查阅，能帮助到别人不胜荣幸。
 
+    边学边记边思考，学过的东西反复验证，左右手互博，相当于记下思考的过程，所以看我的笔记时一定要带着批判性思维，因为可能我下一篇文章写得时候也修正了理解。
+
+    支持一切合理且友好的讨论，别杠我别杠我别杠我，我是小白，好好说话，别杠我
+
+    <span style="text-align: right; display: block;">Concat me: 邮件(1) 微信(2) QQ(3)</span>
+    { .annotate }
     
-    
+    1. :material-email: 1939472345@qq.com
+    2. :material-wechat: 微信号: _Tonto17
+    3. :material-chat: QQ号: 1939472345        
 
 </div>
 <style>
@@ -48,59 +56,34 @@ comments: false
 
 <div class="grid cards" markdown>
 
--   :octicons-bookmark-16:{ .lg .middle } __Recommend pages__
+-   :octicons-graph-16:{ .lg .middle } __Statistics__
 
     ---
 
-    - [吴恩达coursera机器学习笔记](ai/ml/wedml.md)
-    - [CS61A笔记](computer/CS61A/CS61A_notes.md) 
-    - [git整理](tools/git/git.md)
-    - [C++](computer/C++/ac_cpp.md)
-    - [基于autohotkey实现的极简键位映射](tools/autohotkey/auto.md)
+    - :material-file-document-outline: 页面数： **{{pages}}** 
+    - :material-alphabetical: 总字数：**{{words}}**  
+    - :material-code-tags: 代码行数：**{{codes}}**  
+    - :material-image-multiple: 图片数量：**{{images}}**
+    - :material-calendar: 网站创建日期：2024 年 11 月 14 日
+    - :material-timer-outline: 网站运行时间： <span id="web-time"></span> 
+    <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    - :material-chart-line: 本站总访问量：<span id="busuanzi_value_site_pv"></span>次  
+    - :material-account: 本站访客数：<span id="busuanzi_value_site_uv"></span>人次  
     
--   :simple-materialformkdocs:{ .lg .middle } __Else__
+    
+-   :material-link:{ .lg .middle } __Link__
 
     ---
-    - 本站样式特别鸣谢:
+    - :material-star-outline:{ .lg .middle } 本站样式特别鸣谢:
+        - [amaranth](https://auzers.github.io/notes/)
         - [Wcowin](https://github.com/Wcowin/Wcowin.github.io)
         - [TonyCrane](https://github.com/TonyCrane/note/)
+    - :material-link-variant:{ .lg .middle } [更多友链](./logs/4_flink.md)
 </div>
 
-<span style="display: block; text-align: center; font-size: 20px;">
-[:material-chart-line: Statistics ](javascript:toggle_statistics();) 
-[:octicons-link-16: My friends!](./links/index.md)   
-</span>
 
-<div id="statistics" markdown="1" class="card" style="width: 27em; border-color: transparent; opacity: 0; margin-left: auto; margin-right: 0; font-size: 110%">
-<div style="padding-left: 1em;" markdown="1">
-- :material-file-document-outline: 页面数： **{{pages}}** 
-- :material-alphabetical: 总字数：**{{words}}**  
-- :material-code-tags: 代码行数：**{{codes}}**  
-- :material-image-multiple: 图片数量：**{{images}}**
-- :material-timer-outline: 网站运行时间： <span id="web-time"></span> 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js">
-</script>
-本站总访问量<span id="busuanzi_value_site_pv"></span>次
-本站访客数<span id="busuanzi_value_site_uv"></span>人次
-</div>
-</div>
 
-<script>
-function toggle_statistics() {
-    var statistics = document.getElementById("statistics");
-    if (statistics.style.opacity == 0) {
-        statistics.style.opacity = 1;
-    } else {
-        statistics.style.opacity = 0;
-    }
-}
-</script>
 
-邮件(1) 微信(2) 
-{ .annotate }
-
-1. :material-email: amaranth2082@gmail.com || 1058564630@qq.com
-2. 右下角微信图标 || 微信号: w1058564630
 
 <style>
 .md-grid {

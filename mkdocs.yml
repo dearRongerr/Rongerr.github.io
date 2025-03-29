@@ -199,6 +199,12 @@ plugins:
       locale: zh
       exclude:
         - index.md
+  # - git-revision-date-localized:
+  #     type: timeago  
+  #     fallback_to_build_date: true
+  #     locale: zh
+  #     include:
+  #       - index.md  # 仅作用于 index.md 页面
   # 显示创建日期、修改日期
   # https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions
   # - git-revision-date-localized:
