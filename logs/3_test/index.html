@@ -4652,9 +4652,31 @@ hr.custom-hr:before {
 
 <h1 id="_1">功能测试页面<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 6 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间不到 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 36 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间不到 1 分钟</p>
 </div>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-03-28'><span class='material-icons'>add_circle</span>2025-03-28 09:50:18</span><span title='最后更新: 2025-03-28'><span class='material-icons'>update</span>2025-03-28 15:48:43</span></div></div>
+<div id="box1" style="width: 50px; height: 50px; background: blue; position: absolute;"></div>
+<div id="box2" style="width: 50px; height: 50px; background: green; position: absolute; top: 60px;"></div>
+
+<script src="https://cdn.statically.io/libs/animejs/2.0.2/anime.min.js"></script>
+<script>
+  var timeline = anime.timeline({
+    easing: 'easeInOutQuad',
+    duration: 1000
+  });
+
+  timeline
+    .add({
+      targets: '#box1',
+      translateX: 250
+    })
+    .add({
+      targets: '#box2',
+      translateX: 250,
+      offset: '-=500' // 第二个动画提前 500ms 开始
+    });
+</script>
+
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-03-28'><span class='material-icons'>add_circle</span>2025-03-28 09:50:18</span><span title='最后更新: 2025-03-29'><span class='material-icons'>update</span>2025-03-29 12:52:47</span></div></div>
 
                 
 
