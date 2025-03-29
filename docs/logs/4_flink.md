@@ -4,7 +4,7 @@ glightbox: False
 nostatistics: True
 ---
 
-# 参考链接
+# 参看链接
 
 !!! abstract
     单方面添加友链，都太好会设计
