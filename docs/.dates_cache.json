@@ -17,7 +17,7 @@
   },
   "Statistics/index.md": {
     "created": "2025-03-23T22:02:55.852558",
-    "modified": "2025-03-29T17:27:14.086948"
+    "modified": "2025-03-29T21:04:20.201075"
   },
   "Statistics/1_3_complexExp.md": {
     "created": "2025-03-26T12:33:03.964000",
@@ -35,17 +35,9 @@
     "created": "2025-03-23T22:18:23.837979",
     "modified": "2025-03-24T22:13:19.172959"
   },
-  "Blogs/index.md": {
-    "created": "2025-03-28T22:34:51.172791",
-    "modified": "2025-03-28T22:34:58.710141"
-  },
   "literature/index.md": {
     "created": "2024-12-11T15:17:35.721218",
-    "modified": "2025-02-27T17:01:38.116688"
-  },
-  "learning/21_FastRCNN.md": {
-    "created": "2024-12-22T20:26:07.692500",
-    "modified": "2024-12-22T20:26:17.113892"
+    "modified": "2025-03-29T22:22:46.318604"
   },
   "learning/1.md": {
     "created": "2024-11-25T21:24:58.548758",
@@ -63,25 +55,9 @@
     "created": "2024-12-08T19:59:29.041515",
     "modified": "2024-12-10T09:46:54.444077"
   },
-  "learning/18_DINO.md": {
-    "created": "2024-12-21T19:01:12.029263",
-    "modified": "2024-12-21T19:03:53.376269"
-  },
   "learning/3_ViT.md": {
     "created": "2024-12-21T15:04:33.913233",
     "modified": "2024-12-21T18:24:20.142825"
-  },
-  "learning/swintransformer.md": {
-    "created": "2024-11-15T18:56:02.844370",
-    "modified": "2024-12-04T14:55:58.151279"
-  },
-  "learning/17_DETR.md": {
-    "created": "2024-12-21T19:01:27.997194",
-    "modified": "2024-12-21T19:03:51.469543"
-  },
-  "learning/11_excelcsvtensor.md": {
-    "created": "2024-12-09T16:29:35.032375",
-    "modified": "2024-12-09T16:31:51.237449"
   },
   "learning/pe.md": {
     "created": "2024-11-15T18:07:34.756381",
@@ -111,14 +87,6 @@
     "created": "2024-12-19T18:35:41.539239",
     "modified": "2024-12-20T21:29:59.236620"
   },
-  "learning/20_distill.md": {
-    "created": "2024-12-22T20:10:12.012694",
-    "modified": "2024-12-22T20:10:49.086242"
-  },
-  "learning/10_ResNet.md": {
-    "created": "2024-12-09T16:02:03.411274",
-    "modified": "2024-12-09T16:16:12.787915"
-  },
   "learning/5_Bert.md": {
     "created": "2024-12-02T21:47:44.892042",
     "modified": "2024-12-04T20:17:53.374746"
@@ -129,19 +97,11 @@
   },
   "learning/0_pdfNotes.md": {
     "created": "2025-03-18T10:18:47.231945",
-    "modified": "2025-03-19T12:14:59.714985"
+    "modified": "2025-03-29T22:11:22.611305"
   },
   "learning/3.md": {
     "created": "2024-11-26T16:02:26.592465",
     "modified": "2024-11-27T11:46:17.261728"
-  },
-  "learning/16_YOLO.md": {
-    "created": "2024-12-21T19:00:54.649693",
-    "modified": "2024-12-21T19:03:45.844232"
-  },
-  "learning/7_Clip.md": {
-    "created": "2024-12-04T22:12:14.028623",
-    "modified": "2025-03-19T12:33:41.689335"
   },
   "learning/14_LSTM.md": {
     "created": "2024-12-21T14:24:29.902149",
@@ -151,21 +111,9 @@
     "created": "2024-12-05T08:31:15.646326",
     "modified": "2024-12-08T20:02:07.368650"
   },
-  "learning/15_ContrastiveLearning.md": {
-    "created": "2024-12-21T14:47:42.576591",
-    "modified": "2024-12-21T14:50:26.264930"
-  },
-  "learning/19_GPT.md": {
-    "created": "2024-12-21T22:05:51.016375",
-    "modified": "2024-12-21T22:06:08.171375"
-  },
   "learning/2.md": {
     "created": "2024-11-25T22:25:07.901730",
     "modified": "2024-12-04T14:56:27.570432"
-  },
-  "tags/index.md": {
-    "created": "2025-03-28T22:34:25.024149",
-    "modified": "2025-03-28T22:34:31.153837"
   },
   "logs/1_date.md": {
     "created": "2025-03-21T11:06:47.848173",
@@ -173,7 +121,7 @@
   },
   "logs/4_flink.md": {
     "created": "2025-03-28T15:48:04.933492",
-    "modified": "2025-03-29T15:35:36.048954"
+    "modified": "2025-03-29T19:10:10.146996"
   },
   "logs/index.md": {
     "created": "2024-11-17T08:41:17.071640",
@@ -261,7 +209,7 @@
   },
   "sticks/mkdocs_learn.md": {
     "created": "2024-11-14T16:25:48.882288",
-    "modified": "2025-03-29T17:45:01.970691"
+    "modified": "2025-03-29T20:34:40.823820"
   },
   "sticks/latex.md": {
     "created": "2024-12-13T14:38:19.021003",
@@ -319,10 +267,6 @@
     "created": "2025-02-24T18:55:52.277954",
     "modified": "2025-02-27T16:59:06.150384"
   },
-  "bagu/deeplearning/former1.md": {
-    "created": "2024-11-17T16:48:03.073138",
-    "modified": "2024-11-25T21:24:03.719529"
-  },
   "bagu/deeplearning/transformer.md": {
     "created": "2024-11-15T18:05:15.689054",
     "modified": "2025-03-19T20:56:19.535651"
@@ -338,10 +282,6 @@
   "bagu/deeplearning/index.md": {
     "created": "2024-11-15T18:02:15.575310",
     "modified": "2024-11-15T19:59:48.352079"
-  },
-  "bagu/deeplearning/former2.md": {
-    "created": "2024-11-17T16:48:25.625282",
-    "modified": "2024-11-25T21:23:57.921774"
   },
   "bagu/leetcode/1.md": {
     "created": "2024-11-14T16:25:48.900027",
@@ -401,7 +341,7 @@
   },
   "logs/1_0_diary/2025/03.md": {
     "created": "2025-03-29T09:26:07.488098",
-    "modified": "2025-03-29T17:15:03.028525"
+    "modified": "2025-03-29T21:32:03.683245"
   },
   "logs/1_0_diary/2025/07.md": {
     "created": "2025-03-29T17:05:04.714495",
@@ -451,10 +391,6 @@
     "created": "2024-11-26T09:20:00.354625",
     "modified": "2024-11-26T11:25:47.502449"
   },
-  "literature/ObjectDetection/4.md": {
-    "created": "2025-02-19T16:40:36.472247",
-    "modified": "2025-02-19T20:13:04.843168"
-  },
   "literature/ObjectDetection/index.md": {
     "created": "2024-11-26T09:20:09.588439",
     "modified": "2025-02-23T13:48:56.022821"
@@ -466,14 +402,6 @@
   "literature/ObjectDetection/2.md": {
     "created": "2024-11-26T11:27:57.406547",
     "modified": "2025-02-17T14:13:34.758601"
-  },
-  "literature/MultiModal/1.md": {
-    "created": "2024-11-26T11:11:03.955851",
-    "modified": "2024-11-26T11:11:08.728221"
-  },
-  "literature/MultiModal/index.md": {
-    "created": "2024-11-26T11:12:59.063241",
-    "modified": "2024-11-26T11:13:07.600589"
   },
   "literature/ObejectCounting/rank10 SPDCN.md": {
     "created": "2024-11-15T22:13:38.491049",
@@ -491,29 +419,13 @@
     "created": "2024-11-15T22:13:26.290653",
     "modified": "2024-11-18T17:31:47.972110"
   },
-  "literature/ObejectCounting/rank16 Counting_DETR.md": {
-    "created": "2024-11-15T22:14:54.912354",
-    "modified": "2024-11-15T22:20:49.289340"
-  },
   "literature/ObejectCounting/rank4 CACViT.md": {
     "created": "2024-11-15T22:12:05.854247",
     "modified": "2024-11-17T15:33:29.867150"
   },
-  "literature/ObejectCounting/rank17 RCC.md": {
-    "created": "2024-11-15T22:15:27.632616",
-    "modified": "2024-11-15T22:20:30.021320"
-  },
   "literature/ObejectCounting/rank2 GeCo.md": {
     "created": "2024-11-15T22:11:49.181403",
     "modified": "2025-02-16T10:52:25.698707"
-  },
-  "literature/ObejectCounting/rank14 LaoNet.md": {
-    "created": "2024-11-15T22:14:29.283222",
-    "modified": "2024-11-15T22:14:44.038581"
-  },
-  "literature/ObejectCounting/rank18 Omnicount.md": {
-    "created": "2024-11-15T22:15:33.414361",
-    "modified": "2024-11-15T22:20:02.319246"
   },
   "literature/ObejectCounting/rank8 CounTR.md": {
     "created": "2024-11-15T22:12:53.154682",
@@ -526,14 +438,6 @@
   "literature/ObejectCounting/rank12 SAFECount.md": {
     "created": "2024-11-15T22:14:05.667936",
     "modified": "2024-11-19T14:08:23.982134"
-  },
-  "literature/ObejectCounting/rank15 CounTX.md": {
-    "created": "2024-11-15T22:14:45.313245",
-    "modified": "2024-11-15T22:14:54.902074"
-  },
-  "literature/ObejectCounting/rank19 FamNet.md": {
-    "created": "2024-11-15T22:15:49.404609",
-    "modified": "2024-11-15T22:19:17.305166"
   },
   "literature/ObejectCounting/rank6 LOCA.md": {
     "created": "2024-11-15T22:12:30.775991",
@@ -550,9 +454,5 @@
   "literature/ObejectCounting/rank7 SemAug_CountTR.md": {
     "created": "2024-11-15T22:12:36.354727",
     "modified": "2024-11-18T14:55:13.342597"
-  },
-  "literature/ObejectCounting/rank13 BMNet.md": {
-    "created": "2024-11-15T22:14:18.200693",
-    "modified": "2024-11-15T22:14:29.268847"
   }
 }
