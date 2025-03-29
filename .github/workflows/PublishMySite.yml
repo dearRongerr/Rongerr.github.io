@@ -55,4 +55,9 @@ jobs:
       - run: pip install mkdocs-document-dates
       - run: pip install mkdocs-statistics-plugin
       - run: pip install mkdocs-changelog-plugin
+      - run: pip install mkdocs-callouts
+      - run: pip install mkdocs-blogging-plugin
+      - run: pip install mkdocs-hr-plugin
+      - run: pip install mkdocs-minify-plugin
+      - run: pip install mkdocs-glightbox
       - run: mkdocs gh-deploy --force
