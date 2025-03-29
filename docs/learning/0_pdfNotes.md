@@ -1,44 +1,217 @@
 # 📒
-这里都是一些之前的笔记，陆陆续续的搬到这里。
+这里都是一些之前的笔记。
 
 ## 卷积
 
-[膨胀卷积](../pdf_files/1_0_dilatedConv.pdf)
 
-[手写并验证滑动相乘实现PyTorch](../pdf_files/1_1_conv.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">膨胀卷积</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1">查看</a>
+</div>
 
-[手写并验证向量内积实现pytorch二维卷积](../pdf_files/1_2_conv.pdf)
 
-[PyTorch nn.Conv2d卷积网络使用教程](../pdf_files/1_3_conv.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">手写并验证滑动相乘实现PyTorch</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_1_conv.pdf" markdown="1">查看</a>
+</div>
+
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">手写并验证向量内积实现pytorch二维卷积</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_2_conv.pdf" markdown="1">查看</a>
+</div>
+
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">PyTorch nn.Conv2d卷积网络使用教程</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_3_conv.pdf" markdown="1">查看</a>
+</div>
+
 
 
 
 ## transformer
 
-[transformer学习笔记](../pdf_files/2_0_transformer.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">transformer学习笔记</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_0_transformer.pdf" markdown="1">查看</a>
+</div>
 
-[Transformer模型Encoder原理精讲及其PyTorch逐行实现](../pdf_files/2_1_Transformer.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Encoder原理精讲及其PyTorch逐行实现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_1_transformer.pdf" markdown="1">查看</a>
+</div>
 
-[Transformer模型Decoder原理精讲及其PyTorch逐行实现](../pdf_files/2_2_Transformer.pdf)
 
-[Transformer模型总结 & maksed loss的实现](../pdf_files/2_3_Transformer.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Decoder原理精讲及其PyTorch逐行实现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_2_transformer.pdf" markdown="1">查看</a>
+</div>
 
-[Transformer代码(源码Pytorch版本)从零解读(Pytorch版本）](../pdf_files/2_6_Transformer.pdf)
 
-[ViT学习笔记](../pdf_files/2_4_0_ViT.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Transformer模型总结 & maksed loss的实现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_3_transformer.pdf" markdown="1">查看</a>
+</div>
 
-[vision Transformer的原理与难点源码实现](../pdf_files/2_4_1_ViT.pdf)
 
-[SwinTransformer 学习笔记](../pdf_files/2_5_SwinTransformer.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Transformer代码(源码Pytorch版本)</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_6_transformer.pdf" markdown="1">查看</a>
+</div>
+
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">ViT学习笔记</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_4_0_ViT.pdf" markdown="1">查看</a>
+</div>
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">vision Transformer的原理与难点源码实现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_4_1_ViT.pdf" markdown="1">查看</a>
+</div>
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">SwinTransformer 学习笔记</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_5_SwinTransformer.pdf" markdown="1">查看</a>
+</div>
 
 
 ## 时序模型
-[Pytorch RNN原理及手写复现](../pdf_files/3_0_RNN.pdf)
 
-[Pytorch LSTM原理及手写复现](../pdf_files/3_1_LSTM.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Pytorch RNN原理及手写复现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/3_0_RNN.pdf" markdown="1">查看</a>
+</div>
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">Pytorch LSTM原理及手写复现</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/3_1_LSTM.pdf" markdown="1">查看</a>
+</div>
+
 
 ## UNet
 
-[UNet网络架构](../pdf_files/4_0_UNet.pdf)
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">UNet网络架构</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/4_0_UNet.pdf" markdown="1">查看</a>
+</div>
 
-[UNet网络架构训练](../pdf_files/4_1_UNet.pdf)
+
+<div class="card">
+  <div class="file-block">
+    <div class="file-icon">
+      <img src="/Rongerr.github.io/assets/images/icons/pdf.svg" alt="PDF Icon">
+    </div>
+    <div class="file-body">
+      <div class="file-title">UNet网络架构训练</div>
+    </div>
+  </div>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/4_1_UNet.pdf" markdown="1">查看</a>
+</div>
+

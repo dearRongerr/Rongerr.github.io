@@ -80,17 +80,22 @@
 
 ## TODO
 
-- [ ] 归档功能
-- [ ] 折叠导航、目录，文档内容占最多篇幅： [花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
+~~归档功能~~
+
+- 折叠导航、目录，文档内容占最多篇幅： [花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
+
+> 感觉 mkdocs 的逻辑，即使隐藏了导航页和目录页，依然不能使内容找到最多的篇幅。估计得自定义。
+>
+> 以后看到了好的设计，会再改。
 
 ![image-20250326163255519](images/image-20250326163255519.png)
 
 - [x] （solved：`mkdocs-jupyter`）mknotebooks 代码背景浅紫色，报看，肯定能改。[花书](https://zh.d2l.ai/chapter_recurrent-neural-networks/index.html) 
 - [ ] 网页渲染速度太慢了
 
-## 组件测试
+- 当开始用 元数据和 html 标签以后，其实 typora 也没那么香了，因为有些 html 识别不了。
 
-
+- 还有一些颜色的修改，友链卡片阴影和字体颜色
 
 ## begin
 

@@ -94,12 +94,12 @@
   
   .md-typeset p a,
   .md-typeset li a {
-    color: rgb(81, 143, 193);
+    color: #378b86;
     /* 统一正文和列表中的链接颜色 */
   }
   /* 只改变 .grid.cards 里的链接颜色 */
   .grid.cards a {
-    color: rgb(81,143,193);
+    color: rgb(131, 191, 186)  ;
     /* 你想要的颜色 */
   }
   
@@ -120,10 +120,10 @@
   
   
   
-  
+  /* 本站主题色 */
   
   [data-md-color-scheme="default"] {
-    --md-primary-fg-color: #d9eddf;
+    --md-primary-fg-color: #d9eddf; 
     /* --md-primary-fg-color: #efefef; */
     --md-primary-bg-color: #000000;
     --md-typeset-a-color: #555555;

@@ -173,18 +173,7 @@ extra_css:
 extra:
   generator: false
 plugins:
-  - blogging:
-      locale: zh
-      dirs:
-        - Blogs/posts
-      theme:
-        name: card
-      features:
-        tags:
-          index_page: tags/
-          insert: top
   - search
-  - open-in-new-tab
   - mermaid2
   - changelog
   - callouts
@@ -257,8 +246,6 @@ nav:
     - 深度学习: 
       - bagu/deeplearning/index.md
       - bagu/deeplearning/transformer.md
-      - bagu/deeplearning/former1.md
-      - bagu/deeplearning/former2.md 
       - bagu/deeplearning/pytorch_shape_function.md
       - bagu/deeplearning/1.md
     - 机器学习: 
@@ -278,7 +265,6 @@ nav:
     - learning/2.md
     - learning/1.md
     - learning/vit.md
-    - learning/swintransformer.md
     - learning/pe.md
     - learning/convs.md
     - learning/3.md
@@ -286,21 +272,11 @@ nav:
     - learning/5_Bert.md
     - learning/6_Diffusion.md
     - learning/6_Diffusion1.md
-    - learning/7_Clip.md
     - learning/8_WeightNorm.md
     - learning/9_cGAN.md 
-    - learning/10_ResNet.md
-    - learning/11_excelcsvtensor.md 
     - learning/12_KLdivergence.md
     - learning/13_RNN.md
-    - learning/14_LSTM.md
-    - learning/15_ContrastiveLearning.md
-    - learning/16_YOLO.md
-    - learning/17_DETR.md
-    - learning/18_DINO.md
-    - learning/19_GPT.md  
-    - learning/20_distill.md
-    - learning/21_FastRCNN.md   
+    - learning/14_LSTM.md 
   - 🫧 文献:
     - literature/index.md
     - 时间序列预测: 
@@ -325,22 +301,12 @@ nav:
         - literature/ObejectCounting/rank10 SPDCN.md
         - literature/ObejectCounting/rank11 GCA_SUN.md
         - literature/ObejectCounting/rank12 SAFECount.md
-        - literature/ObejectCounting/rank13 BMNet.md
-        - literature/ObejectCounting/rank14 LaoNet.md
-        - literature/ObejectCounting/rank15 CounTX.md
-        - literature/ObejectCounting/rank16 Counting_DETR.md
-        - literature/ObejectCounting/rank17 RCC.md
-        - literature/ObejectCounting/rank18 Omnicount.md
-        - literature/ObejectCounting/rank19 FamNet.md
     - 目标检测:
       - literature/ObjectDetection/2.md
       - literature/ObjectDetection/index.md
       - literature/ObjectDetection/1.md
       - literature/ObjectDetection/3.md
-      - literature/ObjectDetection/4.md      
-    - 多模态:
-      - literature/MultiModal/index.md
-      - literature/MultiModal/1.md
+
   - 🌈 复现&代码: 
     - Reproduction/index.md
     - Reproduction/7_summary.md
@@ -376,7 +342,6 @@ nav:
   - 📮收纳箱:
     - logs/index.md     
     - logs/1_date.md
-    
     - logs/2_updatelog.md
     - logs/4_flink.md
     - logs/3_test.md

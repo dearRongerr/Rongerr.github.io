@@ -16,6 +16,14 @@ nostatistics: True
 ## mkdocs
 
 <div class="flink-list">
+
+  <div class="flink-list-item">
+    <a href="https://yang-xijie.github.io/" title="杨希杰的个人网站" target="_blank">
+      <div class="flink-item-name">杨希杰的个人网站</div>
+      <div class="flink-item-desc">不忘初心，开始 mkdocs 的起点</div>
+    </a>
+  </div>
+
   <div class="flink-list-item">
     <a href="https://wcowin.work/" title="循此苦旅，以达星辰" target="_blank">
       <div class="flink-item-name">Wcowin’s Web</div>
