@@ -41,7 +41,7 @@
 .file-title a {
     font-size: 1.2em;
     font-weight: bold;
-    color: #4CAF50;
+    color: #6fc1bb;
     text-decoration: none;
 }
 
@@ -89,7 +89,7 @@
 }
 
 .down-button:hover, .view-button:hover {
-    background-color: #4CAF50; /* 更深的蓝色 */
+    background-color: #6fc1bb; /* 本站主题色深一级 */
     color: #ffffff !important;; /* 白色字体 */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 添加阴影 */
 }

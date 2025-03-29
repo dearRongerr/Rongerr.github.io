@@ -7,7 +7,7 @@
 }
 
 [data-md-color-scheme="slate"] .flink-item-name {
-  color: #4dabf7; /* 标题颜色为浅蓝色 */
+  color: #378b86; /* 标题颜色为浅蓝色 */
 }
 
 [data-md-color-scheme="slate"] .flink-item-desc {
@@ -42,7 +42,7 @@
 }
 
 .flink-list-item:hover {
-  background-color: rgba(68, 138, 255, 0.1); /* 鼠标悬停时背景颜色 */
+  background-color: #e8f3f1; /* 鼠标悬停时背景颜色 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* 鼠标悬停时阴影效果 */
 }
 
@@ -50,7 +50,7 @@
   font-weight: bold;
   font-size: 1.3em;
   margin-bottom: 5px;
-  color: #007bff; /* 标题颜色 */
+  color: #378b86; /* 标题颜色 */
 }
 
 .flink-item-name:hover {
