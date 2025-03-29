@@ -1,7 +1,7 @@
 // 计算网站运行时间
 function calculateWebTime() {
     // 设置网站上线时间
-    const startTime = new Date("2024-11-14T22:14:00"); // 替换为实际上线时间
+    const startTime = new Date("2024-11-14T16:25:48"); // 替换为实际上线时间
     const now = new Date(); // 当前时间
 
     // 计算总的时间差（以毫秒为单位）
