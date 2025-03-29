@@ -14,7 +14,7 @@ comments: false
 <style>
     .custom-font {
     font-size: 58px; /* 默认字体大小为8px */
-    color: #9CCC65;
+    color: #448c71;
 }
 @media (max-width: 768px) { /* 假设768px及以下为移动端 */
     .custom-font {
@@ -34,12 +34,8 @@ comments: false
 
     支持一切合理且友好的讨论，别杠我别杠我别杠我，我是小白，好好说话，别杠我
 
-    <span style="text-align: right; display: block;">Concat me: 邮件(1) 微信(2) QQ(3)</span>
-    { .annotate }
-    
-    1. :material-email: 1939472345@qq.com
-    2. :material-wechat: 微信号: _Tonto17
-    3. :material-chat: QQ号: 1939472345        
+    <span style="text-align: right; display: block;">Concat me: :material-email: 1939472345@qq.com </span>  
+        
 
 </div>
 <style>
@@ -79,8 +75,8 @@ comments: false
         - [Wcowin](https://github.com/Wcowin/Wcowin.github.io)
         - [TonyCrane](https://github.com/TonyCrane/note/)
     - :material-link-variant:{ .lg .middle } [更多友链](./logs/4_flink.md)
+    - :material-update:{ .lg .middle } [最近更新](./logs/2_updatelog.md)
 </div>
-
 
 
 

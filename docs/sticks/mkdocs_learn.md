@@ -43,15 +43,15 @@
 - [x] 归档功能（插件：`changelog`）
 - [ ] 优化渲染速度
 
-- 圆角设计（搜索框圆角、图片四角变圆角）
+- [x] 圆角设计（搜索框圆角、图片四角变圆角）`custom.css`
 
 
 - [x] 内嵌 pdf并显示
 - [x] 本站访问量、本站运行时间
 - [x] 友情链接，显示卡片样式
 
+- [x] ~~日期树，我在想，mkdocs 好像没有翻页功能。就很好奇时光轴功能。~~ 无伤大雅，不好奇啦
 
-- 日期树
 
 - 独立域名能加快访问速度吗
 
@@ -61,15 +61,22 @@
 
 
 - 图床图床
-- 更新日志
-- 网页背景
-- 图标变成芦苇
-- index tab
+
+- [x] 更新日志，配色已修改，自定义类型
+
+- [x] 网页背景（copy 别人的 css 样式😇 谢谢各位互联网老师）
+
+- [x] 图标变成芦苇
+
+- [x] index tab
+
 
 - [x] 网页肤色
 
+- 关于目录成表格，index 页的总结，页内链接？
 
-- 标签怎么玩？
+
+- ~~标签怎么玩？~~  如无必要，勿增实体，对我来说，确实。
 
 ## TODO
 
@@ -679,3 +686,22 @@ docs/assets/images/icons/pdf.svg
   </div>
   <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_0_dilatedConv.pdf" markdown="1">查看</a>
 </div>
+
+## html 折叠框 默认折叠
+
+```html
+<details>
+<summary>内容概要</summary>
+<p>
+你想折叠的一大段内容
+</p>
+</details>
+```
+
+显示效果：
+<details>
+<summary>内容概要</summary>
+<p>
+你想折叠的一大段内容
+</p>
+</details>

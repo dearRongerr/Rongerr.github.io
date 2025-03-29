@@ -1,13 +1,8 @@
----
-title: "碎碎念"
-date: 2025-03-27
-author: "dearRongerr"
-description: " diary"
-tags:
-  - logs
----
 
-# 乐观 & 坚强
+
+# 更早以前
+
+> 乐观 & 坚强
 
 ## 2025-3-29
 
@@ -135,6 +130,10 @@ mkdocs  yml 配置文件，今天修改了配置文件，页面嵌入本地 pdf
 这个相当于备份。
 
 这里的配置缩进，非常容易报错，AI 自动给错输出的全文本内容会有删减，细心点吧。
+
+<details>
+<summary>Old mkdocs.yml</summary>
+<p>
 
 ```yaml
 site_name: My Docs
@@ -321,9 +320,6 @@ theme:
 # repo_name: squidfunk/mkdocs-material # 设置存储库的名称  就会出现了 mkdocs-material这个仓库，并自动读取一些开源仓库的基本信息
 # repo_name: dearRongerr's github
 # copyright: dearRongerr | 24.11.14 
-
-
-
 markdown_extensions:
   - pymdownx.pathconverter:
     base_path: 'docs/pdf_files' # 设置基础路径为你的 PDF 文件所在目录
@@ -428,7 +424,8 @@ plugins:
       enabled: true #是否启用
       # strict: true      
 ```
-
+</p>
+</details>
 
 
 ## 2025 年 3 月 14 日
