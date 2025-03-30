@@ -99,7 +99,7 @@
 
 ## begin
 
-![image-20241115100605111](mkdocs_learn/image-20241115100605111-1636372-1636377.png)
+![image-20250330164234310](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301642080.png) 
 
 主题配置：[**Material for MkDocs**](https://squidfunk.github.io/mkdocs-material/getting-started/)
 
@@ -169,13 +169,13 @@ Commands:
 
 前段与后端的对应
 
-![image-20241115101310759](mkdocs_learn/image-20241115101310759.png)
+![image-20250330164333032](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301643184.png) 
 
-## 添加页面创建时间、最后一次修改时间
+## 添加页面创建时间、最后一次修改时间 
 
-[官方文档链接](https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions)
+[官方文档链接](https://squidfunk.github.io/mkdocs-material/setup/adding-a-git-repository/#code-actions) 
 
-![image-20241115101535524](mkdocs_learn/image-20241115101535524.png)
+![image-20250330164406451](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301644597.png) 
 
 方法 2：更换时间戳显示工具[mkdocs-document-dates](https://github.com/jaywhj/mkdocs-document-dates/blob/main/README_zh.md)
 

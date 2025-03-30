@@ -382,3 +382,26 @@ x = \pm 5
 - 大斐（$\Phi$）：`$\Phi$`
 - 大普赛（$\Psi$）：`$\Psi$`
 - 大欧米伽（$\Omega$）：`$\Omega$`
+
+
+
+## 多行大括号公式
+
+```markdown
+ $$ st.  \left\{ \begin{array}{lr} 0 \\ 1 \end{array}\right.  $$
+```
+
+
+
+ $$ st.  \left\{ \begin{array}{lr} 0 \\ 1 \end{array}\right.  $$
+
+
+
+## 不等于
+
+```markdown
+\ne
+```
+
+$\ne$
+

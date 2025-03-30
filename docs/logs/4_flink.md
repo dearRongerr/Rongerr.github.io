@@ -8,7 +8,7 @@ nostatistics: True
 
 <div class="grid cards" markdown>
 
--   :material-hand-heart:{ .lg .middle } __这是一个充满感恩的页面，谢谢你们~__
+-   :material-hand-heart:{ .lg .middle } __这是一个充满感恩的页面，谢谢你们__
 
     <p style="font-size: 28px; line-height: 2; color: #757575; text-align: center;">海纳百川凭度量，壁立千仞任云翔</p>
         
