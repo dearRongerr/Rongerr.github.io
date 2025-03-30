@@ -32,7 +32,7 @@ nostatistics: True
   </div>
 
   <div class="flink-list-item">
-    <a href="https://github.com/squidfunk/mkdocs-material" title="MkDocs Material" target="_blank">
+    <a href="https://squidfunk.github.io/mkdocs-material/" title="MkDocs Material" target="_blank">
       <div class="flink-item-name">MkDocs Material</div>
       <div class="flink-item-desc">官方文档，不必多言</div>
     </a>

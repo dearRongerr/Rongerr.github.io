@@ -6,23 +6,22 @@ repo_url: https://github.com/dearRongerr/Rongerr.github.io # 右上角点击跳�
 repo_name: Rongerr.github.io # 右上角的名字
 
 theme:
-  custom_dir: overrides
   name: material
+  custom_dir: overrides
   features:
-    - toc.follow
-    
+    - content.action.edit # 编辑此页
+    - content.action.view # 查看源码
+    - toc.follow    
     - search.suggest
     - search.highlight
     - search.share
-
     - content.code.copy
     - content.code.annotate
     - content.code.select
-    - content.action.view
+    - content.tooltips
     - content.footnote.tooltips
     - content.tabs.link
     - header.autohide
-
     - navigation.tabs
     - navigation.tracking
     - navigation.tabs.sticky
@@ -118,6 +117,7 @@ markdown_extensions:
           format: !!python/name:mermaid2.fence_mermaid_custom
   - toc: 
       permalink: true
+  - tables
 
 validation:
   nav:
@@ -339,7 +339,7 @@ nav:
     - Statistics/1_4_signal.md
     - Statistics/1_3_complexExp.md
 
-  - 📮收纳箱:
+  - 📮 收纳箱:
     - logs/index.md     
     - logs/1_date.md
     - logs/2_updatelog.md
@@ -349,3 +349,5 @@ nav:
         - logs/1_0_diary/index.md
         - logs/1_0_diary/2025/03.md
         - logs/diary.md
+  - 🌟 留言板:
+    - logs/6_waline.md
