@@ -1,9 +1,0 @@
-site_name: 测试
-repo_url: https://github.com/dearRongerr/Rongerr.github.io
-edit_uri: edit/main/docs
-
-theme:
-  name: material
-  features:
-    - content.action.edit
-    - content.action.view

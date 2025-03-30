@@ -343,11 +343,13 @@ nav:
     - logs/index.md     
     - logs/1_date.md
     - logs/2_updatelog.md
-    - logs/4_flink.md
     - logs/3_test.md
     -  碎碎念:
         - logs/1_0_diary/index.md
         - logs/1_0_diary/2025/03.md
         - logs/diary.md
+  - 🪐 友链:
+    - logs/4_flink.md
+
   - 🌟 留言板:
     - logs/6_waline.md

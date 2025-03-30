@@ -16,7 +16,7 @@ $\sin {(\arctan\frac{b}{a})} = \frac{b}{\sqrt{a^2 + b^2}}$
 
 图形：
 
-![image-20250327145131348](images/image-20250327145131348.png)
+![image-20250330163847048](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301638250.png) 
 
 问题描述：
 

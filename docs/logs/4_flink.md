@@ -4,9 +4,19 @@ glightbox: False
 nostatistics: True
 ---
 
-# 参看链接
+# 更多链接
 
-!!! abstract
+<div class="grid cards" markdown>
+
+-   :material-hand-heart:{ .lg .middle } __这是一个充满感恩的页面，谢谢你们~__
+
+    <p style="font-size: 28px; line-height: 2; color: #757575; text-align: center;">海纳百川凭度量，壁立千仞任云翔</p>
+        
+</div>
+
+!!! abstract 
+    
+
     单方面添加友链，都太好会设计
     
     赛博导师、学习链接、朋友等
@@ -76,16 +86,11 @@ nostatistics: True
     </a>
   </div>
 
-  <div class="flink-list-item">
-    <a href="https://wmathor.com/index.php/archives/1438/" title="wmathor" target="_blank">
-      <div class="flink-item-name">wmathor</div>
-      <div class="flink-item-desc">Transformer系列文章很好</div>
-    </a>
-  </div>
+
   <div class="flink-list-item">
     <a href="https://www.bilibili.com/video/BV1Ax4y1v7CY?spm_id_from=333.788.videopod.sections&vd_source=ddd7d236ab3e9b123c4086c415f4939e" title="wmathor" target="_blank">
-      <div class="flink-item-name">wmathor</div>
-      <div class="flink-item-desc">Transformer系列文章很好</div>
+      <div class="flink-item-name">Rayman小何同学</div>
+      <div class="flink-item-desc">Diffusion、VAE 模型公式推导</div>
     </a>
   </div>
 
@@ -107,9 +112,9 @@ nostatistics: True
 ## 博客
 <div class="flink-list">
   <div class="flink-list-item">
-    <a href="https://wmathor.com/index.php/archives/1438/" title="Rayman小何同学" target="_blank">
-      <div class="flink-item-name">Rayman小何同学</div>
-      <div class="flink-item-desc">Diffusion、VAE 系列公式推导，清晰明了</div>
+    <a href="https://wmathor.com/index.php/archives/1438/" title="wmanthor" target="_blank">
+      <div class="flink-item-name">wmanthor</div>
+      <div class="flink-item-desc">Transformer 系列博客很好</div>
     </a>
   </div>
 </div>

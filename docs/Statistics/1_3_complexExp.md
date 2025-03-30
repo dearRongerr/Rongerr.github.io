@@ -2,13 +2,13 @@
 
 ## ==复平面：== 
 
-![image-20250325131628175](images/image-20250325131628175.png)
+![image-20250330152524522](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301525882.png)  
 
 傅里叶变换，顺时针旋转， $\frac{2\pi}{N}$
 
 逆傅里叶变换，逆时针旋转，也是$\frac{2\pi}{N}$，最后还要除以序列长度 $N$
 
-![image-20250325143415890](images/image-20250325143415890.png)
+![image-20250330151848077](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301518445.png)   
 
 复平面与 $e^x$ ，这一步的转换，其实是从 $(cos\theta,sin\theta)$ 直接用了 $e^{i\theta}$ 表示
 
@@ -18,7 +18,7 @@
 
 类似的，复平面坐标点，全部用指数表示
 
-![image-20250325143832710](images/image-20250325143832710.png) 
+![image-20250330145920726](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301459168.png)  
 $$
 e^{i\theta} = cos\theta + isin\theta
 $$
@@ -60,7 +60,7 @@ $$
 
 ==单位根== 
 
-![image-20250325144423422](images/image-20250325144423422.png)
+![image-20250330145853258](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301458673.png)
 
 - $\omega = 120°$ 是角，也是复数表示，也是 指数
 - 复数： $\omega = -\frac{1}{2} + i \sqrt{\frac{3}{2}}$
@@ -72,7 +72,7 @@ $e^{ix}$ 周期 $T=2\pi$
 
 **复指数的一般形式**  $e^{i\Omega t}$ ==周期== $T=\frac{2\pi}{\Omega}$
 
-![image-20250326103130718](images/image-20250326103130718.png)
+![image-20250330145835821](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301458366.png)
 
 - 这里的 $n= \pm 1、\pm 2、\pm 3,......$
 
@@ -109,7 +109,7 @@ $e^{ix}$ 周期 $T=2\pi$
 >
 > (3)$X_k = w^{kn}x_n$ ，$kn=0 \sim N-1$ 
 
-![image-20250325224931487](images/image-20250325224931487.png) 
+![image-20250330145258486](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301453272.png) 
 
 - 关于这里的周期性特别的强调一下，尤其是和三角函数的形式作对比：
 
@@ -117,7 +117,7 @@ $e^{ix}$ 周期 $T=2\pi$
 
 - 对于任意周期 $T$ 的含义进行傅里叶变换，用到的正交基，在一个周期内、也就是最大周期内的积分$=0$ ，这句话适用于三角函数正交基，也适用于复指数正交基→复指数正交基的证明
 
-![image-20250326125156660](images/image-20250326125156660.png) 
+![image-20250330145226300](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301452381.png) 
 
 
 
@@ -191,7 +191,7 @@ $[0,2\pi]$ 积分区间的选择不是基于单个函数的周期，而是基于
 
 你仔细观察这里：
 
-![image-20250326132203619](images/image-20250326132203619.png) 
+ ![image-20250330144729534](https://raw.githubusercontent.com/dearRongerr/PicGo/main/202503301447824.png)
 
 正交基分别是 （k 取 1,2,3,...）
 
@@ -223,7 +223,13 @@ $[0,2\pi]$ 积分区间的选择不是基于单个函数的周期，而是基于
 
 于是，就有了 DFT 的矩阵形式：
 
-![image-20250325224931487](images/image-20250325224931487.png) 
+![image-20250330144406005](https://raw.githubusercontent.com/dearRongerr/PicGo/main/202503301444007.png)
+
+
+
+
+
+![image-20250330144145309](images/image-20250330144145309.png)
 
 ## 复指数正交基
 
@@ -245,7 +251,7 @@ $ e^{j(n-k)\omega t} 的 周期 =\frac{2 \pi}{(n-k)\omega}$
 
 也就是说
 
-![image-20250326130449469](images/image-20250326130449469.png) 
+![image-20250330163923171](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301639493.png) 
 
 这里积分内 复指数的 $周期 =\frac{T}{n-k}$ 
 
@@ -255,7 +261,7 @@ $ e^{j(n-k)\omega t} 的 周期 =\frac{2 \pi}{(n-k)\omega}$
 
 ==对照着 三角函数正交基：== 
 
-![image-20250326134148389](images/image-20250326134148389.png) 
+![image-20250330163938981](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202503301639294.png)  
 
 
 
