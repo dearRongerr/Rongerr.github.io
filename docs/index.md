@@ -76,6 +76,7 @@ comments: false
         - [TonyCrane](https://github.com/TonyCrane/note/)
     - :material-link-variant:{ .lg .middle } [更多友链](./logs/4_flink.md)
     - :material-update:{ .lg .middle } [最近更新](./logs/2_updatelog.md)
+    - :material-comment-text-multiple:{ .lg .middle } [留言板](./logs/6_waline.md)
 </div>
 
 

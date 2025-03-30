@@ -344,7 +344,7 @@ nav:
     - logs/index.md     
     - logs/1_date.md
     - logs/2_updatelog.md
-    - logs/3_test.md
+    # - logs/3_test.md
     - logs/4_flink.md
     - logs/6_waline.md
     -  碎碎念:
