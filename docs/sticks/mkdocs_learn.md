@@ -254,12 +254,12 @@ plugins:
     This is a info.
 ```
 
-```
+```markdown
 !!! quote
     This is a quote.
 ```
 
-```
+```markdown
 ??? question "What is the meaning of life, the universe, and everything?"
 ```
 

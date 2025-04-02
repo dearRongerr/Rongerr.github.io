@@ -30,7 +30,7 @@ comments: false
     ---
     记录了研究生以来各方面的学习内容，供自己查阅，能帮助到别人不胜荣幸。
 
-    边学边记边思考，学过的东西反复验证，左右手互博，相当于记下思考的过程，所以看我的笔记时一定要带着批判性思维，因为可能我下一篇文章写得时候也修正了理解。
+    边学边记边思考，学过的东西反复验证，记下思考的过程，记性好差劲，所以看我的笔记时一定要带着批判性思维，因为可能我下一篇文章写得时候也变了理解。
 
     支持一切合理且友好的讨论，别杠我别杠我别杠我，我是小白，好好说话，别杠我
 
@@ -47,7 +47,7 @@ comments: false
 </style>
 
 
-***  
+***
 
 
 <div class="grid cards" markdown>
@@ -65,7 +65,6 @@ comments: false
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     - :material-chart-line: 本站总访问量：<span id="busuanzi_value_site_pv"></span>次  
     - :material-account: 本站访客数：<span id="busuanzi_value_site_uv"></span>人次  
-    
     
 -   :material-link:{ .lg .middle } __Link__
 
