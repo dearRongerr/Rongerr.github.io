@@ -354,5 +354,5 @@ nav:
     -  碎碎念:
         - logs/1_0_diary/index.md
         - logs/1_0_diary/2025/03.md
-        - logs/1_0_diary/2025/04.md
+        # - logs/1_0_diary/2025/04.md
         - logs/diary.md
