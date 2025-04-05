@@ -350,6 +350,7 @@ nav:
     # - logs/3_test.md
     - logs/4_flink.md
     - logs/6_waline.md
+    - logs/7_backup.md
     -  碎碎念:
         - logs/1_0_diary/index.md
         - logs/1_0_diary/2025/03.md

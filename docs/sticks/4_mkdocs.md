@@ -8,7 +8,7 @@
 
 ```html
 <details>
-<summary>内容概要</summary>
+<summary>说明</summary>
 <p>
 你想折叠的一大段内容
 </p>
@@ -26,15 +26,23 @@
 
 ~~~markdown
 <details>
-<summary>Old mkdocs.yml</summary>
+<summary>说明：</summary>
 <p>
-```yaml
+```python
 ```
 </p>
 </details>
 ~~~
 
 效果：
+
+<details>
+<summary>说明：</summary>
+<p>
+```python
+```
+</p>
+</details>
 
 <details>
 <summary>Old mkdocs.yml</summary>
@@ -51,9 +59,15 @@
     This is a note.
 ```
 
+!!! note
+    This is a note.
+    
+
 ```markdown
 ??? question "What is the meaning of life, the universe, and everything?"
 ```
+
+??? question "What is the meaning of life, the universe, and everything?"
 
 ```markdown
 !!! abstract
@@ -78,11 +92,20 @@
     Lorem 
 ```
 
+!!! note "note 标题"
+
+    Lorem 
+
 ```
 ??? note "折叠 note"
 
     Lorem 
 ```
+
+??? note "折叠 note"
+
+    Lorem 
+
 
 ```
 ???+ note "默认展开 note"
@@ -90,3 +113,6 @@
     Lorem 
 ```
 
+???+ note "默认展开 note"
+
+    Lorem 
