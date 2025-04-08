@@ -289,6 +289,7 @@ nav:
       - literature/TSP/3_TimesNet.md
       - literature/TSP/4_Informer.md
       - literature/TSP/5_Autoformer.md
+      - literature/TSP/6_UnetTSF.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
@@ -351,8 +352,15 @@ nav:
     - logs/4_flink.md
     - logs/6_waline.md
     - logs/7_backup.md
-    -  碎碎念:
+    -  daily:
+        - logs/1_0_diary/2025/0_Question.md
         - logs/1_0_diary/index.md
         - logs/1_0_diary/2025/03.md
-        # - logs/1_0_diary/2025/04.md
+        - logs/1_0_diary/2025/04.md
+        # - logs/1_0_diary/2025/05.md
+        # - logs/1_0_diary/2025/06.md
+        # - logs/1_0_diary/2025/07.md
+        # - logs/1_0_diary/2025/08.md
+        # - logs/1_0_diary/2025/09.md
+        # - logs/1_0_diary/2025/10.md
         - logs/diary.md
