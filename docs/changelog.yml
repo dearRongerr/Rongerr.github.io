@@ -1,4 +1,8 @@
 - "2025":
+  - "2025-04-10":
+    - pageupdate: Autoformer、SegRNN 代码数据流动图、摘出序列分解模块、
+  - "2025-04-08":
+    - pageupdate: UNetTSF
   - "2025-04-02":
     - pageupdate: SegRNN 再探，实验部分
     - refactor: 删除 pdf_note部分

@@ -1,5 +1,39 @@
 # 2021、Autoformer
 
+- [x] 模型结构图
+
+## 主函数
+
+![segRNN-Autoformer](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504101754179.png)
+
+## 序列分解模块
+
+具体地操作通过箭头说明，方块里表示形状的变化
+
+![segRNN-decomp](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504101937861.png)   
+
+## 编码器模块 
+
+
+
+
+
+## 解码器模块
+
+
+
+
+
+
+
+## 自相关机制
+
+
+
+
+
+## 开始理论讲解
+
 [序列分解预测模型Autoformer](https://www.bilibili.com/video/BV1KZ6ZYDEfK?spm_id_from=333.788.player.switch&vd_source=ddd7d236ab3e9b123c4086c415f4939e) 
 
 - 文章题目：Autoformer: Decomposition Transformers with Auto-Correlation for Long-Term Series Forecasting

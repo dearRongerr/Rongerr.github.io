@@ -1,6 +1,8 @@
 # 2021、 Informer
 
-![image-20250317120535689](images/image-20250317120535689.png)
+- [ ] 代码结构图
+
+![image-20250317120535689](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504090905181.png)    
 
 参看：[滑动窗口机制概述](https://blog.csdn.net/m0_53881899/article/details/136281557)
 
@@ -8,7 +10,7 @@
 
 
 
-![image-20250304211029241](images/image-20250304211029241.png)
+![image-20250304211029241](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504090905679.png)
 
 - batch_size：batch中样本的数量，模型训练过程每次以一个batch为输入单位来进行训练。 
 

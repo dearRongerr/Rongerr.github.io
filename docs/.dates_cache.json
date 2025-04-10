@@ -117,7 +117,7 @@
   },
   "logs/1_date.md": {
     "created": "2025-03-21T11:06:47.848173",
-    "modified": "2025-03-29T16:27:54.798487"
+    "modified": "2025-04-08T22:10:59.407903"
   },
   "logs/4_flink.md": {
     "created": "2025-03-28T15:48:04.933492",
@@ -335,6 +335,10 @@
     "created": "2025-03-20T15:49:23.377311",
     "modified": "2025-03-20T15:50:47.093481"
   },
+  "Reproduction/CodeRepo/4_self_.md": {
+    "created": "2025-04-10T19:38:28.547974",
+    "modified": "2025-04-10T20:00:30.950208"
+  },
   "Reproduction/CodeRepo/index.md": {
     "created": "2025-03-19T20:47:41.454390",
     "modified": "2025-03-19T21:01:32.617574"
@@ -387,33 +391,45 @@
     "created": "2025-04-07T20:56:52.781460",
     "modified": "2025-04-08T09:05:01.183120"
   },
+  "literature/TSP/8_PatchTST.md": {
+    "created": "2025-04-10T10:54:28.738967",
+    "modified": "2025-04-10T12:09:16.749959"
+  },
   "literature/TSP/1_SegRNN.md": {
     "created": "2024-11-15T20:48:05.857809",
-    "modified": "2025-03-18T11:53:21.484145"
+    "modified": "2025-04-10T15:31:11.312862"
+  },
+  "literature/TSP/9_Pyraformer.md": {
+    "created": "2025-04-10T14:05:17.881159",
+    "modified": "2025-04-10T14:05:48.044870"
   },
   "literature/TSP/0_note.md": {
     "created": "2025-03-02T19:58:33.698155",
     "modified": "2025-03-17T12:01:38.871120"
   },
+  "literature/TSP/7_SCINet.md": {
+    "created": "2025-04-09T09:03:03.292176",
+    "modified": "2025-04-09T09:03:58.891485"
+  },
   "literature/TSP/5_Autoformer.md": {
     "created": "2025-03-17T12:04:36.473204",
-    "modified": "2025-03-19T13:11:32.750542"
+    "modified": "2025-04-10T19:39:18.078906"
   },
   "literature/TSP/4_Informer.md": {
     "created": "2025-03-04T19:49:58.903572",
-    "modified": "2025-03-18T11:52:57.033857"
+    "modified": "2025-04-09T09:05:52.692227"
   },
   "literature/TSP/index.md": {
     "created": "2025-03-02T16:39:45.783778",
-    "modified": "2025-03-17T11:49:30.329171"
+    "modified": "2025-04-09T09:08:33.547159"
   },
   "literature/TSP/6_UnetTSF.md": {
     "created": "2025-04-03T18:18:16.345177",
-    "modified": "2025-04-08T12:32:58.362931"
+    "modified": "2025-04-10T17:57:36.170869"
   },
   "literature/TSP/3_TimesNet.md": {
     "created": "2025-03-03T09:12:05.012348",
-    "modified": "2025-03-18T11:53:05.099852"
+    "modified": "2025-04-09T09:07:33.230321"
   },
   "literature/TSP/2_DLinear.md": {
     "created": "2025-03-01T21:43:55.473290",

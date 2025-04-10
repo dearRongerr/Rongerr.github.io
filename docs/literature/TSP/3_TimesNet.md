@@ -1,5 +1,8 @@
 # 2023、TimesNet
 
+- [ ] 代码结构图
+
+
 [TIMESNET: TEMPORAL 2D-VARIATION MODELING
 FOR GENERAL TIME SERIES ANALYSIS](https://openreview.net/pdf?id=ju_Uqw384Oq)
 
@@ -9,7 +12,7 @@ FOR GENERAL TIME SERIES ANALYSIS](https://openreview.net/pdf?id=ju_Uqw384Oq)
 
 作者团队
 
-![image-20250303145130518](images/image-20250303145130518.png)
+![image-20250303145130518](images/image-20250303145130518.png) 
 
 期刊：ICLR2023
 

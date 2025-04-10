@@ -290,6 +290,9 @@ nav:
       - literature/TSP/4_Informer.md
       - literature/TSP/5_Autoformer.md
       - literature/TSP/6_UnetTSF.md
+      - literature/TSP/7_SCINet.md
+      - literature/TSP/8_PatchTST.md
+      - literature/TSP/9_Pyraformer.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
@@ -325,6 +328,7 @@ nav:
     - Reproduction/8_ThuML.md
     - 一些代码:
       - Reproduction/CodeRepo/index.md
+      - Reproduction/CodeRepo/4_self_.md
       - Reproduction/1.md
       - Reproduction/2.md
       - Reproduction/3.md

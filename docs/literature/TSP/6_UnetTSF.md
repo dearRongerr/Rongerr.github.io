@@ -1,5 +1,7 @@
 # 2024、UnetTSF
 
+![TSFUNet3](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504090859743.png)  
+
 [https://arxiv.org/pdf/2401.03001](https://arxiv.org/pdf/2401.03001)
 
 ![image-20250408085427055](images/image-20250408085427055.png) 
@@ -471,7 +473,7 @@ i = 0
                        dim=2)
     🔴e_out[self.stage_num - i -2] = e_out[2] = torch.Size([32, 7, 179])
     🔴e_last = e_out[3] = torch.Size([32, 7, 89])
-    🔴e_last = torch.Size([32, 7, 268])
+    🔴e_last = cat = torch.Size([32, 7, 268])
     🌈e_last = self.up_blocks[i](e_last)
     🔵e_last = torch.Size([32, 7, 268])
     🔵e_last = self.up_blocks[i](e_last) = torch.Size([32, 7, 179])
@@ -495,5 +497,16 @@ i = 0
              🌈e_last = self.up_blocks[i](e_last)
             🔵e_last = torch.Size([32, 7, 1079])
             🔵e_last = self.up_blocks[i](e_last) = torch.Size([32, 7, 720])  
+🌈e_last = e_last.permute(0,2,1)
+🔵跳出 for 循环
+🔵e_last = torch.Size([32, 7, 720])  
+🔵e_last = permute = torch.Size([32, 720, 7]) 
+🔵e_last = self.revin_layer(e_last, 'denorm')
+🔵形状不变，返回结果，模型结束
 ```
 
+图片：
+
+![未命名绘图-第 10 页.drawio](images/%E6%9C%AA%E5%91%BD%E5%90%8D%E7%BB%98%E5%9B%BE-%E7%AC%AC%2010%20%E9%A1%B5.drawio.png)
+
+通道独立的建模步骤

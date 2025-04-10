@@ -1,5 +1,9 @@
 # 2023、SegRNN
 
+模型架构图
+
+![未命名绘图-第 3 页](https://cdn.jsdelivr.net/gh/dearRongerr/PicGo@main/202504101530280.png)
+
 [https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for](https://paperswithcode.com/paper/segrnn-segment-recurrent-neural-network-for)
 
 [https://github.com/lss-1138/SegRNN?tab=readme-ov-file](https://github.com/lss-1138/SegRNN?tab=readme-ov-file)
