@@ -219,6 +219,10 @@
     "created": "2025-02-28T18:08:34.091459",
     "modified": "2025-03-19T13:42:42.983339"
   },
+  "sticks/5_preReproduction.md": {
+    "created": "2025-04-13T09:44:27.209388",
+    "modified": "2025-04-13T10:15:48.991308"
+  },
   "sticks/GitHub.md": {
     "created": "2024-12-13T14:41:21.070129",
     "modified": "2025-02-27T20:54:52.453390"
@@ -337,7 +341,7 @@
   },
   "Reproduction/CodeRepo/4_self_.md": {
     "created": "2025-04-10T19:38:28.547974",
-    "modified": "2025-04-10T20:00:30.950208"
+    "modified": "2025-04-10T21:55:14.906954"
   },
   "Reproduction/CodeRepo/index.md": {
     "created": "2025-03-19T20:47:41.454390",
@@ -397,7 +401,7 @@
   },
   "literature/TSP/1_SegRNN.md": {
     "created": "2024-11-15T20:48:05.857809",
-    "modified": "2025-04-10T15:31:11.312862"
+    "modified": "2025-04-10T20:41:30.559072"
   },
   "literature/TSP/9_Pyraformer.md": {
     "created": "2025-04-10T14:05:17.881159",
@@ -425,7 +429,7 @@
   },
   "literature/TSP/6_UnetTSF.md": {
     "created": "2025-04-03T18:18:16.345177",
-    "modified": "2025-04-10T17:57:36.170869"
+    "modified": "2025-04-11T18:31:20.937896"
   },
   "literature/TSP/3_TimesNet.md": {
     "created": "2025-03-03T09:12:05.012348",

@@ -237,6 +237,7 @@ nav:
     - sticks/2_python.md
     - sticks/3_vscode.md
     - sticks/4_mkdocs.md
+    - sticks/5_preReproduction.md
   - 面试:
     - bagu/index.md
     - 题目:
