@@ -1,6 +1,12 @@
 - "2025":
+  - "2025-04-14":
+    - newpage: Fedformer、Pyraformer 频域时序
+    - newpage: TimeMixer、WITRAN 论文及代码
+    - function: 
+        text: 整理了一个自己复现过的 TSF 仓库
+        href: https://github.com/dearRongerr/TSF_Reproduction
   - "2025-04-10":
-    - pageupdate: Autoformer、SegRNN 代码数据流动图、摘出序列分解模块、
+    - pageupdate: Autoformer、SegRNN 代码数据流动图、摘出序列分解模块
   - "2025-04-08":
     - pageupdate: UNetTSF
   - "2025-04-02":
