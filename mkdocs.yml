@@ -294,6 +294,9 @@ nav:
       - literature/TSP/7_SCINet.md
       - literature/TSP/8_PatchTST.md
       - literature/TSP/9_Pyraformer.md
+      - literature/TSP/10_TimesMixer.md
+      - literature/TSP/11_Fedformer.md
+      - literature/TSP/12_WITRAN.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
@@ -327,6 +330,7 @@ nav:
     - Reproduction/6_AutoFormer_v1.md
     - Reproduction/6_AutoFormer_v2_eg.md
     - Reproduction/8_ThuML.md
+    - Reproduction/9_WITRAN.md
     - 一些代码:
       - Reproduction/CodeRepo/index.md
       - Reproduction/CodeRepo/4_self_.md
