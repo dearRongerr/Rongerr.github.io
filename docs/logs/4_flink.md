@@ -1,7 +1,7 @@
 ---
 hide:
-  - navigation # 显示右
-  - toc #显示左
+  # - navigation # 显示右
+  # - toc #显示左
   - footer
 comment: True
 glightbox: False
@@ -15,7 +15,8 @@ nostatistics: True
 -   :material-hand-heart:{ .lg .middle } __这是一个充满感恩的页面，谢谢你们__
 
     <p style="font-size: 28px; line-height: 2; color: #757575; text-align: center;">海纳百川凭度量，壁立千仞任云翔</p>
-        
+    
+
 </div>
 
 !!! abstract 
@@ -23,9 +24,52 @@ nostatistics: True
 
     单方面添加友链，都太好会设计
     
-    赛博导师、学习链接、朋友等
+    工具链、赛博导师、学习链接、朋友等
     
     本页面样式特别感谢：[鹤翔万里的笔记本](https://note.tonycrane.cc/links/)
+
+
+
+## 工具链
+
+<div class="flink-list">
+
+  <div class="flink-list-item">
+    <a href="https://www.overleaf.com/project/6228b276c44f78b9ceecbc67" title="Latex 表格、图片排版模版" target="_blank">
+      <div class="flink-item-name">Latex 表格、图片排版模版</div>
+      <div class="flink-item-desc">中山大学老师维护</div>
+    </a>
+  </div>
+  
+  <div class="flink-list-item">
+    <a href="https://www.bilibili.com/opus/952072311171710978?jump_opus=1" title="科研制图工具分享" target="_blank">
+      <div class="flink-item-name">科研制图工具分享</div>
+      <div class="flink-item-desc">b站 up 主</div>
+    </a>
+  </div>  
+
+  <div class="flink-list-item">
+    <a href="https://zhuanlan.zhihu.com/p/603088040" title="科研绘图配色" target="_blank">
+      <div class="flink-item-name">科研绘图配色</div>
+      <div class="flink-item-desc">知乎：淡蓝、淡红、淡黄、淡绿</div>
+    </a>
+  </div>
+
+  <div class="flink-list-item">
+    <a href="https://ibruce.info/2015/04/04/busuanzi/" title="不蒜子" target="_blank">
+      <div class="flink-item-name">不蒜子</div>
+      <div class="flink-item-desc">统计 pv、uv</div>
+    </a>
+  </div>
+
+  <div class="flink-list-item">
+    <a href="https://mycolor.space/" title="ColorSpace" target="_blank">
+      <div class="flink-item-name">ColorSpace</div>
+      <div class="flink-item-desc">生成很好看的配色</div>
+    </a>
+  </div>
+
+</div>
 
 ## mkdocs
 
@@ -123,25 +167,7 @@ nostatistics: True
   </div>
 </div>
 
-## 工具链
 
-<div class="flink-list">
-
-  <div class="flink-list-item">
-    <a href="https://ibruce.info/2015/04/04/busuanzi/" title="不蒜子" target="_blank">
-      <div class="flink-item-name">不蒜子</div>
-      <div class="flink-item-desc">统计 pv、uv</div>
-    </a>
-  </div>
-
-  <div class="flink-list-item">
-    <a href="https://mycolor.space/" title="ColorSpace" target="_blank">
-      <div class="flink-item-name">ColorSpace</div>
-      <div class="flink-item-desc">生成很好看的配色</div>
-    </a>
-  </div>
-
-</div>
 
 
 ## 朋友
@@ -155,5 +181,4 @@ nostatistics: True
   </div>
 
 </div>
-
 
