@@ -302,7 +302,47 @@ else:
 
 ```python
 if layer == 1:
-    layer0_output = a 
+    layer0_output = a   # 保存第一层的输出，用于残差连接
+    '''
+        输入：
+            a [128, 27, 64]（第一层的输出）
+        处理：
+            将第一层的输出保存到 layer0_output 中，用于后续层的残差连接。
+        输出：
+            layer0_output [128, 27, 64]
+
+    '''
 ```
 
-如果是第一层的话，还要保存第 0 层的输入，用于后续残差连接的处理
+如果是第一层的话，还要保存第 0 层的输出，用于后续残差连接的处理
+
+这里想说的是
+
+- 第 index= 0 层的输入  `[128,27,11]` ，第 0 层的输出反而是 `[128, 27, 64]`
+- 仿照 RNN 的理解，原始的 [N,T,C]，经过 RNN 输出，[N,T,HiddenDim]，如果单独取最后一个时间步的隐藏状态就是 [层数×方向,N,HiddenDim]
+- 这里的 64 是行隐藏状态(32)+列隐藏状态(32)
+
+好，下一行：
+
+```python
+ W = self.W_other_layer[layer-1, :, :]   # 其他层的权重矩阵
+        '''
+            输入：
+                self.W_other_layer [2, 192, 128]（其他层的权重矩阵，形状为 [num_layers-1, 6 * hidden_size, 4 * hidden_size]）
+                layer-1（当前层的索引减 1，用于选择对应层的权重矩阵）
+            处理：
+                提取当前层的权重矩阵 W。
+            输出：
+                W [192, 128]（当前层的权重矩阵）
+
+        '''
+```
+
+初始化权重
+
+先看其它层权重矩阵的定义：
+
+```python
+self.W_other_layer = torch.nn.Parameter(torch.empty(num_layers - 1, 6 * hidden_size, 4 * hidden_size))
+```
+

@@ -1,4 +1,6 @@
 - "2025":
+  - "2025-04-15":
+    - pageupdate: DLinear论文
   - "2025-04-14":
     - newpage: Fedformer、Pyraformer 频域时序
     - newpage: TimeMixer、WITRAN 论文及代码

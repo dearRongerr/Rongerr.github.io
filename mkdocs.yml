@@ -297,6 +297,8 @@ nav:
       - literature/TSP/10_TimesMixer.md
       - literature/TSP/11_Fedformer.md
       - literature/TSP/12_WITRAN.md
+      - literature/TSP/13_TFB.md
+      - literature/TSP/14_TSLib.md
     - 目标计数:
         - literature/ObejectCounting/index.md
         - literature/ObejectCounting/rank1 CountGD.md
