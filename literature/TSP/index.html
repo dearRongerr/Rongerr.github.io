@@ -2356,6 +2356,10 @@ hr.custom-hr:before {
       
         
       
+        
+      
+        
+      
     
     
     
@@ -2416,7 +2420,7 @@ hr.custom-hr:before {
   
   
   <span class="md-ellipsis">
-    NOTE
+    时序预测基础
     
   </span>
   
@@ -2462,7 +2466,7 @@ hr.custom-hr:before {
   
   
   <span class="md-ellipsis">
-    2022、DLinear
+    2022、LTSF-Linear
     
   </span>
   
@@ -2693,6 +2697,52 @@ hr.custom-hr:before {
   
   <span class="md-ellipsis">
     2023、WITRAN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="13_TFB/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TFB
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="14_TSLib/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    TSLib
     
   </span>
   
@@ -4534,8 +4584,62 @@ hr.custom-hr:before {
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="论文关键词">
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#-former" class="md-nav__link">
+    <span class="md-ellipsis">
+      - former 系适用于周期性明显的数据
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="- former 系适用于周期性明显的数据">
       <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#informer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Informer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#autoformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Autoformer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pyraformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pyraformer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fedformer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fedformer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tsf-linear" class="md-nav__link">
+    <span class="md-ellipsis">
+      TSF-Linear
+    </span>
+  </a>
+  
+</li>
         
           <li class="md-nav__item">
   <a href="#witran" class="md-nav__link">
@@ -4586,7 +4690,7 @@ hr.custom-hr:before {
 
 <h1 id="tsp">TSP<a class="headerlink" href="#tsp" title="Permanent link">&para;</a></h1>
 <div style="margin-top: -30px; font-size: 0.75em; opacity: 0.7;">
-<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 292 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 1 分钟</p>
+<p><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12a10 10 0 0 0 10 10 10 10 0 0 0 10-10h-2a8 8 0 0 1-8 8 8 8 0 0 1-8-8 8 8 0 0 1 8-8zm6.78 1a.7.7 0 0 0-.48.2l-1.22 1.21 2.5 2.5L20.8 5.7c.26-.26.26-.7 0-.95L19.25 3.2c-.13-.13-.3-.2-.47-.2m-2.41 2.12L9 12.5V15h2.5l7.37-7.38z"/></svg></span> 约 665 个字 <span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 20c4.42 0 8-3.58 8-8s-3.58-8-8-8-8 3.58-8 8 3.58 8 8 8m0-18c5.5 0 10 4.5 10 10s-4.5 10-10 10C6.47 22 2 17.5 2 12S6.5 2 12 2m.5 11H11V7h1.5v4.26l3.7-2.13.75 1.3z"/></svg></span> 预计阅读时间 3 分钟</p>
 </div>
 <blockquote>
 <p><a href="https://www.bilibili.com/video/BV1Nr421p7NV/?spm_id_from=333.788.top_right_bar_window_history.content.click&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">ML 领域三大顶刊</a> </p>
@@ -4604,52 +4708,73 @@ hr.custom-hr:before {
 </ul>
 </blockquote>
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2019、LogTrans</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NeurIPS2019、LogTrans</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ICLR2020、Reformer</li>
 </ul>
 <hr />
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> NeurIPS2021 、Autoformer、清华大学吴海旭</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> AAAI2021、Informer</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> AAAI2021(Best Paper)、Informer</li>
 </ul>
 <hr />
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICLR2022  (Oral)、Pyformer、上海交通大学、蚂蚁集团</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICLR2022  (Oral)、Pyraformer、上海交通大学、蚂蚁集团</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICML2022、Fedformer、阿里达摩院</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> IJCAI2022、Triformer</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NeuraIPS2022、SCINet</li>
 </ul>
 <hr />
 <ul class="task-list">
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> AAAI2023 、 Are Transformer Effective ？</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> AAAI2023 、 LTSF-Linear(DLinear、NLinear)</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NeurIPS2023 、TLNets</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> NeurIPS2023 (Spotlight)、WITRAN、北京交通大学万怀宇团队</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> NeurIPS2023 (Spotlight)、WITRAN、北京交通大学万怀宇团队</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ICLR2023、Crossformer</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2023、DLinear</li>
-<li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2023、TimesNet</p>
-</li>
-<li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ICLR2023、PatchTST</p>
-</li>
-<li class="task-list-item">
-<p><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICLR2023、SegRNN、华南理工大学</p>
-</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2023、TimesNet</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ICLR2023、PatchTST</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICLR2023、SegRNN、华南理工大学</li>
 </ul>
 <hr />
 <ul class="task-list">
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> ICLR2024、TimeMixer、蚂蚁集团、清华大学吴海旭</li>
 <li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> ICLR 2024、、iTransformer、</li>
-<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> 2024、UnetTSF、中国科学技术大学、中国科学院</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> 2024、UnetTSF、中国科学技术大学、中国科学院</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled checked/><span class="task-list-indicator"></span></label> VLDB2024（CCF-A）、TFB、华东师范大学决策智能实验室，华为云</li>
 </ul>
 <hr />
 <p>PaperWithCode：<a href="https://paperswithcode.com/task/time-series-forecasting">Time Series Forecasting </a> </p>
 <ul>
-<li>特征之间的相关性</li>
-<li>注意力计算的复杂度有点高</li>
-<li>注意力机制</li>
+<li>特征之间的相关性、通道独立</li>
+<li>注意力机制、复杂度</li>
 </ul>
 <h2 id="_1">论文关键词<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>former 系、linear 系、RNN 系分别适用于什么情况？（TFB 中做了详细的实验，有结论。</p>
+<h2 id="-former">- <a href="https://www.bilibili.com/video/BV1fYH4eQEPv/?spm_id_from=333.337.search-card.all.click&amp;vd_source=ddd7d236ab3e9b123c4086c415f4939e">former 系适用于周期性明显的数据</a><a class="headerlink" href="#-former" title="Permanent link">&para;</a></h2>
+</blockquote>
+<h3 id="informer">Informer<a class="headerlink" href="#informer" title="Permanent link">&para;</a></h3>
+<p>概率稀疏自注意力</p>
+<h3 id="autoformer">Autoformer<a class="headerlink" href="#autoformer" title="Permanent link">&para;</a></h3>
+<p>引入序列分解&amp;自相关机制</p>
+<p>基本遵循原始 Transformer 的设计 框架</p>
+<p>应用于2022北京冬奥会 10 分钟天气预测、清华软院</p>
+<h3 id="pyraformer">Pyraformer<a class="headerlink" href="#pyraformer" title="Permanent link">&para;</a></h3>
+<p>金字塔注意力，很复杂，有证明，引入了新概念：最大信号传递路径</p>
+<h3 id="fedformer">Fedformer<a class="headerlink" href="#fedformer" title="Permanent link">&para;</a></h3>
+<p>频域信息，傅里叶&amp;小波，改进Autoformer、专家混合分解，有频域的都不简单</p>
+<h3 id="tsf-linear">TSF-Linear<a class="headerlink" href="#tsf-linear" title="Permanent link">&para;</a></h3>
+<p>： Informer、Pyraformer、Autoformer、Fedformer </p>
+<p>提出了 6 个质疑：</p>
+<ol>
+<li>难道不是历史回溯窗口越长越好吗？(还真不是，输入序列太长了以后，Transformer 系的模型性能反而下降了)</li>
+<li>Transformer 系模型从回溯窗口学到了什么？(close input&amp;far input)</li>
+<li>自注意力机制有用吗？（Informer 逐渐演变为线性模型性能 upup）</li>
+<li>Temporal Embedding真的保留了时间的顺序信息吗？(作者对输入颠倒顺序，发现Transformer 系的模型并没有受到太大的影响)</li>
+<li>嵌入策略起了什么作用？</li>
+<li>是训练数据集的规模限制了模型的性能吗？(然而并没有，反而保存了完整周期信息的训练数据更好)</li>
+<li>效率和复杂度的优先级真的那么重要吗？</li>
+</ol>
 <h3 id="witran">WITRAN<a class="headerlink" href="#witran" title="Permanent link">&para;</a></h3>
+<p><u>RNN 系文章</u> </p>
 <p>水波纹信息传输循环加速网络</p>
 <ul>
 <li>非逐点语义信息捕获</li>
@@ -4659,7 +4784,7 @@ hr.custom-hr:before {
 <p>（1）水波纹信息传输：WIT</p>
 <p>（2）水平垂直 门控选择单元： HVGSU</p>
 <p>（3）循环加速网络：RAN</p>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-03-02'><span class='material-icons'>add_circle</span>2025-03-02 16:39:45</span><span title='最后更新: 2025-04-14'><span class='material-icons'>update</span>2025-04-14 12:52:53</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-03-02'><span class='material-icons'>add_circle</span>2025-03-02 16:39:45</span><span title='最后更新: 2025-04-15'><span class='material-icons'>update</span>2025-04-15 16:14:28</span></div></div>
 
                 
 
