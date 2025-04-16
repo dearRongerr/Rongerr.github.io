@@ -226,18 +226,20 @@ nav:
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
     - sticks/latex.md
-    - sticks/GitHub.md
     - sticks/MacOS.md
     - sticks/shell.md
     - sticks/linux.md
     - sticks/screen.md
     - sticks/docker.md  
     - sticks/writting.md
-    - sticks/1_github_v1.md
     - sticks/2_python.md
     - sticks/3_vscode.md
     - sticks/4_mkdocs.md
     - sticks/5_preReproduction.md
+    - Git:
+      - sticks/GitHub.md
+      - sticks/1_github_v1.md
+
   - 面试:
     - bagu/index.md
     - 题目:

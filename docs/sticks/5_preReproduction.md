@@ -39,11 +39,20 @@ conda deactivate
 
 - 调试 sh 文件
 
+这里要安装 python 库：
+
+```python
+pip install debugpy
+```
+
 修改 sh 文件：
 
 ```shell
 python -u run_longExp.py
+# 需要手动点击 调试，开始运行
 python -m debugpy --listen 5998 --wait-for-client run_longExp.py 
+# 可以移除 --wait-for-client 参数，让程序不必等待客户端连接就开始运行
+python -m debugpy --listen 5998 run_longExp.py \
 ```
 
 修改配置文件  `"configurations"`  
@@ -174,3 +183,141 @@ if __name__ == "__main__":
 ```python
 rm -rf .git
 ```
+
+- **可选）** 由于是 fork 来的代码，会保留原有作者的版本控制记录
+
+> 拥有一个干净的仓库，并且不会显示原作者的版本记录，同时可以选择地是否从原仓库获取更新。
+
+<u>（1）彻底清除项目的所有之前的提交历史</u>
+
+**完全重新开始，创建全新的仓库**  
+
+```bash
+# 1. 备份当前代码
+cp -r UnetTSF UnetTSF_backup
+
+# 2. 删除旧的 Git 目录
+rm -rf UnetTSF/.git
+
+# 3. 初始化新的 Git 仓库
+cd UnetTSF
+git init
+
+# 4. 添加所有文件并提交
+git add .
+git commit -m "Initial commit: Forked from original repo with modifications"
+```
+
+**与我自己的远程仓库关联** 
+
+```python
+# 添加你自己的远程仓库
+git remote add origin https://github.com/你的用户名/仓库名.git
+git remote add origin https://github.com/dearRongerr/TSF_Reproduction.git
+# 推送代码
+git push -u origin main  
+```
+
+**如果还想从原始仓库获取更新，保留原始仓库作为上游** 
+
+```bash
+# 添加原始仓库作为上游
+git remote add upstream https://github.com/原作者/原仓库.git
+
+# 获取上游更新（当需要时）
+git fetch upstream
+git merge upstream/master  # 或者 main
+```
+
+<u>（2）保留完整历史记录：所有之前的提交历史都会保留</u> 
+
+```bash
+# 查看当前远程仓库
+git remote -v
+# 显示结果通常为：
+# origin   https://github.com/原作者/原仓库.git (fetch)
+# origin   https://github.com/原作者/原仓库.git (push)
+
+# 移除原始的远程仓库引用
+git remote rm origin
+
+# 添加你自己的仓库作为新的 origin
+git remote add origin https://github.com/你的用户名/你的仓库.git
+
+# 添加原作者的仓库作为 upstream (方便日后同步更新)
+git remote add upstream https://github.com/原作者/原仓库.git
+```
+
+**更新 .gitignore 文件** 
+
+```bash
+# Python 缓存文件
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+
+# 虚拟环境
+venv/
+env/
+ENV/
+
+# 分布式训练
+*.out
+*.err
+*.log
+
+# 模型检查点和结果
+checkpoints/
+results/
+*.pth
+*.pt
+*.bin
+*.h5
+
+# 临时文件
+.ipynb_checkpoints
+.DS_Store
+.idea/
+.vscode/
+
+# 数据文件 (根据需要调整)
+*.csv
+*.tsv
+*.pkl
+*.npy
+```
+
+## 模型修改与版本控制
+
+
+
+```python
+# 进行多次提交开发一个特性
+git commit -m "初始化多尺度卷积结构"
+git commit -m "添加自注意力机制"
+git commit -m "优化特征融合方法"
+git commit -m "完成多尺度时间卷积与注意力机制"
+
+# 特性完成后，打一个标签
+git tag -a feature-multiscale-complete -m "多尺度时间卷积与注意力机制完整实现"
+
+# 运行实验后，标记结果
+git tag -a exp-etth1-96h-mae0.412 -m "ETTh1数据集96小时预测最佳结果"
+```
+
+提交&打标签
+
+> 标签是对提交的引用，所以必须先有提交才能打标签
+
+```bash
+# 首先提交代码
+git add models/Time_Unet.py
+git commit -m "完成多尺度时间卷积与注意力机制实现"
+
+# 然后在这个提交上打标签
+git tag -a v0.1-multiscale -m "多尺度时间卷积特性完成"
+```
+
