@@ -346,3 +346,5 @@ if layer == 1:
 self.W_other_layer = torch.nn.Parameter(torch.empty(num_layers - 1, 6 * hidden_size, 4 * hidden_size))
 ```
 
+
+
