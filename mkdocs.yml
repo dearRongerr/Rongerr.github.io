@@ -238,7 +238,9 @@ nav:
     - sticks/5_preReproduction.md
     - Git:
       - sticks/GitHub.md
+      - sticks/1_github_v0.md
       - sticks/1_github_v1.md
+      - sticks/1_github_v2.md
 
   - 面试:
     - bagu/index.md
@@ -335,6 +337,7 @@ nav:
     - Reproduction/6_AutoFormer_v2_eg.md
     - Reproduction/8_ThuML.md
     - Reproduction/9_WITRAN.md
+    - Reproduction/10_UNetTSF.md
     - 一些代码:
       - Reproduction/CodeRepo/index.md
       - Reproduction/CodeRepo/4_self_.md
