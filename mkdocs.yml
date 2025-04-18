@@ -351,9 +351,13 @@ nav:
       - Reproduction/CodeRepo/2_transformer.md
       - Reproduction/CodeRepo/3_fourier.md
       - Reproduction/CodeRepo/1_0_Autoformer.ipynb
-  - python代码:
-    - CodeRepo/index.md
+  - python:
+    - CodeRepo/3_args.md
+    - CodeRepo/2_SHHtensorboard.md
+    - CodeRepo/2_0_tensorboad.md
     - CodeRepo/1_model.md
+    - CodeRepo/index.md
+    
       
   - 统计学:
     - Statistics/index.md
