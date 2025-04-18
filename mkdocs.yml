@@ -232,7 +232,6 @@ nav:
     - sticks/screen.md
     - sticks/docker.md  
     - sticks/writting.md
-    - sticks/2_python.md
     - sticks/3_vscode.md
     - sticks/4_mkdocs.md
     - sticks/5_preReproduction.md
@@ -265,10 +264,12 @@ nav:
     - Error/macos.md
     - Error/docker.md      
   - 深度学习:
-    - learning/0_pdfNotes.md
+    - learning/16_KAN.md
+    - learning/15_CausualConv.md
     - learning/3_ViT.md
     - learning/1_clip.md
     - learning/2_MOCO.md
+    - learning/2_python.md
     - learning/2.md
     - learning/1.md
     - learning/vit.md
@@ -283,7 +284,8 @@ nav:
     - learning/9_cGAN.md 
     - learning/12_KLdivergence.md
     - learning/13_RNN.md
-    - learning/14_LSTM.md 
+    - learning/14_LSTM.md
+    - learning/0_pdfNotes.md 
   - 文献:
     - literature/index.md
     - 时间序列预测: 
@@ -323,7 +325,7 @@ nav:
       - literature/ObjectDetection/1.md
       - literature/ObjectDetection/3.md
 
-  - 复现&代码: 
+  - 论文复现: 
     - Reproduction/index.md
     - Reproduction/7_summary.md
     - Reproduction/DAVE.md               
@@ -349,6 +351,9 @@ nav:
       - Reproduction/CodeRepo/2_transformer.md
       - Reproduction/CodeRepo/3_fourier.md
       - Reproduction/CodeRepo/1_0_Autoformer.ipynb
+  - python代码:
+    - CodeRepo/index.md
+    - CodeRepo/1_model.md
       
   - 统计学:
     - Statistics/index.md
