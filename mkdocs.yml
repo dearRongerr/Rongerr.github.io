@@ -222,7 +222,12 @@ plugins:
   #     # pagination_url_format: "page/{page}"     
 
 nav:
-  - 便签:   
+  - index.md
+  - 便签:
+    - 逐步系列:
+      - sticks/5_preReproduction.md
+      - sticks/6_0_docker.md
+      - sticks/1_github_v3.md   
     - sticks/mkdocs_learn.md
     - sticks/markdwon_learn.md
     - sticks/latex.md
@@ -234,13 +239,11 @@ nav:
     - sticks/writting.md
     - sticks/3_vscode.md
     - sticks/4_mkdocs.md
-    - sticks/5_preReproduction.md
     - Git:
       - sticks/GitHub.md
       - sticks/1_github_v0.md
       - sticks/1_github_v1.md
       - sticks/1_github_v2.md
-
   - 面试:
     - bagu/index.md
     - 题目:
@@ -262,8 +265,12 @@ nav:
     - Error/latex.md 
     - Error/python.md 
     - Error/macos.md
-    - Error/docker.md      
+    - Error/docker.md 
+    - Error/Typora_1.md     
   - 深度学习:
+    - learning/index.md
+    - learning/17_1_SENet.md
+    - learning/17_ManBa.md
     - learning/16_KAN.md
     - learning/15_CausualConv.md
     - learning/3_ViT.md
@@ -340,25 +347,23 @@ nav:
     - Reproduction/8_ThuML.md
     - Reproduction/9_WITRAN.md
     - Reproduction/10_UNetTSF.md
-    - 一些代码:
-      - Reproduction/CodeRepo/index.md
-      - Reproduction/CodeRepo/4_self_.md
-      - Reproduction/1.md
-      - Reproduction/2.md
-      - Reproduction/3.md
-      - Reproduction/4.md
-      - Reproduction/CodeRepo/1_MultiHeadAttention.md
-      - Reproduction/CodeRepo/2_transformer.md
-      - Reproduction/CodeRepo/3_fourier.md
-      - Reproduction/CodeRepo/1_0_Autoformer.ipynb
   - python:
+    - CodeRepo/index.md
+    - CodeRepo/4_PreTrained.md
     - CodeRepo/3_args.md
     - CodeRepo/2_SHHtensorboard.md
     - CodeRepo/2_0_tensorboad.md
+    - CodeRepo/4_PreTrained.md
     - CodeRepo/1_model.md
-    - CodeRepo/index.md
-    
-      
+    - Reproduction/CodeRepo/4_self_.md
+    - Reproduction/1.md
+    - Reproduction/2.md
+    - Reproduction/3.md
+    - Reproduction/CodeRepo/1_MultiHeadAttention.md
+    - Reproduction/CodeRepo/2_transformer.md
+    - Reproduction/CodeRepo/3_fourier.md
+    - Reproduction/CodeRepo/1_0_Autoformer.ipynb 
+       
   - 统计学:
     - Statistics/index.md
     - Statistics/1_FFT.md

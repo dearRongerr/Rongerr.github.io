@@ -40,7 +40,7 @@ nostatistics: True
       <div class="flink-item-desc">中山大学老师维护</div>
     </a>
   </div>
-  
+
   <div class="flink-list-item">
     <a href="https://www.bilibili.com/opus/952072311171710978?jump_opus=1" title="科研制图工具分享" target="_blank">
       <div class="flink-item-name">科研制图工具分享</div>
@@ -70,6 +70,15 @@ nostatistics: True
   </div>
 
 </div>
+
+🚩 [双拼入门](https://sspai.com/post/42667)
+
+🚩 [双拼练习](https://api.ihint.me/shuang/)
+
+🚩 [用阿里云的万网云虚拟主机搭建一个自有域名的WordPress博客](https://www.liuchuo.net/archives/88)
+
+🚩 [偶然刷到的逆天大神](https://www.liuchuo.net/about)
+
 
 ## mkdocs
 

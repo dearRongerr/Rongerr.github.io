@@ -1,9 +1,33 @@
-# 复现之前
+# (逐步系列)复现之前
 
 - git clone
 - 下载数据集
 
 - conda activate、readme、python 版本
+
+#### 自动确认 y
+
+```bash
+# 创建新的conda环境（自动确认所有提示）
+conda create -n mamba python==3.8 -y
+
+# 激活环境
+conda activate mamba
+
+# 安装兼容版本的PyTorch（自动确认所有提示）
+conda install pytorch==2.0.0 torchvision torchaudio pytorch-cuda==11.8 -c pytorch -c nvidia -y
+
+### 稳定安装方法# 
+# 1. 通过此命令行查看安装的是哪个wheel文件:
+pip install mamba-ssm --no-cache-dir --verbose
+# 2. 复制给定的.wheel链接到浏览器,直接下载
+# 3. 然后在对应的环境中直接
+pip install mamba_ssm-2.2.2+cu118torch2.0cxx11abiFALSE-cp38-cp38-linux_x86_64.whl
+```
+
+
+
+#### 安装\激活
 
 ```python
 conda create -n dave python==3.8
@@ -16,6 +40,8 @@ conda install tqdm
 conda install pycocotools
 ```
 
+#### 进入\退出
+
 ```python
 # To activate this environment, use               
 #     $ conda activate Autoformer
@@ -25,17 +51,52 @@ conda install pycocotools
 #     $ conda deactivate
 ```
 
+#### requirements 安装
+
 ```python
 conda create -n SegRNN python=3.8
 conda activate SegRNN
 pip install -r requirements.txt
 ```
 
+#### 查看虚拟环境列表:
+
 ```python
 conda env list
 conda actiavte 环境名
 conda deactivate
 ```
+
+#### 本地安装:
+
+(1)wheel
+
+- 下载(这种情况发生在我安装 mamba 的时候,下载时,会显示正在下载哪个 wheel 文件,直接将正在下载的 url链接复制到浏览器,会自动下载)
+- 进入到有 wheel 文件的文件夹,记得保证在python虚拟环境中,然后,pip install 即可
+
+```bash
+pip install mamba_ssm-2.2.2+cu118torch2.0cxx11abiFALSE-cp38-cp38-linux_x86_64.whl
+```
+
+- [ ] (2) git安装
+
+```python
+# 激活您的环境
+conda activate mamba
+
+# 卸载现有版本
+pip uninstall -y mamba-ssm
+
+# 克隆仓库
+git clone https://github.com/state-spaces/mamba.git
+cd mamba
+
+# 安装
+pip install -e .
+```
+
+> 执行 pip install -e . 时，pip 会在当前目录查找 setup.py 文件,执行该文件中的安装指令
+>
 
 - 调试 sh 文件
 
