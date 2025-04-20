@@ -5334,7 +5334,7 @@ hr.custom-hr:before {
 <p>将三个输入进行相加,融合了多尺度信息之后,通过一个全局池化操作,获得一个通道描述符,表示将其压缩为 <span class="arithmatex">\(1×1×C\)</span></p>
 <p>(三)</p>
 <p>在激励阶段,继续照猫画虎,也是通过两层的全连接层,来建立通道之间的关系,但是需要注意,在第一个全连接层,先将C降维到 <span class="arithmatex">\(\frac{C}{r}\)</span> ,但是在第二个全连接层,就不能仅仅的恢复到C,因为最开始接收有三个输入,也就意味着要产生三个权重才行,所以在第二个全连接层,需要将它升维到3C,然后再在通道上进行分割操作,平均分割为三份,然后分别通过Sigmoid函数来生成权重表示,然后将权重与对应的三个输入分别进行相乘,最后再通过加权和,得到最后的输出</p>
-<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-04-20'><span class='material-icons'>add_circle</span>2025-04-20 10:25:47</span><span title='最后更新: 2025-04-20'><span class='material-icons'>update</span>2025-04-20 14:22:14</span></div></div>
+<div class='document-dates-plugin-wrapper'><div class='document-dates-plugin'><span title='创建时间: 2025-04-20'><span class='material-icons'>add_circle</span>2025-04-20 10:25:47</span><span title='最后更新: 2025-04-20'><span class='material-icons'>update</span>2025-04-20 14:26:34</span></div></div>
 
                 
 
