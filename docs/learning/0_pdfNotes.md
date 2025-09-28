@@ -93,7 +93,7 @@
       <div class="file-title">Encoder原理精讲及其PyTorch逐行实现</div>
     </div>
   </div>
-  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_1_transformer.pdf" markdown="1">查看</a>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_1_Transformer.pdf" markdown="1">查看</a>
 </div>
 
 
@@ -106,7 +106,7 @@
       <div class="file-title">Decoder原理精讲及其PyTorch逐行实现</div>
     </div>
   </div>
-  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_2_transformer.pdf" markdown="1">查看</a>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_2_Transformer.pdf" markdown="1">查看</a>
 </div>
 
 
@@ -119,7 +119,7 @@
       <div class="file-title">Transformer模型总结 & maksed loss的实现</div>
     </div>
   </div>
-  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_3_transformer.pdf" markdown="1">查看</a>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_3_Transformer.pdf" markdown="1">查看</a>
 </div>
 
 
