@@ -64,7 +64,7 @@
       <div class="file-title">CNN 卷积网络组会讲解 ppt</div>
     </div>
   </div>
-  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_4_All_CNN" markdown="1">查看</a>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/1_4_All_CNN.pdf" markdown="1">查看</a>
 </div>
 
 
