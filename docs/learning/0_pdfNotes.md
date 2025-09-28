@@ -132,7 +132,7 @@
       <div class="file-title">Transformer代码(源码Pytorch版本)</div>
     </div>
   </div>
-  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_6_transformer.pdf" markdown="1">查看</a>
+  <a class="down-button" target="_blank" href="/Rongerr.github.io/pdf_files/2_6_Transformer.pdf" markdown="1">查看</a>
 </div>
 
 
